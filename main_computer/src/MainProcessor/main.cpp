@@ -58,23 +58,13 @@ int main(int argc, char** argv) {
     display_welcome_screen();
 
     // Launch the pre processor.  
-    coreProcessor CP = new coreProcessor();
-    try{
-        int rc = CP.pre_launch();
-        if (rc) throw -1;
-    } catch (...){
-        ~CP;
-        return -1;
-    }
+    coreProcessor CP;
+    int rc = CP.pre_launch();
+    if(rc) return -1;
     
     // Launch the Core Processor!
-    try{
-        int rc = CP.launch();
-        if (rc) throw -1;
-    } catch (...){
-        ~CP;
-        return -1;
-    }
+    //rc = CP.launch();
+    //if (rc) return -1;
     
     // All done!
     return 0;

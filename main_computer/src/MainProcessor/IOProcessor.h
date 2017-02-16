@@ -19,8 +19,8 @@ public:
     IOProcessor();
     IOProcessor(const IOProcessor& orig);
     virtual ~IOProcessor();
-    int establish_tcp_connection();
-    int establish_serial_connection();
+    int establish_tcp_connection(const char* home_station_ip, const char* tcp_port);
+    int establish_serial_connection(const char* serial_port, const char* serial_baudrate);
     
 private:
 

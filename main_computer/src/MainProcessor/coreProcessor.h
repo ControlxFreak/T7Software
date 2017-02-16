@@ -24,11 +24,13 @@ Change Log
  */
 #ifndef COREPROCESSOR_H
 #define COREPROCESSOR_H
+#include "MissionParameters.h"
+#include "IOProcessor.h"
 
 class coreProcessor {
 public:
     // Properties
-    MissionParameters MP = new MissionParameters();
+    MissionParameters MP;
     IOProcessor IO;    
         
     // Methods

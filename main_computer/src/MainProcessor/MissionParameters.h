@@ -18,11 +18,11 @@ class MissionParameters {
 public:
     // Properties
     // TCP Communication:
-    char home_station_ip;
-    int tcp_port;
+    const char*  home_station_ip;
+    const char* tcp_port;
     // Serial Communication:
-    char serial_port;
-    int  serial_baudrate;
+    const char* serial_port;
+    const char*  serial_baudrate;
     
     // Methods
     MissionParameters();

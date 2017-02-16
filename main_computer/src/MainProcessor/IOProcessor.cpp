@@ -13,6 +13,15 @@
 
 #include "IOProcessor.h"
 
+int IOProcessor::establish_tcp_connection(const char* home_station_ip, const char* tcp_port){
+    
+    return 0;
+}
+    
+int IOProcessor::establish_serial_connection(const char* serial_port, const char* serial_baudrate){
+    return 0;
+}
+    
 IOProcessor::IOProcessor() {
 }
 
