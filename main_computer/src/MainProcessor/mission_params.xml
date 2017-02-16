@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<ScamperParameters FormatVersion = "1">
+	<MissionParameters>
+		<home_station_ip>127.0.0.1</home_station_ip> <!-- Home Station IP Address -->
+		<tcp_port>9001</tcp_port>
+		<serial_port>1</serial_port>
+		<serial_baudrate>1000</serial_baudrate>
+	</MissionParameters>
+</ScamperParameters>
