@@ -25,17 +25,14 @@ Change Log
     15 Feb 2017 - t3 - Happy Birthday!
 --------------------------------------------------------------------------------
  */
-
 #include <cstdlib>
 #include <iostream>
 #include "version.h"
-#include "coreProcessor.h"
-
+#include "CoreProcessor.h"
 
 using namespace std;
 
 //----------------------------------------------------------------------------//
-
 void display_welcome_screen() {
     std::cout << "|-----------------------------------------------------|\n"
               << "Initializing Scamper Main On-Board Processor\n"
@@ -50,22 +47,20 @@ void display_welcome_screen() {
 } // display welcome_screen()
 
 //----------------------------------------------------------------------------//
+int main() {
 
-int main(int argc, char** argv) {
-
-    // Display the Welcome Screen
-    // TBD: <t3, 20170215> add logging of standard output to a log file
+    // 1. Display the Welcome Screen!
     display_welcome_screen();
-
-    // Launch the pre processor.  
-    coreProcessor CP;
+     
+    // 2.Launch the pre processor.  
+    CoreProcessor CP;
     int rc = CP.pre_launch();
-    if(rc) return -1;
+    if(rc) return -1;    
     
-    // Launch the Core Processor!
-    //rc = CP.launch();
-    //if (rc) return -1;
+    // 3. Launch the processor.
+    CP.launch();
+   // if(rc) return -1;
     
-    // All done!
     return 0;
-} // main
+}
+

@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------------
-Function Name: coreProcessor.h
+Function Name: CoreProcessor.h
 
 --------------------------------------------------------------------------------
 Inputs:
@@ -22,24 +22,36 @@ Change Log
     15 Feb 2017 - t3 - Happy Birthday!
 --------------------------------------------------------------------------------
  */
+
 #ifndef COREPROCESSOR_H
 #define COREPROCESSOR_H
+
+#include <thread>
 #include "MissionParameters.h"
-#include "IOProcessor.h"
+#include <iostream>
+#include "TCPClass.h"
 
-class coreProcessor {
+class CoreProcessor {
 public:
-    // Properties
+    
+    //------------------------------------------------------------------------//
+    //Properties
     MissionParameters MP;
-    IOProcessor IO;    
-        
-    // Methods
-    coreProcessor();
-    coreProcessor(const coreProcessor& orig);
-    virtual ~coreProcessor();
-    int pre_launch();    
+    TCPClass TCP;
+    
+    
+    //------------------------------------------------------------------------//
+    //Methods
+    int pre_launch();
+    void launch();
+    
+    //------------------------------------------------------------------------//
+    // Constructors and destructors
+    CoreProcessor();
+    CoreProcessor(const CoreProcessor& orig);
+    virtual ~CoreProcessor();
 private:
-
+    std::thread tcp_thread;    
 };
 
 #endif /* COREPROCESSOR_H */

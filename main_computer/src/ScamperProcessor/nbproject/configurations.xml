@@ -12,25 +12,25 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <logicalFolder name="f3" displayName="core" projectFiles="true">
-        <itemPath>coreProcessor.cpp</itemPath>
-        <itemPath>coreProcessor.h</itemPath>
+      <logicalFolder name="f2" displayName="core" projectFiles="true">
+        <itemPath>CoreProcessor.cpp</itemPath>
+        <itemPath>CoreProcessor.h</itemPath>
       </logicalFolder>
-      <logicalFolder name="f2" displayName="info" projectFiles="true">
+      <logicalFolder name="f1" displayName="info" projectFiles="true">
         <itemPath>MissionParameters.cpp</itemPath>
         <itemPath>MissionParameters.h</itemPath>
         <itemPath>version.h</itemPath>
       </logicalFolder>
-      <logicalFolder name="f4" displayName="io" projectFiles="true">
-        <itemPath>IOProcessor.cpp</itemPath>
-        <itemPath>IOProcessor.h</itemPath>
+      <logicalFolder name="f4" displayName="Io" projectFiles="true">
+        <itemPath>TCPClass.cpp</itemPath>
+        <itemPath>TCPClass.h</itemPath>
         <itemPath>pugiconfig.hpp</itemPath>
         <itemPath>pugixml.cpp</itemPath>
         <itemPath>pugixml.hpp</itemPath>
       </logicalFolder>
-      <logicalFolder name="f1" displayName="main" projectFiles="true">
-        <itemPath>main.cpp</itemPath>
+      <logicalFolder name="f3" displayName="utils" projectFiles="true">
       </logicalFolder>
+      <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -53,18 +53,26 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
+        <ccTool>
+          <standard>8</standard>
+        </ccTool>
+        <linkerTool>
+          <linkerLibItems>
+            <linkerLibStdlibItem>PosixThreads</linkerLibStdlibItem>
+          </linkerLibItems>
+        </linkerTool>
       </compileType>
-      <item path="IOProcessor.cpp" ex="false" tool="1" flavor2="0">
+      <item path="CoreProcessor.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="IOProcessor.h" ex="false" tool="3" flavor2="0">
+      <item path="CoreProcessor.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="MissionParameters.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="MissionParameters.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="coreProcessor.cpp" ex="false" tool="1" flavor2="0">
+      <item path="TCPClass.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="coreProcessor.h" ex="false" tool="3" flavor2="0">
+      <item path="TCPClass.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -89,6 +97,7 @@
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
+          <standard>8</standard>
         </ccTool>
         <fortranCompilerTool>
           <developmentMode>5</developmentMode>
@@ -96,18 +105,23 @@
         <asmTool>
           <developmentMode>5</developmentMode>
         </asmTool>
+        <linkerTool>
+          <linkerLibItems>
+            <linkerLibStdlibItem>PosixThreads</linkerLibStdlibItem>
+          </linkerLibItems>
+        </linkerTool>
       </compileType>
-      <item path="IOProcessor.cpp" ex="false" tool="1" flavor2="0">
+      <item path="CoreProcessor.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="IOProcessor.h" ex="false" tool="3" flavor2="0">
+      <item path="CoreProcessor.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="MissionParameters.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="MissionParameters.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="coreProcessor.cpp" ex="false" tool="1" flavor2="0">
+      <item path="TCPClass.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="coreProcessor.h" ex="false" tool="3" flavor2="0">
+      <item path="TCPClass.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

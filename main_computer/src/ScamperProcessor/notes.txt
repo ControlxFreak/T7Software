@@ -1,0 +1,27 @@
+
+/* for the future...  HOW TO CAST A VECTOR TO A STRING
+ #include <iostream>
+
+#include <sstream>
+#include <string>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+    vector<int> v;
+    v.push_back(12);
+    v.push_back(32);
+    v.push_back(42);
+    v.push_back(84);
+
+    stringstream ss;
+    copy( v.begin(), v.end(), ostream_iterator<int>(ss, " "));
+    string s = ss.str();
+    s = s.substr(0, s.length()-1);  // get rid of the trailing space
+
+cout << "'" << s << "'";
+
+    return 0;
+}*/
