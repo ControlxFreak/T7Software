@@ -53,14 +53,18 @@ int main() {
     display_welcome_screen();
      
     // 2.Launch the pre processor.  
+    std::cout<<"Beginning Prelaunch initialization!\n";
     CoreProcessor CP;
     int rc = CP.pre_launch();
     if(rc) return -1;    
     
     // 3. Launch the processor.
+    std::cout<<"Launching the core processor!\n";
     CP.launch();
-   // if(rc) return -1;
+    // if(rc) return -1;
     
+    std::cout<<"|-----------------------------------------------------|\n";
+    std::cout<<"Successful Mission!\n";
     return 0;
 }
 

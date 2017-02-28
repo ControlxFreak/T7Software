@@ -26,7 +26,9 @@
 #include <queue>  
 #include <mutex>
 #include <string.h>
+#include <vector>
 
+#include "MissionParameters.h"
 
 
 #define MAXHOSTNAME 256
@@ -34,37 +36,39 @@ class TCPClass {
 public:
     //------------------------------------------------------------------------//
     // Properties
-    uint16_t tcp_port;
-    bool connected = false;
     
-    struct sockaddr_in socketInfo;
-    struct sockaddr_in remoteSocketInfo;
+    // Connection and Socket Properties
+    uint16_t tcp_port;              // port number
+    struct sockaddr_in socketInfo;  // socket information
+    char sysHost[MAXHOSTNAME+1];    // system host name
+    struct hostent *hPtr;           // pointer to the host IP
+    int socketHandle;               // Socket handle
+    uint16_t max_buffer_size;       // Max buffer size
+    bool connected = false;         // Connected flag (true = connected, false = disconnected)
+    uint16_t header_size;
+    int socketConnection; 
     
-    char sysHost[MAXHOSTNAME+1];  
-    struct hostent *hPtr;
-    int socketHandle;
-    bool KYS = false;
+    // Commands
+    bool KYS = false;               // KYS flag is what is used to decided when to kill the threads
 
-    std::mutex datalock;
+    // Data
+    std::mutex datalock;            // datalock prevents race conditions on the data queue from multiple threads
+    std::mutex consolelock;         // consolelock prevents race conditions when writting to the console from multiple threads
     
-    std::queue<char*> dataqueue;    
-    
-    std::mutex consolelock;
+    std::queue<std::vector<std::string>> dataqueue;    // dataqueue stores all of the data
 
     
     //------------------------------------------------------------------------//
     //Methods
-    void set_params(const char*);
+    void set_params(MissionParameters*);
     
-    void send_loop();
-    void init_send();
+    void send_msg();
     void receive_loop();
-    void init_recieve();
     void init_connection();
-    void stop();
+    void kill();
     void reconnect();
-    void set_data(char*);
-    char* get_data();    
+    void set_data(std::vector<std::string>);
+    std::vector<std::string> get_data();    
     
     int num_data();
     void write_to_console(char*);

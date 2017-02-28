@@ -28,14 +28,7 @@ int MissionParameters::read(){
           mission_params_file.child("ScamperParameters").child("MissionParameters");
     
     // Set all of the Mission Parameter properties
-    
-    // Home Station IP
-    std::cout << "Reading Mission Parameters... "<< "\n";
-    
-    home_station_ip = mission_params.child("home_station_ip").text().get();
-    if(home_station_ip && !home_station_ip[0]) return -1;
-    std::cout <<"Home Station IP: " << home_station_ip << "\n";
-    
+ 
     // TCP Port
     tcp_port = mission_params.child("tcp_port").text().get();
     if(tcp_port && !tcp_port[0]) return -1;
@@ -50,6 +43,14 @@ int MissionParameters::read(){
     serial_baudrate = mission_params.child("serial_baudrate").text().get();
     if(serial_baudrate && !serial_baudrate[0]) return -1;
     std::cout<< "Serial Baudrate: " << serial_baudrate << "\n";
+    
+    max_buffer_size = mission_params.child("max_buffer_size").text().get();
+    if(max_buffer_size && !max_buffer_size[0]) return -1;
+    std::cout<< "Max Buffer Size: " << max_buffer_size << "\n";
+    
+    header_size = mission_params.child("header_size").text().get();
+    if(header_size && !header_size[0]) return -1;
+    std::cout<< "Header Size: " << header_size << "\n";
     
     std::cout << "Success - Mission Parameters\n"
               << "|-----------------------------------------------------|\n";

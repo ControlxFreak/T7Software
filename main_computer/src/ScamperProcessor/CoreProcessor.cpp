@@ -24,8 +24,7 @@ Change Log
  */
 
 #include "CoreProcessor.h"
-#include <string.h>
-#include <cstring>
+
 // ---------------------------------------------------------------------------//
 // coreProcessor::pre_launch() is intended to setup the core processor prior to 
 // establishing IO connection and beginning the infinite loop
@@ -45,10 +44,14 @@ int CoreProcessor::pre_launch() {
         return rc;
     } // if rc    
 
+    
     // 2. Set the TCP Parameters
-    TCP.set_params(MP.tcp_port);
+    std::cout << "Setting TCP Parameters!\n";
+    TCP.set_params(&MP);
 
+    
     // 3. Initialize the connection
+    std::cout << "Initializing TCP connection!\n";
     TCP.init_connection();
 
     return 0;
@@ -58,21 +61,39 @@ int CoreProcessor::pre_launch() {
 
 void CoreProcessor::launch() {
 
+    // 1. Initialize the loop variables
+    std::cout <<"Initializing the loop variables!\n";
+    std::cout << "Launching the TCP Receive Thread!\n";
+    
+    // 2. Launch the receive thread
     std::thread tcp_rec_thread(&TCPClass::receive_loop, std::ref(TCP));
-    std::thread tcp_send_thread(&TCPClass::send_loop, std::ref(TCP));
-
-
+    int MID;
+    std::string data;
+    std::vector<std::string> data_array;
+    
+    // 3. Loop until we receive the KYS message
     while (!TCP.KYS) {
+        
+        // If we received data, do something with it!
         if (TCP.num_data() > 0) {
-            char* data = TCP.get_data();
-            if (strcmp((const char *) data, "KYS") == 0) {
-                TCP.stop();
-            }
-        }
-    }
+            
+            // Grab the MID and the data
+            data_array = TCP.get_data();
+            MID = stoi(data_array.front());
+            
+            data = data_array.back();
+
+            // Switch with the data based on the MID
+            switch(MID){
+                case 666 : TCP.kill();
+                default: std::cout<<"Unknown Message ID!\nDiscarding Data.";
+            } // MID
+        } // if num_data
+    } // while !TCP.KYS
+
     
     tcp_rec_thread.join();
-    tcp_send_thread.join();
+    //tcp_send_thread.join();
 }
 
 //----------------------------------------------------------------------------//

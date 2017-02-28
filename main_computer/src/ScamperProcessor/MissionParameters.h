@@ -18,11 +18,13 @@ class MissionParameters {
 public:
     // Properties
     // TCP Communication:
-    const char*  home_station_ip;
     const char* tcp_port;
+    const char* max_buffer_size;
+    const char* header_size;
+    
     // Serial Communication:
     const char* serial_port;
-    const char*  serial_baudrate;
+    const char* serial_baudrate;
     
     // Methods
     MissionParameters();

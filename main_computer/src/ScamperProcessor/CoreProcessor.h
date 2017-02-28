@@ -26,9 +26,13 @@ Change Log
 #ifndef COREPROCESSOR_H
 #define COREPROCESSOR_H
 
-#include <thread>
-#include "MissionParameters.h"
+
 #include <iostream>
+#include <string.h>
+#include <cstring>
+#include <thread>
+#include <vector>
+#include "MissionParameters.h"
 #include "TCPClass.h"
 
 class CoreProcessor {

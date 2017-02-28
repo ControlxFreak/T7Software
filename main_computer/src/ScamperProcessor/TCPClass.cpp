@@ -28,44 +28,102 @@ Change Log
 //----------------------------------------------------------------------------//
 void TCPClass::receive_loop(){
           
-    int socketConnection;
-
+    // Define Local Params
+    int header_bytes_read = 0;           // Actual number of header bytes read 
+    int data_bytes_read = 0;         // Actual number of data bytes read
+    char buf[max_buffer_size];  // buffer
+    char AKG[8];
+    std::string MID;           // Message ID
+    int n_data_bytes;   // Number of data bytes we should see
+    std::vector<std::string> data;
+    
+    // Loop until we have receive the kill message
     while (!KYS) {
 
+        // Try to accept a connection with the socket
+        // TODO: 20170227 t3 - Need to add retries
         if ((socketConnection = accept(socketHandle, NULL, NULL)) < 0) {
-            write_to_console("Failed to accept receive socket");
-            exit(EXIT_FAILURE);
+            std::cout<<"Failed to accept receive socket\n";
+            break;
+        }
+        // First read the header... Be sure to wait for the entire header to be there first!
+        header_bytes_read = recv(socketConnection,buf,header_size,0);
+        
+        // Check to see if we read as many header bytes as we expected.
+        // TODO: 20170227 t3 - if not, clear the buffer and ask for a re-send
+        if (header_bytes_read != header_size){
+            std::cout<<"Failed to read that header... Possible Retry!?\n";
+            break;
+        }
+        
+        buf[header_bytes_read] = (char) NULL; // Null terminate string
+        
+        // Parse out the MID and Data length
+        // Cast the elements in the array to substrings 
+        std::string bufstr(buf);
+        
+        MID = bufstr.substr(0,3);
+        n_data_bytes = stoi(bufstr.substr(3,4));  // cast it to an int
+               
+        // NOTE: The header_size does not have to equal 5.  In this case, it does though.
+        //       Future work could include implementing a template that maps the bytes to a 
+        //       framework.  Not in scope for scamper.
+        
+        
+        // KYS if MID == 666
+        if(stoi(MID) == 666) kill();
+                
+        // Read the actual data from the buffer.        
+        data_bytes_read = recv(socketConnection, buf, n_data_bytes, 0);
+        // TODO: 20170227 t3 - if not, clear the buffer and ask for a re-send
+        if (data_bytes_read != n_data_bytes){
+            std::cout<<"Failed to read that data buffer... Possible Retry!?\n";
+            break;
         }
 
-        int rc = 0; // Actual number of bytes read
-        char buf[512];
-
-        // rc is the number of characters returned.
-        // Note this is not typical. Typically one would only specify the number 
-        // of bytes to read a fixed header which would include the number of bytes
-        // to read. See "Tips and Best Practices" below.
-
-        rc = recv(socketConnection, buf, 512, 0);
-        buf[rc] = (char) NULL; // Null terminate string
+        buf[data_bytes_read] = (char) NULL; // Null terminate string
         
-        char cons_msg[100];
-        sprintf(cons_msg,"Number of Bytes Received: %d\n Received: %s\n",rc,buf);
-        write_to_console(cons_msg);
+        // Print what we got!
+        char cons_msg[50+data_bytes_read];
+        sprintf(cons_msg,"Number of Bytes Received: %d\n Received: %s\n",data_bytes_read,buf);
+        std::cout<<cons_msg;
         
-        set_data(buf);
+        // Save the buffer as a string.
+        bufstr = buf;
         
+        // TODO: 20170227 t3 - send an AKG message!
+        // Create the AKG message
+        /*
+        sprintf(AKG,"00003");
+        AKG[5] = MID[0];
+        AKG[6] = MID[1];
+        AKG[7] = MID[2];
+        
+        send(socketHandle,AKG,9,0);
+        */
+        
+        // Save it to the data queue and keep moving!
+        data.clear();
+        
+        data.push_back(MID);
+        data.push_back(buf);
+        
+        set_data(data);
     }
-    write_to_console("TCP receive() closed the socket.");
+    std::cout<<"TCP receive() closed the socket.\n";
+    kill();
     close(socketHandle);    
 } // send
 //----------------------------------------------------------------------------//
-void TCPClass::send_loop(){
+void TCPClass::send_msg(){
 
 
 } // receive()
 
 //----------------------------------------------------------------------------//
 void TCPClass::init_connection(){
+    
+    std::cout<<"Creating the TCP socket!\n";
     // create socket
    if((socketHandle = socket(AF_INET, SOCK_STREAM, 0)) < 0)
    {
@@ -86,6 +144,7 @@ void TCPClass::init_connection(){
    socketInfo.sin_port = htons(tcp_port);      // Set port number
 
    // Bind the socket to a local socket address
+    std::cout<<"Binding to the TCP socket!\n";
    if( bind(socketHandle, (struct sockaddr *) &socketInfo, sizeof(socketInfo)) < 0)
    {
        
@@ -95,46 +154,61 @@ void TCPClass::init_connection(){
       exit(EXIT_FAILURE);
    }
 
+   /*
     bzero(&remoteSocketInfo, sizeof(sockaddr_in));  // Clear structure memory
 
     // Load system information into socket data structures
-
     memcpy((char *)&remoteSocketInfo.sin_addr, hPtr->h_addr, hPtr->h_length);
     remoteSocketInfo.sin_family = AF_INET;
     remoteSocketInfo.sin_port = htons((u_short)tcp_port);      // Set port number
-   
+   */
   
    // Set the listen flag on the socket to true.
    listen(socketHandle, 1);
-   
 } // init_connection()
 //----------------------------------------------------------------------------//
-void TCPClass::stop(){
+void TCPClass::kill(){
+    std::cout<<"Kill Message Received.\nByeBye.\n";
     KYS = true;
-}// stop()
+}// kill()
 
 //----------------------------------------------------------------------------//
-void TCPClass::set_data(char* new_data){
+void TCPClass::set_data(std::vector<std::string> new_data){
     datalock.lock(); 
     dataqueue.push(new_data);
     datalock.unlock();
 } // set_data
-char* TCPClass::get_data(){
+
+//----------------------------------------------------------------------------//
+std::vector<std::string> TCPClass::get_data(){
     datalock.lock();
-    char* outdata = dataqueue.front();
-    dataqueue.back();
+
+    std::vector<std::string> outdata = dataqueue.front();
+    dataqueue.pop();
     datalock.unlock();
     return outdata;
 } // get_data
 
 //----------------------------------------------------------------------------//
-void TCPClass::set_params( const char* MP_tcp_port){
+void TCPClass::set_params( MissionParameters* MP){
     
+    // Grab the TCP Port number and cast it to an int
     std::stringstream strValue;
-    strValue << MP_tcp_port;
+    strValue << MP->tcp_port;
     strValue >> tcp_port;
+    
+    // Grab the Max Buffer Size and cast it to an int
+    strValue.clear();
+    strValue << MP->max_buffer_size;
+    strValue >> max_buffer_size;
+    
+    // Grab the Max Buffer Size and cast it to an int
+    strValue.clear();
+    strValue << MP->header_size;
+    strValue >> header_size;
    
-    bzero(&socketInfo, sizeof(sockaddr_in));  // Clear structure memory
+    // Clear structure memory
+    bzero(&socketInfo, sizeof(sockaddr_in));  
     
     // Get system information
     gethostname(sysHost, MAXHOSTNAME);  // Get the name of this computer we are running on
@@ -143,7 +217,7 @@ void TCPClass::set_params( const char* MP_tcp_port){
        std::cerr << "System hostname misconfigured." << std::endl;
        exit(EXIT_FAILURE);
     }
-}
+} // set_params
 
 void TCPClass::write_to_console(const char* output){
     consolelock.lock();
