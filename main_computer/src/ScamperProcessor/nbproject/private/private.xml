@@ -9,8 +9,11 @@
         <group>
             <file>file:/home/controlxfreak/repos/T7Software/main_computer/src/ScamperProcessor/CoreProcessor.cpp</file>
             <file>file:/home/controlxfreak/repos/T7Software/main_computer/src/ScamperProcessor/TCPClass.cpp</file>
+            <file>file:/home/controlxfreak/repos/T7Software/main_computer/src/ScamperProcessor/MissionParameters.cpp</file>
             <file>file:/home/controlxfreak/repos/T7Software/main_computer/src/ScamperProcessor/TCPClass.h</file>
             <file>file:/home/controlxfreak/repos/T7Software/main_computer/src/ScamperProcessor/main.cpp</file>
+            <file>file:/home/controlxfreak/repos/T7Software/main_computer/src/ScamperProcessor/MissionParameters.h</file>
+            <file>file:/home/controlxfreak/repos/T7Software/main_computer/src/ScamperProcessor/CoreProcessor.h</file>
         </group>
     </open-files>
 </project-private>

@@ -26,7 +26,6 @@ Change Log
 #ifndef COREPROCESSOR_H
 #define COREPROCESSOR_H
 
-
 #include <iostream>
 #include <string.h>
 #include <cstring>
@@ -34,6 +33,7 @@ Change Log
 #include <vector>
 #include "MissionParameters.h"
 #include "TCPClass.h"
+#include "CameraClass.h"
 
 class CoreProcessor {
 public:
@@ -42,12 +42,14 @@ public:
     //Properties
     MissionParameters MP;
     TCPClass TCP;
-    
+    CameraClass CAM;
+    bool KYS = false;
     
     //------------------------------------------------------------------------//
     //Methods
-    int pre_launch();
+    void pre_launch();
     void launch();
+    void kill();
     
     //------------------------------------------------------------------------//
     // Constructors and destructors

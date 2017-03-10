@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/CameraClass.o \
 	${OBJECTDIR}/CoreProcessor.o \
 	${OBJECTDIR}/MissionParameters.o \
 	${OBJECTDIR}/TCPClass.o \
@@ -56,7 +57,7 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=-lpthread
+LDLIBSOPTIONS=-L/usr/local/lib -Wl,-rpath,'/usr/local/lib' -lpthread `pkg-config --libs opencv`  
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
@@ -66,30 +67,35 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/scamperprocessor: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/scamperprocessor ${OBJECTFILES} ${LDLIBSOPTIONS}
 
+${OBJECTDIR}/CameraClass.o: CameraClass.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/local/include/opencv2/calib3d -I/usr/local/include/opencv2/core -I/usr/local/include/opencv2/features2d -I/usr/local/include/opencv2/flann -I/usr/local/include/opencv2/highgui -I/usr/local/include/opencv2/imgcodecs -I/usr/local/include/opencv2/imgproc -I/usr/local/include/opencv2/ml -I/usr/local/include/opencv2/objdetect -I/usr/local/include/opencv2/photo -I/usr/local/include/opencv2/shape -I/usr/local/include/opencv2/stitching -I/usr/local/include/opencv2/superres -I/usr/local/include/opencv2/video -I/usr/local/include/opencv2/videoio -I/usr/local/include/opencv2/videostab `pkg-config --cflags opencv` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/CameraClass.o CameraClass.cpp
+
 ${OBJECTDIR}/CoreProcessor.o: CoreProcessor.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/CoreProcessor.o CoreProcessor.cpp
+	$(COMPILE.cc) -g -I/usr/local/include/opencv2/calib3d -I/usr/local/include/opencv2/core -I/usr/local/include/opencv2/features2d -I/usr/local/include/opencv2/flann -I/usr/local/include/opencv2/highgui -I/usr/local/include/opencv2/imgcodecs -I/usr/local/include/opencv2/imgproc -I/usr/local/include/opencv2/ml -I/usr/local/include/opencv2/objdetect -I/usr/local/include/opencv2/photo -I/usr/local/include/opencv2/shape -I/usr/local/include/opencv2/stitching -I/usr/local/include/opencv2/superres -I/usr/local/include/opencv2/video -I/usr/local/include/opencv2/videoio -I/usr/local/include/opencv2/videostab `pkg-config --cflags opencv` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/CoreProcessor.o CoreProcessor.cpp
 
 ${OBJECTDIR}/MissionParameters.o: MissionParameters.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/MissionParameters.o MissionParameters.cpp
+	$(COMPILE.cc) -g -I/usr/local/include/opencv2/calib3d -I/usr/local/include/opencv2/core -I/usr/local/include/opencv2/features2d -I/usr/local/include/opencv2/flann -I/usr/local/include/opencv2/highgui -I/usr/local/include/opencv2/imgcodecs -I/usr/local/include/opencv2/imgproc -I/usr/local/include/opencv2/ml -I/usr/local/include/opencv2/objdetect -I/usr/local/include/opencv2/photo -I/usr/local/include/opencv2/shape -I/usr/local/include/opencv2/stitching -I/usr/local/include/opencv2/superres -I/usr/local/include/opencv2/video -I/usr/local/include/opencv2/videoio -I/usr/local/include/opencv2/videostab `pkg-config --cflags opencv` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/MissionParameters.o MissionParameters.cpp
 
 ${OBJECTDIR}/TCPClass.o: TCPClass.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TCPClass.o TCPClass.cpp
+	$(COMPILE.cc) -g -I/usr/local/include/opencv2/calib3d -I/usr/local/include/opencv2/core -I/usr/local/include/opencv2/features2d -I/usr/local/include/opencv2/flann -I/usr/local/include/opencv2/highgui -I/usr/local/include/opencv2/imgcodecs -I/usr/local/include/opencv2/imgproc -I/usr/local/include/opencv2/ml -I/usr/local/include/opencv2/objdetect -I/usr/local/include/opencv2/photo -I/usr/local/include/opencv2/shape -I/usr/local/include/opencv2/stitching -I/usr/local/include/opencv2/superres -I/usr/local/include/opencv2/video -I/usr/local/include/opencv2/videoio -I/usr/local/include/opencv2/videostab `pkg-config --cflags opencv` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TCPClass.o TCPClass.cpp
 
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -g -I/usr/local/include/opencv2/calib3d -I/usr/local/include/opencv2/core -I/usr/local/include/opencv2/features2d -I/usr/local/include/opencv2/flann -I/usr/local/include/opencv2/highgui -I/usr/local/include/opencv2/imgcodecs -I/usr/local/include/opencv2/imgproc -I/usr/local/include/opencv2/ml -I/usr/local/include/opencv2/objdetect -I/usr/local/include/opencv2/photo -I/usr/local/include/opencv2/shape -I/usr/local/include/opencv2/stitching -I/usr/local/include/opencv2/superres -I/usr/local/include/opencv2/video -I/usr/local/include/opencv2/videoio -I/usr/local/include/opencv2/videostab `pkg-config --cflags opencv` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 ${OBJECTDIR}/pugixml.o: pugixml.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pugixml.o pugixml.cpp
+	$(COMPILE.cc) -g -I/usr/local/include/opencv2/calib3d -I/usr/local/include/opencv2/core -I/usr/local/include/opencv2/features2d -I/usr/local/include/opencv2/flann -I/usr/local/include/opencv2/highgui -I/usr/local/include/opencv2/imgcodecs -I/usr/local/include/opencv2/imgproc -I/usr/local/include/opencv2/ml -I/usr/local/include/opencv2/objdetect -I/usr/local/include/opencv2/photo -I/usr/local/include/opencv2/shape -I/usr/local/include/opencv2/stitching -I/usr/local/include/opencv2/superres -I/usr/local/include/opencv2/video -I/usr/local/include/opencv2/videoio -I/usr/local/include/opencv2/videostab `pkg-config --cflags opencv` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pugixml.o pugixml.cpp
 
 # Subprojects
 .build-subprojects:

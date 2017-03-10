@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/CameraClass.o \
 	${OBJECTDIR}/CoreProcessor.o \
 	${OBJECTDIR}/MissionParameters.o \
 	${OBJECTDIR}/TCPClass.o \
@@ -65,6 +66,11 @@ LDLIBSOPTIONS=-lpthread
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/scamperprocessor: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/scamperprocessor ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/CameraClass.o: CameraClass.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/CameraClass.o CameraClass.cpp
 
 ${OBJECTDIR}/CoreProcessor.o: CoreProcessor.cpp
 	${MKDIR} -p ${OBJECTDIR}

@@ -1,14 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   TCPClass.h
- * Author: controlxfreak
- *
- * Created on February 24, 2017, 3:13 PM
+/*------------------------------------------------------------------------------
+Function Name: TCPClass.cpp
+ * This is a generic TCP class that handles socket responsibilities and tcp 
+ * messaging.
+--------------------------------------------------------------------------------
+Inputs:
+ * N/a
+Outputs:
+ * N/a
+--------------------------------------------------------------------------------
+Properties:
+ * N/a
+Methods:
+ * N/a
+--------------------------------------------------------------------------------
+Lockheed Martin 
+Engineering Leadership Development Program
+Team 7
+15 February 2017
+Anthony Trezza
+--------------------------------------------------------------------------------
+Change Log
+    25 Feb 2017 - t3 - Happy Birthday!
+--------------------------------------------------------------------------------
  */
 
 #ifndef TCPCLASS_H
@@ -32,38 +45,43 @@
 
 
 #define MAXHOSTNAME 256
+#define MAX_BUFFER_SIZE 512
+#define HEADER_SIZE 5
+
+struct sockStruct{ 
+    uint16_t portNumber;                    // receive port number
+    struct sockaddr_in socketInfo;          // receive socket information
+    struct hostent *hPtr;                   // pointer to the host IP
+    int socketHandle;                       // Socket handle
+    char sysHost[MAXHOSTNAME+1];            // system host name
+    int socketConnection;                   //  Socket Connection
+    }; // sockStruct
+
 class TCPClass {
 public:
     //------------------------------------------------------------------------//
     // Properties
     
     // Connection and Socket Properties
-    uint16_t tcp_port;              // port number
-    struct sockaddr_in socketInfo;  // socket information
-    char sysHost[MAXHOSTNAME+1];    // system host name
-    struct hostent *hPtr;           // pointer to the host IP
-    int socketHandle;               // Socket handle
-    uint16_t max_buffer_size;       // Max buffer size
-    bool connected = false;         // Connected flag (true = connected, false = disconnected)
-    uint16_t header_size;
-    int socketConnection; 
+    sockStruct receiveSocket;
+    sockStruct sendSocket;
     
-    // Commands
+    // General Commands
     bool KYS = false;               // KYS flag is what is used to decided when to kill the threads
 
-    // Data
+    // Mutli-threading Locks
     std::mutex datalock;            // datalock prevents race conditions on the data queue from multiple threads
-    std::mutex consolelock;         // consolelock prevents race conditions when writting to the console from multiple threads
+    std::mutex consolelock;         // consolelock prevents race conditions when writing to the console from multiple threads
     
+    // Data Queue
     std::queue<std::vector<std::string>> dataqueue;    // dataqueue stores all of the data
 
-    
     //------------------------------------------------------------------------//
     //Methods
     void set_params(MissionParameters*);
     
     void send_msg();
-    void receive_loop();
+    void run_server();
     void init_connection();
     void kill();
     void reconnect();
@@ -73,6 +91,7 @@ public:
     int num_data();
     void write_to_console(char*);
     void write_to_console(const char*);
+    void setupSocket(sockStruct*);
     
     //------------------------------------------------------------------------//
     // Constructors and Destructors
