@@ -14,7 +14,7 @@
  * 	12 March 2017 - Jarrett Mead - Server Birthday
  * ---------------------------------------------------------------------------------
  */
-package java.networking;
+package networking;
 
 import java.io.IOException;
 import java.net.ServerSocket;

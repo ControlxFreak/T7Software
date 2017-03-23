@@ -14,7 +14,7 @@
  * 	13 March 2017 - Jarrett Mead - Class Birthday
  * ---------------------------------------------------------------------------------
  */
-package java.networking;
+package networking;
 
 import java.io.BufferedReader;
 import java.io.IOException;

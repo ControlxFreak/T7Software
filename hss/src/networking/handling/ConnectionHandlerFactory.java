@@ -14,7 +14,7 @@
  * 	12 March 2017 - Jarrett Mead - Factory Birthday
  * ---------------------------------------------------------------------------------
  */
-package java.networking.handling;
+package networking.handling;
 
 import java.io.BufferedReader;
 import java.io.IOException;
