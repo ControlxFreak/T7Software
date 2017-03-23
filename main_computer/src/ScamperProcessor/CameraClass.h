@@ -1,8 +1,7 @@
 /*------------------------------------------------------------------------------
-Function Name: version.h
+Function Name: CameraClass.h
 
- * This header file just holds the version of the Scamper Main Processor Software
-
+ * This class handles all camera related functionality
 --------------------------------------------------------------------------------
 Inputs:
  * N/a
@@ -21,17 +20,39 @@ Team 7
 Anthony Trezza
 --------------------------------------------------------------------------------
 Change Log
-    15 Feb 2017 - t3 - Happy Birthday!
+    10 March 2017 - t3 - Happy Birthday!
 --------------------------------------------------------------------------------
-*/
+ */
 
-#ifndef VERSION_H
-#define VERSION_H
+#ifndef CAMERACLASS_H
+#define CAMERACLASS_H
 
-const char * BUILD_DATE     = "10 March 2017";
-const char * BUILD_OWNER    = "Anthony";
-const char * VERSION_NUMBER = "0.1";
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
+#include <iostream>
 
+#define CAMID 0
 
-#endif /* VERSION_H */
+using namespace cv;
+using namespace std;
+
+class CameraClass {
+public:
+    
+    bool KYS = false;
+    bool debugFlag = true;
+    std::queue<Mat> cameraQueue;
+    
+    void clear_queue();
+    void run();
+    void kill();
+    int num_data();
+    CameraClass();
+    CameraClass(const CameraClass& orig);
+    virtual ~CameraClass();
+private:
+
+};
+
+#endif /* CAMERACLASS_H */
 

@@ -12,6 +12,10 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <logicalFolder name="f5" displayName="camera" projectFiles="true">
+        <itemPath>CameraClass.cpp</itemPath>
+        <itemPath>CameraClass.h</itemPath>
+      </logicalFolder>
       <logicalFolder name="f2" displayName="core" projectFiles="true">
         <itemPath>CoreProcessor.cpp</itemPath>
         <itemPath>CoreProcessor.h</itemPath>
@@ -55,13 +59,42 @@
       <compileType>
         <ccTool>
           <standard>8</standard>
+          <incDir>
+            <pElem>/usr/local/include/opencv2/calib3d</pElem>
+            <pElem>/usr/local/include/opencv2/core</pElem>
+            <pElem>/usr/local/include/opencv2/features2d</pElem>
+            <pElem>/usr/local/include/opencv2/flann</pElem>
+            <pElem>/usr/local/include/opencv2/highgui</pElem>
+            <pElem>/usr/local/include/opencv2/imgcodecs</pElem>
+            <pElem>/usr/local/include/opencv2/imgproc</pElem>
+            <pElem>/usr/local/include/opencv2/ml</pElem>
+            <pElem>/usr/local/include/opencv2/objdetect</pElem>
+            <pElem>/usr/local/include/opencv2/photo</pElem>
+            <pElem>/usr/local/include/opencv2/shape</pElem>
+            <pElem>/usr/local/include/opencv2/stitching</pElem>
+            <pElem>/usr/local/include/opencv2/superres</pElem>
+            <pElem>/usr/local/include/opencv2/video</pElem>
+            <pElem>/usr/local/include/opencv2/videoio</pElem>
+            <pElem>/usr/local/include/opencv2/videostab</pElem>
+          </incDir>
         </ccTool>
         <linkerTool>
+          <linkerAddLib>
+            <pElem>/usr/local/lib</pElem>
+          </linkerAddLib>
+          <linkerDynSerch>
+            <pElem>/usr/local/lib</pElem>
+          </linkerDynSerch>
           <linkerLibItems>
             <linkerLibStdlibItem>PosixThreads</linkerLibStdlibItem>
+            <linkerOptionItem>`pkg-config --libs opencv`</linkerOptionItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="CameraClass.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="CameraClass.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="CoreProcessor.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="CoreProcessor.h" ex="false" tool="3" flavor2="0">
@@ -111,6 +144,10 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="CameraClass.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="CameraClass.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="CoreProcessor.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="CoreProcessor.h" ex="false" tool="3" flavor2="0">

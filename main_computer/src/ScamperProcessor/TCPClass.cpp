@@ -1,6 +1,7 @@
 /*------------------------------------------------------------------------------
 Function Name: TCPClass.cpp
-
+ * This is a generic TCP class that handles socket responsibilities and tcp 
+ * messaging.
 --------------------------------------------------------------------------------
 Inputs:
  * N/a
@@ -26,32 +27,32 @@ Change Log
 
 
 //----------------------------------------------------------------------------//
-void TCPClass::receive_loop(){
+void TCPClass::run_server(){
           
     // Define Local Params
-    int header_bytes_read = 0;           // Actual number of header bytes read 
-    int data_bytes_read = 0;         // Actual number of data bytes read
-    char buf[max_buffer_size];  // buffer
-    char AKG[8];
-    std::string MID;           // Message ID
-    int n_data_bytes;   // Number of data bytes we should see
-    std::vector<std::string> data;
+    int header_bytes_read = 0;          // Actual number of header bytes read 
+    int data_bytes_read = 0;            // Actual number of data bytes read
+    char buf[MAX_BUFFER_SIZE];          // Allocate the buffer
+    int MID;                            // Initialize the Message ID
+    std::string sMID;                   // Initialize the string message id
+    int n_data_bytes;                   // Number of data bytes we should see
+    std::vector<std::string> data;      // Initialize the data vector
     
     // Loop until we have receive the kill message
     while (!KYS) {
 
         // Try to accept a connection with the socket
         // TODO: 20170227 t3 - Need to add retries
-        if ((socketConnection = accept(socketHandle, NULL, NULL)) < 0) {
+        if ((receiveSocket.socketConnection = accept(receiveSocket.socketHandle, NULL, NULL)) < 0) {
             std::cout<<"Failed to accept receive socket\n";
             break;
         }
-        // First read the header... Be sure to wait for the entire header to be there first!
-        header_bytes_read = recv(socketConnection,buf,header_size,0);
+        // First read the header
+        header_bytes_read = recv(receiveSocket.socketConnection,buf,HEADER_SIZE,0);
         
         // Check to see if we read as many header bytes as we expected.
         // TODO: 20170227 t3 - if not, clear the buffer and ask for a re-send
-        if (header_bytes_read != header_size){
+        if (header_bytes_read != HEADER_SIZE){
             std::cout<<"Failed to read that header... Possible Retry!?\n";
             break;
         }
@@ -61,20 +62,15 @@ void TCPClass::receive_loop(){
         // Parse out the MID and Data length
         // Cast the elements in the array to substrings 
         std::string bufstr(buf);
-        
-        MID = bufstr.substr(0,3);
-        n_data_bytes = stoi(bufstr.substr(3,4));  // cast it to an int
-               
-        // NOTE: The header_size does not have to equal 5.  In this case, it does though.
-        //       Future work could include implementing a template that maps the bytes to a 
-        //       framework.  Not in scope for scamper.
-        
-        
+        sMID = bufstr.substr(0,3);
+        MID = stoi(sMID);
+        n_data_bytes = stoi(bufstr.substr(3,4));
+                       
         // KYS if MID == 666
-        if(stoi(MID) == 666) kill();
+        if(MID == 666) break;
                 
         // Read the actual data from the buffer.        
-        data_bytes_read = recv(socketConnection, buf, n_data_bytes, 0);
+        data_bytes_read = recv(receiveSocket.socketConnection, buf, n_data_bytes, 0);
         // TODO: 20170227 t3 - if not, clear the buffer and ask for a re-send
         if (data_bytes_read != n_data_bytes){
             std::cout<<"Failed to read that data buffer... Possible Retry!?\n";
@@ -83,7 +79,7 @@ void TCPClass::receive_loop(){
 
         buf[data_bytes_read] = (char) NULL; // Null terminate string
         
-        // Print what we got!
+        // Print what we've got!
         char cons_msg[50+data_bytes_read];
         sprintf(cons_msg,"Number of Bytes Received: %d\n Received: %s\n",data_bytes_read,buf);
         std::cout<<cons_msg;
@@ -91,84 +87,86 @@ void TCPClass::receive_loop(){
         // Save the buffer as a string.
         bufstr = buf;
         
-        // TODO: 20170227 t3 - send an AKG message!
-        // Create the AKG message
-        /*
-        sprintf(AKG,"00003");
-        AKG[5] = MID[0];
-        AKG[6] = MID[1];
-        AKG[7] = MID[2];
-        
-        send(socketHandle,AKG,9,0);
-        */
-        
         // Save it to the data queue and keep moving!
         data.clear();
         
-        data.push_back(MID);
+        data.push_back(sMID);
         data.push_back(buf);
         
         set_data(data);
-    }
+    } // !kys
+    
     std::cout<<"TCP receive() closed the socket.\n";
     kill();
-    close(socketHandle);    
+    close(receiveSocket.socketHandle);    
 } // send
 //----------------------------------------------------------------------------//
 void TCPClass::send_msg(){
 
+    
 
 } // receive()
 
 //----------------------------------------------------------------------------//
 void TCPClass::init_connection(){
     
-    std::cout<<"Creating the TCP socket!\n";
+    std::cout<<"Setting Up TCP Sockets!\n";
+    
+    setupSocket(&receiveSocket);
+    setupSocket(&sendSocket);
+ 
+} // init_connection()
+
+void TCPClass::setupSocket(sockStruct* sock){
+    
+    // Clear structure memory
+    bzero(&sock->socketInfo, sizeof(sockaddr_in));  
+    
+    // Get system information
+    gethostname(sock->sysHost, MAXHOSTNAME);  // Get the name of this computer we are running on
+    if((sock->hPtr = gethostbyname(sock->sysHost)) == NULL)
+    {
+       std::cerr << "System hostname misconfigured." << std::endl;
+       exit(EXIT_FAILURE);
+    }
+    
     // create socket
-   if((socketHandle = socket(AF_INET, SOCK_STREAM, 0)) < 0)
-   {
-      std::cout<<"Error Opening the Socket.";
-      close(socketHandle);
-      exit(EXIT_FAILURE);
-   }
-   
-   // make the socket reusable
-   int option = 1;
-   setsockopt(socketHandle,SOL_SOCKET,SO_REUSEADDR,&option, sizeof(option));
-   
-   
-   // Load system information into socket data structures
+    if((sock->socketHandle = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+    {
+       std::cout<<"Error Opening the Socket.";
+       close(sock->socketHandle);
+       exit(EXIT_FAILURE);
+    }
 
-   socketInfo.sin_family = AF_INET;
-   socketInfo.sin_addr.s_addr = htonl(INADDR_ANY); // Use any address available to the system
-   socketInfo.sin_port = htons(tcp_port);      // Set port number
+    // make the socket reusable
+    int option = 1;
+    setsockopt(sock->socketHandle,SOL_SOCKET,SO_REUSEADDR,&option, sizeof(option));
 
-   // Bind the socket to a local socket address
-    std::cout<<"Binding to the TCP socket!\n";
-   if( bind(socketHandle, (struct sockaddr *) &socketInfo, sizeof(socketInfo)) < 0)
-   {
-       
-      std::cout<<"Error Binding to the Socket.";
-      close(socketHandle);
-      perror("bind");
-      exit(EXIT_FAILURE);
-   }
-
-   /*
-    bzero(&remoteSocketInfo, sizeof(sockaddr_in));  // Clear structure memory
 
     // Load system information into socket data structures
-    memcpy((char *)&remoteSocketInfo.sin_addr, hPtr->h_addr, hPtr->h_length);
-    remoteSocketInfo.sin_family = AF_INET;
-    remoteSocketInfo.sin_port = htons((u_short)tcp_port);      // Set port number
-   */
-  
-   // Set the listen flag on the socket to true.
-   listen(socketHandle, 1);
-} // init_connection()
+
+    sock->socketInfo.sin_family = AF_INET;
+    sock->socketInfo.sin_addr.s_addr = htonl(INADDR_ANY);             // Use any address available to the system
+    sock->socketInfo.sin_port = htons(sock->portNumber);      // Set port number
+
+    // Bind the socket to a local socket address
+     std::cout<<"Binding to the TCP socket!\n";
+    if( bind(sock->socketHandle, (struct sockaddr *) &sock->socketInfo, sizeof(sock->socketInfo)) < 0)
+    {
+
+       std::cout<<"Error Binding to the Socket.";
+       close(sock->socketHandle);
+       perror("bind");
+       exit(EXIT_FAILURE);
+    }
+     
+    // Set the listen flag on the socket to true.
+    listen(sock->socketHandle, 1);
+}
+
 //----------------------------------------------------------------------------//
 void TCPClass::kill(){
-    std::cout<<"Kill Message Received.\nByeBye.\n";
+    std::cout<<"TCP Kill Message Received.\nByeBye.\n";
     KYS = true;
 }// kill()
 
@@ -193,30 +191,9 @@ std::vector<std::string> TCPClass::get_data(){
 void TCPClass::set_params( MissionParameters* MP){
     
     // Grab the TCP Port number and cast it to an int
-    std::stringstream strValue;
-    strValue << MP->tcp_port;
-    strValue >> tcp_port;
+    receiveSocket.portNumber = MP->ComParams.tcp_rec_port;
+    sendSocket.portNumber = MP->ComParams.tcp_sen_port;
     
-    // Grab the Max Buffer Size and cast it to an int
-    strValue.clear();
-    strValue << MP->max_buffer_size;
-    strValue >> max_buffer_size;
-    
-    // Grab the Max Buffer Size and cast it to an int
-    strValue.clear();
-    strValue << MP->header_size;
-    strValue >> header_size;
-   
-    // Clear structure memory
-    bzero(&socketInfo, sizeof(sockaddr_in));  
-    
-    // Get system information
-    gethostname(sysHost, MAXHOSTNAME);  // Get the name of this computer we are running on
-    if((hPtr = gethostbyname(sysHost)) == NULL)
-    {
-       std::cerr << "System hostname misconfigured." << std::endl;
-       exit(EXIT_FAILURE);
-    }
 } // set_params
 
 void TCPClass::write_to_console(const char* output){
