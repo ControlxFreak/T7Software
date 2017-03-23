@@ -92,7 +92,6 @@ MCS -> HSS
 MID: 200 -> Accelerometer Data
 				Description: raw accelerometer data
 						[header][3x1 vector of accel data]
-						
 MID: 201 -> Gyroscope Data
 				Description: raw gyro data
 						[header][3x1 vector of gyro data]
@@ -105,6 +104,10 @@ MID: 203 -> Temperature Data
 MID: 204 -> Camera Data
 				Description: raw camera data
 						[header][optical data]
+MID: 205 -> Connection Request
+				Description: This allows the HSS to spawn a thread of the appropriate type to handle the connection.
+						[header][MID of data type]
+						
 
 
 
