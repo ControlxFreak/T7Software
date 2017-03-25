@@ -2,3 +2,24 @@
 /main_computer/src/MainProcessor/dist/
 /main_computer/src/ScamperProcessor/build/
 /main_computer/src/ScamperProcessor/dist/
+
+# Compiled source #
+###################
+*.class
+
+# Packaged Files #
+##################
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
