@@ -1,0 +1,17 @@
+# ---------------------------------------------------------------------------------
+# Title: build.properties.dev
+# Description:
+# The properties file for HSS dev builds
+# ---------------------------------------------------------------------------------
+# Lockheed Martin
+# Engineering Leadership Development Program
+# Team 7
+# 25 March 2017
+# Jarrett Mead
+# ---------------------------------------------------------------------------------
+# Change Log
+# 	25 March 2017 - Jarrett Mead - Properties file birthday
+# ---------------------------------------------------------------------------------
+
+src.dir=src
+build.dir=classes
