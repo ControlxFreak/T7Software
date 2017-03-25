@@ -22,7 +22,6 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import networking.handling.ConnectionHandlerFactory;
@@ -31,6 +30,7 @@ import networking.handling.DataConnectionHandler;
 public class UAVServer{
 	
 	private static final int portNum						= 4444;
+	@SuppressWarnings("unused")
 	private static Logger logger							= Logger.getLogger(UAVServer.class.getName());
 	private static volatile boolean timeToExit				= false;	// Operator input thread uses this to alert server that it's time to shut down.
 	private static List<DataConnectionHandler> handlers		= Collections.synchronizedList(new ArrayList<DataConnectionHandler>());
@@ -66,6 +66,7 @@ public class UAVServer{
 		finally
 		{
 			listener.close();
+			shutDownHandlers();
 		}
 
 	}

@@ -21,13 +21,14 @@ import java.io.BufferedReader;
 public abstract class DataConnectionHandler {
 	
 	BufferedReader br;
-	private static volatile boolean timeToExit = false;
+	@SuppressWarnings("unused")
+	private volatile boolean timeToExit = false;
 
 	public DataConnectionHandler(BufferedReader br) {
 		this.br = br;
 	}
 	
-	public static void shutDown() {
+	public void shutDown() {
 		timeToExit = true;
 	}
 

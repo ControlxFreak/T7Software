@@ -19,8 +19,6 @@ package networking.handling;
 import java.io.BufferedReader;
 import java.util.logging.Logger;
 
-import networking.UAVServer;
-
 public class AccelerometerDataConnectionHandler
 	extends DataConnectionHandler
 	implements Runnable {
