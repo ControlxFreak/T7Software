@@ -37,6 +37,7 @@ public class AccelerometerDataConnectionHandler
 		logger.info("Running AccelerometerDataConnectionHandler!");
 		super.run();
 		try {
+			logger.info("Accelerometer client disconnected.");
 			br.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

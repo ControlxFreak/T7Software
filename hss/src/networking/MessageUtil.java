@@ -36,6 +36,15 @@ public class MessageUtil {
 		
 	}
 	
+	/**
+	 * This method dynamically reads a message from the Main
+	 * Computer and stores it in a buffer. It returns the
+	 * number of bytes of data read. If the message was empty
+	 * (the client disconnected), the method returns 0.
+	 * @param br
+	 * @param cbuf
+	 * @return size of the data section of the message
+	 */
 	public static int readMcMessage(BufferedReader br, char[] cbuf) {
 		if(br == null) {
 			return -1;
@@ -49,7 +58,7 @@ public class MessageUtil {
 		}
 		
 		/* Finish reading header if less than 5 bytes were read. */
-		while(numRead < MC_HEADER_LEN) {
+		while(numRead < MC_HEADER_LEN && numRead != -1) {
 			try {
 				int tempNum = br.read(cbuf, numRead, MC_HEADER_LEN-numRead);
 				if(tempNum > -1) {
@@ -60,17 +69,19 @@ public class MessageUtil {
 			}
 		}
 		
-		int messageSize = mcMessageDataSize(new String(cbuf)) + 5;
+		int dataSize = mcMessageDataSize(new String(cbuf));
 		try {
-			numRead = br.read(cbuf, MC_HEADER_LEN, messageSize-MC_HEADER_LEN);
+			numRead = br.read(cbuf, MC_HEADER_LEN, dataSize);
 		} catch (IOException e) {
 			// TODO Error logging
 		}
-		
-		return messageSize;
+		return dataSize;
 	}
 	
 	public static int mcMessageDataSize(String message) {
+		if(message.isEmpty() || message == null || message.charAt(0) == 0) {
+			return 0;
+		}
 		return Integer.parseInt(message.substring(3, 5));
 	}
 	

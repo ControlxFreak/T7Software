@@ -38,10 +38,11 @@ public abstract class DataConnectionHandler
 
 	private void handleMessage() {
 		System.out.println("Thanks for the message! :-)");
+		cbuf = new char[MessageUtil.MAX_MC_MESSAGE_LEN];
 	}
 	
 	public void run() {
-		while(!timeToExit && MessageUtil.readMcMessage(br, cbuf) != -1) {
+		while(!timeToExit && MessageUtil.readMcMessage(br, cbuf) != 0) {
 			handleMessage();
 		}
 	}

@@ -17,6 +17,7 @@
 package networking.handling;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.logging.Logger;
 
 public class TemperatureDataConnectionHandler
@@ -34,6 +35,14 @@ public class TemperatureDataConnectionHandler
 	@Override
 	public void run() {
 		logger.info("Running TemperatureDataConnectionHandler!");
+		super.run();
+		try {
+			logger.info("Temperature client disconnected.");
+			br.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			logger.finer(e.toString());
+		}
 	}
 
 }

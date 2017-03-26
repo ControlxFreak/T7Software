@@ -17,6 +17,7 @@
 package networking.handling;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.logging.Logger;
 
 public class GyroscopeDataConnectionHandler 
@@ -34,6 +35,14 @@ public class GyroscopeDataConnectionHandler
 	@Override
 	public void run() {
 		logger.info("Running GyroscopeDataConnectionHandler!");
+		super.run();
+		try {
+			logger.info("Gyroscope client disconnected.");
+			br.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			logger.finer(e.toString());
+		}
 	}
 
 }

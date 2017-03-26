@@ -146,7 +146,6 @@ public class TestUAVClient {
 					sendData();
 					break;
 				default:
-					valid_input_received = false;
 					System.out.println("Invalid input.");
 					break;
 				}
@@ -155,7 +154,6 @@ public class TestUAVClient {
 			} catch(InterruptedException ie) {
 				// TODO Error Logging
 			} catch(NumberFormatException nfe) {
-				valid_input_received = false;
 				System.out.println();
 				System.out.println("Wrong input format.");
 				System.out.println();
@@ -167,7 +165,7 @@ public class TestUAVClient {
 					e.printStackTrace();
 				}
 			}
-		} while(!time_to_exit && !valid_input_received);
+		} while(!time_to_exit);
 	}
 	
 	private static void sendData() {
