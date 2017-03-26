@@ -32,7 +32,7 @@ import networking.handling.DataConnectionHandler;
 
 public class UAVServer{
 	
-	private static final int portNum						= 4444;
+	private static final int PORT_NUM						= 4444;
 	@SuppressWarnings("unused")
 	private static Logger logger							= Logger.getLogger(UAVServer.class.getName());
 	private static volatile boolean timeToExit				= false;	// Operator input thread uses this to alert server that it's time to shut down.
@@ -49,7 +49,7 @@ public class UAVServer{
 		operator_input.start();
 		
 		/* Listens for incoming client connections and spawns appropriate threads. */
-		ServerSocket listener = new ServerSocket(portNum);
+		ServerSocket listener = new ServerSocket(PORT_NUM);
 		listener.setSoTimeout(500);
 		while(!timeToExit)
 		{

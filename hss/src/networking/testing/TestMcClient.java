@@ -8,11 +8,11 @@ import java.io.OutputStreamWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 
-public class TestUAVClient {
+public class TestMcClient {
 	
 	private static BufferedWriter out;
 	
-	public TestUAVClient() {
+	public TestMcClient() {
 		// TODO Auto-generated constructor stub
 	}
 
