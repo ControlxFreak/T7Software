@@ -41,16 +41,14 @@ public class MessageUtil {
 		}
 		
 		int numRead = -1;
-		do {
-			try {
-				numRead = br.read(cbuf, 0, MC_HEADER_LEN);
-			} catch (IOException e) {
-				// TODO Error logging
-			}
-		} while(numRead == -1);
+		try {
+			numRead = br.read(cbuf, 0, MC_HEADER_LEN);
+		} catch (IOException e) {
+			// TODO Error logging
+		}
 		
 		/* Finish reading header if less than 5 bytes were read. */
-		while(numRead < 5) {
+		while(numRead < MC_HEADER_LEN) {
 			try {
 				int tempNum = br.read(cbuf, numRead, MC_HEADER_LEN-numRead);
 				if(tempNum > -1) {
@@ -61,19 +59,14 @@ public class MessageUtil {
 			}
 		}
 		
-		int messageSize = mcMessageDataSize(cbuf.toString()) + 5;
-		do {
-			try {
-				int tempNum = br.read(cbuf, numRead, messageSize-numRead);
-				if(tempNum > -1) {
-					numRead += tempNum;
-				}
-			} catch (IOException e) {
-				// TODO Error logging
-			}
-		} while(numRead < messageSize);
+		int messageSize = mcMessageDataSize(new String(cbuf)) + 5;
+		try {
+			numRead = br.read(cbuf, MC_HEADER_LEN, messageSize-MC_HEADER_LEN);
+		} catch (IOException e) {
+			// TODO Error logging
+		}
 		
-		return numRead;
+		return messageSize;
 	}
 	
 	public static int mcMessageDataSize(String message) {

@@ -97,6 +97,13 @@ public class TestUAVClient {
 				System.out.println();
 				System.out.println("Wrong input format.");
 				System.out.println();
+			} finally {
+				try {
+					out.flush();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		} while(!time_to_exit);
 		
@@ -121,7 +128,7 @@ public class TestUAVClient {
 		}
 		
 		try {
-			out.write(request.toCharArray());
+			out.write(request, 0, request.length());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -21,7 +21,6 @@ import java.io.BufferedReader;
 public abstract class DataConnectionHandler {
 	
 	BufferedReader br;
-	@SuppressWarnings("unused")
 	private volatile boolean timeToExit = false;
 
 	public DataConnectionHandler(BufferedReader br) {

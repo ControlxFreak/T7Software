@@ -45,9 +45,9 @@ public class ConnectionHandlerFactory implements Runnable {
 		
 		do {
 			MessageUtil.readMcMessage(br, message);
-		} while(Integer.parseInt(Arrays.copyOfRange(message, 0, 3).toString()) != MessageUtil.CONNECTION_REQUEST);
+		} while(Integer.parseInt(new String(Arrays.copyOfRange(message, 0, 3))) != MessageUtil.CONNECTION_REQUEST);
 		
-		switch(Integer.parseInt(Arrays.copyOfRange(message, 5, 8).toString())) {
+		switch(Integer.parseInt(new String(Arrays.copyOfRange(message, 5, 8)))) {
 		case MessageUtil.ACCELEROMETER_DATA:
 			return new AccelerometerDataConnectionHandler(br);
 		case MessageUtil.GYROSCOPE_DATA:
