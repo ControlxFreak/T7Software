@@ -24,6 +24,8 @@ public class UAVServerOperatorInput implements Runnable {
 	
 	private static final int EXIT = 0;
 	
+	private boolean shut_down = false;
+	
 	private final BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
 	public UAVServerOperatorInput() {
@@ -49,6 +51,7 @@ public class UAVServerOperatorInput implements Runnable {
 						continue;
 					} else {
 						if(Integer.parseInt(input) == EXIT) {
+							System.out.println("Exit command received.");
 							break;
 						}
 					}
@@ -60,7 +63,7 @@ public class UAVServerOperatorInput implements Runnable {
 					// TODO Error Logging
 				}
 			} while(true);
-			
+			System.out.println("bout to shut down.");
 			UAVServer.shutDown();
 	}
 

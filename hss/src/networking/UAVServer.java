@@ -19,6 +19,7 @@ package networking;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -44,31 +45,33 @@ public class UAVServer{
 		/* Thread that takes in operator input. Used to shut down the server, among other things (possibly). */
 		Thread operator_input = new Thread(new UAVServerOperatorInput());
 		operator_input.start();
+		System.out.println("UAVServer is continuing.");
 		
 		/* Listens for incoming client connections and spawns appropriate threads. */
 		ServerSocket listener = new ServerSocket(portNum);
-		try
+		listener.setSoTimeout(500);
+		while(!timeToExit)
 		{
-			while(!timeToExit)
+			/*
+			 * For each incoming connection, spawn a thread to create a handler thread of the
+			 * appropriate type, then continue accepting connections. This is necessary because
+			 * the handler factory waits for a connection request message before starting a
+			 * handler thread. We don't want the listener thread to get stuck waiting on one
+			 * connection.
+			 */
+			try
 			{
-				/*
-				 * For each incoming connection, spawn a thread to create a handler thread of the
-				 * appropriate type, then continue accepting connections. This is necessary because
-				 * the handler factory waits for a connection request message before starting a
-				 * handler thread. We don't want the listener thread to get stuck waiting on one
-				 * connection.
-				 */
 				Socket cli_sock = listener.accept();
 				Thread handlerFactory = new Thread(new ConnectionHandlerFactory(cli_sock));
 				handlerFactory.start();
 			}
+			catch(SocketTimeoutException ste) {
+				
+			}
 		}
-		finally
-		{
-			listener.close();
-			shutDownHandlers();
-		}
-
+		listener.close();
+		shutDownHandlers();
+		
 	}
 	
 	public static void shutDown() {
