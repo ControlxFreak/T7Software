@@ -45,7 +45,6 @@ public class UAVServer{
 		/* Thread that takes in operator input. Used to shut down the server, among other things (possibly). */
 		Thread operator_input = new Thread(new UAVServerOperatorInput());
 		operator_input.start();
-		System.out.println("UAVServer is continuing.");
 		
 		/* Listens for incoming client connections and spawns appropriate threads. */
 		ServerSocket listener = new ServerSocket(portNum);

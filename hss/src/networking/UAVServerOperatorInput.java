@@ -51,7 +51,6 @@ public class UAVServerOperatorInput implements Runnable {
 						continue;
 					} else {
 						if(Integer.parseInt(input) == EXIT) {
-							System.out.println("Exit command received.");
 							break;
 						}
 					}
@@ -63,7 +62,6 @@ public class UAVServerOperatorInput implements Runnable {
 					// TODO Error Logging
 				}
 			} while(true);
-			System.out.println("bout to shut down.");
 			UAVServer.shutDown();
 	}
 
