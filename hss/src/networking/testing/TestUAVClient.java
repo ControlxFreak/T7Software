@@ -22,6 +22,7 @@ public class TestUAVClient {
 	public static void main(String[] args) {
 		String input = null;
 		boolean time_to_exit = false;
+		boolean valid_input_received = false;
 		final BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		Socket hss_sock;
 		
@@ -46,6 +47,8 @@ public class TestUAVClient {
 		
 		do {
 			try {
+				valid_input_received = true;
+				
 				System.out.println();
 				System.out.println("Welcome to the test UAV client.");
 				System.out.println("What would you like to do?");
@@ -87,6 +90,8 @@ public class TestUAVClient {
 					sendRequest(203);
 					break;
 				default:
+					valid_input_received = false;
+					System.out.println("Invalid input.");
 					break;
 				}
 			} catch(IOException ioe) {
@@ -94,6 +99,7 @@ public class TestUAVClient {
 			} catch(InterruptedException ie) {
 				// TODO Error Logging
 			} catch(NumberFormatException nfe) {
+				valid_input_received = false;
 				System.out.println();
 				System.out.println("Wrong input format.");
 				System.out.println();
@@ -105,16 +111,74 @@ public class TestUAVClient {
 					e.printStackTrace();
 				}
 			}
-		} while(!time_to_exit);
+		} while(!time_to_exit && !valid_input_received);
 		
+		if(time_to_exit) {
+			try {
+				hss_sock.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		do {
+			try {
+				valid_input_received = true;
+				
+				System.out.println();
+				System.out.println("What would you like to do?");
+				System.out.println("0) Exit");
+				System.out.println("1) Send data");
+				
+				while(!in.ready()) {
+					Thread.sleep(500);
+				}
+				input = in.readLine();
+				
+				switch(Integer.parseInt(input)) {
+				case 0:
+					System.out.println("Exiting.");
+					time_to_exit = true;
+					break;
+				case 1:
+					System.out.println("Sending data.");
+					sendData();
+					break;
+				default:
+					valid_input_received = false;
+					System.out.println("Invalid input.");
+					break;
+				}
+			} catch(IOException ioe) {
+				// TODO Error Logging
+			} catch(InterruptedException ie) {
+				// TODO Error Logging
+			} catch(NumberFormatException nfe) {
+				valid_input_received = false;
+				System.out.println();
+				System.out.println("Wrong input format.");
+				System.out.println();
+			} finally {
+				try {
+					out.flush();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		} while(!time_to_exit && !valid_input_received);
+	}
+	
+	private static void sendData() {
 		try {
-			hss_sock.close();
+			out.write("202011".toCharArray());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+
 	private static void sendRequest(int id) {
 		String request = "20503";
 		
