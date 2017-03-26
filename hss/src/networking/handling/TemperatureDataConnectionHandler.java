@@ -20,8 +20,7 @@ import java.io.BufferedReader;
 import java.util.logging.Logger;
 
 public class TemperatureDataConnectionHandler
-	extends DataConnectionHandler
-	implements Runnable {
+	extends DataConnectionHandler {
 
 	private static final Logger logger = Logger.getLogger(TemperatureDataConnectionHandler.class.getName());
 	
@@ -29,8 +28,11 @@ public class TemperatureDataConnectionHandler
 		super(br);
 	}
 
+	/* (non-Javadoc)
+	 * @see networking.handling.DataConnectionHandler#run()
+	 */
+	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		logger.info("Running TemperatureDataConnectionHandler!");
 	}
 

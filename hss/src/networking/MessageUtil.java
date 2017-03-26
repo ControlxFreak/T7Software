@@ -22,6 +22,7 @@ import java.io.IOException;
 public class MessageUtil {
 	
 	public static final int MC_HEADER_LEN = 5;
+	public static final int MAX_MC_MESSAGE_LEN = 512;
 
 	/* TCP HEADER DATA ID NUMBERS */
 	public static final int ACCELEROMETER_DATA	= 200;

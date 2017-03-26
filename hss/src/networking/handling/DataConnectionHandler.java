@@ -17,10 +17,15 @@
 package networking.handling;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 
-public abstract class DataConnectionHandler {
+import networking.MessageUtil;
+
+public abstract class DataConnectionHandler
+	implements Runnable{
 	
 	BufferedReader br;
+	private char[] cbuf = new char[MessageUtil.MAX_MC_MESSAGE_LEN];
 	private volatile boolean timeToExit = false;
 
 	public DataConnectionHandler(BufferedReader br) {
@@ -29,6 +34,16 @@ public abstract class DataConnectionHandler {
 	
 	public void shutDown() {
 		timeToExit = true;
+	}
+
+	private void handleMessage() {
+		System.out.println("Thanks for the message! :-)");
+	}
+	
+	public void run() {
+		while(!timeToExit && MessageUtil.readMcMessage(br, cbuf) != -1) {
+			handleMessage();
+		}
 	}
 
 }

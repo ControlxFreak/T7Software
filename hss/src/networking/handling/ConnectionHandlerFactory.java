@@ -41,7 +41,7 @@ public class ConnectionHandlerFactory implements Runnable {
 			// TODO Error logging
 			return null;
 		}
-		char[] message = new char[512];
+		char[] message = new char[MessageUtil.MAX_MC_MESSAGE_LEN];
 		
 		do {
 			MessageUtil.readMcMessage(br, message);

@@ -13,6 +13,7 @@ Anthony Trezza
 --------------------------------------------------------------------------------
 Change Log
 	04 March 2017 - att - Document Birthday!
+	26 March 2017 - Jarrett Mead - Adding MC->HSS connection request message that got lost during branch merging.
 --------------------------------------------------------------------------------
 
 
@@ -105,6 +106,9 @@ MID: 203 -> Temperature Data
 MID: 204 -> Camera Data
 				Description: raw camera data
 						[header][optical data]
+MID: 205 -> Connection Request
+				Description: This allows the HSS to spawn a thread of the appropriate type to handle the connection.
+						[header][MID of data type]
 
 
 
