@@ -14,7 +14,7 @@
  * 	26 March 2017 - Jarrett Mead - Client Birthday
  * ---------------------------------------------------------------------------------
  */
-package client;
+package networking.client;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
