@@ -1,8 +1,8 @@
 /*
  * ---------------------------------------------------------------------------------
- * Title: TemperatureDataConnectionHandler.java
+ * Title: AccelerometerDataConnectionHandler.java
  * Description:
- * A class that handles the main computer client connection for temperature data.
+ * A class that handles the main computer client connection for accelerometer data.
  * ---------------------------------------------------------------------------------
  * Lockheed Martin
  * Engineering Leadership Development Program
@@ -14,30 +14,30 @@
  * 	12 March 2017 - Jarrett Mead - Class Birthday
  * ---------------------------------------------------------------------------------
  */
-package networking.handling;
+package networking.server.connection;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.logging.Logger;
 
-public class TemperatureDataConnectionHandler
+public class AccelerometerDataConnectionHandler
 	extends DataConnectionHandler {
 
-	private static final Logger logger = Logger.getLogger(TemperatureDataConnectionHandler.class.getName());
+	private static final Logger logger = Logger.getLogger(AccelerometerDataConnectionHandler.class.getName());
 	
-	public TemperatureDataConnectionHandler(BufferedReader br) {
+	public AccelerometerDataConnectionHandler(BufferedReader br) {
 		super(br);
 	}
 
 	/* (non-Javadoc)
-	 * @see networking.handling.DataConnectionHandler#run()
+	 * @see networking.server.connection.DataConnectionHandler#run()
 	 */
 	@Override
 	public void run() {
-		logger.info("Running TemperatureDataConnectionHandler!");
+		logger.info("Running AccelerometerDataConnectionHandler!");
 		super.run();
 		try {
-			logger.info("Temperature client disconnected.");
+			logger.info("Accelerometer client disconnected.");
 			br.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

@@ -14,7 +14,7 @@
  * 	12 March 2017 - Jarrett Mead - Server Birthday
  * ---------------------------------------------------------------------------------
  */
-package networking;
+package networking.server;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -27,12 +27,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
 
-import networking.handling.ConnectionHandlerFactory;
-import networking.handling.DataConnectionHandler;
+import networking.server.connection.ConnectionHandlerFactory;
+import networking.server.connection.DataConnectionHandler;
 
 public class UAVServer{
 	
-	private static final int portNum						= 4444;
+	private static final int PORT_NUM						= 9002;
 	@SuppressWarnings("unused")
 	private static Logger logger							= Logger.getLogger(UAVServer.class.getName());
 	private static volatile boolean timeToExit				= false;	// Operator input thread uses this to alert server that it's time to shut down.
@@ -49,7 +49,7 @@ public class UAVServer{
 		operator_input.start();
 		
 		/* Listens for incoming client connections and spawns appropriate threads. */
-		ServerSocket listener = new ServerSocket(portNum);
+		ServerSocket listener = new ServerSocket(PORT_NUM);
 		listener.setSoTimeout(500);
 		while(!timeToExit)
 		{
@@ -99,6 +99,10 @@ public class UAVServer{
 				handlers.get(i).shutDown();
 			}
 		}
+	}
+
+	public static int getPortNum() {
+		return PORT_NUM;
 	}
 
 }

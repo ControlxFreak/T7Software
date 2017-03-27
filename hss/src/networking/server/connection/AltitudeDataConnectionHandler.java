@@ -1,8 +1,8 @@
 /*
  * ---------------------------------------------------------------------------------
- * Title: AccelerometerDataConnectionHandler.java
+ * Title: AltitudeDataConnectionHandler.java
  * Description:
- * A class that handles the main computer client connection for accelerometer data.
+ * A class that handles the main computer client connection for altitude data.
  * ---------------------------------------------------------------------------------
  * Lockheed Martin
  * Engineering Leadership Development Program
@@ -14,30 +14,30 @@
  * 	12 March 2017 - Jarrett Mead - Class Birthday
  * ---------------------------------------------------------------------------------
  */
-package networking.handling;
+package networking.server.connection;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.logging.Logger;
 
-public class AccelerometerDataConnectionHandler
+public class AltitudeDataConnectionHandler
 	extends DataConnectionHandler {
 
-	private static final Logger logger = Logger.getLogger(AccelerometerDataConnectionHandler.class.getName());
+	private static final Logger logger = Logger.getLogger(AltitudeDataConnectionHandler.class.getName());
 	
-	public AccelerometerDataConnectionHandler(BufferedReader br) {
+	public AltitudeDataConnectionHandler(BufferedReader br) {
 		super(br);
 	}
 
 	/* (non-Javadoc)
-	 * @see networking.handling.DataConnectionHandler#run()
+	 * @see networking.server.connection.DataConnectionHandler#run()
 	 */
 	@Override
 	public void run() {
-		logger.info("Running AccelerometerDataConnectionHandler!");
+		logger.info("Running AltitudeDataConnectionHandler!");
 		super.run();
 		try {
-			logger.info("Accelerometer client disconnected.");
+			logger.info("Altitude client disconnected.");
 			br.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

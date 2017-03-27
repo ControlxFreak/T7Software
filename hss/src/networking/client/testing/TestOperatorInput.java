@@ -1,36 +1,18 @@
-/*
- * ---------------------------------------------------------------------------------
- * Title: UAVServerOperatorInput.java
- * Description:
- * A class to take operator input to the UAV Server.
- * ---------------------------------------------------------------------------------
- * Lockheed Martin
- * Engineering Leadership Development Program
- * Team 7
- * 14 March 2017
- * Jarrett Mead
- * ---------------------------------------------------------------------------------
- * Change Log
- * 	14 March 2017 - Jarrett Mead - Class Birthday
- * ---------------------------------------------------------------------------------
- */
-package networking;
+package networking.client.testing;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class UAVServerOperatorInput implements Runnable {
+import networking.server.UAVServer;
+
+public class TestOperatorInput implements Runnable {
 	
 	private static final int EXIT = 0;
 	
 	private boolean shut_down = false;
 	
 	private final BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-
-	public UAVServerOperatorInput() {
-		// TODO Auto-generated constructor stub
-	}
 
 	public void run() {
 			String input = null;
@@ -51,7 +33,7 @@ public class UAVServerOperatorInput implements Runnable {
 						continue;
 					} else {
 						if(Integer.parseInt(input) == EXIT) {
-							break;
+							shut_down = true;
 						}
 					}
 				} catch(IOException ioe) {
@@ -61,8 +43,8 @@ public class UAVServerOperatorInput implements Runnable {
 				} catch(NumberFormatException nfe) {
 					// TODO Error Logging
 				}
-			} while(true);
-			UAVServer.shutDown();
+			} while(!shut_down);
+			TestHSSServer.shutDown();
 	}
 
 	private static boolean isValidInput(String input) {
@@ -76,5 +58,4 @@ public class UAVServerOperatorInput implements Runnable {
 		}
 		return false;
 	}
-
 }

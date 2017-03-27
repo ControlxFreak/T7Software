@@ -1,4 +1,4 @@
-package networking.testing;
+package networking.server.testing;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -8,11 +8,13 @@ import java.io.OutputStreamWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 
-public class TestUAVClient {
+import networking.server.UAVServer;
+
+public class TestHSSClient {
 	
 	private static BufferedWriter out;
 	
-	public TestUAVClient() {
+	public TestHSSClient() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -30,7 +32,7 @@ public class TestUAVClient {
 			try {
 				Thread.sleep(3000);
 				System.out.println("Establishing connection.");
-				hss_sock = new Socket(InetAddress.getLocalHost(), 4444);
+				hss_sock = new Socket(InetAddress.getLocalHost(), UAVServer.getPortNum());
 			} catch(Exception e) {
 				e.printStackTrace();
 				continue;
@@ -50,7 +52,7 @@ public class TestUAVClient {
 				valid_input_received = true;
 				
 				System.out.println();
-				System.out.println("Welcome to the test UAV client.");
+				System.out.println("Welcome to the test MC client.");
 				System.out.println("What would you like to do?");
 				System.out.println("0) Exit");
 				System.out.println("1) Make a new Accelerometer connection");
