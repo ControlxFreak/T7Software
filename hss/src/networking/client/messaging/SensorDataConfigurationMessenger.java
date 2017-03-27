@@ -29,7 +29,7 @@ public class SensorDataConfigurationMessenger {
 	}
 	
 	public void updateSensorConfiguration(char[] sensor_id, boolean setting) {
-		int binary_setting = (setting) ? 1 : 0;
+		int binary_setting = setting ? 1 : 0;
 		char[] data = MessageUtil.concat(sensor_id, Integer.toString(binary_setting).toCharArray());
 		int data_size = data.length;
 		char[] size_array;
