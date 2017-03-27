@@ -1,4 +1,20 @@
-package networking.testing;
+/*
+ * ---------------------------------------------------------------------------------
+ * Title: UAVClient.java
+ * Description:
+ * This class implements the TCP Client that sends data to the main computer.
+ * ---------------------------------------------------------------------------------
+ * Lockheed Martin
+ * Engineering Leadership Development Program
+ * Team 7
+ * 26 March 2017
+ * Jarrett Mead
+ * ---------------------------------------------------------------------------------
+ * Change Log
+ * 	26 March 2017 - Jarrett Mead - Client Birthday
+ * ---------------------------------------------------------------------------------
+ */
+package client;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -7,39 +23,37 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.logging.Logger;
 
-public class TestMcClient {
-	
-	private static BufferedWriter out;
-	
-	public TestMcClient() {
-		// TODO Auto-generated constructor stub
-	}
+public class UAVClient {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
+	private static final int PORT_NUM						= 9001;
+	@SuppressWarnings("unused")
+	private static Logger logger							= Logger.getLogger(UAVClient.class.getName());
+	private volatile boolean timeToExit						= false;
+
+	public UAVClient() {
 		String input = null;
 		boolean time_to_exit = false;
 		boolean valid_input_received = false;
 		final BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		Socket hss_sock;
+		Socket mc_sock;
+		BufferedWriter out;
 		
 		do {
 			try {
-				Thread.sleep(3000);
+				Thread.sleep(1000);
 				System.out.println("Establishing connection.");
-				hss_sock = new Socket(InetAddress.getLocalHost(), 4444);
+				mc_sock = new Socket(InetAddress.getLocalHost(), PORT_NUM);
 			} catch(Exception e) {
 				e.printStackTrace();
 				continue;
-			}	
+			}
 			break;
 		} while(true);
 		
 		try {
-			out = new BufferedWriter(new OutputStreamWriter(hss_sock.getOutputStream()));
+			out = new BufferedWriter(new OutputStreamWriter(mc_sock.getOutputStream()));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -115,7 +129,7 @@ public class TestMcClient {
 		
 		if(time_to_exit) {
 			try {
-				hss_sock.close();
+				mc_sock.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -166,35 +180,7 @@ public class TestMcClient {
 				}
 			}
 		} while(!time_to_exit);
-	}
-	
-	private static void sendData() {
-		try {
-			out.write("202011".toCharArray());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 
-	private static void sendRequest(int id) {
-		String request = "20503";
-		
-		switch(id) {
-		case 200:
-		case 201:
-		case 202:
-		case 203:
-		case 204:
-			request += Integer.toString(id);
-		}
-		
-		try {
-			out.write(request, 0, request.length());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 }

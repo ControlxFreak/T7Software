@@ -14,11 +14,12 @@
  * 	14 March 2017 - Jarrett Mead - Class Birthday
  * ---------------------------------------------------------------------------------
  */
-package networking;
+package networking.server;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
 
 public class UAVServerOperatorInput implements Runnable {
 	

@@ -1,8 +1,8 @@
 /*
  * ---------------------------------------------------------------------------------
- * Title: CameraDataConnectionHandler.java
+ * Title: TemperatureDataConnectionHandler.java
  * Description:
- * A class that handles the main computer client connection for camera data.
+ * A class that handles the main computer client connection for temperature data.
  * ---------------------------------------------------------------------------------
  * Lockheed Martin
  * Engineering Leadership Development Program
@@ -14,30 +14,30 @@
  * 	12 March 2017 - Jarrett Mead - Class Birthday
  * ---------------------------------------------------------------------------------
  */
-package networking.handling;
+package networking.server.connection;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.logging.Logger;
 
-public class CameraDataConnectionHandler
+public class TemperatureDataConnectionHandler
 	extends DataConnectionHandler {
 
-	private static final Logger logger = Logger.getLogger(CameraDataConnectionHandler.class.getName());
+	private static final Logger logger = Logger.getLogger(TemperatureDataConnectionHandler.class.getName());
 	
-	public CameraDataConnectionHandler(BufferedReader br) {
+	public TemperatureDataConnectionHandler(BufferedReader br) {
 		super(br);
 	}
 
 	/* (non-Javadoc)
-	 * @see networking.handling.DataConnectionHandler#run()
+	 * @see networking.server.connection.DataConnectionHandler#run()
 	 */
 	@Override
 	public void run() {
-		logger.info("Running CameraDataConnectionHandler!");
+		logger.info("Running TemperatureDataConnectionHandler!");
 		super.run();
 		try {
-			logger.info("Camera client disconnected.");
+			logger.info("Temperature client disconnected.");
 			br.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
