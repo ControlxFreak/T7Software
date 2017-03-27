@@ -10,11 +10,11 @@ import java.net.Socket;
 
 import networking.server.UAVServer;
 
-public class TestMcClient {
+public class TestHSSClient {
 	
 	private static BufferedWriter out;
 	
-	public TestMcClient() {
+	public TestHSSClient() {
 		// TODO Auto-generated constructor stub
 	}
 
