@@ -57,10 +57,8 @@ public class TestHSSServer{
 	}
 	
 	private static void shutDownHandlers() {
-		synchronized(handlers) {
-			for(int i = 0; i < handlers.size(); i++) {
-				handlers.get(i).shutDown();
-			}
+		for(int i = 0; i < handlers.size(); i++) {
+			handlers.get(i).shutDown();
 		}
 	}
 

@@ -59,6 +59,7 @@ public class UAVClient {
 	public void sendMessage(char[] cbuf) {
 		try {
 			out.write(cbuf);
+			out.flush();
 		} catch (IOException e) {
 			// TODO Error logging
 		}

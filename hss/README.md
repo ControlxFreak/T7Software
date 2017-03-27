@@ -2,12 +2,20 @@ This directory contains the Home Station Software (HSS) source code and document
 
 To compile HSS code:
 ant clean
-ant build
+ant
 
 To run UAVServer:
 cd classes
-java -classpath . networking.UAVServer
+java -classpath . networking.server.UAVServer
 
-To run TestUAVCient:
+To run TestUAVClient:
 cd classes
-java -classpath . networking.testing.TestUAVClient
+java -classpath . networking.server.testing.TestUAVClient
+
+To run TestHSSServer:
+cd classes
+java -classpath . networking.client.testing.TestHSSServer
+
+To run UAVClientService:
+cd classes
+java -classpath . networking.client.UAVClientService

@@ -52,7 +52,7 @@ public class UAVServerOperatorInput implements Runnable {
 						continue;
 					} else {
 						if(Integer.parseInt(input) == EXIT) {
-							break;
+							shut_down = true;
 						}
 					}
 				} catch(IOException ioe) {
@@ -62,7 +62,7 @@ public class UAVServerOperatorInput implements Runnable {
 				} catch(NumberFormatException nfe) {
 					// TODO Error Logging
 				}
-			} while(true);
+			} while(!shut_down);
 			UAVServer.shutDown();
 	}
 
