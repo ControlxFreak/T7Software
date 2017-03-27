@@ -72,4 +72,8 @@ public class UAVClient {
 		}
 	}
 
+	public static int getPortNum() {
+		return PORT_NUM;
+	}
+
 }

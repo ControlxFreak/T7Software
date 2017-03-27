@@ -102,7 +102,6 @@ public class UAVServer{
 	}
 
 	public static int getPortNum() {
-		// TODO Auto-generated method stub
 		return PORT_NUM;
 	}
 
