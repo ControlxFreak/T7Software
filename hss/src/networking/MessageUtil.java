@@ -21,7 +21,7 @@ import java.io.IOException;
 
 public class MessageUtil {
 	
-	public static final int MC_HEADER_LEN = 5;
+	public static final int HEADER_LEN = 5;
 	public static final int MAX_MC_MESSAGE_LEN = 512;
 
 	/* TCP HEADER DATA ID NUMBERS */
@@ -52,15 +52,15 @@ public class MessageUtil {
 		
 		int numRead = -1;
 		try {
-			numRead = br.read(cbuf, 0, MC_HEADER_LEN);
+			numRead = br.read(cbuf, 0, HEADER_LEN);
 		} catch (IOException e) {
 			// TODO Error logging
 		}
 		
 		/* Finish reading header if less than 5 bytes were read. */
-		while(numRead < MC_HEADER_LEN && numRead != -1) {
+		while(numRead < HEADER_LEN && numRead != -1) {
 			try {
-				int tempNum = br.read(cbuf, numRead, MC_HEADER_LEN-numRead);
+				int tempNum = br.read(cbuf, numRead, HEADER_LEN-numRead);
 				if(tempNum > -1) {
 					numRead += tempNum;
 				}
@@ -71,7 +71,7 @@ public class MessageUtil {
 		
 		int dataSize = mcMessageDataSize(new String(cbuf));
 		try {
-			numRead = br.read(cbuf, MC_HEADER_LEN, dataSize);
+			numRead = br.read(cbuf, HEADER_LEN, dataSize);
 		} catch (IOException e) {
 			// TODO Error logging
 		}
@@ -83,6 +83,15 @@ public class MessageUtil {
 			return 0;
 		}
 		return Integer.parseInt(message.substring(3, 5));
+	}
+	
+	public static char[] concat(char[] a, char[] b) {
+		int aLen = a.length;
+		int bLen = b.length;
+		char[] c = new char[aLen+bLen];
+		System.arraycopy(a, 0, c, 0, aLen);
+		System.arraycopy(b, 0, c, aLen, bLen);
+		return c;
 	}
 	
 }
