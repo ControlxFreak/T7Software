@@ -4,14 +4,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import networking.server.UAVServer;
-
 public class TestOperatorInput implements Runnable {
-	
+
 	private static final int EXIT = 0;
-	
+
 	private boolean shut_down = false;
-	
+
 	private final BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
 	public void run() {
@@ -21,12 +19,12 @@ public class TestOperatorInput implements Runnable {
 					System.out.println();
 					System.out.println("What would you like to do?");
 					System.out.println("0) Exit");
-					
+
 					while(!in.ready()) {
 						Thread.sleep(500);
 					}
 					input = in.readLine();
-					
+
 					if(!isValidInput(input)) {
 						System.out.println();
 						System.out.println("Invalid input. Please retry.");

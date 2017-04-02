@@ -16,10 +16,8 @@
  */
 package networking.client;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -34,7 +32,7 @@ public class UAVClient {
 	BufferedWriter out;
 
 	public UAVClient() {
-		
+
 		do {
 			try {
 				Thread.sleep(1000);
@@ -46,7 +44,7 @@ public class UAVClient {
 			}
 			break;
 		} while(true);
-		
+
 		try {
 			out = new BufferedWriter(new OutputStreamWriter(mc_sock.getOutputStream()));
 		} catch (IOException e) {
@@ -55,7 +53,7 @@ public class UAVClient {
 		}
 
 	}
-	
+
 	public void sendMessage(char[] cbuf) {
 		try {
 			out.write(cbuf);
@@ -64,7 +62,7 @@ public class UAVClient {
 			// TODO Error logging
 		}
 	}
-	
+
 	protected void finalize() throws Throwable {
 		try {
 			out.close();

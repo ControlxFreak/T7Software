@@ -17,13 +17,11 @@
 package networking.server.connection;
 
 import java.io.BufferedReader;
-import java.io.IOException;
-
 import networking.MessageUtil;
 
 public abstract class DataConnectionHandler
 	implements Runnable{
-	
+
 	BufferedReader br;
 	private char[] cbuf = new char[MessageUtil.MAX_MC_MESSAGE_LEN];
 	private volatile boolean timeToExit = false;
@@ -31,7 +29,7 @@ public abstract class DataConnectionHandler
 	public DataConnectionHandler(BufferedReader br) {
 		this.br = br;
 	}
-	
+
 	public void shutDown() {
 		timeToExit = true;
 	}
@@ -40,7 +38,7 @@ public abstract class DataConnectionHandler
 		System.out.println("Thanks for the message! :-)");
 		cbuf = new char[MessageUtil.MAX_MC_MESSAGE_LEN];
 	}
-	
+
 	public void run() {
 		while(!timeToExit && MessageUtil.readMcMessage(br, cbuf) != 0) {
 			handleMessage();

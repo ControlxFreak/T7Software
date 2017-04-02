@@ -16,9 +16,7 @@
  */
 package networking.server;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
@@ -31,7 +29,7 @@ import networking.server.connection.ConnectionHandlerFactory;
 import networking.server.connection.DataConnectionHandler;
 
 public class UAVServer{
-	
+
 	private static final int PORT_NUM						= 9002;
 	@SuppressWarnings("unused")
 	private static Logger logger							= Logger.getLogger(UAVServer.class.getName());
@@ -47,7 +45,7 @@ public class UAVServer{
 		/* Thread that takes in operator input. Used to shut down the server, among other things (possibly). */
 		Thread operator_input = new Thread(new UAVServerOperatorInput());
 		operator_input.start();
-		
+
 		/* Listens for incoming client connections and spawns appropriate threads. */
 		ServerSocket listener = new ServerSocket(PORT_NUM);
 		listener.setSoTimeout(500);
@@ -67,24 +65,24 @@ public class UAVServer{
 				handlerFactory.start();
 			}
 			catch(SocketTimeoutException ste) {
-				
+
 			}
 		}
 		listener.close();
 		shutDownHandlers();
-		
+
 	}
-	
+
 	public static void shutDown() {
 		timeToExit = true;
 	}
-	
+
 	public static void addHandler(DataConnectionHandler handler){
 		synchronized(handlers) {
 			handlers.add(handler);
 		}
-		
-		/* 
+
+		/*
 		 * In case factory is trying to add a new thread while Server is in the process
 		 * of shutting down, shut new thread down.
 		 */
@@ -92,7 +90,7 @@ public class UAVServer{
 			handler.shutDown();
 		}
 	}
-	
+
 	private static void shutDownHandlers() {
 		synchronized(handlers) {
 			for(int i = 0; i < handlers.size(); i++) {
