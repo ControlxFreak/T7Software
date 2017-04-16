@@ -23,8 +23,8 @@ public abstract class DataConnectionHandler
 	implements Runnable{
 
 	BufferedReader br;
-	private char[] cbuf = new char[MessageUtil.MAX_MC_MESSAGE_LEN];
-	private volatile boolean timeToExit = false;
+	char[] cbuf = new char[MessageUtil.MAX_MC_MESSAGE_LEN];
+	volatile boolean timeToExit = false;
 
 	public DataConnectionHandler(BufferedReader br) {
 		this.br = br;
@@ -34,7 +34,7 @@ public abstract class DataConnectionHandler
 		timeToExit = true;
 	}
 
-	private void handleMessage() {
+	void handleMessage() {
 		System.out.println("Thanks for the message! :-)");
 		cbuf = new char[MessageUtil.MAX_MC_MESSAGE_LEN];
 	}

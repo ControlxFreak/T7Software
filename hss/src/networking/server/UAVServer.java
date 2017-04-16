@@ -17,6 +17,8 @@
 package networking.server;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
@@ -25,16 +27,22 @@ import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
 
+import app.model.TelemetryData;
+import app.view.TelemetryDataOverviewController;
 import networking.server.connection.ConnectionHandlerFactory;
 import networking.server.connection.DataConnectionHandler;
+import networking.server.connection.MainAppConnection;
 
 public class UAVServer{
 
-	private static final int PORT_NUM						= 9002;
+	private static final int MC_PORT_NUM							= 9002;
+	public static final int APP_PORT_NUM							= 9003;
 	@SuppressWarnings("unused")
-	private static Logger logger							= Logger.getLogger(UAVServer.class.getName());
-	private static volatile boolean timeToExit				= false;	// Operator input thread uses this to alert server that it's time to shut down.
-	private static List<DataConnectionHandler> handlers		= Collections.synchronizedList(new ArrayList<DataConnectionHandler>());
+	private static Logger logger									= Logger.getLogger(UAVServer.class.getName());
+	private static volatile boolean timeToExit						= false;	// Operator input thread uses this to alert server that it's time to shut down.
+	private static List<DataConnectionHandler> handlers				= Collections.synchronizedList(new ArrayList<DataConnectionHandler>());
+	private static TelemetryData telData							= new TelemetryData();
+	private static ObjectOutputStream telemetryStream;
 
 	/**
 	 * @param args
@@ -46,9 +54,35 @@ public class UAVServer{
 		Thread operator_input = new Thread(new UAVServerOperatorInput());
 		operator_input.start();
 
+		/* Listens for incoming application connection. */
+		ServerSocket app_listener = new ServerSocket(APP_PORT_NUM);
+		app_listener.setSoTimeout(500);
+		//MainAppConnection mac = null;
+		while(!timeToExit)
+		{
+			/*
+			 * Grab the needed view controllers from the main application.
+			 */
+			try
+			{
+				Socket app_sock = app_listener.accept();
+				telemetryStream = new ObjectOutputStream(app_sock.getOutputStream());
+				/*
+				mac = new MainAppConnection(telemetryStream);
+				Thread telDataUpdater = new Thread(mac);
+				telDataUpdater.start();
+				*/
+				break;
+			}
+			catch(SocketTimeoutException ste) {
+				//ste.printStackTrace();
+			}
+		}
+		app_listener.close();
+
 		/* Listens for incoming client connections and spawns appropriate threads. */
-		ServerSocket listener = new ServerSocket(PORT_NUM);
-		listener.setSoTimeout(500);
+		ServerSocket cli_listener = new ServerSocket(MC_PORT_NUM);
+		cli_listener.setSoTimeout(500);
 		while(!timeToExit)
 		{
 			/*
@@ -60,7 +94,7 @@ public class UAVServer{
 			 */
 			try
 			{
-				Socket cli_sock = listener.accept();
+				Socket cli_sock = cli_listener.accept();
 				Thread handlerFactory = new Thread(new ConnectionHandlerFactory(cli_sock));
 				handlerFactory.start();
 			}
@@ -68,7 +102,8 @@ public class UAVServer{
 
 			}
 		}
-		listener.close();
+		cli_listener.close();
+		//mac.shutDown();
 		shutDownHandlers();
 
 	}
@@ -100,7 +135,23 @@ public class UAVServer{
 	}
 
 	public static int getPortNum() {
-		return PORT_NUM;
+		return MC_PORT_NUM;
+	}
+
+	public static void setAirTemp(double temp) {
+		System.out.println("Setting telData.airTemp to " + temp);
+		telData.setAirTemp(temp);
+		try {
+			telemetryStream.writeDouble(temp);
+			telemetryStream.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public static TelemetryData getTelData() {
+		return telData;
 	}
 
 }
