@@ -26,13 +26,13 @@ import networking.MessageUtil;
 import networking.server.UAVServer;
 
 public class ConnectionHandlerFactory implements Runnable {
-	
+
 	private Socket socket;
 
 	public ConnectionHandlerFactory(Socket socket) {
 		this.socket = socket;
 	}
-	
+
 	private DataConnectionHandler getConnectionHandler() {
 		BufferedReader br;
 		try {
@@ -42,11 +42,11 @@ public class ConnectionHandlerFactory implements Runnable {
 			return null;
 		}
 		char[] message = new char[MessageUtil.MAX_MC_MESSAGE_LEN];
-		
+
 		do {
 			MessageUtil.readMcMessage(br, message);
 		} while(Integer.parseInt(new String(Arrays.copyOfRange(message, 0, 3))) != MessageUtil.CONNECTION_REQUEST);
-		
+
 		switch(Integer.parseInt(new String(Arrays.copyOfRange(message, 5, 8)))) {
 		case MessageUtil.ACCELEROMETER_DATA:
 			return new AccelerometerDataConnectionHandler(br);

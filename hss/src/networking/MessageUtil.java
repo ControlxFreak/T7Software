@@ -20,7 +20,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 public class MessageUtil {
-	
+
 	public static final int HEADER_LEN = 5;
 	public static final int MAX_MC_MESSAGE_LEN = 512;
 
@@ -33,9 +33,9 @@ public class MessageUtil {
 	public static final int CONNECTION_REQUEST	= 205;
 
 	public MessageUtil() {
-		
+
 	}
-	
+
 	/**
 	 * This method dynamically reads a message from the Main
 	 * Computer and stores it in a buffer. It returns the
@@ -49,14 +49,14 @@ public class MessageUtil {
 		if(br == null) {
 			return -1;
 		}
-		
+
 		int numRead = -1;
 		try {
 			numRead = br.read(cbuf, 0, HEADER_LEN);
 		} catch (IOException e) {
 			// TODO Error logging
 		}
-		
+
 		/* Finish reading header if less than 5 bytes were read. */
 		while(numRead < HEADER_LEN && numRead != -1) {
 			try {
@@ -68,7 +68,7 @@ public class MessageUtil {
 				// TODO Error logging
 			}
 		}
-		
+
 		int dataSize = mcMessageDataSize(new String(cbuf));
 		try {
 			numRead = br.read(cbuf, HEADER_LEN, dataSize);
@@ -77,14 +77,14 @@ public class MessageUtil {
 		}
 		return dataSize;
 	}
-	
+
 	public static int mcMessageDataSize(String message) {
 		if(message.isEmpty() || message == null || message.charAt(0) == 0) {
 			return 0;
 		}
 		return Integer.parseInt(message.substring(3, 5));
 	}
-	
+
 	public static char[] concat(char[] a, char[] b) {
 		int aLen = a.length;
 		int bLen = b.length;
@@ -93,5 +93,9 @@ public class MessageUtil {
 		System.arraycopy(b, 0, c, aLen, bLen);
 		return c;
 	}
-	
+
+	public static int messageLen(char[] cbuf) {
+		return Integer.parseInt((new String(cbuf)).substring(3, 5));
+	}
+
 }

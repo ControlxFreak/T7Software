@@ -1,12 +1,15 @@
 <?xml version="1.0"?>
-<project name="Hello World Project" basedir="." default="build">
+<project name="HOPPS Home Station Software" basedir="." default="build">
 	<property file="build.properties.dev"/>
 
 	<target name="build" description="Compile source tree java files">
 		<mkdir dir="${build.dir}"/>
 		<javac destdir="${build.dir}">
 			<src path="${src.dir}"/>
+			<exclude name="**/TelemetryData.java"/>
 		</javac>
+		<copy file="src/app/view/RootLayout.fxml" todir="classes/app/view"/>
+		<copy file="src/app/view/TelemetryDataOverview.fxml" todir="classes/app/view"/>
 	</target>
 
 	<target name="clean" description="Clean output directories">
