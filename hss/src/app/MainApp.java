@@ -28,8 +28,6 @@ import java.net.UnknownHostException;
 import java.util.Random;
 import java.util.logging.Logger;
 
-import app.model.TelemetryData;
-//import app.model.TelemetryData;
 import app.view.TelemetryDataOverviewController;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -54,7 +52,6 @@ public class MainApp extends Application {
 	private static TelemetryDataListener tel_listener;
 	private static TelemetryDataOverviewController tel_controller;
 	private static FXMLLoader tel_loader;
-	private final static TelemetryData tel_data = new TelemetryData();
 	private volatile static boolean timeToExit = false;
 	private static ObjectInputStream telemetryStream = null;
 	private volatile static boolean airTempUpdateAvailable = false;

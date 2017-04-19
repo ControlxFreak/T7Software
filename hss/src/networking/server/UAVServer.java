@@ -27,11 +27,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
 
-import app.model.TelemetryData;
 import app.view.TelemetryDataOverviewController;
 import networking.server.connection.ConnectionHandlerFactory;
 import networking.server.connection.DataConnectionHandler;
-import networking.server.connection.MainAppConnection;
 
 public class UAVServer{
 
@@ -41,7 +39,6 @@ public class UAVServer{
 	private static Logger logger									= Logger.getLogger(UAVServer.class.getName());
 	private static volatile boolean timeToExit						= false;	// Operator input thread uses this to alert server that it's time to shut down.
 	private static List<DataConnectionHandler> handlers				= Collections.synchronizedList(new ArrayList<DataConnectionHandler>());
-	private static TelemetryData telData							= new TelemetryData();
 	private static ObjectOutputStream telemetryStream;
 
 	/**
@@ -140,7 +137,6 @@ public class UAVServer{
 
 	public static void setAirTemp(double temp) {
 		System.out.println("Setting telData.airTemp to " + temp);
-		telData.setAirTemp(temp);
 		try {
 			telemetryStream.writeDouble(temp);
 			telemetryStream.flush();
@@ -148,10 +144,6 @@ public class UAVServer{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-
-	public static TelemetryData getTelData() {
-		return telData;
 	}
 
 }

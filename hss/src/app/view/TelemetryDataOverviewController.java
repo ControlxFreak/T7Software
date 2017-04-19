@@ -16,8 +16,6 @@
  */
 package app.view;
 
-import app.model.TelemetryData;
-//import app.model.TelemetryData;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -28,14 +26,6 @@ public class TelemetryDataOverviewController {
 	@FXML
 	private void initialize() {
 		System.out.println("initialize label = " + airTempLabel);
-	}
-
-	public void update(TelemetryData td) {
-		System.out.println("airTempLabel = " + airTempLabel);
-		System.out.println("Setting it to " + Double.toString(td.getAirTemp()));
-		airTempLabel.setText(Double.toString(td.getAirTemp()));
-		airTempLabel.setVisible(false);
-		airTempLabel.setVisible(true);
 	}
 
 	public void updateAirTemp(double airTemp) {

@@ -6,7 +6,6 @@
 		<mkdir dir="${build.dir}"/>
 		<javac destdir="${build.dir}">
 			<src path="${src.dir}"/>
-			<exclude name="**/TelemetryData.java"/>
 		</javac>
 		<copy file="src/app/view/RootLayout.fxml" todir="classes/app/view"/>
 		<copy file="src/app/view/TelemetryDataOverview.fxml" todir="classes/app/view"/>

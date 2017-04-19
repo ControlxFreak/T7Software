@@ -21,7 +21,6 @@ import java.io.ObjectInputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 
-import app.model.TelemetryData;
 import app.view.TelemetryDataOverviewController;
 import javafx.application.Platform;
 import networking.server.UAVServer;
