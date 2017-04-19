@@ -64,10 +64,11 @@ public class ConnectionHandlerFactory implements Runnable {
 		}
 	}
 
+	@Override
 	public void run() {
 		DataConnectionHandler handler = getConnectionHandler();
 		UAVServer.addHandler(handler);
-		new Thread((Runnable)handler).start();
+		new Thread(handler).start();
 	}
 
 }

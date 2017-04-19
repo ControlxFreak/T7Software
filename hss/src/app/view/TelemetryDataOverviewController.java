@@ -29,9 +29,11 @@ public class TelemetryDataOverviewController {
 	}
 
 	public void updateAirTemp(double airTemp) {
-		airTempLabel.setText(Double.toString(airTemp));
-		airTempLabel.setVisible(false);
-		airTempLabel.setVisible(true);
+		String newVal = "";
+		if(airTemp != Double.MIN_VALUE) {
+			newVal = Double.toString(airTemp);
+		}
+		airTempLabel.setText(newVal);
 	}
 }
 

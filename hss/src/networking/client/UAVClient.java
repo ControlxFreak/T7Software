@@ -63,6 +63,7 @@ public class UAVClient {
 		}
 	}
 
+	@Override
 	protected void finalize() throws Throwable {
 		try {
 			out.close();

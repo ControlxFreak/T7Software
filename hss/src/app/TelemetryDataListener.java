@@ -21,7 +21,6 @@ import java.io.ObjectInputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 
-import app.view.TelemetryDataOverviewController;
 import javafx.application.Platform;
 import networking.server.UAVServer;
 
@@ -36,6 +35,7 @@ public class TelemetryDataListener implements Runnable {
 		this.mainApp = mainApp;
 	}
 
+	@Override
 	public void run() {
 
 		while(sock == null) {
@@ -55,17 +55,18 @@ public class TelemetryDataListener implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			//Platform.runLater(() -> establishStream());
 			establishStream();
 		}
 
 		while(!timeToExit) {
 			double airTemp;
 			try {
-				airTemp = in.readDouble();
-				System.out.println("Tried to read.");
-				//mainApp.updateAirTemp(airTemp);
-				Platform.runLater(() -> mainApp.updateAirTemp(airTemp));
+				if(in.available() > 0)
+				{
+					airTemp = in.readDouble();
+					System.out.println("Tried to read.");
+					Platform.runLater(() -> mainApp.updateAirTemp(airTemp));
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				//e.printStackTrace();
