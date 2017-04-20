@@ -16,9 +16,10 @@
  */
 package networking.server;
 
+import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
@@ -27,11 +28,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
 
-import app.model.TelemetryData;
 import app.view.TelemetryDataOverviewController;
 import networking.server.connection.ConnectionHandlerFactory;
 import networking.server.connection.DataConnectionHandler;
-import networking.server.connection.MainAppConnection;
 
 public class UAVServer{
 
@@ -41,8 +40,8 @@ public class UAVServer{
 	private static Logger logger									= Logger.getLogger(UAVServer.class.getName());
 	private static volatile boolean timeToExit						= false;	// Operator input thread uses this to alert server that it's time to shut down.
 	private static List<DataConnectionHandler> handlers				= Collections.synchronizedList(new ArrayList<DataConnectionHandler>());
-	private static TelemetryData telData							= new TelemetryData();
-	private static ObjectOutputStream telemetryStream;
+	private static DataOutputStream temperatureStream;
+	private static DataOutputStream altitudeStream;
 
 	/**
 	 * @param args
@@ -54,10 +53,6 @@ public class UAVServer{
 		Thread operator_input = new Thread(new UAVServerOperatorInput());
 		operator_input.start();
 
-		/* Listens for incoming application connection. */
-		ServerSocket app_listener = new ServerSocket(APP_PORT_NUM);
-		app_listener.setSoTimeout(500);
-		//MainAppConnection mac = null;
 		while(!timeToExit)
 		{
 			/*
@@ -65,20 +60,30 @@ public class UAVServer{
 			 */
 			try
 			{
-				Socket app_sock = app_listener.accept();
-				telemetryStream = new ObjectOutputStream(app_sock.getOutputStream());
-				/*
-				mac = new MainAppConnection(telemetryStream);
-				Thread telDataUpdater = new Thread(mac);
-				telDataUpdater.start();
-				*/
+				Socket temperature_sock = new Socket(InetAddress.getLocalHost(), APP_PORT_NUM);
+				temperatureStream = new DataOutputStream(temperature_sock.getOutputStream());
 				break;
 			}
 			catch(SocketTimeoutException ste) {
 				//ste.printStackTrace();
 			}
 		}
-		app_listener.close();
+
+		while(!timeToExit)
+		{
+			/*
+			 * Grab the needed view controllers from the main application.
+			 */
+			try
+			{
+				Socket altitude_sock = new Socket(InetAddress.getLocalHost(), APP_PORT_NUM);
+				altitudeStream = new DataOutputStream(altitude_sock.getOutputStream());
+				break;
+			}
+			catch(SocketTimeoutException ste) {
+				//ste.printStackTrace();
+			}
+		}
 
 		/* Listens for incoming client connections and spawns appropriate threads. */
 		ServerSocket cli_listener = new ServerSocket(MC_PORT_NUM);
@@ -103,7 +108,8 @@ public class UAVServer{
 			}
 		}
 		cli_listener.close();
-		//mac.shutDown();
+		temperatureStream.close();
+		altitudeStream.close();
 		shutDownHandlers();
 
 	}
@@ -138,20 +144,28 @@ public class UAVServer{
 		return MC_PORT_NUM;
 	}
 
-	public static void setAirTemp(double temp) {
-		System.out.println("Setting telData.airTemp to " + temp);
-		telData.setAirTemp(temp);
+	public static void updateTelemetryData(double datum, TelemetryDataOverviewController.dataType type) {
+		System.out.println("Setting " + type + " to " + datum);
+		DataOutputStream out = null;
+
+		switch(type) {
+		case AIR_TEMP:
+			out = temperatureStream;
+			break;
+		case ALTITUDE:
+			out = altitudeStream;
+			break;
+		default:
+			break;
+		}
+
 		try {
-			telemetryStream.writeDouble(temp);
-			telemetryStream.flush();
+			out.writeDouble(datum);
+			out.flush();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-
-	public static TelemetryData getTelData() {
-		return telData;
 	}
 
 }

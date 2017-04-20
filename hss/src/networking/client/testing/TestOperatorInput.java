@@ -12,6 +12,7 @@ public class TestOperatorInput implements Runnable {
 
 	private final BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
+	@Override
 	public void run() {
 			String input = null;
 			do {

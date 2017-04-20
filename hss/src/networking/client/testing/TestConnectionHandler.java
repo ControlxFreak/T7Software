@@ -21,6 +21,7 @@ public class TestConnectionHandler implements Runnable {
 		}
 	}
 
+	@Override
 	public void run() {
 		while(!timeToExit && MessageUtil.readMcMessage(br, cbuf) != 0) {
 			System.out.println("Thanks for the message! :-)");

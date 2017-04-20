@@ -16,32 +16,45 @@
  */
 package app.view;
 
-import app.model.TelemetryData;
-//import app.model.TelemetryData;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 public class TelemetryDataOverviewController {
+	public enum dataType {
+		AIR_TEMP, ALTITUDE
+	}
+
 	@FXML
 	private Label airTempLabel;
+	@FXML
+	private Label altitudeLabel;
 
 	@FXML
 	private void initialize() {
 		System.out.println("initialize label = " + airTempLabel);
 	}
 
-	public void update(TelemetryData td) {
-		System.out.println("airTempLabel = " + airTempLabel);
-		System.out.println("Setting it to " + Double.toString(td.getAirTemp()));
-		airTempLabel.setText(Double.toString(td.getAirTemp()));
-		airTempLabel.setVisible(false);
-		airTempLabel.setVisible(true);
+	public void updateTelemetryDatum(double d, dataType type) {
+		String newVal = telemetryDatumToLabelString(d);
+
+		switch(type) {
+		case AIR_TEMP:
+			airTempLabel.setText(newVal);
+			break;
+		case ALTITUDE:
+			altitudeLabel.setText(newVal);
+			break;
+		default:
+			break;
+		}
 	}
 
-	public void updateAirTemp(double airTemp) {
-		airTempLabel.setText(Double.toString(airTemp));
-		airTempLabel.setVisible(false);
-		airTempLabel.setVisible(true);
+	private String telemetryDatumToLabelString(double d) {
+		String s = "";
+		if(d != Double.MIN_VALUE) {
+			s = Double.toString(d);
+		}
+		return s;
 	}
 }
 
