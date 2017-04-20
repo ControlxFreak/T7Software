@@ -3,6 +3,8 @@
 /main_computer/src/ScamperProcessor/build/
 /main_computer/src/ScamperProcessor/dist/
 
+/hss/classes/
+
 # Compiled source #
 ###################
 *.class
