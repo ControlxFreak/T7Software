@@ -1,8 +1,14 @@
 This directory contains the Home Station Software (HSS) source code and documentation.
 
-To compile HSS code:
+To clean HSS:
 ant clean
+
+To compile HSS code:
 ant
+
+To run MainApp:
+cd classes
+java -classpath . app.MainApp
 
 To run UAVServer:
 cd classes
