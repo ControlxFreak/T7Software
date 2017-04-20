@@ -37,12 +37,12 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="75.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="1">
                <children>
-                  <Label text="Altitude (m)">
+                  <Label text="Altitude (ft)">
                      <font>
                         <Font name="Lucida Sans Typewriter Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label>
+                  <Label fx:id="altitudeLabel">
                      <font>
                         <Font name="Lucida Sans Typewriter Bold" size="18.0" />
                      </font>
@@ -51,7 +51,7 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="75.0" prefWidth="100.0" spacing="5.0" GridPane.rowIndex="1">
                <children>
-                  <Label text="Acceleration (m/s)">
+                  <Label text="Acceleration (ft/s)">
                      <font>
                         <Font name="Lucida Sans Typewriter Bold" size="14.0" />
                      </font>

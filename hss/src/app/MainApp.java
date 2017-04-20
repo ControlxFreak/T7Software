@@ -24,7 +24,6 @@ import java.util.logging.Logger;
 
 import app.view.TelemetryDataOverviewController;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -37,10 +36,9 @@ public class MainApp extends Application {
 	private Stage primaryStage;
 	private BorderPane rootLayout;
 	private static Socket servSocket = null;
-	private static TelemetryDataListener tel_listener;
+	private static ServerConnectionManager server_conn_mgr;
 	private static TelemetryDataOverviewController tel_controller;
 	private static FXMLLoader tel_loader;
-	private volatile static boolean airTempUpdateAvailable = false;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -51,8 +49,8 @@ public class MainApp extends Application {
 
 		showTelemetryOverview();
 
-		tel_listener = new TelemetryDataListener(this);
-		(new Thread(tel_listener)).start();
+		server_conn_mgr = new ServerConnectionManager(this);
+		(new Thread(server_conn_mgr)).start();
 	}
 
 	private void showTelemetryOverview() {
@@ -98,8 +96,8 @@ public class MainApp extends Application {
 		return primaryStage;
 	}
 
-	protected void updateAirTemp(double air_temp) {
-		tel_controller.updateAirTemp(air_temp);
+	protected void updateDisplay(double datum, TelemetryDataOverviewController.dataType type) {
+		tel_controller.updateTelemetryDatum(datum, type);
 	}
 
 	public static void main(String[] args) {
@@ -113,14 +111,6 @@ public class MainApp extends Application {
 			e.printStackTrace();
 		}
 
-		tel_listener.shutDown();
-	}
-
-	public static boolean isAirTempUpdateAvailable() {
-		return airTempUpdateAvailable;
-	}
-
-	public static void makeAirTempUpdateAvailable() {
-		airTempUpdateAvailable = true;
+		server_conn_mgr.shutDown();
 	}
 }

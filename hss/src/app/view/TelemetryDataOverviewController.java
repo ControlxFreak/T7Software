@@ -20,20 +20,41 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 public class TelemetryDataOverviewController {
+	public enum dataType {
+		AIR_TEMP, ALTITUDE
+	}
+
 	@FXML
 	private Label airTempLabel;
+	@FXML
+	private Label altitudeLabel;
 
 	@FXML
 	private void initialize() {
 		System.out.println("initialize label = " + airTempLabel);
 	}
 
-	public void updateAirTemp(double airTemp) {
-		String newVal = "";
-		if(airTemp != Double.MIN_VALUE) {
-			newVal = Double.toString(airTemp);
+	public void updateTelemetryDatum(double d, dataType type) {
+		String newVal = telemetryDatumToLabelString(d);
+
+		switch(type) {
+		case AIR_TEMP:
+			airTempLabel.setText(newVal);
+			break;
+		case ALTITUDE:
+			altitudeLabel.setText(newVal);
+			break;
+		default:
+			break;
 		}
-		airTempLabel.setText(newVal);
+	}
+
+	private String telemetryDatumToLabelString(double d) {
+		String s = "";
+		if(d != Double.MIN_VALUE) {
+			s = Double.toString(d);
+		}
+		return s;
 	}
 }
 

@@ -20,6 +20,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.logging.Logger;
 
+import app.view.TelemetryDataOverviewController;
 import networking.MessageUtil;
 import networking.server.UAVServer;
 
@@ -34,11 +35,12 @@ public class TemperatureDataConnectionHandler
 
 	@Override
 	void handleMessage() {
-		System.out.println("cbuf = " + new String(cbuf));
-		int len = MessageUtil.messageLen(cbuf);
+		String message = new String(cbuf);
+		System.out.println("cbuf = " + message);
+		int len = message.length();
 		try {
-		double data = Double.parseDouble((new String(cbuf)).substring(5, len+5));
-		UAVServer.setAirTemp(data);
+		double data = Double.parseDouble(message.substring(5, len));
+		UAVServer.updateTelemetryData(data, TelemetryDataOverviewController.dataType.AIR_TEMP);
 		} catch(NumberFormatException nfe) {
 			nfe.printStackTrace();
 		}
@@ -55,7 +57,7 @@ public class TemperatureDataConnectionHandler
 		try {
 			logger.info("Temperature client disconnected.");
 			br.close();
-			UAVServer.setAirTemp(Double.MIN_VALUE);
+			UAVServer.updateTelemetryData(Double.MIN_VALUE, TelemetryDataOverviewController.dataType.AIR_TEMP);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			logger.finer(e.toString());
