@@ -16,6 +16,7 @@
  */
 package app;
 
+import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.Socket;
 
@@ -26,6 +27,7 @@ public class TemperatureDataListener extends DataListener {
 
 	public TemperatureDataListener(Socket socket, MainApp mainApp) throws IOException {
 		super(socket, mainApp);
+		in = new DataInputStream(this.socket.getInputStream());
 		System.out.println("Constructed TemperatureDataListener");
 	}
 
@@ -34,7 +36,7 @@ public class TemperatureDataListener extends DataListener {
 		System.out.println("listen()");
 		double airTemp;
 		try {
-			airTemp = in.readDouble();
+			airTemp = ((DataInputStream)in).readDouble();
 			System.out.println("Tried to read.");
 			Platform.runLater(() -> mainApp.updateDisplay(airTemp, TelemetryDataOverviewController.dataType.AIR_TEMP));
 		} catch (Exception e) {

@@ -21,13 +21,25 @@ import javafx.scene.control.Label;
 
 public class TelemetryDataOverviewController {
 	public enum dataType {
-		AIR_TEMP, ALTITUDE
+		AIR_TEMP, ALTITUDE, ACCELEROMETER, GYROSCOPE
 	}
 
 	@FXML
 	private Label airTempLabel;
 	@FXML
 	private Label altitudeLabel;
+	@FXML
+	private Label xAccelLabel;
+	@FXML
+	private Label yAccelLabel;
+	@FXML
+	private Label zAccelLabel;
+	@FXML
+	private Label rollLabel;
+	@FXML
+	private Label pitchLabel;
+	@FXML
+	private Label yawLabel;
 
 	@FXML
 	private void initialize() {
@@ -43,6 +55,27 @@ public class TelemetryDataOverviewController {
 			break;
 		case ALTITUDE:
 			altitudeLabel.setText(newVal);
+			break;
+		default:
+			break;
+		}
+	}
+
+	public void updateVectorDatum(byte[] datum, dataType type) {
+		String x = "";
+		String y = "";
+		String z = "";
+
+		switch(type) {
+		case ACCELEROMETER:
+			xAccelLabel.setText(x);
+			yAccelLabel.setText(y);
+			zAccelLabel.setText(z);
+			break;
+		case GYROSCOPE:
+			rollLabel.setText(x);
+			pitchLabel.setText(y);
+			yawLabel.setText(z);
 			break;
 		default:
 			break;

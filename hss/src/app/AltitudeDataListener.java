@@ -16,6 +16,7 @@
  */
 package app;
 
+import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.Socket;
 
@@ -26,6 +27,7 @@ public class AltitudeDataListener extends DataListener {
 
 	public AltitudeDataListener(Socket socket, MainApp mainApp) throws IOException {
 		super(socket, mainApp);
+		in = new DataInputStream(this.socket.getInputStream());
 		System.out.println("Constructed AltitudeDataListener");
 	}
 
@@ -34,7 +36,7 @@ public class AltitudeDataListener extends DataListener {
 		System.out.println("altitude listen()");
 		double altitude;
 		try {
-			altitude = in.readDouble();
+			altitude = ((DataInputStream)in).readDouble();
 			System.out.println("Tried to read altitude.");
 			Platform.runLater(() -> mainApp.updateDisplay(altitude, TelemetryDataOverviewController.dataType.ALTITUDE));
 		} catch (Exception e) {

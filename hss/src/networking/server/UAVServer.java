@@ -42,6 +42,8 @@ public class UAVServer{
 	private static List<DataConnectionHandler> handlers				= Collections.synchronizedList(new ArrayList<DataConnectionHandler>());
 	private static DataOutputStream temperatureStream;
 	private static DataOutputStream altitudeStream;
+	private static ObjectOutputStream accelerometerStream;
+	private static ObjectOutputStream gyroscopeStream;
 
 	/**
 	 * @param args
@@ -55,9 +57,6 @@ public class UAVServer{
 
 		while(!timeToExit)
 		{
-			/*
-			 * Grab the needed view controllers from the main application.
-			 */
 			try
 			{
 				Socket temperature_sock = new Socket(InetAddress.getLocalHost(), APP_PORT_NUM);
@@ -71,13 +70,36 @@ public class UAVServer{
 
 		while(!timeToExit)
 		{
-			/*
-			 * Grab the needed view controllers from the main application.
-			 */
 			try
 			{
 				Socket altitude_sock = new Socket(InetAddress.getLocalHost(), APP_PORT_NUM);
 				altitudeStream = new DataOutputStream(altitude_sock.getOutputStream());
+				break;
+			}
+			catch(SocketTimeoutException ste) {
+				//ste.printStackTrace();
+			}
+		}
+
+		while(!timeToExit)
+		{
+			try
+			{
+				Socket accelerometer_sock = new Socket(InetAddress.getLocalHost(), APP_PORT_NUM);
+				accelerometerStream = new ObjectOutputStream(accelerometer_sock.getOutputStream());
+				break;
+			}
+			catch(SocketTimeoutException ste) {
+				//ste.printStackTrace();
+			}
+		}
+
+		while(!timeToExit)
+		{
+			try
+			{
+				Socket gyroscope_sock = new Socket(InetAddress.getLocalHost(), APP_PORT_NUM);
+				gyroscopeStream = new ObjectOutputStream(gyroscope_sock.getOutputStream());
 				break;
 			}
 			catch(SocketTimeoutException ste) {
@@ -110,6 +132,8 @@ public class UAVServer{
 		cli_listener.close();
 		temperatureStream.close();
 		altitudeStream.close();
+		accelerometerStream.close();
+		gyroscopeStream.close();
 		shutDownHandlers();
 
 	}

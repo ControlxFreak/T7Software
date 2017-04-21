@@ -23,6 +23,7 @@ import java.net.Socket;
 import java.util.logging.Logger;
 
 import app.view.TelemetryDataOverviewController;
+import app.view.TelemetryDataOverviewController.dataType;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -96,8 +97,12 @@ public class MainApp extends Application {
 		return primaryStage;
 	}
 
-	protected void updateDisplay(double datum, TelemetryDataOverviewController.dataType type) {
+	protected void updateDisplay(double datum, dataType type) {
 		tel_controller.updateTelemetryDatum(datum, type);
+	}
+
+	protected void updateDisplay(byte[] datum, dataType type) {
+		tel_controller.updateVectorDatum(datum, type);
 	}
 
 	public static void main(String[] args) {

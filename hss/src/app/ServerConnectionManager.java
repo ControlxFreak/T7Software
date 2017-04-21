@@ -29,6 +29,8 @@ public class ServerConnectionManager implements Runnable {
 	private ServerSocket server_socket;
 	private TemperatureDataListener temperature_listener;
 	private AltitudeDataListener altitude_listener;
+	private AccelerometerDataListener accel_listener;
+	private GyroscopeDataListener gyro_listener;
 
 	public ServerConnectionManager(MainApp mainApp) {
 		this.mainApp = mainApp;
@@ -91,12 +93,38 @@ public class ServerConnectionManager implements Runnable {
 				// TODO Auto-generated catch block
 			}
 		}
+
+		/* Establish accelerometer data listener */
+		while(!timeToExit) {
+			try {
+				Socket accelerometer_sock = server_socket.accept();
+				accel_listener = new AccelerometerDataListener(accelerometer_sock, mainApp);
+				new Thread(accel_listener).start();
+				break;
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+			}
+		}
+
+		/* Establish gyroscope data listener */
+		while(!timeToExit) {
+			try {
+				Socket gyroscope_sock = server_socket.accept();
+				gyro_listener = new GyroscopeDataListener(gyroscope_sock, mainApp);
+				new Thread(gyro_listener).start();
+				break;
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+			}
+		}
 	}
 
 	private void shutDownListeners() {
 		System.out.println("ShutDownListeners()");
 		temperature_listener.shutDown();
 		altitude_listener.shutDown();
+		accel_listener.shutDown();
+		gyro_listener.shutDown();
 	}
 
 	protected void shutDown() {

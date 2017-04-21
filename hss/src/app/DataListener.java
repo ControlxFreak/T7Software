@@ -18,20 +18,20 @@ package app;
 
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.Socket;
-
-import networking.MessageUtil;
 
 public abstract class DataListener implements Runnable {
 
 	volatile boolean timeToExit = false;
-	DataInputStream in;
+	Socket socket;
+	InputStream in = null;
 	MainApp mainApp;
 
 	public DataListener(Socket socket, MainApp mainApp) throws IOException {
 		System.out.println("Constructing DataListener");
 		this.mainApp = mainApp;
-		in = new DataInputStream(socket.getInputStream());
+		this.socket = socket;
 	}
 
 	@Override
