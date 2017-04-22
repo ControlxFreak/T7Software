@@ -20,6 +20,9 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.Socket;
+import java.util.logging.Logger;
+
+import app.view.TelemetryDataOverviewController.dataType;
 
 public abstract class DataListener implements Runnable {
 
@@ -27,6 +30,8 @@ public abstract class DataListener implements Runnable {
 	Socket socket;
 	InputStream in = null;
 	MainApp mainApp;
+	static Logger logger;
+	dataType connType;
 
 	public DataListener(Socket socket, MainApp mainApp) throws IOException {
 		System.out.println("Constructing DataListener");

@@ -17,6 +17,9 @@
 package networking.server.connection;
 
 import java.io.BufferedReader;
+import java.util.logging.Logger;
+
+import app.view.TelemetryDataOverviewController.dataType;
 import networking.MessageUtil;
 
 public abstract class DataConnectionHandler
@@ -25,6 +28,8 @@ public abstract class DataConnectionHandler
 	BufferedReader br;
 	char[] cbuf = new char[MessageUtil.MAX_MC_MESSAGE_LEN];
 	volatile boolean timeToExit = false;
+	static Logger logger;
+	dataType connType;
 
 	public DataConnectionHandler(BufferedReader br) {
 		this.br = br;

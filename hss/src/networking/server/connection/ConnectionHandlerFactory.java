@@ -50,9 +50,9 @@ public class ConnectionHandlerFactory implements Runnable {
 
 		switch(Integer.parseInt(new String(Arrays.copyOfRange(message, 5, 8)))) {
 		case MessageUtil.ACCELEROMETER_DATA:
-			return new AccelerometerDataConnectionHandler(br);
+			return new VectorDataConnectionHandler(br, dataType.ACCELEROMETER);
 		case MessageUtil.GYROSCOPE_DATA:
-			return new GyroscopeDataConnectionHandler(br);
+			return new VectorDataConnectionHandler(br, dataType.GYROSCOPE);
 		case MessageUtil.ALTITUDE_DATA:
 			return new DoubleDataConnectionHandler(br, dataType.ALTITUDE);
 		case MessageUtil.TEMPERATURE_DATA:

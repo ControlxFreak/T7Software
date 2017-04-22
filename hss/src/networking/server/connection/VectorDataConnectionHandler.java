@@ -1,9 +1,9 @@
 /*
  * ---------------------------------------------------------------------------------
- * Title: DoubleDataConnectionHandler.java
+ * Title: VectorDataConnectionHandler.java
  * Description:
  * A class that handles the main computer client connection for data that comes in
- * the form of a double.
+ * the form of a 3x1 vector.
  * ---------------------------------------------------------------------------------
  * Lockheed Martin
  * Engineering Leadership Development Program
@@ -25,20 +25,22 @@ import app.view.TelemetryDataOverviewController.dataType;
 import networking.MessageUtil;
 import networking.server.UAVServer;
 
-public class DoubleDataConnectionHandler
+public class VectorDataConnectionHandler
 	extends DataConnectionHandler {
 
-	public DoubleDataConnectionHandler(BufferedReader br, dataType connType) {
+	public VectorDataConnectionHandler(BufferedReader br, dataType connType) {
 		super(br);
-		logger = Logger.getLogger(DoubleDataConnectionHandler.class.getName());
+		logger = Logger.getLogger(VectorDataConnectionHandler.class.getName());
 		this.connType = connType;
 	}
 
 	@Override
 	void handleMessage() {
+		//TODO implement once protobuffer format is known
 		String message = new String(cbuf);
 		System.out.println("cbuf = " + message);
 		int len = message.length();
+
 		try {
 		double data = Double.parseDouble(message.substring(5, len));
 		UAVServer.updateTelemetryData(data, connType);
@@ -58,7 +60,7 @@ public class DoubleDataConnectionHandler
 		try {
 			logger.info(connType + " client disconnected.");
 			br.close();
-			UAVServer.updateTelemetryData(Double.MIN_VALUE, connType);
+			UAVServer.updateTelemetryData(Double.MIN_VALUE, connType);	//TODO
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			logger.finer(e.toString());
