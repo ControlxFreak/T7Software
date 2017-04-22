@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import app.view.TelemetryDataOverviewController.dataType;
 import networking.server.UAVServer;
 
 public class ServerConnectionManager implements Runnable {
@@ -27,8 +28,8 @@ public class ServerConnectionManager implements Runnable {
 	private volatile boolean timeToExit = false;
 	private MainApp mainApp;
 	private ServerSocket server_socket;
-	private TemperatureDataListener temperature_listener;
-	private AltitudeDataListener altitude_listener;
+	private DoubleDataListener temperature_listener;
+	private DoubleDataListener altitude_listener;
 	private AccelerometerDataListener accel_listener;
 	private GyroscopeDataListener gyro_listener;
 
@@ -74,7 +75,7 @@ public class ServerConnectionManager implements Runnable {
 		while(!timeToExit) {
 			try {
 				Socket temperature_sock = server_socket.accept();
-				temperature_listener = new TemperatureDataListener(temperature_sock, mainApp);
+				temperature_listener = new DoubleDataListener(temperature_sock, mainApp, dataType.AIR_TEMP);
 				new Thread(temperature_listener).start();
 				break;
 			} catch (IOException e) {
@@ -86,7 +87,7 @@ public class ServerConnectionManager implements Runnable {
 		while(!timeToExit) {
 			try {
 				Socket altitude_sock = server_socket.accept();
-				altitude_listener = new AltitudeDataListener(altitude_sock, mainApp);
+				altitude_listener = new DoubleDataListener(altitude_sock, mainApp, dataType.ALTITUDE);
 				new Thread(altitude_listener).start();
 				break;
 			} catch (IOException e) {

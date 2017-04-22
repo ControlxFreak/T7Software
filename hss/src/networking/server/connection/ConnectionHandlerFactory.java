@@ -22,6 +22,7 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.Arrays;
 
+import app.view.TelemetryDataOverviewController.dataType;
 import networking.MessageUtil;
 import networking.server.UAVServer;
 
@@ -53,9 +54,9 @@ public class ConnectionHandlerFactory implements Runnable {
 		case MessageUtil.GYROSCOPE_DATA:
 			return new GyroscopeDataConnectionHandler(br);
 		case MessageUtil.ALTITUDE_DATA:
-			return new AltitudeDataConnectionHandler(br);
+			return new DoubleDataConnectionHandler(br, dataType.ALTITUDE);
 		case MessageUtil.TEMPERATURE_DATA:
-			return new TemperatureDataConnectionHandler(br);
+			return new DoubleDataConnectionHandler(br, dataType.AIR_TEMP);
 		case MessageUtil.CAMERA_DATA:
 			return new CameraDataConnectionHandler(br);
 		default:
