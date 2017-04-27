@@ -28,9 +28,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
 
+import T7.T7Messages.GenericMessage.MsgType;
 import app.view.TelemetryDataOverviewController;
-import networking.server.connection.ConnectionHandlerFactory;
-import networking.server.connection.DataConnectionHandler;
 
 public class UAVServer{
 
@@ -122,8 +121,8 @@ public class UAVServer{
 			try
 			{
 				Socket cli_sock = cli_listener.accept();
-				Thread handlerFactory = new Thread(new ConnectionHandlerFactory(cli_sock));
-				handlerFactory.start();
+				Thread handler = new Thread(new DataConnectionHandler(cli_sock.getInputStream()));
+				handler.start();
 			}
 			catch(SocketTimeoutException ste) {
 
@@ -168,12 +167,12 @@ public class UAVServer{
 		return MC_PORT_NUM;
 	}
 
-	public static void updateTelemetryData(double datum, TelemetryDataOverviewController.dataType type) {
+	public static void updateTelemetryData(double datum, MsgType type) {
 		System.out.println("Setting " + type + " to " + datum);
 		DataOutputStream out = null;
 
 		switch(type) {
-		case AIR_TEMP:
+		case TEMP:
 			out = temperatureStream;
 			break;
 		case ALTITUDE:

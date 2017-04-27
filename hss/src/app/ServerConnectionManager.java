@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import app.view.TelemetryDataOverviewController.dataType;
+import T7.T7Messages.GenericMessage.MsgType;
 import networking.server.UAVServer;
 
 public class ServerConnectionManager implements Runnable {
@@ -75,7 +75,7 @@ public class ServerConnectionManager implements Runnable {
 		while(!timeToExit) {
 			try {
 				Socket temperature_sock = server_socket.accept();
-				temperature_listener = new DoubleDataListener(temperature_sock, mainApp, dataType.AIR_TEMP);
+				temperature_listener = new DoubleDataListener(temperature_sock, mainApp, MsgType.TEMP);
 				new Thread(temperature_listener).start();
 				break;
 			} catch (IOException e) {
@@ -87,7 +87,7 @@ public class ServerConnectionManager implements Runnable {
 		while(!timeToExit) {
 			try {
 				Socket altitude_sock = server_socket.accept();
-				altitude_listener = new DoubleDataListener(altitude_sock, mainApp, dataType.ALTITUDE);
+				altitude_listener = new DoubleDataListener(altitude_sock, mainApp, MsgType.ALTITUDE);
 				new Thread(altitude_listener).start();
 				break;
 			} catch (IOException e) {
@@ -99,7 +99,7 @@ public class ServerConnectionManager implements Runnable {
 		while(!timeToExit) {
 			try {
 				Socket accelerometer_sock = server_socket.accept();
-				accel_listener = new VectorDataListener(accelerometer_sock, mainApp, dataType.ACCELEROMETER);
+				accel_listener = new VectorDataListener(accelerometer_sock, mainApp, MsgType.ACCEL);
 				new Thread(accel_listener).start();
 				break;
 			} catch (IOException e) {
@@ -111,7 +111,7 @@ public class ServerConnectionManager implements Runnable {
 		while(!timeToExit) {
 			try {
 				Socket gyroscope_sock = server_socket.accept();
-				gyro_listener = new VectorDataListener(gyroscope_sock, mainApp, dataType.GYROSCOPE);
+				gyro_listener = new VectorDataListener(gyroscope_sock, mainApp, MsgType.GYRO);
 				new Thread(gyro_listener).start();
 				break;
 			} catch (IOException e) {

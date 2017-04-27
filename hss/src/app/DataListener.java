@@ -22,7 +22,7 @@ import java.io.InputStream;
 import java.net.Socket;
 import java.util.logging.Logger;
 
-import app.view.TelemetryDataOverviewController.dataType;
+import T7.T7Messages.GenericMessage.MsgType;
 
 public abstract class DataListener implements Runnable {
 
@@ -31,7 +31,7 @@ public abstract class DataListener implements Runnable {
 	InputStream in = null;
 	MainApp mainApp;
 	static Logger logger;
-	dataType connType;
+	MsgType connType;
 
 	public DataListener(Socket socket, MainApp mainApp) throws IOException {
 		System.out.println("Constructing DataListener");

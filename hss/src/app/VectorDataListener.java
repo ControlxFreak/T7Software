@@ -22,12 +22,12 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.logging.Logger;
 
-import app.view.TelemetryDataOverviewController.dataType;
+import T7.T7Messages.GenericMessage.MsgType;
 import javafx.application.Platform;
 
 public class VectorDataListener extends DataListener {
 
-	public VectorDataListener(Socket socket, MainApp mainApp, dataType connType) throws IOException {
+	public VectorDataListener(Socket socket, MainApp mainApp, MsgType connType) throws IOException {
 		super(socket, mainApp);
 		this.connType = connType;
 		in = new DataInputStream(this.socket.getInputStream());
