@@ -15,3 +15,4 @@
 
 src.dir=src
 build.dir=classes
+lib.dir=lib

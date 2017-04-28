@@ -29,7 +29,6 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import T7.T7Messages.GenericMessage.MsgType;
-import app.view.TelemetryDataOverviewController;
 
 public class UAVServer{
 

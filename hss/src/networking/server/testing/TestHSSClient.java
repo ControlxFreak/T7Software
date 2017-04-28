@@ -176,6 +176,8 @@ public class TestHSSClient {
 						break;
 					}
 					gm.build().writeDelimitedTo(out);
+					out.flush();
+					System.out.println("Sent message.");
 					break;
 				default:
 					System.out.println("Invalid input.");

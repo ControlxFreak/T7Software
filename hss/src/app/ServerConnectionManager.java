@@ -20,11 +20,13 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import java.util.logging.Logger;
+
 import T7.T7Messages.GenericMessage.MsgType;
 import networking.server.UAVServer;
 
 public class ServerConnectionManager implements Runnable {
-
+	private static Logger logger = Logger.getLogger(ServerConnectionManager.class.getName());
 	private volatile boolean timeToExit = false;
 	private MainApp mainApp;
 	private ServerSocket server_socket;
@@ -39,6 +41,7 @@ public class ServerConnectionManager implements Runnable {
 
 	@Override
 	public void run() {
+		try {
 
 		try {
 			server_socket = new ServerSocket(UAVServer.APP_PORT_NUM);
@@ -59,6 +62,9 @@ public class ServerConnectionManager implements Runnable {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		} catch(Exception e) {
+			logger.warning("Exception in ServerConnectionManager: " + e.toString());
 		}
 	}
 

@@ -44,8 +44,18 @@ public class DataConnectionHandler
 
 	@Override
 	public void run() {
-		logger.info("Running " + connType + " handler!");
+		logger.info("Running handler!");
 		try {
+			while(in.available()<1) {
+
+			}
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+			shutDown();
+		}
+		try {
+			System.out.println("Parsing message.");
 			GenericMessage gm = GenericMessage.parseDelimitedFrom(in);
 			connType = gm.getMsgtype();
 			switch(connType) {
@@ -66,6 +76,7 @@ public class DataConnectionHandler
 			default:
 				break;
 			}
+			handlerMethod.accept(gm);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -76,7 +87,7 @@ public class DataConnectionHandler
 			try {
 				gm = GenericMessage.parseDelimitedFrom(in);
 				handlerMethod.accept(gm);
-			} catch (IOException e) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				try {
