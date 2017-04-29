@@ -28,13 +28,15 @@ public class DataConnectionHandler
 	implements Runnable{
 
 	private InputStream in;
+	private UAVServer server;
 	volatile boolean timeToExit = false;
 	static Logger logger = Logger.getLogger(DataConnectionHandler.class.getName());;
 	//DataType connType;
 	private MsgType connType;
 	private Consumer<GenericMessage> handlerMethod;
 
-	public DataConnectionHandler(InputStream in) {
+	public DataConnectionHandler(UAVServer server, InputStream in) {
+		this.server = server;
 		this.in = in;
 	}
 
@@ -93,7 +95,7 @@ public class DataConnectionHandler
 				try {
 					logger.info(connType + " client disconnected.");
 					in.close();
-					UAVServer.updateTelemetryData(Double.MIN_VALUE, connType);
+					server.updateTelemetryData(Double.MIN_VALUE, connType);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -105,12 +107,12 @@ public class DataConnectionHandler
 
 	private void handleAirTempMessage(GenericMessage gm) {
 		double temp = gm.getTemp().getTemp();
-		UAVServer.updateTelemetryData(temp, connType);
+		server.updateTelemetryData(temp, connType);
 	}
 
 	private void handleAltitudeMessage(GenericMessage gm) {
 		double alt = gm.getAltitude().getAlt();
-		UAVServer.updateTelemetryData(alt, connType);
+		server.updateTelemetryData(alt, connType);
 	}
 
 }

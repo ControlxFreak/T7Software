@@ -19,7 +19,6 @@ package app;
 
 
 import java.io.IOException;
-import java.net.Socket;
 import java.util.logging.Logger;
 
 import T7.T7Messages.GenericMessage.MsgType;
@@ -30,16 +29,16 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import networking.server.UAVServer;
 
 public class MainApp extends Application {
 
 	private static Logger logger			= Logger.getLogger(MainApp.class.getName());
 	private Stage primaryStage;
-	private BorderPane rootLayout;
-	private static Socket servSocket = null;
-	private static ServerConnectionManager server_conn_mgr;
+	private static BorderPane rootLayout;
 	private static TelemetryDataOverviewController tel_controller;
 	private static FXMLLoader tel_loader;
+	private static UAVServer server = new UAVServer();
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -50,8 +49,11 @@ public class MainApp extends Application {
 
 		showTelemetryOverview();
 
-		server_conn_mgr = new ServerConnectionManager(this);
-		(new Thread(server_conn_mgr)).start();
+		initServer();
+	}
+
+	private void initServer() {
+		new Thread(server).start();
 	}
 
 	private void showTelemetryOverview() {
@@ -97,7 +99,7 @@ public class MainApp extends Application {
 		return primaryStage;
 	}
 
-	protected void updateDisplay(double datum, MsgType type) {
+	public static void updateDisplay(double datum, MsgType type) {
 		tel_controller.updateTelemetryDatum(datum, type);
 	}
 
@@ -107,15 +109,7 @@ public class MainApp extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
-		try {
-			if(servSocket != null) {
-				servSocket.close();
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
-		server_conn_mgr.shutDown();
+		server.shutDown();
 	}
 }

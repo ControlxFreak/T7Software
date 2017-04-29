@@ -19,7 +19,6 @@ package networking.server;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
@@ -29,85 +28,36 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import T7.T7Messages.GenericMessage.MsgType;
+import app.MainApp;
+import javafx.application.Platform;
 
-public class UAVServer{
+public class UAVServer implements Runnable {
 
 	private static final int MC_PORT_NUM							= 9002;
 	public static final int APP_PORT_NUM							= 9003;
 	@SuppressWarnings("unused")
 	private static Logger logger									= Logger.getLogger(UAVServer.class.getName());
-	private static volatile boolean timeToExit						= false;	// Operator input thread uses this to alert server that it's time to shut down.
-	private static List<DataConnectionHandler> handlers				= Collections.synchronizedList(new ArrayList<DataConnectionHandler>());
-	private static DataOutputStream temperatureStream;
-	private static DataOutputStream altitudeStream;
-	private static ObjectOutputStream accelerometerStream;
-	private static ObjectOutputStream gyroscopeStream;
+	private volatile boolean timeToExit								= false;	// Main app uses this to alert server that it's time to shut down.
+	private List<DataConnectionHandler> handlers					= Collections.synchronizedList(new ArrayList<DataConnectionHandler>());
+	private DataOutputStream temperatureStream;
+	private DataOutputStream altitudeStream;
+	private ObjectOutputStream accelerometerStream;
+	private ObjectOutputStream gyroscopeStream;
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args)
-			throws IOException
+	@Override
+	public void run()
 	{
-		/* Thread that takes in operator input. Used to shut down the server, among other things (possibly). */
-		Thread operator_input = new Thread(new UAVServerOperatorInput());
-		operator_input.start();
-
-		while(!timeToExit)
-		{
-			try
-			{
-				Socket temperature_sock = new Socket(InetAddress.getLocalHost(), APP_PORT_NUM);
-				temperatureStream = new DataOutputStream(temperature_sock.getOutputStream());
-				break;
-			}
-			catch(SocketTimeoutException ste) {
-				//ste.printStackTrace();
-			}
-		}
-
-		while(!timeToExit)
-		{
-			try
-			{
-				Socket altitude_sock = new Socket(InetAddress.getLocalHost(), APP_PORT_NUM);
-				altitudeStream = new DataOutputStream(altitude_sock.getOutputStream());
-				break;
-			}
-			catch(SocketTimeoutException ste) {
-				//ste.printStackTrace();
-			}
-		}
-
-		while(!timeToExit)
-		{
-			try
-			{
-				Socket accelerometer_sock = new Socket(InetAddress.getLocalHost(), APP_PORT_NUM);
-				accelerometerStream = new ObjectOutputStream(accelerometer_sock.getOutputStream());
-				break;
-			}
-			catch(SocketTimeoutException ste) {
-				//ste.printStackTrace();
-			}
-		}
-
-		while(!timeToExit)
-		{
-			try
-			{
-				Socket gyroscope_sock = new Socket(InetAddress.getLocalHost(), APP_PORT_NUM);
-				gyroscopeStream = new ObjectOutputStream(gyroscope_sock.getOutputStream());
-				break;
-			}
-			catch(SocketTimeoutException ste) {
-				//ste.printStackTrace();
-			}
-		}
 
 		/* Listens for incoming client connections and spawns appropriate threads. */
-		ServerSocket cli_listener = new ServerSocket(MC_PORT_NUM);
-		cli_listener.setSoTimeout(500);
+		ServerSocket cli_listener = null;
+		try {
+			cli_listener = new ServerSocket(MC_PORT_NUM);
+			cli_listener.setSoTimeout(500);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		while(!timeToExit)
 		{
 			/*
@@ -120,27 +70,35 @@ public class UAVServer{
 			try
 			{
 				Socket cli_sock = cli_listener.accept();
-				Thread handler = new Thread(new DataConnectionHandler(cli_sock.getInputStream()));
+				Thread handler = new Thread(new DataConnectionHandler(this, cli_sock.getInputStream()));
 				handler.start();
 			}
 			catch(SocketTimeoutException ste) {
 
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
-		cli_listener.close();
-		temperatureStream.close();
-		altitudeStream.close();
-		accelerometerStream.close();
-		gyroscopeStream.close();
+		try {
+			cli_listener.close();
+			temperatureStream.close();
+			altitudeStream.close();
+			accelerometerStream.close();
+			gyroscopeStream.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		shutDownHandlers();
 
 	}
 
-	public static void shutDown() {
+	public void shutDown() {
 		timeToExit = true;
 	}
 
-	public static void addHandler(DataConnectionHandler handler){
+	public void addHandler(DataConnectionHandler handler){
 		synchronized(handlers) {
 			handlers.add(handler);
 		}
@@ -154,7 +112,7 @@ public class UAVServer{
 		}
 	}
 
-	private static void shutDownHandlers() {
+	private void shutDownHandlers() {
 		synchronized(handlers) {
 			for(int i = 0; i < handlers.size(); i++) {
 				handlers.get(i).shutDown();
@@ -166,28 +124,10 @@ public class UAVServer{
 		return MC_PORT_NUM;
 	}
 
-	public static void updateTelemetryData(double datum, MsgType type) {
+	public void updateTelemetryData(double datum, MsgType type) {
 		System.out.println("Setting " + type + " to " + datum);
-		DataOutputStream out = null;
 
-		switch(type) {
-		case TEMP:
-			out = temperatureStream;
-			break;
-		case ALTITUDE:
-			out = altitudeStream;
-			break;
-		default:
-			break;
-		}
-
-		try {
-			out.writeDouble(datum);
-			out.flush();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Platform.runLater(() -> MainApp.updateDisplay(datum, type));
 	}
 
 }
