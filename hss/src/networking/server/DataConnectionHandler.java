@@ -115,4 +115,16 @@ public class DataConnectionHandler
 		server.updateTelemetryData(alt, connType);
 	}
 
+	private void handleAccelerationMessage(GenericMessage gm) {
+	}
+
+	private void handleGyroscopeMessage(GenericMessage gm) {
+	}
+
+	private void handleAttitudeMessage(GenericMessage gm) {
+	}
+
+	private void handleBatteryMessage(GenericMessage gm) {
+	}
+
 }

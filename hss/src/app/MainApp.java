@@ -45,6 +45,8 @@ public class MainApp extends Application {
 	private static FXMLLoader tel_loader;
 	private static UAVServer server = new UAVServer();
 	private static UAVClient camera_client = null;
+	private static UAVClient params_client = null;
+	private static UAVClient config_client = null;
 
 	@Override
 	public void start(Stage primaryStage) {
