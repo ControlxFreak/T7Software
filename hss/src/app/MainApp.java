@@ -106,20 +106,20 @@ public class MainApp extends Application {
 				public void handle(KeyEvent e) {
 					logger.finest("Key event: " + e.getText());
 					System.out.println("Key event: " + e.getText() + " - " + e.getEventType());
-					GenericMessage.Builder gm = GenericMessage.newBuilder();
+					GenericMessage.Builder gmBuilder = GenericMessage.newBuilder();
 					if(e.getEventType() == KeyEvent.KEY_PRESSED) {
 						switch(e.getCode()) {
 						case UP:
 						case DOWN:
 						case LEFT:
 						case RIGHT:
-							gm.setMsgtype(MsgType.MOVE_CAMERA).setTime(System.currentTimeMillis())
+							gmBuilder.setMsgtype(MsgType.MOVE_CAMERA).setTime(System.currentTimeMillis())
 							.setMovecamera(MoveCamera.newBuilder().setTbd(true));
+							camera_client.sendMessage(gmBuilder.build());
 							break;
 						default:
 							break;
 						}
-						camera_client.sendMessage(gm.build());
 					}
 				}
 			};
