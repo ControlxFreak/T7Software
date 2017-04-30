@@ -21,14 +21,19 @@ package app;
 import java.io.IOException;
 import java.util.logging.Logger;
 
+import T7.T7Messages.GenericMessage;
+import T7.T7Messages.MoveCamera;
 import T7.T7Messages.GenericMessage.MsgType;
 import app.view.TelemetryDataOverviewController;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import networking.client.UAVClient;
 import networking.server.UAVServer;
 
 public class MainApp extends Application {
@@ -39,6 +44,7 @@ public class MainApp extends Application {
 	private static TelemetryDataOverviewController tel_controller;
 	private static FXMLLoader tel_loader;
 	private static UAVServer server = new UAVServer();
+	private static UAVClient camera_client = null;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -50,6 +56,13 @@ public class MainApp extends Application {
 		showTelemetryOverview();
 
 		initServer();
+
+		initClients();
+	}
+
+	private void initClients() {
+		camera_client = new UAVClient();
+		new Thread(camera_client).start();
 	}
 
 	private void initServer() {
@@ -85,8 +98,33 @@ public class MainApp extends Application {
 			System.out.println("RootLayout loader location=" + loader.getLocation());
 			rootLayout = (BorderPane) loader.load();
 
-			// Show the scene containing the root layout.
 			Scene scene = new Scene(rootLayout);
+
+			// Create event handler for arrow keys.
+			EventHandler<KeyEvent> keyHandler = new EventHandler<KeyEvent>() {
+				@Override
+				public void handle(KeyEvent e) {
+					logger.finest("Key event: " + e.getText());
+					System.out.println("Key event: " + e.getText() + " - " + e.getEventType());
+					GenericMessage.Builder gm = GenericMessage.newBuilder();
+					if(e.getEventType() == KeyEvent.KEY_PRESSED) {
+						switch(e.getCode()) {
+						case UP:
+						case DOWN:
+						case LEFT:
+						case RIGHT:
+							gm.setMsgtype(MsgType.MOVE_CAMERA).setTime(System.currentTimeMillis())
+							.setMovecamera(MoveCamera.newBuilder().setTbd(true));
+							break;
+						default:
+							break;
+						}
+						camera_client.sendMessage(gm.build());
+					}
+				}
+			};
+			scene.addEventFilter(KeyEvent.ANY, keyHandler);
+
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch (IOException e) {
@@ -111,5 +149,6 @@ public class MainApp extends Application {
 		launch(args);
 
 		server.shutDown();
+		camera_client.shutDown();
 	}
 }

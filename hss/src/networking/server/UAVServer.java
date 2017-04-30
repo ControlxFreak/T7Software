@@ -16,9 +16,7 @@
  */
 package networking.server;
 
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
@@ -39,10 +37,6 @@ public class UAVServer implements Runnable {
 	private static Logger logger									= Logger.getLogger(UAVServer.class.getName());
 	private volatile boolean timeToExit								= false;	// Main app uses this to alert server that it's time to shut down.
 	private List<DataConnectionHandler> handlers					= Collections.synchronizedList(new ArrayList<DataConnectionHandler>());
-	private DataOutputStream temperatureStream;
-	private DataOutputStream altitudeStream;
-	private ObjectOutputStream accelerometerStream;
-	private ObjectOutputStream gyroscopeStream;
 
 	@Override
 	public void run()
@@ -82,10 +76,6 @@ public class UAVServer implements Runnable {
 		}
 		try {
 			cli_listener.close();
-			temperatureStream.close();
-			altitudeStream.close();
-			accelerometerStream.close();
-			gyroscopeStream.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

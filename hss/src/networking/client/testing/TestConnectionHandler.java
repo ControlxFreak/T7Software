@@ -1,37 +1,96 @@
 package networking.client.testing;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.InputStream;
 import java.net.Socket;
+import java.util.function.Consumer;
 
-import networking.MessageUtil;
+import T7.T7Messages.GenericMessage;
+import T7.T7Messages.GenericMessage.MsgType;
 
 public class TestConnectionHandler implements Runnable {
-	
-	BufferedReader br;
+
 	private boolean timeToExit = false;
-	private char[] cbuf = new char[MessageUtil.MAX_MC_MESSAGE_LEN];
+	private InputStream in = null;
+	private MsgType connType;
+	private Consumer<GenericMessage> handlerMethod;
 
 	public TestConnectionHandler(Socket cli_sock) {
-		try {
-			br = new BufferedReader(new InputStreamReader(cli_sock.getInputStream()));
-		} catch (IOException e) {
-			e.printStackTrace();
+		while(!timeToExit && in == null) {
+			System.out.println("Establishing connection.");
+			try {
+				Thread.sleep(1000);
+				in = cli_sock.getInputStream();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
 	@Override
 	public void run() {
-		while(!timeToExit && MessageUtil.readMcMessage(br, cbuf) != 0) {
-			System.out.println("Thanks for the message! :-)");
-			cbuf = new char[MessageUtil.MAX_MC_MESSAGE_LEN];
+		System.out.println("Running handler!");
+		try {
+			while(in.available()<1) {
+
+			}
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+			shutDown();
 		}
-		System.out.println("Shutting down.");
+		try {
+			System.out.println("Parsing message.");
+			GenericMessage gm = GenericMessage.parseDelimitedFrom(in);
+			connType = gm.getMsgtype();
+			switch(connType) {
+			case UPDATE_PARAM:
+				break;
+			case CONFIG_DATA:
+				break;
+			case MOVE_CAMERA:
+				handlerMethod = this::handleCameraMessage;
+				break;
+			default:
+				break;
+			}
+			handlerMethod.accept(gm);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		while(!timeToExit) {
+			GenericMessage gm;
+			try {
+				gm = GenericMessage.parseDelimitedFrom(in);
+				handlerMethod.accept(gm);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				try {
+					System.out.println(connType + " client disconnected.");
+					in.close();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				shutDown();
+			}
+		}
 	}
 
 	public void shutDown() {
 		timeToExit = true;
+	}
+
+	private void handleCameraMessage(GenericMessage gm) {
+		boolean tbd = gm.getMovecamera().getTbd();
+		System.out.println("TBD = " + tbd);
 	}
 
 }
