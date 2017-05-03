@@ -24,8 +24,13 @@ import java.util.logging.Logger;
 import T7.T7Messages.GenericMessage;
 import T7.T7Messages.MoveCamera;
 import T7.T7Messages.GenericMessage.MsgType;
-import app.view.TelemetryDataOverviewController;
+import app.model.Snapshot;
+import app.view.DataConfigurationDialogController;
+import app.view.MainDisplayController;
+import app.view.SnapshotExplorerController;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -40,13 +45,19 @@ public class MainApp extends Application {
 
 	private static Logger logger			= Logger.getLogger(MainApp.class.getName());
 	private Stage primaryStage;
+	private Stage secondaryStage;
 	private static BorderPane rootLayout;
-	private static TelemetryDataOverviewController tel_controller;
-	private static FXMLLoader tel_loader;
+	private static AnchorPane snapLayout;
+	private static AnchorPane configLayout;
+	private static MainDisplayController main_controller;
+	private static SnapshotExplorerController snap_controller;
+	private static DataConfigurationDialogController config_controller;
+	private static FXMLLoader main_loader;
 	private static UAVServer server = new UAVServer();
 	private static UAVClient camera_client = null;
 	private static UAVClient params_client = null;
 	private static UAVClient config_client = null;
+	private static ObservableList<Snapshot> snapshotData = FXCollections.observableArrayList();
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -55,7 +66,7 @@ public class MainApp extends Application {
 
 		initRootLayout();
 
-		showTelemetryOverview();
+		showMainDisplay();
 
 		initServer();
 
@@ -71,24 +82,40 @@ public class MainApp extends Application {
 		new Thread(server).start();
 	}
 
-	private void showTelemetryOverview() {
+	private void showSnapshotExplorer() {
+
+	}
+
+	private void showDataConfigManager() {
+
+	}
+
+	private void showMainDisplay() {
 		try {
-			//Load telemetry overview.
-			tel_loader = new FXMLLoader();
+			//Load main display.
+			main_loader = new FXMLLoader();
 			System.out.println("TelData resource = " + getClass().getResource("view/TelemetryDataOverview.fxml"));
-			tel_loader.setLocation(getClass().getResource("view/TelemetryDataOverview.fxml"));
-			System.out.println("TelDataOverview loader location= " + tel_loader.getLocation());
+			main_loader.setLocation(getClass().getResource("view/TelemetryDataOverview.fxml"));
+			System.out.println("TelDataOverview loader location= " + main_loader.getLocation());
 			AnchorPane telemetryOverview = null;
-			telemetryOverview = (AnchorPane) tel_loader.load();
+			telemetryOverview = (AnchorPane) main_loader.load();
 
 			// Set telemetry overview into the center of root layout.
 			rootLayout.setLeft(telemetryOverview);
 
-			tel_controller = (TelemetryDataOverviewController)tel_loader.getController();
-			System.out.println("TEL_CONTROLLER = " + tel_controller);
+			main_controller = (MainDisplayController)main_loader.getController();
+			System.out.println("TEL_CONTROLLER = " + main_controller);
 		} catch (IOException e) {
 			logger.fine(e.toString());
 		}
+	}
+
+	private void initSnapLayout() {
+
+	}
+
+	private void initConfigLayout() {
+
 	}
 
 	private void initRootLayout() {
@@ -139,12 +166,20 @@ public class MainApp extends Application {
 		return primaryStage;
 	}
 
-	public static void updateDisplay(double datum, MsgType type) {
-		tel_controller.updateTelemetryDatum(datum, type);
+	public static void updateTelemetryDisplay(double datum, MsgType type) {
+		main_controller.updateDatum(datum, type);
 	}
 
-	protected void updateDisplay(byte[] datum, MsgType type) {
-		tel_controller.updateVectorDatum(datum, type);
+	public void updateTelemetryDisplay(double[] data, MsgType type) {
+		main_controller.updateVectorDatum(data, type);
+	}
+
+	public void updateSnapshotDisplay(Snapshot snap) {
+
+	}
+
+	public ObservableList<Snapshot> getSnapshotData() {
+		return snapshotData;
 	}
 
 	public static void main(String[] args) {

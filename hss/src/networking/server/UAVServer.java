@@ -32,11 +32,10 @@ import javafx.application.Platform;
 public class UAVServer implements Runnable {
 
 	private static final int MC_PORT_NUM							= 9002;
-	public static final int APP_PORT_NUM							= 9003;
 	@SuppressWarnings("unused")
 	private static Logger logger									= Logger.getLogger(UAVServer.class.getName());
 	private volatile boolean timeToExit								= false;	// Main app uses this to alert server that it's time to shut down.
-	private List<DataConnectionHandler> handlers					= Collections.synchronizedList(new ArrayList<DataConnectionHandler>());
+	private List<DataConnectionHandler> handlers					= new ArrayList<DataConnectionHandler>();
 
 	@Override
 	public void run()
@@ -64,8 +63,10 @@ public class UAVServer implements Runnable {
 			try
 			{
 				Socket cli_sock = cli_listener.accept();
-				Thread handler = new Thread(new DataConnectionHandler(this, cli_sock.getInputStream()));
-				handler.start();
+				DataConnectionHandler handler = new DataConnectionHandler(this, cli_sock.getInputStream());
+				handlers.add(handler);
+				Thread handlerThread = new Thread(handler);
+				handlerThread.start();
 			}
 			catch(SocketTimeoutException ste) {
 
@@ -88,20 +89,6 @@ public class UAVServer implements Runnable {
 		timeToExit = true;
 	}
 
-	public void addHandler(DataConnectionHandler handler){
-		synchronized(handlers) {
-			handlers.add(handler);
-		}
-
-		/*
-		 * In case factory is trying to add a new thread while Server is in the process
-		 * of shutting down, shut new thread down.
-		 */
-		if(timeToExit) {
-			handler.shutDown();
-		}
-	}
-
 	private void shutDownHandlers() {
 		synchronized(handlers) {
 			for(int i = 0; i < handlers.size(); i++) {
@@ -117,7 +104,7 @@ public class UAVServer implements Runnable {
 	public void updateTelemetryData(double datum, MsgType type) {
 		System.out.println("Setting " + type + " to " + datum);
 
-		Platform.runLater(() -> MainApp.updateDisplay(datum, type));
+		Platform.runLater(() -> MainApp.updateTelemetryDisplay(datum, type));
 	}
 
 }

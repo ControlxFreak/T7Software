@@ -1,6 +1,6 @@
 /*
  * ---------------------------------------------------------------------------------
- * Title: TelemetryDataOverviewController.java
+ * Title: MainDisplayController.java
  * Description:
  * The controller class for the telemetry data overview GUI.
  * ---------------------------------------------------------------------------------
@@ -20,7 +20,7 @@ import T7.T7Messages.GenericMessage.MsgType;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class TelemetryDataOverviewController {
+public class MainDisplayController {
 
 	@FXML
 	private Label airTempLabel;
@@ -39,13 +39,8 @@ public class TelemetryDataOverviewController {
 	@FXML
 	private Label yawLabel;
 
-	@FXML
-	private void initialize() {
-		System.out.println("initialize label = " + airTempLabel);
-	}
-
-	public void updateTelemetryDatum(double d, MsgType type) {
-		String newVal = telemetryDatumToLabelString(d);
+	public void updateDatum(double d, MsgType type) {
+		String newVal = doubleDatumToLabelString(d);
 
 		switch(type) {
 		case TEMP:
@@ -59,7 +54,7 @@ public class TelemetryDataOverviewController {
 		}
 	}
 
-	public void updateVectorDatum(byte[] datum, MsgType type) {
+	public void updateVectorDatum(double[] datum, MsgType type) {
 		String x = "";
 		String y = "";
 		String z = "";
@@ -80,7 +75,7 @@ public class TelemetryDataOverviewController {
 		}
 	}
 
-	private String telemetryDatumToLabelString(double d) {
+	private String doubleDatumToLabelString(double d) {
 		String s = "";
 		if(d != Double.MIN_VALUE) {
 			s = Double.toString(d);
