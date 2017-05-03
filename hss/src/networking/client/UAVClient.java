@@ -16,24 +16,47 @@
  */
 package networking.client;
 
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.logging.Logger;
 
-public class UAVClient {
+import T7.T7Messages.GenericMessage;
+
+public class UAVClient implements Runnable{
 
 	private static final int PORT_NUM		= 9001;
 	@SuppressWarnings("unused")
 	private static Logger logger			= Logger.getLogger(UAVClient.class.getName());
-	Socket mc_sock;
-	BufferedWriter out;
+	private Socket mc_sock;
+	private volatile boolean timeToExit = false;
 
-	public UAVClient() {
+	public void sendMessage(GenericMessage gm) {
+		try {
+			gm.writeDelimitedTo(mc_sock.getOutputStream());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
-		do {
+	@Override
+	protected void finalize() throws Throwable {
+		try {
+			mc_sock.close();
+		} finally {
+			super.finalize();
+		}
+	}
+
+	public static int getPortNum() {
+		return PORT_NUM;
+	}
+
+	@Override
+	public void run() {
+
+		while(!timeToExit) {
 			try {
 				Thread.sleep(1000);
 				System.out.println("Establishing connection.");
@@ -43,37 +66,22 @@ public class UAVClient {
 				continue;
 			}
 			break;
-		} while(true);
+		}
+
+		while(!timeToExit) {
+
+		}
 
 		try {
-			out = new BufferedWriter(new OutputStreamWriter(mc_sock.getOutputStream()));
+			mc_sock.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 
-	public void sendMessage(char[] cbuf) {
-		try {
-			out.write(cbuf);
-			out.flush();
-		} catch (IOException e) {
-			// TODO Error logging
-		}
-	}
-
-	@Override
-	protected void finalize() throws Throwable {
-		try {
-			out.close();
-		} finally {
-			super.finalize();
-		}
-	}
-
-	public static int getPortNum() {
-		return PORT_NUM;
+	public void shutDown() {
+		timeToExit = true;
 	}
 
 }

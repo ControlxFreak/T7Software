@@ -16,13 +16,11 @@
  */
 package app.view;
 
+import T7.T7Messages.GenericMessage.MsgType;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 public class TelemetryDataOverviewController {
-	public enum dataType {
-		AIR_TEMP, ALTITUDE, ACCELEROMETER, GYROSCOPE
-	}
 
 	@FXML
 	private Label airTempLabel;
@@ -46,11 +44,11 @@ public class TelemetryDataOverviewController {
 		System.out.println("initialize label = " + airTempLabel);
 	}
 
-	public void updateTelemetryDatum(double d, dataType type) {
+	public void updateTelemetryDatum(double d, MsgType type) {
 		String newVal = telemetryDatumToLabelString(d);
 
 		switch(type) {
-		case AIR_TEMP:
+		case TEMP:
 			airTempLabel.setText(newVal);
 			break;
 		case ALTITUDE:
@@ -61,18 +59,18 @@ public class TelemetryDataOverviewController {
 		}
 	}
 
-	public void updateVectorDatum(byte[] datum, dataType type) {
+	public void updateVectorDatum(byte[] datum, MsgType type) {
 		String x = "";
 		String y = "";
 		String z = "";
 
 		switch(type) {
-		case ACCELEROMETER:
+		case ACCEL:
 			xAccelLabel.setText(x);
 			yAccelLabel.setText(y);
 			zAccelLabel.setText(z);
 			break;
-		case GYROSCOPE:
+		case GYRO:
 			rollLabel.setText(x);
 			pitchLabel.setText(y);
 			yawLabel.setText(z);

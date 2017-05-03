@@ -6,9 +6,8 @@ ant clean
 To compile HSS code:
 ant
 
-To run MainApp:
-cd classes
-java -classpath . app.MainApp
+To run MainApp (from hss directory):
+java -cp "<path_to_lib_dir>/*" app.MainApp
 
 To run UAVServer:
 cd classes

@@ -1,18 +1,19 @@
 package networking.server.testing;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 
+import T7.T7Messages.*;
+import T7.T7Messages.GenericMessage.MsgType;
 import networking.server.UAVServer;
 
 public class TestHSSClient {
 
-	private static BufferedWriter out;
+	private static OutputStream out;
 
 	public TestHSSClient() {
 		// TODO Auto-generated constructor stub
@@ -27,10 +28,11 @@ public class TestHSSClient {
 		boolean valid_input_received = false;
 		final BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		Socket hss_sock;
+		MsgType connType = null;
 
 		do {
 			try {
-				Thread.sleep(3000);
+				Thread.sleep(1000);
 				System.out.println("Establishing connection.");
 				hss_sock = new Socket(InetAddress.getLocalHost(), UAVServer.getPortNum());
 			} catch(Exception e) {
@@ -41,7 +43,7 @@ public class TestHSSClient {
 		} while(true);
 
 		try {
-			out = new BufferedWriter(new OutputStreamWriter(hss_sock.getOutputStream()));
+			out = hss_sock.getOutputStream();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -57,9 +59,8 @@ public class TestHSSClient {
 				System.out.println("0) Exit");
 				System.out.println("1) Make a new Accelerometer connection");
 				System.out.println("2) Make a new Altitude connection");
-				System.out.println("3) Make a new Camera connection");
-				System.out.println("4) Make a new Gyroscope connection");
-				System.out.println("5) Make a new Temperature connection");
+				System.out.println("3) Make a new Gyroscope connection");
+				System.out.println("4) Make a new Temperature connection");
 
 				while(!in.ready()) {
 					Thread.sleep(500);
@@ -73,23 +74,19 @@ public class TestHSSClient {
 					break;
 				case 1:
 					System.out.println("Sending Accelerometer request.");
-					sendRequest(200);
+					connType = MsgType.ACCEL;
 					break;
 				case 2:
 					System.out.println("Sending Altitude request.");
-					sendRequest(202);
+					connType = MsgType.ALTITUDE;
 					break;
 				case 3:
-					System.out.println("Sending Camera request.");
-					sendRequest(204);
+					System.out.println("Sending Gyroscope request.");
+					connType = MsgType.GYRO;
 					break;
 				case 4:
-					System.out.println("Sending Gyroscope request.");
-					sendRequest(201);
-					break;
-				case 5:
 					System.out.println("Sending Temperature request.");
-					sendRequest(203);
+					connType = MsgType.TEMP;
 					break;
 				default:
 					valid_input_received = false;
@@ -105,7 +102,9 @@ public class TestHSSClient {
 				System.out.println();
 				System.out.println("Wrong input format.");
 				System.out.println();
-			} finally {
+			}
+			/*
+			finally {
 				try {
 					out.flush();
 				} catch (IOException e) {
@@ -113,6 +112,7 @@ public class TestHSSClient {
 					e.printStackTrace();
 				}
 			}
+			*/
 		} while(!time_to_exit && !valid_input_received);
 
 		if(time_to_exit) {
@@ -152,7 +152,32 @@ public class TestHSSClient {
 					input = in.readLine();
 
 					System.out.println("Sending data.");
-					sendData(input);
+					GenericMessage.Builder gm = GenericMessage.newBuilder();
+					gm.setTime(System.currentTimeMillis());
+					switch(connType) {
+					case ACCEL:
+						gm.setMsgtype(MsgType.ACCEL)
+							.setAccel(Accel.newBuilder().setX(1.0).setY(2.0).setZ(3.0));
+						break;
+					case ALTITUDE:
+						gm.setMsgtype(MsgType.ALTITUDE)
+							.setAltitude(Altitude.newBuilder().setAlt(Double.parseDouble(input)));
+						break;
+					case GYRO:
+						gm.setMsgtype(MsgType.GYRO)
+							.setGyro(Gyro.newBuilder().setX(3.0).setY(2.0).setZ(1.0));
+						break;
+					case TEMP:
+						gm.setMsgtype(MsgType.TEMP)
+							.setTemp(Temp.newBuilder().setTime(System.currentTimeMillis())
+									.setTemp(Double.parseDouble(input)));
+						break;
+					default:
+						break;
+					}
+					gm.build().writeDelimitedTo(out);
+					out.flush();
+					System.out.println("Sent message.");
 					break;
 				default:
 					System.out.println("Invalid input.");
@@ -175,40 +200,6 @@ public class TestHSSClient {
 				}
 			}
 		} while(!time_to_exit);
-	}
-
-	private static void sendData(String input) {
-		try {
-			int len = input.length();
-			String tens = "";
-			if(len < 10) {
-				tens = "0";
-			}
-			out.write(("203" + tens + Integer.toString(len) + input).toCharArray());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	private static void sendRequest(int id) {
-		String request = "20503";
-
-		switch(id) {
-		case 200:
-		case 201:
-		case 202:
-		case 203:
-		case 204:
-			request += Integer.toString(id);
-		}
-
-		try {
-			out.write(request, 0, request.length());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 }

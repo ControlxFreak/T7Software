@@ -19,27 +19,34 @@ package app;
 
 
 import java.io.IOException;
-import java.net.Socket;
 import java.util.logging.Logger;
 
+import T7.T7Messages.GenericMessage;
+import T7.T7Messages.MoveCamera;
+import T7.T7Messages.GenericMessage.MsgType;
 import app.view.TelemetryDataOverviewController;
-import app.view.TelemetryDataOverviewController.dataType;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import networking.client.UAVClient;
+import networking.server.UAVServer;
 
 public class MainApp extends Application {
 
 	private static Logger logger			= Logger.getLogger(MainApp.class.getName());
 	private Stage primaryStage;
-	private BorderPane rootLayout;
-	private static Socket servSocket = null;
-	private static ServerConnectionManager server_conn_mgr;
+	private static BorderPane rootLayout;
 	private static TelemetryDataOverviewController tel_controller;
 	private static FXMLLoader tel_loader;
+	private static UAVServer server = new UAVServer();
+	private static UAVClient camera_client = null;
+	private static UAVClient params_client = null;
+	private static UAVClient config_client = null;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -50,8 +57,18 @@ public class MainApp extends Application {
 
 		showTelemetryOverview();
 
-		server_conn_mgr = new ServerConnectionManager(this);
-		(new Thread(server_conn_mgr)).start();
+		initServer();
+
+		initClients();
+	}
+
+	private void initClients() {
+		camera_client = new UAVClient();
+		new Thread(camera_client).start();
+	}
+
+	private void initServer() {
+		new Thread(server).start();
 	}
 
 	private void showTelemetryOverview() {
@@ -83,8 +100,33 @@ public class MainApp extends Application {
 			System.out.println("RootLayout loader location=" + loader.getLocation());
 			rootLayout = (BorderPane) loader.load();
 
-			// Show the scene containing the root layout.
 			Scene scene = new Scene(rootLayout);
+
+			// Create event handler for arrow keys.
+			EventHandler<KeyEvent> keyHandler = new EventHandler<KeyEvent>() {
+				@Override
+				public void handle(KeyEvent e) {
+					logger.finest("Key event: " + e.getText());
+					System.out.println("Key event: " + e.getText() + " - " + e.getEventType());
+					GenericMessage.Builder gmBuilder = GenericMessage.newBuilder();
+					if(e.getEventType() == KeyEvent.KEY_PRESSED) {
+						switch(e.getCode()) {
+						case UP:
+						case DOWN:
+						case LEFT:
+						case RIGHT:
+							gmBuilder.setMsgtype(MsgType.MOVE_CAMERA).setTime(System.currentTimeMillis())
+							.setMovecamera(MoveCamera.newBuilder().setTbd(true));
+							camera_client.sendMessage(gmBuilder.build());
+							break;
+						default:
+							break;
+						}
+					}
+				}
+			};
+			scene.addEventFilter(KeyEvent.ANY, keyHandler);
+
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch (IOException e) {
@@ -97,25 +139,18 @@ public class MainApp extends Application {
 		return primaryStage;
 	}
 
-	protected void updateDisplay(double datum, dataType type) {
+	public static void updateDisplay(double datum, MsgType type) {
 		tel_controller.updateTelemetryDatum(datum, type);
 	}
 
-	protected void updateDisplay(byte[] datum, dataType type) {
+	protected void updateDisplay(byte[] datum, MsgType type) {
 		tel_controller.updateVectorDatum(datum, type);
 	}
 
 	public static void main(String[] args) {
 		launch(args);
-		try {
-			if(servSocket != null) {
-				servSocket.close();
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
-		server_conn_mgr.shutDown();
+		server.shutDown();
+		camera_client.shutDown();
 	}
 }

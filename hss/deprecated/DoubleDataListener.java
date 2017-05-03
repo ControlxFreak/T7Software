@@ -1,9 +1,9 @@
 /*
  * ---------------------------------------------------------------------------------
- * Title: VectorDataListener.java
+ * Title: DoubleDataListener.java
  * Description:
  * This class continually listens for data updates from the server of the type
- * vector.
+ * double.
  * ---------------------------------------------------------------------------------
  * Lockheed Martin
  * Engineering Leadership Development Program
@@ -22,23 +22,22 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.logging.Logger;
 
-import app.view.TelemetryDataOverviewController.dataType;
+import T7.T7Messages.GenericMessage.MsgType;
 import javafx.application.Platform;
 
-public class VectorDataListener extends DataListener {
+public class DoubleDataListener extends DataListener {
 
-	public VectorDataListener(Socket socket, MainApp mainApp, dataType connType) throws IOException {
+	public DoubleDataListener(Socket socket, MainApp mainApp, MsgType connType) throws IOException {
 		super(socket, mainApp);
 		this.connType = connType;
 		in = new DataInputStream(this.socket.getInputStream());
-		logger = Logger.getLogger(VectorDataListener.class.getName());
+		logger = Logger.getLogger(DoubleDataListener.class.getName());
 		logger.fine("Constructed " + connType + " listener");
 	}
 
 	@Override
 	void listen() {
 		System.out.println("listen()");
-		//TODO implement
 		double datum;
 		try {
 			datum = ((DataInputStream)in).readDouble();

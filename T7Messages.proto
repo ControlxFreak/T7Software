@@ -1,0 +1,165 @@
+// ---------------------------------------------------------- //
+// Team 7 Message Prototype Description
+// ---------------------------------------------------------- //
+// This describes all messages sent via TCP between the HSS and
+// the UAV software
+// ---------------------------------------------------------- //
+// Lockheed Martin
+// Engineering Leadership Development Program
+// Team 7
+// 22 April 2017
+// Anthony Trezza
+// ---------------------------------------------------------- //
+// Change Log:
+// 22 April 2017 - att - Birthday! <(^.^)>
+// ---------------------------------------------------------- //
+
+package T7; // Basically the namespace
+
+// ---------------------------------------------------------- //
+// GENERIC MESSAGE
+// ---------------------------------------------------------- //
+// The generic message will be sent every single time.
+// The data that is defined in the MsgType structure will
+// tell the reciever what to parse.
+message GenericMessage {
+	required MsgType msgtype = 1;
+	required double time = 2;
+	
+	// INFO MESSAGE //
+	optional Response response = 3;
+	optional HeartBeat heartbeat = 4;
+	optional Terminate terminate = 5;
+	
+	// HSS -> UAV //
+	optional UpdateParams updateparams = 6;
+	optional ConfigData configdata = 7;
+	optional MoveCamera movecamera = 8;
+
+	optional Accel accel = 9;
+	optional Gyro gyro = 10;
+	optional Altitude altitude = 11;
+	optional Attitude attitude = 12;
+	optional Temp temp = 13;
+	optional Battery bat = 14;
+
+	enum MsgType {
+		// INFO MESSAGE //
+		RESPONSE = 0;
+		HEARTBEAT = 1;
+		TERMINATE = 2;
+
+		// HSS -> UAV //
+		UPDATE_PARAM = 100;
+		CONFIG_DATA = 101;
+		MOVE_CAMERA = 102;
+
+		// UAV -> HSS //
+		ACCEL = 200;
+		GYRO = 201;
+		ALTITUDE = 202;
+		ATTITUDE = 203;
+		TEMP = 204;
+		BAT = 205;
+	}
+
+}
+
+
+// ---------------------------------------------------------- //
+// Info Messages
+// ---------------------------------------------------------- //
+
+// Response //
+// Basic TCP response to a sucesfully recieved message
+message Response {
+	optional bool roger_that = 1 [default = true];
+}
+
+// HeartBeat //
+// This message will be sent both from the UAV and from the HSS 
+// Periodically to ensure that they are both alive
+message HeartBeat { 
+	required bool alive = 1[default = true];
+}
+
+// Terminate //
+// This message will be the message that the UAV will recieve to // self terminate
+message Terminate  {
+	required bool terminate = 1 [default = true]; 
+}
+
+// ---------------------------------------------------------- //
+// HSS -> UAV Messages
+// ---------------------------------------------------------- //
+// UpdateParams //
+// This message is to satisfy the requirement of allowing the 
+// operator the ability to modify parameters in real time
+
+// TBD - 22 April 2017 - att: Figure out what is needed.
+message UpdateParams {
+	optional bool tbd = 1;
+}
+
+// ConfigData //
+// This message is to satisfy the requirement of allowing the
+// operator to configure the data that they recieve in real time
+// TBD - 22 April 2017 - att: Figure out what is needed.
+message ConfigData {
+	optional bool tbd = 1;
+}
+
+// MoveCamera //
+// This message will allow the operator to move the pan-tilt 
+// gimble attached to the camera
+// TBD - 22 April 2017 - att: Figure out what is needed.
+message MoveCamera  {
+	optional bool tbd = 1;
+}
+
+// ---------------------------------------------------------- //
+// UAV -> HSS Messages
+// ---------------------------------------------------------- //
+// Accel //
+// This message defines the accelerometer message.  
+message Accel {
+	required double x = 1;	//  [m/s^2]
+	required double y = 2;	//  [m/s^2]
+	required double z = 3;	//  [m/s^2]
+}
+
+// Gyro //
+// This message describes the gyroscop message
+message Gyro {	
+	required double x = 1;	//   [rad/s^2]
+	required double y = 2;	//   [rad/s^2]
+	required double z = 3;	//   [rad/s^2]
+}
+
+// Altitude //
+// This message describes the altitude message
+message Altitude {
+	required double alt = 1;	// [m]
+}
+
+// Attitude //
+// This message describes the attitude message
+message Attitude {
+	required double roll = 1;	// [rad]
+	required double pitch = 2;	// [rad]
+	required double yaw = 3;	// [rad]
+}
+
+// Temp //
+// This message describes the air temperature message.
+message Temp {	
+	required double time = 1;	//   [s]
+	required double temp = 2;	//   [c]
+}
+
+// Battery //
+// This message defines the battery message.
+message Battery {
+	required double time = 1;		//   [s]
+	required double percent = 2;	//   [%]
+}
