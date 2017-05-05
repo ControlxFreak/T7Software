@@ -43,7 +43,7 @@ void ThreadManager::launch(IOManager* IO){
     if(!threadMap.empty()) clean();
     
     // Grab each of the threads, launch 'em and store them back! 
-    
+    // TODO: 05May2017 Do an enumeration loop.... There has to be a better way...
     LM->append("|--Launching the TCP Sockets--|\n");
     LM->append("Launching Heartbeat Socket\n");
     threadMap[threadKeys::HeartSock] = new boost::thread(&ThreadManager::socketHandler,this,IO,data->HEARTBEAT);
@@ -102,8 +102,10 @@ void ThreadManager::sensorHandler(IOManager* IO)
 //----------------------------------------------------------------------------//
 void ThreadManager::clean()
 {
+    // Initialize the Log Manager
     LogManager* LM = LogManager::getInstance();
 
+    // TODO: 05May2017 Do an enumeration loop.... There has to be a better way...
     if(threadMap[threadKeys::HeartSock] != NULL)
     {
         threadMap[threadKeys::HeartSock]->interrupt();

@@ -42,6 +42,7 @@ using namespace std;
 class ThreadManager {
 public:
     DataManager* data; 
+    
     void launch(IOManager*);
     void clean();
     ThreadManager();

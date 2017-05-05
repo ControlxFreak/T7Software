@@ -35,3 +35,9 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+
+# Distribution Files #
+######################
+main_computer/src/OBC/dist/
+main_computer/src/OBC/build/

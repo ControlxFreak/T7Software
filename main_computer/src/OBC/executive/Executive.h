@@ -30,7 +30,6 @@ Change Log
 #include "ThreadManager.h"
 #include "WatchDog.h"
 #include "IOManager.h"
-#include "Algorithms.h"
 #include "DataManager.h"
 #include "LogManager.h"
 
@@ -42,11 +41,12 @@ public:
     // ---------------------------------------------------------------------- //   
     // Managers:
     ThreadManager TM;
-    WatchDog WD;
     IOManager IO;
-    Algorithms ALG;
+    
+    // Singletons
     DataManager* data;
     LogManager* LM;
+    WatchDog* WD;
     
     bool needsCleaning = false;
     

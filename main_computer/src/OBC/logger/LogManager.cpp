@@ -37,7 +37,16 @@ Change Log
 void LogManager::append(string s)
 {
     mutex_.lock();
-    buffer_<<s;
+    // Grab the current time and create the log filename
+    auto now = Clock::now();
+    time_t now_c = Clock::to_time_t(now);
+    struct tm *parts = localtime(&now_c);
+    int hour = parts->tm_hour;
+    int min = parts->tm_min;
+    int sec = parts->tm_sec;
+    char tstamp[20];
+    sprintf(tstamp,"%d:%d:%d:  ",hour,min,sec);
+    buffer_<<tstamp<<s;
     mutex_.unlock();
 
     if(buffer_.str().size() >= maxBuffSize) print();
@@ -124,7 +133,7 @@ void LogManager::init(){
     
     // Make the filename
     string s;
-    s = boost::str(boost::format("%s%d_%d_%d_%d:%d_%d_logfile.txt") %path % year % mon % day % hour %min % suffix_);
+    s = boost::str(boost::format("%s%d_%d_%d_%d:%d_%d_logfile.log") %path % year % mon % day % hour %min % suffix_);
     logFileName = s;
     suffix_++;
     

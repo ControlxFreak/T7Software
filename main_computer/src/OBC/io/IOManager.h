@@ -29,11 +29,13 @@ Change Log
 
 #include "DataManager.h"
 #include "LogManager.h"
+#include "WatchDog.h"
 #include "tcpconnector.h"
 #include "tcpacceptor.h"
 #include "T7Messages.pb.h"
-#include <boost/thread/thread.hpp>
 #include <string>
+#include <boost/thread/thread.hpp>
+
 
 class IOManager {
 public:
@@ -44,13 +46,10 @@ public:
     int CONNECTOR_TIMEOUT = 5;
     int SLEEP_TIME = 3000;
     
-    DataManager* data; 
-    LogManager* LM;
-    
     bool timeToDie = false; 
     
-    void kill(){};
-    void clean(){timeToDie = true;};
+    void kill(){timeToDie = true;};
+    void clean(){timeToDie = false;};
     void launch_sensor(){};
     void socketHandler(int id);
     IOManager();

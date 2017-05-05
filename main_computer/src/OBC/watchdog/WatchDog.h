@@ -40,7 +40,7 @@ public:
     //                 smallFailure: the section of code probably hiccuped. Use default settings or backup values.  Similar to isolated, but less sever.
     //                    noFailure: Good to go!
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
-    enum failureCodes {critFail=-99,seriousFail,moderateFailure,issolatedFailure,smallFailure, noFailure=0}; 
+    enum failureCodes {critFail=-99,seriousFail,moderateFailure,issolatedFailure,smallFailure,UNK_SOCK, SERVER_CONNECT_FAIL, SERVER_ACCEPT_FAIL, noFailure=0}; 
     
     int SystemHealth = failureCodes::noFailure;
     bool timeToDie = false;
@@ -49,6 +49,13 @@ public:
     void launch();
     void kill();
     void clean();
+    
+    static WatchDog* getInstance()
+    {
+        static WatchDog* p_WatchDog = new WatchDog();
+        return p_WatchDog;
+    };    
+    
     WatchDog();
     WatchDog(const WatchDog& orig);
     virtual ~WatchDog();

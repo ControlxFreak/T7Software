@@ -36,14 +36,18 @@ void Executive::launch()
     
     // Initialize the Logger Instance
     LM = LogManager::getInstance();
-    
+       
     // Print out the header
     LM->appendHeader();
     
     // Initialize the Data Singleton
     LM->append("Initializing the Data Singleton\n");
     data = DataManager::getInstance();
-        
+   
+    // Initialize the Watchdog
+    LM->append("Initializing the WatchDog Singleton\n");
+    WD = WatchDog::getInstance();
+    
     // Launch the thread manager
     LM->append("Launching Thread Manager\n");
     TM.launch(&IO);
@@ -69,7 +73,7 @@ void Executive::clean()
     TM.clean();
     
     LM->append("Cleaning Watch Dog!\n");
-    WD.clean();
+    WD->clean();
     
     LM->append("Cleaning IO Manager!\n");
     IO.clean();    
@@ -90,10 +94,6 @@ void Executive::run()
     // Loop until it is time to die
     while(!timeToDie)
     {
-        vector<double> v;
-        v.push_back(1);
-        v.push_back(400);
-        data->altitudeQueue.push(v);
         usleep(10000);
         if (j==100) data->globalShutdown = true;
         if(data->globalShutdown) {timeToDie = true;break;}

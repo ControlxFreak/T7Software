@@ -41,13 +41,11 @@ int main()
             // Launch the Executive
             Exec.launch();
             // If the watchdog says that we are complete, then do it!
-            if(Exec.WD.SystemHealth == Exec.WD.noFailure) break;
+            if(Exec.WD->SystemHealth == Exec.WD->noFailure) break;
             
             Exec.needsCleaning = true;
-        }catch(...)
-        {
-        }
+        }catch(...){}
     }
     // Return the code determined by the executive
-    return Exec.WD.SystemHealth;
+    return Exec.WD->SystemHealth;
 }

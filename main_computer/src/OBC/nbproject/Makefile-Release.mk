@@ -35,8 +35,6 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/_ext/b9fadef4/Person.pb.o \
-	${OBJECTDIR}/algorithms/Algorithms.o \
 	${OBJECTDIR}/executive/Executive.o \
 	${OBJECTDIR}/io/IOManager.o \
 	${OBJECTDIR}/io/T7Messages.pb.o \
@@ -73,16 +71,6 @@ LDLIBSOPTIONS=-lpthread
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/obc: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/obc ${OBJECTFILES} ${LDLIBSOPTIONS}
-
-${OBJECTDIR}/_ext/b9fadef4/Person.pb.o: ../../../../../Desktop/testproto/Person.pb.cc
-	${MKDIR} -p ${OBJECTDIR}/_ext/b9fadef4
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -DPRINT_TO_CONSOLE -Ialgorithms -Ibuild -Idist -Iinfo -Iio -Imain -Iexec -Iexternal/boost_1_63_0 -I/usr/local/include/opencv2/calib3d -I/usr/local/include/opencv2/core -I/usr/local/include/opencv2/features2d -I/usr/local/include/opencv2/flann -I/usr/local/include/opencv2/highgui -I/usr/local/include/opencv2/imgcodecs -I/usr/local/include/opencv2/imgproc -I/usr/local/include/opencv2/ml -I/usr/local/include/opencv2/objdetect -I/usr/local/include/opencv2/photo -I/usr/local/include/opencv2/shape -I/usr/local/include/opencv2/stitching -I/usr/local/include/opencv2/superres -I/usr/local/include/opencv2/video -I/usr/local/include/opencv2/videoio -I/usr/local/include/opencv2/videostab -Iexternal/pugi -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/b9fadef4/Person.pb.o ../../../../../Desktop/testproto/Person.pb.cc
-
-${OBJECTDIR}/algorithms/Algorithms.o: algorithms/Algorithms.cpp
-	${MKDIR} -p ${OBJECTDIR}/algorithms
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -DPRINT_TO_CONSOLE -Ialgorithms -Ibuild -Idist -Iinfo -Iio -Imain -Iexec -Iexternal/boost_1_63_0 -I/usr/local/include/opencv2/calib3d -I/usr/local/include/opencv2/core -I/usr/local/include/opencv2/features2d -I/usr/local/include/opencv2/flann -I/usr/local/include/opencv2/highgui -I/usr/local/include/opencv2/imgcodecs -I/usr/local/include/opencv2/imgproc -I/usr/local/include/opencv2/ml -I/usr/local/include/opencv2/objdetect -I/usr/local/include/opencv2/photo -I/usr/local/include/opencv2/shape -I/usr/local/include/opencv2/stitching -I/usr/local/include/opencv2/superres -I/usr/local/include/opencv2/video -I/usr/local/include/opencv2/videoio -I/usr/local/include/opencv2/videostab -Iexternal/pugi -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/algorithms/Algorithms.o algorithms/Algorithms.cpp
 
 ${OBJECTDIR}/executive/Executive.o: executive/Executive.cpp
 	${MKDIR} -p ${OBJECTDIR}/executive

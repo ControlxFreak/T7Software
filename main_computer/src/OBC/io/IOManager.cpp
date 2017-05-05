@@ -50,10 +50,16 @@ void IOManager::socketHandler(int id){
     T7::GenericMessage GM;
         
     // Grab an instance of the LogManager
-    LM = LogManager::getInstance();
+    LogManager* LM = LogManager::getInstance();
     
     // Grab an instance of the Watchdog
-    WD = WatchDog::getInstance();
+    WatchDog* WD = WatchDog::getInstance();
+    
+    // Grab the instance of the data manager
+    DataManager* data = DataManager::getInstance();
+    
+    // Initialize the socket health
+    data->sockHealth[id] = WD->noFailure;
     
     // Initialize the buffer
     char cbuff[256];
@@ -74,7 +80,7 @@ void IOManager::socketHandler(int id){
         } //while
         
         // Tell the WatchDog that you are having trouble connecting!
-        if(stream==NULL) WD->addTCPError(WD->SERVER_CONNECT,id);
+        if(stream==NULL) data->sockHealth[id] = WD->SERVER_CONNECT_FAIL;
     }else{
         // Initialize the TCP acceptor
         acceptor = new TCPAcceptor(PORT_NUMBER,HSS_IP.c_str(),id);   
@@ -88,7 +94,7 @@ void IOManager::socketHandler(int id){
         } //while
         
         // Tell the WatchDog that you are having trouble connecting!
-        if(stream==NULL) WD->addTCPError(WD->SERVER_CONNECT,id);
+        if(stream==NULL) data->sockHealth[id] = WD->SERVER_CONNECT_FAIL;
     } //else
     
     // Loop through until you we're done!
@@ -102,7 +108,7 @@ void IOManager::socketHandler(int id){
             case data->RESPONSE: 
                 stream = acceptor->accept();
                 // Tell the WatchDog that you are having trouble connecting!
-                if(stream==NULL) WD->addTCPError(WD->TCP_ACCEPT,id);
+                if(stream==NULL) data->sockHealth[id] = WD->SERVER_ACCEPT_FAIL;
                 else{
                     if (stream->receive(cbuff,sizeof(cbuff),ACCEPTOR_TIMEOUT) > 0)
                     {
@@ -113,7 +119,7 @@ void IOManager::socketHandler(int id){
             case data->HEARTBEAT:
                 stream = acceptor->accept();
                 // Tell the WatchDog that you are having trouble connecting!
-                if(stream==NULL) WD->addTCPError(WD->TCP_ACCEPT,id);
+                if(stream==NULL) data->sockHealth[id] = WD->SERVER_ACCEPT_FAIL;
                 else{
                     if (stream->receive(cbuff,sizeof(cbuff),ACCEPTOR_TIMEOUT) > 0)
                     {
@@ -127,7 +133,7 @@ void IOManager::socketHandler(int id){
             case data->TERMINATE:
                 stream = acceptor->accept();
                 // Tell the WatchDog that you are having trouble connecting!
-                if(stream==NULL) WD->addTCPError(WD->TCP_ACCEPT,id);
+                if(stream==NULL) data->sockHealth[id] = WD->SERVER_ACCEPT_FAIL;
                 else{
                     if (stream->receive(cbuff,sizeof(cbuff),ACCEPTOR_TIMEOUT) > 0)
                     {
@@ -142,14 +148,16 @@ void IOManager::socketHandler(int id){
             case data->UPDATE_PARAM:
                 break;
             case data->CONFIG_DATA:
+                /*
                 stream = acceptor->accept();
                 // Tell the WatchDog that you are having trouble connecting!
-                if(stream==NULL) WD->addTCPError(WD->TCP_ACCEPT,id);
+                
+                if(stream==NULL) data->sockHealth[id] = WD->SERVER_ACCEPT_FAIL;
                 else{
                     if (stream->receive(cbuff,sizeof(cbuff),ACCEPTOR_TIMEOUT) > 0)
                     {
                         GM.ParseFromArray(cbuff,sizeof(cbuff));
-                        switch(GM.configdata().configkey())
+                        /*switch(GM.configdata().configkey())
                         {
                             case GM.configdata().toggleAccel:
                                 LM->append("Toggle Acceleration Message Received!\n");
@@ -164,10 +172,12 @@ void IOManager::socketHandler(int id){
                             default:
                                 LM->append("Unidentified ConfigData Message.\n");
                         }
+                         
                         timeToDie = true;
                         data->globalShutdown = true;               
                     }
                 }
+                         */
                 break;
             case data->MOVE_CAMERA:
                 break;
@@ -199,27 +209,28 @@ void IOManager::socketHandler(int id){
             case data->BAT:
                 if(data->sendTemp){}
             default:
-                WD->addTCPError(WD->UNKN_SOCK,id);
+                data->sockHealth[id] = WD->UNK_SOCK;
                 // Cleanup!
                 delete stream;
+                delete acceptor;
+                delete connector;
                 google::protobuf::ShutdownProtobufLibrary();
                 return;
         }
         // Check for thread interruptions
         boost::this_thread::interruption_point();
-    } //while(!ttd)
+    } //while(!timeToDie)
     
     // Cleanup!
     delete stream;
+    delete acceptor;
+    delete connector;
     google::protobuf::ShutdownProtobufLibrary();
-}
+} // socketHandler()
 
-IOManager::IOManager() {
-    data = DataManager::getInstance();
-}
+IOManager::IOManager() {}
 
-IOManager::IOManager(const IOManager& orig) {
-}
+IOManager::IOManager(const IOManager& orig) {}
 
 IOManager::~IOManager() {
     clean();

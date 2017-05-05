@@ -84,6 +84,7 @@ public:
     };
     
     // Health Meters
+    map<int,int>sockHealth;
     
     // Cleanup method
     void clean()
