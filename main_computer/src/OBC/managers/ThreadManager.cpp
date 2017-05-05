@@ -45,12 +45,13 @@ void ThreadManager::launch(IOManager* IO){
     // Grab each of the threads, launch 'em and store them back! 
     // TODO: 05May2017 Do an enumeration loop.... There has to be a better way...
     LM->append("|--Launching the TCP Sockets--|\n");
-    LM->append("Launching Heartbeat Socket\n");
+    LM->append("Launching Terminate Socket\n");
+    threadMap[threadKeys::TerminateSock] = new boost::thread(&ThreadManager::socketHandler,this,IO,data->TERMINATE);
+   /*
+     LM->append("Launching Heartbeat Socket\n");
     threadMap[threadKeys::HeartSock] = new boost::thread(&ThreadManager::socketHandler,this,IO,data->HEARTBEAT);
     LM->append("Launching Terminate Socket\n");
     threadMap[threadKeys::TerminateSock] = new boost::thread(&ThreadManager::socketHandler,this,IO,data->TERMINATE);
-    LM->append("Launching UpdateParams Socket\n");
-    threadMap[threadKeys::UParamsSock] = new boost::thread(&ThreadManager::socketHandler,this,IO,data->UPDATE_PARAM);
     LM->append("Launching ConfigureData Socket\n");
     threadMap[threadKeys::ConfigSock] = new boost::thread(&ThreadManager::socketHandler,this,IO,data->CONFIG_DATA);
     LM->append("Launching MoveCamera Socket\n");
@@ -70,7 +71,7 @@ void ThreadManager::launch(IOManager* IO){
     
     LM->append("Launching the Sensor Thread\n");
     threadMap[threadKeys::SensorKey] = new boost::thread(&ThreadManager::sensorHandler, this, IO);  
-
+    */
 } //launch
 
 //----------------------------------------------------------------------------//
@@ -121,15 +122,7 @@ void ThreadManager::clean()
         threadMap.erase(threadKeys::TerminateSock);
         LM->append("TCP TerminateSock Thread Terminated!\n");
     }
-    
-    if(threadMap[threadKeys::UParamsSock] != NULL)
-    {
-        threadMap[threadKeys::UParamsSock]->interrupt();
-        threadMap[threadKeys::UParamsSock]->join();
-        threadMap.erase(threadKeys::UParamsSock);
-        LM->append("TCP UParamsSock Thread Terminated!\n");
-    }
-    
+       
     if(threadMap[threadKeys::ConfigSock] != NULL)
     {
         threadMap[threadKeys::ConfigSock]->interrupt();

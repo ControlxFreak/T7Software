@@ -59,7 +59,7 @@ public:
 private:
     
     
-    int maxBuffSize = 500;
+    int maxBuffSize = 1;
     stringstream buffer_ = stringstream();
     boost::mutex mutex_;
     ofstream logFile;

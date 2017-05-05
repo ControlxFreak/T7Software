@@ -90,16 +90,12 @@ void Executive::run()
 {
     LM->append("Running Executive\n");
 
-    int j = 0;
     // Loop until it is time to die
     while(!timeToDie)
     {
-        usleep(10000);
-        if (j==100) data->globalShutdown = true;
+        // TODO: Add WatchDog stuff here.
         if(data->globalShutdown) {timeToDie = true;break;}
-        j++;
     } //while(!timeToDie)
-    
 } //run()
 
 //----------------------------------------------------------------------------//

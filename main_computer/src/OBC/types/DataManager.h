@@ -70,7 +70,6 @@ public:
             TERMINATE = 2,
 
             // HSS -> UAV //
-            UPDATE_PARAM = 100,
             CONFIG_DATA = 101,
             MOVE_CAMERA = 102,
 
@@ -81,6 +80,23 @@ public:
             ATTITUDE = 203,
             TEMP = 204,
             BAT = 205
+    };
+    
+    // Define the terminate keys
+    enum terminateKeys{
+        SELF_TERMINATE = 0,
+        SOFT_SHUTDOWN = 1,
+        EMERGENCY_STOP = 2        
+    };
+   
+    // Define the toggle keys
+    enum toggleKeys{
+         TOGGLE_ACCEL = 0,
+         TOGGLE_GYRO = 1,
+         TOGGLE_ALTITUDE= 2,
+         TOGGLE_ATTITUDE= 3,
+         TOGGLE_TEMP = 4,
+         TOGGLE_BAT = 5,
     };
     
     // Health Meters

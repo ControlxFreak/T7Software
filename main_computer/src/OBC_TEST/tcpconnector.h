@@ -1,13 +1,13 @@
 /*
-   TCPAcceptor.h
+   TCPConnector.h
 
-   TCPAcceptor class interface. TCPAcceptor provides methods to passively
-   establish TCP/IP connections with clients.
+   TCPConnector class interface. TCPConnector provides methods to actively
+   establish TCP/IP connections with a server.
 
    ------------------------------------------
 
    Copyright (c) 2013 Vic Hargrave
-
+   
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
    You may obtain a copy of the License at
@@ -18,36 +18,23 @@
    distributed under the License is distributed on an "AS IS" BASIS,
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
-   limitations under the License.
+   limitations under the License
 */
 
-#ifndef __tcpacceptor_h__
-#define __tcpacceptor_h__
+#ifndef __tcpconnector_h__
+#define __tcpconnector_h__
 
-#include <string>
 #include <netinet/in.h>
 #include "tcpstream.h"
-#include "LogManager.h"
 
-using namespace std;
-
-class TCPAcceptor
+class TCPConnector
 {
-    int    m_lsd;
-    int    m_port;
-    string m_address;
-    bool   m_listening;
-    int m_id;
-       
   public:
-    TCPAcceptor(int port, const char* address="",int id=0);
-    ~TCPAcceptor();
-
-    int        start();
-    TCPStream* accept();
-
+    TCPStream* connect(const char* server, int port);
+    TCPStream* connect(const char* server, int port, int timeout);
+    
   private:
-    TCPAcceptor() {}
+    int resolveHostName(const char* host, struct in_addr* addr);
 };
 
 #endif

@@ -32,7 +32,6 @@ class TCPConnector
 {
   public:
       int m_id;
-      LogManager* LM;
       TCPStream* connect(const char* server, int port);
       TCPStream* connect(const char* server, int port, int timeout);
       

@@ -67,9 +67,6 @@ extern TempDefaultTypeInternal _Temp_default_instance_;
 class Terminate;
 class TerminateDefaultTypeInternal;
 extern TerminateDefaultTypeInternal _Terminate_default_instance_;
-class UpdateParams;
-class UpdateParamsDefaultTypeInternal;
-extern UpdateParamsDefaultTypeInternal _UpdateParams_default_instance_;
 }  // namespace T7
 
 namespace T7 {
@@ -89,7 +86,6 @@ enum GenericMessage_MsgType {
   GenericMessage_MsgType_RESPONSE = 0,
   GenericMessage_MsgType_HEARTBEAT = 1,
   GenericMessage_MsgType_TERMINATE = 2,
-  GenericMessage_MsgType_UPDATE_PARAM = 100,
   GenericMessage_MsgType_CONFIG_DATA = 101,
   GenericMessage_MsgType_MOVE_CAMERA = 102,
   GenericMessage_MsgType_ACCEL = 200,
@@ -115,6 +111,28 @@ inline bool GenericMessage_MsgType_Parse(
     const ::std::string& name, GenericMessage_MsgType* value) {
   return ::google::protobuf::internal::ParseNamedEnum<GenericMessage_MsgType>(
     GenericMessage_MsgType_descriptor(), name, value);
+}
+enum Terminate_TerminateKeys {
+  Terminate_TerminateKeys_selfTerminate = 0,
+  Terminate_TerminateKeys_softShutdown = 1,
+  Terminate_TerminateKeys_emergencyStop = 2,
+  Terminate_TerminateKeys_Terminate_TerminateKeys_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
+  Terminate_TerminateKeys_Terminate_TerminateKeys_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
+};
+bool Terminate_TerminateKeys_IsValid(int value);
+const Terminate_TerminateKeys Terminate_TerminateKeys_TerminateKeys_MIN = Terminate_TerminateKeys_selfTerminate;
+const Terminate_TerminateKeys Terminate_TerminateKeys_TerminateKeys_MAX = Terminate_TerminateKeys_emergencyStop;
+const int Terminate_TerminateKeys_TerminateKeys_ARRAYSIZE = Terminate_TerminateKeys_TerminateKeys_MAX + 1;
+
+const ::google::protobuf::EnumDescriptor* Terminate_TerminateKeys_descriptor();
+inline const ::std::string& Terminate_TerminateKeys_Name(Terminate_TerminateKeys value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    Terminate_TerminateKeys_descriptor(), value);
+}
+inline bool Terminate_TerminateKeys_Parse(
+    const ::std::string& name, Terminate_TerminateKeys* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<Terminate_TerminateKeys>(
+    Terminate_TerminateKeys_descriptor(), name, value);
 }
 enum ConfigData_ToggleKeys {
   ConfigData_ToggleKeys_toggleAccel = 0,
@@ -238,8 +256,6 @@ class GenericMessage : public ::google::protobuf::Message /* @@protoc_insertion_
     GenericMessage_MsgType_HEARTBEAT;
   static const MsgType TERMINATE =
     GenericMessage_MsgType_TERMINATE;
-  static const MsgType UPDATE_PARAM =
-    GenericMessage_MsgType_UPDATE_PARAM;
   static const MsgType CONFIG_DATA =
     GenericMessage_MsgType_CONFIG_DATA;
   static const MsgType MOVE_CAMERA =
@@ -306,82 +322,73 @@ class GenericMessage : public ::google::protobuf::Message /* @@protoc_insertion_
   ::T7::Terminate* release_terminate();
   void set_allocated_terminate(::T7::Terminate* terminate);
 
-  // .T7.UpdateParams updateparams = 6;
-  bool has_updateparams() const;
-  void clear_updateparams();
-  static const int kUpdateparamsFieldNumber = 6;
-  const ::T7::UpdateParams& updateparams() const;
-  ::T7::UpdateParams* mutable_updateparams();
-  ::T7::UpdateParams* release_updateparams();
-  void set_allocated_updateparams(::T7::UpdateParams* updateparams);
-
-  // .T7.ConfigData configdata = 7;
+  // .T7.ConfigData configdata = 6;
   bool has_configdata() const;
   void clear_configdata();
-  static const int kConfigdataFieldNumber = 7;
+  static const int kConfigdataFieldNumber = 6;
   const ::T7::ConfigData& configdata() const;
   ::T7::ConfigData* mutable_configdata();
   ::T7::ConfigData* release_configdata();
   void set_allocated_configdata(::T7::ConfigData* configdata);
 
-  // .T7.MoveCamera movecamera = 8;
+  // .T7.MoveCamera movecamera = 7;
   bool has_movecamera() const;
   void clear_movecamera();
-  static const int kMovecameraFieldNumber = 8;
+  static const int kMovecameraFieldNumber = 7;
   const ::T7::MoveCamera& movecamera() const;
   ::T7::MoveCamera* mutable_movecamera();
   ::T7::MoveCamera* release_movecamera();
   void set_allocated_movecamera(::T7::MoveCamera* movecamera);
 
-  // .T7.Accel accel = 9;
+  // .T7.Accel accel = 8;
   bool has_accel() const;
   void clear_accel();
-  static const int kAccelFieldNumber = 9;
+  static const int kAccelFieldNumber = 8;
   const ::T7::Accel& accel() const;
   ::T7::Accel* mutable_accel();
   ::T7::Accel* release_accel();
   void set_allocated_accel(::T7::Accel* accel);
 
-  // .T7.Gyro gyro = 10;
+  // .T7.Gyro gyro = 9;
   bool has_gyro() const;
   void clear_gyro();
-  static const int kGyroFieldNumber = 10;
+  static const int kGyroFieldNumber = 9;
   const ::T7::Gyro& gyro() const;
   ::T7::Gyro* mutable_gyro();
   ::T7::Gyro* release_gyro();
   void set_allocated_gyro(::T7::Gyro* gyro);
 
-  // .T7.Altitude altitude = 11;
+  // .T7.Altitude altitude = 10;
   bool has_altitude() const;
   void clear_altitude();
-  static const int kAltitudeFieldNumber = 11;
+  static const int kAltitudeFieldNumber = 10;
   const ::T7::Altitude& altitude() const;
   ::T7::Altitude* mutable_altitude();
   ::T7::Altitude* release_altitude();
   void set_allocated_altitude(::T7::Altitude* altitude);
 
-  // .T7.Attitude attitude = 12;
+  // .T7.Attitude attitude = 11;
   bool has_attitude() const;
   void clear_attitude();
-  static const int kAttitudeFieldNumber = 12;
+  static const int kAttitudeFieldNumber = 11;
   const ::T7::Attitude& attitude() const;
   ::T7::Attitude* mutable_attitude();
   ::T7::Attitude* release_attitude();
   void set_allocated_attitude(::T7::Attitude* attitude);
 
-  // .T7.Temp temp = 13;
+  // .T7.Temp temp = 12;
   bool has_temp() const;
   void clear_temp();
-  static const int kTempFieldNumber = 13;
+  static const int kTempFieldNumber = 12;
   const ::T7::Temp& temp() const;
   ::T7::Temp* mutable_temp();
   ::T7::Temp* release_temp();
   void set_allocated_temp(::T7::Temp* temp);
 
-  // .T7.Battery bat = 14;
+  // .T7.Battery bat = 13;
   bool has_bat() const;
   void clear_bat();
-  static const int kBatFieldNumber = 14;
+  static const int kBatFieldNumber = 13;
   const ::T7::Battery& bat() const;
   ::T7::Battery* mutable_bat();
   ::T7::Battery* release_bat();
@@ -406,7 +413,6 @@ class GenericMessage : public ::google::protobuf::Message /* @@protoc_insertion_
   ::T7::Response* response_;
   ::T7::HeartBeat* heartbeat_;
   ::T7::Terminate* terminate_;
-  ::T7::UpdateParams* updateparams_;
   ::T7::ConfigData* configdata_;
   ::T7::MoveCamera* movecamera_;
   ::T7::Accel* accel_;
@@ -653,102 +659,47 @@ class Terminate : public ::google::protobuf::Message /* @@protoc_insertion_point
 
   // nested types ----------------------------------------------------
 
+  typedef Terminate_TerminateKeys TerminateKeys;
+  static const TerminateKeys selfTerminate =
+    Terminate_TerminateKeys_selfTerminate;
+  static const TerminateKeys softShutdown =
+    Terminate_TerminateKeys_softShutdown;
+  static const TerminateKeys emergencyStop =
+    Terminate_TerminateKeys_emergencyStop;
+  static inline bool TerminateKeys_IsValid(int value) {
+    return Terminate_TerminateKeys_IsValid(value);
+  }
+  static const TerminateKeys TerminateKeys_MIN =
+    Terminate_TerminateKeys_TerminateKeys_MIN;
+  static const TerminateKeys TerminateKeys_MAX =
+    Terminate_TerminateKeys_TerminateKeys_MAX;
+  static const int TerminateKeys_ARRAYSIZE =
+    Terminate_TerminateKeys_TerminateKeys_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor*
+  TerminateKeys_descriptor() {
+    return Terminate_TerminateKeys_descriptor();
+  }
+  static inline const ::std::string& TerminateKeys_Name(TerminateKeys value) {
+    return Terminate_TerminateKeys_Name(value);
+  }
+  static inline bool TerminateKeys_Parse(const ::std::string& name,
+      TerminateKeys* value) {
+    return Terminate_TerminateKeys_Parse(name, value);
+  }
+
   // accessors -------------------------------------------------------
 
-  // bool terminate = 1;
-  void clear_terminate();
-  static const int kTerminateFieldNumber = 1;
-  bool terminate() const;
-  void set_terminate(bool value);
+  // int32 terminateKey = 1;
+  void clear_terminatekey();
+  static const int kTerminateKeyFieldNumber = 1;
+  ::google::protobuf::int32 terminatekey() const;
+  void set_terminatekey(::google::protobuf::int32 value);
 
   // @@protoc_insertion_point(class_scope:T7.Terminate)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  bool terminate_;
-  mutable int _cached_size_;
-  friend struct protobuf_T7Messages_2eproto::TableStruct;
-};
-// -------------------------------------------------------------------
-
-class UpdateParams : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:T7.UpdateParams) */ {
- public:
-  UpdateParams();
-  virtual ~UpdateParams();
-
-  UpdateParams(const UpdateParams& from);
-
-  inline UpdateParams& operator=(const UpdateParams& from) {
-    CopyFrom(from);
-    return *this;
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor();
-  static const UpdateParams& default_instance();
-
-  static inline const UpdateParams* internal_default_instance() {
-    return reinterpret_cast<const UpdateParams*>(
-               &_UpdateParams_default_instance_);
-  }
-
-  void Swap(UpdateParams* other);
-
-  // implements Message ----------------------------------------------
-
-  inline UpdateParams* New() const PROTOBUF_FINAL { return New(NULL); }
-
-  UpdateParams* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
-  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
-  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
-  void CopyFrom(const UpdateParams& from);
-  void MergeFrom(const UpdateParams& from);
-  void Clear() PROTOBUF_FINAL;
-  bool IsInitialized() const PROTOBUF_FINAL;
-
-  size_t ByteSizeLong() const PROTOBUF_FINAL;
-  bool MergePartialFromCodedStream(
-      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
-  void SerializeWithCachedSizes(
-      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
-  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
-      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output)
-      const PROTOBUF_FINAL {
-    return InternalSerializeWithCachedSizesToArray(
-        ::google::protobuf::io::CodedOutputStream::IsDefaultSerializationDeterministic(), output);
-  }
-  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const PROTOBUF_FINAL;
-  void InternalSwap(UpdateParams* other);
-  private:
-  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
-    return NULL;
-  }
-  inline void* MaybeArenaPtr() const {
-    return NULL;
-  }
-  public:
-
-  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  // bool tbd = 1;
-  void clear_tbd();
-  static const int kTbdFieldNumber = 1;
-  bool tbd() const;
-  void set_tbd(bool value);
-
-  // @@protoc_insertion_point(class_scope:T7.UpdateParams)
- private:
-
-  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  bool tbd_;
+  ::google::protobuf::int32 terminatekey_;
   mutable int _cached_size_;
   friend struct protobuf_T7Messages_2eproto::TableStruct;
 };
@@ -1425,15 +1376,9 @@ class Temp : public ::google::protobuf::Message /* @@protoc_insertion_point(clas
 
   // accessors -------------------------------------------------------
 
-  // double time = 1;
-  void clear_time();
-  static const int kTimeFieldNumber = 1;
-  double time() const;
-  void set_time(double value);
-
-  // double temp = 2;
+  // double temp = 1;
   void clear_temp();
-  static const int kTempFieldNumber = 2;
+  static const int kTempFieldNumber = 1;
   double temp() const;
   void set_temp(double value);
 
@@ -1441,7 +1386,6 @@ class Temp : public ::google::protobuf::Message /* @@protoc_insertion_point(clas
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  double time_;
   double temp_;
   mutable int _cached_size_;
   friend struct protobuf_T7Messages_2eproto::TableStruct;
@@ -1515,15 +1459,9 @@ class Battery : public ::google::protobuf::Message /* @@protoc_insertion_point(c
 
   // accessors -------------------------------------------------------
 
-  // double time = 1;
-  void clear_time();
-  static const int kTimeFieldNumber = 1;
-  double time() const;
-  void set_time(double value);
-
-  // double percent = 2;
+  // double percent = 1;
   void clear_percent();
-  static const int kPercentFieldNumber = 2;
+  static const int kPercentFieldNumber = 1;
   double percent() const;
   void set_percent(double value);
 
@@ -1531,7 +1469,6 @@ class Battery : public ::google::protobuf::Message /* @@protoc_insertion_point(c
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  double time_;
   double percent_;
   mutable int _cached_size_;
   friend struct protobuf_T7Messages_2eproto::TableStruct;
@@ -1689,46 +1626,7 @@ inline void GenericMessage::set_allocated_terminate(::T7::Terminate* terminate) 
   // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.terminate)
 }
 
-// .T7.UpdateParams updateparams = 6;
-inline bool GenericMessage::has_updateparams() const {
-  return this != internal_default_instance() && updateparams_ != NULL;
-}
-inline void GenericMessage::clear_updateparams() {
-  if (GetArenaNoVirtual() == NULL && updateparams_ != NULL) delete updateparams_;
-  updateparams_ = NULL;
-}
-inline const ::T7::UpdateParams& GenericMessage::updateparams() const {
-  // @@protoc_insertion_point(field_get:T7.GenericMessage.updateparams)
-  return updateparams_ != NULL ? *updateparams_
-                         : *::T7::UpdateParams::internal_default_instance();
-}
-inline ::T7::UpdateParams* GenericMessage::mutable_updateparams() {
-  
-  if (updateparams_ == NULL) {
-    updateparams_ = new ::T7::UpdateParams;
-  }
-  // @@protoc_insertion_point(field_mutable:T7.GenericMessage.updateparams)
-  return updateparams_;
-}
-inline ::T7::UpdateParams* GenericMessage::release_updateparams() {
-  // @@protoc_insertion_point(field_release:T7.GenericMessage.updateparams)
-  
-  ::T7::UpdateParams* temp = updateparams_;
-  updateparams_ = NULL;
-  return temp;
-}
-inline void GenericMessage::set_allocated_updateparams(::T7::UpdateParams* updateparams) {
-  delete updateparams_;
-  updateparams_ = updateparams;
-  if (updateparams) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.updateparams)
-}
-
-// .T7.ConfigData configdata = 7;
+// .T7.ConfigData configdata = 6;
 inline bool GenericMessage::has_configdata() const {
   return this != internal_default_instance() && configdata_ != NULL;
 }
@@ -1767,7 +1665,7 @@ inline void GenericMessage::set_allocated_configdata(::T7::ConfigData* configdat
   // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.configdata)
 }
 
-// .T7.MoveCamera movecamera = 8;
+// .T7.MoveCamera movecamera = 7;
 inline bool GenericMessage::has_movecamera() const {
   return this != internal_default_instance() && movecamera_ != NULL;
 }
@@ -1806,7 +1704,7 @@ inline void GenericMessage::set_allocated_movecamera(::T7::MoveCamera* movecamer
   // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.movecamera)
 }
 
-// .T7.Accel accel = 9;
+// .T7.Accel accel = 8;
 inline bool GenericMessage::has_accel() const {
   return this != internal_default_instance() && accel_ != NULL;
 }
@@ -1845,7 +1743,7 @@ inline void GenericMessage::set_allocated_accel(::T7::Accel* accel) {
   // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.accel)
 }
 
-// .T7.Gyro gyro = 10;
+// .T7.Gyro gyro = 9;
 inline bool GenericMessage::has_gyro() const {
   return this != internal_default_instance() && gyro_ != NULL;
 }
@@ -1884,7 +1782,7 @@ inline void GenericMessage::set_allocated_gyro(::T7::Gyro* gyro) {
   // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.gyro)
 }
 
-// .T7.Altitude altitude = 11;
+// .T7.Altitude altitude = 10;
 inline bool GenericMessage::has_altitude() const {
   return this != internal_default_instance() && altitude_ != NULL;
 }
@@ -1923,7 +1821,7 @@ inline void GenericMessage::set_allocated_altitude(::T7::Altitude* altitude) {
   // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.altitude)
 }
 
-// .T7.Attitude attitude = 12;
+// .T7.Attitude attitude = 11;
 inline bool GenericMessage::has_attitude() const {
   return this != internal_default_instance() && attitude_ != NULL;
 }
@@ -1962,7 +1860,7 @@ inline void GenericMessage::set_allocated_attitude(::T7::Attitude* attitude) {
   // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.attitude)
 }
 
-// .T7.Temp temp = 13;
+// .T7.Temp temp = 12;
 inline bool GenericMessage::has_temp() const {
   return this != internal_default_instance() && temp_ != NULL;
 }
@@ -2001,7 +1899,7 @@ inline void GenericMessage::set_allocated_temp(::T7::Temp* temp) {
   // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.temp)
 }
 
-// .T7.Battery bat = 14;
+// .T7.Battery bat = 13;
 inline bool GenericMessage::has_bat() const {
   return this != internal_default_instance() && bat_ != NULL;
 }
@@ -2080,36 +1978,18 @@ inline void HeartBeat::set_alive(bool value) {
 
 // Terminate
 
-// bool terminate = 1;
-inline void Terminate::clear_terminate() {
-  terminate_ = false;
+// int32 terminateKey = 1;
+inline void Terminate::clear_terminatekey() {
+  terminatekey_ = 0;
 }
-inline bool Terminate::terminate() const {
-  // @@protoc_insertion_point(field_get:T7.Terminate.terminate)
-  return terminate_;
+inline ::google::protobuf::int32 Terminate::terminatekey() const {
+  // @@protoc_insertion_point(field_get:T7.Terminate.terminateKey)
+  return terminatekey_;
 }
-inline void Terminate::set_terminate(bool value) {
+inline void Terminate::set_terminatekey(::google::protobuf::int32 value) {
   
-  terminate_ = value;
-  // @@protoc_insertion_point(field_set:T7.Terminate.terminate)
-}
-
-// -------------------------------------------------------------------
-
-// UpdateParams
-
-// bool tbd = 1;
-inline void UpdateParams::clear_tbd() {
-  tbd_ = false;
-}
-inline bool UpdateParams::tbd() const {
-  // @@protoc_insertion_point(field_get:T7.UpdateParams.tbd)
-  return tbd_;
-}
-inline void UpdateParams::set_tbd(bool value) {
-  
-  tbd_ = value;
-  // @@protoc_insertion_point(field_set:T7.UpdateParams.tbd)
+  terminatekey_ = value;
+  // @@protoc_insertion_point(field_set:T7.Terminate.terminateKey)
 }
 
 // -------------------------------------------------------------------
@@ -2308,21 +2188,7 @@ inline void Attitude::set_yaw(double value) {
 
 // Temp
 
-// double time = 1;
-inline void Temp::clear_time() {
-  time_ = 0;
-}
-inline double Temp::time() const {
-  // @@protoc_insertion_point(field_get:T7.Temp.time)
-  return time_;
-}
-inline void Temp::set_time(double value) {
-  
-  time_ = value;
-  // @@protoc_insertion_point(field_set:T7.Temp.time)
-}
-
-// double temp = 2;
+// double temp = 1;
 inline void Temp::clear_temp() {
   temp_ = 0;
 }
@@ -2340,21 +2206,7 @@ inline void Temp::set_temp(double value) {
 
 // Battery
 
-// double time = 1;
-inline void Battery::clear_time() {
-  time_ = 0;
-}
-inline double Battery::time() const {
-  // @@protoc_insertion_point(field_get:T7.Battery.time)
-  return time_;
-}
-inline void Battery::set_time(double value) {
-  
-  time_ = value;
-  // @@protoc_insertion_point(field_set:T7.Battery.time)
-}
-
-// double percent = 2;
+// double percent = 1;
 inline void Battery::clear_percent() {
   percent_ = 0;
 }
@@ -2391,8 +2243,6 @@ inline void Battery::set_percent(double value) {
 
 // -------------------------------------------------------------------
 
-// -------------------------------------------------------------------
-
 
 // @@protoc_insertion_point(namespace_scope)
 
@@ -2407,6 +2257,11 @@ template <> struct is_proto_enum< ::T7::GenericMessage_MsgType> : ::google::prot
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::T7::GenericMessage_MsgType>() {
   return ::T7::GenericMessage_MsgType_descriptor();
+}
+template <> struct is_proto_enum< ::T7::Terminate_TerminateKeys> : ::google::protobuf::internal::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::T7::Terminate_TerminateKeys>() {
+  return ::T7::Terminate_TerminateKeys_descriptor();
 }
 template <> struct is_proto_enum< ::T7::ConfigData_ToggleKeys> : ::google::protobuf::internal::true_type {};
 template <>

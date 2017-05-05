@@ -12,6 +12,10 @@
 // ---------------------------------------------------------- //
 // Change Log:
 // 22 April 2017 - att - Birthday! <(^.^)>
+// 05 May 2017   - att - Added Terminate Flags for soft shudown 
+//		         and emergency stops. Also - removed 
+//			 unnecessary updateparams. Also removed
+//			 the unnecessary times in temp and bat
 // ---------------------------------------------------------- //
 
 syntax = "proto3"; // Newest version of the protocol language
@@ -33,17 +37,16 @@ message GenericMessage {
 	Terminate terminate = 5;
 	
 	// HSS -> UAV //
-	UpdateParams updateparams = 6;
-	ConfigData configdata = 7;
-	MoveCamera movecamera = 8;
+	ConfigData configdata = 6;
+	MoveCamera movecamera = 7;
 
 	// UAV->HSS //
-	Accel accel = 9;
-	Gyro gyro = 10;
-	Altitude altitude = 11;
-	Attitude attitude = 12;
-	Temp temp = 13;
-	Battery bat = 14;
+	Accel accel = 8;
+	Gyro gyro = 9;
+	Altitude altitude = 10;
+	Attitude attitude = 11;
+	Temp temp = 12;
+	Battery bat = 13;
 
 	enum MsgType {
 		// INFO MESSAGE //
@@ -52,7 +55,6 @@ message GenericMessage {
 		TERMINATE = 2;
 
 		// HSS -> UAV //
-		UPDATE_PARAM = 100;
 		CONFIG_DATA = 101;
 		MOVE_CAMERA = 102;
 
@@ -74,6 +76,7 @@ message GenericMessage {
 
 // Response //
 // Basic TCP response to a sucesfully recieved message
+// THIS WILL NOT HAVE ITS OWN THREAD.
 message Response {
 	 bool roger_that = 1;
 }
@@ -86,27 +89,25 @@ message HeartBeat {
 }
 
 // Terminate //
-// This message will be the message that the UAV will recieve to // self terminate
+// This message will be the message that the UAV will recieve to self terminate or 
+// Send the UAV into a softshutdown or emergency stop
 message Terminate  {
-	 bool terminate = 1; 
+	int32 terminateKey = 1;
+	
+	enum TerminateKeys{
+	     selfTerminate = 0;
+             softShutdown = 1;
+	     emergencyStop= 2;
+	} 
 }
 
 // ---------------------------------------------------------- //
 // HSS -> UAV Messages
 // ---------------------------------------------------------- //
-// UpdateParams //
-// This message is to satisfy the requirement of allowing the 
-// operator the ability to modify parameters in real time
-
-// TBD - 22 April 2017 - att: Figure out what is needed.
-message UpdateParams {
-	 bool tbd = 1;
-}
 
 // ConfigData //
 // This message is to satisfy the requirement of allowing the
 // operator to configure the data that they recieve in real time
-  
 message ConfigData {
 	int32 configKey = 1;
 	
@@ -171,13 +172,11 @@ message Attitude {
 // Temp //
 // This message describes the air temperature message.
 message Temp {	
-	 double time = 1;	//   [s]
-	 double temp = 2;	//   [c]
+	 double temp = 1;	//   [c]
 }
 
 // Battery //
 // This message defines the battery message.
 message Battery {
-	 double time = 1;		//   [s]
-	 double percent = 2;	//   [%]
+	 double percent = 1;	//   [%]
 }

@@ -40,7 +40,21 @@ public:
     //                 smallFailure: the section of code probably hiccuped. Use default settings or backup values.  Similar to isolated, but less sever.
     //                    noFailure: Good to go!
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
-    enum failureCodes {critFail=-99,seriousFail,moderateFailure,issolatedFailure,smallFailure,UNK_SOCK, SERVER_CONNECT_FAIL, SERVER_ACCEPT_FAIL, noFailure=0}; 
+    enum failureCodes {
+                       // Generic Failures
+                       critFail=-99,
+                       seriousFail,
+                       moderateFailure,
+                       issolatedFailure,
+                       smallFailure,
+                       // Socket Failures
+                       UNK_SOCK, 
+                       SERVER_CONNECT_FAIL, 
+                       SERVER_ACCEPT_FAIL, 
+                       //Successes
+                       noFailure=0,
+                       //Socket Success
+                       socketConnected}; 
     
     int SystemHealth = failureCodes::noFailure;
     bool timeToDie = false;

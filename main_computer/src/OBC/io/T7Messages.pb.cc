@@ -26,8 +26,6 @@ class HeartBeatDefaultTypeInternal : public ::google::protobuf::internal::Explic
 } _HeartBeat_default_instance_;
 class TerminateDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<Terminate> {
 } _Terminate_default_instance_;
-class UpdateParamsDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<UpdateParams> {
-} _UpdateParams_default_instance_;
 class ConfigDataDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<ConfigData> {
 } _ConfigData_default_instance_;
 class MoveCameraDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<MoveCamera> {
@@ -50,8 +48,8 @@ namespace protobuf_T7Messages_2eproto {
 
 namespace {
 
-::google::protobuf::Metadata file_level_metadata[13];
-const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[3];
+::google::protobuf::Metadata file_level_metadata[12];
+const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[4];
 
 }  // namespace
 
@@ -65,7 +63,6 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericMessage, response_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericMessage, heartbeat_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericMessage, terminate_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericMessage, updateparams_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericMessage, configdata_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericMessage, movecamera_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericMessage, accel_),
@@ -88,12 +85,7 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Terminate, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Terminate, terminate_),
-  ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(UpdateParams, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(UpdateParams, tbd_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Terminate, terminatekey_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ConfigData, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -134,30 +126,27 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Temp, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Temp, time_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Temp, temp_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Battery, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Battery, time_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Battery, percent_),
 };
 
 static const ::google::protobuf::internal::MigrationSchema schemas[] = {
   { 0, -1, sizeof(GenericMessage)},
-  { 18, -1, sizeof(Response)},
-  { 23, -1, sizeof(HeartBeat)},
-  { 28, -1, sizeof(Terminate)},
-  { 33, -1, sizeof(UpdateParams)},
-  { 38, -1, sizeof(ConfigData)},
-  { 43, -1, sizeof(MoveCamera)},
-  { 48, -1, sizeof(Accel)},
-  { 55, -1, sizeof(Gyro)},
-  { 62, -1, sizeof(Altitude)},
-  { 67, -1, sizeof(Attitude)},
-  { 74, -1, sizeof(Temp)},
-  { 80, -1, sizeof(Battery)},
+  { 17, -1, sizeof(Response)},
+  { 22, -1, sizeof(HeartBeat)},
+  { 27, -1, sizeof(Terminate)},
+  { 32, -1, sizeof(ConfigData)},
+  { 37, -1, sizeof(MoveCamera)},
+  { 42, -1, sizeof(Accel)},
+  { 49, -1, sizeof(Gyro)},
+  { 56, -1, sizeof(Altitude)},
+  { 61, -1, sizeof(Attitude)},
+  { 68, -1, sizeof(Temp)},
+  { 73, -1, sizeof(Battery)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -165,7 +154,6 @@ static ::google::protobuf::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::google::protobuf::Message*>(&_Response_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_HeartBeat_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_Terminate_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&_UpdateParams_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_ConfigData_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_MoveCamera_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_Accel_default_instance_),
@@ -194,7 +182,7 @@ void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 13);
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 12);
 }
 
 }  // namespace
@@ -208,24 +196,22 @@ void TableStruct::Shutdown() {
   delete file_level_metadata[2].reflection;
   _Terminate_default_instance_.Shutdown();
   delete file_level_metadata[3].reflection;
-  _UpdateParams_default_instance_.Shutdown();
-  delete file_level_metadata[4].reflection;
   _ConfigData_default_instance_.Shutdown();
-  delete file_level_metadata[5].reflection;
+  delete file_level_metadata[4].reflection;
   _MoveCamera_default_instance_.Shutdown();
-  delete file_level_metadata[6].reflection;
+  delete file_level_metadata[5].reflection;
   _Accel_default_instance_.Shutdown();
-  delete file_level_metadata[7].reflection;
+  delete file_level_metadata[6].reflection;
   _Gyro_default_instance_.Shutdown();
-  delete file_level_metadata[8].reflection;
+  delete file_level_metadata[7].reflection;
   _Altitude_default_instance_.Shutdown();
-  delete file_level_metadata[9].reflection;
+  delete file_level_metadata[8].reflection;
   _Attitude_default_instance_.Shutdown();
-  delete file_level_metadata[10].reflection;
+  delete file_level_metadata[9].reflection;
   _Temp_default_instance_.Shutdown();
-  delete file_level_metadata[11].reflection;
+  delete file_level_metadata[10].reflection;
   _Battery_default_instance_.Shutdown();
-  delete file_level_metadata[12].reflection;
+  delete file_level_metadata[11].reflection;
 }
 
 void TableStruct::InitDefaultsImpl() {
@@ -236,7 +222,6 @@ void TableStruct::InitDefaultsImpl() {
   _Response_default_instance_.DefaultConstruct();
   _HeartBeat_default_instance_.DefaultConstruct();
   _Terminate_default_instance_.DefaultConstruct();
-  _UpdateParams_default_instance_.DefaultConstruct();
   _ConfigData_default_instance_.DefaultConstruct();
   _MoveCamera_default_instance_.DefaultConstruct();
   _Accel_default_instance_.DefaultConstruct();
@@ -251,8 +236,6 @@ void TableStruct::InitDefaultsImpl() {
       ::T7::HeartBeat::internal_default_instance());
   _GenericMessage_default_instance_.get_mutable()->terminate_ = const_cast< ::T7::Terminate*>(
       ::T7::Terminate::internal_default_instance());
-  _GenericMessage_default_instance_.get_mutable()->updateparams_ = const_cast< ::T7::UpdateParams*>(
-      ::T7::UpdateParams::internal_default_instance());
   _GenericMessage_default_instance_.get_mutable()->configdata_ = const_cast< ::T7::ConfigData*>(
       ::T7::ConfigData::internal_default_instance());
   _GenericMessage_default_instance_.get_mutable()->movecamera_ = const_cast< ::T7::MoveCamera*>(
@@ -278,40 +261,39 @@ void InitDefaults() {
 void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] = {
-      "\n\020T7Messages.proto\022\002T7\"\335\004\n\016GenericMessag"
+      "\n\020T7Messages.proto\022\002T7\"\243\004\n\016GenericMessag"
       "e\022\017\n\007msgtype\030\001 \001(\005\022\014\n\004time\030\002 \001(\001\022\036\n\010resp"
       "onse\030\003 \001(\0132\014.T7.Response\022 \n\theartbeat\030\004 "
       "\001(\0132\r.T7.HeartBeat\022 \n\tterminate\030\005 \001(\0132\r."
-      "T7.Terminate\022&\n\014updateparams\030\006 \001(\0132\020.T7."
-      "UpdateParams\022\"\n\nconfigdata\030\007 \001(\0132\016.T7.Co"
-      "nfigData\022\"\n\nmovecamera\030\010 \001(\0132\016.T7.MoveCa"
-      "mera\022\030\n\005accel\030\t \001(\0132\t.T7.Accel\022\026\n\004gyro\030\n"
-      " \001(\0132\010.T7.Gyro\022\036\n\010altitude\030\013 \001(\0132\014.T7.Al"
-      "titude\022\036\n\010attitude\030\014 \001(\0132\014.T7.Attitude\022\026"
-      "\n\004temp\030\r \001(\0132\010.T7.Temp\022\030\n\003bat\030\016 \001(\0132\013.T7"
-      ".Battery\"\263\001\n\007MsgType\022\014\n\010RESPONSE\020\000\022\r\n\tHE"
-      "ARTBEAT\020\001\022\r\n\tTERMINATE\020\002\022\020\n\014UPDATE_PARAM"
-      "\020d\022\017\n\013CONFIG_DATA\020e\022\017\n\013MOVE_CAMERA\020f\022\n\n\005"
-      "ACCEL\020\310\001\022\t\n\004GYRO\020\311\001\022\r\n\010ALTITUDE\020\312\001\022\r\n\010AT"
-      "TITUDE\020\313\001\022\t\n\004TEMP\020\314\001\022\010\n\003BAT\020\315\001\"\036\n\010Respon"
-      "se\022\022\n\nroger_that\030\001 \001(\010\"\032\n\tHeartBeat\022\r\n\005a"
-      "live\030\001 \001(\010\"\036\n\tTerminate\022\021\n\tterminate\030\001 \001"
-      "(\010\"\033\n\014UpdateParams\022\013\n\003tbd\030\001 \001(\010\"\225\001\n\nConf"
-      "igData\022\021\n\tconfigKey\030\001 \001(\005\"t\n\nToggleKeys\022"
-      "\017\n\013toggleAccel\020\000\022\016\n\ntoggleGyro\020\001\022\022\n\016togg"
-      "leAltitude\020\002\022\022\n\016toggleAttitude\020\003\022\016\n\ntogg"
-      "leTemp\020\004\022\r\n\ttoggleBat\020\005\"R\n\nMoveCamera\022\020\n"
-      "\010arrowKey\030\001 \001(\005\"2\n\tArrowKeys\022\006\n\002UP\020\000\022\t\n\005"
-      "RIGHT\020\001\022\010\n\004DOWN\020\002\022\010\n\004LEFT\020\003\"(\n\005Accel\022\t\n\001"
-      "x\030\001 \001(\001\022\t\n\001y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\"\'\n\004Gyro\022\t\n"
-      "\001x\030\001 \001(\001\022\t\n\001y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\"\027\n\010Altitu"
-      "de\022\013\n\003alt\030\001 \001(\001\"4\n\010Attitude\022\014\n\004roll\030\001 \001("
-      "\001\022\r\n\005pitch\030\002 \001(\001\022\013\n\003yaw\030\003 \001(\001\"\"\n\004Temp\022\014\n"
-      "\004time\030\001 \001(\001\022\014\n\004temp\030\002 \001(\001\"(\n\007Battery\022\014\n\004"
-      "time\030\001 \001(\001\022\017\n\007percent\030\002 \001(\001b\006proto3"
+      "T7.Terminate\022\"\n\nconfigdata\030\006 \001(\0132\016.T7.Co"
+      "nfigData\022\"\n\nmovecamera\030\007 \001(\0132\016.T7.MoveCa"
+      "mera\022\030\n\005accel\030\010 \001(\0132\t.T7.Accel\022\026\n\004gyro\030\t"
+      " \001(\0132\010.T7.Gyro\022\036\n\010altitude\030\n \001(\0132\014.T7.Al"
+      "titude\022\036\n\010attitude\030\013 \001(\0132\014.T7.Attitude\022\026"
+      "\n\004temp\030\014 \001(\0132\010.T7.Temp\022\030\n\003bat\030\r \001(\0132\013.T7"
+      ".Battery\"\241\001\n\007MsgType\022\014\n\010RESPONSE\020\000\022\r\n\tHE"
+      "ARTBEAT\020\001\022\r\n\tTERMINATE\020\002\022\017\n\013CONFIG_DATA\020"
+      "e\022\017\n\013MOVE_CAMERA\020f\022\n\n\005ACCEL\020\310\001\022\t\n\004GYRO\020\311"
+      "\001\022\r\n\010ALTITUDE\020\312\001\022\r\n\010ATTITUDE\020\313\001\022\t\n\004TEMP\020"
+      "\314\001\022\010\n\003BAT\020\315\001\"\036\n\010Response\022\022\n\nroger_that\030\001"
+      " \001(\010\"\032\n\tHeartBeat\022\r\n\005alive\030\001 \001(\010\"j\n\tTerm"
+      "inate\022\024\n\014terminateKey\030\001 \001(\005\"G\n\rTerminate"
+      "Keys\022\021\n\rselfTerminate\020\000\022\020\n\014softShutdown\020"
+      "\001\022\021\n\remergencyStop\020\002\"\225\001\n\nConfigData\022\021\n\tc"
+      "onfigKey\030\001 \001(\005\"t\n\nToggleKeys\022\017\n\013toggleAc"
+      "cel\020\000\022\016\n\ntoggleGyro\020\001\022\022\n\016toggleAltitude\020"
+      "\002\022\022\n\016toggleAttitude\020\003\022\016\n\ntoggleTemp\020\004\022\r\n"
+      "\ttoggleBat\020\005\"R\n\nMoveCamera\022\020\n\010arrowKey\030\001"
+      " \001(\005\"2\n\tArrowKeys\022\006\n\002UP\020\000\022\t\n\005RIGHT\020\001\022\010\n\004"
+      "DOWN\020\002\022\010\n\004LEFT\020\003\"(\n\005Accel\022\t\n\001x\030\001 \001(\001\022\t\n\001"
+      "y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\"\'\n\004Gyro\022\t\n\001x\030\001 \001(\001\022\t\n"
+      "\001y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\"\027\n\010Altitude\022\013\n\003alt\030\001"
+      " \001(\001\"4\n\010Attitude\022\014\n\004roll\030\001 \001(\001\022\r\n\005pitch\030"
+      "\002 \001(\001\022\013\n\003yaw\030\003 \001(\001\"\024\n\004Temp\022\014\n\004temp\030\001 \001(\001"
+      "\"\032\n\007Battery\022\017\n\007percent\030\001 \001(\001b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 1235);
+      descriptor, 1196);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "T7Messages.proto", &protobuf_RegisterTypes);
   ::google::protobuf::internal::OnShutdown(&TableStruct::Shutdown);
@@ -339,7 +321,6 @@ bool GenericMessage_MsgType_IsValid(int value) {
     case 0:
     case 1:
     case 2:
-    case 100:
     case 101:
     case 102:
     case 200:
@@ -358,7 +339,6 @@ bool GenericMessage_MsgType_IsValid(int value) {
 const GenericMessage_MsgType GenericMessage::RESPONSE;
 const GenericMessage_MsgType GenericMessage::HEARTBEAT;
 const GenericMessage_MsgType GenericMessage::TERMINATE;
-const GenericMessage_MsgType GenericMessage::UPDATE_PARAM;
 const GenericMessage_MsgType GenericMessage::CONFIG_DATA;
 const GenericMessage_MsgType GenericMessage::MOVE_CAMERA;
 const GenericMessage_MsgType GenericMessage::ACCEL;
@@ -371,9 +351,32 @@ const GenericMessage_MsgType GenericMessage::MsgType_MIN;
 const GenericMessage_MsgType GenericMessage::MsgType_MAX;
 const int GenericMessage::MsgType_ARRAYSIZE;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
-const ::google::protobuf::EnumDescriptor* ConfigData_ToggleKeys_descriptor() {
+const ::google::protobuf::EnumDescriptor* Terminate_TerminateKeys_descriptor() {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
   return protobuf_T7Messages_2eproto::file_level_enum_descriptors[1];
+}
+bool Terminate_TerminateKeys_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+      return true;
+    default:
+      return false;
+  }
+}
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const Terminate_TerminateKeys Terminate::selfTerminate;
+const Terminate_TerminateKeys Terminate::softShutdown;
+const Terminate_TerminateKeys Terminate::emergencyStop;
+const Terminate_TerminateKeys Terminate::TerminateKeys_MIN;
+const Terminate_TerminateKeys Terminate::TerminateKeys_MAX;
+const int Terminate::TerminateKeys_ARRAYSIZE;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+const ::google::protobuf::EnumDescriptor* ConfigData_ToggleKeys_descriptor() {
+  protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_T7Messages_2eproto::file_level_enum_descriptors[2];
 }
 bool ConfigData_ToggleKeys_IsValid(int value) {
   switch (value) {
@@ -402,7 +405,7 @@ const int ConfigData::ToggleKeys_ARRAYSIZE;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 const ::google::protobuf::EnumDescriptor* MoveCamera_ArrowKeys_descriptor() {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_enum_descriptors[2];
+  return protobuf_T7Messages_2eproto::file_level_enum_descriptors[3];
 }
 bool MoveCamera_ArrowKeys_IsValid(int value) {
   switch (value) {
@@ -434,7 +437,6 @@ const int GenericMessage::kTimeFieldNumber;
 const int GenericMessage::kResponseFieldNumber;
 const int GenericMessage::kHeartbeatFieldNumber;
 const int GenericMessage::kTerminateFieldNumber;
-const int GenericMessage::kUpdateparamsFieldNumber;
 const int GenericMessage::kConfigdataFieldNumber;
 const int GenericMessage::kMovecameraFieldNumber;
 const int GenericMessage::kAccelFieldNumber;
@@ -472,11 +474,6 @@ GenericMessage::GenericMessage(const GenericMessage& from)
     terminate_ = new ::T7::Terminate(*from.terminate_);
   } else {
     terminate_ = NULL;
-  }
-  if (from.has_updateparams()) {
-    updateparams_ = new ::T7::UpdateParams(*from.updateparams_);
-  } else {
-    updateparams_ = NULL;
   }
   if (from.has_configdata()) {
     configdata_ = new ::T7::ConfigData(*from.configdata_);
@@ -546,9 +543,6 @@ void GenericMessage::SharedDtor() {
     delete terminate_;
   }
   if (this != internal_default_instance()) {
-    delete updateparams_;
-  }
-  if (this != internal_default_instance()) {
     delete configdata_;
   }
   if (this != internal_default_instance()) {
@@ -611,10 +605,6 @@ void GenericMessage::Clear() {
     delete terminate_;
   }
   terminate_ = NULL;
-  if (GetArenaNoVirtual() == NULL && updateparams_ != NULL) {
-    delete updateparams_;
-  }
-  updateparams_ = NULL;
   if (GetArenaNoVirtual() == NULL && configdata_ != NULL) {
     delete configdata_;
   }
@@ -725,22 +715,10 @@ bool GenericMessage::MergePartialFromCodedStream(
         break;
       }
 
-      // .T7.UpdateParams updateparams = 6;
+      // .T7.ConfigData configdata = 6;
       case 6: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(50u)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-               input, mutable_updateparams()));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      // .T7.ConfigData configdata = 7;
-      case 7: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(58u)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                input, mutable_configdata()));
         } else {
@@ -749,10 +727,10 @@ bool GenericMessage::MergePartialFromCodedStream(
         break;
       }
 
-      // .T7.MoveCamera movecamera = 8;
-      case 8: {
+      // .T7.MoveCamera movecamera = 7;
+      case 7: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(66u)) {
+            static_cast< ::google::protobuf::uint8>(58u)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                input, mutable_movecamera()));
         } else {
@@ -761,10 +739,10 @@ bool GenericMessage::MergePartialFromCodedStream(
         break;
       }
 
-      // .T7.Accel accel = 9;
-      case 9: {
+      // .T7.Accel accel = 8;
+      case 8: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(74u)) {
+            static_cast< ::google::protobuf::uint8>(66u)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                input, mutable_accel()));
         } else {
@@ -773,10 +751,10 @@ bool GenericMessage::MergePartialFromCodedStream(
         break;
       }
 
-      // .T7.Gyro gyro = 10;
-      case 10: {
+      // .T7.Gyro gyro = 9;
+      case 9: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(82u)) {
+            static_cast< ::google::protobuf::uint8>(74u)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                input, mutable_gyro()));
         } else {
@@ -785,10 +763,10 @@ bool GenericMessage::MergePartialFromCodedStream(
         break;
       }
 
-      // .T7.Altitude altitude = 11;
-      case 11: {
+      // .T7.Altitude altitude = 10;
+      case 10: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(90u)) {
+            static_cast< ::google::protobuf::uint8>(82u)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                input, mutable_altitude()));
         } else {
@@ -797,10 +775,10 @@ bool GenericMessage::MergePartialFromCodedStream(
         break;
       }
 
-      // .T7.Attitude attitude = 12;
-      case 12: {
+      // .T7.Attitude attitude = 11;
+      case 11: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(98u)) {
+            static_cast< ::google::protobuf::uint8>(90u)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                input, mutable_attitude()));
         } else {
@@ -809,10 +787,10 @@ bool GenericMessage::MergePartialFromCodedStream(
         break;
       }
 
-      // .T7.Temp temp = 13;
-      case 13: {
+      // .T7.Temp temp = 12;
+      case 12: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(106u)) {
+            static_cast< ::google::protobuf::uint8>(98u)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                input, mutable_temp()));
         } else {
@@ -821,10 +799,10 @@ bool GenericMessage::MergePartialFromCodedStream(
         break;
       }
 
-      // .T7.Battery bat = 14;
-      case 14: {
+      // .T7.Battery bat = 13;
+      case 13: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(114u)) {
+            static_cast< ::google::protobuf::uint8>(106u)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                input, mutable_bat()));
         } else {
@@ -885,58 +863,52 @@ void GenericMessage::SerializeWithCachedSizes(
       5, *this->terminate_, output);
   }
 
-  // .T7.UpdateParams updateparams = 6;
-  if (this->has_updateparams()) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      6, *this->updateparams_, output);
-  }
-
-  // .T7.ConfigData configdata = 7;
+  // .T7.ConfigData configdata = 6;
   if (this->has_configdata()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      7, *this->configdata_, output);
+      6, *this->configdata_, output);
   }
 
-  // .T7.MoveCamera movecamera = 8;
+  // .T7.MoveCamera movecamera = 7;
   if (this->has_movecamera()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      8, *this->movecamera_, output);
+      7, *this->movecamera_, output);
   }
 
-  // .T7.Accel accel = 9;
+  // .T7.Accel accel = 8;
   if (this->has_accel()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      9, *this->accel_, output);
+      8, *this->accel_, output);
   }
 
-  // .T7.Gyro gyro = 10;
+  // .T7.Gyro gyro = 9;
   if (this->has_gyro()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      10, *this->gyro_, output);
+      9, *this->gyro_, output);
   }
 
-  // .T7.Altitude altitude = 11;
+  // .T7.Altitude altitude = 10;
   if (this->has_altitude()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      11, *this->altitude_, output);
+      10, *this->altitude_, output);
   }
 
-  // .T7.Attitude attitude = 12;
+  // .T7.Attitude attitude = 11;
   if (this->has_attitude()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      12, *this->attitude_, output);
+      11, *this->attitude_, output);
   }
 
-  // .T7.Temp temp = 13;
+  // .T7.Temp temp = 12;
   if (this->has_temp()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      13, *this->temp_, output);
+      12, *this->temp_, output);
   }
 
-  // .T7.Battery bat = 14;
+  // .T7.Battery bat = 13;
   if (this->has_bat()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      14, *this->bat_, output);
+      13, *this->bat_, output);
   }
 
   // @@protoc_insertion_point(serialize_end:T7.GenericMessage)
@@ -977,67 +949,60 @@ void GenericMessage::SerializeWithCachedSizes(
         5, *this->terminate_, false, target);
   }
 
-  // .T7.UpdateParams updateparams = 6;
-  if (this->has_updateparams()) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageNoVirtualToArray(
-        6, *this->updateparams_, false, target);
-  }
-
-  // .T7.ConfigData configdata = 7;
+  // .T7.ConfigData configdata = 6;
   if (this->has_configdata()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
-        7, *this->configdata_, false, target);
+        6, *this->configdata_, false, target);
   }
 
-  // .T7.MoveCamera movecamera = 8;
+  // .T7.MoveCamera movecamera = 7;
   if (this->has_movecamera()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
-        8, *this->movecamera_, false, target);
+        7, *this->movecamera_, false, target);
   }
 
-  // .T7.Accel accel = 9;
+  // .T7.Accel accel = 8;
   if (this->has_accel()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
-        9, *this->accel_, false, target);
+        8, *this->accel_, false, target);
   }
 
-  // .T7.Gyro gyro = 10;
+  // .T7.Gyro gyro = 9;
   if (this->has_gyro()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
-        10, *this->gyro_, false, target);
+        9, *this->gyro_, false, target);
   }
 
-  // .T7.Altitude altitude = 11;
+  // .T7.Altitude altitude = 10;
   if (this->has_altitude()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
-        11, *this->altitude_, false, target);
+        10, *this->altitude_, false, target);
   }
 
-  // .T7.Attitude attitude = 12;
+  // .T7.Attitude attitude = 11;
   if (this->has_attitude()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
-        12, *this->attitude_, false, target);
+        11, *this->attitude_, false, target);
   }
 
-  // .T7.Temp temp = 13;
+  // .T7.Temp temp = 12;
   if (this->has_temp()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
-        13, *this->temp_, false, target);
+        12, *this->temp_, false, target);
   }
 
-  // .T7.Battery bat = 14;
+  // .T7.Battery bat = 13;
   if (this->has_bat()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
-        14, *this->bat_, false, target);
+        13, *this->bat_, false, target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:T7.GenericMessage)
@@ -1069,63 +1034,56 @@ size_t GenericMessage::ByteSizeLong() const {
         *this->terminate_);
   }
 
-  // .T7.UpdateParams updateparams = 6;
-  if (this->has_updateparams()) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        *this->updateparams_);
-  }
-
-  // .T7.ConfigData configdata = 7;
+  // .T7.ConfigData configdata = 6;
   if (this->has_configdata()) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
         *this->configdata_);
   }
 
-  // .T7.MoveCamera movecamera = 8;
+  // .T7.MoveCamera movecamera = 7;
   if (this->has_movecamera()) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
         *this->movecamera_);
   }
 
-  // .T7.Accel accel = 9;
+  // .T7.Accel accel = 8;
   if (this->has_accel()) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
         *this->accel_);
   }
 
-  // .T7.Gyro gyro = 10;
+  // .T7.Gyro gyro = 9;
   if (this->has_gyro()) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
         *this->gyro_);
   }
 
-  // .T7.Altitude altitude = 11;
+  // .T7.Altitude altitude = 10;
   if (this->has_altitude()) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
         *this->altitude_);
   }
 
-  // .T7.Attitude attitude = 12;
+  // .T7.Attitude attitude = 11;
   if (this->has_attitude()) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
         *this->attitude_);
   }
 
-  // .T7.Temp temp = 13;
+  // .T7.Temp temp = 12;
   if (this->has_temp()) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
         *this->temp_);
   }
 
-  // .T7.Battery bat = 14;
+  // .T7.Battery bat = 13;
   if (this->has_bat()) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
@@ -1178,9 +1136,6 @@ void GenericMessage::MergeFrom(const GenericMessage& from) {
   }
   if (from.has_terminate()) {
     mutable_terminate()->::T7::Terminate::MergeFrom(from.terminate());
-  }
-  if (from.has_updateparams()) {
-    mutable_updateparams()->::T7::UpdateParams::MergeFrom(from.updateparams());
   }
   if (from.has_configdata()) {
     mutable_configdata()->::T7::ConfigData::MergeFrom(from.configdata());
@@ -1240,7 +1195,6 @@ void GenericMessage::InternalSwap(GenericMessage* other) {
   std::swap(response_, other->response_);
   std::swap(heartbeat_, other->heartbeat_);
   std::swap(terminate_, other->terminate_);
-  std::swap(updateparams_, other->updateparams_);
   std::swap(configdata_, other->configdata_);
   std::swap(movecamera_, other->movecamera_);
   std::swap(accel_, other->accel_);
@@ -1407,46 +1361,7 @@ void GenericMessage::set_allocated_terminate(::T7::Terminate* terminate) {
   // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.terminate)
 }
 
-// .T7.UpdateParams updateparams = 6;
-bool GenericMessage::has_updateparams() const {
-  return this != internal_default_instance() && updateparams_ != NULL;
-}
-void GenericMessage::clear_updateparams() {
-  if (GetArenaNoVirtual() == NULL && updateparams_ != NULL) delete updateparams_;
-  updateparams_ = NULL;
-}
-const ::T7::UpdateParams& GenericMessage::updateparams() const {
-  // @@protoc_insertion_point(field_get:T7.GenericMessage.updateparams)
-  return updateparams_ != NULL ? *updateparams_
-                         : *::T7::UpdateParams::internal_default_instance();
-}
-::T7::UpdateParams* GenericMessage::mutable_updateparams() {
-  
-  if (updateparams_ == NULL) {
-    updateparams_ = new ::T7::UpdateParams;
-  }
-  // @@protoc_insertion_point(field_mutable:T7.GenericMessage.updateparams)
-  return updateparams_;
-}
-::T7::UpdateParams* GenericMessage::release_updateparams() {
-  // @@protoc_insertion_point(field_release:T7.GenericMessage.updateparams)
-  
-  ::T7::UpdateParams* temp = updateparams_;
-  updateparams_ = NULL;
-  return temp;
-}
-void GenericMessage::set_allocated_updateparams(::T7::UpdateParams* updateparams) {
-  delete updateparams_;
-  updateparams_ = updateparams;
-  if (updateparams) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.updateparams)
-}
-
-// .T7.ConfigData configdata = 7;
+// .T7.ConfigData configdata = 6;
 bool GenericMessage::has_configdata() const {
   return this != internal_default_instance() && configdata_ != NULL;
 }
@@ -1485,7 +1400,7 @@ void GenericMessage::set_allocated_configdata(::T7::ConfigData* configdata) {
   // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.configdata)
 }
 
-// .T7.MoveCamera movecamera = 8;
+// .T7.MoveCamera movecamera = 7;
 bool GenericMessage::has_movecamera() const {
   return this != internal_default_instance() && movecamera_ != NULL;
 }
@@ -1524,7 +1439,7 @@ void GenericMessage::set_allocated_movecamera(::T7::MoveCamera* movecamera) {
   // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.movecamera)
 }
 
-// .T7.Accel accel = 9;
+// .T7.Accel accel = 8;
 bool GenericMessage::has_accel() const {
   return this != internal_default_instance() && accel_ != NULL;
 }
@@ -1563,7 +1478,7 @@ void GenericMessage::set_allocated_accel(::T7::Accel* accel) {
   // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.accel)
 }
 
-// .T7.Gyro gyro = 10;
+// .T7.Gyro gyro = 9;
 bool GenericMessage::has_gyro() const {
   return this != internal_default_instance() && gyro_ != NULL;
 }
@@ -1602,7 +1517,7 @@ void GenericMessage::set_allocated_gyro(::T7::Gyro* gyro) {
   // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.gyro)
 }
 
-// .T7.Altitude altitude = 11;
+// .T7.Altitude altitude = 10;
 bool GenericMessage::has_altitude() const {
   return this != internal_default_instance() && altitude_ != NULL;
 }
@@ -1641,7 +1556,7 @@ void GenericMessage::set_allocated_altitude(::T7::Altitude* altitude) {
   // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.altitude)
 }
 
-// .T7.Attitude attitude = 12;
+// .T7.Attitude attitude = 11;
 bool GenericMessage::has_attitude() const {
   return this != internal_default_instance() && attitude_ != NULL;
 }
@@ -1680,7 +1595,7 @@ void GenericMessage::set_allocated_attitude(::T7::Attitude* attitude) {
   // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.attitude)
 }
 
-// .T7.Temp temp = 13;
+// .T7.Temp temp = 12;
 bool GenericMessage::has_temp() const {
   return this != internal_default_instance() && temp_ != NULL;
 }
@@ -1719,7 +1634,7 @@ void GenericMessage::set_allocated_temp(::T7::Temp* temp) {
   // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.temp)
 }
 
-// .T7.Battery bat = 14;
+// .T7.Battery bat = 13;
 bool GenericMessage::has_bat() const {
   return this != internal_default_instance() && bat_ != NULL;
 }
@@ -2211,7 +2126,7 @@ void HeartBeat::set_alive(bool value) {
 // ===================================================================
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int Terminate::kTerminateFieldNumber;
+const int Terminate::kTerminateKeyFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 Terminate::Terminate()
@@ -2227,12 +2142,12 @@ Terminate::Terminate(const Terminate& from)
       _internal_metadata_(NULL),
       _cached_size_(0) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  terminate_ = from.terminate_;
+  terminatekey_ = from.terminatekey_;
   // @@protoc_insertion_point(copy_constructor:T7.Terminate)
 }
 
 void Terminate::SharedCtor() {
-  terminate_ = false;
+  terminatekey_ = 0;
   _cached_size_ = 0;
 }
 
@@ -2269,7 +2184,7 @@ Terminate* Terminate::New(::google::protobuf::Arena* arena) const {
 
 void Terminate::Clear() {
 // @@protoc_insertion_point(message_clear_start:T7.Terminate)
-  terminate_ = false;
+  terminatekey_ = 0;
 }
 
 bool Terminate::MergePartialFromCodedStream(
@@ -2282,14 +2197,14 @@ bool Terminate::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // bool terminate = 1;
+      // int32 terminateKey = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(8u)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
-                 input, &terminate_)));
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &terminatekey_)));
         } else {
           goto handle_unusual;
         }
@@ -2320,9 +2235,9 @@ failure:
 void Terminate::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:T7.Terminate)
-  // bool terminate = 1;
-  if (this->terminate() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(1, this->terminate(), output);
+  // int32 terminateKey = 1;
+  if (this->terminatekey() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->terminatekey(), output);
   }
 
   // @@protoc_insertion_point(serialize_end:T7.Terminate)
@@ -2332,9 +2247,9 @@ void Terminate::SerializeWithCachedSizes(
     bool deterministic, ::google::protobuf::uint8* target) const {
   (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:T7.Terminate)
-  // bool terminate = 1;
-  if (this->terminate() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(1, this->terminate(), target);
+  // int32 terminateKey = 1;
+  if (this->terminatekey() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->terminatekey(), target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:T7.Terminate)
@@ -2345,9 +2260,11 @@ size_t Terminate::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:T7.Terminate)
   size_t total_size = 0;
 
-  // bool terminate = 1;
-  if (this->terminate() != 0) {
-    total_size += 1 + 1;
+  // int32 terminateKey = 1;
+  if (this->terminatekey() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->terminatekey());
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -2376,8 +2293,8 @@ void Terminate::MergeFrom(const Terminate& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:T7.Terminate)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  if (from.terminate() != 0) {
-    set_terminate(from.terminate());
+  if (from.terminatekey() != 0) {
+    set_terminatekey(from.terminatekey());
   }
 }
 
@@ -2404,7 +2321,7 @@ void Terminate::Swap(Terminate* other) {
   InternalSwap(other);
 }
 void Terminate::InternalSwap(Terminate* other) {
-  std::swap(terminate_, other->terminate_);
+  std::swap(terminatekey_, other->terminatekey_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
@@ -2416,242 +2333,18 @@ void Terminate::InternalSwap(Terminate* other) {
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // Terminate
 
-// bool terminate = 1;
-void Terminate::clear_terminate() {
-  terminate_ = false;
+// int32 terminateKey = 1;
+void Terminate::clear_terminatekey() {
+  terminatekey_ = 0;
 }
-bool Terminate::terminate() const {
-  // @@protoc_insertion_point(field_get:T7.Terminate.terminate)
-  return terminate_;
+::google::protobuf::int32 Terminate::terminatekey() const {
+  // @@protoc_insertion_point(field_get:T7.Terminate.terminateKey)
+  return terminatekey_;
 }
-void Terminate::set_terminate(bool value) {
+void Terminate::set_terminatekey(::google::protobuf::int32 value) {
   
-  terminate_ = value;
-  // @@protoc_insertion_point(field_set:T7.Terminate.terminate)
-}
-
-#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
-
-// ===================================================================
-
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int UpdateParams::kTbdFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
-
-UpdateParams::UpdateParams()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
-    protobuf_T7Messages_2eproto::InitDefaults();
-  }
-  SharedCtor();
-  // @@protoc_insertion_point(constructor:T7.UpdateParams)
-}
-UpdateParams::UpdateParams(const UpdateParams& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL),
-      _cached_size_(0) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  tbd_ = from.tbd_;
-  // @@protoc_insertion_point(copy_constructor:T7.UpdateParams)
-}
-
-void UpdateParams::SharedCtor() {
-  tbd_ = false;
-  _cached_size_ = 0;
-}
-
-UpdateParams::~UpdateParams() {
-  // @@protoc_insertion_point(destructor:T7.UpdateParams)
-  SharedDtor();
-}
-
-void UpdateParams::SharedDtor() {
-}
-
-void UpdateParams::SetCachedSize(int size) const {
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
-}
-const ::google::protobuf::Descriptor* UpdateParams::descriptor() {
-  protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[4].descriptor;
-}
-
-const UpdateParams& UpdateParams::default_instance() {
-  protobuf_T7Messages_2eproto::InitDefaults();
-  return *internal_default_instance();
-}
-
-UpdateParams* UpdateParams::New(::google::protobuf::Arena* arena) const {
-  UpdateParams* n = new UpdateParams;
-  if (arena != NULL) {
-    arena->Own(n);
-  }
-  return n;
-}
-
-void UpdateParams::Clear() {
-// @@protoc_insertion_point(message_clear_start:T7.UpdateParams)
-  tbd_ = false;
-}
-
-bool UpdateParams::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:T7.UpdateParams)
-  for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // bool tbd = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(8u)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
-                 input, &tbd_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      default: {
-      handle_unusual:
-        if (tag == 0 ||
-            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
-        break;
-      }
-    }
-  }
-success:
-  // @@protoc_insertion_point(parse_success:T7.UpdateParams)
-  return true;
-failure:
-  // @@protoc_insertion_point(parse_failure:T7.UpdateParams)
-  return false;
-#undef DO_
-}
-
-void UpdateParams::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:T7.UpdateParams)
-  // bool tbd = 1;
-  if (this->tbd() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(1, this->tbd(), output);
-  }
-
-  // @@protoc_insertion_point(serialize_end:T7.UpdateParams)
-}
-
-::google::protobuf::uint8* UpdateParams::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic;  // Unused
-  // @@protoc_insertion_point(serialize_to_array_start:T7.UpdateParams)
-  // bool tbd = 1;
-  if (this->tbd() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(1, this->tbd(), target);
-  }
-
-  // @@protoc_insertion_point(serialize_to_array_end:T7.UpdateParams)
-  return target;
-}
-
-size_t UpdateParams::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:T7.UpdateParams)
-  size_t total_size = 0;
-
-  // bool tbd = 1;
-  if (this->tbd() != 0) {
-    total_size += 1 + 1;
-  }
-
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = cached_size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
-  return total_size;
-}
-
-void UpdateParams::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:T7.UpdateParams)
-  GOOGLE_DCHECK_NE(&from, this);
-  const UpdateParams* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const UpdateParams>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:T7.UpdateParams)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:T7.UpdateParams)
-    MergeFrom(*source);
-  }
-}
-
-void UpdateParams::MergeFrom(const UpdateParams& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:T7.UpdateParams)
-  GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  if (from.tbd() != 0) {
-    set_tbd(from.tbd());
-  }
-}
-
-void UpdateParams::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:T7.UpdateParams)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void UpdateParams::CopyFrom(const UpdateParams& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:T7.UpdateParams)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool UpdateParams::IsInitialized() const {
-  return true;
-}
-
-void UpdateParams::Swap(UpdateParams* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
-void UpdateParams::InternalSwap(UpdateParams* other) {
-  std::swap(tbd_, other->tbd_);
-  std::swap(_cached_size_, other->_cached_size_);
-}
-
-::google::protobuf::Metadata UpdateParams::GetMetadata() const {
-  protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[4];
-}
-
-#if PROTOBUF_INLINE_NOT_IN_HEADERS
-// UpdateParams
-
-// bool tbd = 1;
-void UpdateParams::clear_tbd() {
-  tbd_ = false;
-}
-bool UpdateParams::tbd() const {
-  // @@protoc_insertion_point(field_get:T7.UpdateParams.tbd)
-  return tbd_;
-}
-void UpdateParams::set_tbd(bool value) {
-  
-  tbd_ = value;
-  // @@protoc_insertion_point(field_set:T7.UpdateParams.tbd)
+  terminatekey_ = value;
+  // @@protoc_insertion_point(field_set:T7.Terminate.terminateKey)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -2699,7 +2392,7 @@ void ConfigData::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* ConfigData::descriptor() {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[5].descriptor;
+  return protobuf_T7Messages_2eproto::file_level_metadata[4].descriptor;
 }
 
 const ConfigData& ConfigData::default_instance() {
@@ -2860,7 +2553,7 @@ void ConfigData::InternalSwap(ConfigData* other) {
 
 ::google::protobuf::Metadata ConfigData::GetMetadata() const {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[5];
+  return protobuf_T7Messages_2eproto::file_level_metadata[4];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -2925,7 +2618,7 @@ void MoveCamera::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* MoveCamera::descriptor() {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[6].descriptor;
+  return protobuf_T7Messages_2eproto::file_level_metadata[5].descriptor;
 }
 
 const MoveCamera& MoveCamera::default_instance() {
@@ -3086,7 +2779,7 @@ void MoveCamera::InternalSwap(MoveCamera* other) {
 
 ::google::protobuf::Metadata MoveCamera::GetMetadata() const {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[6];
+  return protobuf_T7Messages_2eproto::file_level_metadata[5];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -3156,7 +2849,7 @@ void Accel::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* Accel::descriptor() {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[7].descriptor;
+  return protobuf_T7Messages_2eproto::file_level_metadata[6].descriptor;
 }
 
 const Accel& Accel::default_instance() {
@@ -3382,7 +3075,7 @@ void Accel::InternalSwap(Accel* other) {
 
 ::google::protobuf::Metadata Accel::GetMetadata() const {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[7];
+  return protobuf_T7Messages_2eproto::file_level_metadata[6];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -3480,7 +3173,7 @@ void Gyro::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* Gyro::descriptor() {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[8].descriptor;
+  return protobuf_T7Messages_2eproto::file_level_metadata[7].descriptor;
 }
 
 const Gyro& Gyro::default_instance() {
@@ -3706,7 +3399,7 @@ void Gyro::InternalSwap(Gyro* other) {
 
 ::google::protobuf::Metadata Gyro::GetMetadata() const {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[8];
+  return protobuf_T7Messages_2eproto::file_level_metadata[7];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -3799,7 +3492,7 @@ void Altitude::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* Altitude::descriptor() {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[9].descriptor;
+  return protobuf_T7Messages_2eproto::file_level_metadata[8].descriptor;
 }
 
 const Altitude& Altitude::default_instance() {
@@ -3958,7 +3651,7 @@ void Altitude::InternalSwap(Altitude* other) {
 
 ::google::protobuf::Metadata Altitude::GetMetadata() const {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[9];
+  return protobuf_T7Messages_2eproto::file_level_metadata[8];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -4028,7 +3721,7 @@ void Attitude::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* Attitude::descriptor() {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[10].descriptor;
+  return protobuf_T7Messages_2eproto::file_level_metadata[9].descriptor;
 }
 
 const Attitude& Attitude::default_instance() {
@@ -4254,7 +3947,7 @@ void Attitude::InternalSwap(Attitude* other) {
 
 ::google::protobuf::Metadata Attitude::GetMetadata() const {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[10];
+  return protobuf_T7Messages_2eproto::file_level_metadata[9];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -4307,7 +4000,6 @@ void Attitude::set_yaw(double value) {
 // ===================================================================
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int Temp::kTimeFieldNumber;
 const int Temp::kTempFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
@@ -4324,15 +4016,12 @@ Temp::Temp(const Temp& from)
       _internal_metadata_(NULL),
       _cached_size_(0) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::memcpy(&time_, &from.time_,
-    reinterpret_cast<char*>(&temp_) -
-    reinterpret_cast<char*>(&time_) + sizeof(temp_));
+  temp_ = from.temp_;
   // @@protoc_insertion_point(copy_constructor:T7.Temp)
 }
 
 void Temp::SharedCtor() {
-  ::memset(&time_, 0, reinterpret_cast<char*>(&temp_) -
-    reinterpret_cast<char*>(&time_) + sizeof(temp_));
+  temp_ = 0;
   _cached_size_ = 0;
 }
 
@@ -4351,7 +4040,7 @@ void Temp::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* Temp::descriptor() {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[11].descriptor;
+  return protobuf_T7Messages_2eproto::file_level_metadata[10].descriptor;
 }
 
 const Temp& Temp::default_instance() {
@@ -4369,8 +4058,7 @@ Temp* Temp::New(::google::protobuf::Arena* arena) const {
 
 void Temp::Clear() {
 // @@protoc_insertion_point(message_clear_start:T7.Temp)
-  ::memset(&time_, 0, reinterpret_cast<char*>(&temp_) -
-    reinterpret_cast<char*>(&time_) + sizeof(temp_));
+  temp_ = 0;
 }
 
 bool Temp::MergePartialFromCodedStream(
@@ -4383,24 +4071,10 @@ bool Temp::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // double time = 1;
+      // double temp = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(9u)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
-                 input, &time_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      // double temp = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(17u)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
@@ -4435,14 +4109,9 @@ failure:
 void Temp::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:T7.Temp)
-  // double time = 1;
-  if (this->time() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteDouble(1, this->time(), output);
-  }
-
-  // double temp = 2;
+  // double temp = 1;
   if (this->temp() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteDouble(2, this->temp(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(1, this->temp(), output);
   }
 
   // @@protoc_insertion_point(serialize_end:T7.Temp)
@@ -4452,14 +4121,9 @@ void Temp::SerializeWithCachedSizes(
     bool deterministic, ::google::protobuf::uint8* target) const {
   (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:T7.Temp)
-  // double time = 1;
-  if (this->time() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(1, this->time(), target);
-  }
-
-  // double temp = 2;
+  // double temp = 1;
   if (this->temp() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(2, this->temp(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(1, this->temp(), target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:T7.Temp)
@@ -4470,12 +4134,7 @@ size_t Temp::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:T7.Temp)
   size_t total_size = 0;
 
-  // double time = 1;
-  if (this->time() != 0) {
-    total_size += 1 + 8;
-  }
-
-  // double temp = 2;
+  // double temp = 1;
   if (this->temp() != 0) {
     total_size += 1 + 8;
   }
@@ -4506,9 +4165,6 @@ void Temp::MergeFrom(const Temp& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:T7.Temp)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  if (from.time() != 0) {
-    set_time(from.time());
-  }
   if (from.temp() != 0) {
     set_temp(from.temp());
   }
@@ -4537,34 +4193,19 @@ void Temp::Swap(Temp* other) {
   InternalSwap(other);
 }
 void Temp::InternalSwap(Temp* other) {
-  std::swap(time_, other->time_);
   std::swap(temp_, other->temp_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata Temp::GetMetadata() const {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[11];
+  return protobuf_T7Messages_2eproto::file_level_metadata[10];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // Temp
 
-// double time = 1;
-void Temp::clear_time() {
-  time_ = 0;
-}
-double Temp::time() const {
-  // @@protoc_insertion_point(field_get:T7.Temp.time)
-  return time_;
-}
-void Temp::set_time(double value) {
-  
-  time_ = value;
-  // @@protoc_insertion_point(field_set:T7.Temp.time)
-}
-
-// double temp = 2;
+// double temp = 1;
 void Temp::clear_temp() {
   temp_ = 0;
 }
@@ -4583,7 +4224,6 @@ void Temp::set_temp(double value) {
 // ===================================================================
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int Battery::kTimeFieldNumber;
 const int Battery::kPercentFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
@@ -4600,15 +4240,12 @@ Battery::Battery(const Battery& from)
       _internal_metadata_(NULL),
       _cached_size_(0) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::memcpy(&time_, &from.time_,
-    reinterpret_cast<char*>(&percent_) -
-    reinterpret_cast<char*>(&time_) + sizeof(percent_));
+  percent_ = from.percent_;
   // @@protoc_insertion_point(copy_constructor:T7.Battery)
 }
 
 void Battery::SharedCtor() {
-  ::memset(&time_, 0, reinterpret_cast<char*>(&percent_) -
-    reinterpret_cast<char*>(&time_) + sizeof(percent_));
+  percent_ = 0;
   _cached_size_ = 0;
 }
 
@@ -4627,7 +4264,7 @@ void Battery::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* Battery::descriptor() {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[12].descriptor;
+  return protobuf_T7Messages_2eproto::file_level_metadata[11].descriptor;
 }
 
 const Battery& Battery::default_instance() {
@@ -4645,8 +4282,7 @@ Battery* Battery::New(::google::protobuf::Arena* arena) const {
 
 void Battery::Clear() {
 // @@protoc_insertion_point(message_clear_start:T7.Battery)
-  ::memset(&time_, 0, reinterpret_cast<char*>(&percent_) -
-    reinterpret_cast<char*>(&time_) + sizeof(percent_));
+  percent_ = 0;
 }
 
 bool Battery::MergePartialFromCodedStream(
@@ -4659,24 +4295,10 @@ bool Battery::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // double time = 1;
+      // double percent = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(9u)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
-                 input, &time_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      // double percent = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(17u)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
@@ -4711,14 +4333,9 @@ failure:
 void Battery::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:T7.Battery)
-  // double time = 1;
-  if (this->time() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteDouble(1, this->time(), output);
-  }
-
-  // double percent = 2;
+  // double percent = 1;
   if (this->percent() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteDouble(2, this->percent(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(1, this->percent(), output);
   }
 
   // @@protoc_insertion_point(serialize_end:T7.Battery)
@@ -4728,14 +4345,9 @@ void Battery::SerializeWithCachedSizes(
     bool deterministic, ::google::protobuf::uint8* target) const {
   (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:T7.Battery)
-  // double time = 1;
-  if (this->time() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(1, this->time(), target);
-  }
-
-  // double percent = 2;
+  // double percent = 1;
   if (this->percent() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(2, this->percent(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(1, this->percent(), target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:T7.Battery)
@@ -4746,12 +4358,7 @@ size_t Battery::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:T7.Battery)
   size_t total_size = 0;
 
-  // double time = 1;
-  if (this->time() != 0) {
-    total_size += 1 + 8;
-  }
-
-  // double percent = 2;
+  // double percent = 1;
   if (this->percent() != 0) {
     total_size += 1 + 8;
   }
@@ -4782,9 +4389,6 @@ void Battery::MergeFrom(const Battery& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:T7.Battery)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  if (from.time() != 0) {
-    set_time(from.time());
-  }
   if (from.percent() != 0) {
     set_percent(from.percent());
   }
@@ -4813,34 +4417,19 @@ void Battery::Swap(Battery* other) {
   InternalSwap(other);
 }
 void Battery::InternalSwap(Battery* other) {
-  std::swap(time_, other->time_);
   std::swap(percent_, other->percent_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata Battery::GetMetadata() const {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[12];
+  return protobuf_T7Messages_2eproto::file_level_metadata[11];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // Battery
 
-// double time = 1;
-void Battery::clear_time() {
-  time_ = 0;
-}
-double Battery::time() const {
-  // @@protoc_insertion_point(field_get:T7.Battery.time)
-  return time_;
-}
-void Battery::set_time(double value) {
-  
-  time_ = value;
-  // @@protoc_insertion_point(field_set:T7.Battery.time)
-}
-
-// double percent = 2;
+// double percent = 1;
 void Battery::clear_percent() {
   percent_ = 0;
 }

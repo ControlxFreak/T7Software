@@ -41,3 +41,5 @@ Thumbs.db
 ######################
 main_computer/src/OBC/dist/
 main_computer/src/OBC/build/
+/main_computer/src/OBC_TEST/build/
+/main_computer/src/OBC_TEST/dist/

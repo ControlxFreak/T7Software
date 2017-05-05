@@ -58,7 +58,6 @@ private:
                    // Server //
                    HeartSock,
                    TerminateSock,
-                   UParamsSock,
                    ConfigSock,
                    MoveCamSock,
 

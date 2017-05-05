@@ -62,39 +62,47 @@ void IOManager::socketHandler(int id){
     data->sockHealth[id] = WD->noFailure;
     
     // Initialize the buffer
-    char cbuff[256];
+    char cbuff[10000];
     string buff;
     
     // Initialize the TCP stream depending on if it is a server or client connection
     if(id >= 200) // then it is a client
     {
         // Initialize the TCP connector
+        LM->append("Initializing Connector\n");
         connector = new TCPConnector(id);
         
         // Keep trying to connect!
-        while(stream==NULL ){
+        bool connected = false;
+        while(!connected){
             stream = connector->connect(HSS_IP.c_str(),PORT_NUMBER,CONNECTOR_TIMEOUT);
             // Check for thread interruptions
             usleep(SLEEP_TIME);
+            // Tell the WatchDog that you are having trouble connecting!
+            if(stream==NULL) data->sockHealth[id] = WD->SERVER_CONNECT_FAIL;
+            else{connected = true; LM->append("Successful Connect!\n");}
             boost::this_thread::interruption_point();
         } //while
+        data->sockHealth[id] = WD->socketConnected;
         
-        // Tell the WatchDog that you are having trouble connecting!
-        if(stream==NULL) data->sockHealth[id] = WD->SERVER_CONNECT_FAIL;
     }else{
         // Initialize the TCP acceptor
+        LM->append("Initializing Acceptor\n");
         acceptor = new TCPAcceptor(PORT_NUMBER,HSS_IP.c_str(),id);   
         
         // Keep trying to accept!
-        while(stream==NULL ){
+        bool accepted = false;
+        while(!accepted){
             stream = acceptor->accept();
             // Check for thread interruptions
             usleep(SLEEP_TIME);
+            // Tell the WatchDog that you are having trouble connecting!
+            if(stream==NULL) data->sockHealth[id] = WD->SERVER_CONNECT_FAIL;
+            else{accepted = true; LM->append("Successful Accept\n");}
+            
             boost::this_thread::interruption_point();
         } //while
-        
-        // Tell the WatchDog that you are having trouble connecting!
-        if(stream==NULL) data->sockHealth[id] = WD->SERVER_CONNECT_FAIL;
+        data->sockHealth[id] = WD->socketConnected;
     } //else
     
     // Loop through until you we're done!
@@ -138,53 +146,95 @@ void IOManager::socketHandler(int id){
                     if (stream->receive(cbuff,sizeof(cbuff),ACCEPTOR_TIMEOUT) > 0)
                     {
                         GM.ParseFromArray(cbuff,sizeof(cbuff));
-                        if(GM.terminate().terminate())
+                        switch(GM.terminate().terminatekey())
                         {
-                            timeToDie = true;
-                            data->globalShutdown = true;
-                        }                        
+                            case data->SELF_TERMINATE:
+                                timeToDie = true;
+                                data->globalShutdown = true;
+                            case data->SOFT_SHUTDOWN:
+                                // TODO 05May2017 att
+                                break;
+                            case data->EMERGENCY_STOP:
+                                //TODO 05May2017 att
+                                break;
+                            default: 
+                                //TODO 05May2017 att
+                                LM->append("Unidentified ConfigData Message.\n");
+                        }
                     }
                 }
-            case data->UPDATE_PARAM:
-                break;
             case data->CONFIG_DATA:
-                /*
                 stream = acceptor->accept();
                 // Tell the WatchDog that you are having trouble connecting!
-                
                 if(stream==NULL) data->sockHealth[id] = WD->SERVER_ACCEPT_FAIL;
                 else{
                     if (stream->receive(cbuff,sizeof(cbuff),ACCEPTOR_TIMEOUT) > 0)
                     {
                         GM.ParseFromArray(cbuff,sizeof(cbuff));
-                        /*switch(GM.configdata().configkey())
+                        switch(GM.configdata().configkey())
                         {
-                            case GM.configdata().toggleAccel:
+                            case data->TOGGLE_ACCEL:
                                 LM->append("Toggle Acceleration Message Received!\n");
                                 data->sendAccel = !data->sendAccel;
-                            case GM.configdata().toggleGyro:
+                            case data->TOGGLE_GYRO:
                                 LM->append("Toggle Gyro Message Received!\n");
                                 data->sendGyro = !data->sendGyro;
-                            case GM.configdata().toggleAltitude:
-                            case GM.configdata().toggleAttitude:
-                            case GM.configdata().toggleTemp:
-                            case GM.configdata().toggleBat:
+                            case data->TOGGLE_ALTITUDE:
+                                LM->append("Toggle Altitude Message Received!\n");
+                                data->sendAlt = !data->sendAlt;
+                            case data->TOGGLE_ATTITUDE:
+                                LM->append("Toggle Attitude Message Received!\n");
+                                data->sendAtt = !data->sendAtt;
+                            case data->TOGGLE_TEMP:
+                                LM->append("Toggle Temperature Message Received!\n");
+                                data->sendTemp = !data->sendTemp;
+                            case data->TOGGLE_BAT:
+                                LM->append("Toggle Bat Message Received!\n");
+                                data->sendBat = !data->sendBat;
                             default:
                                 LM->append("Unidentified ConfigData Message.\n");
-                        }
-                         
-                        timeToDie = true;
-                        data->globalShutdown = true;               
-                    }
-                }
-                         */
-                break;
+                        } // switch      
+                    } // if
+                } // else
             case data->MOVE_CAMERA:
+                // TODO att 05 May 2017
                 break;
             case data->ACCEL:
-                if(data->sendAccel){}
+                if(data->sendAccel){
+                    if(!data->accelQueue.isEmpty()){
+                        // grab the data and remove it from the queue
+                        vector<double> accel = data->accelQueue.front();
+                        data->accelQueue.pop();
+                        // set the message type equal to the id
+                        GM.set_msgtype((google::protobuf::int32) id);
+                        GM.set_time((double) accel[0]); 
+                        GM.mutable_accel()->set_x(accel[1]);
+                        GM.mutable_accel()->set_y(accel[2]);
+                        GM.mutable_accel()->set_z(accel[3]);
+                        // Serialize and send it!
+                        GM.SerializeToString(&buff); 
+                        stream->send(buff.c_str(),buff.length());
+                        buff.clear();
+                    } // if accelQueue is not empty
+                } // if sendAccel
             case data->GYRO:
-                if(data->sendGyro){}
+                if(data->sendGyro){
+                    if(!data->gyroQueue.isEmpty()){
+                        // grab the data and remove it from the queue
+                        vector<double> gyro = data->gyroQueue.front();
+                        data->gyroQueue.pop();
+                        // set the message type equal to the id
+                        GM.set_msgtype((google::protobuf::int32) id);
+                        GM.set_time((double) gyro[0]); 
+                        GM.mutable_gyro()->set_x(gyro[1]);
+                        GM.mutable_gyro()->set_y(gyro[2]);
+                        GM.mutable_gyro()->set_z(gyro[3]);
+                        // Serialize and send it!
+                        GM.SerializeToString(&buff); 
+                        stream->send(buff.c_str(),buff.length());
+                        buff.clear();
+                    } // if gyroQueue is not empty
+                } // if sendGyro
                 break;
             case data->ALTITUDE:
                 if(data->sendAlt)
@@ -202,12 +252,42 @@ void IOManager::socketHandler(int id){
                         GM.SerializeToString(&buff); 
                         stream->send(buff.c_str(),buff.length());
                         buff.clear();
-                    }
-                }
+                    } // if altitude queue is not empty
+                } // if send alt
             case data->TEMP:
-                if(data->sendTemp){}
+                if(data->sendTemp){
+                    // if there is data, send it!
+                    if(!data->tempQueue.isEmpty()){
+                        // grab the data and remove it from the queue
+                        vector<double> temp = data->tempQueue.front();
+                        data->tempQueue.pop();
+                        // set the message type equal to the id
+                        GM.set_msgtype((google::protobuf::int32) id);
+                        GM.set_time((double) temp[0]); 
+                        GM.mutable_temp()->set_temp(temp[1]); 
+                        // Serialize and send it!
+                        GM.SerializeToString(&buff); 
+                        stream->send(buff.c_str(),buff.length());
+                        buff.clear();
+                    } // if altitude queue is not empty
+                } // if sendTemp
             case data->BAT:
-                if(data->sendTemp){}
+                if(data->sendBat){
+                    // if there is data, send it!
+                    if(!data->batteryQueue.isEmpty()){
+                        // grab the data and remove it from the queue
+                        vector<double> bat = data->batteryQueue.front();
+                        data->batteryQueue.pop();
+                        // set the message type equal to the id
+                        GM.set_msgtype((google::protobuf::int32) id);
+                        GM.set_time((double) bat[0]); 
+                        GM.mutable_bat()->set_percent(bat[1]); 
+                        // Serialize and send it!
+                        GM.SerializeToString(&buff); 
+                        stream->send(buff.c_str(),buff.length());
+                        buff.clear();
+                    } // if altitude queue is not empty
+                }// if sendTemp
             default:
                 data->sockHealth[id] = WD->UNK_SOCK;
                 // Cleanup!
