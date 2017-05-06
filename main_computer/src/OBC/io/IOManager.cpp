@@ -70,12 +70,12 @@ void IOManager::socketHandler(int id){
     {
         // Initialize the TCP connector
         LM->append("Initializing Connector\n");
-        connector = new TCPConnector(id);
+        connector = new TCPConnector();
         
         // Keep trying to connect!
         bool connected = false;
         while(!connected){
-            stream = connector->connect(HSS_IP.c_str(),PORT_NUMBER,CONNECTOR_TIMEOUT);
+            stream = connector->connect(HSS_IP.c_str(),PORT_NUMBER+id);
             // Check for thread interruptions
             usleep(SLEEP_TIME);
             // Tell the WatchDog that you are having trouble connecting!
@@ -88,7 +88,7 @@ void IOManager::socketHandler(int id){
     }else{
         // Initialize the TCP acceptor
         LM->append("Initializing Acceptor\n");
-        acceptor = new TCPAcceptor(PORT_NUMBER,HSS_IP.c_str(),id);   
+        acceptor = new TCPAcceptor(PORT_NUMBER+id,HSS_IP.c_str());   
         
         // Keep trying to accept!
         bool accepted = false;
@@ -124,6 +124,7 @@ void IOManager::socketHandler(int id){
                         if(GM.response().roger_that()) data->HSSAlive = true;
                     } //if
                 }//if
+                break;
             case data->HEARTBEAT:
                 stream = acceptor->accept();
                 // Tell the WatchDog that you are having trouble connecting!
@@ -138,6 +139,7 @@ void IOManager::socketHandler(int id){
                             data->HSSAlive = false;
                     }
                 }
+                break;
             case data->TERMINATE:
                 stream = acceptor->accept();
                 // Tell the WatchDog that you are having trouble connecting!
@@ -151,6 +153,12 @@ void IOManager::socketHandler(int id){
                             case data->SELF_TERMINATE:
                                 timeToDie = true;
                                 data->globalShutdown = true;
+                                // Cleanup!
+                                delete stream;
+                                delete acceptor;
+                                delete connector;
+                                google::protobuf::ShutdownProtobufLibrary();
+                                return;
                             case data->SOFT_SHUTDOWN:
                                 // TODO 05May2017 att
                                 break;
@@ -163,6 +171,7 @@ void IOManager::socketHandler(int id){
                         }
                     }
                 }
+                break;
             case data->CONFIG_DATA:
                 stream = acceptor->accept();
                 // Tell the WatchDog that you are having trouble connecting!
@@ -196,6 +205,7 @@ void IOManager::socketHandler(int id){
                         } // switch      
                     } // if
                 } // else
+                break;
             case data->MOVE_CAMERA:
                 // TODO att 05 May 2017
                 break;
@@ -217,6 +227,7 @@ void IOManager::socketHandler(int id){
                         buff.clear();
                     } // if accelQueue is not empty
                 } // if sendAccel
+                break;
             case data->GYRO:
                 if(data->sendGyro){
                     if(!data->gyroQueue.isEmpty()){
@@ -254,6 +265,7 @@ void IOManager::socketHandler(int id){
                         buff.clear();
                     } // if altitude queue is not empty
                 } // if send alt
+                break;
             case data->TEMP:
                 if(data->sendTemp){
                     // if there is data, send it!
@@ -271,6 +283,7 @@ void IOManager::socketHandler(int id){
                         buff.clear();
                     } // if altitude queue is not empty
                 } // if sendTemp
+                break;
             case data->BAT:
                 if(data->sendBat){
                     // if there is data, send it!
@@ -288,6 +301,7 @@ void IOManager::socketHandler(int id){
                         buff.clear();
                     } // if altitude queue is not empty
                 }// if sendTemp
+                break;
             default:
                 data->sockHealth[id] = WD->UNK_SOCK;
                 // Cleanup!

@@ -44,8 +44,9 @@ void LogManager::append(string s)
     int hour = parts->tm_hour;
     int min = parts->tm_min;
     int sec = parts->tm_sec;
-    char tstamp[20];
-    sprintf(tstamp,"%d:%d:%d:  ",hour,min,sec);
+    char tstamp[256];
+    size_t sz = 255;
+    snprintf(tstamp,sz,"%d:%d:%d:  ",hour,min,sec);
     buffer_<<tstamp<<s;
     mutex_.unlock();
 
@@ -91,7 +92,7 @@ void LogManager::print(){
    mutex_.lock();
     
 #ifdef PRINT_TO_CONSOLE
-    cout<<buffer_.str();
+    cout<<buffer_.str();          
 #endif
     
 #ifdef PRINT_TO_FILE

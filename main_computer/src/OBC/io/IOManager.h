@@ -42,8 +42,8 @@ public:
     // Define the IO parameters needed for communication
     int PORT_NUMBER = 9001;
     string HSS_IP = "127.0.0.1";
-    int ACCEPTOR_TIMEOUT = 5;
-    int CONNECTOR_TIMEOUT = 5;
+    int ACCEPTOR_TIMEOUT = 500000;
+    int CONNECTOR_TIMEOUT = 500000;
     int SLEEP_TIME = 3000;
     
     bool timeToDie = false; 

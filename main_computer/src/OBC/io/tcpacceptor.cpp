@@ -26,8 +26,8 @@
 #include <arpa/inet.h>
 #include "tcpacceptor.h"
 
-TCPAcceptor::TCPAcceptor(int port, const char* address,int id) 
-    : m_lsd(0), m_port(port), m_address(address), m_listening(false),m_id(id) {} 
+TCPAcceptor::TCPAcceptor(int port, const char* address) 
+    : m_lsd(0), m_port(port), m_address(address), m_listening(false) {} 
 
 TCPAcceptor::~TCPAcceptor()
 {
@@ -42,7 +42,7 @@ int TCPAcceptor::start()
         return 0;
     }
 
-    m_lsd = socket(PF_INET, SOCK_STREAM, 0);
+    m_lsd = socket(AF_INET, SOCK_STREAM | SOCK_NONBLOCK, 0);
     struct sockaddr_in address;
 
     memset(&address, 0, sizeof(address));
@@ -60,11 +60,13 @@ int TCPAcceptor::start()
     
     int result = bind(m_lsd, (struct sockaddr*)&address, sizeof(address));
     if (result != 0) {
+        //perror("bind() failed");
         return result;
     }
     
     result = listen(m_lsd, 5);
     if (result != 0) {
+        //perror("listen() failed");
         return result;
     }
     m_listening = true;
@@ -73,7 +75,6 @@ int TCPAcceptor::start()
 
 TCPStream* TCPAcceptor::accept() 
 {
-    
     if (m_listening == false) {
         start();
         return NULL;
@@ -82,9 +83,11 @@ TCPStream* TCPAcceptor::accept()
     struct sockaddr_in address;
     socklen_t len = sizeof(address);
     memset(&address, 0, sizeof(address));
+    
     int sd = ::accept(m_lsd, (struct sockaddr*)&address, &len);
     if (sd < 0) {
+        //perror("accept() failed");
         return NULL;
     }
-    return new TCPStream(sd, &address,m_id);
+    return new TCPStream(sd, &address);
 }

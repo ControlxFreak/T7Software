@@ -28,7 +28,6 @@
 #include <sys/socket.h>
 #include <unistd.h>
 #include <string>
-#include "LogManager.h"
 
 using namespace std;
 
@@ -37,12 +36,10 @@ class TCPStream
     int     m_sd;
     string  m_peerIP;
     int     m_peerPort;
-    int m_id; 
-       
+
   public:
     friend class TCPAcceptor;
     friend class TCPConnector;
-    
 
     ~TCPStream();
 
@@ -61,7 +58,7 @@ class TCPStream
   private:
     bool waitForReadEvent(int timeout);
     
-    TCPStream(int sd, struct sockaddr_in* address, int id);
+    TCPStream(int sd, struct sockaddr_in* address);
     TCPStream();
     TCPStream(const TCPStream& stream);
 };

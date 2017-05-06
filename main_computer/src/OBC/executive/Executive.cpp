@@ -93,6 +93,7 @@ void Executive::run()
     // Loop until it is time to die
     while(!timeToDie)
     {
+        usleep(3000);
         // TODO: Add WatchDog stuff here.
         if(data->globalShutdown) {timeToDie = true;break;}
     } //while(!timeToDie)

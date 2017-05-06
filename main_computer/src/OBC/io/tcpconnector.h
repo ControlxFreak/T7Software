@@ -26,16 +26,12 @@
 
 #include <netinet/in.h>
 #include "tcpstream.h"
-#include "LogManager.h"
 
 class TCPConnector
 {
   public:
-      int m_id;
-      TCPStream* connect(const char* server, int port);
-      TCPStream* connect(const char* server, int port, int timeout);
-      
-      TCPConnector(int id){m_id = id;}
+    TCPStream* connect(const char* server, int port);
+    TCPStream* connect(const char* server, int port, int timeout);
     
   private:
     int resolveHostName(const char* host, struct in_addr* addr);

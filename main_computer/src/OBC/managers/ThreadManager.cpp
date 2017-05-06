@@ -45,10 +45,8 @@ void ThreadManager::launch(IOManager* IO){
     // Grab each of the threads, launch 'em and store them back! 
     // TODO: 05May2017 Do an enumeration loop.... There has to be a better way...
     LM->append("|--Launching the TCP Sockets--|\n");
-    LM->append("Launching Terminate Socket\n");
-    threadMap[threadKeys::TerminateSock] = new boost::thread(&ThreadManager::socketHandler,this,IO,data->TERMINATE);
-   /*
-     LM->append("Launching Heartbeat Socket\n");
+    
+    LM->append("Launching Heartbeat Socket\n");
     threadMap[threadKeys::HeartSock] = new boost::thread(&ThreadManager::socketHandler,this,IO,data->HEARTBEAT);
     LM->append("Launching Terminate Socket\n");
     threadMap[threadKeys::TerminateSock] = new boost::thread(&ThreadManager::socketHandler,this,IO,data->TERMINATE);
@@ -58,6 +56,7 @@ void ThreadManager::launch(IOManager* IO){
     threadMap[threadKeys::MoveCamSock] = new boost::thread(&ThreadManager::socketHandler,this,IO,data->MOVE_CAMERA);
     LM->append("Launching Accelerometer Socket\n");
     threadMap[threadKeys::AccelSock] = new boost::thread(&ThreadManager::socketHandler,this,IO,data->ACCEL);
+    /*
     LM->append("Launching Gyroscope Socket\n");
     threadMap[threadKeys::GyroSock] = new boost::thread(&ThreadManager::socketHandler,this,IO,data->GYRO);
     LM->append("Launching Altitude Socket\n");
@@ -68,7 +67,6 @@ void ThreadManager::launch(IOManager* IO){
     threadMap[threadKeys::TempSock] = new boost::thread(&ThreadManager::socketHandler,this,IO,data->TEMP);
     LM->append("Launching Battery Socket\n");
     threadMap[threadKeys::BatSock] = new boost::thread(&ThreadManager::socketHandler,this,IO,data->BAT);
-    
     LM->append("Launching the Sensor Thread\n");
     threadMap[threadKeys::SensorKey] = new boost::thread(&ThreadManager::sensorHandler, this, IO);  
     */

@@ -27,7 +27,6 @@
 #include <string>
 #include <netinet/in.h>
 #include "tcpstream.h"
-#include "LogManager.h"
 
 using namespace std;
 
@@ -37,10 +36,9 @@ class TCPAcceptor
     int    m_port;
     string m_address;
     bool   m_listening;
-    int m_id;
-       
+    
   public:
-    TCPAcceptor(int port, const char* address="",int id=0);
+    TCPAcceptor(int port, const char* address="");
     ~TCPAcceptor();
 
     int        start();

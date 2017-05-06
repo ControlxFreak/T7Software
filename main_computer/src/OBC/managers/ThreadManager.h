@@ -22,12 +22,7 @@ Change Log
     15 Feb 2017 - t3 - Happy Birthday!
 --------------------------------------------------------------------------------
  */
-/* 
- * File:   ThreadManager.h
- * Author: controlxfreak
- *
- * Created on April 7, 2017, 11:30 AM
- */
+
 
 #ifndef THREADMANAGER_H
 #define THREADMANAGER_H

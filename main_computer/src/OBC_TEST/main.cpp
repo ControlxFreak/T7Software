@@ -43,9 +43,9 @@ void send_terminate(){
     connector = new TCPConnector();
 
     // Keep trying to connect!
-    stream = connector->connect("127.0.0.1",9001,3000);
+    stream = connector->connect("127.0.0.1",9001+2,3000);
+    
     // Check for thread interruptions
-    usleep(3000);
     string buff;
     GM.set_msgtype((google::protobuf::int32) 2);
     GM.set_time((google::protobuf::int32) 0);
