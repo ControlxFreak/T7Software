@@ -23,6 +23,7 @@ import java.util.logging.Logger;
 
 import T7.T7Messages.GenericMessage;
 import T7.T7Messages.GenericMessage.MsgType;
+import app.MainApp;
 
 public class DataConnectionHandler
 	implements Runnable{
