@@ -115,8 +115,8 @@
             <pElem>logger</pElem>
           </incDir>
           <preprocessorList>
+            <Elem>NPRINT_TO_FILE</Elem>
             <Elem>PRINT_TO_CONSOLE</Elem>
-            <Elem>PRINT_TO_FILE</Elem>
           </preprocessorList>
         </ccTool>
         <linkerTool>

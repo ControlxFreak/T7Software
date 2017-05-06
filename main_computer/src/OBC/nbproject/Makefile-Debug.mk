@@ -75,57 +75,57 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/obc: ${OBJECTFILES}
 ${OBJECTDIR}/executive/Executive.o: executive/Executive.cpp
 	${MKDIR} -p ${OBJECTDIR}/executive
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -DPRINT_TO_CONSOLE -DPRINT_TO_FILE -Ibuild -Idist -Iio -Imain -Iexecutive -Iexternal/boost_1_63_0 -Imanagers -Iwatchdog -Itypes -Ilogger `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/executive/Executive.o executive/Executive.cpp
+	$(COMPILE.cc) -g -DNPRINT_TO_FILE -DPRINT_TO_CONSOLE -Ibuild -Idist -Iio -Imain -Iexecutive -Iexternal/boost_1_63_0 -Imanagers -Iwatchdog -Itypes -Ilogger `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/executive/Executive.o executive/Executive.cpp
 
 ${OBJECTDIR}/io/IOManager.o: io/IOManager.cpp
 	${MKDIR} -p ${OBJECTDIR}/io
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -DPRINT_TO_CONSOLE -DPRINT_TO_FILE -Ibuild -Idist -Iio -Imain -Iexecutive -Iexternal/boost_1_63_0 -Imanagers -Iwatchdog -Itypes -Ilogger `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/io/IOManager.o io/IOManager.cpp
+	$(COMPILE.cc) -g -DNPRINT_TO_FILE -DPRINT_TO_CONSOLE -Ibuild -Idist -Iio -Imain -Iexecutive -Iexternal/boost_1_63_0 -Imanagers -Iwatchdog -Itypes -Ilogger `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/io/IOManager.o io/IOManager.cpp
 
 ${OBJECTDIR}/io/T7Messages.pb.o: io/T7Messages.pb.cc
 	${MKDIR} -p ${OBJECTDIR}/io
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -DPRINT_TO_CONSOLE -DPRINT_TO_FILE -Ibuild -Idist -Iio -Imain -Iexecutive -Iexternal/boost_1_63_0 -Imanagers -Iwatchdog -Itypes -Ilogger `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/io/T7Messages.pb.o io/T7Messages.pb.cc
+	$(COMPILE.cc) -g -DNPRINT_TO_FILE -DPRINT_TO_CONSOLE -Ibuild -Idist -Iio -Imain -Iexecutive -Iexternal/boost_1_63_0 -Imanagers -Iwatchdog -Itypes -Ilogger `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/io/T7Messages.pb.o io/T7Messages.pb.cc
 
 ${OBJECTDIR}/io/tcpacceptor.o: io/tcpacceptor.cpp
 	${MKDIR} -p ${OBJECTDIR}/io
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -DPRINT_TO_CONSOLE -DPRINT_TO_FILE -Ibuild -Idist -Iio -Imain -Iexecutive -Iexternal/boost_1_63_0 -Imanagers -Iwatchdog -Itypes -Ilogger `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/io/tcpacceptor.o io/tcpacceptor.cpp
+	$(COMPILE.cc) -g -DNPRINT_TO_FILE -DPRINT_TO_CONSOLE -Ibuild -Idist -Iio -Imain -Iexecutive -Iexternal/boost_1_63_0 -Imanagers -Iwatchdog -Itypes -Ilogger `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/io/tcpacceptor.o io/tcpacceptor.cpp
 
 ${OBJECTDIR}/io/tcpconnector.o: io/tcpconnector.cpp
 	${MKDIR} -p ${OBJECTDIR}/io
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -DPRINT_TO_CONSOLE -DPRINT_TO_FILE -Ibuild -Idist -Iio -Imain -Iexecutive -Iexternal/boost_1_63_0 -Imanagers -Iwatchdog -Itypes -Ilogger `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/io/tcpconnector.o io/tcpconnector.cpp
+	$(COMPILE.cc) -g -DNPRINT_TO_FILE -DPRINT_TO_CONSOLE -Ibuild -Idist -Iio -Imain -Iexecutive -Iexternal/boost_1_63_0 -Imanagers -Iwatchdog -Itypes -Ilogger `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/io/tcpconnector.o io/tcpconnector.cpp
 
 ${OBJECTDIR}/io/tcpstream.o: io/tcpstream.cpp
 	${MKDIR} -p ${OBJECTDIR}/io
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -DPRINT_TO_CONSOLE -DPRINT_TO_FILE -Ibuild -Idist -Iio -Imain -Iexecutive -Iexternal/boost_1_63_0 -Imanagers -Iwatchdog -Itypes -Ilogger `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/io/tcpstream.o io/tcpstream.cpp
+	$(COMPILE.cc) -g -DNPRINT_TO_FILE -DPRINT_TO_CONSOLE -Ibuild -Idist -Iio -Imain -Iexecutive -Iexternal/boost_1_63_0 -Imanagers -Iwatchdog -Itypes -Ilogger `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/io/tcpstream.o io/tcpstream.cpp
 
 ${OBJECTDIR}/logger/LogManager.o: logger/LogManager.cpp
 	${MKDIR} -p ${OBJECTDIR}/logger
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -DPRINT_TO_CONSOLE -DPRINT_TO_FILE -Ibuild -Idist -Iio -Imain -Iexecutive -Iexternal/boost_1_63_0 -Imanagers -Iwatchdog -Itypes -Ilogger `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/logger/LogManager.o logger/LogManager.cpp
+	$(COMPILE.cc) -g -DNPRINT_TO_FILE -DPRINT_TO_CONSOLE -Ibuild -Idist -Iio -Imain -Iexecutive -Iexternal/boost_1_63_0 -Imanagers -Iwatchdog -Itypes -Ilogger `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/logger/LogManager.o logger/LogManager.cpp
 
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -DPRINT_TO_CONSOLE -DPRINT_TO_FILE -Ibuild -Idist -Iio -Imain -Iexecutive -Iexternal/boost_1_63_0 -Imanagers -Iwatchdog -Itypes -Ilogger `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -g -DNPRINT_TO_FILE -DPRINT_TO_CONSOLE -Ibuild -Idist -Iio -Imain -Iexecutive -Iexternal/boost_1_63_0 -Imanagers -Iwatchdog -Itypes -Ilogger `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 ${OBJECTDIR}/managers/ThreadManager.o: managers/ThreadManager.cpp
 	${MKDIR} -p ${OBJECTDIR}/managers
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -DPRINT_TO_CONSOLE -DPRINT_TO_FILE -Ibuild -Idist -Iio -Imain -Iexecutive -Iexternal/boost_1_63_0 -Imanagers -Iwatchdog -Itypes -Ilogger `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/managers/ThreadManager.o managers/ThreadManager.cpp
+	$(COMPILE.cc) -g -DNPRINT_TO_FILE -DPRINT_TO_CONSOLE -Ibuild -Idist -Iio -Imain -Iexecutive -Iexternal/boost_1_63_0 -Imanagers -Iwatchdog -Itypes -Ilogger `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/managers/ThreadManager.o managers/ThreadManager.cpp
 
 ${OBJECTDIR}/types/TSQueue.o: types/TSQueue.cpp
 	${MKDIR} -p ${OBJECTDIR}/types
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -DPRINT_TO_CONSOLE -DPRINT_TO_FILE -Ibuild -Idist -Iio -Imain -Iexecutive -Iexternal/boost_1_63_0 -Imanagers -Iwatchdog -Itypes -Ilogger `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/types/TSQueue.o types/TSQueue.cpp
+	$(COMPILE.cc) -g -DNPRINT_TO_FILE -DPRINT_TO_CONSOLE -Ibuild -Idist -Iio -Imain -Iexecutive -Iexternal/boost_1_63_0 -Imanagers -Iwatchdog -Itypes -Ilogger `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/types/TSQueue.o types/TSQueue.cpp
 
 ${OBJECTDIR}/watchdog/WatchDog.o: watchdog/WatchDog.cpp
 	${MKDIR} -p ${OBJECTDIR}/watchdog
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -DPRINT_TO_CONSOLE -DPRINT_TO_FILE -Ibuild -Idist -Iio -Imain -Iexecutive -Iexternal/boost_1_63_0 -Imanagers -Iwatchdog -Itypes -Ilogger `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/watchdog/WatchDog.o watchdog/WatchDog.cpp
+	$(COMPILE.cc) -g -DNPRINT_TO_FILE -DPRINT_TO_CONSOLE -Ibuild -Idist -Iio -Imain -Iexecutive -Iexternal/boost_1_63_0 -Imanagers -Iwatchdog -Itypes -Ilogger `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/watchdog/WatchDog.o watchdog/WatchDog.cpp
 
 # Subprojects
 .build-subprojects:

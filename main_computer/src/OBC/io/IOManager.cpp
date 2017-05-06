@@ -132,11 +132,16 @@ void IOManager::socketHandler(int id){
                 else{
                     if (stream->receive(cbuff,sizeof(cbuff),ACCEPTOR_TIMEOUT) > 0)
                     {
+                        
+                        string db;
                         GM.ParseFromArray(cbuff,sizeof(cbuff));
-                        if(GM.heartbeat().alive())
+                        if(GM.heartbeat().alive()){
                             data->HSSAlive = true;
-                        else
+                            LM->append("RECIEVED: HSSAlive == True\n");
+                        }else{
                             data->HSSAlive = false;
+                            LM->append("RECIEVED: HSSAlive == False\n");
+                        }
                     }
                 }
                 break;
@@ -151,6 +156,7 @@ void IOManager::socketHandler(int id){
                         switch(GM.terminate().terminatekey())
                         {
                             case data->SELF_TERMINATE:
+                                LM->append("RECIEVED: SELF TERMINATE COMMAND!\n");
                                 timeToDie = true;
                                 data->globalShutdown = true;
                                 // Cleanup!
@@ -161,13 +167,15 @@ void IOManager::socketHandler(int id){
                                 return;
                             case data->SOFT_SHUTDOWN:
                                 // TODO 05May2017 att
-                                break;
+                               LM->append("RECIEVED: SOFT SHUTDOWN COMMAND!\n");
+                               break;
                             case data->EMERGENCY_STOP:
                                 //TODO 05May2017 att
+                                LM->append("RECIEVED: EMERGENCY STOP COMMAND!\n");
                                 break;
                             default: 
                                 //TODO 05May2017 att
-                                LM->append("Unidentified ConfigData Message.\n");
+                                LM->append("Unidentified Terminate Message.\n");
                         }
                     }
                 }
@@ -183,31 +191,63 @@ void IOManager::socketHandler(int id){
                         switch(GM.configdata().configkey())
                         {
                             case data->TOGGLE_ACCEL:
-                                LM->append("Toggle Acceleration Message Received!\n");
+                                LM->append("RECIEVED: Toggle Acceleration!\n");
                                 data->sendAccel = !data->sendAccel;
+                                break;
                             case data->TOGGLE_GYRO:
-                                LM->append("Toggle Gyro Message Received!\n");
+                                LM->append("RECIEVED: Toggle Gyro!\n");
                                 data->sendGyro = !data->sendGyro;
+                                break;
                             case data->TOGGLE_ALTITUDE:
-                                LM->append("Toggle Altitude Message Received!\n");
+                                LM->append("RECIEVED: Toggle Altitude!\n");
                                 data->sendAlt = !data->sendAlt;
+                                break;
                             case data->TOGGLE_ATTITUDE:
-                                LM->append("Toggle Attitude Message Received!\n");
+                                LM->append("RECIEVED: Toggle Attitude!\n");
                                 data->sendAtt = !data->sendAtt;
+                                break;
                             case data->TOGGLE_TEMP:
-                                LM->append("Toggle Temperature Message Received!\n");
+                                LM->append("RECIEVED: Toggle Temperature!\n");
                                 data->sendTemp = !data->sendTemp;
+                                break;
                             case data->TOGGLE_BAT:
-                                LM->append("Toggle Bat Message Received!\n");
+                                LM->append("RECIEVED: Toggle Bat!\n");
                                 data->sendBat = !data->sendBat;
+                                break;
                             default:
                                 LM->append("Unidentified ConfigData Message.\n");
+                                break;
                         } // switch      
                     } // if
                 } // else
                 break;
             case data->MOVE_CAMERA:
-                // TODO att 05 May 2017
+                stream = acceptor->accept();
+                // Tell the WatchDog that you are having trouble connecting!
+                if(stream==NULL) data->sockHealth[id] = WD->SERVER_ACCEPT_FAIL;
+                else{
+                    if (stream->receive(cbuff,sizeof(cbuff),ACCEPTOR_TIMEOUT) > 0)
+                    {
+                        GM.ParseFromArray(cbuff,sizeof(cbuff));
+                        switch(GM.movecamera().arrowkey())
+                        {
+                            case 0:
+                                LM->append("RECIEVED: Move Camera Up Command!\n");
+                                break;
+                            case 1:
+                                LM->append("RECIEVED: Move Camera Right Command!\n");                                                                break;
+                            case data->TOGGLE_ALTITUDE:
+                                LM->append("RECIEVED: Move Camera Down Command!\n");
+                                break;
+                            case data->TOGGLE_ATTITUDE:
+                                LM->append("RECIEVED: Move Camera Left Command!\n");
+                                break;
+                            default:
+                                LM->append("Unidentified Move Camera Command.\n");
+                                break;
+                        } // switch      
+                    } // if
+                } // else
                 break;
             case data->ACCEL:
                 if(data->sendAccel){
@@ -308,7 +348,7 @@ void IOManager::socketHandler(int id){
                 delete stream;
                 delete acceptor;
                 delete connector;
-                google::protobuf::ShutdownProtobufLibrary();
+                
                 return;
         }
         // Check for thread interruptions
@@ -319,7 +359,6 @@ void IOManager::socketHandler(int id){
     delete stream;
     delete acceptor;
     delete connector;
-    google::protobuf::ShutdownProtobufLibrary();
 } // socketHandler()
 
 IOManager::IOManager() {}

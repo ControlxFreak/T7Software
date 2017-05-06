@@ -56,7 +56,6 @@ void ThreadManager::launch(IOManager* IO){
     threadMap[threadKeys::MoveCamSock] = new boost::thread(&ThreadManager::socketHandler,this,IO,data->MOVE_CAMERA);
     LM->append("Launching Accelerometer Socket\n");
     threadMap[threadKeys::AccelSock] = new boost::thread(&ThreadManager::socketHandler,this,IO,data->ACCEL);
-    /*
     LM->append("Launching Gyroscope Socket\n");
     threadMap[threadKeys::GyroSock] = new boost::thread(&ThreadManager::socketHandler,this,IO,data->GYRO);
     LM->append("Launching Altitude Socket\n");
@@ -69,7 +68,6 @@ void ThreadManager::launch(IOManager* IO){
     threadMap[threadKeys::BatSock] = new boost::thread(&ThreadManager::socketHandler,this,IO,data->BAT);
     LM->append("Launching the Sensor Thread\n");
     threadMap[threadKeys::SensorKey] = new boost::thread(&ThreadManager::sensorHandler, this, IO);  
-    */
 } //launch
 
 //----------------------------------------------------------------------------//
@@ -192,9 +190,7 @@ void ThreadManager::clean()
         threadMap.erase(threadKeys::SensorKey);
         LM->append("TCP SensorKey Thread Terminated!\n");
     }
-    
-    LM->append("All Threads Terminated!\n");
-    
+    //LM->append("All Threads Terminated!\n");
 } //clean()
 
 //----------------------------------------------------------------------------//
