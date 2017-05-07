@@ -1,85 +1,77 @@
 /*
  * ---------------------------------------------------------------------------------
- * Title: MainDisplayController.java
+ * Title: DataConfigurationDialogController.java
  * Description:
- * The controller class for the telemetry data overview GUI.
+ * The controller class for the data configuration dialog.
  * ---------------------------------------------------------------------------------
  * Lockheed Martin
  * Engineering Leadership Development Program
  * Team 7
- * 15 April 2017
+ * 6 May 2017
  * Jarrett Mead
  * ---------------------------------------------------------------------------------
  * Change Log
- * 	15 April 2017 - Jarrett Mead - Class Birthday
+ * 	6 May 2017 - Jarrett Mead - Class Birthday
  * ---------------------------------------------------------------------------------
  */
 package app.view;
 
 import app.MainApp;
-import app.model.Snapshot;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
+import java.util.Map;
+
+import T7.T7Messages.GenericMessage.MsgType;
 
 public class DataConfigurationDialogController {
 
 	@FXML
-	private Label airTempLabel;
+	private CheckBox acceleration;
 	@FXML
-	private Label altitudeLabel;
+	private CheckBox altitude;
 	@FXML
-	private Label xAccelLabel;
+	private CheckBox attitude;
 	@FXML
-	private Label yAccelLabel;
+	private CheckBox battery;
 	@FXML
-	private Label zAccelLabel;
+	private CheckBox gyroscope;
 	@FXML
-	private Label rollLabel;
-	@FXML
-	private Label pitchLabel;
-	@FXML
-	private Label yawLabel;
-	@FXML
-	private CheckBox cb1;
+	private CheckBox temperature;
+
+	private Map<MsgType, Boolean> configMap = MainApp.getConfigMap();
+	private Stage dialogStage;
 
 	@FXML
 	private void initialize() {
+		acceleration.setSelected(configMap.get(MsgType.ACCEL));
+		altitude.setSelected(configMap.get(MsgType.ALTITUDE));
+		attitude.setSelected(configMap.get(MsgType.ATTITUDE));
+		battery.setSelected(configMap.get(MsgType.BAT));
+		gyroscope.setSelected(configMap.get(MsgType.GYRO));
+		temperature.setSelected(configMap.get(MsgType.TEMP));
+	}
 
+	public void setDialogStage(Stage dialogStage) {
+		this.dialogStage = dialogStage;
 	}
 
 	@FXML
-	private void handleExit() {
+	private void handleOk() {
+		configMap.put(MsgType.ACCEL, acceleration.isSelected());
+		configMap.put(MsgType.ALTITUDE, altitude.isSelected());
+		configMap.put(MsgType.ATTITUDE, attitude.isSelected());
+		configMap.put(MsgType.BAT, battery.isSelected());
+		configMap.put(MsgType.GYRO, gyroscope.isSelected());
+		configMap.put(MsgType.TEMP, temperature.isSelected());
 
+		dialogStage.close();
 	}
 
 	@FXML
-	private void handleClick1() {
-
-	}
-
-	@FXML
-	private void handleClick2() {
-
-	}
-
-	@FXML
-	private void handleClick3() {
-
-	}
-
-	@FXML
-	private void handleClick4() {
-
-	}
-
-	@FXML
-	private void handleClick5() {
-
-	}
-
-	public void setMainApp(MainApp mainApp) {
-
+	private void handleCancel() {
+		dialogStage.close();
 	}
 }
 

@@ -62,7 +62,7 @@ public class UAVClient implements Runnable{
 				System.out.println("Establishing connection.");
 				mc_sock = new Socket(InetAddress.getLocalHost(), PORT_NUM);
 			} catch(Exception e) {
-				e.printStackTrace();
+				logger.finer(e.getMessage());
 				continue;
 			}
 			break;
@@ -73,7 +73,9 @@ public class UAVClient implements Runnable{
 		}
 
 		try {
-			mc_sock.close();
+			if(mc_sock != null) {
+				mc_sock.close();
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
