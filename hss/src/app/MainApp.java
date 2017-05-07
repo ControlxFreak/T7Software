@@ -123,27 +123,34 @@ public class MainApp extends Application {
 		DataConfigurationDialogController controller = loader.getController();
 		controller.setDialogStage(dialogStage);
 
-		/*
-		// Create the dialog
-		Dialog<Map<MsgType, Boolean>> dialog = new Dialog<Map<MsgType, Boolean>>();
-		dialog.setDialogPane(dPane);
-		dialog.initOwner(primaryStage);
-		*/
-
-		//DataConfigurationDialogController controller = loader.getController();
-
 		System.out.println("hashmap before dialog: " + configMap.toString());
 		dialogStage.showAndWait();
 		System.out.println("hashmap after dialog: " + configMap.toString());
-		/*
-		Optional<Map<MsgType, Boolean>> result = dialog.showAndWait();
-		if(result.isPresent()) {
-			setConfig(result.get());
+		for(MsgType type : configMap.keySet()) {
+			if(!configMap.get(type)) {
+				clearDisplay(type);
+			}
 		}
-		*/
 		} catch(IOException e) {
 			logger.warning("Exception when trying to show data config manager dialog: " + e.getMessage());
 			e.printStackTrace();
+		}
+	}
+
+	public static void clearDisplay(MsgType type) {
+		switch(type) {
+		case TEMP:
+		case ATTITUDE:
+		case BAT:
+		case ALTITUDE:
+			updateTelemetryDisplay(Double.MIN_VALUE, type);
+			break;
+		case GYRO:
+		case ACCEL:
+			updateTelemetryDisplay(new double[]{Double.MIN_VALUE, Double.MIN_VALUE, Double.MIN_VALUE}, type);
+			break;
+		default:
+			break;
 		}
 	}
 
@@ -239,7 +246,7 @@ public class MainApp extends Application {
 		main_controller.updateDatum(datum, type);
 	}
 
-	public void updateTelemetryDisplay(double[] data, MsgType type) {
+	public static void updateTelemetryDisplay(double[] data, MsgType type) {
 		main_controller.updateVectorDatum(data, type);
 	}
 
@@ -260,5 +267,9 @@ public class MainApp extends Application {
 
 	public static Map<MsgType, Boolean> getConfigMap() {
 		return configMap;
+	}
+
+	public static Boolean isDataTypeUnpaused(MsgType type) {
+		return configMap.get(type);
 	}
 }
