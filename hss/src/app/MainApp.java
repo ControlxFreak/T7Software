@@ -84,8 +84,6 @@ public class MainApp extends Application {
 
 		initServer();
 
-		initServer();
-
 		initClients();
 	}
 
