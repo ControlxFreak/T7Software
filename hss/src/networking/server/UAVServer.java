@@ -107,4 +107,8 @@ public class UAVServer implements Runnable {
 		Platform.runLater(() -> MainApp.updateTelemetryDisplay(datum, type));
 	}
 
+	public void clearTelemetryData(MsgType type) {
+		Platform.runLater(() -> MainApp.clearDisplay(type));
+	}
+
 }

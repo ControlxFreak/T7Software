@@ -20,6 +20,9 @@ package app;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
@@ -37,9 +40,14 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import networking.client.UAVClient;
 import networking.server.UAVServer;
@@ -61,6 +69,7 @@ public class MainApp extends Application {
 	private static UAVClient params_client = null;
 	private static UAVClient config_client = null;
 	private static ObservableList<Snapshot> snapshotData = FXCollections.observableArrayList();
+	private static Map<MsgType, Boolean> configMap = new HashMap<MsgType, Boolean>();
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -71,24 +80,20 @@ public class MainApp extends Application {
 
 		showMainDisplay();
 
-		testPopulateImages();
+		initDataConfiguration();
 
 		initServer();
 
 		initClients();
 	}
 
-	private void testPopulateImages() {
-		try {
-			snapshotData.add(new Snapshot(ImageIO.read(new File("/home/jarrett/Downloads/lenna.png"))));
-			snapshotData.add(new Snapshot(ImageIO.read(new File("/home/jarrett/Downloads/dani.jpg"))));
-			snapshotData.add(new Snapshot(ImageIO.read(new File("/home/jarrett/Downloads/jessie.jpg"))));
-			snapshotData.add(new Snapshot(ImageIO.read(new File("/home/jarrett/Downloads/topanga.jpg"))));
-			snapshotData.add(new Snapshot(ImageIO.read(new File("/home/jarrett/Downloads/kelly.jpg"))));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	private void initDataConfiguration() {
+		configMap.put(MsgType.ACCEL, true);
+		configMap.put(MsgType.ALTITUDE, true);
+		configMap.put(MsgType.ATTITUDE, true);
+		configMap.put(MsgType.BAT, true);
+		configMap.put(MsgType.GYRO, true);
+		configMap.put(MsgType.TEMP, true);
 	}
 
 	private void initClients() {
@@ -105,7 +110,55 @@ public class MainApp extends Application {
 	}
 
 	private void showDataConfigManager() {
+		try {
+		// Load the fxml file and create a new dialog.
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("view/DataConfiguration.fxml"));
+		AnchorPane dialog = (AnchorPane) loader.load();
 
+		Stage dialogStage = new Stage();
+		dialogStage.setTitle("Data Configuration Manager");
+		dialogStage.initModality(Modality.WINDOW_MODAL);
+		dialogStage.initOwner(primaryStage);
+		Scene scene = new Scene(dialog);
+		dialogStage.setScene(scene);
+
+		DataConfigurationDialogController controller = loader.getController();
+		controller.setDialogStage(dialogStage);
+
+		System.out.println("hashmap before dialog: " + configMap.toString());
+		dialogStage.showAndWait();
+		System.out.println("hashmap after dialog: " + configMap.toString());
+		for(MsgType type : configMap.keySet()) {
+			if(!configMap.get(type)) {
+				clearDisplay(type);
+			}
+		}
+		} catch(IOException e) {
+			logger.warning("Exception when trying to show data config manager dialog: " + e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
+	public static void clearDisplay(MsgType type) {
+		switch(type) {
+		case TEMP:
+		case ATTITUDE:
+		case BAT:
+		case ALTITUDE:
+			updateTelemetryDisplay(Double.MIN_VALUE, type);
+			break;
+		case GYRO:
+		case ACCEL:
+			updateTelemetryDisplay(new double[]{Double.MIN_VALUE, Double.MIN_VALUE, Double.MIN_VALUE}, type);
+			break;
+		default:
+			break;
+		}
+	}
+
+	private static void setConfig(Map<MsgType, Boolean> configMap) {
+		MainApp.configMap = configMap;
 	}
 
 	private void showMainDisplay() {
@@ -167,6 +220,14 @@ public class MainApp extends Application {
 						default:
 							break;
 						}
+					} else if (e.getEventType() == KeyEvent.KEY_RELEASED) {
+						switch(e.getCode()) {
+						case C:
+							showDataConfigManager();
+							break;
+						default:
+							break;
+						}
 					}
 				}
 			};
@@ -188,7 +249,7 @@ public class MainApp extends Application {
 		main_controller.updateDatum(datum, type);
 	}
 
-	public void updateTelemetryDisplay(double[] data, MsgType type) {
+	public static void updateTelemetryDisplay(double[] data, MsgType type) {
 		main_controller.updateVectorDatum(data, type);
 	}
 
@@ -205,5 +266,13 @@ public class MainApp extends Application {
 
 		server.shutDown();
 		camera_client.shutDown();
+	}
+
+	public static Map<MsgType, Boolean> getConfigMap() {
+		return configMap;
+	}
+
+	public static Boolean isDataTypeUnpaused(MsgType type) {
+		return configMap.get(type);
 	}
 }
