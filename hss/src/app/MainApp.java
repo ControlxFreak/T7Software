@@ -19,6 +19,9 @@ package app;
 
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import T7.T7Messages.GenericMessage;
@@ -34,9 +37,14 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import networking.client.UAVClient;
 import networking.server.UAVServer;
@@ -58,6 +66,7 @@ public class MainApp extends Application {
 	private static UAVClient params_client = null;
 	private static UAVClient config_client = null;
 	private static ObservableList<Snapshot> snapshotData = FXCollections.observableArrayList();
+	private static Map<MsgType, Boolean> configMap = new HashMap<MsgType, Boolean>();
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -68,9 +77,20 @@ public class MainApp extends Application {
 
 		showMainDisplay();
 
+		initDataConfiguration();
+
 		initServer();
 
 		initClients();
+	}
+
+	private void initDataConfiguration() {
+		configMap.put(MsgType.ACCEL, true);
+		configMap.put(MsgType.ALTITUDE, true);
+		configMap.put(MsgType.ATTITUDE, true);
+		configMap.put(MsgType.BAT, true);
+		configMap.put(MsgType.GYRO, true);
+		configMap.put(MsgType.TEMP, true);
 	}
 
 	private void initClients() {
@@ -87,7 +107,48 @@ public class MainApp extends Application {
 	}
 
 	private void showDataConfigManager() {
+		try {
+		// Load the fxml file and create a new dialog.
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("view/DataConfiguration.fxml"));
+		AnchorPane dialog = (AnchorPane) loader.load();
 
+		Stage dialogStage = new Stage();
+		dialogStage.setTitle("Data Configuration Manager");
+		dialogStage.initModality(Modality.WINDOW_MODAL);
+		dialogStage.initOwner(primaryStage);
+		Scene scene = new Scene(dialog);
+		dialogStage.setScene(scene);
+
+		DataConfigurationDialogController controller = loader.getController();
+		controller.setDialogStage(dialogStage);
+
+		/*
+		// Create the dialog
+		Dialog<Map<MsgType, Boolean>> dialog = new Dialog<Map<MsgType, Boolean>>();
+		dialog.setDialogPane(dPane);
+		dialog.initOwner(primaryStage);
+		*/
+
+		//DataConfigurationDialogController controller = loader.getController();
+
+		System.out.println("hashmap before dialog: " + configMap.toString());
+		dialogStage.showAndWait();
+		System.out.println("hashmap after dialog: " + configMap.toString());
+		/*
+		Optional<Map<MsgType, Boolean>> result = dialog.showAndWait();
+		if(result.isPresent()) {
+			setConfig(result.get());
+		}
+		*/
+		} catch(IOException e) {
+			logger.warning("Exception when trying to show data config manager dialog: " + e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
+	private static void setConfig(Map<MsgType, Boolean> configMap) {
+		MainApp.configMap = configMap;
 	}
 
 	private void showMainDisplay() {
@@ -149,6 +210,14 @@ public class MainApp extends Application {
 						default:
 							break;
 						}
+					} else if (e.getEventType() == KeyEvent.KEY_RELEASED) {
+						switch(e.getCode()) {
+						case C:
+							showDataConfigManager();
+							break;
+						default:
+							break;
+						}
 					}
 				}
 			};
@@ -187,5 +256,9 @@ public class MainApp extends Application {
 
 		server.shutDown();
 		camera_client.shutDown();
+	}
+
+	public static Map<MsgType, Boolean> getConfigMap() {
+		return configMap;
 	}
 }

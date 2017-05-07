@@ -18,6 +18,7 @@
 		<record name="build.log" action="stop"/>
 		<copy file="src/app/view/RootLayout.fxml" todir="classes/app/view"/>
 		<copy file="src/app/view/TelemetryDataOverview.fxml" todir="classes/app/view"/>
+		<copy file="src/app/view/DataConfiguration.fxml" todir="classes/app/view"/>
 		<jar destfile="${lib.dir}/hss.jar" basedir="${build.dir}"/>
 	</target>
 
