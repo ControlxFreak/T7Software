@@ -18,8 +18,11 @@ package app;
 
 
 
+import java.io.File;
 import java.io.IOException;
 import java.util.logging.Logger;
+
+import javax.imageio.ImageIO;
 
 import T7.T7Messages.GenericMessage;
 import T7.T7Messages.MoveCamera;
@@ -68,9 +71,24 @@ public class MainApp extends Application {
 
 		showMainDisplay();
 
+		testPopulateImages();
+
 		initServer();
 
 		initClients();
+	}
+
+	private void testPopulateImages() {
+		try {
+			snapshotData.add(new Snapshot(ImageIO.read(new File("/home/jarrett/Downloads/lenna.png"))));
+			snapshotData.add(new Snapshot(ImageIO.read(new File("/home/jarrett/Downloads/dani.jpg"))));
+			snapshotData.add(new Snapshot(ImageIO.read(new File("/home/jarrett/Downloads/jessie.jpg"))));
+			snapshotData.add(new Snapshot(ImageIO.read(new File("/home/jarrett/Downloads/topanga.jpg"))));
+			snapshotData.add(new Snapshot(ImageIO.read(new File("/home/jarrett/Downloads/kelly.jpg"))));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private void initClients() {

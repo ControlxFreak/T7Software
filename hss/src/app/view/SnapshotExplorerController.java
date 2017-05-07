@@ -20,25 +20,23 @@ import app.MainApp;
 import app.model.Snapshot;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 
 public class SnapshotExplorerController {
 
 	@FXML
-	private Label airTempLabel;
+	private ImageView imageDisplay;
 	@FXML
-	private Label altitudeLabel;
+	private TextField descriptionField;
 	@FXML
-	private Label xAccelLabel;
+	private Spinner<Integer> prioritySpinner;
 	@FXML
-	private Label yAccelLabel;
+	private TextField timestampField;
 	@FXML
-	private Label zAccelLabel;
-	@FXML
-	private Label rollLabel;
-	@FXML
-	private Label pitchLabel;
-	@FXML
-	private Label yawLabel;
+	private TextArea notesArea;
 
 	@FXML
 	private void initialize() {
