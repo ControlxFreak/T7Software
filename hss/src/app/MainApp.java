@@ -18,11 +18,14 @@ package app;
 
 
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.logging.Logger;
+
+import javax.imageio.ImageIO;
 
 import T7.T7Messages.GenericMessage;
 import T7.T7Messages.MoveCamera;
@@ -78,6 +81,8 @@ public class MainApp extends Application {
 		showMainDisplay();
 
 		initDataConfiguration();
+
+		initServer();
 
 		initServer();
 
