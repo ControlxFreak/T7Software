@@ -42,6 +42,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
+import javafx.scene.image.Image;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyEvent;
@@ -82,9 +83,19 @@ public class MainApp extends Application {
 
 		initDataConfiguration();
 
+		testInitSnapshot();
+
 		initServer();
 
 		initClients();
+	}
+
+	private void testInitSnapshot() {
+			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/kelly.jpg")).toURI().toString())));
+			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/jessie.jpg")).toURI().toString())));
+			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/topanga.jpg")).toURI().toString())));
+			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/dani.jpg")).toURI().toString())));
+			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/lenna.png")).toURI().toString())));
 	}
 
 	private void initDataConfiguration() {
@@ -106,7 +117,30 @@ public class MainApp extends Application {
 	}
 
 	private void showSnapshotExplorer() {
+		try {
+		// Load the fxml file and create a new dialog.
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("view/SnapshotExplorer.fxml"));
+		AnchorPane explorer = (AnchorPane) loader.load();
 
+		Stage explorerStage = new Stage();
+		explorerStage.setTitle("Snapshot Explorer");
+		explorerStage.initModality(Modality.WINDOW_MODAL);
+		explorerStage.initOwner(primaryStage);
+		Scene scene = new Scene(explorer);
+		explorerStage.setScene(scene);
+
+		/*
+		SnapshotExplorerController controller = loader.getController();
+		controller.setDialogStage(explorerStage);
+		*/
+
+		System.out.println("list before dialog: " + snapshotData.toString());
+		explorerStage.showAndWait();
+		} catch(IOException e) {
+			logger.warning("Exception when trying to show snapshot explorer: " + e.getMessage());
+			e.printStackTrace();
+		}
 	}
 
 	private void showDataConfigManager() {
@@ -225,6 +259,9 @@ public class MainApp extends Application {
 						case C:
 							showDataConfigManager();
 							break;
+						case E:
+							showSnapshotExplorer();
+							break;
 						default:
 							break;
 						}
@@ -257,7 +294,8 @@ public class MainApp extends Application {
 
 	}
 
-	public ObservableList<Snapshot> getSnapshotData() {
+	public static ObservableList<Snapshot> getSnapshotData() {
+		System.out.println("getting Snapshot Data");
 		return snapshotData;
 	}
 
