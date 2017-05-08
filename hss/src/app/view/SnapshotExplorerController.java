@@ -76,8 +76,10 @@ public class SnapshotExplorerController {
 				return cell;
 			}
 		});
-		thumbnails.getSelectionModel().select(0);
-		showSnapshotDetails(thumbnails.getItems().get(0));
+		if(thumbnails.getItems().size() > 0) {
+			thumbnails.getSelectionModel().select(0);
+			showSnapshotDetails(thumbnails.getItems().get(0));
+		}
 		thumbnails.getSelectionModel().selectedItemProperty().addListener(
 				(observable, oldValue, newValue) -> showSnapshotDetails(newValue));
 	}

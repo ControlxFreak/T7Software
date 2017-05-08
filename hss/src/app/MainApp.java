@@ -83,7 +83,7 @@ public class MainApp extends Application {
 
 		initDataConfiguration();
 
-		testInitSnapshot();
+		//testInitSnapshot();
 
 		initServer();
 
