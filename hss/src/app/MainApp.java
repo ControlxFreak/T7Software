@@ -96,6 +96,11 @@ public class MainApp extends Application {
 			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/topanga.jpg")).toURI().toString())));
 			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/dani.jpg")).toURI().toString())));
 			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/lenna.png")).toURI().toString())));
+			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/alexandra.gif")).toURI().toString())));
+			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/audrey.jpg")).toURI().toString())));
+			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/shelly.gif")).toURI().toString())));
+			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/dolores.jpg")).toURI().toString())));
+			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/gina.jpg")).toURI().toString())));
 	}
 
 	private void initDataConfiguration() {

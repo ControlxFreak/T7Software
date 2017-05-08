@@ -21,11 +21,15 @@ import java.util.logging.Logger;
 import app.MainApp;
 import app.model.Snapshot;
 import javafx.fxml.FXML;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.util.Callback;
 
 public class SnapshotExplorerController {
 
@@ -41,28 +45,66 @@ public class SnapshotExplorerController {
 	private TextField timestampField;
 	@FXML
 	private TextArea notesArea;
+	@FXML
+	private ListView<Snapshot> thumbnails;
 
 	@FXML
 	private void initialize() {
 		IntegerSpinnerValueFactory factory = new IntegerSpinnerValueFactory(1, 10);
 		prioritySpinner.setValueFactory(factory);
-		Snapshot snapshot = MainApp.getSnapshotData().get(0);
-		System.out.println("snapshot image = " + snapshot.getImage().toString());
-		showSnapshotDetails(snapshot);
+		thumbnails.setItems(MainApp.getSnapshotData());
+		thumbnails.setCellFactory(new Callback<ListView<Snapshot>, ListCell<Snapshot>>()
+		{
+			@Override
+			public ListCell<Snapshot> call(ListView<Snapshot> listView)
+			{
+				ListCell<Snapshot> cell = new ListCell<Snapshot>() {
+
+					@Override
+					protected void updateItem(Snapshot item, boolean empty) {
+						super.updateItem(item, empty);
+						ImageView thumbnail = new ImageView();
+						thumbnail.setPreserveRatio(true);
+						thumbnail.setFitHeight(200);
+						thumbnail.setFitWidth(300);
+						if(item != null) {
+							thumbnail.setImage(item.getImage());
+							setGraphic(thumbnail);
+						}
+					}
+				};
+				return cell;
+			}
+		});
+		thumbnails.getSelectionModel().select(0);
+		showSnapshotDetails(thumbnails.getItems().get(0));
+		thumbnails.getSelectionModel().selectedItemProperty().addListener(
+				(observable, oldValue, newValue) -> showSnapshotDetails(newValue));
 	}
 
 	@FXML
 	private void handleDelete() {
+		int index = thumbnails.getSelectionModel().getSelectedIndex();
+		MainApp.getSnapshotData().remove(index);
+	}
+
+	@FXML
+	private void handleReset() {
 
 	}
 
 	@FXML
-	private void handleExit() {
+	private void handleUpdate() {
+		int index = thumbnails.getSelectionModel().getSelectedIndex();
+		Snapshot snap = MainApp.getSnapshotData().get(index);
 
+		snap.setDescription(descriptionField.getText());
+		snap.setNotes(notesArea.getText());
+		snap.setPriority(prioritySpinner.getValue());
 	}
 
 	@FXML
-	private void handleInfoUpdate() {
+	private void handleDisplay() {
 
 	}
 
@@ -75,10 +117,31 @@ public class SnapshotExplorerController {
 		prioritySpinner.getValueFactory().setValue(snap.getPriority());
 		timestampField.setText(snap.getTimestamp().toString());
 		notesArea.setText(snap.getNotes());
+		centerImage();
 	}
 
-	public void setMainApp(MainApp mainApp) {
+	private void centerImage() {
+		Image img = imageDisplay.getImage();
+		if(img != null) {
+			double w = 0;
+			double h = 0;
 
+			double ratioX = imageDisplay.getFitWidth() / img.getWidth();
+			double ratioY = imageDisplay.getFitHeight() / img.getHeight();
+
+			double reducCoeff = 0;
+			if(ratioX >= ratioY) {
+				reducCoeff = ratioY;
+			} else {
+				reducCoeff = ratioX;
+			}
+
+			w = img.getWidth() * reducCoeff;
+			h = img.getHeight() * reducCoeff;
+
+			imageDisplay.setX((imageDisplay.getFitWidth() - w) / 2);
+			//imageDisplay.setY((imageDisplay.getFitHeight() - h) / 2 + 1);
+		}
 	}
 }
 
