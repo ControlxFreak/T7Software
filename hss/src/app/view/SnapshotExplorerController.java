@@ -90,7 +90,7 @@ public class SnapshotExplorerController {
 
 	@FXML
 	private void handleReset() {
-
+		showSnapshotDetails(thumbnails.getItems().get(thumbnails.getSelectionModel().getSelectedIndex()));
 	}
 
 	@FXML
