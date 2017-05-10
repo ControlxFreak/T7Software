@@ -65,8 +65,8 @@ public class SnapshotExplorerController {
 						super.updateItem(item, empty);
 						ImageView thumbnail = new ImageView();
 						thumbnail.setPreserveRatio(true);
-						thumbnail.setFitHeight(200);
-						thumbnail.setFitWidth(300);
+						thumbnail.setFitHeight(150);
+						thumbnail.setFitWidth(225);
 						if(item != null) {
 							thumbnail.setImage(item.getImage());
 							setGraphic(thumbnail);

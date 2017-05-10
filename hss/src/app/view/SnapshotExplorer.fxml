@@ -46,7 +46,7 @@
                               <VBox prefHeight="200.0" prefWidth="100.0">
                                  <children>
                                     <Label text="Timestamp" />
-                                    <TextField fx:id="timestampField" editable="false" maxWidth="225.0" prefWidth="225.0" />
+                                    <TextField fx:id="timestampField" editable="false" maxWidth="240.0" prefWidth="240.0" />
                                  </children>
                               </VBox>
                               <VBox prefHeight="200.0" prefWidth="100.0">

@@ -84,6 +84,7 @@ public class MainApp extends Application {
 		initDataConfiguration();
 
 		//testInitSnapshot();
+		testInitSnapshot2();
 
 		initServer();
 
@@ -101,6 +102,15 @@ public class MainApp extends Application {
 			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/shelly.gif")).toURI().toString())));
 			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/dolores.jpg")).toURI().toString())));
 			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/gina.jpg")).toURI().toString())));
+	}
+
+	private void testInitSnapshot2() {
+		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/Downloads/fire1.jpg").toURI().toString())));
+		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/Downloads/fire2.jpeg").toURI().toString())));
+		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/Downloads/fire3.jpg").toURI().toString())));
+		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/Downloads/landscape1.jpg").toURI().toString())));
+		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/Downloads/landscape2.jpg").toURI().toString())));
+		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/Downloads/landscape3.jpg").toURI().toString())));
 	}
 
 	private void initDataConfiguration() {
