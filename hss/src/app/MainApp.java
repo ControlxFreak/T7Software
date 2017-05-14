@@ -42,6 +42,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
+import javafx.scene.image.Image;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyEvent;
@@ -82,9 +83,34 @@ public class MainApp extends Application {
 
 		initDataConfiguration();
 
+		//testInitSnapshot();
+		testInitSnapshot2();
+
 		initServer();
 
 		initClients();
+	}
+
+	private void testInitSnapshot() {
+			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/kelly.jpg")).toURI().toString())));
+			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/jessie.jpg")).toURI().toString())));
+			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/topanga.jpg")).toURI().toString())));
+			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/dani.jpg")).toURI().toString())));
+			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/lenna.png")).toURI().toString())));
+			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/alexandra.gif")).toURI().toString())));
+			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/audrey.jpg")).toURI().toString())));
+			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/shelly.gif")).toURI().toString())));
+			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/dolores.jpg")).toURI().toString())));
+			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/gina.jpg")).toURI().toString())));
+	}
+
+	private void testInitSnapshot2() {
+		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/Downloads/fire1.jpg").toURI().toString())));
+		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/Downloads/fire2.jpeg").toURI().toString())));
+		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/Downloads/fire3.jpg").toURI().toString())));
+		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/Downloads/landscape1.jpg").toURI().toString())));
+		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/Downloads/landscape2.jpg").toURI().toString())));
+		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/Downloads/landscape3.jpg").toURI().toString())));
 	}
 
 	private void initDataConfiguration() {
@@ -105,8 +131,37 @@ public class MainApp extends Application {
 		new Thread(server).start();
 	}
 
-	private void showSnapshotExplorer() {
+	private void takeSnapshot() {
+		snapshotData.add(0, new Snapshot(new Image((new File("/home/jarrett/Downloads/topanga.jpg")).toURI().toString())));
 
+		showSnapshotExplorer();
+	}
+
+	private void showSnapshotExplorer() {
+		try {
+		// Load the fxml file and create a new dialog.
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("view/SnapshotExplorer.fxml"));
+		AnchorPane explorer = (AnchorPane) loader.load();
+
+		Stage explorerStage = new Stage();
+		explorerStage.setTitle("Snapshot Explorer");
+		explorerStage.initModality(Modality.WINDOW_MODAL);
+		explorerStage.initOwner(primaryStage);
+		Scene scene = new Scene(explorer);
+		explorerStage.setScene(scene);
+
+		/*
+		SnapshotExplorerController controller = loader.getController();
+		controller.setDialogStage(explorerStage);
+		*/
+
+		System.out.println("list before dialog: " + snapshotData.toString());
+		explorerStage.showAndWait();
+		} catch(IOException e) {
+			logger.warning("Exception when trying to show snapshot explorer: " + e.getMessage());
+			e.printStackTrace();
+		}
 	}
 
 	private void showDataConfigManager() {
@@ -225,6 +280,12 @@ public class MainApp extends Application {
 						case C:
 							showDataConfigManager();
 							break;
+						case E:
+							showSnapshotExplorer();
+							break;
+						case T:
+							takeSnapshot();
+							break;
 						default:
 							break;
 						}
@@ -257,7 +318,8 @@ public class MainApp extends Application {
 
 	}
 
-	public ObservableList<Snapshot> getSnapshotData() {
+	public static ObservableList<Snapshot> getSnapshotData() {
+		System.out.println("getting Snapshot Data");
 		return snapshotData;
 	}
 
