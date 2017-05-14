@@ -11,7 +11,7 @@
 	<target name="build" description="Compile source tree java files">
 		<mkdir dir="${build.dir}"/>
 		<record name="build.log" action="start"/>
-		<javac destdir="${build.dir}">
+		<javac destdir="${build.dir}" debug="true">
 			<src path="${src.dir}"/>
 			<classpath refid="google-classpath"/>
 		</javac>
@@ -19,6 +19,7 @@
 		<copy file="src/app/view/RootLayout.fxml" todir="classes/app/view"/>
 		<copy file="src/app/view/TelemetryDataOverview.fxml" todir="classes/app/view"/>
 		<copy file="src/app/view/DataConfiguration.fxml" todir="classes/app/view"/>
+		<copy file="src/app/view/SnapshotExplorer.fxml" todir="classes/app/view"/>
 		<jar destfile="${lib.dir}/hss.jar" basedir="${build.dir}"/>
 	</target>
 

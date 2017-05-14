@@ -1,22 +1,23 @@
 package app.model;
 
-import java.awt.image.BufferedImage;
 import java.util.Date;
+
+import javafx.scene.image.Image;
 
 public class Snapshot {
 
-	private BufferedImage image;
+	private Image image;
 	private int priority;
 	private String description;
 	private String notes;
 	private Date timestamp;
 
-	public Snapshot(BufferedImage image) {
+	public Snapshot(Image image) {
 		this.image = image;
-
+		timestamp = new Date();
 	}
 
-	public BufferedImage getImage() {
+	public Image getImage() {
 		return image;
 	}
 
