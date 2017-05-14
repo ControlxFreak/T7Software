@@ -26,6 +26,11 @@ import java.util.Optional;
 import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
+import javax.swing.JComponent;
+import javax.swing.SwingUtilities;
+
+import app.org.multiwii.swingui.gui.MwConfiguration;
+import app.org.multiwii.swingui.gui.MwGuiFrame;
 
 import T7.T7Messages.GenericMessage;
 import T7.T7Messages.MoveCamera;
@@ -37,6 +42,7 @@ import app.view.SnapshotExplorerController;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingNode;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -49,6 +55,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import app.org.multiwii.swingui.gui.MwConfiguration;
 import networking.client.UAVClient;
 import networking.server.UAVServer;
 
@@ -57,7 +64,7 @@ public class MainApp extends Application {
 	private static Logger logger			= Logger.getLogger(MainApp.class.getName());
 	private Stage primaryStage;
 	private Stage secondaryStage;
-	private static BorderPane rootLayout;
+	private static AnchorPane rootLayout;
 	private static AnchorPane snapLayout;
 	private static AnchorPane configLayout;
 	private static MainDisplayController main_controller;
@@ -162,23 +169,32 @@ public class MainApp extends Application {
 	}
 
 	private void showMainDisplay() {
-		try {
-			//Load main display.
-			main_loader = new FXMLLoader();
-			System.out.println("TelData resource = " + getClass().getResource("view/TelemetryDataOverview.fxml"));
-			main_loader.setLocation(getClass().getResource("view/TelemetryDataOverview.fxml"));
-			System.out.println("TelDataOverview loader location= " + main_loader.getLocation());
-			AnchorPane telemetryOverview = null;
-			telemetryOverview = (AnchorPane) main_loader.load();
+		SwingNode swingNode = new SwingNode();
 
-			// Set telemetry overview into the center of root layout.
-			rootLayout.setLeft(telemetryOverview);
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
 
-			main_controller = (MainDisplayController)main_loader.getController();
-			System.out.println("TEL_CONTROLLER = " + main_controller);
-		} catch (IOException e) {
-			logger.fine(e.toString());
-		}
+				MwConfiguration.setLookAndFeel();
+
+				MwGuiFrame frame = new MwGuiFrame(new MwConfiguration());
+				swingNode.setContent(frame.getRealTimePanel());
+				frame.setVisible(true);
+				frame.repaint();
+			}
+
+		});
+
+		AnchorPane.setTopAnchor(swingNode, 0.0);
+		AnchorPane.setLeftAnchor(swingNode, 0.0);
+		AnchorPane.setRightAnchor(swingNode, 0.0);
+		AnchorPane.setBottomAnchor(swingNode, 0.0);
+		rootLayout.getChildren().add(swingNode);
+
+		/*
+		main_controller = (MainDisplayController)main_loader.getController();
+		System.out.println("TEL_CONTROLLER = " + main_controller);
+		*/
 	}
 
 	private void initSnapLayout() {
@@ -193,10 +209,10 @@ public class MainApp extends Application {
 		try {
 			// Load root layout from fxml file.
 			FXMLLoader loader = new FXMLLoader();
-			System.out.println("RootLayout resource = " + getClass().getResource("view/RootLayout.fxml"));
-			loader.setLocation(getClass().getResource("view/RootLayout.fxml"));
+			System.out.println("RootLayout resource = " + getClass().getResource("view/MwRootLayout.fxml"));
+			loader.setLocation(getClass().getResource("view/MwRootLayout.fxml"));
 			System.out.println("RootLayout loader location=" + loader.getLocation());
-			rootLayout = (BorderPane) loader.load();
+			rootLayout = (AnchorPane) loader.load();
 
 			Scene scene = new Scene(rootLayout);
 
@@ -246,11 +262,11 @@ public class MainApp extends Application {
 	}
 
 	public static void updateTelemetryDisplay(double datum, MsgType type) {
-		main_controller.updateDatum(datum, type);
+		//main_controller.updateDatum(datum, type);
 	}
 
 	public static void updateTelemetryDisplay(double[] data, MsgType type) {
-		main_controller.updateVectorDatum(data, type);
+		//main_controller.updateVectorDatum(data, type);
 	}
 
 	public void updateSnapshotDisplay(Snapshot snap) {
