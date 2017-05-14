@@ -70,6 +70,8 @@ public class SnapshotExplorerController {
 						if(item != null) {
 							thumbnail.setImage(item.getImage());
 							setGraphic(thumbnail);
+						} else {
+							setGraphic(null);
 						}
 					}
 				};
@@ -79,6 +81,8 @@ public class SnapshotExplorerController {
 		if(thumbnails.getItems().size() > 0) {
 			thumbnails.getSelectionModel().select(0);
 			showSnapshotDetails(thumbnails.getItems().get(0));
+		} else {
+			showSnapshotDetails(null);
 		}
 		thumbnails.getSelectionModel().selectedItemProperty().addListener(
 				(observable, oldValue, newValue) -> showSnapshotDetails(newValue));
@@ -111,14 +115,25 @@ public class SnapshotExplorerController {
 	}
 
 	private void showSnapshotDetails(Snapshot snap) {
+		boolean imagePresent = false;
 		if(snap == null) {
 			logger.warning("Tried to show null snapshot.");
+			imageDisplay.setImage(null);
+			descriptionField.setText("");
+			prioritySpinner.getValueFactory().setValue(1);
+			timestampField.setText("");
+			notesArea.setText("");
+		} else {
+			imagePresent = true;
+			imageDisplay.setImage(snap.getImage());
+			descriptionField.setText(snap.getDescription());
+			prioritySpinner.getValueFactory().setValue(snap.getPriority());
+			timestampField.setText(snap.getTimestamp().toString());
+			notesArea.setText(snap.getNotes());
 		}
-		imageDisplay.setImage(snap.getImage());
-		descriptionField.setText(snap.getDescription());
-		prioritySpinner.getValueFactory().setValue(snap.getPriority());
-		timestampField.setText(snap.getTimestamp().toString());
-		notesArea.setText(snap.getNotes());
+		descriptionField.setEditable(imagePresent);
+		prioritySpinner.setEditable(imagePresent);
+		notesArea.setEditable(imagePresent);
 		centerImage();
 	}
 

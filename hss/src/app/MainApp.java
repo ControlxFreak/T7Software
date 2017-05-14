@@ -131,6 +131,12 @@ public class MainApp extends Application {
 		new Thread(server).start();
 	}
 
+	private void takeSnapshot() {
+		snapshotData.add(0, new Snapshot(new Image((new File("/home/jarrett/Downloads/topanga.jpg")).toURI().toString())));
+
+		showSnapshotExplorer();
+	}
+
 	private void showSnapshotExplorer() {
 		try {
 		// Load the fxml file and create a new dialog.
@@ -276,6 +282,9 @@ public class MainApp extends Application {
 							break;
 						case E:
 							showSnapshotExplorer();
+							break;
+						case T:
+							takeSnapshot();
 							break;
 						default:
 							break;
