@@ -22,23 +22,7 @@ import javafx.scene.control.Label;
 
 public class MainDisplayController {
 
-	@FXML
-	private Label airTempLabel;
-	@FXML
-	private Label altitudeLabel;
-	@FXML
-	private Label xAccelLabel;
-	@FXML
-	private Label yAccelLabel;
-	@FXML
-	private Label zAccelLabel;
-	@FXML
-	private Label rollLabel;
-	@FXML
-	private Label pitchLabel;
-	@FXML
-	private Label yawLabel;
-
+	/*
 	public void updateDatum(double d, MsgType type) {
 		String newVal = doubleDatumToLabelString(d);
 
@@ -74,6 +58,7 @@ public class MainDisplayController {
 			break;
 		}
 	}
+	*/
 
 	private String doubleDatumToLabelString(double d) {
 		String s = "";
