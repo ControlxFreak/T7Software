@@ -4,6 +4,7 @@
 /main_computer/src/ScamperProcessor/dist/
 
 /hss/classes/
+/hss/lib/hss.jar
 
 # Compiled source #
 ###################
@@ -15,7 +16,6 @@
 *.dmg
 *.gz
 *.iso
-*.jar
 *.rar
 *.tar
 *.zip
