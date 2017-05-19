@@ -9,7 +9,7 @@ Anthony Trezza
 ---------------------------------------------------------------------------------------------------------------
 
 Instalation Guide
-
+**** THIS CAN TAKE SEVERAL HOURS FOR ALL OF THE INSTALLATION TO COMPLETE ***
 1. Clone the repository
 $ git clone --recursive https://github.com/ControlxFreak/T7Software.git
 
@@ -29,7 +29,8 @@ $ sudo ldconfig
 3. Install Boost Library
 
 $ cd /path/to/T7Software/main_computer/src/OBC/external/boost_1_63_0
-$ sudo apt-get install libboost-dev
+$ ./bootstrap.sh
+$ ./b2
 
 4. Make
 $ cd /path/to/T7Software/main_computer/src/OBC/
