@@ -39,6 +39,8 @@ public class DataConfigurationDialogController {
 	private CheckBox gyroscope;
 	@FXML
 	private CheckBox temperature;
+	@FXML
+	private CheckBox thermal;
 
 	private Map<MsgType, Boolean> configMap = MainApp.getConfigMap();
 	private Stage dialogStage;
@@ -51,6 +53,7 @@ public class DataConfigurationDialogController {
 		battery.setSelected(configMap.get(MsgType.BAT));
 		gyroscope.setSelected(configMap.get(MsgType.GYRO));
 		temperature.setSelected(configMap.get(MsgType.TEMP));
+		thermal.setSelected(true);
 	}
 
 	public void setDialogStage(Stage dialogStage) {

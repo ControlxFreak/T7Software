@@ -808,7 +808,7 @@ public final class MwGuiFrame extends JFrame implements
 			pane.add(serialRefreshRate);
 			*/
 
-			realTimePanel.add(pane, BorderLayout.SOUTH);
+			//realTimePanel.add(pane, BorderLayout.SOUTH);
 		}
 		return realTimePanel;
 	}
