@@ -48,12 +48,12 @@ void ThreadManager::launch(IOManager* IO){
     
     LM->append("Launching Heartbeat Socket\n");
     threadMap[threadKeys::HeartSock] = new boost::thread(&ThreadManager::socketHandler,this,IO,data->HEARTBEAT);
-    LM->append("Launching Terminate Socket\n");
-    threadMap[threadKeys::TerminateSock] = new boost::thread(&ThreadManager::socketHandler,this,IO,data->TERMINATE);
-    LM->append("Launching ConfigureData Socket\n");
+   LM->append("Launching ConfigureData Socket\n");
     threadMap[threadKeys::ConfigSock] = new boost::thread(&ThreadManager::socketHandler,this,IO,data->CONFIG_DATA);
     LM->append("Launching MoveCamera Socket\n");
     threadMap[threadKeys::MoveCamSock] = new boost::thread(&ThreadManager::socketHandler,this,IO,data->MOVE_CAMERA);
+    LM->append("Launching Terminate Socket\n");
+    threadMap[threadKeys::TerminateSock] = new boost::thread(&ThreadManager::socketHandler,this,IO,data->TERMINATE);
     LM->append("Launching Accelerometer Socket\n");
     threadMap[threadKeys::AccelSock] = new boost::thread(&ThreadManager::socketHandler,this,IO,data->ACCEL);
     LM->append("Launching Gyroscope Socket\n");

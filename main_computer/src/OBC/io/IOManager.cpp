@@ -22,12 +22,6 @@ Change Log
     15 Feb 2017 - t3 - Happy Birthday!
 --------------------------------------------------------------------------------
  */
-/* 
- * File:   InputOutput.cpp
- * Author: controlxfreak
- * 
- * Created on April 7, 2017, 11:23 AM
- */
 
 #include "IOManager.h"
 
@@ -75,12 +69,16 @@ void IOManager::socketHandler(int id){
         // Keep trying to connect!
         bool connected = false;
         while(!connected){
-            stream = connector->connect(HSS_IP.c_str(),PORT_NUMBER+id);
+            stream = connector->connect(HSS_IP.c_str(),PORT_NUMBER+id,CONNECTOR_TIMEOUT);
             // Check for thread interruptions
             usleep(SLEEP_TIME);
             // Tell the WatchDog that you are having trouble connecting!
-            if(stream==NULL) data->sockHealth[id] = WD->SERVER_CONNECT_FAIL;
-            else{connected = true; LM->append("Successful Connect!\n");}
+            if(stream==NULL){
+                data->sockHealth[id] = WD->SERVER_CONNECT_FAIL;
+            }else{
+                connected = true; 
+                LM->append("Successful Connect!\n");
+            }
             boost::this_thread::interruption_point();
         } //while
         data->sockHealth[id] = WD->socketConnected;
@@ -97,8 +95,11 @@ void IOManager::socketHandler(int id){
             // Check for thread interruptions
             usleep(SLEEP_TIME);
             // Tell the WatchDog that you are having trouble connecting!
-            if(stream==NULL) data->sockHealth[id] = WD->SERVER_CONNECT_FAIL;
-            else{accepted = true; LM->append("Successful Accept\n");}
+            if(stream==NULL){
+                data->sockHealth[id] = WD->SERVER_CONNECT_FAIL;
+            }else{
+                accepted = true; LM->append("Successful Accept\n");
+            }
             
             boost::this_thread::interruption_point();
         } //while

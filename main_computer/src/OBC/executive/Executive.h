@@ -27,6 +27,7 @@ Change Log
 #define EXECUTIVE_H
 
 #include <string>
+#include <signal.h>
 #include "ThreadManager.h"
 #include "WatchDog.h"
 #include "IOManager.h"
@@ -53,6 +54,11 @@ public:
     // ---------------------------------------------------------------------- //
     // Public Methods:
     // ---------------------------------------------------------------------- //
+    static Executive* getInstance()
+    {
+        static Executive* p_Executive = new Executive();
+        return p_Executive;
+    };    
     void launch();
     void clean();
     Executive();

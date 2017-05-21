@@ -42,7 +42,7 @@ int TCPAcceptor::start()
         return 0;
     }
 
-    m_lsd = socket(PF_INET, SOCK_STREAM, 0);
+    m_lsd = socket(PF_INET, SOCK_STREAM | SOCK_NONBLOCK, 0);
     struct sockaddr_in address;
 
     memset(&address, 0, sizeof(address));

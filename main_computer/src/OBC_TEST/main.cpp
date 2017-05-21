@@ -68,18 +68,22 @@ void test_tcp(int id){
     T7::GenericMessage GM;
     
     // Initialize the TCP stream depending on if it is a server or client connection
-    if(id <= 200) // then it is a client
+    if(id < 200) // then it is a client
     {
         // Initialize the TCP connector
         connector = new TCPConnector();
         
-        stream = connector->connect("127.0.0.1",9001+id);      
+        stream = connector->connect("127.0.0.1",9001+id,5e6);      
     }else{
         // Initialize the TCP acceptor
         acceptor = new TCPAcceptor(9001+id,"127.0.0.1");   
         
         // Keep trying to accept!
-         stream = acceptor->accept();
+        acceptor->start();
+        stream == NULL;
+        while(stream == NULL)
+            stream = acceptor->accept();
+        
     } //else
      // Loop through until you we're done!
     bool timeToDie = false;
@@ -92,32 +96,67 @@ void test_tcp(int id){
         // Switch based on the sock id
         switch(id){
             case 1: 
-                // Check for thread interruptions
-               GM.set_msgtype((google::protobuf::int32) id);
-               GM.set_time((google::protobuf::int32) 0);
-               GM.mutable_heartbeat()->set_alive(false);
-               GM.SerializeToString(&buff);
-               stream->send(buff.c_str(),buff.length());
-               timeToDie = true;
-               break;
+                if(stream != NULL){
+                    GM.set_msgtype((google::protobuf::int32) id);
+                    GM.set_time((google::protobuf::int32) 0);
+                    GM.mutable_heartbeat()->set_alive(false);
+                    GM.SerializeToString(&buff);
+                    stream->send(buff.c_str(),buff.length());
+                    timeToDie = true;
+                }
+                break;
             case 2:
                 send_terminate();
             case 101:
-                // Check for thread interruptions
-                GM.set_msgtype((google::protobuf::int32) id);
-                GM.set_time((google::protobuf::int32) 0);
-                GM.mutable_configdata()->set_configkey((google::protobuf::int32) 0);
-                GM.SerializeToString(&buff);
-                stream->send(buff.c_str(),buff.length());
-                timeToDie = true;
+                if(stream != NULL){
+                    GM.set_msgtype((google::protobuf::int32) id);
+                    GM.set_time((google::protobuf::int32) 0);
+                    GM.mutable_configdata()->set_configkey((google::protobuf::int32) 0);
+                    GM.SerializeToString(&buff);
+                    stream->send(buff.c_str(),buff.length());
+                    timeToDie = true;
+                }
                 break;
             case 102:
-                // Check for thread interruptions
-                GM.set_msgtype((google::protobuf::int32) id);
-                GM.set_time((google::protobuf::int32) 0);
-                GM.mutable_movecamera()->set_arrowkey((google::protobuf::int32) 0);
-                GM.SerializeToString(&buff);
-                stream->send(buff.c_str(),buff.length());
+                if(stream != NULL){
+                    GM.set_msgtype((google::protobuf::int32) id);
+                    GM.set_time((google::protobuf::int32) 0);
+                    GM.mutable_movecamera()->set_arrowkey((google::protobuf::int32) 0);
+                    GM.SerializeToString(&buff);
+                    stream->send(buff.c_str(),buff.length());
+                    timeToDie = true;
+                }
+                break;
+            case 200:
+                //stream = acceptor->accept();
+                if (stream != NULL) {
+                    ssize_t len;
+                    char line[256];
+                    while ((len = stream->receive(line, sizeof(line),5e6)) > 0) {
+                        GM.ParseFromArray(line,sizeof(line));
+                        printf("time - %f\n",GM.time());
+                        printf("accel x - %f\n", GM.accel().x());
+                        printf("accel y - %f\n", GM.accel().y());
+                        printf("accel z - %f\n", GM.accel().z());
+                    }
+                    delete stream;
+                }
+                timeToDie = true;
+                break;
+            case 201:
+                stream = acceptor->accept();
+                if (stream != NULL) {
+                    ssize_t len;
+                    char line[256];
+                    while ((len = stream->receive(line, sizeof(line))) > 0) {
+                        GM.ParseFromArray(line,sizeof(line));
+                        printf("time - %f\n",GM.time());
+                        printf("Gyro x - %f\n", GM.gyro().x());
+                        printf("Gyro y - %f\n", GM.gyro().y());
+                        printf("Gyro z - %f\n", GM.gyro().z());
+                    }
+                    delete stream;
+                }
                 timeToDie = true;
                 break;
             default: 
@@ -126,7 +165,6 @@ void test_tcp(int id){
                 break;
         } //switch
     } //while(!timeToDie)
-    
     return;
 }
   

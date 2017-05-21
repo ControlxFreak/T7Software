@@ -51,7 +51,7 @@ void Executive::launch()
     // Launch the thread manager
     LM->append("Launching Thread Manager\n");
     TM.launch(&IO);
-           
+  
     // Run the executive
     run();
 } //launch()
@@ -90,10 +90,21 @@ void Executive::run()
 {
     LM->append("Running Executive\n");
 
+    vector< double > accel;
     // Loop until it is time to die
     while(!timeToDie)
     {
-        usleep(3000);
+        if(data->accelQueue.size() < 10)
+        {
+            accel.push_back(0);
+            accel.push_back(100);
+            accel.push_back(3);
+            accel.push_back(-9.3);
+
+            data->accelQueue.push(accel);
+            accel.clear();
+        }
+        usleep(3e6);
         // TODO: Add WatchDog stuff here.
         if(data->globalShutdown) {timeToDie = true;break;}
     } //while(!timeToDie)

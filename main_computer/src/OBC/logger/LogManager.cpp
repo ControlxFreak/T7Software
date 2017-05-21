@@ -61,8 +61,8 @@ void LogManager::appendHeader()
     mutex_.lock();
     buffer_ << "|-----------------------------------------------------|\n"
             << "Initializing Scamper Main On-Board Processor\n"
-            << "Version : " << "0.11" << "\n"
-            << "Build Date: " << "04 April 2017" << "\n"
+            << "Version : " << "0.12" << "\n"
+            << "Build Date: " << "06 May 2017" << "\n"
             << "Built By: " << "Anthony" << "\n"
             << "|-----------------------------------------------------|\n"
             << "Lockheed Martin \n"
