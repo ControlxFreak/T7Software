@@ -108,6 +108,14 @@ public class UAVServer implements Runnable {
 		Platform.runLater(() -> MainApp.updateTelemetryDisplay(datum, type));
 	}
 
+	public void updateTelemetryData(double datumX, double datumY, double datumZ, MsgType type) {
+		System.out.println("Setting " + type + " X to " + datumX);
+		System.out.println("Setting " + type + " Y to " + datumY);
+		System.out.println("Setting " + type + " Z to " + datumZ);
+
+		Platform.runLater(() -> MainApp.updateTelemetryDisplay(datumX, datumY, datumZ, type));
+	}
+
 	public void clearTelemetryData(MsgType type) {
 		final ToggleKeys key;
 		

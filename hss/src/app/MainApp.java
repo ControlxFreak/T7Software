@@ -34,6 +34,7 @@ import app.org.multiwii.swingui.gui.MwGuiFrame;
 
 import T7.T7Messages.GenericMessage;
 import T7.T7Messages.MoveCamera;
+import T7.T7Messages.ConfigData;
 import T7.T7Messages.ConfigData.ToggleKeys;
 import T7.T7Messages.GenericMessage.MsgType;
 import app.model.Snapshot;
@@ -100,25 +101,25 @@ public class MainApp extends Application {
 	}
 
 	private void testInitSnapshot() {
-			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/kelly.jpg")).toURI().toString())));
-			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/jessie.jpg")).toURI().toString())));
-			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/topanga.jpg")).toURI().toString())));
-			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/dani.jpg")).toURI().toString())));
-			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/lenna.png")).toURI().toString())));
-			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/alexandra.gif")).toURI().toString())));
-			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/audrey.jpg")).toURI().toString())));
-			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/shelly.gif")).toURI().toString())));
-			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/dolores.jpg")).toURI().toString())));
-			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/gina.jpg")).toURI().toString())));
+			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/kelly.jpg")).toURI().toString())));
+			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/jessie.jpg")).toURI().toString())));
+			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/topanga.jpg")).toURI().toString())));
+			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/dani.jpg")).toURI().toString())));
+			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/lenna.png")).toURI().toString())));
+			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/alexandra.gif")).toURI().toString())));
+			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/audrey.jpg")).toURI().toString())));
+			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/shelly.gif")).toURI().toString())));
+			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/dolores.jpg")).toURI().toString())));
+			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/gina.jpg")).toURI().toString())));
 	}
 
 	private void testInitSnapshot2() {
-		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/Downloads/fire1.jpg").toURI().toString())));
-		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/Downloads/fire2.jpeg").toURI().toString())));
-		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/Downloads/fire3.jpg").toURI().toString())));
-		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/Downloads/landscape1.jpg").toURI().toString())));
-		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/Downloads/landscape2.jpg").toURI().toString())));
-		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/Downloads/landscape3.jpg").toURI().toString())));
+		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/Downloads/pics/fire1.jpg").toURI().toString())));
+		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/Downloads/pics/fire2.jpeg").toURI().toString())));
+		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/Downloads/pics/fire3.jpg").toURI().toString())));
+		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/Downloads/pics/landscape1.jpg").toURI().toString())));
+		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/Downloads/pics/landscape2.jpg").toURI().toString())));
+		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/Downloads/pics/landscape3.jpg").toURI().toString())));
 	}
 
 	private void initDataConfiguration() {		
@@ -133,6 +134,9 @@ public class MainApp extends Application {
 	private void initClients() {
 		camera_client = new UAVClient();
 		new Thread(camera_client).start();
+
+		config_client = new UAVClient();
+		new Thread(config_client).start();
 	}
 
 	private void initServer() {
@@ -140,7 +144,7 @@ public class MainApp extends Application {
 	}
 
 	private void takeSnapshot() {
-		snapshotData.add(0, new Snapshot(new Image((new File("/home/jarrett/Downloads/topanga.jpg")).toURI().toString())));
+		snapshotData.add(0, new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/topanga.jpg")).toURI().toString())));
 
 		showSnapshotExplorer();
 	}
@@ -188,15 +192,28 @@ public class MainApp extends Application {
 
 		DataConfigurationDialogController controller = loader.getController();
 		controller.setDialogStage(dialogStage);
+		
+		boolean[] copy_arr = config_arr.clone();
 
-		System.out.println("hashmap before dialog: " + config_arr.toString());
+		System.out.println("array before dialog: " + config_arr.toString());
 		dialogStage.showAndWait();
-		System.out.println("hashmap after dialog: " + config_arr.toString());
+		System.out.println("array after dialog: " + config_arr.toString());
 		for(int i = 0; i < config_arr.length; i++) {
 			if(!config_arr[i]) {
 				clearDisplay(ToggleKeys.forNumber(i));
 			}
 		}
+
+		// Send configData messages
+		for(int i = 0; i < config_arr.length; i++) {
+			if(copy_arr[i] != config_arr[i]) {
+				GenericMessage.Builder gmBuilder = GenericMessage.newBuilder();
+				gmBuilder.setMsgtype(MsgType.CONFIG_DATA.getNumber()).setTime(System.currentTimeMillis())
+					.setConfigdata(ConfigData.newBuilder().setConfigKey(i));
+				config_client.sendMessage(gmBuilder.build());
+			}
+		}
+
 		} catch(IOException e) {
 			logger.warning("Exception when trying to show data config manager dialog: " + e.getMessage());
 			e.printStackTrace();
@@ -206,16 +223,16 @@ public class MainApp extends Application {
 	public static void clearDisplay(ToggleKeys type) {
 		switch(type) {
 		case toggleAccel:
-			updateTelemetryDisplay(new double[]{Double.MIN_VALUE, Double.MIN_VALUE, Double.MIN_VALUE}, MsgType.ACCEL);
+			updateTelemetryDisplay(Double.MIN_VALUE, Double.MIN_VALUE, Double.MIN_VALUE, MsgType.ACCEL);
 			break;
 		case toggleGyro:
-			updateTelemetryDisplay(new double[]{Double.MIN_VALUE, Double.MIN_VALUE, Double.MIN_VALUE}, MsgType.GYRO);
+			updateTelemetryDisplay(Double.MIN_VALUE, Double.MIN_VALUE, Double.MIN_VALUE, MsgType.GYRO);
 			break;
 		case toggleAltitude:
 			updateTelemetryDisplay(Double.MIN_VALUE, MsgType.ALTITUDE);
 			break;
 		case toggleAttitude:
-			updateTelemetryDisplay(new double[]{Double.MIN_VALUE, Double.MIN_VALUE, Double.MIN_VALUE}, MsgType.ATTITUDE);
+			updateTelemetryDisplay(Double.MIN_VALUE, Double.MIN_VALUE, Double.MIN_VALUE, MsgType.ATTITUDE);
 			break;
 		case toggleTemp:
 			updateTelemetryDisplay(Double.MIN_VALUE, MsgType.TEMP);
@@ -347,7 +364,7 @@ public class MainApp extends Application {
 		//main_controller.updateDatum(datum, type);
 	}
 
-	public static void updateTelemetryDisplay(double[] data, MsgType type) {
+	public static void updateTelemetryDisplay(double datumX, double datumY, double datumZ, MsgType type) {
 		//main_controller.updateVectorDatum(data, type);
 	}
 
@@ -365,6 +382,7 @@ public class MainApp extends Application {
 
 		server.shutDown();
 		camera_client.shutDown();
+		config_client.shutDown();
 	}
 
 	public static boolean[] getConfigArr() {

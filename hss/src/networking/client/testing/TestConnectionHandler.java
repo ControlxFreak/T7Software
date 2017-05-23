@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.net.Socket;
 import java.util.function.Consumer;
 
+import T7.T7Messages.ConfigData.ToggleKeys;
 import T7.T7Messages.GenericMessage;
 import T7.T7Messages.GenericMessage.MsgType;
 import T7.T7Messages.MoveCamera.ArrowKeys;
@@ -52,6 +53,7 @@ public class TestConnectionHandler implements Runnable {
 			//case UPDATE_PARAM:
 			//	break;
 			case CONFIG_DATA:
+				handlerMethod = this::handleConfigMessage;
 				break;
 			case MOVE_CAMERA:
 				handlerMethod = this::handleCameraMessage;
@@ -92,6 +94,11 @@ public class TestConnectionHandler implements Runnable {
 	private void handleCameraMessage(GenericMessage gm) {
 		int arrowKey = gm.getMovecamera().getArrowKey();
 		System.out.println("arrowKey = " + ArrowKeys.forNumber(arrowKey));
+	}
+
+	private void handleConfigMessage(GenericMessage gm) {
+		int configKey = gm.getConfigdata().getConfigKey();
+		System.out.println("configKey = " + ToggleKeys.forNumber(configKey));
 	}
 
 }
