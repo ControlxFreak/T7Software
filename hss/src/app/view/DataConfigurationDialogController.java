@@ -23,6 +23,7 @@ import javafx.stage.Stage;
 
 import java.util.Map;
 
+import T7.T7Messages.ConfigData.ToggleKeys;
 import T7.T7Messages.GenericMessage.MsgType;
 
 public class DataConfigurationDialogController {
@@ -42,17 +43,17 @@ public class DataConfigurationDialogController {
 	@FXML
 	private CheckBox thermal;
 
-	private Map<MsgType, Boolean> configMap = MainApp.getConfigMap();
+	private boolean[] config_arr = MainApp.getConfigArr();
 	private Stage dialogStage;
 
 	@FXML
 	private void initialize() {
-		acceleration.setSelected(configMap.get(MsgType.ACCEL));
-		altitude.setSelected(configMap.get(MsgType.ALTITUDE));
-		attitude.setSelected(configMap.get(MsgType.ATTITUDE));
-		battery.setSelected(configMap.get(MsgType.BAT));
-		gyroscope.setSelected(configMap.get(MsgType.GYRO));
-		temperature.setSelected(configMap.get(MsgType.TEMP));
+		acceleration.setSelected(config_arr[ToggleKeys.toggleAccel_VALUE]);
+		gyroscope.setSelected(config_arr[ToggleKeys.toggleGyro_VALUE]);
+		altitude.setSelected(config_arr[ToggleKeys.toggleAltitude_VALUE]);
+		attitude.setSelected(config_arr[ToggleKeys.toggleAttitude_VALUE]);
+		temperature.setSelected(config_arr[ToggleKeys.toggleTemp_VALUE]);
+		battery.setSelected(config_arr[ToggleKeys.toggleBat_VALUE]);
 		thermal.setSelected(true);
 	}
 
@@ -62,12 +63,12 @@ public class DataConfigurationDialogController {
 
 	@FXML
 	private void handleOk() {
-		configMap.put(MsgType.ACCEL, acceleration.isSelected());
-		configMap.put(MsgType.ALTITUDE, altitude.isSelected());
-		configMap.put(MsgType.ATTITUDE, attitude.isSelected());
-		configMap.put(MsgType.BAT, battery.isSelected());
-		configMap.put(MsgType.GYRO, gyroscope.isSelected());
-		configMap.put(MsgType.TEMP, temperature.isSelected());
+		config_arr[ToggleKeys.toggleAccel_VALUE] = acceleration.isSelected();
+		config_arr[ToggleKeys.toggleGyro_VALUE] = gyroscope.isSelected();
+		config_arr[ToggleKeys.toggleAltitude_VALUE] = altitude.isSelected();
+		config_arr[ToggleKeys.toggleAttitude_VALUE] = attitude.isSelected();
+		config_arr[ToggleKeys.toggleTemp_VALUE] = temperature.isSelected();
+		config_arr[ToggleKeys.toggleBat_VALUE] = battery.isSelected();
 
 		dialogStage.close();
 	}

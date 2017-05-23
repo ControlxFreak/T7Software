@@ -34,6 +34,7 @@ import app.org.multiwii.swingui.gui.MwGuiFrame;
 
 import T7.T7Messages.GenericMessage;
 import T7.T7Messages.MoveCamera;
+import T7.T7Messages.ConfigData.ToggleKeys;
 import T7.T7Messages.GenericMessage.MsgType;
 import app.model.Snapshot;
 import app.view.DataConfigurationDialogController;
@@ -74,10 +75,10 @@ public class MainApp extends Application {
 	private static FXMLLoader main_loader;
 	private static UAVServer server = new UAVServer();
 	private static UAVClient camera_client = null;
-	private static UAVClient params_client = null;
 	private static UAVClient config_client = null;
 	private static ObservableList<Snapshot> snapshotData = FXCollections.observableArrayList();
-	private static Map<MsgType, Boolean> configMap = new HashMap<MsgType, Boolean>();
+	//private static Map<MsgType, Boolean> configMap = new HashMap<MsgType, Boolean>();
+	private static boolean[] config_arr = new boolean[6];
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -120,13 +121,13 @@ public class MainApp extends Application {
 		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/Downloads/landscape3.jpg").toURI().toString())));
 	}
 
-	private void initDataConfiguration() {
-		configMap.put(MsgType.ACCEL, true);
-		configMap.put(MsgType.ALTITUDE, true);
-		configMap.put(MsgType.ATTITUDE, true);
-		configMap.put(MsgType.BAT, true);
-		configMap.put(MsgType.GYRO, true);
-		configMap.put(MsgType.TEMP, true);
+	private void initDataConfiguration() {		
+		config_arr[ToggleKeys.toggleAccel_VALUE] = true;
+		config_arr[ToggleKeys.toggleGyro_VALUE] = true;
+		config_arr[ToggleKeys.toggleAltitude_VALUE] = true;
+		config_arr[ToggleKeys.toggleAttitude_VALUE] = true;
+		config_arr[ToggleKeys.toggleTemp_VALUE] = true;
+		config_arr[ToggleKeys.toggleBat_VALUE] = true;
 	}
 
 	private void initClients() {
@@ -188,12 +189,12 @@ public class MainApp extends Application {
 		DataConfigurationDialogController controller = loader.getController();
 		controller.setDialogStage(dialogStage);
 
-		System.out.println("hashmap before dialog: " + configMap.toString());
+		System.out.println("hashmap before dialog: " + config_arr.toString());
 		dialogStage.showAndWait();
-		System.out.println("hashmap after dialog: " + configMap.toString());
-		for(MsgType type : configMap.keySet()) {
-			if(!configMap.get(type)) {
-				clearDisplay(type);
+		System.out.println("hashmap after dialog: " + config_arr.toString());
+		for(int i = 0; i < config_arr.length; i++) {
+			if(!config_arr[i]) {
+				clearDisplay(ToggleKeys.forNumber(i));
 			}
 		}
 		} catch(IOException e) {
@@ -202,25 +203,33 @@ public class MainApp extends Application {
 		}
 	}
 
-	public static void clearDisplay(MsgType type) {
+	public static void clearDisplay(ToggleKeys type) {
 		switch(type) {
-		case TEMP:
-		case ATTITUDE:
-		case BAT:
-		case ALTITUDE:
-			updateTelemetryDisplay(Double.MIN_VALUE, type);
+		case toggleAccel:
+			updateTelemetryDisplay(new double[]{Double.MIN_VALUE, Double.MIN_VALUE, Double.MIN_VALUE}, MsgType.ACCEL);
 			break;
-		case GYRO:
-		case ACCEL:
-			updateTelemetryDisplay(new double[]{Double.MIN_VALUE, Double.MIN_VALUE, Double.MIN_VALUE}, type);
+		case toggleGyro:
+			updateTelemetryDisplay(new double[]{Double.MIN_VALUE, Double.MIN_VALUE, Double.MIN_VALUE}, MsgType.GYRO);
+			break;
+		case toggleAltitude:
+			updateTelemetryDisplay(Double.MIN_VALUE, MsgType.ALTITUDE);
+			break;
+		case toggleAttitude:
+			updateTelemetryDisplay(new double[]{Double.MIN_VALUE, Double.MIN_VALUE, Double.MIN_VALUE}, MsgType.ATTITUDE);
+			break;
+		case toggleTemp:
+			updateTelemetryDisplay(Double.MIN_VALUE, MsgType.TEMP);
+			break;
+		case toggleBat:
+			updateTelemetryDisplay(Double.MIN_VALUE, MsgType.BAT);
 			break;
 		default:
 			break;
 		}
 	}
 
-	private static void setConfig(Map<MsgType, Boolean> configMap) {
-		MainApp.configMap = configMap;
+	private static void setConfig(boolean[] config_arr) {
+		MainApp.config_arr = config_arr;
 	}
 
 	private void showMainDisplay() {
@@ -358,11 +367,26 @@ public class MainApp extends Application {
 		camera_client.shutDown();
 	}
 
-	public static Map<MsgType, Boolean> getConfigMap() {
-		return configMap;
+	public static boolean[] getConfigArr() {
+		return config_arr;
 	}
 
 	public static Boolean isDataTypeUnpaused(MsgType type) {
-		return configMap.get(type);
+		switch(type) {
+		case ACCEL:
+			return config_arr[ToggleKeys.toggleAccel_VALUE];
+		case GYRO:
+			return config_arr[ToggleKeys.toggleGyro_VALUE];
+		case ALTITUDE:
+			return config_arr[ToggleKeys.toggleAltitude_VALUE];
+		case ATTITUDE:
+			return config_arr[ToggleKeys.toggleAttitude_VALUE];
+		case TEMP:
+			return config_arr[ToggleKeys.toggleTemp_VALUE];
+		case BAT:
+			return config_arr[ToggleKeys.toggleBat_VALUE];
+		default:
+			throw new IllegalArgumentException("Illegal MsgType: " + type);
+		}
 	}
 }
