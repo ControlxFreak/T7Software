@@ -12,8 +12,13 @@
 // ---------------------------------------------------------- //
 // Change Log:
 // 22 April 2017 - att - Birthday! <(^.^)>
+// 05 May 2017   - att - Added Terminate Flags for soft shudown 
+//		         and emergency stops. Also - removed 
+//			 unnecessary updateparams. Also removed
+//			 the unnecessary times in temp and bat
 // ---------------------------------------------------------- //
 
+syntax = "proto3"; // Newest version of the protocol language
 package T7; // Basically the namespace
 
 // ---------------------------------------------------------- //
@@ -23,25 +28,25 @@ package T7; // Basically the namespace
 // The data that is defined in the MsgType structure will
 // tell the reciever what to parse.
 message GenericMessage {
-	required MsgType msgtype = 1;
-	required double time = 2;
+	int32 msgtype = 1;
+	double time = 2;
 	
 	// INFO MESSAGE //
-	optional Response response = 3;
-	optional HeartBeat heartbeat = 4;
-	optional Terminate terminate = 5;
+	Response response = 3;
+	HeartBeat heartbeat = 4;
+	Terminate terminate = 5;
 	
 	// HSS -> UAV //
-	optional UpdateParams updateparams = 6;
-	optional ConfigData configdata = 7;
-	optional MoveCamera movecamera = 8;
+	ConfigData configdata = 6;
+	MoveCamera movecamera = 7;
 
-	optional Accel accel = 9;
-	optional Gyro gyro = 10;
-	optional Altitude altitude = 11;
-	optional Attitude attitude = 12;
-	optional Temp temp = 13;
-	optional Battery bat = 14;
+	// UAV->HSS //
+	Accel accel = 8;
+	Gyro gyro = 9;
+	Altitude altitude = 10;
+	Attitude attitude = 11;
+	Temp temp = 12;
+	Battery bat = 13;
 
 	enum MsgType {
 		// INFO MESSAGE //
@@ -50,7 +55,6 @@ message GenericMessage {
 		TERMINATE = 2;
 
 		// HSS -> UAV //
-		UPDATE_PARAM = 100;
 		CONFIG_DATA = 101;
 		MOVE_CAMERA = 102;
 
@@ -72,49 +76,64 @@ message GenericMessage {
 
 // Response //
 // Basic TCP response to a sucesfully recieved message
+// THIS WILL NOT HAVE ITS OWN THREAD.
 message Response {
-	optional bool roger_that = 1 [default = true];
+	 bool roger_that = 1;
 }
 
 // HeartBeat //
 // This message will be sent both from the UAV and from the HSS 
 // Periodically to ensure that they are both alive
 message HeartBeat { 
-	required bool alive = 1[default = true];
+	 bool alive = 1;
 }
 
 // Terminate //
-// This message will be the message that the UAV will recieve to // self terminate
+// This message will be the message that the UAV will recieve to self terminate or 
+// Send the UAV into a softshutdown or emergency stop
 message Terminate  {
-	required bool terminate = 1 [default = true]; 
+	int32 terminateKey = 1;
+	
+	enum TerminateKeys{
+	     selfTerminate = 0;
+             softShutdown = 1;
+	     emergencyStop= 2;
+	} 
 }
 
 // ---------------------------------------------------------- //
 // HSS -> UAV Messages
 // ---------------------------------------------------------- //
-// UpdateParams //
-// This message is to satisfy the requirement of allowing the 
-// operator the ability to modify parameters in real time
-
-// TBD - 22 April 2017 - att: Figure out what is needed.
-message UpdateParams {
-	optional bool tbd = 1;
-}
 
 // ConfigData //
 // This message is to satisfy the requirement of allowing the
 // operator to configure the data that they recieve in real time
-// TBD - 22 April 2017 - att: Figure out what is needed.
 message ConfigData {
-	optional bool tbd = 1;
+	int32 configKey = 1;
+	
+	// This will let me know wich one to use in the switch case
+	enum ToggleKeys{
+	     toggleAccel = 0;
+	     toggleGyro = 1;
+	     toggleAltitude = 2;
+	     toggleAttitude = 3;
+	     toggleTemp = 4;
+	     toggleBat = 5;
+	}
 }
 
 // MoveCamera //
 // This message will allow the operator to move the pan-tilt 
 // gimble attached to the camera
-// TBD - 22 April 2017 - att: Figure out what is needed.
 message MoveCamera  {
-	optional bool tbd = 1;
+	int32 arrowKey = 1;
+
+	enum ArrowKeys{
+		UP = 0;
+		RIGHT = 1;
+		DOWN = 2;
+		LEFT = 3;
+	}
 }
 
 // ---------------------------------------------------------- //
@@ -123,43 +142,41 @@ message MoveCamera  {
 // Accel //
 // This message defines the accelerometer message.  
 message Accel {
-	required double x = 1;	//  [m/s^2]
-	required double y = 2;	//  [m/s^2]
-	required double z = 3;	//  [m/s^2]
+	 double x = 1;	//  [m/s^2]
+	 double y = 2;	//  [m/s^2]
+	 double z = 3;	//  [m/s^2]
 }
 
 // Gyro //
 // This message describes the gyroscop message
 message Gyro {	
-	required double x = 1;	//   [rad/s^2]
-	required double y = 2;	//   [rad/s^2]
-	required double z = 3;	//   [rad/s^2]
+	 double x = 1;	//   [rad/s^2]
+	 double y = 2;	//   [rad/s^2]
+	 double z = 3;	//   [rad/s^2]
 }
 
 // Altitude //
 // This message describes the altitude message
 message Altitude {
-	required double alt = 1;	// [m]
+	 double alt = 1;	// [m]
 }
 
 // Attitude //
 // This message describes the attitude message
 message Attitude {
-	required double roll = 1;	// [rad]
-	required double pitch = 2;	// [rad]
-	required double yaw = 3;	// [rad]
+	 double roll = 1;	// [rad]
+	 double pitch = 2;	// [rad]
+	 double yaw = 3;	// [rad]
 }
 
 // Temp //
 // This message describes the air temperature message.
 message Temp {	
-	required double time = 1;	//   [s]
-	required double temp = 2;	//   [c]
+	 double temp = 1;	//   [c]
 }
 
 // Battery //
 // This message defines the battery message.
 message Battery {
-	required double time = 1;		//   [s]
-	required double percent = 2;	//   [%]
+	 double percent = 1;	//   [%]
 }

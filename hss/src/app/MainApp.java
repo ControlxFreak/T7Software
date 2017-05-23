@@ -281,11 +281,23 @@ public class MainApp extends Application {
 					if(e.getEventType() == KeyEvent.KEY_PRESSED) {
 						switch(e.getCode()) {
 						case UP:
-						case DOWN:
-						case LEFT:
+							gmBuilder.setMsgtype(MsgType.MOVE_CAMERA.getNumber()).setTime(System.currentTimeMillis())
+							.setMovecamera(MoveCamera.newBuilder().setArrowKey(0));
+							camera_client.sendMessage(gmBuilder.build());
+							break;
 						case RIGHT:
-							gmBuilder.setMsgtype(MsgType.MOVE_CAMERA).setTime(System.currentTimeMillis())
-							.setMovecamera(MoveCamera.newBuilder().setTbd(true));
+							gmBuilder.setMsgtype(MsgType.MOVE_CAMERA.getNumber()).setTime(System.currentTimeMillis())
+							.setMovecamera(MoveCamera.newBuilder().setArrowKey(1));
+							camera_client.sendMessage(gmBuilder.build());
+							break;
+						case DOWN:
+							gmBuilder.setMsgtype(MsgType.MOVE_CAMERA.getNumber()).setTime(System.currentTimeMillis())
+							.setMovecamera(MoveCamera.newBuilder().setArrowKey(2));
+							camera_client.sendMessage(gmBuilder.build());
+							break;
+						case LEFT:
+							gmBuilder.setMsgtype(MsgType.MOVE_CAMERA.getNumber()).setTime(System.currentTimeMillis())
+							.setMovecamera(MoveCamera.newBuilder().setArrowKey(3));
 							camera_client.sendMessage(gmBuilder.build());
 							break;
 						default:

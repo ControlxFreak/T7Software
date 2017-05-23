@@ -59,7 +59,7 @@ public class DataConnectionHandler
 		try {
 			System.out.println("Parsing message.");
 			GenericMessage gm = GenericMessage.parseDelimitedFrom(in);
-			connType = gm.getMsgtype();
+			connType = MsgType.forNumber(gm.getMsgtype());
 			setHandler();
 			handlerMethod.accept(gm);
 		} catch (IOException e) {

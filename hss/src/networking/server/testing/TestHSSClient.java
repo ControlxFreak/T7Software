@@ -156,21 +156,20 @@ public class TestHSSClient {
 					gm.setTime(System.currentTimeMillis());
 					switch(connType) {
 					case ACCEL:
-						gm.setMsgtype(MsgType.ACCEL)
+						gm.setMsgtype(200)
 							.setAccel(Accel.newBuilder().setX(1.0).setY(2.0).setZ(3.0));
 						break;
-					case ALTITUDE:
-						gm.setMsgtype(MsgType.ALTITUDE)
-							.setAltitude(Altitude.newBuilder().setAlt(Double.parseDouble(input)));
-						break;
 					case GYRO:
-						gm.setMsgtype(MsgType.GYRO)
+						gm.setMsgtype(201)
 							.setGyro(Gyro.newBuilder().setX(3.0).setY(2.0).setZ(1.0));
 						break;
+					case ALTITUDE:
+						gm.setMsgtype(202)
+							.setAltitude(Altitude.newBuilder().setAlt(Double.parseDouble(input)));
+						break;
 					case TEMP:
-						gm.setMsgtype(MsgType.TEMP)
-							.setTemp(Temp.newBuilder().setTime(System.currentTimeMillis())
-									.setTemp(Double.parseDouble(input)));
+						gm.setMsgtype(204)
+							.setTemp(Temp.newBuilder().setTemp(Double.parseDouble(input)));
 						break;
 					default:
 						break;
