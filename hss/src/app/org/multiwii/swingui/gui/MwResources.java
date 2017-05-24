@@ -23,8 +23,8 @@ import java.util.HashMap;
  */
 public class MwResources {
 
-	private static final String FONT_PREFIX = "/home/jarrett/multiwii-gui-swing/src/main/resources/fonts/";
-	private static final String THEME_PREFIXE = "/home/jarrett/multiwii-gui-swing/src/main/resources/images/";
+	private static final String FONT_PREFIX = "/home/jarrett/T7Software/hss/src/main/resources/fonts/";
+	private static final String THEME_PREFIXE = "/home/jarrett/T7Software/hss/src/main/resources/images/";
 
 	private static final String DEFAULT_FONT = FONT_PREFIX
 			+ "Liberation/LiberationMono-Regular.ttf";

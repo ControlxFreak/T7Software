@@ -230,6 +230,7 @@ public class MainApp extends Application {
 	}
 
 	private void showUavTerminationDialog() {
+		main_controller.printHorizonWidths();
 		List<String> choices = new ArrayList<>();
 		choices.add("Reboot Software");
 		choices.add("Soft Shutdown");

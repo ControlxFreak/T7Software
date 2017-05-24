@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -11,8 +13,33 @@
             <HBox prefHeight="400.0" prefWidth="1500.0">
                <children>
                   <VBox prefHeight="400.0" prefWidth="900.0" />
-                  <VBox fx:id="receiversBox" prefHeight="400.0" prefWidth="300.0" spacing="10.0" />
-                  <VBox fx:id="horizonTempBox" prefHeight="400.0" prefWidth="300.0" spacing="10.0" />
+                  <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="300.0" spacing="10.0">
+                     <children>
+                        <Label text="Receiver Channels" textFill="WHITE" />
+                        <VBox fx:id="receiversBox" prefHeight="364.0" prefWidth="300.0" spacing="10.0">
+                           <padding>
+                              <Insets left="50.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding></VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="300.0" spacing="10.0">
+                     <children>
+                        <Label text="Flight Dynamics" textFill="WHITE" />
+                        <VBox fx:id="horizonTempBox" prefHeight="367.0" prefWidth="300.0" spacing="10.0">
+                           <padding>
+                              <Insets left="50.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding></VBox>
                </children>
             </HBox>
             <HBox fx:id="lowerHalf" prefHeight="400.0" prefWidth="1500.0" />

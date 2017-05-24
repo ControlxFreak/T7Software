@@ -21,6 +21,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.util.logging.Logger;
 
+import javax.swing.JComponent;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
@@ -36,6 +38,9 @@ import app.org.multiwii.swingui.gui.instrument.MwRCDataPanel;
 import app.org.multiwii.swingui.gui.instrument.MwUAVPanel;
 import javafx.embed.swing.SwingNode;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -83,6 +88,7 @@ public class MainDisplayController {
 				//pane.setMinimumSize(new Dimension(770, 200));
 				//pane.setMaximumSize(new Dimension(770, 200));
 				rcDataNode.setContent(rcDataPanel);
+				//centerRcBoxNodes();
 
 				MwUAVPanel uavPanel = new MwUAVPanel(conf);
 				MSP.getRealTimeData().addListener(uavPanel);
@@ -111,6 +117,12 @@ public class MainDisplayController {
 		receiversBox.getChildren().add(uavNode);
 		horizonTempBox.getChildren().add(horizonNode);
 		//horizonTempBox.getChildren().add(tempGaugeNode);
+	}
+	
+	public void printHorizonWidths() {
+		System.out.println("Horizon VBox width: " + horizonTempBox.getWidth());
+		System.out.println("Horizon JPanel width: " + ((SwingNode)horizonTempBox.getChildren().get(1)).getContent().getWidth());
+		System.out.println("Horizon JPanel Dimension width: " + ((SwingNode)horizonTempBox.getChildren().get(1)).getContent().getSize().getWidth());
 	}
 	/*
 	public void updateDatum(double d, MsgType type) {
@@ -156,6 +168,21 @@ public class MainDisplayController {
 			s = Double.toString(d);
 		}
 		return s;
+	}
+
+	private void centerRcBoxNodes() {
+		SwingNode node1 = (SwingNode)receiversBox.getChildren().get(1);
+		SwingNode node2 = (SwingNode)receiversBox.getChildren().get(2);
+		JComponent comp1 = node1.getContent();
+		JComponent comp2 = node2.getContent();
+		if(comp1 != null && comp2 != null) {
+			double w = receiversBox.getWidth();
+			double xpos = receiversBox.getLayoutX();
+			double center = w/2 + xpos;
+
+			node1.setLayoutX(center);
+			node2.setLayoutX(center);
+		}
 	}
 }
 
