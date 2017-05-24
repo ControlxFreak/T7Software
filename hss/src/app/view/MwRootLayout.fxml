@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.embed.swing.SwingNode?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
@@ -7,11 +8,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1500.0" style="-fx-background-color: rgb(51, 51, 51);" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.view.MainDisplayController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="814.0" prefWidth="1500.0" style="-fx-background-color: rgb(51, 51, 51);" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.view.MainDisplayController">
    <children>
-      <VBox prefHeight="800.0" prefWidth="1500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox prefHeight="814.0" prefWidth="1500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox prefHeight="400.0" prefWidth="1500.0">
+            <HBox prefHeight="414.0" prefWidth="1380.0">
                <children>
                   <VBox alignment="TOP_RIGHT" prefHeight="400.0" prefWidth="900.0">
                      <children>
@@ -20,37 +21,56 @@
                      <padding>
                         <Insets top="10.0" />
                      </padding></VBox>
-                  <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="300.0" spacing="10.0">
+                  <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="300.0">
                      <children>
                         <Label text="Receiver Channels" textFill="WHITE" />
-                        <VBox fx:id="receiversBox" prefHeight="364.0" prefWidth="300.0" spacing="10.0">
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="300.0">
                            <padding>
                               <Insets left="50.0" />
                            </padding>
+                           <children>
+                              <SwingNode fx:id="rcDataNode" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" minHeight="210.0" prefHeight="210.0" prefWidth="300.0">
+                           <padding>
+                              <Insets left="50.0" />
+                           </padding>
+                           <children>
+                              <SwingNode fx:id="uavNode" />
+                           </children>
                         </VBox>
                      </children>
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
                      <padding>
-                        <Insets top="10.0" />
+                        <Insets bottom="5.0" top="10.0" />
                      </padding></VBox>
                   <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="300.0" spacing="10.0">
                      <children>
                         <Label text="Flight Dynamics" textFill="WHITE" />
-                        <VBox fx:id="horizonTempBox" prefHeight="367.0" prefWidth="300.0" spacing="10.0">
+                        <VBox prefHeight="367.0" prefWidth="300.0" spacing="10.0">
                            <padding>
                               <Insets left="50.0" />
                            </padding>
+                           <children>
+                              <SwingNode fx:id="horizonNode" />
+                           </children>
                         </VBox>
+                        <Label text="External Temperature" textFill="WHITE" />
                      </children>
                      <padding>
                         <Insets top="10.0" />
                      </padding></VBox>
                </children>
+               <padding>
+                  <Insets bottom="5.0" />
+               </padding>
             </HBox>
-            <HBox fx:id="lowerHalf" prefHeight="400.0" prefWidth="1500.0">
+            <HBox prefHeight="400.0" prefWidth="1500.0">
                <children>
+                  <SwingNode fx:id="chartNode" />
                   <VBox alignment="TOP_CENTER" spacing="20.0">
                      <children>
                         <Label text="Point of Interest" textFill="WHITE" />
@@ -68,6 +88,7 @@
                         <Insets top="30.0" />
                      </padding>
                   </VBox>
+                  <SwingNode fx:id="compassNode" />
                </children>
                <padding>
                   <Insets left="50.0" />

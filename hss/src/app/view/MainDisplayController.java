@@ -51,23 +51,23 @@ public class MainDisplayController {
 	private static Logger logger			= Logger.getLogger(MainDisplayController.class.getName());
 
 	@FXML
-	private HBox lowerHalf;
-	@FXML
 	private ImageView video;
 	@FXML
 	private ImageView snapshot_display;
 	@FXML
-	private VBox receiversBox;
+	private SwingNode chartNode;
 	@FXML
-	private VBox horizonTempBox;
+	private SwingNode rcDataNode;
+	@FXML
+	private SwingNode uavNode;
+	@FXML
+	private SwingNode horizonNode;
+	@FXML
+	private SwingNode compassNode;
 
 	public void setup() {
 		logger.fine("Initializing MainDisplayController.");
 		
-		SwingNode chartNode = new SwingNode();
-		SwingNode rcDataNode = new SwingNode();
-		SwingNode uavNode = new SwingNode();
-		SwingNode horizonNode = new SwingNode();
 		SwingNode tempGaugeNode = null;
 
 		SwingUtilities.invokeLater(new Runnable() {
@@ -118,10 +118,12 @@ public class MainDisplayController {
 		AnchorPane.setBottomAnchor(chartPane, 0.0);
 		rootLayout.getChildren().add(chartPane);
 		 */
+		/*
 		lowerHalf.getChildren().add(0, chartNode);
 		receiversBox.getChildren().add(rcDataNode);
 		receiversBox.getChildren().add(uavNode);
 		horizonTempBox.getChildren().add(horizonNode);
+		*/
 		video.setImage(new Image(new File("/home/jarrett/Downloads/pics/fire800_400.jpg").toURI().toString()));
 		snapshot_display.setImage(new Image(new File("/home/jarrett/Downloads/pics/fire3.jpg").toURI().toString()));
 		centerImage();
@@ -179,6 +181,7 @@ public class MainDisplayController {
 		return s;
 	}
 
+	/*
 	private void centerRcBoxNodes() {
 		SwingNode node1 = (SwingNode)receiversBox.getChildren().get(1);
 		SwingNode node2 = (SwingNode)receiversBox.getChildren().get(2);
@@ -193,6 +196,7 @@ public class MainDisplayController {
 			node2.setLayoutX(center);
 		}
 	}
+	*/
 
 	private void centerImage() {
 		Image img = snapshot_display.getImage();
