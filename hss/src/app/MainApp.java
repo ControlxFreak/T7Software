@@ -120,12 +120,12 @@ public class MainApp extends Application {
 	}
 
 	private void testInitSnapshot2() {
-		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/Downloads/pics/fire1.jpg").toURI().toString())));
-		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/Downloads/pics/fire2.jpeg").toURI().toString())));
-		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/Downloads/pics/fire3.jpg").toURI().toString())));
-		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/Downloads/pics/landscape1.jpg").toURI().toString())));
-		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/Downloads/pics/landscape2.jpg").toURI().toString())));
-		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/Downloads/pics/landscape3.jpg").toURI().toString())));
+		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/T7Software/hss/src/main/resources/images/fire1.jpg").toURI().toString())));
+		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/T7Software/hss/src/main/resources/images/fire2.jpeg").toURI().toString())));
+		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/T7Software/hss/src/main/resources/images/fire3.jpg").toURI().toString())));
+		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/T7Software/hss/src/main/resources/images/landscape1.jpg").toURI().toString())));
+		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/T7Software/hss/src/main/resources/images/landscape2.jpg").toURI().toString())));
+		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/T7Software/hss/src/main/resources/images/landscape3.jpg").toURI().toString())));
 	}
 
 	private void initDataConfiguration() {		
@@ -153,7 +153,7 @@ public class MainApp extends Application {
 	}
 
 	private void takeSnapshot() {
-		snapshotData.add(0, new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/topanga.jpg")).toURI().toString())));
+		snapshotData.add(0, new Snapshot(new Image((new File("/home/jarrett/T7Software/hss/src/main/resources/images/topanga.jpg")).toURI().toString())));
 
 		showSnapshotExplorer();
 	}

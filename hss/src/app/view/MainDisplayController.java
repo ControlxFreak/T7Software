@@ -129,8 +129,8 @@ public class MainDisplayController {
 		receiversBox.getChildren().add(uavNode);
 		horizonTempBox.getChildren().add(horizonNode);
 		*/
-		video.setImage(new Image(new File("/home/jarrett/Downloads/pics/fire800_400.jpg").toURI().toString()));
-		snapshot_display.setImage(new Image(new File("/home/jarrett/Downloads/pics/fire3.jpg").toURI().toString()));
+		video.setImage(new Image(new File("/home/jarrett/T7Software/hss/src/main/resources/images/fire800_400.jpg").toURI().toString()));
+		snapshot_display.setImage(new Image(new File("/home/jarrett/T7Software/hss/src/main/resources/images/fire3.jpg").toURI().toString()));
 		centerImage();
 		//horizonTempBox.getChildren().add(tempGaugeNode);
 	}
