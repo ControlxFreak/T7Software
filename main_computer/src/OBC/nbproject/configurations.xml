@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="100">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <logicalFolder name="f2" displayName="Executive" projectFiles="true">
+        <itemPath>executive/Executive.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f1" displayName="Managers" projectFiles="true">
+        <logicalFolder name="f2" displayName="Data" projectFiles="true">
+          <itemPath>types/DataManager.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f4" displayName="io" projectFiles="true">
+          <itemPath>io/IOManager.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f6" displayName="Logger" projectFiles="true">
+          <itemPath>logger/LogManager.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f3" displayName="WatchDog" projectFiles="true">
+          <itemPath>watchdog/WatchDog.h</itemPath>
+        </logicalFolder>
+      </logicalFolder>
+      <logicalFolder name="f3" displayName="types" projectFiles="true">
+        <itemPath>io/T7Messages.pb.h</itemPath>
+        <itemPath>types/TSQueue.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f5" displayName="utility" projectFiles="true">
+        <logicalFolder name="f1" displayName="tcp" projectFiles="true">
+          <itemPath>io/SocketException.h</itemPath>
+          <itemPath>io/tcpacceptor.h</itemPath>
+          <itemPath>io/tcpconnector.h</itemPath>
+          <itemPath>io/tcpstream.h</itemPath>
+        </logicalFolder>
+      </logicalFolder>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <logicalFolder name="f2" displayName="Executive" projectFiles="true">
+        <itemPath>executive/Executive.cpp</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f1" displayName="Managers" projectFiles="true">
+        <logicalFolder name="f4" displayName="io" projectFiles="true">
+          <itemPath>io/IOManager.cpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f2" displayName="Logger" projectFiles="true">
+          <itemPath>logger/LogManager.cpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f3" displayName="WatchDog" projectFiles="true">
+          <itemPath>watchdog/WatchDog.cpp</itemPath>
+        </logicalFolder>
+      </logicalFolder>
+      <logicalFolder name="f3" displayName="types" projectFiles="true">
+        <itemPath>io/T7Messages.pb.cc</itemPath>
+        <itemPath>types/TSQueue.cpp</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f4" displayName="utility" projectFiles="true">
+        <logicalFolder name="f1" displayName="tcp" projectFiles="true">
+          <itemPath>io/tcpacceptor.cpp</itemPath>
+          <itemPath>io/tcpconnector.cpp</itemPath>
+          <itemPath>io/tcpstream.cpp</itemPath>
+        </logicalFolder>
+      </logicalFolder>
+      <itemPath>main.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <ccTool>
+          <standard>8</standard>
+          <incDir>
+            <pElem>io</pElem>
+            <pElem>main</pElem>
+            <pElem>executive</pElem>
+            <pElem>managers</pElem>
+            <pElem>watchdog</pElem>
+            <pElem>types</pElem>
+            <pElem>logger</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>NPRINT_TO_FILE</Elem>
+            <Elem>PRINT_TO_CONSOLE</Elem>
+          </preprocessorList>
+        </ccTool>
+        <linkerTool>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/obc</output>
+          <linkerLibItems>
+            <linkerLibStdlibItem>PosixThreads</linkerLibStdlibItem>
+            <linkerOptionItem>`pkg-config --libs protobuf`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <item path="executive/Executive.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="executive/Executive.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="io/IOManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="io/IOManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="io/SocketException.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="io/T7Messages.pb.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="io/T7Messages.pb.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="io/tcpacceptor.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="io/tcpacceptor.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="io/tcpconnector.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="io/tcpconnector.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="io/tcpstream.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="io/tcpstream.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="logger/LogManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="logger/LogManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="types/DataManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="types/TSQueue.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="types/TSQueue.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="watchdog/WatchDog.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="watchdog/WatchDog.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+          <standard>8</standard>
+          <incDir>
+            <pElem>algorithms</pElem>
+            <pElem>build</pElem>
+            <pElem>dist</pElem>
+            <pElem>info</pElem>
+            <pElem>io</pElem>
+            <pElem>main</pElem>
+            <pElem>exec</pElem>
+            <pElem>external/boost_1_63_0</pElem>
+            <pElem>/usr/local/include/opencv2/calib3d</pElem>
+            <pElem>/usr/local/include/opencv2/core</pElem>
+            <pElem>/usr/local/include/opencv2/features2d</pElem>
+            <pElem>/usr/local/include/opencv2/flann</pElem>
+            <pElem>/usr/local/include/opencv2/highgui</pElem>
+            <pElem>/usr/local/include/opencv2/imgcodecs</pElem>
+            <pElem>/usr/local/include/opencv2/imgproc</pElem>
+            <pElem>/usr/local/include/opencv2/ml</pElem>
+            <pElem>/usr/local/include/opencv2/objdetect</pElem>
+            <pElem>/usr/local/include/opencv2/photo</pElem>
+            <pElem>/usr/local/include/opencv2/shape</pElem>
+            <pElem>/usr/local/include/opencv2/stitching</pElem>
+            <pElem>/usr/local/include/opencv2/superres</pElem>
+            <pElem>/usr/local/include/opencv2/video</pElem>
+            <pElem>/usr/local/include/opencv2/videoio</pElem>
+            <pElem>/usr/local/include/opencv2/videostab</pElem>
+            <pElem>external/pugi</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>PRINT_TO_CONSOLE</Elem>
+          </preprocessorList>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+        <linkerTool>
+          <linkerLibItems>
+            <linkerLibStdlibItem>PosixThreads</linkerLibStdlibItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <item path="executive/Executive.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="executive/Executive.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="io/IOManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="io/IOManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="io/SocketException.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="io/T7Messages.pb.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="io/T7Messages.pb.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="io/tcpacceptor.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="io/tcpacceptor.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="io/tcpconnector.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="io/tcpconnector.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="io/tcpstream.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="io/tcpstream.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="logger/LogManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="logger/LogManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="types/DataManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="types/TSQueue.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="types/TSQueue.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="watchdog/WatchDog.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="watchdog/WatchDog.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>
