@@ -33,6 +33,7 @@ import app.org.multiwii.swingui.gui.MwGuiFrame;
 import app.org.multiwii.swingui.gui.chart.MwChartFactory;
 import app.org.multiwii.swingui.gui.chart.MwChartPanel;
 import app.org.multiwii.swingui.gui.comp.MwJPanel;
+import app.org.multiwii.swingui.gui.instrument.MwCompasPanel;
 import app.org.multiwii.swingui.gui.instrument.MwHudPanel;
 import app.org.multiwii.swingui.gui.instrument.MwInstrumentJPanel;
 import app.org.multiwii.swingui.gui.instrument.MwRCDataPanel;
@@ -103,6 +104,10 @@ public class MainDisplayController {
 				MwInstrumentJPanel hudPanel = new MwHudPanel(conf);
 				MSP.getRealTimeData().addListener(hudPanel);
 				horizonNode.setContent(hudPanel);
+				
+				MwInstrumentJPanel compasPanel = new MwCompasPanel(conf);
+				MSP.getRealTimeData().addListener(compasPanel);
+				compassNode.setContent(compasPanel);
 				
 				//frame.setVisible(true);
 				//frame.repaint();
