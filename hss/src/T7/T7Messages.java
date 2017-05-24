@@ -19,20 +19,12 @@ public final class T7Messages {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>required .T7.GenericMessage.MsgType msgtype = 1;</code>
+     * <code>int32 msgtype = 1;</code>
      */
-    boolean hasMsgtype();
-    /**
-     * <code>required .T7.GenericMessage.MsgType msgtype = 1;</code>
-     */
-    T7.T7Messages.GenericMessage.MsgType getMsgtype();
+    int getMsgtype();
 
     /**
-     * <code>required double time = 2;</code>
-     */
-    boolean hasTime();
-    /**
-     * <code>required double time = 2;</code>
+     * <code>double time = 2;</code>
      */
     double getTime();
 
@@ -41,7 +33,7 @@ public final class T7Messages {
      * INFO MESSAGE //
      * </pre>
      *
-     * <code>optional .T7.Response response = 3;</code>
+     * <code>.T7.Response response = 3;</code>
      */
     boolean hasResponse();
     /**
@@ -49,7 +41,7 @@ public final class T7Messages {
      * INFO MESSAGE //
      * </pre>
      *
-     * <code>optional .T7.Response response = 3;</code>
+     * <code>.T7.Response response = 3;</code>
      */
     T7.T7Messages.Response getResponse();
     /**
@@ -57,33 +49,33 @@ public final class T7Messages {
      * INFO MESSAGE //
      * </pre>
      *
-     * <code>optional .T7.Response response = 3;</code>
+     * <code>.T7.Response response = 3;</code>
      */
     T7.T7Messages.ResponseOrBuilder getResponseOrBuilder();
 
     /**
-     * <code>optional .T7.HeartBeat heartbeat = 4;</code>
+     * <code>.T7.HeartBeat heartbeat = 4;</code>
      */
     boolean hasHeartbeat();
     /**
-     * <code>optional .T7.HeartBeat heartbeat = 4;</code>
+     * <code>.T7.HeartBeat heartbeat = 4;</code>
      */
     T7.T7Messages.HeartBeat getHeartbeat();
     /**
-     * <code>optional .T7.HeartBeat heartbeat = 4;</code>
+     * <code>.T7.HeartBeat heartbeat = 4;</code>
      */
     T7.T7Messages.HeartBeatOrBuilder getHeartbeatOrBuilder();
 
     /**
-     * <code>optional .T7.Terminate terminate = 5;</code>
+     * <code>.T7.Terminate terminate = 5;</code>
      */
     boolean hasTerminate();
     /**
-     * <code>optional .T7.Terminate terminate = 5;</code>
+     * <code>.T7.Terminate terminate = 5;</code>
      */
     T7.T7Messages.Terminate getTerminate();
     /**
-     * <code>optional .T7.Terminate terminate = 5;</code>
+     * <code>.T7.Terminate terminate = 5;</code>
      */
     T7.T7Messages.TerminateOrBuilder getTerminateOrBuilder();
 
@@ -92,127 +84,126 @@ public final class T7Messages {
      * HSS -&gt; UAV //
      * </pre>
      *
-     * <code>optional .T7.UpdateParams updateparams = 6;</code>
-     */
-    boolean hasUpdateparams();
-    /**
-     * <pre>
-     * HSS -&gt; UAV //
-     * </pre>
-     *
-     * <code>optional .T7.UpdateParams updateparams = 6;</code>
-     */
-    T7.T7Messages.UpdateParams getUpdateparams();
-    /**
-     * <pre>
-     * HSS -&gt; UAV //
-     * </pre>
-     *
-     * <code>optional .T7.UpdateParams updateparams = 6;</code>
-     */
-    T7.T7Messages.UpdateParamsOrBuilder getUpdateparamsOrBuilder();
-
-    /**
-     * <code>optional .T7.ConfigData configdata = 7;</code>
+     * <code>.T7.ConfigData configdata = 6;</code>
      */
     boolean hasConfigdata();
     /**
-     * <code>optional .T7.ConfigData configdata = 7;</code>
+     * <pre>
+     * HSS -&gt; UAV //
+     * </pre>
+     *
+     * <code>.T7.ConfigData configdata = 6;</code>
      */
     T7.T7Messages.ConfigData getConfigdata();
     /**
-     * <code>optional .T7.ConfigData configdata = 7;</code>
+     * <pre>
+     * HSS -&gt; UAV //
+     * </pre>
+     *
+     * <code>.T7.ConfigData configdata = 6;</code>
      */
     T7.T7Messages.ConfigDataOrBuilder getConfigdataOrBuilder();
 
     /**
-     * <code>optional .T7.MoveCamera movecamera = 8;</code>
+     * <code>.T7.MoveCamera movecamera = 7;</code>
      */
     boolean hasMovecamera();
     /**
-     * <code>optional .T7.MoveCamera movecamera = 8;</code>
+     * <code>.T7.MoveCamera movecamera = 7;</code>
      */
     T7.T7Messages.MoveCamera getMovecamera();
     /**
-     * <code>optional .T7.MoveCamera movecamera = 8;</code>
+     * <code>.T7.MoveCamera movecamera = 7;</code>
      */
     T7.T7Messages.MoveCameraOrBuilder getMovecameraOrBuilder();
 
     /**
-     * <code>optional .T7.Accel accel = 9;</code>
+     * <pre>
+     * UAV-&gt;HSS //
+     * </pre>
+     *
+     * <code>.T7.Accel accel = 8;</code>
      */
     boolean hasAccel();
     /**
-     * <code>optional .T7.Accel accel = 9;</code>
+     * <pre>
+     * UAV-&gt;HSS //
+     * </pre>
+     *
+     * <code>.T7.Accel accel = 8;</code>
      */
     T7.T7Messages.Accel getAccel();
     /**
-     * <code>optional .T7.Accel accel = 9;</code>
+     * <pre>
+     * UAV-&gt;HSS //
+     * </pre>
+     *
+     * <code>.T7.Accel accel = 8;</code>
      */
     T7.T7Messages.AccelOrBuilder getAccelOrBuilder();
 
     /**
-     * <code>optional .T7.Gyro gyro = 10;</code>
+     * <code>.T7.Gyro gyro = 9;</code>
      */
     boolean hasGyro();
     /**
-     * <code>optional .T7.Gyro gyro = 10;</code>
+     * <code>.T7.Gyro gyro = 9;</code>
      */
     T7.T7Messages.Gyro getGyro();
     /**
-     * <code>optional .T7.Gyro gyro = 10;</code>
+     * <code>.T7.Gyro gyro = 9;</code>
      */
     T7.T7Messages.GyroOrBuilder getGyroOrBuilder();
 
     /**
-     * <code>optional .T7.Altitude altitude = 11;</code>
+     * <code>.T7.Altitude altitude = 10;</code>
      */
     boolean hasAltitude();
     /**
-     * <code>optional .T7.Altitude altitude = 11;</code>
+     * <code>.T7.Altitude altitude = 10;</code>
      */
     T7.T7Messages.Altitude getAltitude();
     /**
-     * <code>optional .T7.Altitude altitude = 11;</code>
+     * <code>.T7.Altitude altitude = 10;</code>
      */
     T7.T7Messages.AltitudeOrBuilder getAltitudeOrBuilder();
 
     /**
-     * <code>optional .T7.Attitude attitude = 12;</code>
+     * <code>.T7.Attitude attitude = 11;</code>
      */
     boolean hasAttitude();
     /**
-     * <code>optional .T7.Attitude attitude = 12;</code>
+     * <code>.T7.Attitude attitude = 11;</code>
      */
     T7.T7Messages.Attitude getAttitude();
     /**
-     * <code>optional .T7.Attitude attitude = 12;</code>
+     * <code>.T7.Attitude attitude = 11;</code>
      */
     T7.T7Messages.AttitudeOrBuilder getAttitudeOrBuilder();
 
     /**
-     * <code>optional .T7.Temp temp = 13;</code>
+     * <code>.T7.Temp temp = 12;</code>
      */
     boolean hasTemp();
     /**
-     * <code>optional .T7.Temp temp = 13;</code>
+     * <code>.T7.Temp temp = 12;</code>
      */
     T7.T7Messages.Temp getTemp();
     /**
-     * <code>optional .T7.Temp temp = 13;</code>
+     * <code>.T7.Temp temp = 12;</code>
      */
     T7.T7Messages.TempOrBuilder getTempOrBuilder();
 
     /**
-     * <code>optional .T7.Battery bat = 14;</code>
+     * <code>.T7.Battery bat = 13;</code>
      */
     boolean hasBat();
     /**
-     * <code>optional .T7.Battery bat = 14;</code>
+     * <code>.T7.Battery bat = 13;</code>
      */
     T7.T7Messages.Battery getBat();
     /**
-     * <code>optional .T7.Battery bat = 14;</code>
+     * <code>.T7.Battery bat = 13;</code>
      */
     T7.T7Messages.BatteryOrBuilder getBatOrBuilder();
   }
@@ -244,7 +235,7 @@ public final class T7Messages {
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return this.unknownFields;
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     }
     private GenericMessage(
         com.google.protobuf.CodedInputStream input,
@@ -252,8 +243,6 @@ public final class T7Messages {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -263,182 +252,162 @@ public final class T7Messages {
               done = true;
               break;
             default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
+              if (!input.skipField(tag)) {
                 done = true;
               }
               break;
             }
             case 8: {
-              int rawValue = input.readEnum();
-              T7.T7Messages.GenericMessage.MsgType value = T7.T7Messages.GenericMessage.MsgType.valueOf(rawValue);
-              if (value == null) {
-                unknownFields.mergeVarintField(1, rawValue);
-              } else {
-                bitField0_ |= 0x00000001;
-                msgtype_ = rawValue;
-              }
+
+              msgtype_ = input.readInt32();
               break;
             }
             case 17: {
-              bitField0_ |= 0x00000002;
+
               time_ = input.readDouble();
               break;
             }
             case 26: {
               T7.T7Messages.Response.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000004) == 0x00000004)) {
+              if (response_ != null) {
                 subBuilder = response_.toBuilder();
               }
-              response_ = input.readMessage(T7.T7Messages.Response.PARSER, extensionRegistry);
+              response_ = input.readMessage(T7.T7Messages.Response.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(response_);
                 response_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000004;
+
               break;
             }
             case 34: {
               T7.T7Messages.HeartBeat.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000008) == 0x00000008)) {
+              if (heartbeat_ != null) {
                 subBuilder = heartbeat_.toBuilder();
               }
-              heartbeat_ = input.readMessage(T7.T7Messages.HeartBeat.PARSER, extensionRegistry);
+              heartbeat_ = input.readMessage(T7.T7Messages.HeartBeat.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(heartbeat_);
                 heartbeat_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000008;
+
               break;
             }
             case 42: {
               T7.T7Messages.Terminate.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000010) == 0x00000010)) {
+              if (terminate_ != null) {
                 subBuilder = terminate_.toBuilder();
               }
-              terminate_ = input.readMessage(T7.T7Messages.Terminate.PARSER, extensionRegistry);
+              terminate_ = input.readMessage(T7.T7Messages.Terminate.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(terminate_);
                 terminate_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000010;
+
               break;
             }
             case 50: {
-              T7.T7Messages.UpdateParams.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000020) == 0x00000020)) {
-                subBuilder = updateparams_.toBuilder();
-              }
-              updateparams_ = input.readMessage(T7.T7Messages.UpdateParams.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(updateparams_);
-                updateparams_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000020;
-              break;
-            }
-            case 58: {
               T7.T7Messages.ConfigData.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000040) == 0x00000040)) {
+              if (configdata_ != null) {
                 subBuilder = configdata_.toBuilder();
               }
-              configdata_ = input.readMessage(T7.T7Messages.ConfigData.PARSER, extensionRegistry);
+              configdata_ = input.readMessage(T7.T7Messages.ConfigData.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(configdata_);
                 configdata_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000040;
+
               break;
             }
-            case 66: {
+            case 58: {
               T7.T7Messages.MoveCamera.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000080) == 0x00000080)) {
+              if (movecamera_ != null) {
                 subBuilder = movecamera_.toBuilder();
               }
-              movecamera_ = input.readMessage(T7.T7Messages.MoveCamera.PARSER, extensionRegistry);
+              movecamera_ = input.readMessage(T7.T7Messages.MoveCamera.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(movecamera_);
                 movecamera_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000080;
+
               break;
             }
-            case 74: {
+            case 66: {
               T7.T7Messages.Accel.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000100) == 0x00000100)) {
+              if (accel_ != null) {
                 subBuilder = accel_.toBuilder();
               }
-              accel_ = input.readMessage(T7.T7Messages.Accel.PARSER, extensionRegistry);
+              accel_ = input.readMessage(T7.T7Messages.Accel.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(accel_);
                 accel_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000100;
+
               break;
             }
-            case 82: {
+            case 74: {
               T7.T7Messages.Gyro.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000200) == 0x00000200)) {
+              if (gyro_ != null) {
                 subBuilder = gyro_.toBuilder();
               }
-              gyro_ = input.readMessage(T7.T7Messages.Gyro.PARSER, extensionRegistry);
+              gyro_ = input.readMessage(T7.T7Messages.Gyro.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(gyro_);
                 gyro_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000200;
+
               break;
             }
-            case 90: {
+            case 82: {
               T7.T7Messages.Altitude.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000400) == 0x00000400)) {
+              if (altitude_ != null) {
                 subBuilder = altitude_.toBuilder();
               }
-              altitude_ = input.readMessage(T7.T7Messages.Altitude.PARSER, extensionRegistry);
+              altitude_ = input.readMessage(T7.T7Messages.Altitude.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(altitude_);
                 altitude_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000400;
+
               break;
             }
-            case 98: {
+            case 90: {
               T7.T7Messages.Attitude.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000800) == 0x00000800)) {
+              if (attitude_ != null) {
                 subBuilder = attitude_.toBuilder();
               }
-              attitude_ = input.readMessage(T7.T7Messages.Attitude.PARSER, extensionRegistry);
+              attitude_ = input.readMessage(T7.T7Messages.Attitude.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(attitude_);
                 attitude_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000800;
+
               break;
             }
-            case 106: {
+            case 98: {
               T7.T7Messages.Temp.Builder subBuilder = null;
-              if (((bitField0_ & 0x00001000) == 0x00001000)) {
+              if (temp_ != null) {
                 subBuilder = temp_.toBuilder();
               }
-              temp_ = input.readMessage(T7.T7Messages.Temp.PARSER, extensionRegistry);
+              temp_ = input.readMessage(T7.T7Messages.Temp.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(temp_);
                 temp_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00001000;
+
               break;
             }
-            case 114: {
+            case 106: {
               T7.T7Messages.Battery.Builder subBuilder = null;
-              if (((bitField0_ & 0x00002000) == 0x00002000)) {
+              if (bat_ != null) {
                 subBuilder = bat_.toBuilder();
               }
-              bat_ = input.readMessage(T7.T7Messages.Battery.PARSER, extensionRegistry);
+              bat_ = input.readMessage(T7.T7Messages.Battery.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(bat_);
                 bat_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00002000;
+
               break;
             }
           }
@@ -449,7 +418,6 @@ public final class T7Messages {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -491,10 +459,6 @@ public final class T7Messages {
        * HSS -&gt; UAV //
        * </pre>
        *
-       * <code>UPDATE_PARAM = 100;</code>
-       */
-      UPDATE_PARAM(100),
-      /**
        * <code>CONFIG_DATA = 101;</code>
        */
       CONFIG_DATA(101),
@@ -530,6 +494,7 @@ public final class T7Messages {
        * <code>BAT = 205;</code>
        */
       BAT(205),
+      UNRECOGNIZED(-1),
       ;
 
       /**
@@ -553,10 +518,6 @@ public final class T7Messages {
        * HSS -&gt; UAV //
        * </pre>
        *
-       * <code>UPDATE_PARAM = 100;</code>
-       */
-      public static final int UPDATE_PARAM_VALUE = 100;
-      /**
        * <code>CONFIG_DATA = 101;</code>
        */
       public static final int CONFIG_DATA_VALUE = 101;
@@ -595,6 +556,10 @@ public final class T7Messages {
 
 
       public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalArgumentException(
+              "Can't get the number of an unknown enum value.");
+        }
         return value;
       }
 
@@ -611,7 +576,6 @@ public final class T7Messages {
           case 0: return RESPONSE;
           case 1: return HEARTBEAT;
           case 2: return TERMINATE;
-          case 100: return UPDATE_PARAM;
           case 101: return CONFIG_DATA;
           case 102: return MOVE_CAMERA;
           case 200: return ACCEL;
@@ -657,6 +621,9 @@ public final class T7Messages {
           throw new java.lang.IllegalArgumentException(
             "EnumValueDescriptor is not for this type.");
         }
+        if (desc.getIndex() == -1) {
+          return UNRECOGNIZED;
+        }
         return VALUES[desc.getIndex()];
       }
 
@@ -669,33 +636,19 @@ public final class T7Messages {
       // @@protoc_insertion_point(enum_scope:T7.GenericMessage.MsgType)
     }
 
-    private int bitField0_;
     public static final int MSGTYPE_FIELD_NUMBER = 1;
     private int msgtype_;
     /**
-     * <code>required .T7.GenericMessage.MsgType msgtype = 1;</code>
+     * <code>int32 msgtype = 1;</code>
      */
-    public boolean hasMsgtype() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    /**
-     * <code>required .T7.GenericMessage.MsgType msgtype = 1;</code>
-     */
-    public T7.T7Messages.GenericMessage.MsgType getMsgtype() {
-      T7.T7Messages.GenericMessage.MsgType result = T7.T7Messages.GenericMessage.MsgType.valueOf(msgtype_);
-      return result == null ? T7.T7Messages.GenericMessage.MsgType.RESPONSE : result;
+    public int getMsgtype() {
+      return msgtype_;
     }
 
     public static final int TIME_FIELD_NUMBER = 2;
     private double time_;
     /**
-     * <code>required double time = 2;</code>
-     */
-    public boolean hasTime() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    /**
-     * <code>required double time = 2;</code>
+     * <code>double time = 2;</code>
      */
     public double getTime() {
       return time_;
@@ -708,17 +661,17 @@ public final class T7Messages {
      * INFO MESSAGE //
      * </pre>
      *
-     * <code>optional .T7.Response response = 3;</code>
+     * <code>.T7.Response response = 3;</code>
      */
     public boolean hasResponse() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+      return response_ != null;
     }
     /**
      * <pre>
      * INFO MESSAGE //
      * </pre>
      *
-     * <code>optional .T7.Response response = 3;</code>
+     * <code>.T7.Response response = 3;</code>
      */
     public T7.T7Messages.Response getResponse() {
       return response_ == null ? T7.T7Messages.Response.getDefaultInstance() : response_;
@@ -728,253 +681,244 @@ public final class T7Messages {
      * INFO MESSAGE //
      * </pre>
      *
-     * <code>optional .T7.Response response = 3;</code>
+     * <code>.T7.Response response = 3;</code>
      */
     public T7.T7Messages.ResponseOrBuilder getResponseOrBuilder() {
-      return response_ == null ? T7.T7Messages.Response.getDefaultInstance() : response_;
+      return getResponse();
     }
 
     public static final int HEARTBEAT_FIELD_NUMBER = 4;
     private T7.T7Messages.HeartBeat heartbeat_;
     /**
-     * <code>optional .T7.HeartBeat heartbeat = 4;</code>
+     * <code>.T7.HeartBeat heartbeat = 4;</code>
      */
     public boolean hasHeartbeat() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+      return heartbeat_ != null;
     }
     /**
-     * <code>optional .T7.HeartBeat heartbeat = 4;</code>
+     * <code>.T7.HeartBeat heartbeat = 4;</code>
      */
     public T7.T7Messages.HeartBeat getHeartbeat() {
       return heartbeat_ == null ? T7.T7Messages.HeartBeat.getDefaultInstance() : heartbeat_;
     }
     /**
-     * <code>optional .T7.HeartBeat heartbeat = 4;</code>
+     * <code>.T7.HeartBeat heartbeat = 4;</code>
      */
     public T7.T7Messages.HeartBeatOrBuilder getHeartbeatOrBuilder() {
-      return heartbeat_ == null ? T7.T7Messages.HeartBeat.getDefaultInstance() : heartbeat_;
+      return getHeartbeat();
     }
 
     public static final int TERMINATE_FIELD_NUMBER = 5;
     private T7.T7Messages.Terminate terminate_;
     /**
-     * <code>optional .T7.Terminate terminate = 5;</code>
+     * <code>.T7.Terminate terminate = 5;</code>
      */
     public boolean hasTerminate() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
+      return terminate_ != null;
     }
     /**
-     * <code>optional .T7.Terminate terminate = 5;</code>
+     * <code>.T7.Terminate terminate = 5;</code>
      */
     public T7.T7Messages.Terminate getTerminate() {
       return terminate_ == null ? T7.T7Messages.Terminate.getDefaultInstance() : terminate_;
     }
     /**
-     * <code>optional .T7.Terminate terminate = 5;</code>
+     * <code>.T7.Terminate terminate = 5;</code>
      */
     public T7.T7Messages.TerminateOrBuilder getTerminateOrBuilder() {
-      return terminate_ == null ? T7.T7Messages.Terminate.getDefaultInstance() : terminate_;
+      return getTerminate();
     }
 
-    public static final int UPDATEPARAMS_FIELD_NUMBER = 6;
-    private T7.T7Messages.UpdateParams updateparams_;
-    /**
-     * <pre>
-     * HSS -&gt; UAV //
-     * </pre>
-     *
-     * <code>optional .T7.UpdateParams updateparams = 6;</code>
-     */
-    public boolean hasUpdateparams() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
-    }
-    /**
-     * <pre>
-     * HSS -&gt; UAV //
-     * </pre>
-     *
-     * <code>optional .T7.UpdateParams updateparams = 6;</code>
-     */
-    public T7.T7Messages.UpdateParams getUpdateparams() {
-      return updateparams_ == null ? T7.T7Messages.UpdateParams.getDefaultInstance() : updateparams_;
-    }
-    /**
-     * <pre>
-     * HSS -&gt; UAV //
-     * </pre>
-     *
-     * <code>optional .T7.UpdateParams updateparams = 6;</code>
-     */
-    public T7.T7Messages.UpdateParamsOrBuilder getUpdateparamsOrBuilder() {
-      return updateparams_ == null ? T7.T7Messages.UpdateParams.getDefaultInstance() : updateparams_;
-    }
-
-    public static final int CONFIGDATA_FIELD_NUMBER = 7;
+    public static final int CONFIGDATA_FIELD_NUMBER = 6;
     private T7.T7Messages.ConfigData configdata_;
     /**
-     * <code>optional .T7.ConfigData configdata = 7;</code>
+     * <pre>
+     * HSS -&gt; UAV //
+     * </pre>
+     *
+     * <code>.T7.ConfigData configdata = 6;</code>
      */
     public boolean hasConfigdata() {
-      return ((bitField0_ & 0x00000040) == 0x00000040);
+      return configdata_ != null;
     }
     /**
-     * <code>optional .T7.ConfigData configdata = 7;</code>
+     * <pre>
+     * HSS -&gt; UAV //
+     * </pre>
+     *
+     * <code>.T7.ConfigData configdata = 6;</code>
      */
     public T7.T7Messages.ConfigData getConfigdata() {
       return configdata_ == null ? T7.T7Messages.ConfigData.getDefaultInstance() : configdata_;
     }
     /**
-     * <code>optional .T7.ConfigData configdata = 7;</code>
+     * <pre>
+     * HSS -&gt; UAV //
+     * </pre>
+     *
+     * <code>.T7.ConfigData configdata = 6;</code>
      */
     public T7.T7Messages.ConfigDataOrBuilder getConfigdataOrBuilder() {
-      return configdata_ == null ? T7.T7Messages.ConfigData.getDefaultInstance() : configdata_;
+      return getConfigdata();
     }
 
-    public static final int MOVECAMERA_FIELD_NUMBER = 8;
+    public static final int MOVECAMERA_FIELD_NUMBER = 7;
     private T7.T7Messages.MoveCamera movecamera_;
     /**
-     * <code>optional .T7.MoveCamera movecamera = 8;</code>
+     * <code>.T7.MoveCamera movecamera = 7;</code>
      */
     public boolean hasMovecamera() {
-      return ((bitField0_ & 0x00000080) == 0x00000080);
+      return movecamera_ != null;
     }
     /**
-     * <code>optional .T7.MoveCamera movecamera = 8;</code>
+     * <code>.T7.MoveCamera movecamera = 7;</code>
      */
     public T7.T7Messages.MoveCamera getMovecamera() {
       return movecamera_ == null ? T7.T7Messages.MoveCamera.getDefaultInstance() : movecamera_;
     }
     /**
-     * <code>optional .T7.MoveCamera movecamera = 8;</code>
+     * <code>.T7.MoveCamera movecamera = 7;</code>
      */
     public T7.T7Messages.MoveCameraOrBuilder getMovecameraOrBuilder() {
-      return movecamera_ == null ? T7.T7Messages.MoveCamera.getDefaultInstance() : movecamera_;
+      return getMovecamera();
     }
 
-    public static final int ACCEL_FIELD_NUMBER = 9;
+    public static final int ACCEL_FIELD_NUMBER = 8;
     private T7.T7Messages.Accel accel_;
     /**
-     * <code>optional .T7.Accel accel = 9;</code>
+     * <pre>
+     * UAV-&gt;HSS //
+     * </pre>
+     *
+     * <code>.T7.Accel accel = 8;</code>
      */
     public boolean hasAccel() {
-      return ((bitField0_ & 0x00000100) == 0x00000100);
+      return accel_ != null;
     }
     /**
-     * <code>optional .T7.Accel accel = 9;</code>
+     * <pre>
+     * UAV-&gt;HSS //
+     * </pre>
+     *
+     * <code>.T7.Accel accel = 8;</code>
      */
     public T7.T7Messages.Accel getAccel() {
       return accel_ == null ? T7.T7Messages.Accel.getDefaultInstance() : accel_;
     }
     /**
-     * <code>optional .T7.Accel accel = 9;</code>
+     * <pre>
+     * UAV-&gt;HSS //
+     * </pre>
+     *
+     * <code>.T7.Accel accel = 8;</code>
      */
     public T7.T7Messages.AccelOrBuilder getAccelOrBuilder() {
-      return accel_ == null ? T7.T7Messages.Accel.getDefaultInstance() : accel_;
+      return getAccel();
     }
 
-    public static final int GYRO_FIELD_NUMBER = 10;
+    public static final int GYRO_FIELD_NUMBER = 9;
     private T7.T7Messages.Gyro gyro_;
     /**
-     * <code>optional .T7.Gyro gyro = 10;</code>
+     * <code>.T7.Gyro gyro = 9;</code>
      */
     public boolean hasGyro() {
-      return ((bitField0_ & 0x00000200) == 0x00000200);
+      return gyro_ != null;
     }
     /**
-     * <code>optional .T7.Gyro gyro = 10;</code>
+     * <code>.T7.Gyro gyro = 9;</code>
      */
     public T7.T7Messages.Gyro getGyro() {
       return gyro_ == null ? T7.T7Messages.Gyro.getDefaultInstance() : gyro_;
     }
     /**
-     * <code>optional .T7.Gyro gyro = 10;</code>
+     * <code>.T7.Gyro gyro = 9;</code>
      */
     public T7.T7Messages.GyroOrBuilder getGyroOrBuilder() {
-      return gyro_ == null ? T7.T7Messages.Gyro.getDefaultInstance() : gyro_;
+      return getGyro();
     }
 
-    public static final int ALTITUDE_FIELD_NUMBER = 11;
+    public static final int ALTITUDE_FIELD_NUMBER = 10;
     private T7.T7Messages.Altitude altitude_;
     /**
-     * <code>optional .T7.Altitude altitude = 11;</code>
+     * <code>.T7.Altitude altitude = 10;</code>
      */
     public boolean hasAltitude() {
-      return ((bitField0_ & 0x00000400) == 0x00000400);
+      return altitude_ != null;
     }
     /**
-     * <code>optional .T7.Altitude altitude = 11;</code>
+     * <code>.T7.Altitude altitude = 10;</code>
      */
     public T7.T7Messages.Altitude getAltitude() {
       return altitude_ == null ? T7.T7Messages.Altitude.getDefaultInstance() : altitude_;
     }
     /**
-     * <code>optional .T7.Altitude altitude = 11;</code>
+     * <code>.T7.Altitude altitude = 10;</code>
      */
     public T7.T7Messages.AltitudeOrBuilder getAltitudeOrBuilder() {
-      return altitude_ == null ? T7.T7Messages.Altitude.getDefaultInstance() : altitude_;
+      return getAltitude();
     }
 
-    public static final int ATTITUDE_FIELD_NUMBER = 12;
+    public static final int ATTITUDE_FIELD_NUMBER = 11;
     private T7.T7Messages.Attitude attitude_;
     /**
-     * <code>optional .T7.Attitude attitude = 12;</code>
+     * <code>.T7.Attitude attitude = 11;</code>
      */
     public boolean hasAttitude() {
-      return ((bitField0_ & 0x00000800) == 0x00000800);
+      return attitude_ != null;
     }
     /**
-     * <code>optional .T7.Attitude attitude = 12;</code>
+     * <code>.T7.Attitude attitude = 11;</code>
      */
     public T7.T7Messages.Attitude getAttitude() {
       return attitude_ == null ? T7.T7Messages.Attitude.getDefaultInstance() : attitude_;
     }
     /**
-     * <code>optional .T7.Attitude attitude = 12;</code>
+     * <code>.T7.Attitude attitude = 11;</code>
      */
     public T7.T7Messages.AttitudeOrBuilder getAttitudeOrBuilder() {
-      return attitude_ == null ? T7.T7Messages.Attitude.getDefaultInstance() : attitude_;
+      return getAttitude();
     }
 
-    public static final int TEMP_FIELD_NUMBER = 13;
+    public static final int TEMP_FIELD_NUMBER = 12;
     private T7.T7Messages.Temp temp_;
     /**
-     * <code>optional .T7.Temp temp = 13;</code>
+     * <code>.T7.Temp temp = 12;</code>
      */
     public boolean hasTemp() {
-      return ((bitField0_ & 0x00001000) == 0x00001000);
+      return temp_ != null;
     }
     /**
-     * <code>optional .T7.Temp temp = 13;</code>
+     * <code>.T7.Temp temp = 12;</code>
      */
     public T7.T7Messages.Temp getTemp() {
       return temp_ == null ? T7.T7Messages.Temp.getDefaultInstance() : temp_;
     }
     /**
-     * <code>optional .T7.Temp temp = 13;</code>
+     * <code>.T7.Temp temp = 12;</code>
      */
     public T7.T7Messages.TempOrBuilder getTempOrBuilder() {
-      return temp_ == null ? T7.T7Messages.Temp.getDefaultInstance() : temp_;
+      return getTemp();
     }
 
-    public static final int BAT_FIELD_NUMBER = 14;
+    public static final int BAT_FIELD_NUMBER = 13;
     private T7.T7Messages.Battery bat_;
     /**
-     * <code>optional .T7.Battery bat = 14;</code>
+     * <code>.T7.Battery bat = 13;</code>
      */
     public boolean hasBat() {
-      return ((bitField0_ & 0x00002000) == 0x00002000);
+      return bat_ != null;
     }
     /**
-     * <code>optional .T7.Battery bat = 14;</code>
+     * <code>.T7.Battery bat = 13;</code>
      */
     public T7.T7Messages.Battery getBat() {
       return bat_ == null ? T7.T7Messages.Battery.getDefaultInstance() : bat_;
     }
     /**
-     * <code>optional .T7.Battery bat = 14;</code>
+     * <code>.T7.Battery bat = 13;</code>
      */
     public T7.T7Messages.BatteryOrBuilder getBatOrBuilder() {
-      return bat_ == null ? T7.T7Messages.Battery.getDefaultInstance() : bat_;
+      return getBat();
     }
 
     private byte memoizedIsInitialized = -1;
@@ -983,111 +927,51 @@ public final class T7Messages {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (!hasMsgtype()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasTime()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (hasHeartbeat()) {
-        if (!getHeartbeat().isInitialized()) {
-          memoizedIsInitialized = 0;
-          return false;
-        }
-      }
-      if (hasTerminate()) {
-        if (!getTerminate().isInitialized()) {
-          memoizedIsInitialized = 0;
-          return false;
-        }
-      }
-      if (hasAccel()) {
-        if (!getAccel().isInitialized()) {
-          memoizedIsInitialized = 0;
-          return false;
-        }
-      }
-      if (hasGyro()) {
-        if (!getGyro().isInitialized()) {
-          memoizedIsInitialized = 0;
-          return false;
-        }
-      }
-      if (hasAltitude()) {
-        if (!getAltitude().isInitialized()) {
-          memoizedIsInitialized = 0;
-          return false;
-        }
-      }
-      if (hasAttitude()) {
-        if (!getAttitude().isInitialized()) {
-          memoizedIsInitialized = 0;
-          return false;
-        }
-      }
-      if (hasTemp()) {
-        if (!getTemp().isInitialized()) {
-          memoizedIsInitialized = 0;
-          return false;
-        }
-      }
-      if (hasBat()) {
-        if (!getBat().isInitialized()) {
-          memoizedIsInitialized = 0;
-          return false;
-        }
-      }
       memoizedIsInitialized = 1;
       return true;
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeEnum(1, msgtype_);
+      if (msgtype_ != 0) {
+        output.writeInt32(1, msgtype_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+      if (time_ != 0D) {
         output.writeDouble(2, time_);
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+      if (response_ != null) {
         output.writeMessage(3, getResponse());
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+      if (heartbeat_ != null) {
         output.writeMessage(4, getHeartbeat());
       }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+      if (terminate_ != null) {
         output.writeMessage(5, getTerminate());
       }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeMessage(6, getUpdateparams());
+      if (configdata_ != null) {
+        output.writeMessage(6, getConfigdata());
       }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        output.writeMessage(7, getConfigdata());
+      if (movecamera_ != null) {
+        output.writeMessage(7, getMovecamera());
       }
-      if (((bitField0_ & 0x00000080) == 0x00000080)) {
-        output.writeMessage(8, getMovecamera());
+      if (accel_ != null) {
+        output.writeMessage(8, getAccel());
       }
-      if (((bitField0_ & 0x00000100) == 0x00000100)) {
-        output.writeMessage(9, getAccel());
+      if (gyro_ != null) {
+        output.writeMessage(9, getGyro());
       }
-      if (((bitField0_ & 0x00000200) == 0x00000200)) {
-        output.writeMessage(10, getGyro());
+      if (altitude_ != null) {
+        output.writeMessage(10, getAltitude());
       }
-      if (((bitField0_ & 0x00000400) == 0x00000400)) {
-        output.writeMessage(11, getAltitude());
+      if (attitude_ != null) {
+        output.writeMessage(11, getAttitude());
       }
-      if (((bitField0_ & 0x00000800) == 0x00000800)) {
-        output.writeMessage(12, getAttitude());
+      if (temp_ != null) {
+        output.writeMessage(12, getTemp());
       }
-      if (((bitField0_ & 0x00001000) == 0x00001000)) {
-        output.writeMessage(13, getTemp());
+      if (bat_ != null) {
+        output.writeMessage(13, getBat());
       }
-      if (((bitField0_ & 0x00002000) == 0x00002000)) {
-        output.writeMessage(14, getBat());
-      }
-      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -1095,63 +979,58 @@ public final class T7Messages {
       if (size != -1) return size;
 
       size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+      if (msgtype_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(1, msgtype_);
+          .computeInt32Size(1, msgtype_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+      if (time_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
           .computeDoubleSize(2, time_);
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+      if (response_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, getResponse());
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+      if (heartbeat_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(4, getHeartbeat());
       }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+      if (terminate_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(5, getTerminate());
       }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+      if (configdata_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(6, getUpdateparams());
+          .computeMessageSize(6, getConfigdata());
       }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+      if (movecamera_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(7, getConfigdata());
+          .computeMessageSize(7, getMovecamera());
       }
-      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+      if (accel_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(8, getMovecamera());
+          .computeMessageSize(8, getAccel());
       }
-      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+      if (gyro_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(9, getAccel());
+          .computeMessageSize(9, getGyro());
       }
-      if (((bitField0_ & 0x00000200) == 0x00000200)) {
+      if (altitude_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(10, getGyro());
+          .computeMessageSize(10, getAltitude());
       }
-      if (((bitField0_ & 0x00000400) == 0x00000400)) {
+      if (attitude_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(11, getAltitude());
+          .computeMessageSize(11, getAttitude());
       }
-      if (((bitField0_ & 0x00000800) == 0x00000800)) {
+      if (temp_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(12, getAttitude());
+          .computeMessageSize(12, getTemp());
       }
-      if (((bitField0_ & 0x00001000) == 0x00001000)) {
+      if (bat_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(13, getTemp());
+          .computeMessageSize(13, getBat());
       }
-      if (((bitField0_ & 0x00002000) == 0x00002000)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(14, getBat());
-      }
-      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -1168,17 +1047,12 @@ public final class T7Messages {
       T7.T7Messages.GenericMessage other = (T7.T7Messages.GenericMessage) obj;
 
       boolean result = true;
-      result = result && (hasMsgtype() == other.hasMsgtype());
-      if (hasMsgtype()) {
-        result = result && msgtype_ == other.msgtype_;
-      }
-      result = result && (hasTime() == other.hasTime());
-      if (hasTime()) {
-        result = result && (
-            java.lang.Double.doubleToLongBits(getTime())
-            == java.lang.Double.doubleToLongBits(
-                other.getTime()));
-      }
+      result = result && (getMsgtype()
+          == other.getMsgtype());
+      result = result && (
+          java.lang.Double.doubleToLongBits(getTime())
+          == java.lang.Double.doubleToLongBits(
+              other.getTime()));
       result = result && (hasResponse() == other.hasResponse());
       if (hasResponse()) {
         result = result && getResponse()
@@ -1193,11 +1067,6 @@ public final class T7Messages {
       if (hasTerminate()) {
         result = result && getTerminate()
             .equals(other.getTerminate());
-      }
-      result = result && (hasUpdateparams() == other.hasUpdateparams());
-      if (hasUpdateparams()) {
-        result = result && getUpdateparams()
-            .equals(other.getUpdateparams());
       }
       result = result && (hasConfigdata() == other.hasConfigdata());
       if (hasConfigdata()) {
@@ -1239,7 +1108,6 @@ public final class T7Messages {
         result = result && getBat()
             .equals(other.getBat());
       }
-      result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
@@ -1250,15 +1118,11 @@ public final class T7Messages {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasMsgtype()) {
-        hash = (37 * hash) + MSGTYPE_FIELD_NUMBER;
-        hash = (53 * hash) + msgtype_;
-      }
-      if (hasTime()) {
-        hash = (37 * hash) + TIME_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            java.lang.Double.doubleToLongBits(getTime()));
-      }
+      hash = (37 * hash) + MSGTYPE_FIELD_NUMBER;
+      hash = (53 * hash) + getMsgtype();
+      hash = (37 * hash) + TIME_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getTime()));
       if (hasResponse()) {
         hash = (37 * hash) + RESPONSE_FIELD_NUMBER;
         hash = (53 * hash) + getResponse().hashCode();
@@ -1270,10 +1134,6 @@ public final class T7Messages {
       if (hasTerminate()) {
         hash = (37 * hash) + TERMINATE_FIELD_NUMBER;
         hash = (53 * hash) + getTerminate().hashCode();
-      }
-      if (hasUpdateparams()) {
-        hash = (37 * hash) + UPDATEPARAMS_FIELD_NUMBER;
-        hash = (53 * hash) + getUpdateparams().hashCode();
       }
       if (hasConfigdata()) {
         hash = (37 * hash) + CONFIGDATA_FIELD_NUMBER;
@@ -1430,98 +1290,80 @@ public final class T7Messages {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
-          getResponseFieldBuilder();
-          getHeartbeatFieldBuilder();
-          getTerminateFieldBuilder();
-          getUpdateparamsFieldBuilder();
-          getConfigdataFieldBuilder();
-          getMovecameraFieldBuilder();
-          getAccelFieldBuilder();
-          getGyroFieldBuilder();
-          getAltitudeFieldBuilder();
-          getAttitudeFieldBuilder();
-          getTempFieldBuilder();
-          getBatFieldBuilder();
         }
       }
       public Builder clear() {
         super.clear();
         msgtype_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
+
         time_ = 0D;
-        bitField0_ = (bitField0_ & ~0x00000002);
+
         if (responseBuilder_ == null) {
           response_ = null;
         } else {
-          responseBuilder_.clear();
+          response_ = null;
+          responseBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000004);
         if (heartbeatBuilder_ == null) {
           heartbeat_ = null;
         } else {
-          heartbeatBuilder_.clear();
+          heartbeat_ = null;
+          heartbeatBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000008);
         if (terminateBuilder_ == null) {
           terminate_ = null;
         } else {
-          terminateBuilder_.clear();
+          terminate_ = null;
+          terminateBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000010);
-        if (updateparamsBuilder_ == null) {
-          updateparams_ = null;
-        } else {
-          updateparamsBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000020);
         if (configdataBuilder_ == null) {
           configdata_ = null;
         } else {
-          configdataBuilder_.clear();
+          configdata_ = null;
+          configdataBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000040);
         if (movecameraBuilder_ == null) {
           movecamera_ = null;
         } else {
-          movecameraBuilder_.clear();
+          movecamera_ = null;
+          movecameraBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000080);
         if (accelBuilder_ == null) {
           accel_ = null;
         } else {
-          accelBuilder_.clear();
+          accel_ = null;
+          accelBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000100);
         if (gyroBuilder_ == null) {
           gyro_ = null;
         } else {
-          gyroBuilder_.clear();
+          gyro_ = null;
+          gyroBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000200);
         if (altitudeBuilder_ == null) {
           altitude_ = null;
         } else {
-          altitudeBuilder_.clear();
+          altitude_ = null;
+          altitudeBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000400);
         if (attitudeBuilder_ == null) {
           attitude_ = null;
         } else {
-          attitudeBuilder_.clear();
+          attitude_ = null;
+          attitudeBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000800);
         if (tempBuilder_ == null) {
           temp_ = null;
         } else {
-          tempBuilder_.clear();
+          temp_ = null;
+          tempBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00001000);
         if (batBuilder_ == null) {
           bat_ = null;
         } else {
-          batBuilder_.clear();
+          bat_ = null;
+          batBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00002000);
         return this;
       }
 
@@ -1544,113 +1386,63 @@ public final class T7Messages {
 
       public T7.T7Messages.GenericMessage buildPartial() {
         T7.T7Messages.GenericMessage result = new T7.T7Messages.GenericMessage(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
         result.msgtype_ = msgtype_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
         result.time_ = time_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
         if (responseBuilder_ == null) {
           result.response_ = response_;
         } else {
           result.response_ = responseBuilder_.build();
-        }
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
         }
         if (heartbeatBuilder_ == null) {
           result.heartbeat_ = heartbeat_;
         } else {
           result.heartbeat_ = heartbeatBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
-        }
         if (terminateBuilder_ == null) {
           result.terminate_ = terminate_;
         } else {
           result.terminate_ = terminateBuilder_.build();
-        }
-        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
-          to_bitField0_ |= 0x00000020;
-        }
-        if (updateparamsBuilder_ == null) {
-          result.updateparams_ = updateparams_;
-        } else {
-          result.updateparams_ = updateparamsBuilder_.build();
-        }
-        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
-          to_bitField0_ |= 0x00000040;
         }
         if (configdataBuilder_ == null) {
           result.configdata_ = configdata_;
         } else {
           result.configdata_ = configdataBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
-          to_bitField0_ |= 0x00000080;
-        }
         if (movecameraBuilder_ == null) {
           result.movecamera_ = movecamera_;
         } else {
           result.movecamera_ = movecameraBuilder_.build();
-        }
-        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
-          to_bitField0_ |= 0x00000100;
         }
         if (accelBuilder_ == null) {
           result.accel_ = accel_;
         } else {
           result.accel_ = accelBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000200) == 0x00000200)) {
-          to_bitField0_ |= 0x00000200;
-        }
         if (gyroBuilder_ == null) {
           result.gyro_ = gyro_;
         } else {
           result.gyro_ = gyroBuilder_.build();
-        }
-        if (((from_bitField0_ & 0x00000400) == 0x00000400)) {
-          to_bitField0_ |= 0x00000400;
         }
         if (altitudeBuilder_ == null) {
           result.altitude_ = altitude_;
         } else {
           result.altitude_ = altitudeBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000800) == 0x00000800)) {
-          to_bitField0_ |= 0x00000800;
-        }
         if (attitudeBuilder_ == null) {
           result.attitude_ = attitude_;
         } else {
           result.attitude_ = attitudeBuilder_.build();
-        }
-        if (((from_bitField0_ & 0x00001000) == 0x00001000)) {
-          to_bitField0_ |= 0x00001000;
         }
         if (tempBuilder_ == null) {
           result.temp_ = temp_;
         } else {
           result.temp_ = tempBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00002000) == 0x00002000)) {
-          to_bitField0_ |= 0x00002000;
-        }
         if (batBuilder_ == null) {
           result.bat_ = bat_;
         } else {
           result.bat_ = batBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -1692,10 +1484,10 @@ public final class T7Messages {
 
       public Builder mergeFrom(T7.T7Messages.GenericMessage other) {
         if (other == T7.T7Messages.GenericMessage.getDefaultInstance()) return this;
-        if (other.hasMsgtype()) {
+        if (other.getMsgtype() != 0) {
           setMsgtype(other.getMsgtype());
         }
-        if (other.hasTime()) {
+        if (other.getTime() != 0D) {
           setTime(other.getTime());
         }
         if (other.hasResponse()) {
@@ -1706,9 +1498,6 @@ public final class T7Messages {
         }
         if (other.hasTerminate()) {
           mergeTerminate(other.getTerminate());
-        }
-        if (other.hasUpdateparams()) {
-          mergeUpdateparams(other.getUpdateparams());
         }
         if (other.hasConfigdata()) {
           mergeConfigdata(other.getConfigdata());
@@ -1734,58 +1523,11 @@ public final class T7Messages {
         if (other.hasBat()) {
           mergeBat(other.getBat());
         }
-        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
 
       public final boolean isInitialized() {
-        if (!hasMsgtype()) {
-          return false;
-        }
-        if (!hasTime()) {
-          return false;
-        }
-        if (hasHeartbeat()) {
-          if (!getHeartbeat().isInitialized()) {
-            return false;
-          }
-        }
-        if (hasTerminate()) {
-          if (!getTerminate().isInitialized()) {
-            return false;
-          }
-        }
-        if (hasAccel()) {
-          if (!getAccel().isInitialized()) {
-            return false;
-          }
-        }
-        if (hasGyro()) {
-          if (!getGyro().isInitialized()) {
-            return false;
-          }
-        }
-        if (hasAltitude()) {
-          if (!getAltitude().isInitialized()) {
-            return false;
-          }
-        }
-        if (hasAttitude()) {
-          if (!getAttitude().isInitialized()) {
-            return false;
-          }
-        }
-        if (hasTemp()) {
-          if (!getTemp().isInitialized()) {
-            return false;
-          }
-        }
-        if (hasBat()) {
-          if (!getBat().isInitialized()) {
-            return false;
-          }
-        }
         return true;
       }
 
@@ -1806,39 +1548,28 @@ public final class T7Messages {
         }
         return this;
       }
-      private int bitField0_;
 
-      private int msgtype_ = 0;
+      private int msgtype_ ;
       /**
-       * <code>required .T7.GenericMessage.MsgType msgtype = 1;</code>
+       * <code>int32 msgtype = 1;</code>
        */
-      public boolean hasMsgtype() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+      public int getMsgtype() {
+        return msgtype_;
       }
       /**
-       * <code>required .T7.GenericMessage.MsgType msgtype = 1;</code>
+       * <code>int32 msgtype = 1;</code>
        */
-      public T7.T7Messages.GenericMessage.MsgType getMsgtype() {
-        T7.T7Messages.GenericMessage.MsgType result = T7.T7Messages.GenericMessage.MsgType.valueOf(msgtype_);
-        return result == null ? T7.T7Messages.GenericMessage.MsgType.RESPONSE : result;
-      }
-      /**
-       * <code>required .T7.GenericMessage.MsgType msgtype = 1;</code>
-       */
-      public Builder setMsgtype(T7.T7Messages.GenericMessage.MsgType value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        bitField0_ |= 0x00000001;
-        msgtype_ = value.getNumber();
+      public Builder setMsgtype(int value) {
+        
+        msgtype_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required .T7.GenericMessage.MsgType msgtype = 1;</code>
+       * <code>int32 msgtype = 1;</code>
        */
       public Builder clearMsgtype() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        
         msgtype_ = 0;
         onChanged();
         return this;
@@ -1846,31 +1577,25 @@ public final class T7Messages {
 
       private double time_ ;
       /**
-       * <code>required double time = 2;</code>
-       */
-      public boolean hasTime() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <code>required double time = 2;</code>
+       * <code>double time = 2;</code>
        */
       public double getTime() {
         return time_;
       }
       /**
-       * <code>required double time = 2;</code>
+       * <code>double time = 2;</code>
        */
       public Builder setTime(double value) {
-        bitField0_ |= 0x00000002;
+        
         time_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required double time = 2;</code>
+       * <code>double time = 2;</code>
        */
       public Builder clearTime() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        
         time_ = 0D;
         onChanged();
         return this;
@@ -1884,17 +1609,17 @@ public final class T7Messages {
        * INFO MESSAGE //
        * </pre>
        *
-       * <code>optional .T7.Response response = 3;</code>
+       * <code>.T7.Response response = 3;</code>
        */
       public boolean hasResponse() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return responseBuilder_ != null || response_ != null;
       }
       /**
        * <pre>
        * INFO MESSAGE //
        * </pre>
        *
-       * <code>optional .T7.Response response = 3;</code>
+       * <code>.T7.Response response = 3;</code>
        */
       public T7.T7Messages.Response getResponse() {
         if (responseBuilder_ == null) {
@@ -1908,7 +1633,7 @@ public final class T7Messages {
        * INFO MESSAGE //
        * </pre>
        *
-       * <code>optional .T7.Response response = 3;</code>
+       * <code>.T7.Response response = 3;</code>
        */
       public Builder setResponse(T7.T7Messages.Response value) {
         if (responseBuilder_ == null) {
@@ -1920,7 +1645,7 @@ public final class T7Messages {
         } else {
           responseBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000004;
+
         return this;
       }
       /**
@@ -1928,7 +1653,7 @@ public final class T7Messages {
        * INFO MESSAGE //
        * </pre>
        *
-       * <code>optional .T7.Response response = 3;</code>
+       * <code>.T7.Response response = 3;</code>
        */
       public Builder setResponse(
           T7.T7Messages.Response.Builder builderForValue) {
@@ -1938,7 +1663,7 @@ public final class T7Messages {
         } else {
           responseBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000004;
+
         return this;
       }
       /**
@@ -1946,13 +1671,11 @@ public final class T7Messages {
        * INFO MESSAGE //
        * </pre>
        *
-       * <code>optional .T7.Response response = 3;</code>
+       * <code>.T7.Response response = 3;</code>
        */
       public Builder mergeResponse(T7.T7Messages.Response value) {
         if (responseBuilder_ == null) {
-          if (((bitField0_ & 0x00000004) == 0x00000004) &&
-              response_ != null &&
-              response_ != T7.T7Messages.Response.getDefaultInstance()) {
+          if (response_ != null) {
             response_ =
               T7.T7Messages.Response.newBuilder(response_).mergeFrom(value).buildPartial();
           } else {
@@ -1962,7 +1685,7 @@ public final class T7Messages {
         } else {
           responseBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000004;
+
         return this;
       }
       /**
@@ -1970,16 +1693,17 @@ public final class T7Messages {
        * INFO MESSAGE //
        * </pre>
        *
-       * <code>optional .T7.Response response = 3;</code>
+       * <code>.T7.Response response = 3;</code>
        */
       public Builder clearResponse() {
         if (responseBuilder_ == null) {
           response_ = null;
           onChanged();
         } else {
-          responseBuilder_.clear();
+          response_ = null;
+          responseBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000004);
+
         return this;
       }
       /**
@@ -1987,10 +1711,10 @@ public final class T7Messages {
        * INFO MESSAGE //
        * </pre>
        *
-       * <code>optional .T7.Response response = 3;</code>
+       * <code>.T7.Response response = 3;</code>
        */
       public T7.T7Messages.Response.Builder getResponseBuilder() {
-        bitField0_ |= 0x00000004;
+        
         onChanged();
         return getResponseFieldBuilder().getBuilder();
       }
@@ -1999,7 +1723,7 @@ public final class T7Messages {
        * INFO MESSAGE //
        * </pre>
        *
-       * <code>optional .T7.Response response = 3;</code>
+       * <code>.T7.Response response = 3;</code>
        */
       public T7.T7Messages.ResponseOrBuilder getResponseOrBuilder() {
         if (responseBuilder_ != null) {
@@ -2014,10 +1738,10 @@ public final class T7Messages {
        * INFO MESSAGE //
        * </pre>
        *
-       * <code>optional .T7.Response response = 3;</code>
+       * <code>.T7.Response response = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          T7.T7Messages.Response, T7.T7Messages.Response.Builder, T7.T7Messages.ResponseOrBuilder>
+          T7.T7Messages.Response, T7.T7Messages.Response.Builder, T7.T7Messages.ResponseOrBuilder> 
           getResponseFieldBuilder() {
         if (responseBuilder_ == null) {
           responseBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -2034,13 +1758,13 @@ public final class T7Messages {
       private com.google.protobuf.SingleFieldBuilderV3<
           T7.T7Messages.HeartBeat, T7.T7Messages.HeartBeat.Builder, T7.T7Messages.HeartBeatOrBuilder> heartbeatBuilder_;
       /**
-       * <code>optional .T7.HeartBeat heartbeat = 4;</code>
+       * <code>.T7.HeartBeat heartbeat = 4;</code>
        */
       public boolean hasHeartbeat() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return heartbeatBuilder_ != null || heartbeat_ != null;
       }
       /**
-       * <code>optional .T7.HeartBeat heartbeat = 4;</code>
+       * <code>.T7.HeartBeat heartbeat = 4;</code>
        */
       public T7.T7Messages.HeartBeat getHeartbeat() {
         if (heartbeatBuilder_ == null) {
@@ -2050,7 +1774,7 @@ public final class T7Messages {
         }
       }
       /**
-       * <code>optional .T7.HeartBeat heartbeat = 4;</code>
+       * <code>.T7.HeartBeat heartbeat = 4;</code>
        */
       public Builder setHeartbeat(T7.T7Messages.HeartBeat value) {
         if (heartbeatBuilder_ == null) {
@@ -2062,11 +1786,11 @@ public final class T7Messages {
         } else {
           heartbeatBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000008;
+
         return this;
       }
       /**
-       * <code>optional .T7.HeartBeat heartbeat = 4;</code>
+       * <code>.T7.HeartBeat heartbeat = 4;</code>
        */
       public Builder setHeartbeat(
           T7.T7Messages.HeartBeat.Builder builderForValue) {
@@ -2076,17 +1800,15 @@ public final class T7Messages {
         } else {
           heartbeatBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000008;
+
         return this;
       }
       /**
-       * <code>optional .T7.HeartBeat heartbeat = 4;</code>
+       * <code>.T7.HeartBeat heartbeat = 4;</code>
        */
       public Builder mergeHeartbeat(T7.T7Messages.HeartBeat value) {
         if (heartbeatBuilder_ == null) {
-          if (((bitField0_ & 0x00000008) == 0x00000008) &&
-              heartbeat_ != null &&
-              heartbeat_ != T7.T7Messages.HeartBeat.getDefaultInstance()) {
+          if (heartbeat_ != null) {
             heartbeat_ =
               T7.T7Messages.HeartBeat.newBuilder(heartbeat_).mergeFrom(value).buildPartial();
           } else {
@@ -2096,32 +1818,33 @@ public final class T7Messages {
         } else {
           heartbeatBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000008;
+
         return this;
       }
       /**
-       * <code>optional .T7.HeartBeat heartbeat = 4;</code>
+       * <code>.T7.HeartBeat heartbeat = 4;</code>
        */
       public Builder clearHeartbeat() {
         if (heartbeatBuilder_ == null) {
           heartbeat_ = null;
           onChanged();
         } else {
-          heartbeatBuilder_.clear();
+          heartbeat_ = null;
+          heartbeatBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000008);
+
         return this;
       }
       /**
-       * <code>optional .T7.HeartBeat heartbeat = 4;</code>
+       * <code>.T7.HeartBeat heartbeat = 4;</code>
        */
       public T7.T7Messages.HeartBeat.Builder getHeartbeatBuilder() {
-        bitField0_ |= 0x00000008;
+        
         onChanged();
         return getHeartbeatFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .T7.HeartBeat heartbeat = 4;</code>
+       * <code>.T7.HeartBeat heartbeat = 4;</code>
        */
       public T7.T7Messages.HeartBeatOrBuilder getHeartbeatOrBuilder() {
         if (heartbeatBuilder_ != null) {
@@ -2132,10 +1855,10 @@ public final class T7Messages {
         }
       }
       /**
-       * <code>optional .T7.HeartBeat heartbeat = 4;</code>
+       * <code>.T7.HeartBeat heartbeat = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          T7.T7Messages.HeartBeat, T7.T7Messages.HeartBeat.Builder, T7.T7Messages.HeartBeatOrBuilder>
+          T7.T7Messages.HeartBeat, T7.T7Messages.HeartBeat.Builder, T7.T7Messages.HeartBeatOrBuilder> 
           getHeartbeatFieldBuilder() {
         if (heartbeatBuilder_ == null) {
           heartbeatBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -2152,13 +1875,13 @@ public final class T7Messages {
       private com.google.protobuf.SingleFieldBuilderV3<
           T7.T7Messages.Terminate, T7.T7Messages.Terminate.Builder, T7.T7Messages.TerminateOrBuilder> terminateBuilder_;
       /**
-       * <code>optional .T7.Terminate terminate = 5;</code>
+       * <code>.T7.Terminate terminate = 5;</code>
        */
       public boolean hasTerminate() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return terminateBuilder_ != null || terminate_ != null;
       }
       /**
-       * <code>optional .T7.Terminate terminate = 5;</code>
+       * <code>.T7.Terminate terminate = 5;</code>
        */
       public T7.T7Messages.Terminate getTerminate() {
         if (terminateBuilder_ == null) {
@@ -2168,7 +1891,7 @@ public final class T7Messages {
         }
       }
       /**
-       * <code>optional .T7.Terminate terminate = 5;</code>
+       * <code>.T7.Terminate terminate = 5;</code>
        */
       public Builder setTerminate(T7.T7Messages.Terminate value) {
         if (terminateBuilder_ == null) {
@@ -2180,11 +1903,11 @@ public final class T7Messages {
         } else {
           terminateBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000010;
+
         return this;
       }
       /**
-       * <code>optional .T7.Terminate terminate = 5;</code>
+       * <code>.T7.Terminate terminate = 5;</code>
        */
       public Builder setTerminate(
           T7.T7Messages.Terminate.Builder builderForValue) {
@@ -2194,17 +1917,15 @@ public final class T7Messages {
         } else {
           terminateBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000010;
+
         return this;
       }
       /**
-       * <code>optional .T7.Terminate terminate = 5;</code>
+       * <code>.T7.Terminate terminate = 5;</code>
        */
       public Builder mergeTerminate(T7.T7Messages.Terminate value) {
         if (terminateBuilder_ == null) {
-          if (((bitField0_ & 0x00000010) == 0x00000010) &&
-              terminate_ != null &&
-              terminate_ != T7.T7Messages.Terminate.getDefaultInstance()) {
+          if (terminate_ != null) {
             terminate_ =
               T7.T7Messages.Terminate.newBuilder(terminate_).mergeFrom(value).buildPartial();
           } else {
@@ -2214,32 +1935,33 @@ public final class T7Messages {
         } else {
           terminateBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000010;
+
         return this;
       }
       /**
-       * <code>optional .T7.Terminate terminate = 5;</code>
+       * <code>.T7.Terminate terminate = 5;</code>
        */
       public Builder clearTerminate() {
         if (terminateBuilder_ == null) {
           terminate_ = null;
           onChanged();
         } else {
-          terminateBuilder_.clear();
+          terminate_ = null;
+          terminateBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000010);
+
         return this;
       }
       /**
-       * <code>optional .T7.Terminate terminate = 5;</code>
+       * <code>.T7.Terminate terminate = 5;</code>
        */
       public T7.T7Messages.Terminate.Builder getTerminateBuilder() {
-        bitField0_ |= 0x00000010;
+        
         onChanged();
         return getTerminateFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .T7.Terminate terminate = 5;</code>
+       * <code>.T7.Terminate terminate = 5;</code>
        */
       public T7.T7Messages.TerminateOrBuilder getTerminateOrBuilder() {
         if (terminateBuilder_ != null) {
@@ -2250,10 +1972,10 @@ public final class T7Messages {
         }
       }
       /**
-       * <code>optional .T7.Terminate terminate = 5;</code>
+       * <code>.T7.Terminate terminate = 5;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          T7.T7Messages.Terminate, T7.T7Messages.Terminate.Builder, T7.T7Messages.TerminateOrBuilder>
+          T7.T7Messages.Terminate, T7.T7Messages.Terminate.Builder, T7.T7Messages.TerminateOrBuilder> 
           getTerminateFieldBuilder() {
         if (terminateBuilder_ == null) {
           terminateBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -2266,171 +1988,25 @@ public final class T7Messages {
         return terminateBuilder_;
       }
 
-      private T7.T7Messages.UpdateParams updateparams_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          T7.T7Messages.UpdateParams, T7.T7Messages.UpdateParams.Builder, T7.T7Messages.UpdateParamsOrBuilder> updateparamsBuilder_;
-      /**
-       * <pre>
-       * HSS -&gt; UAV //
-       * </pre>
-       *
-       * <code>optional .T7.UpdateParams updateparams = 6;</code>
-       */
-      public boolean hasUpdateparams() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
-      }
-      /**
-       * <pre>
-       * HSS -&gt; UAV //
-       * </pre>
-       *
-       * <code>optional .T7.UpdateParams updateparams = 6;</code>
-       */
-      public T7.T7Messages.UpdateParams getUpdateparams() {
-        if (updateparamsBuilder_ == null) {
-          return updateparams_ == null ? T7.T7Messages.UpdateParams.getDefaultInstance() : updateparams_;
-        } else {
-          return updateparamsBuilder_.getMessage();
-        }
-      }
-      /**
-       * <pre>
-       * HSS -&gt; UAV //
-       * </pre>
-       *
-       * <code>optional .T7.UpdateParams updateparams = 6;</code>
-       */
-      public Builder setUpdateparams(T7.T7Messages.UpdateParams value) {
-        if (updateparamsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          updateparams_ = value;
-          onChanged();
-        } else {
-          updateparamsBuilder_.setMessage(value);
-        }
-        bitField0_ |= 0x00000020;
-        return this;
-      }
-      /**
-       * <pre>
-       * HSS -&gt; UAV //
-       * </pre>
-       *
-       * <code>optional .T7.UpdateParams updateparams = 6;</code>
-       */
-      public Builder setUpdateparams(
-          T7.T7Messages.UpdateParams.Builder builderForValue) {
-        if (updateparamsBuilder_ == null) {
-          updateparams_ = builderForValue.build();
-          onChanged();
-        } else {
-          updateparamsBuilder_.setMessage(builderForValue.build());
-        }
-        bitField0_ |= 0x00000020;
-        return this;
-      }
-      /**
-       * <pre>
-       * HSS -&gt; UAV //
-       * </pre>
-       *
-       * <code>optional .T7.UpdateParams updateparams = 6;</code>
-       */
-      public Builder mergeUpdateparams(T7.T7Messages.UpdateParams value) {
-        if (updateparamsBuilder_ == null) {
-          if (((bitField0_ & 0x00000020) == 0x00000020) &&
-              updateparams_ != null &&
-              updateparams_ != T7.T7Messages.UpdateParams.getDefaultInstance()) {
-            updateparams_ =
-              T7.T7Messages.UpdateParams.newBuilder(updateparams_).mergeFrom(value).buildPartial();
-          } else {
-            updateparams_ = value;
-          }
-          onChanged();
-        } else {
-          updateparamsBuilder_.mergeFrom(value);
-        }
-        bitField0_ |= 0x00000020;
-        return this;
-      }
-      /**
-       * <pre>
-       * HSS -&gt; UAV //
-       * </pre>
-       *
-       * <code>optional .T7.UpdateParams updateparams = 6;</code>
-       */
-      public Builder clearUpdateparams() {
-        if (updateparamsBuilder_ == null) {
-          updateparams_ = null;
-          onChanged();
-        } else {
-          updateparamsBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000020);
-        return this;
-      }
-      /**
-       * <pre>
-       * HSS -&gt; UAV //
-       * </pre>
-       *
-       * <code>optional .T7.UpdateParams updateparams = 6;</code>
-       */
-      public T7.T7Messages.UpdateParams.Builder getUpdateparamsBuilder() {
-        bitField0_ |= 0x00000020;
-        onChanged();
-        return getUpdateparamsFieldBuilder().getBuilder();
-      }
-      /**
-       * <pre>
-       * HSS -&gt; UAV //
-       * </pre>
-       *
-       * <code>optional .T7.UpdateParams updateparams = 6;</code>
-       */
-      public T7.T7Messages.UpdateParamsOrBuilder getUpdateparamsOrBuilder() {
-        if (updateparamsBuilder_ != null) {
-          return updateparamsBuilder_.getMessageOrBuilder();
-        } else {
-          return updateparams_ == null ?
-              T7.T7Messages.UpdateParams.getDefaultInstance() : updateparams_;
-        }
-      }
-      /**
-       * <pre>
-       * HSS -&gt; UAV //
-       * </pre>
-       *
-       * <code>optional .T7.UpdateParams updateparams = 6;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          T7.T7Messages.UpdateParams, T7.T7Messages.UpdateParams.Builder, T7.T7Messages.UpdateParamsOrBuilder>
-          getUpdateparamsFieldBuilder() {
-        if (updateparamsBuilder_ == null) {
-          updateparamsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              T7.T7Messages.UpdateParams, T7.T7Messages.UpdateParams.Builder, T7.T7Messages.UpdateParamsOrBuilder>(
-                  getUpdateparams(),
-                  getParentForChildren(),
-                  isClean());
-          updateparams_ = null;
-        }
-        return updateparamsBuilder_;
-      }
-
       private T7.T7Messages.ConfigData configdata_ = null;
       private com.google.protobuf.SingleFieldBuilderV3<
           T7.T7Messages.ConfigData, T7.T7Messages.ConfigData.Builder, T7.T7Messages.ConfigDataOrBuilder> configdataBuilder_;
       /**
-       * <code>optional .T7.ConfigData configdata = 7;</code>
+       * <pre>
+       * HSS -&gt; UAV //
+       * </pre>
+       *
+       * <code>.T7.ConfigData configdata = 6;</code>
        */
       public boolean hasConfigdata() {
-        return ((bitField0_ & 0x00000040) == 0x00000040);
+        return configdataBuilder_ != null || configdata_ != null;
       }
       /**
-       * <code>optional .T7.ConfigData configdata = 7;</code>
+       * <pre>
+       * HSS -&gt; UAV //
+       * </pre>
+       *
+       * <code>.T7.ConfigData configdata = 6;</code>
        */
       public T7.T7Messages.ConfigData getConfigdata() {
         if (configdataBuilder_ == null) {
@@ -2440,7 +2016,11 @@ public final class T7Messages {
         }
       }
       /**
-       * <code>optional .T7.ConfigData configdata = 7;</code>
+       * <pre>
+       * HSS -&gt; UAV //
+       * </pre>
+       *
+       * <code>.T7.ConfigData configdata = 6;</code>
        */
       public Builder setConfigdata(T7.T7Messages.ConfigData value) {
         if (configdataBuilder_ == null) {
@@ -2452,11 +2032,15 @@ public final class T7Messages {
         } else {
           configdataBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000040;
+
         return this;
       }
       /**
-       * <code>optional .T7.ConfigData configdata = 7;</code>
+       * <pre>
+       * HSS -&gt; UAV //
+       * </pre>
+       *
+       * <code>.T7.ConfigData configdata = 6;</code>
        */
       public Builder setConfigdata(
           T7.T7Messages.ConfigData.Builder builderForValue) {
@@ -2466,17 +2050,19 @@ public final class T7Messages {
         } else {
           configdataBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000040;
+
         return this;
       }
       /**
-       * <code>optional .T7.ConfigData configdata = 7;</code>
+       * <pre>
+       * HSS -&gt; UAV //
+       * </pre>
+       *
+       * <code>.T7.ConfigData configdata = 6;</code>
        */
       public Builder mergeConfigdata(T7.T7Messages.ConfigData value) {
         if (configdataBuilder_ == null) {
-          if (((bitField0_ & 0x00000040) == 0x00000040) &&
-              configdata_ != null &&
-              configdata_ != T7.T7Messages.ConfigData.getDefaultInstance()) {
+          if (configdata_ != null) {
             configdata_ =
               T7.T7Messages.ConfigData.newBuilder(configdata_).mergeFrom(value).buildPartial();
           } else {
@@ -2486,32 +2072,45 @@ public final class T7Messages {
         } else {
           configdataBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000040;
+
         return this;
       }
       /**
-       * <code>optional .T7.ConfigData configdata = 7;</code>
+       * <pre>
+       * HSS -&gt; UAV //
+       * </pre>
+       *
+       * <code>.T7.ConfigData configdata = 6;</code>
        */
       public Builder clearConfigdata() {
         if (configdataBuilder_ == null) {
           configdata_ = null;
           onChanged();
         } else {
-          configdataBuilder_.clear();
+          configdata_ = null;
+          configdataBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000040);
+
         return this;
       }
       /**
-       * <code>optional .T7.ConfigData configdata = 7;</code>
+       * <pre>
+       * HSS -&gt; UAV //
+       * </pre>
+       *
+       * <code>.T7.ConfigData configdata = 6;</code>
        */
       public T7.T7Messages.ConfigData.Builder getConfigdataBuilder() {
-        bitField0_ |= 0x00000040;
+        
         onChanged();
         return getConfigdataFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .T7.ConfigData configdata = 7;</code>
+       * <pre>
+       * HSS -&gt; UAV //
+       * </pre>
+       *
+       * <code>.T7.ConfigData configdata = 6;</code>
        */
       public T7.T7Messages.ConfigDataOrBuilder getConfigdataOrBuilder() {
         if (configdataBuilder_ != null) {
@@ -2522,10 +2121,14 @@ public final class T7Messages {
         }
       }
       /**
-       * <code>optional .T7.ConfigData configdata = 7;</code>
+       * <pre>
+       * HSS -&gt; UAV //
+       * </pre>
+       *
+       * <code>.T7.ConfigData configdata = 6;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          T7.T7Messages.ConfigData, T7.T7Messages.ConfigData.Builder, T7.T7Messages.ConfigDataOrBuilder>
+          T7.T7Messages.ConfigData, T7.T7Messages.ConfigData.Builder, T7.T7Messages.ConfigDataOrBuilder> 
           getConfigdataFieldBuilder() {
         if (configdataBuilder_ == null) {
           configdataBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -2542,13 +2145,13 @@ public final class T7Messages {
       private com.google.protobuf.SingleFieldBuilderV3<
           T7.T7Messages.MoveCamera, T7.T7Messages.MoveCamera.Builder, T7.T7Messages.MoveCameraOrBuilder> movecameraBuilder_;
       /**
-       * <code>optional .T7.MoveCamera movecamera = 8;</code>
+       * <code>.T7.MoveCamera movecamera = 7;</code>
        */
       public boolean hasMovecamera() {
-        return ((bitField0_ & 0x00000080) == 0x00000080);
+        return movecameraBuilder_ != null || movecamera_ != null;
       }
       /**
-       * <code>optional .T7.MoveCamera movecamera = 8;</code>
+       * <code>.T7.MoveCamera movecamera = 7;</code>
        */
       public T7.T7Messages.MoveCamera getMovecamera() {
         if (movecameraBuilder_ == null) {
@@ -2558,7 +2161,7 @@ public final class T7Messages {
         }
       }
       /**
-       * <code>optional .T7.MoveCamera movecamera = 8;</code>
+       * <code>.T7.MoveCamera movecamera = 7;</code>
        */
       public Builder setMovecamera(T7.T7Messages.MoveCamera value) {
         if (movecameraBuilder_ == null) {
@@ -2570,11 +2173,11 @@ public final class T7Messages {
         } else {
           movecameraBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000080;
+
         return this;
       }
       /**
-       * <code>optional .T7.MoveCamera movecamera = 8;</code>
+       * <code>.T7.MoveCamera movecamera = 7;</code>
        */
       public Builder setMovecamera(
           T7.T7Messages.MoveCamera.Builder builderForValue) {
@@ -2584,17 +2187,15 @@ public final class T7Messages {
         } else {
           movecameraBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000080;
+
         return this;
       }
       /**
-       * <code>optional .T7.MoveCamera movecamera = 8;</code>
+       * <code>.T7.MoveCamera movecamera = 7;</code>
        */
       public Builder mergeMovecamera(T7.T7Messages.MoveCamera value) {
         if (movecameraBuilder_ == null) {
-          if (((bitField0_ & 0x00000080) == 0x00000080) &&
-              movecamera_ != null &&
-              movecamera_ != T7.T7Messages.MoveCamera.getDefaultInstance()) {
+          if (movecamera_ != null) {
             movecamera_ =
               T7.T7Messages.MoveCamera.newBuilder(movecamera_).mergeFrom(value).buildPartial();
           } else {
@@ -2604,32 +2205,33 @@ public final class T7Messages {
         } else {
           movecameraBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000080;
+
         return this;
       }
       /**
-       * <code>optional .T7.MoveCamera movecamera = 8;</code>
+       * <code>.T7.MoveCamera movecamera = 7;</code>
        */
       public Builder clearMovecamera() {
         if (movecameraBuilder_ == null) {
           movecamera_ = null;
           onChanged();
         } else {
-          movecameraBuilder_.clear();
+          movecamera_ = null;
+          movecameraBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000080);
+
         return this;
       }
       /**
-       * <code>optional .T7.MoveCamera movecamera = 8;</code>
+       * <code>.T7.MoveCamera movecamera = 7;</code>
        */
       public T7.T7Messages.MoveCamera.Builder getMovecameraBuilder() {
-        bitField0_ |= 0x00000080;
+        
         onChanged();
         return getMovecameraFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .T7.MoveCamera movecamera = 8;</code>
+       * <code>.T7.MoveCamera movecamera = 7;</code>
        */
       public T7.T7Messages.MoveCameraOrBuilder getMovecameraOrBuilder() {
         if (movecameraBuilder_ != null) {
@@ -2640,10 +2242,10 @@ public final class T7Messages {
         }
       }
       /**
-       * <code>optional .T7.MoveCamera movecamera = 8;</code>
+       * <code>.T7.MoveCamera movecamera = 7;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          T7.T7Messages.MoveCamera, T7.T7Messages.MoveCamera.Builder, T7.T7Messages.MoveCameraOrBuilder>
+          T7.T7Messages.MoveCamera, T7.T7Messages.MoveCamera.Builder, T7.T7Messages.MoveCameraOrBuilder> 
           getMovecameraFieldBuilder() {
         if (movecameraBuilder_ == null) {
           movecameraBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -2660,13 +2262,21 @@ public final class T7Messages {
       private com.google.protobuf.SingleFieldBuilderV3<
           T7.T7Messages.Accel, T7.T7Messages.Accel.Builder, T7.T7Messages.AccelOrBuilder> accelBuilder_;
       /**
-       * <code>optional .T7.Accel accel = 9;</code>
+       * <pre>
+       * UAV-&gt;HSS //
+       * </pre>
+       *
+       * <code>.T7.Accel accel = 8;</code>
        */
       public boolean hasAccel() {
-        return ((bitField0_ & 0x00000100) == 0x00000100);
+        return accelBuilder_ != null || accel_ != null;
       }
       /**
-       * <code>optional .T7.Accel accel = 9;</code>
+       * <pre>
+       * UAV-&gt;HSS //
+       * </pre>
+       *
+       * <code>.T7.Accel accel = 8;</code>
        */
       public T7.T7Messages.Accel getAccel() {
         if (accelBuilder_ == null) {
@@ -2676,7 +2286,11 @@ public final class T7Messages {
         }
       }
       /**
-       * <code>optional .T7.Accel accel = 9;</code>
+       * <pre>
+       * UAV-&gt;HSS //
+       * </pre>
+       *
+       * <code>.T7.Accel accel = 8;</code>
        */
       public Builder setAccel(T7.T7Messages.Accel value) {
         if (accelBuilder_ == null) {
@@ -2688,11 +2302,15 @@ public final class T7Messages {
         } else {
           accelBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000100;
+
         return this;
       }
       /**
-       * <code>optional .T7.Accel accel = 9;</code>
+       * <pre>
+       * UAV-&gt;HSS //
+       * </pre>
+       *
+       * <code>.T7.Accel accel = 8;</code>
        */
       public Builder setAccel(
           T7.T7Messages.Accel.Builder builderForValue) {
@@ -2702,17 +2320,19 @@ public final class T7Messages {
         } else {
           accelBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000100;
+
         return this;
       }
       /**
-       * <code>optional .T7.Accel accel = 9;</code>
+       * <pre>
+       * UAV-&gt;HSS //
+       * </pre>
+       *
+       * <code>.T7.Accel accel = 8;</code>
        */
       public Builder mergeAccel(T7.T7Messages.Accel value) {
         if (accelBuilder_ == null) {
-          if (((bitField0_ & 0x00000100) == 0x00000100) &&
-              accel_ != null &&
-              accel_ != T7.T7Messages.Accel.getDefaultInstance()) {
+          if (accel_ != null) {
             accel_ =
               T7.T7Messages.Accel.newBuilder(accel_).mergeFrom(value).buildPartial();
           } else {
@@ -2722,32 +2342,45 @@ public final class T7Messages {
         } else {
           accelBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000100;
+
         return this;
       }
       /**
-       * <code>optional .T7.Accel accel = 9;</code>
+       * <pre>
+       * UAV-&gt;HSS //
+       * </pre>
+       *
+       * <code>.T7.Accel accel = 8;</code>
        */
       public Builder clearAccel() {
         if (accelBuilder_ == null) {
           accel_ = null;
           onChanged();
         } else {
-          accelBuilder_.clear();
+          accel_ = null;
+          accelBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000100);
+
         return this;
       }
       /**
-       * <code>optional .T7.Accel accel = 9;</code>
+       * <pre>
+       * UAV-&gt;HSS //
+       * </pre>
+       *
+       * <code>.T7.Accel accel = 8;</code>
        */
       public T7.T7Messages.Accel.Builder getAccelBuilder() {
-        bitField0_ |= 0x00000100;
+        
         onChanged();
         return getAccelFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .T7.Accel accel = 9;</code>
+       * <pre>
+       * UAV-&gt;HSS //
+       * </pre>
+       *
+       * <code>.T7.Accel accel = 8;</code>
        */
       public T7.T7Messages.AccelOrBuilder getAccelOrBuilder() {
         if (accelBuilder_ != null) {
@@ -2758,10 +2391,14 @@ public final class T7Messages {
         }
       }
       /**
-       * <code>optional .T7.Accel accel = 9;</code>
+       * <pre>
+       * UAV-&gt;HSS //
+       * </pre>
+       *
+       * <code>.T7.Accel accel = 8;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          T7.T7Messages.Accel, T7.T7Messages.Accel.Builder, T7.T7Messages.AccelOrBuilder>
+          T7.T7Messages.Accel, T7.T7Messages.Accel.Builder, T7.T7Messages.AccelOrBuilder> 
           getAccelFieldBuilder() {
         if (accelBuilder_ == null) {
           accelBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -2778,13 +2415,13 @@ public final class T7Messages {
       private com.google.protobuf.SingleFieldBuilderV3<
           T7.T7Messages.Gyro, T7.T7Messages.Gyro.Builder, T7.T7Messages.GyroOrBuilder> gyroBuilder_;
       /**
-       * <code>optional .T7.Gyro gyro = 10;</code>
+       * <code>.T7.Gyro gyro = 9;</code>
        */
       public boolean hasGyro() {
-        return ((bitField0_ & 0x00000200) == 0x00000200);
+        return gyroBuilder_ != null || gyro_ != null;
       }
       /**
-       * <code>optional .T7.Gyro gyro = 10;</code>
+       * <code>.T7.Gyro gyro = 9;</code>
        */
       public T7.T7Messages.Gyro getGyro() {
         if (gyroBuilder_ == null) {
@@ -2794,7 +2431,7 @@ public final class T7Messages {
         }
       }
       /**
-       * <code>optional .T7.Gyro gyro = 10;</code>
+       * <code>.T7.Gyro gyro = 9;</code>
        */
       public Builder setGyro(T7.T7Messages.Gyro value) {
         if (gyroBuilder_ == null) {
@@ -2806,11 +2443,11 @@ public final class T7Messages {
         } else {
           gyroBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000200;
+
         return this;
       }
       /**
-       * <code>optional .T7.Gyro gyro = 10;</code>
+       * <code>.T7.Gyro gyro = 9;</code>
        */
       public Builder setGyro(
           T7.T7Messages.Gyro.Builder builderForValue) {
@@ -2820,17 +2457,15 @@ public final class T7Messages {
         } else {
           gyroBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000200;
+
         return this;
       }
       /**
-       * <code>optional .T7.Gyro gyro = 10;</code>
+       * <code>.T7.Gyro gyro = 9;</code>
        */
       public Builder mergeGyro(T7.T7Messages.Gyro value) {
         if (gyroBuilder_ == null) {
-          if (((bitField0_ & 0x00000200) == 0x00000200) &&
-              gyro_ != null &&
-              gyro_ != T7.T7Messages.Gyro.getDefaultInstance()) {
+          if (gyro_ != null) {
             gyro_ =
               T7.T7Messages.Gyro.newBuilder(gyro_).mergeFrom(value).buildPartial();
           } else {
@@ -2840,32 +2475,33 @@ public final class T7Messages {
         } else {
           gyroBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000200;
+
         return this;
       }
       /**
-       * <code>optional .T7.Gyro gyro = 10;</code>
+       * <code>.T7.Gyro gyro = 9;</code>
        */
       public Builder clearGyro() {
         if (gyroBuilder_ == null) {
           gyro_ = null;
           onChanged();
         } else {
-          gyroBuilder_.clear();
+          gyro_ = null;
+          gyroBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000200);
+
         return this;
       }
       /**
-       * <code>optional .T7.Gyro gyro = 10;</code>
+       * <code>.T7.Gyro gyro = 9;</code>
        */
       public T7.T7Messages.Gyro.Builder getGyroBuilder() {
-        bitField0_ |= 0x00000200;
+        
         onChanged();
         return getGyroFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .T7.Gyro gyro = 10;</code>
+       * <code>.T7.Gyro gyro = 9;</code>
        */
       public T7.T7Messages.GyroOrBuilder getGyroOrBuilder() {
         if (gyroBuilder_ != null) {
@@ -2876,10 +2512,10 @@ public final class T7Messages {
         }
       }
       /**
-       * <code>optional .T7.Gyro gyro = 10;</code>
+       * <code>.T7.Gyro gyro = 9;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          T7.T7Messages.Gyro, T7.T7Messages.Gyro.Builder, T7.T7Messages.GyroOrBuilder>
+          T7.T7Messages.Gyro, T7.T7Messages.Gyro.Builder, T7.T7Messages.GyroOrBuilder> 
           getGyroFieldBuilder() {
         if (gyroBuilder_ == null) {
           gyroBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -2896,13 +2532,13 @@ public final class T7Messages {
       private com.google.protobuf.SingleFieldBuilderV3<
           T7.T7Messages.Altitude, T7.T7Messages.Altitude.Builder, T7.T7Messages.AltitudeOrBuilder> altitudeBuilder_;
       /**
-       * <code>optional .T7.Altitude altitude = 11;</code>
+       * <code>.T7.Altitude altitude = 10;</code>
        */
       public boolean hasAltitude() {
-        return ((bitField0_ & 0x00000400) == 0x00000400);
+        return altitudeBuilder_ != null || altitude_ != null;
       }
       /**
-       * <code>optional .T7.Altitude altitude = 11;</code>
+       * <code>.T7.Altitude altitude = 10;</code>
        */
       public T7.T7Messages.Altitude getAltitude() {
         if (altitudeBuilder_ == null) {
@@ -2912,7 +2548,7 @@ public final class T7Messages {
         }
       }
       /**
-       * <code>optional .T7.Altitude altitude = 11;</code>
+       * <code>.T7.Altitude altitude = 10;</code>
        */
       public Builder setAltitude(T7.T7Messages.Altitude value) {
         if (altitudeBuilder_ == null) {
@@ -2924,11 +2560,11 @@ public final class T7Messages {
         } else {
           altitudeBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000400;
+
         return this;
       }
       /**
-       * <code>optional .T7.Altitude altitude = 11;</code>
+       * <code>.T7.Altitude altitude = 10;</code>
        */
       public Builder setAltitude(
           T7.T7Messages.Altitude.Builder builderForValue) {
@@ -2938,17 +2574,15 @@ public final class T7Messages {
         } else {
           altitudeBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000400;
+
         return this;
       }
       /**
-       * <code>optional .T7.Altitude altitude = 11;</code>
+       * <code>.T7.Altitude altitude = 10;</code>
        */
       public Builder mergeAltitude(T7.T7Messages.Altitude value) {
         if (altitudeBuilder_ == null) {
-          if (((bitField0_ & 0x00000400) == 0x00000400) &&
-              altitude_ != null &&
-              altitude_ != T7.T7Messages.Altitude.getDefaultInstance()) {
+          if (altitude_ != null) {
             altitude_ =
               T7.T7Messages.Altitude.newBuilder(altitude_).mergeFrom(value).buildPartial();
           } else {
@@ -2958,32 +2592,33 @@ public final class T7Messages {
         } else {
           altitudeBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000400;
+
         return this;
       }
       /**
-       * <code>optional .T7.Altitude altitude = 11;</code>
+       * <code>.T7.Altitude altitude = 10;</code>
        */
       public Builder clearAltitude() {
         if (altitudeBuilder_ == null) {
           altitude_ = null;
           onChanged();
         } else {
-          altitudeBuilder_.clear();
+          altitude_ = null;
+          altitudeBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000400);
+
         return this;
       }
       /**
-       * <code>optional .T7.Altitude altitude = 11;</code>
+       * <code>.T7.Altitude altitude = 10;</code>
        */
       public T7.T7Messages.Altitude.Builder getAltitudeBuilder() {
-        bitField0_ |= 0x00000400;
+        
         onChanged();
         return getAltitudeFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .T7.Altitude altitude = 11;</code>
+       * <code>.T7.Altitude altitude = 10;</code>
        */
       public T7.T7Messages.AltitudeOrBuilder getAltitudeOrBuilder() {
         if (altitudeBuilder_ != null) {
@@ -2994,10 +2629,10 @@ public final class T7Messages {
         }
       }
       /**
-       * <code>optional .T7.Altitude altitude = 11;</code>
+       * <code>.T7.Altitude altitude = 10;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          T7.T7Messages.Altitude, T7.T7Messages.Altitude.Builder, T7.T7Messages.AltitudeOrBuilder>
+          T7.T7Messages.Altitude, T7.T7Messages.Altitude.Builder, T7.T7Messages.AltitudeOrBuilder> 
           getAltitudeFieldBuilder() {
         if (altitudeBuilder_ == null) {
           altitudeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -3014,13 +2649,13 @@ public final class T7Messages {
       private com.google.protobuf.SingleFieldBuilderV3<
           T7.T7Messages.Attitude, T7.T7Messages.Attitude.Builder, T7.T7Messages.AttitudeOrBuilder> attitudeBuilder_;
       /**
-       * <code>optional .T7.Attitude attitude = 12;</code>
+       * <code>.T7.Attitude attitude = 11;</code>
        */
       public boolean hasAttitude() {
-        return ((bitField0_ & 0x00000800) == 0x00000800);
+        return attitudeBuilder_ != null || attitude_ != null;
       }
       /**
-       * <code>optional .T7.Attitude attitude = 12;</code>
+       * <code>.T7.Attitude attitude = 11;</code>
        */
       public T7.T7Messages.Attitude getAttitude() {
         if (attitudeBuilder_ == null) {
@@ -3030,7 +2665,7 @@ public final class T7Messages {
         }
       }
       /**
-       * <code>optional .T7.Attitude attitude = 12;</code>
+       * <code>.T7.Attitude attitude = 11;</code>
        */
       public Builder setAttitude(T7.T7Messages.Attitude value) {
         if (attitudeBuilder_ == null) {
@@ -3042,11 +2677,11 @@ public final class T7Messages {
         } else {
           attitudeBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000800;
+
         return this;
       }
       /**
-       * <code>optional .T7.Attitude attitude = 12;</code>
+       * <code>.T7.Attitude attitude = 11;</code>
        */
       public Builder setAttitude(
           T7.T7Messages.Attitude.Builder builderForValue) {
@@ -3056,17 +2691,15 @@ public final class T7Messages {
         } else {
           attitudeBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000800;
+
         return this;
       }
       /**
-       * <code>optional .T7.Attitude attitude = 12;</code>
+       * <code>.T7.Attitude attitude = 11;</code>
        */
       public Builder mergeAttitude(T7.T7Messages.Attitude value) {
         if (attitudeBuilder_ == null) {
-          if (((bitField0_ & 0x00000800) == 0x00000800) &&
-              attitude_ != null &&
-              attitude_ != T7.T7Messages.Attitude.getDefaultInstance()) {
+          if (attitude_ != null) {
             attitude_ =
               T7.T7Messages.Attitude.newBuilder(attitude_).mergeFrom(value).buildPartial();
           } else {
@@ -3076,32 +2709,33 @@ public final class T7Messages {
         } else {
           attitudeBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000800;
+
         return this;
       }
       /**
-       * <code>optional .T7.Attitude attitude = 12;</code>
+       * <code>.T7.Attitude attitude = 11;</code>
        */
       public Builder clearAttitude() {
         if (attitudeBuilder_ == null) {
           attitude_ = null;
           onChanged();
         } else {
-          attitudeBuilder_.clear();
+          attitude_ = null;
+          attitudeBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000800);
+
         return this;
       }
       /**
-       * <code>optional .T7.Attitude attitude = 12;</code>
+       * <code>.T7.Attitude attitude = 11;</code>
        */
       public T7.T7Messages.Attitude.Builder getAttitudeBuilder() {
-        bitField0_ |= 0x00000800;
+        
         onChanged();
         return getAttitudeFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .T7.Attitude attitude = 12;</code>
+       * <code>.T7.Attitude attitude = 11;</code>
        */
       public T7.T7Messages.AttitudeOrBuilder getAttitudeOrBuilder() {
         if (attitudeBuilder_ != null) {
@@ -3112,10 +2746,10 @@ public final class T7Messages {
         }
       }
       /**
-       * <code>optional .T7.Attitude attitude = 12;</code>
+       * <code>.T7.Attitude attitude = 11;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          T7.T7Messages.Attitude, T7.T7Messages.Attitude.Builder, T7.T7Messages.AttitudeOrBuilder>
+          T7.T7Messages.Attitude, T7.T7Messages.Attitude.Builder, T7.T7Messages.AttitudeOrBuilder> 
           getAttitudeFieldBuilder() {
         if (attitudeBuilder_ == null) {
           attitudeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -3132,13 +2766,13 @@ public final class T7Messages {
       private com.google.protobuf.SingleFieldBuilderV3<
           T7.T7Messages.Temp, T7.T7Messages.Temp.Builder, T7.T7Messages.TempOrBuilder> tempBuilder_;
       /**
-       * <code>optional .T7.Temp temp = 13;</code>
+       * <code>.T7.Temp temp = 12;</code>
        */
       public boolean hasTemp() {
-        return ((bitField0_ & 0x00001000) == 0x00001000);
+        return tempBuilder_ != null || temp_ != null;
       }
       /**
-       * <code>optional .T7.Temp temp = 13;</code>
+       * <code>.T7.Temp temp = 12;</code>
        */
       public T7.T7Messages.Temp getTemp() {
         if (tempBuilder_ == null) {
@@ -3148,7 +2782,7 @@ public final class T7Messages {
         }
       }
       /**
-       * <code>optional .T7.Temp temp = 13;</code>
+       * <code>.T7.Temp temp = 12;</code>
        */
       public Builder setTemp(T7.T7Messages.Temp value) {
         if (tempBuilder_ == null) {
@@ -3160,11 +2794,11 @@ public final class T7Messages {
         } else {
           tempBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00001000;
+
         return this;
       }
       /**
-       * <code>optional .T7.Temp temp = 13;</code>
+       * <code>.T7.Temp temp = 12;</code>
        */
       public Builder setTemp(
           T7.T7Messages.Temp.Builder builderForValue) {
@@ -3174,17 +2808,15 @@ public final class T7Messages {
         } else {
           tempBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00001000;
+
         return this;
       }
       /**
-       * <code>optional .T7.Temp temp = 13;</code>
+       * <code>.T7.Temp temp = 12;</code>
        */
       public Builder mergeTemp(T7.T7Messages.Temp value) {
         if (tempBuilder_ == null) {
-          if (((bitField0_ & 0x00001000) == 0x00001000) &&
-              temp_ != null &&
-              temp_ != T7.T7Messages.Temp.getDefaultInstance()) {
+          if (temp_ != null) {
             temp_ =
               T7.T7Messages.Temp.newBuilder(temp_).mergeFrom(value).buildPartial();
           } else {
@@ -3194,32 +2826,33 @@ public final class T7Messages {
         } else {
           tempBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00001000;
+
         return this;
       }
       /**
-       * <code>optional .T7.Temp temp = 13;</code>
+       * <code>.T7.Temp temp = 12;</code>
        */
       public Builder clearTemp() {
         if (tempBuilder_ == null) {
           temp_ = null;
           onChanged();
         } else {
-          tempBuilder_.clear();
+          temp_ = null;
+          tempBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00001000);
+
         return this;
       }
       /**
-       * <code>optional .T7.Temp temp = 13;</code>
+       * <code>.T7.Temp temp = 12;</code>
        */
       public T7.T7Messages.Temp.Builder getTempBuilder() {
-        bitField0_ |= 0x00001000;
+        
         onChanged();
         return getTempFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .T7.Temp temp = 13;</code>
+       * <code>.T7.Temp temp = 12;</code>
        */
       public T7.T7Messages.TempOrBuilder getTempOrBuilder() {
         if (tempBuilder_ != null) {
@@ -3230,10 +2863,10 @@ public final class T7Messages {
         }
       }
       /**
-       * <code>optional .T7.Temp temp = 13;</code>
+       * <code>.T7.Temp temp = 12;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          T7.T7Messages.Temp, T7.T7Messages.Temp.Builder, T7.T7Messages.TempOrBuilder>
+          T7.T7Messages.Temp, T7.T7Messages.Temp.Builder, T7.T7Messages.TempOrBuilder> 
           getTempFieldBuilder() {
         if (tempBuilder_ == null) {
           tempBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -3250,13 +2883,13 @@ public final class T7Messages {
       private com.google.protobuf.SingleFieldBuilderV3<
           T7.T7Messages.Battery, T7.T7Messages.Battery.Builder, T7.T7Messages.BatteryOrBuilder> batBuilder_;
       /**
-       * <code>optional .T7.Battery bat = 14;</code>
+       * <code>.T7.Battery bat = 13;</code>
        */
       public boolean hasBat() {
-        return ((bitField0_ & 0x00002000) == 0x00002000);
+        return batBuilder_ != null || bat_ != null;
       }
       /**
-       * <code>optional .T7.Battery bat = 14;</code>
+       * <code>.T7.Battery bat = 13;</code>
        */
       public T7.T7Messages.Battery getBat() {
         if (batBuilder_ == null) {
@@ -3266,7 +2899,7 @@ public final class T7Messages {
         }
       }
       /**
-       * <code>optional .T7.Battery bat = 14;</code>
+       * <code>.T7.Battery bat = 13;</code>
        */
       public Builder setBat(T7.T7Messages.Battery value) {
         if (batBuilder_ == null) {
@@ -3278,11 +2911,11 @@ public final class T7Messages {
         } else {
           batBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00002000;
+
         return this;
       }
       /**
-       * <code>optional .T7.Battery bat = 14;</code>
+       * <code>.T7.Battery bat = 13;</code>
        */
       public Builder setBat(
           T7.T7Messages.Battery.Builder builderForValue) {
@@ -3292,17 +2925,15 @@ public final class T7Messages {
         } else {
           batBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00002000;
+
         return this;
       }
       /**
-       * <code>optional .T7.Battery bat = 14;</code>
+       * <code>.T7.Battery bat = 13;</code>
        */
       public Builder mergeBat(T7.T7Messages.Battery value) {
         if (batBuilder_ == null) {
-          if (((bitField0_ & 0x00002000) == 0x00002000) &&
-              bat_ != null &&
-              bat_ != T7.T7Messages.Battery.getDefaultInstance()) {
+          if (bat_ != null) {
             bat_ =
               T7.T7Messages.Battery.newBuilder(bat_).mergeFrom(value).buildPartial();
           } else {
@@ -3312,32 +2943,33 @@ public final class T7Messages {
         } else {
           batBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00002000;
+
         return this;
       }
       /**
-       * <code>optional .T7.Battery bat = 14;</code>
+       * <code>.T7.Battery bat = 13;</code>
        */
       public Builder clearBat() {
         if (batBuilder_ == null) {
           bat_ = null;
           onChanged();
         } else {
-          batBuilder_.clear();
+          bat_ = null;
+          batBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00002000);
+
         return this;
       }
       /**
-       * <code>optional .T7.Battery bat = 14;</code>
+       * <code>.T7.Battery bat = 13;</code>
        */
       public T7.T7Messages.Battery.Builder getBatBuilder() {
-        bitField0_ |= 0x00002000;
+        
         onChanged();
         return getBatFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .T7.Battery bat = 14;</code>
+       * <code>.T7.Battery bat = 13;</code>
        */
       public T7.T7Messages.BatteryOrBuilder getBatOrBuilder() {
         if (batBuilder_ != null) {
@@ -3348,10 +2980,10 @@ public final class T7Messages {
         }
       }
       /**
-       * <code>optional .T7.Battery bat = 14;</code>
+       * <code>.T7.Battery bat = 13;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          T7.T7Messages.Battery, T7.T7Messages.Battery.Builder, T7.T7Messages.BatteryOrBuilder>
+          T7.T7Messages.Battery, T7.T7Messages.Battery.Builder, T7.T7Messages.BatteryOrBuilder> 
           getBatFieldBuilder() {
         if (batBuilder_ == null) {
           batBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -3365,12 +2997,12 @@ public final class T7Messages {
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
+        return this;
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
+        return this;
       }
 
 
@@ -3387,7 +3019,7 @@ public final class T7Messages {
       return DEFAULT_INSTANCE;
     }
 
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<GenericMessage>
+    private static final com.google.protobuf.Parser<GenericMessage>
         PARSER = new com.google.protobuf.AbstractParser<GenericMessage>() {
       public GenericMessage parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
@@ -3417,11 +3049,7 @@ public final class T7Messages {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional bool roger_that = 1 [default = true];</code>
-     */
-    boolean hasRogerThat();
-    /**
-     * <code>optional bool roger_that = 1 [default = true];</code>
+     * <code>bool roger_that = 1;</code>
      */
     boolean getRogerThat();
   }
@@ -3429,6 +3057,7 @@ public final class T7Messages {
    * <pre>
    * Response //
    * Basic TCP response to a sucesfully recieved message
+   * THIS WILL NOT HAVE ITS OWN THREAD.
    * </pre>
    *
    * Protobuf type {@code T7.Response}
@@ -3442,13 +3071,13 @@ public final class T7Messages {
       super(builder);
     }
     private Response() {
-      rogerThat_ = true;
+      rogerThat_ = false;
     }
 
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return this.unknownFields;
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     }
     private Response(
         com.google.protobuf.CodedInputStream input,
@@ -3456,8 +3085,6 @@ public final class T7Messages {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -3467,14 +3094,13 @@ public final class T7Messages {
               done = true;
               break;
             default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
+              if (!input.skipField(tag)) {
                 done = true;
               }
               break;
             }
             case 8: {
-              bitField0_ |= 0x00000001;
+
               rogerThat_ = input.readBool();
               break;
             }
@@ -3486,7 +3112,6 @@ public final class T7Messages {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -3502,17 +3127,10 @@ public final class T7Messages {
               T7.T7Messages.Response.class, T7.T7Messages.Response.Builder.class);
     }
 
-    private int bitField0_;
     public static final int ROGER_THAT_FIELD_NUMBER = 1;
     private boolean rogerThat_;
     /**
-     * <code>optional bool roger_that = 1 [default = true];</code>
-     */
-    public boolean hasRogerThat() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    /**
-     * <code>optional bool roger_that = 1 [default = true];</code>
+     * <code>bool roger_that = 1;</code>
      */
     public boolean getRogerThat() {
       return rogerThat_;
@@ -3530,10 +3148,9 @@ public final class T7Messages {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+      if (rogerThat_ != false) {
         output.writeBool(1, rogerThat_);
       }
-      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -3541,11 +3158,10 @@ public final class T7Messages {
       if (size != -1) return size;
 
       size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+      if (rogerThat_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(1, rogerThat_);
       }
-      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -3562,12 +3178,8 @@ public final class T7Messages {
       T7.T7Messages.Response other = (T7.T7Messages.Response) obj;
 
       boolean result = true;
-      result = result && (hasRogerThat() == other.hasRogerThat());
-      if (hasRogerThat()) {
-        result = result && (getRogerThat()
-            == other.getRogerThat());
-      }
-      result = result && unknownFields.equals(other.unknownFields);
+      result = result && (getRogerThat()
+          == other.getRogerThat());
       return result;
     }
 
@@ -3578,11 +3190,9 @@ public final class T7Messages {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasRogerThat()) {
-        hash = (37 * hash) + ROGER_THAT_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getRogerThat());
-      }
+      hash = (37 * hash) + ROGER_THAT_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getRogerThat());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -3669,6 +3279,7 @@ public final class T7Messages {
      * <pre>
      * Response //
      * Basic TCP response to a sucesfully recieved message
+     * THIS WILL NOT HAVE ITS OWN THREAD.
      * </pre>
      *
      * Protobuf type {@code T7.Response}
@@ -3706,8 +3317,8 @@ public final class T7Messages {
       }
       public Builder clear() {
         super.clear();
-        rogerThat_ = true;
-        bitField0_ = (bitField0_ & ~0x00000001);
+        rogerThat_ = false;
+
         return this;
       }
 
@@ -3730,13 +3341,7 @@ public final class T7Messages {
 
       public T7.T7Messages.Response buildPartial() {
         T7.T7Messages.Response result = new T7.T7Messages.Response(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
         result.rogerThat_ = rogerThat_;
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -3778,10 +3383,9 @@ public final class T7Messages {
 
       public Builder mergeFrom(T7.T7Messages.Response other) {
         if (other == T7.T7Messages.Response.getDefaultInstance()) return this;
-        if (other.hasRogerThat()) {
+        if (other.getRogerThat() != false) {
           setRogerThat(other.getRogerThat());
         }
-        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -3807,47 +3411,40 @@ public final class T7Messages {
         }
         return this;
       }
-      private int bitField0_;
 
-      private boolean rogerThat_ = true;
+      private boolean rogerThat_ ;
       /**
-       * <code>optional bool roger_that = 1 [default = true];</code>
-       */
-      public boolean hasRogerThat() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      /**
-       * <code>optional bool roger_that = 1 [default = true];</code>
+       * <code>bool roger_that = 1;</code>
        */
       public boolean getRogerThat() {
         return rogerThat_;
       }
       /**
-       * <code>optional bool roger_that = 1 [default = true];</code>
+       * <code>bool roger_that = 1;</code>
        */
       public Builder setRogerThat(boolean value) {
-        bitField0_ |= 0x00000001;
+        
         rogerThat_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional bool roger_that = 1 [default = true];</code>
+       * <code>bool roger_that = 1;</code>
        */
       public Builder clearRogerThat() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        rogerThat_ = true;
+        
+        rogerThat_ = false;
         onChanged();
         return this;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
+        return this;
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
+        return this;
       }
 
 
@@ -3864,7 +3461,7 @@ public final class T7Messages {
       return DEFAULT_INSTANCE;
     }
 
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<Response>
+    private static final com.google.protobuf.Parser<Response>
         PARSER = new com.google.protobuf.AbstractParser<Response>() {
       public Response parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
@@ -3894,18 +3491,14 @@ public final class T7Messages {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>required bool alive = 1 [default = true];</code>
-     */
-    boolean hasAlive();
-    /**
-     * <code>required bool alive = 1 [default = true];</code>
+     * <code>bool alive = 1;</code>
      */
     boolean getAlive();
   }
   /**
    * <pre>
    * HeartBeat //
-   * This message will be sent both from the UAV and from the HSS
+   * This message will be sent both from the UAV and from the HSS 
    * Periodically to ensure that they are both alive
    * </pre>
    *
@@ -3920,13 +3513,13 @@ public final class T7Messages {
       super(builder);
     }
     private HeartBeat() {
-      alive_ = true;
+      alive_ = false;
     }
 
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return this.unknownFields;
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     }
     private HeartBeat(
         com.google.protobuf.CodedInputStream input,
@@ -3934,8 +3527,6 @@ public final class T7Messages {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -3945,14 +3536,13 @@ public final class T7Messages {
               done = true;
               break;
             default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
+              if (!input.skipField(tag)) {
                 done = true;
               }
               break;
             }
             case 8: {
-              bitField0_ |= 0x00000001;
+
               alive_ = input.readBool();
               break;
             }
@@ -3964,7 +3554,6 @@ public final class T7Messages {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -3980,17 +3569,10 @@ public final class T7Messages {
               T7.T7Messages.HeartBeat.class, T7.T7Messages.HeartBeat.Builder.class);
     }
 
-    private int bitField0_;
     public static final int ALIVE_FIELD_NUMBER = 1;
     private boolean alive_;
     /**
-     * <code>required bool alive = 1 [default = true];</code>
-     */
-    public boolean hasAlive() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    /**
-     * <code>required bool alive = 1 [default = true];</code>
+     * <code>bool alive = 1;</code>
      */
     public boolean getAlive() {
       return alive_;
@@ -4002,20 +3584,15 @@ public final class T7Messages {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (!hasAlive()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
       memoizedIsInitialized = 1;
       return true;
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+      if (alive_ != false) {
         output.writeBool(1, alive_);
       }
-      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -4023,11 +3600,10 @@ public final class T7Messages {
       if (size != -1) return size;
 
       size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+      if (alive_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(1, alive_);
       }
-      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -4044,12 +3620,8 @@ public final class T7Messages {
       T7.T7Messages.HeartBeat other = (T7.T7Messages.HeartBeat) obj;
 
       boolean result = true;
-      result = result && (hasAlive() == other.hasAlive());
-      if (hasAlive()) {
-        result = result && (getAlive()
-            == other.getAlive());
-      }
-      result = result && unknownFields.equals(other.unknownFields);
+      result = result && (getAlive()
+          == other.getAlive());
       return result;
     }
 
@@ -4060,11 +3632,9 @@ public final class T7Messages {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasAlive()) {
-        hash = (37 * hash) + ALIVE_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getAlive());
-      }
+      hash = (37 * hash) + ALIVE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getAlive());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -4150,7 +3720,7 @@ public final class T7Messages {
     /**
      * <pre>
      * HeartBeat //
-     * This message will be sent both from the UAV and from the HSS
+     * This message will be sent both from the UAV and from the HSS 
      * Periodically to ensure that they are both alive
      * </pre>
      *
@@ -4189,8 +3759,8 @@ public final class T7Messages {
       }
       public Builder clear() {
         super.clear();
-        alive_ = true;
-        bitField0_ = (bitField0_ & ~0x00000001);
+        alive_ = false;
+
         return this;
       }
 
@@ -4213,13 +3783,7 @@ public final class T7Messages {
 
       public T7.T7Messages.HeartBeat buildPartial() {
         T7.T7Messages.HeartBeat result = new T7.T7Messages.HeartBeat(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
         result.alive_ = alive_;
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -4261,18 +3825,14 @@ public final class T7Messages {
 
       public Builder mergeFrom(T7.T7Messages.HeartBeat other) {
         if (other == T7.T7Messages.HeartBeat.getDefaultInstance()) return this;
-        if (other.hasAlive()) {
+        if (other.getAlive() != false) {
           setAlive(other.getAlive());
         }
-        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
 
       public final boolean isInitialized() {
-        if (!hasAlive()) {
-          return false;
-        }
         return true;
       }
 
@@ -4293,47 +3853,40 @@ public final class T7Messages {
         }
         return this;
       }
-      private int bitField0_;
 
-      private boolean alive_ = true;
+      private boolean alive_ ;
       /**
-       * <code>required bool alive = 1 [default = true];</code>
-       */
-      public boolean hasAlive() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      /**
-       * <code>required bool alive = 1 [default = true];</code>
+       * <code>bool alive = 1;</code>
        */
       public boolean getAlive() {
         return alive_;
       }
       /**
-       * <code>required bool alive = 1 [default = true];</code>
+       * <code>bool alive = 1;</code>
        */
       public Builder setAlive(boolean value) {
-        bitField0_ |= 0x00000001;
+        
         alive_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required bool alive = 1 [default = true];</code>
+       * <code>bool alive = 1;</code>
        */
       public Builder clearAlive() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        alive_ = true;
+        
+        alive_ = false;
         onChanged();
         return this;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
+        return this;
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
+        return this;
       }
 
 
@@ -4350,7 +3903,7 @@ public final class T7Messages {
       return DEFAULT_INSTANCE;
     }
 
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<HeartBeat>
+    private static final com.google.protobuf.Parser<HeartBeat>
         PARSER = new com.google.protobuf.AbstractParser<HeartBeat>() {
       public HeartBeat parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
@@ -4380,18 +3933,15 @@ public final class T7Messages {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>required bool terminate = 1 [default = true];</code>
+     * <code>int32 terminateKey = 1;</code>
      */
-    boolean hasTerminate();
-    /**
-     * <code>required bool terminate = 1 [default = true];</code>
-     */
-    boolean getTerminate();
+    int getTerminateKey();
   }
   /**
    * <pre>
    * Terminate //
-   * This message will be the message that the UAV will recieve to // self terminate
+   * This message will be the message that the UAV will recieve to self terminate or 
+   * Send the UAV into a softshutdown or emergency stop
    * </pre>
    *
    * Protobuf type {@code T7.Terminate}
@@ -4405,13 +3955,13 @@ public final class T7Messages {
       super(builder);
     }
     private Terminate() {
-      terminate_ = true;
+      terminateKey_ = 0;
     }
 
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return this.unknownFields;
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     }
     private Terminate(
         com.google.protobuf.CodedInputStream input,
@@ -4419,8 +3969,6 @@ public final class T7Messages {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -4430,15 +3978,14 @@ public final class T7Messages {
               done = true;
               break;
             default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
+              if (!input.skipField(tag)) {
                 done = true;
               }
               break;
             }
             case 8: {
-              bitField0_ |= 0x00000001;
-              terminate_ = input.readBool();
+
+              terminateKey_ = input.readInt32();
               break;
             }
           }
@@ -4449,7 +3996,6 @@ public final class T7Messages {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -4465,20 +4011,120 @@ public final class T7Messages {
               T7.T7Messages.Terminate.class, T7.T7Messages.Terminate.Builder.class);
     }
 
-    private int bitField0_;
-    public static final int TERMINATE_FIELD_NUMBER = 1;
-    private boolean terminate_;
     /**
-     * <code>required bool terminate = 1 [default = true];</code>
+     * Protobuf enum {@code T7.Terminate.TerminateKeys}
      */
-    public boolean hasTerminate() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
+    public enum TerminateKeys
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <code>selfTerminate = 0;</code>
+       */
+      selfTerminate(0),
+      /**
+       * <code>softShutdown = 1;</code>
+       */
+      softShutdown(1),
+      /**
+       * <code>emergencyStop = 2;</code>
+       */
+      emergencyStop(2),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>selfTerminate = 0;</code>
+       */
+      public static final int selfTerminate_VALUE = 0;
+      /**
+       * <code>softShutdown = 1;</code>
+       */
+      public static final int softShutdown_VALUE = 1;
+      /**
+       * <code>emergencyStop = 2;</code>
+       */
+      public static final int emergencyStop_VALUE = 2;
+
+
+      public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalArgumentException(
+              "Can't get the number of an unknown enum value.");
+        }
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static TerminateKeys valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static TerminateKeys forNumber(int value) {
+        switch (value) {
+          case 0: return selfTerminate;
+          case 1: return softShutdown;
+          case 2: return emergencyStop;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<TerminateKeys>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          TerminateKeys> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<TerminateKeys>() {
+              public TerminateKeys findValueByNumber(int number) {
+                return TerminateKeys.forNumber(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(ordinal());
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return T7.T7Messages.Terminate.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final TerminateKeys[] VALUES = values();
+
+      public static TerminateKeys valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        if (desc.getIndex() == -1) {
+          return UNRECOGNIZED;
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int value;
+
+      private TerminateKeys(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:T7.Terminate.TerminateKeys)
     }
+
+    public static final int TERMINATEKEY_FIELD_NUMBER = 1;
+    private int terminateKey_;
     /**
-     * <code>required bool terminate = 1 [default = true];</code>
+     * <code>int32 terminateKey = 1;</code>
      */
-    public boolean getTerminate() {
-      return terminate_;
+    public int getTerminateKey() {
+      return terminateKey_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -4487,20 +4133,15 @@ public final class T7Messages {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (!hasTerminate()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
       memoizedIsInitialized = 1;
       return true;
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBool(1, terminate_);
+      if (terminateKey_ != 0) {
+        output.writeInt32(1, terminateKey_);
       }
-      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -4508,11 +4149,10 @@ public final class T7Messages {
       if (size != -1) return size;
 
       size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+      if (terminateKey_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(1, terminate_);
+          .computeInt32Size(1, terminateKey_);
       }
-      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -4529,12 +4169,8 @@ public final class T7Messages {
       T7.T7Messages.Terminate other = (T7.T7Messages.Terminate) obj;
 
       boolean result = true;
-      result = result && (hasTerminate() == other.hasTerminate());
-      if (hasTerminate()) {
-        result = result && (getTerminate()
-            == other.getTerminate());
-      }
-      result = result && unknownFields.equals(other.unknownFields);
+      result = result && (getTerminateKey()
+          == other.getTerminateKey());
       return result;
     }
 
@@ -4545,11 +4181,8 @@ public final class T7Messages {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasTerminate()) {
-        hash = (37 * hash) + TERMINATE_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getTerminate());
-      }
+      hash = (37 * hash) + TERMINATEKEY_FIELD_NUMBER;
+      hash = (53 * hash) + getTerminateKey();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -4635,7 +4268,8 @@ public final class T7Messages {
     /**
      * <pre>
      * Terminate //
-     * This message will be the message that the UAV will recieve to // self terminate
+     * This message will be the message that the UAV will recieve to self terminate or 
+     * Send the UAV into a softshutdown or emergency stop
      * </pre>
      *
      * Protobuf type {@code T7.Terminate}
@@ -4673,8 +4307,8 @@ public final class T7Messages {
       }
       public Builder clear() {
         super.clear();
-        terminate_ = true;
-        bitField0_ = (bitField0_ & ~0x00000001);
+        terminateKey_ = 0;
+
         return this;
       }
 
@@ -4697,13 +4331,7 @@ public final class T7Messages {
 
       public T7.T7Messages.Terminate buildPartial() {
         T7.T7Messages.Terminate result = new T7.T7Messages.Terminate(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.terminate_ = terminate_;
-        result.bitField0_ = to_bitField0_;
+        result.terminateKey_ = terminateKey_;
         onBuilt();
         return result;
       }
@@ -4745,18 +4373,14 @@ public final class T7Messages {
 
       public Builder mergeFrom(T7.T7Messages.Terminate other) {
         if (other == T7.T7Messages.Terminate.getDefaultInstance()) return this;
-        if (other.hasTerminate()) {
-          setTerminate(other.getTerminate());
+        if (other.getTerminateKey() != 0) {
+          setTerminateKey(other.getTerminateKey());
         }
-        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
 
       public final boolean isInitialized() {
-        if (!hasTerminate()) {
-          return false;
-        }
         return true;
       }
 
@@ -4777,47 +4401,40 @@ public final class T7Messages {
         }
         return this;
       }
-      private int bitField0_;
 
-      private boolean terminate_ = true;
+      private int terminateKey_ ;
       /**
-       * <code>required bool terminate = 1 [default = true];</code>
+       * <code>int32 terminateKey = 1;</code>
        */
-      public boolean hasTerminate() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+      public int getTerminateKey() {
+        return terminateKey_;
       }
       /**
-       * <code>required bool terminate = 1 [default = true];</code>
+       * <code>int32 terminateKey = 1;</code>
        */
-      public boolean getTerminate() {
-        return terminate_;
-      }
-      /**
-       * <code>required bool terminate = 1 [default = true];</code>
-       */
-      public Builder setTerminate(boolean value) {
-        bitField0_ |= 0x00000001;
-        terminate_ = value;
+      public Builder setTerminateKey(int value) {
+        
+        terminateKey_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required bool terminate = 1 [default = true];</code>
+       * <code>int32 terminateKey = 1;</code>
        */
-      public Builder clearTerminate() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        terminate_ = true;
+      public Builder clearTerminateKey() {
+        
+        terminateKey_ = 0;
         onChanged();
         return this;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
+        return this;
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
+        return this;
       }
 
 
@@ -4834,7 +4451,7 @@ public final class T7Messages {
       return DEFAULT_INSTANCE;
     }
 
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<Terminate>
+    private static final com.google.protobuf.Parser<Terminate>
         PARSER = new com.google.protobuf.AbstractParser<Terminate>() {
       public Terminate parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
@@ -4859,500 +4476,20 @@ public final class T7Messages {
 
   }
 
-  public interface UpdateParamsOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:T7.UpdateParams)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>optional bool tbd = 1;</code>
-     */
-    boolean hasTbd();
-    /**
-     * <code>optional bool tbd = 1;</code>
-     */
-    boolean getTbd();
-  }
-  /**
-   * <pre>
-   * TBD - 22 April 2017 - att: Figure out what is needed.
-   * </pre>
-   *
-   * Protobuf type {@code T7.UpdateParams}
-   */
-  public  static final class UpdateParams extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:T7.UpdateParams)
-      UpdateParamsOrBuilder {
-    // Use UpdateParams.newBuilder() to construct.
-    private UpdateParams(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private UpdateParams() {
-      tbd_ = false;
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private UpdateParams(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-              bitField0_ |= 0x00000001;
-              tbd_ = input.readBool();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return T7.T7Messages.internal_static_T7_UpdateParams_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return T7.T7Messages.internal_static_T7_UpdateParams_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              T7.T7Messages.UpdateParams.class, T7.T7Messages.UpdateParams.Builder.class);
-    }
-
-    private int bitField0_;
-    public static final int TBD_FIELD_NUMBER = 1;
-    private boolean tbd_;
-    /**
-     * <code>optional bool tbd = 1;</code>
-     */
-    public boolean hasTbd() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    /**
-     * <code>optional bool tbd = 1;</code>
-     */
-    public boolean getTbd() {
-      return tbd_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBool(1, tbd_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(1, tbd_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof T7.T7Messages.UpdateParams)) {
-        return super.equals(obj);
-      }
-      T7.T7Messages.UpdateParams other = (T7.T7Messages.UpdateParams) obj;
-
-      boolean result = true;
-      result = result && (hasTbd() == other.hasTbd());
-      if (hasTbd()) {
-        result = result && (getTbd()
-            == other.getTbd());
-      }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasTbd()) {
-        hash = (37 * hash) + TBD_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getTbd());
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static T7.T7Messages.UpdateParams parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static T7.T7Messages.UpdateParams parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static T7.T7Messages.UpdateParams parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static T7.T7Messages.UpdateParams parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static T7.T7Messages.UpdateParams parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static T7.T7Messages.UpdateParams parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static T7.T7Messages.UpdateParams parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static T7.T7Messages.UpdateParams parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static T7.T7Messages.UpdateParams parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static T7.T7Messages.UpdateParams parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(T7.T7Messages.UpdateParams prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     * TBD - 22 April 2017 - att: Figure out what is needed.
-     * </pre>
-     *
-     * Protobuf type {@code T7.UpdateParams}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:T7.UpdateParams)
-        T7.T7Messages.UpdateParamsOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return T7.T7Messages.internal_static_T7_UpdateParams_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return T7.T7Messages.internal_static_T7_UpdateParams_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                T7.T7Messages.UpdateParams.class, T7.T7Messages.UpdateParams.Builder.class);
-      }
-
-      // Construct using T7.T7Messages.UpdateParams.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      public Builder clear() {
-        super.clear();
-        tbd_ = false;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return T7.T7Messages.internal_static_T7_UpdateParams_descriptor;
-      }
-
-      public T7.T7Messages.UpdateParams getDefaultInstanceForType() {
-        return T7.T7Messages.UpdateParams.getDefaultInstance();
-      }
-
-      public T7.T7Messages.UpdateParams build() {
-        T7.T7Messages.UpdateParams result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public T7.T7Messages.UpdateParams buildPartial() {
-        T7.T7Messages.UpdateParams result = new T7.T7Messages.UpdateParams(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.tbd_ = tbd_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof T7.T7Messages.UpdateParams) {
-          return mergeFrom((T7.T7Messages.UpdateParams)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(T7.T7Messages.UpdateParams other) {
-        if (other == T7.T7Messages.UpdateParams.getDefaultInstance()) return this;
-        if (other.hasTbd()) {
-          setTbd(other.getTbd());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        T7.T7Messages.UpdateParams parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (T7.T7Messages.UpdateParams) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private boolean tbd_ ;
-      /**
-       * <code>optional bool tbd = 1;</code>
-       */
-      public boolean hasTbd() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      /**
-       * <code>optional bool tbd = 1;</code>
-       */
-      public boolean getTbd() {
-        return tbd_;
-      }
-      /**
-       * <code>optional bool tbd = 1;</code>
-       */
-      public Builder setTbd(boolean value) {
-        bitField0_ |= 0x00000001;
-        tbd_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional bool tbd = 1;</code>
-       */
-      public Builder clearTbd() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        tbd_ = false;
-        onChanged();
-        return this;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:T7.UpdateParams)
-    }
-
-    // @@protoc_insertion_point(class_scope:T7.UpdateParams)
-    private static final T7.T7Messages.UpdateParams DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new T7.T7Messages.UpdateParams();
-    }
-
-    public static T7.T7Messages.UpdateParams getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<UpdateParams>
-        PARSER = new com.google.protobuf.AbstractParser<UpdateParams>() {
-      public UpdateParams parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new UpdateParams(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<UpdateParams> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<UpdateParams> getParserForType() {
-      return PARSER;
-    }
-
-    public T7.T7Messages.UpdateParams getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   public interface ConfigDataOrBuilder extends
       // @@protoc_insertion_point(interface_extends:T7.ConfigData)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional bool tbd = 1;</code>
+     * <code>int32 configKey = 1;</code>
      */
-    boolean hasTbd();
-    /**
-     * <code>optional bool tbd = 1;</code>
-     */
-    boolean getTbd();
+    int getConfigKey();
   }
   /**
    * <pre>
    * ConfigData //
    * This message is to satisfy the requirement of allowing the
    * operator to configure the data that they recieve in real time
-   * TBD - 22 April 2017 - att: Figure out what is needed.
    * </pre>
    *
    * Protobuf type {@code T7.ConfigData}
@@ -5366,13 +4503,13 @@ public final class T7Messages {
       super(builder);
     }
     private ConfigData() {
-      tbd_ = false;
+      configKey_ = 0;
     }
 
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return this.unknownFields;
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     }
     private ConfigData(
         com.google.protobuf.CodedInputStream input,
@@ -5380,8 +4517,6 @@ public final class T7Messages {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -5391,15 +4526,14 @@ public final class T7Messages {
               done = true;
               break;
             default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
+              if (!input.skipField(tag)) {
                 done = true;
               }
               break;
             }
             case 8: {
-              bitField0_ |= 0x00000001;
-              tbd_ = input.readBool();
+
+              configKey_ = input.readInt32();
               break;
             }
           }
@@ -5410,7 +4544,6 @@ public final class T7Messages {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -5426,20 +4559,151 @@ public final class T7Messages {
               T7.T7Messages.ConfigData.class, T7.T7Messages.ConfigData.Builder.class);
     }
 
-    private int bitField0_;
-    public static final int TBD_FIELD_NUMBER = 1;
-    private boolean tbd_;
     /**
-     * <code>optional bool tbd = 1;</code>
+     * <pre>
+     * This will let me know wich one to use in the switch case
+     * </pre>
+     *
+     * Protobuf enum {@code T7.ConfigData.ToggleKeys}
      */
-    public boolean hasTbd() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
+    public enum ToggleKeys
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <code>toggleAccel = 0;</code>
+       */
+      toggleAccel(0),
+      /**
+       * <code>toggleGyro = 1;</code>
+       */
+      toggleGyro(1),
+      /**
+       * <code>toggleAltitude = 2;</code>
+       */
+      toggleAltitude(2),
+      /**
+       * <code>toggleAttitude = 3;</code>
+       */
+      toggleAttitude(3),
+      /**
+       * <code>toggleTemp = 4;</code>
+       */
+      toggleTemp(4),
+      /**
+       * <code>toggleBat = 5;</code>
+       */
+      toggleBat(5),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>toggleAccel = 0;</code>
+       */
+      public static final int toggleAccel_VALUE = 0;
+      /**
+       * <code>toggleGyro = 1;</code>
+       */
+      public static final int toggleGyro_VALUE = 1;
+      /**
+       * <code>toggleAltitude = 2;</code>
+       */
+      public static final int toggleAltitude_VALUE = 2;
+      /**
+       * <code>toggleAttitude = 3;</code>
+       */
+      public static final int toggleAttitude_VALUE = 3;
+      /**
+       * <code>toggleTemp = 4;</code>
+       */
+      public static final int toggleTemp_VALUE = 4;
+      /**
+       * <code>toggleBat = 5;</code>
+       */
+      public static final int toggleBat_VALUE = 5;
+
+
+      public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalArgumentException(
+              "Can't get the number of an unknown enum value.");
+        }
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static ToggleKeys valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static ToggleKeys forNumber(int value) {
+        switch (value) {
+          case 0: return toggleAccel;
+          case 1: return toggleGyro;
+          case 2: return toggleAltitude;
+          case 3: return toggleAttitude;
+          case 4: return toggleTemp;
+          case 5: return toggleBat;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<ToggleKeys>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          ToggleKeys> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<ToggleKeys>() {
+              public ToggleKeys findValueByNumber(int number) {
+                return ToggleKeys.forNumber(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(ordinal());
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return T7.T7Messages.ConfigData.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final ToggleKeys[] VALUES = values();
+
+      public static ToggleKeys valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        if (desc.getIndex() == -1) {
+          return UNRECOGNIZED;
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int value;
+
+      private ToggleKeys(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:T7.ConfigData.ToggleKeys)
     }
+
+    public static final int CONFIGKEY_FIELD_NUMBER = 1;
+    private int configKey_;
     /**
-     * <code>optional bool tbd = 1;</code>
+     * <code>int32 configKey = 1;</code>
      */
-    public boolean getTbd() {
-      return tbd_;
+    public int getConfigKey() {
+      return configKey_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -5454,10 +4718,9 @@ public final class T7Messages {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBool(1, tbd_);
+      if (configKey_ != 0) {
+        output.writeInt32(1, configKey_);
       }
-      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -5465,11 +4728,10 @@ public final class T7Messages {
       if (size != -1) return size;
 
       size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+      if (configKey_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(1, tbd_);
+          .computeInt32Size(1, configKey_);
       }
-      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -5486,12 +4748,8 @@ public final class T7Messages {
       T7.T7Messages.ConfigData other = (T7.T7Messages.ConfigData) obj;
 
       boolean result = true;
-      result = result && (hasTbd() == other.hasTbd());
-      if (hasTbd()) {
-        result = result && (getTbd()
-            == other.getTbd());
-      }
-      result = result && unknownFields.equals(other.unknownFields);
+      result = result && (getConfigKey()
+          == other.getConfigKey());
       return result;
     }
 
@@ -5502,11 +4760,8 @@ public final class T7Messages {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasTbd()) {
-        hash = (37 * hash) + TBD_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getTbd());
-      }
+      hash = (37 * hash) + CONFIGKEY_FIELD_NUMBER;
+      hash = (53 * hash) + getConfigKey();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -5594,7 +4849,6 @@ public final class T7Messages {
      * ConfigData //
      * This message is to satisfy the requirement of allowing the
      * operator to configure the data that they recieve in real time
-     * TBD - 22 April 2017 - att: Figure out what is needed.
      * </pre>
      *
      * Protobuf type {@code T7.ConfigData}
@@ -5632,8 +4886,8 @@ public final class T7Messages {
       }
       public Builder clear() {
         super.clear();
-        tbd_ = false;
-        bitField0_ = (bitField0_ & ~0x00000001);
+        configKey_ = 0;
+
         return this;
       }
 
@@ -5656,13 +4910,7 @@ public final class T7Messages {
 
       public T7.T7Messages.ConfigData buildPartial() {
         T7.T7Messages.ConfigData result = new T7.T7Messages.ConfigData(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.tbd_ = tbd_;
-        result.bitField0_ = to_bitField0_;
+        result.configKey_ = configKey_;
         onBuilt();
         return result;
       }
@@ -5704,10 +4952,9 @@ public final class T7Messages {
 
       public Builder mergeFrom(T7.T7Messages.ConfigData other) {
         if (other == T7.T7Messages.ConfigData.getDefaultInstance()) return this;
-        if (other.hasTbd()) {
-          setTbd(other.getTbd());
+        if (other.getConfigKey() != 0) {
+          setConfigKey(other.getConfigKey());
         }
-        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -5733,47 +4980,40 @@ public final class T7Messages {
         }
         return this;
       }
-      private int bitField0_;
 
-      private boolean tbd_ ;
+      private int configKey_ ;
       /**
-       * <code>optional bool tbd = 1;</code>
+       * <code>int32 configKey = 1;</code>
        */
-      public boolean hasTbd() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+      public int getConfigKey() {
+        return configKey_;
       }
       /**
-       * <code>optional bool tbd = 1;</code>
+       * <code>int32 configKey = 1;</code>
        */
-      public boolean getTbd() {
-        return tbd_;
-      }
-      /**
-       * <code>optional bool tbd = 1;</code>
-       */
-      public Builder setTbd(boolean value) {
-        bitField0_ |= 0x00000001;
-        tbd_ = value;
+      public Builder setConfigKey(int value) {
+        
+        configKey_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional bool tbd = 1;</code>
+       * <code>int32 configKey = 1;</code>
        */
-      public Builder clearTbd() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        tbd_ = false;
+      public Builder clearConfigKey() {
+        
+        configKey_ = 0;
         onChanged();
         return this;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
+        return this;
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
+        return this;
       }
 
 
@@ -5790,7 +5030,7 @@ public final class T7Messages {
       return DEFAULT_INSTANCE;
     }
 
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<ConfigData>
+    private static final com.google.protobuf.Parser<ConfigData>
         PARSER = new com.google.protobuf.AbstractParser<ConfigData>() {
       public ConfigData parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
@@ -5820,20 +5060,15 @@ public final class T7Messages {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional bool tbd = 1;</code>
+     * <code>int32 arrowKey = 1;</code>
      */
-    boolean hasTbd();
-    /**
-     * <code>optional bool tbd = 1;</code>
-     */
-    boolean getTbd();
+    int getArrowKey();
   }
   /**
    * <pre>
    * MoveCamera //
-   * This message will allow the operator to move the pan-tilt
+   * This message will allow the operator to move the pan-tilt 
    * gimble attached to the camera
-   * TBD - 22 April 2017 - att: Figure out what is needed.
    * </pre>
    *
    * Protobuf type {@code T7.MoveCamera}
@@ -5847,13 +5082,13 @@ public final class T7Messages {
       super(builder);
     }
     private MoveCamera() {
-      tbd_ = false;
+      arrowKey_ = 0;
     }
 
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return this.unknownFields;
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     }
     private MoveCamera(
         com.google.protobuf.CodedInputStream input,
@@ -5861,8 +5096,6 @@ public final class T7Messages {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -5872,15 +5105,14 @@ public final class T7Messages {
               done = true;
               break;
             default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
+              if (!input.skipField(tag)) {
                 done = true;
               }
               break;
             }
             case 8: {
-              bitField0_ |= 0x00000001;
-              tbd_ = input.readBool();
+
+              arrowKey_ = input.readInt32();
               break;
             }
           }
@@ -5891,7 +5123,6 @@ public final class T7Messages {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -5907,20 +5138,129 @@ public final class T7Messages {
               T7.T7Messages.MoveCamera.class, T7.T7Messages.MoveCamera.Builder.class);
     }
 
-    private int bitField0_;
-    public static final int TBD_FIELD_NUMBER = 1;
-    private boolean tbd_;
     /**
-     * <code>optional bool tbd = 1;</code>
+     * Protobuf enum {@code T7.MoveCamera.ArrowKeys}
      */
-    public boolean hasTbd() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
+    public enum ArrowKeys
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <code>UP = 0;</code>
+       */
+      UP(0),
+      /**
+       * <code>RIGHT = 1;</code>
+       */
+      RIGHT(1),
+      /**
+       * <code>DOWN = 2;</code>
+       */
+      DOWN(2),
+      /**
+       * <code>LEFT = 3;</code>
+       */
+      LEFT(3),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>UP = 0;</code>
+       */
+      public static final int UP_VALUE = 0;
+      /**
+       * <code>RIGHT = 1;</code>
+       */
+      public static final int RIGHT_VALUE = 1;
+      /**
+       * <code>DOWN = 2;</code>
+       */
+      public static final int DOWN_VALUE = 2;
+      /**
+       * <code>LEFT = 3;</code>
+       */
+      public static final int LEFT_VALUE = 3;
+
+
+      public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalArgumentException(
+              "Can't get the number of an unknown enum value.");
+        }
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static ArrowKeys valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static ArrowKeys forNumber(int value) {
+        switch (value) {
+          case 0: return UP;
+          case 1: return RIGHT;
+          case 2: return DOWN;
+          case 3: return LEFT;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<ArrowKeys>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          ArrowKeys> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<ArrowKeys>() {
+              public ArrowKeys findValueByNumber(int number) {
+                return ArrowKeys.forNumber(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(ordinal());
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return T7.T7Messages.MoveCamera.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final ArrowKeys[] VALUES = values();
+
+      public static ArrowKeys valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        if (desc.getIndex() == -1) {
+          return UNRECOGNIZED;
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int value;
+
+      private ArrowKeys(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:T7.MoveCamera.ArrowKeys)
     }
+
+    public static final int ARROWKEY_FIELD_NUMBER = 1;
+    private int arrowKey_;
     /**
-     * <code>optional bool tbd = 1;</code>
+     * <code>int32 arrowKey = 1;</code>
      */
-    public boolean getTbd() {
-      return tbd_;
+    public int getArrowKey() {
+      return arrowKey_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -5935,10 +5275,9 @@ public final class T7Messages {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBool(1, tbd_);
+      if (arrowKey_ != 0) {
+        output.writeInt32(1, arrowKey_);
       }
-      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -5946,11 +5285,10 @@ public final class T7Messages {
       if (size != -1) return size;
 
       size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+      if (arrowKey_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(1, tbd_);
+          .computeInt32Size(1, arrowKey_);
       }
-      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -5967,12 +5305,8 @@ public final class T7Messages {
       T7.T7Messages.MoveCamera other = (T7.T7Messages.MoveCamera) obj;
 
       boolean result = true;
-      result = result && (hasTbd() == other.hasTbd());
-      if (hasTbd()) {
-        result = result && (getTbd()
-            == other.getTbd());
-      }
-      result = result && unknownFields.equals(other.unknownFields);
+      result = result && (getArrowKey()
+          == other.getArrowKey());
       return result;
     }
 
@@ -5983,11 +5317,8 @@ public final class T7Messages {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasTbd()) {
-        hash = (37 * hash) + TBD_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getTbd());
-      }
+      hash = (37 * hash) + ARROWKEY_FIELD_NUMBER;
+      hash = (53 * hash) + getArrowKey();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -6073,9 +5404,8 @@ public final class T7Messages {
     /**
      * <pre>
      * MoveCamera //
-     * This message will allow the operator to move the pan-tilt
+     * This message will allow the operator to move the pan-tilt 
      * gimble attached to the camera
-     * TBD - 22 April 2017 - att: Figure out what is needed.
      * </pre>
      *
      * Protobuf type {@code T7.MoveCamera}
@@ -6113,8 +5443,8 @@ public final class T7Messages {
       }
       public Builder clear() {
         super.clear();
-        tbd_ = false;
-        bitField0_ = (bitField0_ & ~0x00000001);
+        arrowKey_ = 0;
+
         return this;
       }
 
@@ -6137,13 +5467,7 @@ public final class T7Messages {
 
       public T7.T7Messages.MoveCamera buildPartial() {
         T7.T7Messages.MoveCamera result = new T7.T7Messages.MoveCamera(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.tbd_ = tbd_;
-        result.bitField0_ = to_bitField0_;
+        result.arrowKey_ = arrowKey_;
         onBuilt();
         return result;
       }
@@ -6185,10 +5509,9 @@ public final class T7Messages {
 
       public Builder mergeFrom(T7.T7Messages.MoveCamera other) {
         if (other == T7.T7Messages.MoveCamera.getDefaultInstance()) return this;
-        if (other.hasTbd()) {
-          setTbd(other.getTbd());
+        if (other.getArrowKey() != 0) {
+          setArrowKey(other.getArrowKey());
         }
-        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
@@ -6214,47 +5537,40 @@ public final class T7Messages {
         }
         return this;
       }
-      private int bitField0_;
 
-      private boolean tbd_ ;
+      private int arrowKey_ ;
       /**
-       * <code>optional bool tbd = 1;</code>
+       * <code>int32 arrowKey = 1;</code>
        */
-      public boolean hasTbd() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+      public int getArrowKey() {
+        return arrowKey_;
       }
       /**
-       * <code>optional bool tbd = 1;</code>
+       * <code>int32 arrowKey = 1;</code>
        */
-      public boolean getTbd() {
-        return tbd_;
-      }
-      /**
-       * <code>optional bool tbd = 1;</code>
-       */
-      public Builder setTbd(boolean value) {
-        bitField0_ |= 0x00000001;
-        tbd_ = value;
+      public Builder setArrowKey(int value) {
+        
+        arrowKey_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional bool tbd = 1;</code>
+       * <code>int32 arrowKey = 1;</code>
        */
-      public Builder clearTbd() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        tbd_ = false;
+      public Builder clearArrowKey() {
+        
+        arrowKey_ = 0;
         onChanged();
         return this;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
+        return this;
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
+        return this;
       }
 
 
@@ -6271,7 +5587,7 @@ public final class T7Messages {
       return DEFAULT_INSTANCE;
     }
 
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<MoveCamera>
+    private static final com.google.protobuf.Parser<MoveCamera>
         PARSER = new com.google.protobuf.AbstractParser<MoveCamera>() {
       public MoveCamera parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
@@ -6305,15 +5621,7 @@ public final class T7Messages {
      *  [m/s^2]
      * </pre>
      *
-     * <code>required double x = 1;</code>
-     */
-    boolean hasX();
-    /**
-     * <pre>
-     *  [m/s^2]
-     * </pre>
-     *
-     * <code>required double x = 1;</code>
+     * <code>double x = 1;</code>
      */
     double getX();
 
@@ -6322,15 +5630,7 @@ public final class T7Messages {
      *  [m/s^2]
      * </pre>
      *
-     * <code>required double y = 2;</code>
-     */
-    boolean hasY();
-    /**
-     * <pre>
-     *  [m/s^2]
-     * </pre>
-     *
-     * <code>required double y = 2;</code>
+     * <code>double y = 2;</code>
      */
     double getY();
 
@@ -6339,15 +5639,7 @@ public final class T7Messages {
      *  [m/s^2]
      * </pre>
      *
-     * <code>required double z = 3;</code>
-     */
-    boolean hasZ();
-    /**
-     * <pre>
-     *  [m/s^2]
-     * </pre>
-     *
-     * <code>required double z = 3;</code>
+     * <code>double z = 3;</code>
      */
     double getZ();
   }
@@ -6357,7 +5649,7 @@ public final class T7Messages {
    * UAV -&gt; HSS Messages
    * ---------------------------------------------------------- //
    * Accel //
-   * This message defines the accelerometer message.
+   * This message defines the accelerometer message.  
    * </pre>
    *
    * Protobuf type {@code T7.Accel}
@@ -6379,7 +5671,7 @@ public final class T7Messages {
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return this.unknownFields;
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     }
     private Accel(
         com.google.protobuf.CodedInputStream input,
@@ -6387,8 +5679,6 @@ public final class T7Messages {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -6398,24 +5688,23 @@ public final class T7Messages {
               done = true;
               break;
             default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
+              if (!input.skipField(tag)) {
                 done = true;
               }
               break;
             }
             case 9: {
-              bitField0_ |= 0x00000001;
+
               x_ = input.readDouble();
               break;
             }
             case 17: {
-              bitField0_ |= 0x00000002;
+
               y_ = input.readDouble();
               break;
             }
             case 25: {
-              bitField0_ |= 0x00000004;
+
               z_ = input.readDouble();
               break;
             }
@@ -6427,7 +5716,6 @@ public final class T7Messages {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -6443,7 +5731,6 @@ public final class T7Messages {
               T7.T7Messages.Accel.class, T7.T7Messages.Accel.Builder.class);
     }
 
-    private int bitField0_;
     public static final int X_FIELD_NUMBER = 1;
     private double x_;
     /**
@@ -6451,17 +5738,7 @@ public final class T7Messages {
      *  [m/s^2]
      * </pre>
      *
-     * <code>required double x = 1;</code>
-     */
-    public boolean hasX() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    /**
-     * <pre>
-     *  [m/s^2]
-     * </pre>
-     *
-     * <code>required double x = 1;</code>
+     * <code>double x = 1;</code>
      */
     public double getX() {
       return x_;
@@ -6474,17 +5751,7 @@ public final class T7Messages {
      *  [m/s^2]
      * </pre>
      *
-     * <code>required double y = 2;</code>
-     */
-    public boolean hasY() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    /**
-     * <pre>
-     *  [m/s^2]
-     * </pre>
-     *
-     * <code>required double y = 2;</code>
+     * <code>double y = 2;</code>
      */
     public double getY() {
       return y_;
@@ -6497,17 +5764,7 @@ public final class T7Messages {
      *  [m/s^2]
      * </pre>
      *
-     * <code>required double z = 3;</code>
-     */
-    public boolean hasZ() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    /**
-     * <pre>
-     *  [m/s^2]
-     * </pre>
-     *
-     * <code>required double z = 3;</code>
+     * <code>double z = 3;</code>
      */
     public double getZ() {
       return z_;
@@ -6519,34 +5776,21 @@ public final class T7Messages {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (!hasX()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasY()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasZ()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
       memoizedIsInitialized = 1;
       return true;
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+      if (x_ != 0D) {
         output.writeDouble(1, x_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+      if (y_ != 0D) {
         output.writeDouble(2, y_);
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+      if (z_ != 0D) {
         output.writeDouble(3, z_);
       }
-      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -6554,19 +5798,18 @@ public final class T7Messages {
       if (size != -1) return size;
 
       size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+      if (x_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
           .computeDoubleSize(1, x_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+      if (y_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
           .computeDoubleSize(2, y_);
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+      if (z_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
           .computeDoubleSize(3, z_);
       }
-      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -6583,28 +5826,18 @@ public final class T7Messages {
       T7.T7Messages.Accel other = (T7.T7Messages.Accel) obj;
 
       boolean result = true;
-      result = result && (hasX() == other.hasX());
-      if (hasX()) {
-        result = result && (
-            java.lang.Double.doubleToLongBits(getX())
-            == java.lang.Double.doubleToLongBits(
-                other.getX()));
-      }
-      result = result && (hasY() == other.hasY());
-      if (hasY()) {
-        result = result && (
-            java.lang.Double.doubleToLongBits(getY())
-            == java.lang.Double.doubleToLongBits(
-                other.getY()));
-      }
-      result = result && (hasZ() == other.hasZ());
-      if (hasZ()) {
-        result = result && (
-            java.lang.Double.doubleToLongBits(getZ())
-            == java.lang.Double.doubleToLongBits(
-                other.getZ()));
-      }
-      result = result && unknownFields.equals(other.unknownFields);
+      result = result && (
+          java.lang.Double.doubleToLongBits(getX())
+          == java.lang.Double.doubleToLongBits(
+              other.getX()));
+      result = result && (
+          java.lang.Double.doubleToLongBits(getY())
+          == java.lang.Double.doubleToLongBits(
+              other.getY()));
+      result = result && (
+          java.lang.Double.doubleToLongBits(getZ())
+          == java.lang.Double.doubleToLongBits(
+              other.getZ()));
       return result;
     }
 
@@ -6615,21 +5848,15 @@ public final class T7Messages {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasX()) {
-        hash = (37 * hash) + X_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            java.lang.Double.doubleToLongBits(getX()));
-      }
-      if (hasY()) {
-        hash = (37 * hash) + Y_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            java.lang.Double.doubleToLongBits(getY()));
-      }
-      if (hasZ()) {
-        hash = (37 * hash) + Z_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            java.lang.Double.doubleToLongBits(getZ()));
-      }
+      hash = (37 * hash) + X_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getX()));
+      hash = (37 * hash) + Y_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getY()));
+      hash = (37 * hash) + Z_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getZ()));
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -6718,7 +5945,7 @@ public final class T7Messages {
      * UAV -&gt; HSS Messages
      * ---------------------------------------------------------- //
      * Accel //
-     * This message defines the accelerometer message.
+     * This message defines the accelerometer message.  
      * </pre>
      *
      * Protobuf type {@code T7.Accel}
@@ -6757,11 +5984,11 @@ public final class T7Messages {
       public Builder clear() {
         super.clear();
         x_ = 0D;
-        bitField0_ = (bitField0_ & ~0x00000001);
+
         y_ = 0D;
-        bitField0_ = (bitField0_ & ~0x00000002);
+
         z_ = 0D;
-        bitField0_ = (bitField0_ & ~0x00000004);
+
         return this;
       }
 
@@ -6784,21 +6011,9 @@ public final class T7Messages {
 
       public T7.T7Messages.Accel buildPartial() {
         T7.T7Messages.Accel result = new T7.T7Messages.Accel(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
         result.x_ = x_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
         result.y_ = y_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
         result.z_ = z_;
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -6840,30 +6055,20 @@ public final class T7Messages {
 
       public Builder mergeFrom(T7.T7Messages.Accel other) {
         if (other == T7.T7Messages.Accel.getDefaultInstance()) return this;
-        if (other.hasX()) {
+        if (other.getX() != 0D) {
           setX(other.getX());
         }
-        if (other.hasY()) {
+        if (other.getY() != 0D) {
           setY(other.getY());
         }
-        if (other.hasZ()) {
+        if (other.getZ() != 0D) {
           setZ(other.getZ());
         }
-        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
 
       public final boolean isInitialized() {
-        if (!hasX()) {
-          return false;
-        }
-        if (!hasY()) {
-          return false;
-        }
-        if (!hasZ()) {
-          return false;
-        }
         return true;
       }
 
@@ -6884,7 +6089,6 @@ public final class T7Messages {
         }
         return this;
       }
-      private int bitField0_;
 
       private double x_ ;
       /**
@@ -6892,17 +6096,7 @@ public final class T7Messages {
        *  [m/s^2]
        * </pre>
        *
-       * <code>required double x = 1;</code>
-       */
-      public boolean hasX() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      /**
-       * <pre>
-       *  [m/s^2]
-       * </pre>
-       *
-       * <code>required double x = 1;</code>
+       * <code>double x = 1;</code>
        */
       public double getX() {
         return x_;
@@ -6912,10 +6106,10 @@ public final class T7Messages {
        *  [m/s^2]
        * </pre>
        *
-       * <code>required double x = 1;</code>
+       * <code>double x = 1;</code>
        */
       public Builder setX(double value) {
-        bitField0_ |= 0x00000001;
+        
         x_ = value;
         onChanged();
         return this;
@@ -6925,10 +6119,10 @@ public final class T7Messages {
        *  [m/s^2]
        * </pre>
        *
-       * <code>required double x = 1;</code>
+       * <code>double x = 1;</code>
        */
       public Builder clearX() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        
         x_ = 0D;
         onChanged();
         return this;
@@ -6940,17 +6134,7 @@ public final class T7Messages {
        *  [m/s^2]
        * </pre>
        *
-       * <code>required double y = 2;</code>
-       */
-      public boolean hasY() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <pre>
-       *  [m/s^2]
-       * </pre>
-       *
-       * <code>required double y = 2;</code>
+       * <code>double y = 2;</code>
        */
       public double getY() {
         return y_;
@@ -6960,10 +6144,10 @@ public final class T7Messages {
        *  [m/s^2]
        * </pre>
        *
-       * <code>required double y = 2;</code>
+       * <code>double y = 2;</code>
        */
       public Builder setY(double value) {
-        bitField0_ |= 0x00000002;
+        
         y_ = value;
         onChanged();
         return this;
@@ -6973,10 +6157,10 @@ public final class T7Messages {
        *  [m/s^2]
        * </pre>
        *
-       * <code>required double y = 2;</code>
+       * <code>double y = 2;</code>
        */
       public Builder clearY() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        
         y_ = 0D;
         onChanged();
         return this;
@@ -6988,17 +6172,7 @@ public final class T7Messages {
        *  [m/s^2]
        * </pre>
        *
-       * <code>required double z = 3;</code>
-       */
-      public boolean hasZ() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      /**
-       * <pre>
-       *  [m/s^2]
-       * </pre>
-       *
-       * <code>required double z = 3;</code>
+       * <code>double z = 3;</code>
        */
       public double getZ() {
         return z_;
@@ -7008,10 +6182,10 @@ public final class T7Messages {
        *  [m/s^2]
        * </pre>
        *
-       * <code>required double z = 3;</code>
+       * <code>double z = 3;</code>
        */
       public Builder setZ(double value) {
-        bitField0_ |= 0x00000004;
+        
         z_ = value;
         onChanged();
         return this;
@@ -7021,22 +6195,22 @@ public final class T7Messages {
        *  [m/s^2]
        * </pre>
        *
-       * <code>required double z = 3;</code>
+       * <code>double z = 3;</code>
        */
       public Builder clearZ() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        
         z_ = 0D;
         onChanged();
         return this;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
+        return this;
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
+        return this;
       }
 
 
@@ -7053,7 +6227,7 @@ public final class T7Messages {
       return DEFAULT_INSTANCE;
     }
 
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<Accel>
+    private static final com.google.protobuf.Parser<Accel>
         PARSER = new com.google.protobuf.AbstractParser<Accel>() {
       public Accel parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
@@ -7087,15 +6261,7 @@ public final class T7Messages {
      *   [rad/s^2]
      * </pre>
      *
-     * <code>required double x = 1;</code>
-     */
-    boolean hasX();
-    /**
-     * <pre>
-     *   [rad/s^2]
-     * </pre>
-     *
-     * <code>required double x = 1;</code>
+     * <code>double x = 1;</code>
      */
     double getX();
 
@@ -7104,15 +6270,7 @@ public final class T7Messages {
      *   [rad/s^2]
      * </pre>
      *
-     * <code>required double y = 2;</code>
-     */
-    boolean hasY();
-    /**
-     * <pre>
-     *   [rad/s^2]
-     * </pre>
-     *
-     * <code>required double y = 2;</code>
+     * <code>double y = 2;</code>
      */
     double getY();
 
@@ -7121,15 +6279,7 @@ public final class T7Messages {
      *   [rad/s^2]
      * </pre>
      *
-     * <code>required double z = 3;</code>
-     */
-    boolean hasZ();
-    /**
-     * <pre>
-     *   [rad/s^2]
-     * </pre>
-     *
-     * <code>required double z = 3;</code>
+     * <code>double z = 3;</code>
      */
     double getZ();
   }
@@ -7158,7 +6308,7 @@ public final class T7Messages {
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return this.unknownFields;
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     }
     private Gyro(
         com.google.protobuf.CodedInputStream input,
@@ -7166,8 +6316,6 @@ public final class T7Messages {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -7177,24 +6325,23 @@ public final class T7Messages {
               done = true;
               break;
             default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
+              if (!input.skipField(tag)) {
                 done = true;
               }
               break;
             }
             case 9: {
-              bitField0_ |= 0x00000001;
+
               x_ = input.readDouble();
               break;
             }
             case 17: {
-              bitField0_ |= 0x00000002;
+
               y_ = input.readDouble();
               break;
             }
             case 25: {
-              bitField0_ |= 0x00000004;
+
               z_ = input.readDouble();
               break;
             }
@@ -7206,7 +6353,6 @@ public final class T7Messages {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -7222,7 +6368,6 @@ public final class T7Messages {
               T7.T7Messages.Gyro.class, T7.T7Messages.Gyro.Builder.class);
     }
 
-    private int bitField0_;
     public static final int X_FIELD_NUMBER = 1;
     private double x_;
     /**
@@ -7230,17 +6375,7 @@ public final class T7Messages {
      *   [rad/s^2]
      * </pre>
      *
-     * <code>required double x = 1;</code>
-     */
-    public boolean hasX() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    /**
-     * <pre>
-     *   [rad/s^2]
-     * </pre>
-     *
-     * <code>required double x = 1;</code>
+     * <code>double x = 1;</code>
      */
     public double getX() {
       return x_;
@@ -7253,17 +6388,7 @@ public final class T7Messages {
      *   [rad/s^2]
      * </pre>
      *
-     * <code>required double y = 2;</code>
-     */
-    public boolean hasY() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    /**
-     * <pre>
-     *   [rad/s^2]
-     * </pre>
-     *
-     * <code>required double y = 2;</code>
+     * <code>double y = 2;</code>
      */
     public double getY() {
       return y_;
@@ -7276,17 +6401,7 @@ public final class T7Messages {
      *   [rad/s^2]
      * </pre>
      *
-     * <code>required double z = 3;</code>
-     */
-    public boolean hasZ() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    /**
-     * <pre>
-     *   [rad/s^2]
-     * </pre>
-     *
-     * <code>required double z = 3;</code>
+     * <code>double z = 3;</code>
      */
     public double getZ() {
       return z_;
@@ -7298,34 +6413,21 @@ public final class T7Messages {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (!hasX()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasY()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasZ()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
       memoizedIsInitialized = 1;
       return true;
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+      if (x_ != 0D) {
         output.writeDouble(1, x_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+      if (y_ != 0D) {
         output.writeDouble(2, y_);
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+      if (z_ != 0D) {
         output.writeDouble(3, z_);
       }
-      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -7333,19 +6435,18 @@ public final class T7Messages {
       if (size != -1) return size;
 
       size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+      if (x_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
           .computeDoubleSize(1, x_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+      if (y_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
           .computeDoubleSize(2, y_);
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+      if (z_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
           .computeDoubleSize(3, z_);
       }
-      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -7362,28 +6463,18 @@ public final class T7Messages {
       T7.T7Messages.Gyro other = (T7.T7Messages.Gyro) obj;
 
       boolean result = true;
-      result = result && (hasX() == other.hasX());
-      if (hasX()) {
-        result = result && (
-            java.lang.Double.doubleToLongBits(getX())
-            == java.lang.Double.doubleToLongBits(
-                other.getX()));
-      }
-      result = result && (hasY() == other.hasY());
-      if (hasY()) {
-        result = result && (
-            java.lang.Double.doubleToLongBits(getY())
-            == java.lang.Double.doubleToLongBits(
-                other.getY()));
-      }
-      result = result && (hasZ() == other.hasZ());
-      if (hasZ()) {
-        result = result && (
-            java.lang.Double.doubleToLongBits(getZ())
-            == java.lang.Double.doubleToLongBits(
-                other.getZ()));
-      }
-      result = result && unknownFields.equals(other.unknownFields);
+      result = result && (
+          java.lang.Double.doubleToLongBits(getX())
+          == java.lang.Double.doubleToLongBits(
+              other.getX()));
+      result = result && (
+          java.lang.Double.doubleToLongBits(getY())
+          == java.lang.Double.doubleToLongBits(
+              other.getY()));
+      result = result && (
+          java.lang.Double.doubleToLongBits(getZ())
+          == java.lang.Double.doubleToLongBits(
+              other.getZ()));
       return result;
     }
 
@@ -7394,21 +6485,15 @@ public final class T7Messages {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasX()) {
-        hash = (37 * hash) + X_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            java.lang.Double.doubleToLongBits(getX()));
-      }
-      if (hasY()) {
-        hash = (37 * hash) + Y_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            java.lang.Double.doubleToLongBits(getY()));
-      }
-      if (hasZ()) {
-        hash = (37 * hash) + Z_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            java.lang.Double.doubleToLongBits(getZ()));
-      }
+      hash = (37 * hash) + X_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getX()));
+      hash = (37 * hash) + Y_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getY()));
+      hash = (37 * hash) + Z_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getZ()));
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -7533,11 +6618,11 @@ public final class T7Messages {
       public Builder clear() {
         super.clear();
         x_ = 0D;
-        bitField0_ = (bitField0_ & ~0x00000001);
+
         y_ = 0D;
-        bitField0_ = (bitField0_ & ~0x00000002);
+
         z_ = 0D;
-        bitField0_ = (bitField0_ & ~0x00000004);
+
         return this;
       }
 
@@ -7560,21 +6645,9 @@ public final class T7Messages {
 
       public T7.T7Messages.Gyro buildPartial() {
         T7.T7Messages.Gyro result = new T7.T7Messages.Gyro(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
         result.x_ = x_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
         result.y_ = y_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
         result.z_ = z_;
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -7616,30 +6689,20 @@ public final class T7Messages {
 
       public Builder mergeFrom(T7.T7Messages.Gyro other) {
         if (other == T7.T7Messages.Gyro.getDefaultInstance()) return this;
-        if (other.hasX()) {
+        if (other.getX() != 0D) {
           setX(other.getX());
         }
-        if (other.hasY()) {
+        if (other.getY() != 0D) {
           setY(other.getY());
         }
-        if (other.hasZ()) {
+        if (other.getZ() != 0D) {
           setZ(other.getZ());
         }
-        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
 
       public final boolean isInitialized() {
-        if (!hasX()) {
-          return false;
-        }
-        if (!hasY()) {
-          return false;
-        }
-        if (!hasZ()) {
-          return false;
-        }
         return true;
       }
 
@@ -7660,7 +6723,6 @@ public final class T7Messages {
         }
         return this;
       }
-      private int bitField0_;
 
       private double x_ ;
       /**
@@ -7668,17 +6730,7 @@ public final class T7Messages {
        *   [rad/s^2]
        * </pre>
        *
-       * <code>required double x = 1;</code>
-       */
-      public boolean hasX() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      /**
-       * <pre>
-       *   [rad/s^2]
-       * </pre>
-       *
-       * <code>required double x = 1;</code>
+       * <code>double x = 1;</code>
        */
       public double getX() {
         return x_;
@@ -7688,10 +6740,10 @@ public final class T7Messages {
        *   [rad/s^2]
        * </pre>
        *
-       * <code>required double x = 1;</code>
+       * <code>double x = 1;</code>
        */
       public Builder setX(double value) {
-        bitField0_ |= 0x00000001;
+        
         x_ = value;
         onChanged();
         return this;
@@ -7701,10 +6753,10 @@ public final class T7Messages {
        *   [rad/s^2]
        * </pre>
        *
-       * <code>required double x = 1;</code>
+       * <code>double x = 1;</code>
        */
       public Builder clearX() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        
         x_ = 0D;
         onChanged();
         return this;
@@ -7716,17 +6768,7 @@ public final class T7Messages {
        *   [rad/s^2]
        * </pre>
        *
-       * <code>required double y = 2;</code>
-       */
-      public boolean hasY() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <pre>
-       *   [rad/s^2]
-       * </pre>
-       *
-       * <code>required double y = 2;</code>
+       * <code>double y = 2;</code>
        */
       public double getY() {
         return y_;
@@ -7736,10 +6778,10 @@ public final class T7Messages {
        *   [rad/s^2]
        * </pre>
        *
-       * <code>required double y = 2;</code>
+       * <code>double y = 2;</code>
        */
       public Builder setY(double value) {
-        bitField0_ |= 0x00000002;
+        
         y_ = value;
         onChanged();
         return this;
@@ -7749,10 +6791,10 @@ public final class T7Messages {
        *   [rad/s^2]
        * </pre>
        *
-       * <code>required double y = 2;</code>
+       * <code>double y = 2;</code>
        */
       public Builder clearY() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        
         y_ = 0D;
         onChanged();
         return this;
@@ -7764,17 +6806,7 @@ public final class T7Messages {
        *   [rad/s^2]
        * </pre>
        *
-       * <code>required double z = 3;</code>
-       */
-      public boolean hasZ() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      /**
-       * <pre>
-       *   [rad/s^2]
-       * </pre>
-       *
-       * <code>required double z = 3;</code>
+       * <code>double z = 3;</code>
        */
       public double getZ() {
         return z_;
@@ -7784,10 +6816,10 @@ public final class T7Messages {
        *   [rad/s^2]
        * </pre>
        *
-       * <code>required double z = 3;</code>
+       * <code>double z = 3;</code>
        */
       public Builder setZ(double value) {
-        bitField0_ |= 0x00000004;
+        
         z_ = value;
         onChanged();
         return this;
@@ -7797,22 +6829,22 @@ public final class T7Messages {
        *   [rad/s^2]
        * </pre>
        *
-       * <code>required double z = 3;</code>
+       * <code>double z = 3;</code>
        */
       public Builder clearZ() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        
         z_ = 0D;
         onChanged();
         return this;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
+        return this;
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
+        return this;
       }
 
 
@@ -7829,7 +6861,7 @@ public final class T7Messages {
       return DEFAULT_INSTANCE;
     }
 
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<Gyro>
+    private static final com.google.protobuf.Parser<Gyro>
         PARSER = new com.google.protobuf.AbstractParser<Gyro>() {
       public Gyro parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
@@ -7863,15 +6895,7 @@ public final class T7Messages {
      * [m]
      * </pre>
      *
-     * <code>required double alt = 1;</code>
-     */
-    boolean hasAlt();
-    /**
-     * <pre>
-     * [m]
-     * </pre>
-     *
-     * <code>required double alt = 1;</code>
+     * <code>double alt = 1;</code>
      */
     double getAlt();
   }
@@ -7898,7 +6922,7 @@ public final class T7Messages {
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return this.unknownFields;
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     }
     private Altitude(
         com.google.protobuf.CodedInputStream input,
@@ -7906,8 +6930,6 @@ public final class T7Messages {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -7917,14 +6939,13 @@ public final class T7Messages {
               done = true;
               break;
             default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
+              if (!input.skipField(tag)) {
                 done = true;
               }
               break;
             }
             case 9: {
-              bitField0_ |= 0x00000001;
+
               alt_ = input.readDouble();
               break;
             }
@@ -7936,7 +6957,6 @@ public final class T7Messages {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -7952,7 +6972,6 @@ public final class T7Messages {
               T7.T7Messages.Altitude.class, T7.T7Messages.Altitude.Builder.class);
     }
 
-    private int bitField0_;
     public static final int ALT_FIELD_NUMBER = 1;
     private double alt_;
     /**
@@ -7960,17 +6979,7 @@ public final class T7Messages {
      * [m]
      * </pre>
      *
-     * <code>required double alt = 1;</code>
-     */
-    public boolean hasAlt() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    /**
-     * <pre>
-     * [m]
-     * </pre>
-     *
-     * <code>required double alt = 1;</code>
+     * <code>double alt = 1;</code>
      */
     public double getAlt() {
       return alt_;
@@ -7982,20 +6991,15 @@ public final class T7Messages {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (!hasAlt()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
       memoizedIsInitialized = 1;
       return true;
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+      if (alt_ != 0D) {
         output.writeDouble(1, alt_);
       }
-      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -8003,11 +7007,10 @@ public final class T7Messages {
       if (size != -1) return size;
 
       size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+      if (alt_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
           .computeDoubleSize(1, alt_);
       }
-      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -8024,14 +7027,10 @@ public final class T7Messages {
       T7.T7Messages.Altitude other = (T7.T7Messages.Altitude) obj;
 
       boolean result = true;
-      result = result && (hasAlt() == other.hasAlt());
-      if (hasAlt()) {
-        result = result && (
-            java.lang.Double.doubleToLongBits(getAlt())
-            == java.lang.Double.doubleToLongBits(
-                other.getAlt()));
-      }
-      result = result && unknownFields.equals(other.unknownFields);
+      result = result && (
+          java.lang.Double.doubleToLongBits(getAlt())
+          == java.lang.Double.doubleToLongBits(
+              other.getAlt()));
       return result;
     }
 
@@ -8042,11 +7041,9 @@ public final class T7Messages {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasAlt()) {
-        hash = (37 * hash) + ALT_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            java.lang.Double.doubleToLongBits(getAlt()));
-      }
+      hash = (37 * hash) + ALT_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getAlt()));
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -8171,7 +7168,7 @@ public final class T7Messages {
       public Builder clear() {
         super.clear();
         alt_ = 0D;
-        bitField0_ = (bitField0_ & ~0x00000001);
+
         return this;
       }
 
@@ -8194,13 +7191,7 @@ public final class T7Messages {
 
       public T7.T7Messages.Altitude buildPartial() {
         T7.T7Messages.Altitude result = new T7.T7Messages.Altitude(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
         result.alt_ = alt_;
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -8242,18 +7233,14 @@ public final class T7Messages {
 
       public Builder mergeFrom(T7.T7Messages.Altitude other) {
         if (other == T7.T7Messages.Altitude.getDefaultInstance()) return this;
-        if (other.hasAlt()) {
+        if (other.getAlt() != 0D) {
           setAlt(other.getAlt());
         }
-        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
 
       public final boolean isInitialized() {
-        if (!hasAlt()) {
-          return false;
-        }
         return true;
       }
 
@@ -8274,7 +7261,6 @@ public final class T7Messages {
         }
         return this;
       }
-      private int bitField0_;
 
       private double alt_ ;
       /**
@@ -8282,17 +7268,7 @@ public final class T7Messages {
        * [m]
        * </pre>
        *
-       * <code>required double alt = 1;</code>
-       */
-      public boolean hasAlt() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      /**
-       * <pre>
-       * [m]
-       * </pre>
-       *
-       * <code>required double alt = 1;</code>
+       * <code>double alt = 1;</code>
        */
       public double getAlt() {
         return alt_;
@@ -8302,10 +7278,10 @@ public final class T7Messages {
        * [m]
        * </pre>
        *
-       * <code>required double alt = 1;</code>
+       * <code>double alt = 1;</code>
        */
       public Builder setAlt(double value) {
-        bitField0_ |= 0x00000001;
+        
         alt_ = value;
         onChanged();
         return this;
@@ -8315,22 +7291,22 @@ public final class T7Messages {
        * [m]
        * </pre>
        *
-       * <code>required double alt = 1;</code>
+       * <code>double alt = 1;</code>
        */
       public Builder clearAlt() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        
         alt_ = 0D;
         onChanged();
         return this;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
+        return this;
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
+        return this;
       }
 
 
@@ -8347,7 +7323,7 @@ public final class T7Messages {
       return DEFAULT_INSTANCE;
     }
 
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<Altitude>
+    private static final com.google.protobuf.Parser<Altitude>
         PARSER = new com.google.protobuf.AbstractParser<Altitude>() {
       public Altitude parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
@@ -8381,15 +7357,7 @@ public final class T7Messages {
      * [rad]
      * </pre>
      *
-     * <code>required double roll = 1;</code>
-     */
-    boolean hasRoll();
-    /**
-     * <pre>
-     * [rad]
-     * </pre>
-     *
-     * <code>required double roll = 1;</code>
+     * <code>double roll = 1;</code>
      */
     double getRoll();
 
@@ -8398,15 +7366,7 @@ public final class T7Messages {
      * [rad]
      * </pre>
      *
-     * <code>required double pitch = 2;</code>
-     */
-    boolean hasPitch();
-    /**
-     * <pre>
-     * [rad]
-     * </pre>
-     *
-     * <code>required double pitch = 2;</code>
+     * <code>double pitch = 2;</code>
      */
     double getPitch();
 
@@ -8415,15 +7375,7 @@ public final class T7Messages {
      * [rad]
      * </pre>
      *
-     * <code>required double yaw = 3;</code>
-     */
-    boolean hasYaw();
-    /**
-     * <pre>
-     * [rad]
-     * </pre>
-     *
-     * <code>required double yaw = 3;</code>
+     * <code>double yaw = 3;</code>
      */
     double getYaw();
   }
@@ -8452,7 +7404,7 @@ public final class T7Messages {
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return this.unknownFields;
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     }
     private Attitude(
         com.google.protobuf.CodedInputStream input,
@@ -8460,8 +7412,6 @@ public final class T7Messages {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -8471,24 +7421,23 @@ public final class T7Messages {
               done = true;
               break;
             default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
+              if (!input.skipField(tag)) {
                 done = true;
               }
               break;
             }
             case 9: {
-              bitField0_ |= 0x00000001;
+
               roll_ = input.readDouble();
               break;
             }
             case 17: {
-              bitField0_ |= 0x00000002;
+
               pitch_ = input.readDouble();
               break;
             }
             case 25: {
-              bitField0_ |= 0x00000004;
+
               yaw_ = input.readDouble();
               break;
             }
@@ -8500,7 +7449,6 @@ public final class T7Messages {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -8516,7 +7464,6 @@ public final class T7Messages {
               T7.T7Messages.Attitude.class, T7.T7Messages.Attitude.Builder.class);
     }
 
-    private int bitField0_;
     public static final int ROLL_FIELD_NUMBER = 1;
     private double roll_;
     /**
@@ -8524,17 +7471,7 @@ public final class T7Messages {
      * [rad]
      * </pre>
      *
-     * <code>required double roll = 1;</code>
-     */
-    public boolean hasRoll() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    /**
-     * <pre>
-     * [rad]
-     * </pre>
-     *
-     * <code>required double roll = 1;</code>
+     * <code>double roll = 1;</code>
      */
     public double getRoll() {
       return roll_;
@@ -8547,17 +7484,7 @@ public final class T7Messages {
      * [rad]
      * </pre>
      *
-     * <code>required double pitch = 2;</code>
-     */
-    public boolean hasPitch() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    /**
-     * <pre>
-     * [rad]
-     * </pre>
-     *
-     * <code>required double pitch = 2;</code>
+     * <code>double pitch = 2;</code>
      */
     public double getPitch() {
       return pitch_;
@@ -8570,17 +7497,7 @@ public final class T7Messages {
      * [rad]
      * </pre>
      *
-     * <code>required double yaw = 3;</code>
-     */
-    public boolean hasYaw() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    /**
-     * <pre>
-     * [rad]
-     * </pre>
-     *
-     * <code>required double yaw = 3;</code>
+     * <code>double yaw = 3;</code>
      */
     public double getYaw() {
       return yaw_;
@@ -8592,34 +7509,21 @@ public final class T7Messages {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (!hasRoll()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasPitch()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasYaw()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
       memoizedIsInitialized = 1;
       return true;
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+      if (roll_ != 0D) {
         output.writeDouble(1, roll_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+      if (pitch_ != 0D) {
         output.writeDouble(2, pitch_);
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+      if (yaw_ != 0D) {
         output.writeDouble(3, yaw_);
       }
-      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -8627,19 +7531,18 @@ public final class T7Messages {
       if (size != -1) return size;
 
       size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+      if (roll_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
           .computeDoubleSize(1, roll_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+      if (pitch_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
           .computeDoubleSize(2, pitch_);
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+      if (yaw_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
           .computeDoubleSize(3, yaw_);
       }
-      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -8656,28 +7559,18 @@ public final class T7Messages {
       T7.T7Messages.Attitude other = (T7.T7Messages.Attitude) obj;
 
       boolean result = true;
-      result = result && (hasRoll() == other.hasRoll());
-      if (hasRoll()) {
-        result = result && (
-            java.lang.Double.doubleToLongBits(getRoll())
-            == java.lang.Double.doubleToLongBits(
-                other.getRoll()));
-      }
-      result = result && (hasPitch() == other.hasPitch());
-      if (hasPitch()) {
-        result = result && (
-            java.lang.Double.doubleToLongBits(getPitch())
-            == java.lang.Double.doubleToLongBits(
-                other.getPitch()));
-      }
-      result = result && (hasYaw() == other.hasYaw());
-      if (hasYaw()) {
-        result = result && (
-            java.lang.Double.doubleToLongBits(getYaw())
-            == java.lang.Double.doubleToLongBits(
-                other.getYaw()));
-      }
-      result = result && unknownFields.equals(other.unknownFields);
+      result = result && (
+          java.lang.Double.doubleToLongBits(getRoll())
+          == java.lang.Double.doubleToLongBits(
+              other.getRoll()));
+      result = result && (
+          java.lang.Double.doubleToLongBits(getPitch())
+          == java.lang.Double.doubleToLongBits(
+              other.getPitch()));
+      result = result && (
+          java.lang.Double.doubleToLongBits(getYaw())
+          == java.lang.Double.doubleToLongBits(
+              other.getYaw()));
       return result;
     }
 
@@ -8688,21 +7581,15 @@ public final class T7Messages {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasRoll()) {
-        hash = (37 * hash) + ROLL_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            java.lang.Double.doubleToLongBits(getRoll()));
-      }
-      if (hasPitch()) {
-        hash = (37 * hash) + PITCH_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            java.lang.Double.doubleToLongBits(getPitch()));
-      }
-      if (hasYaw()) {
-        hash = (37 * hash) + YAW_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            java.lang.Double.doubleToLongBits(getYaw()));
-      }
+      hash = (37 * hash) + ROLL_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getRoll()));
+      hash = (37 * hash) + PITCH_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getPitch()));
+      hash = (37 * hash) + YAW_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getYaw()));
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -8827,11 +7714,11 @@ public final class T7Messages {
       public Builder clear() {
         super.clear();
         roll_ = 0D;
-        bitField0_ = (bitField0_ & ~0x00000001);
+
         pitch_ = 0D;
-        bitField0_ = (bitField0_ & ~0x00000002);
+
         yaw_ = 0D;
-        bitField0_ = (bitField0_ & ~0x00000004);
+
         return this;
       }
 
@@ -8854,21 +7741,9 @@ public final class T7Messages {
 
       public T7.T7Messages.Attitude buildPartial() {
         T7.T7Messages.Attitude result = new T7.T7Messages.Attitude(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
         result.roll_ = roll_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
         result.pitch_ = pitch_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
         result.yaw_ = yaw_;
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -8910,30 +7785,20 @@ public final class T7Messages {
 
       public Builder mergeFrom(T7.T7Messages.Attitude other) {
         if (other == T7.T7Messages.Attitude.getDefaultInstance()) return this;
-        if (other.hasRoll()) {
+        if (other.getRoll() != 0D) {
           setRoll(other.getRoll());
         }
-        if (other.hasPitch()) {
+        if (other.getPitch() != 0D) {
           setPitch(other.getPitch());
         }
-        if (other.hasYaw()) {
+        if (other.getYaw() != 0D) {
           setYaw(other.getYaw());
         }
-        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
 
       public final boolean isInitialized() {
-        if (!hasRoll()) {
-          return false;
-        }
-        if (!hasPitch()) {
-          return false;
-        }
-        if (!hasYaw()) {
-          return false;
-        }
         return true;
       }
 
@@ -8954,7 +7819,6 @@ public final class T7Messages {
         }
         return this;
       }
-      private int bitField0_;
 
       private double roll_ ;
       /**
@@ -8962,17 +7826,7 @@ public final class T7Messages {
        * [rad]
        * </pre>
        *
-       * <code>required double roll = 1;</code>
-       */
-      public boolean hasRoll() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      /**
-       * <pre>
-       * [rad]
-       * </pre>
-       *
-       * <code>required double roll = 1;</code>
+       * <code>double roll = 1;</code>
        */
       public double getRoll() {
         return roll_;
@@ -8982,10 +7836,10 @@ public final class T7Messages {
        * [rad]
        * </pre>
        *
-       * <code>required double roll = 1;</code>
+       * <code>double roll = 1;</code>
        */
       public Builder setRoll(double value) {
-        bitField0_ |= 0x00000001;
+        
         roll_ = value;
         onChanged();
         return this;
@@ -8995,10 +7849,10 @@ public final class T7Messages {
        * [rad]
        * </pre>
        *
-       * <code>required double roll = 1;</code>
+       * <code>double roll = 1;</code>
        */
       public Builder clearRoll() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        
         roll_ = 0D;
         onChanged();
         return this;
@@ -9010,17 +7864,7 @@ public final class T7Messages {
        * [rad]
        * </pre>
        *
-       * <code>required double pitch = 2;</code>
-       */
-      public boolean hasPitch() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <pre>
-       * [rad]
-       * </pre>
-       *
-       * <code>required double pitch = 2;</code>
+       * <code>double pitch = 2;</code>
        */
       public double getPitch() {
         return pitch_;
@@ -9030,10 +7874,10 @@ public final class T7Messages {
        * [rad]
        * </pre>
        *
-       * <code>required double pitch = 2;</code>
+       * <code>double pitch = 2;</code>
        */
       public Builder setPitch(double value) {
-        bitField0_ |= 0x00000002;
+        
         pitch_ = value;
         onChanged();
         return this;
@@ -9043,10 +7887,10 @@ public final class T7Messages {
        * [rad]
        * </pre>
        *
-       * <code>required double pitch = 2;</code>
+       * <code>double pitch = 2;</code>
        */
       public Builder clearPitch() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        
         pitch_ = 0D;
         onChanged();
         return this;
@@ -9058,17 +7902,7 @@ public final class T7Messages {
        * [rad]
        * </pre>
        *
-       * <code>required double yaw = 3;</code>
-       */
-      public boolean hasYaw() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      /**
-       * <pre>
-       * [rad]
-       * </pre>
-       *
-       * <code>required double yaw = 3;</code>
+       * <code>double yaw = 3;</code>
        */
       public double getYaw() {
         return yaw_;
@@ -9078,10 +7912,10 @@ public final class T7Messages {
        * [rad]
        * </pre>
        *
-       * <code>required double yaw = 3;</code>
+       * <code>double yaw = 3;</code>
        */
       public Builder setYaw(double value) {
-        bitField0_ |= 0x00000004;
+        
         yaw_ = value;
         onChanged();
         return this;
@@ -9091,22 +7925,22 @@ public final class T7Messages {
        * [rad]
        * </pre>
        *
-       * <code>required double yaw = 3;</code>
+       * <code>double yaw = 3;</code>
        */
       public Builder clearYaw() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        
         yaw_ = 0D;
         onChanged();
         return this;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
+        return this;
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
+        return this;
       }
 
 
@@ -9123,7 +7957,7 @@ public final class T7Messages {
       return DEFAULT_INSTANCE;
     }
 
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<Attitude>
+    private static final com.google.protobuf.Parser<Attitude>
         PARSER = new com.google.protobuf.AbstractParser<Attitude>() {
       public Attitude parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
@@ -9154,35 +7988,10 @@ public final class T7Messages {
 
     /**
      * <pre>
-     *   [s]
-     * </pre>
-     *
-     * <code>required double time = 1;</code>
-     */
-    boolean hasTime();
-    /**
-     * <pre>
-     *   [s]
-     * </pre>
-     *
-     * <code>required double time = 1;</code>
-     */
-    double getTime();
-
-    /**
-     * <pre>
      *   [c]
      * </pre>
      *
-     * <code>required double temp = 2;</code>
-     */
-    boolean hasTemp();
-    /**
-     * <pre>
-     *   [c]
-     * </pre>
-     *
-     * <code>required double temp = 2;</code>
+     * <code>double temp = 1;</code>
      */
     double getTemp();
   }
@@ -9203,14 +8012,13 @@ public final class T7Messages {
       super(builder);
     }
     private Temp() {
-      time_ = 0D;
       temp_ = 0D;
     }
 
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return this.unknownFields;
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     }
     private Temp(
         com.google.protobuf.CodedInputStream input,
@@ -9218,8 +8026,6 @@ public final class T7Messages {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -9229,19 +8035,13 @@ public final class T7Messages {
               done = true;
               break;
             default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
+              if (!input.skipField(tag)) {
                 done = true;
               }
               break;
             }
             case 9: {
-              bitField0_ |= 0x00000001;
-              time_ = input.readDouble();
-              break;
-            }
-            case 17: {
-              bitField0_ |= 0x00000002;
+
               temp_ = input.readDouble();
               break;
             }
@@ -9253,7 +8053,6 @@ public final class T7Messages {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -9269,48 +8068,14 @@ public final class T7Messages {
               T7.T7Messages.Temp.class, T7.T7Messages.Temp.Builder.class);
     }
 
-    private int bitField0_;
-    public static final int TIME_FIELD_NUMBER = 1;
-    private double time_;
-    /**
-     * <pre>
-     *   [s]
-     * </pre>
-     *
-     * <code>required double time = 1;</code>
-     */
-    public boolean hasTime() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    /**
-     * <pre>
-     *   [s]
-     * </pre>
-     *
-     * <code>required double time = 1;</code>
-     */
-    public double getTime() {
-      return time_;
-    }
-
-    public static final int TEMP_FIELD_NUMBER = 2;
+    public static final int TEMP_FIELD_NUMBER = 1;
     private double temp_;
     /**
      * <pre>
      *   [c]
      * </pre>
      *
-     * <code>required double temp = 2;</code>
-     */
-    public boolean hasTemp() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    /**
-     * <pre>
-     *   [c]
-     * </pre>
-     *
-     * <code>required double temp = 2;</code>
+     * <code>double temp = 1;</code>
      */
     public double getTemp() {
       return temp_;
@@ -9322,27 +8087,15 @@ public final class T7Messages {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (!hasTime()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasTemp()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
       memoizedIsInitialized = 1;
       return true;
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeDouble(1, time_);
+      if (temp_ != 0D) {
+        output.writeDouble(1, temp_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeDouble(2, temp_);
-      }
-      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -9350,15 +8103,10 @@ public final class T7Messages {
       if (size != -1) return size;
 
       size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+      if (temp_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(1, time_);
+          .computeDoubleSize(1, temp_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(2, temp_);
-      }
-      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -9375,21 +8123,10 @@ public final class T7Messages {
       T7.T7Messages.Temp other = (T7.T7Messages.Temp) obj;
 
       boolean result = true;
-      result = result && (hasTime() == other.hasTime());
-      if (hasTime()) {
-        result = result && (
-            java.lang.Double.doubleToLongBits(getTime())
-            == java.lang.Double.doubleToLongBits(
-                other.getTime()));
-      }
-      result = result && (hasTemp() == other.hasTemp());
-      if (hasTemp()) {
-        result = result && (
-            java.lang.Double.doubleToLongBits(getTemp())
-            == java.lang.Double.doubleToLongBits(
-                other.getTemp()));
-      }
-      result = result && unknownFields.equals(other.unknownFields);
+      result = result && (
+          java.lang.Double.doubleToLongBits(getTemp())
+          == java.lang.Double.doubleToLongBits(
+              other.getTemp()));
       return result;
     }
 
@@ -9400,16 +8137,9 @@ public final class T7Messages {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasTime()) {
-        hash = (37 * hash) + TIME_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            java.lang.Double.doubleToLongBits(getTime()));
-      }
-      if (hasTemp()) {
-        hash = (37 * hash) + TEMP_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            java.lang.Double.doubleToLongBits(getTemp()));
-      }
+      hash = (37 * hash) + TEMP_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getTemp()));
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -9533,10 +8263,8 @@ public final class T7Messages {
       }
       public Builder clear() {
         super.clear();
-        time_ = 0D;
-        bitField0_ = (bitField0_ & ~0x00000001);
         temp_ = 0D;
-        bitField0_ = (bitField0_ & ~0x00000002);
+
         return this;
       }
 
@@ -9559,17 +8287,7 @@ public final class T7Messages {
 
       public T7.T7Messages.Temp buildPartial() {
         T7.T7Messages.Temp result = new T7.T7Messages.Temp(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.time_ = time_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
         result.temp_ = temp_;
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -9611,24 +8329,14 @@ public final class T7Messages {
 
       public Builder mergeFrom(T7.T7Messages.Temp other) {
         if (other == T7.T7Messages.Temp.getDefaultInstance()) return this;
-        if (other.hasTime()) {
-          setTime(other.getTime());
-        }
-        if (other.hasTemp()) {
+        if (other.getTemp() != 0D) {
           setTemp(other.getTemp());
         }
-        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
 
       public final boolean isInitialized() {
-        if (!hasTime()) {
-          return false;
-        }
-        if (!hasTemp()) {
-          return false;
-        }
         return true;
       }
 
@@ -9649,55 +8357,6 @@ public final class T7Messages {
         }
         return this;
       }
-      private int bitField0_;
-
-      private double time_ ;
-      /**
-       * <pre>
-       *   [s]
-       * </pre>
-       *
-       * <code>required double time = 1;</code>
-       */
-      public boolean hasTime() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      /**
-       * <pre>
-       *   [s]
-       * </pre>
-       *
-       * <code>required double time = 1;</code>
-       */
-      public double getTime() {
-        return time_;
-      }
-      /**
-       * <pre>
-       *   [s]
-       * </pre>
-       *
-       * <code>required double time = 1;</code>
-       */
-      public Builder setTime(double value) {
-        bitField0_ |= 0x00000001;
-        time_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *   [s]
-       * </pre>
-       *
-       * <code>required double time = 1;</code>
-       */
-      public Builder clearTime() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        time_ = 0D;
-        onChanged();
-        return this;
-      }
 
       private double temp_ ;
       /**
@@ -9705,17 +8364,7 @@ public final class T7Messages {
        *   [c]
        * </pre>
        *
-       * <code>required double temp = 2;</code>
-       */
-      public boolean hasTemp() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <pre>
-       *   [c]
-       * </pre>
-       *
-       * <code>required double temp = 2;</code>
+       * <code>double temp = 1;</code>
        */
       public double getTemp() {
         return temp_;
@@ -9725,10 +8374,10 @@ public final class T7Messages {
        *   [c]
        * </pre>
        *
-       * <code>required double temp = 2;</code>
+       * <code>double temp = 1;</code>
        */
       public Builder setTemp(double value) {
-        bitField0_ |= 0x00000002;
+        
         temp_ = value;
         onChanged();
         return this;
@@ -9738,22 +8387,22 @@ public final class T7Messages {
        *   [c]
        * </pre>
        *
-       * <code>required double temp = 2;</code>
+       * <code>double temp = 1;</code>
        */
       public Builder clearTemp() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        
         temp_ = 0D;
         onChanged();
         return this;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
+        return this;
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
+        return this;
       }
 
 
@@ -9770,7 +8419,7 @@ public final class T7Messages {
       return DEFAULT_INSTANCE;
     }
 
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<Temp>
+    private static final com.google.protobuf.Parser<Temp>
         PARSER = new com.google.protobuf.AbstractParser<Temp>() {
       public Temp parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
@@ -9801,35 +8450,10 @@ public final class T7Messages {
 
     /**
      * <pre>
-     *   [s]
-     * </pre>
-     *
-     * <code>required double time = 1;</code>
-     */
-    boolean hasTime();
-    /**
-     * <pre>
-     *   [s]
-     * </pre>
-     *
-     * <code>required double time = 1;</code>
-     */
-    double getTime();
-
-    /**
-     * <pre>
      *   [%]
      * </pre>
      *
-     * <code>required double percent = 2;</code>
-     */
-    boolean hasPercent();
-    /**
-     * <pre>
-     *   [%]
-     * </pre>
-     *
-     * <code>required double percent = 2;</code>
+     * <code>double percent = 1;</code>
      */
     double getPercent();
   }
@@ -9850,14 +8474,13 @@ public final class T7Messages {
       super(builder);
     }
     private Battery() {
-      time_ = 0D;
       percent_ = 0D;
     }
 
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return this.unknownFields;
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     }
     private Battery(
         com.google.protobuf.CodedInputStream input,
@@ -9865,8 +8488,6 @@ public final class T7Messages {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -9876,19 +8497,13 @@ public final class T7Messages {
               done = true;
               break;
             default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
+              if (!input.skipField(tag)) {
                 done = true;
               }
               break;
             }
             case 9: {
-              bitField0_ |= 0x00000001;
-              time_ = input.readDouble();
-              break;
-            }
-            case 17: {
-              bitField0_ |= 0x00000002;
+
               percent_ = input.readDouble();
               break;
             }
@@ -9900,7 +8515,6 @@ public final class T7Messages {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
@@ -9916,48 +8530,14 @@ public final class T7Messages {
               T7.T7Messages.Battery.class, T7.T7Messages.Battery.Builder.class);
     }
 
-    private int bitField0_;
-    public static final int TIME_FIELD_NUMBER = 1;
-    private double time_;
-    /**
-     * <pre>
-     *   [s]
-     * </pre>
-     *
-     * <code>required double time = 1;</code>
-     */
-    public boolean hasTime() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    /**
-     * <pre>
-     *   [s]
-     * </pre>
-     *
-     * <code>required double time = 1;</code>
-     */
-    public double getTime() {
-      return time_;
-    }
-
-    public static final int PERCENT_FIELD_NUMBER = 2;
+    public static final int PERCENT_FIELD_NUMBER = 1;
     private double percent_;
     /**
      * <pre>
      *   [%]
      * </pre>
      *
-     * <code>required double percent = 2;</code>
-     */
-    public boolean hasPercent() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    /**
-     * <pre>
-     *   [%]
-     * </pre>
-     *
-     * <code>required double percent = 2;</code>
+     * <code>double percent = 1;</code>
      */
     public double getPercent() {
       return percent_;
@@ -9969,27 +8549,15 @@ public final class T7Messages {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (!hasTime()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasPercent()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
       memoizedIsInitialized = 1;
       return true;
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeDouble(1, time_);
+      if (percent_ != 0D) {
+        output.writeDouble(1, percent_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeDouble(2, percent_);
-      }
-      unknownFields.writeTo(output);
     }
 
     public int getSerializedSize() {
@@ -9997,15 +8565,10 @@ public final class T7Messages {
       if (size != -1) return size;
 
       size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+      if (percent_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(1, time_);
+          .computeDoubleSize(1, percent_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(2, percent_);
-      }
-      size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -10022,21 +8585,10 @@ public final class T7Messages {
       T7.T7Messages.Battery other = (T7.T7Messages.Battery) obj;
 
       boolean result = true;
-      result = result && (hasTime() == other.hasTime());
-      if (hasTime()) {
-        result = result && (
-            java.lang.Double.doubleToLongBits(getTime())
-            == java.lang.Double.doubleToLongBits(
-                other.getTime()));
-      }
-      result = result && (hasPercent() == other.hasPercent());
-      if (hasPercent()) {
-        result = result && (
-            java.lang.Double.doubleToLongBits(getPercent())
-            == java.lang.Double.doubleToLongBits(
-                other.getPercent()));
-      }
-      result = result && unknownFields.equals(other.unknownFields);
+      result = result && (
+          java.lang.Double.doubleToLongBits(getPercent())
+          == java.lang.Double.doubleToLongBits(
+              other.getPercent()));
       return result;
     }
 
@@ -10047,16 +8599,9 @@ public final class T7Messages {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasTime()) {
-        hash = (37 * hash) + TIME_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            java.lang.Double.doubleToLongBits(getTime()));
-      }
-      if (hasPercent()) {
-        hash = (37 * hash) + PERCENT_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            java.lang.Double.doubleToLongBits(getPercent()));
-      }
+      hash = (37 * hash) + PERCENT_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getPercent()));
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -10180,10 +8725,8 @@ public final class T7Messages {
       }
       public Builder clear() {
         super.clear();
-        time_ = 0D;
-        bitField0_ = (bitField0_ & ~0x00000001);
         percent_ = 0D;
-        bitField0_ = (bitField0_ & ~0x00000002);
+
         return this;
       }
 
@@ -10206,17 +8749,7 @@ public final class T7Messages {
 
       public T7.T7Messages.Battery buildPartial() {
         T7.T7Messages.Battery result = new T7.T7Messages.Battery(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.time_ = time_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
         result.percent_ = percent_;
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -10258,24 +8791,14 @@ public final class T7Messages {
 
       public Builder mergeFrom(T7.T7Messages.Battery other) {
         if (other == T7.T7Messages.Battery.getDefaultInstance()) return this;
-        if (other.hasTime()) {
-          setTime(other.getTime());
-        }
-        if (other.hasPercent()) {
+        if (other.getPercent() != 0D) {
           setPercent(other.getPercent());
         }
-        this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
       }
 
       public final boolean isInitialized() {
-        if (!hasTime()) {
-          return false;
-        }
-        if (!hasPercent()) {
-          return false;
-        }
         return true;
       }
 
@@ -10296,55 +8819,6 @@ public final class T7Messages {
         }
         return this;
       }
-      private int bitField0_;
-
-      private double time_ ;
-      /**
-       * <pre>
-       *   [s]
-       * </pre>
-       *
-       * <code>required double time = 1;</code>
-       */
-      public boolean hasTime() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      /**
-       * <pre>
-       *   [s]
-       * </pre>
-       *
-       * <code>required double time = 1;</code>
-       */
-      public double getTime() {
-        return time_;
-      }
-      /**
-       * <pre>
-       *   [s]
-       * </pre>
-       *
-       * <code>required double time = 1;</code>
-       */
-      public Builder setTime(double value) {
-        bitField0_ |= 0x00000001;
-        time_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *   [s]
-       * </pre>
-       *
-       * <code>required double time = 1;</code>
-       */
-      public Builder clearTime() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        time_ = 0D;
-        onChanged();
-        return this;
-      }
 
       private double percent_ ;
       /**
@@ -10352,17 +8826,7 @@ public final class T7Messages {
        *   [%]
        * </pre>
        *
-       * <code>required double percent = 2;</code>
-       */
-      public boolean hasPercent() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <pre>
-       *   [%]
-       * </pre>
-       *
-       * <code>required double percent = 2;</code>
+       * <code>double percent = 1;</code>
        */
       public double getPercent() {
         return percent_;
@@ -10372,10 +8836,10 @@ public final class T7Messages {
        *   [%]
        * </pre>
        *
-       * <code>required double percent = 2;</code>
+       * <code>double percent = 1;</code>
        */
       public Builder setPercent(double value) {
-        bitField0_ |= 0x00000002;
+        
         percent_ = value;
         onChanged();
         return this;
@@ -10385,22 +8849,22 @@ public final class T7Messages {
        *   [%]
        * </pre>
        *
-       * <code>required double percent = 2;</code>
+       * <code>double percent = 1;</code>
        */
       public Builder clearPercent() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        
         percent_ = 0D;
         onChanged();
         return this;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
+        return this;
       }
 
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
+        return this;
       }
 
 
@@ -10417,7 +8881,7 @@ public final class T7Messages {
       return DEFAULT_INSTANCE;
     }
 
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<Battery>
+    private static final com.google.protobuf.Parser<Battery>
         PARSER = new com.google.protobuf.AbstractParser<Battery>() {
       public Battery parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
@@ -10444,67 +8908,62 @@ public final class T7Messages {
 
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_T7_GenericMessage_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_T7_GenericMessage_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_T7_Response_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_T7_Response_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_T7_HeartBeat_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_T7_HeartBeat_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_T7_Terminate_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_T7_Terminate_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_T7_UpdateParams_descriptor;
-  private static final
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_T7_UpdateParams_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_T7_ConfigData_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_T7_ConfigData_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_T7_MoveCamera_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_T7_MoveCamera_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_T7_Accel_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_T7_Accel_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_T7_Gyro_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_T7_Gyro_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_T7_Altitude_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_T7_Altitude_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_T7_Attitude_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_T7_Attitude_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_T7_Temp_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_T7_Temp_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_T7_Battery_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_T7_Battery_fieldAccessorTable;
 
@@ -10516,34 +8975,36 @@ public final class T7Messages {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\020T7Messages.proto\022\002T7\"\371\004\n\016GenericMessag" +
-      "e\022+\n\007msgtype\030\001 \002(\0162\032.T7.GenericMessage.M" +
-      "sgType\022\014\n\004time\030\002 \002(\001\022\036\n\010response\030\003 \001(\0132\014" +
-      ".T7.Response\022 \n\theartbeat\030\004 \001(\0132\r.T7.Hea" +
-      "rtBeat\022 \n\tterminate\030\005 \001(\0132\r.T7.Terminate" +
-      "\022&\n\014updateparams\030\006 \001(\0132\020.T7.UpdateParams" +
-      "\022\"\n\nconfigdata\030\007 \001(\0132\016.T7.ConfigData\022\"\n\n" +
-      "movecamera\030\010 \001(\0132\016.T7.MoveCamera\022\030\n\005acce" +
-      "l\030\t \001(\0132\t.T7.Accel\022\026\n\004gyro\030\n \001(\0132\010.T7.Gy" +
-      "ro\022\036\n\010altitude\030\013 \001(\0132\014.T7.Altitude\022\036\n\010at",
-      "titude\030\014 \001(\0132\014.T7.Attitude\022\026\n\004temp\030\r \001(\013" +
-      "2\010.T7.Temp\022\030\n\003bat\030\016 \001(\0132\013.T7.Battery\"\263\001\n" +
-      "\007MsgType\022\014\n\010RESPONSE\020\000\022\r\n\tHEARTBEAT\020\001\022\r\n" +
-      "\tTERMINATE\020\002\022\020\n\014UPDATE_PARAM\020d\022\017\n\013CONFIG" +
-      "_DATA\020e\022\017\n\013MOVE_CAMERA\020f\022\n\n\005ACCEL\020\310\001\022\t\n\004" +
-      "GYRO\020\311\001\022\r\n\010ALTITUDE\020\312\001\022\r\n\010ATTITUDE\020\313\001\022\t\n" +
-      "\004TEMP\020\314\001\022\010\n\003BAT\020\315\001\"$\n\010Response\022\030\n\nroger_" +
-      "that\030\001 \001(\010:\004true\" \n\tHeartBeat\022\023\n\005alive\030\001" +
-      " \002(\010:\004true\"$\n\tTerminate\022\027\n\tterminate\030\001 \002" +
-      "(\010:\004true\"\033\n\014UpdateParams\022\013\n\003tbd\030\001 \001(\010\"\031\n",
-      "\nConfigData\022\013\n\003tbd\030\001 \001(\010\"\031\n\nMoveCamera\022\013" +
-      "\n\003tbd\030\001 \001(\010\"(\n\005Accel\022\t\n\001x\030\001 \002(\001\022\t\n\001y\030\002 \002" +
-      "(\001\022\t\n\001z\030\003 \002(\001\"\'\n\004Gyro\022\t\n\001x\030\001 \002(\001\022\t\n\001y\030\002 " +
-      "\002(\001\022\t\n\001z\030\003 \002(\001\"\027\n\010Altitude\022\013\n\003alt\030\001 \002(\001\"" +
-      "4\n\010Attitude\022\014\n\004roll\030\001 \002(\001\022\r\n\005pitch\030\002 \002(\001" +
-      "\022\013\n\003yaw\030\003 \002(\001\"\"\n\004Temp\022\014\n\004time\030\001 \002(\001\022\014\n\004t" +
-      "emp\030\002 \002(\001\"(\n\007Battery\022\014\n\004time\030\001 \002(\001\022\017\n\007pe" +
-      "rcent\030\002 \002(\001"
+      "\n\020T7Messages.proto\022\002T7\"\243\004\n\016GenericMessag" +
+      "e\022\017\n\007msgtype\030\001 \001(\005\022\014\n\004time\030\002 \001(\001\022\036\n\010resp" +
+      "onse\030\003 \001(\0132\014.T7.Response\022 \n\theartbeat\030\004 " +
+      "\001(\0132\r.T7.HeartBeat\022 \n\tterminate\030\005 \001(\0132\r." +
+      "T7.Terminate\022\"\n\nconfigdata\030\006 \001(\0132\016.T7.Co" +
+      "nfigData\022\"\n\nmovecamera\030\007 \001(\0132\016.T7.MoveCa" +
+      "mera\022\030\n\005accel\030\010 \001(\0132\t.T7.Accel\022\026\n\004gyro\030\t" +
+      " \001(\0132\010.T7.Gyro\022\036\n\010altitude\030\n \001(\0132\014.T7.Al" +
+      "titude\022\036\n\010attitude\030\013 \001(\0132\014.T7.Attitude\022\026" +
+      "\n\004temp\030\014 \001(\0132\010.T7.Temp\022\030\n\003bat\030\r \001(\0132\013.T7",
+      ".Battery\"\241\001\n\007MsgType\022\014\n\010RESPONSE\020\000\022\r\n\tHE" +
+      "ARTBEAT\020\001\022\r\n\tTERMINATE\020\002\022\017\n\013CONFIG_DATA\020" +
+      "e\022\017\n\013MOVE_CAMERA\020f\022\n\n\005ACCEL\020\310\001\022\t\n\004GYRO\020\311" +
+      "\001\022\r\n\010ALTITUDE\020\312\001\022\r\n\010ATTITUDE\020\313\001\022\t\n\004TEMP\020" +
+      "\314\001\022\010\n\003BAT\020\315\001\"\036\n\010Response\022\022\n\nroger_that\030\001" +
+      " \001(\010\"\032\n\tHeartBeat\022\r\n\005alive\030\001 \001(\010\"j\n\tTerm" +
+      "inate\022\024\n\014terminateKey\030\001 \001(\005\"G\n\rTerminate" +
+      "Keys\022\021\n\rselfTerminate\020\000\022\020\n\014softShutdown\020" +
+      "\001\022\021\n\remergencyStop\020\002\"\225\001\n\nConfigData\022\021\n\tc" +
+      "onfigKey\030\001 \001(\005\"t\n\nToggleKeys\022\017\n\013toggleAc",
+      "cel\020\000\022\016\n\ntoggleGyro\020\001\022\022\n\016toggleAltitude\020" +
+      "\002\022\022\n\016toggleAttitude\020\003\022\016\n\ntoggleTemp\020\004\022\r\n" +
+      "\ttoggleBat\020\005\"R\n\nMoveCamera\022\020\n\010arrowKey\030\001" +
+      " \001(\005\"2\n\tArrowKeys\022\006\n\002UP\020\000\022\t\n\005RIGHT\020\001\022\010\n\004" +
+      "DOWN\020\002\022\010\n\004LEFT\020\003\"(\n\005Accel\022\t\n\001x\030\001 \001(\001\022\t\n\001" +
+      "y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\"\'\n\004Gyro\022\t\n\001x\030\001 \001(\001\022\t\n" +
+      "\001y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\"\027\n\010Altitude\022\013\n\003alt\030\001" +
+      " \001(\001\"4\n\010Attitude\022\014\n\004roll\030\001 \001(\001\022\r\n\005pitch\030" +
+      "\002 \001(\001\022\013\n\003yaw\030\003 \001(\001\"\024\n\004Temp\022\014\n\004temp\030\001 \001(\001" +
+      "\"\032\n\007Battery\022\017\n\007percent\030\001 \001(\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -10562,7 +9023,7 @@ public final class T7Messages {
     internal_static_T7_GenericMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_T7_GenericMessage_descriptor,
-        new java.lang.String[] { "Msgtype", "Time", "Response", "Heartbeat", "Terminate", "Updateparams", "Configdata", "Movecamera", "Accel", "Gyro", "Altitude", "Attitude", "Temp", "Bat", });
+        new java.lang.String[] { "Msgtype", "Time", "Response", "Heartbeat", "Terminate", "Configdata", "Movecamera", "Accel", "Gyro", "Altitude", "Attitude", "Temp", "Bat", });
     internal_static_T7_Response_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_T7_Response_fieldAccessorTable = new
@@ -10580,61 +9041,55 @@ public final class T7Messages {
     internal_static_T7_Terminate_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_T7_Terminate_descriptor,
-        new java.lang.String[] { "Terminate", });
-    internal_static_T7_UpdateParams_descriptor =
-      getDescriptor().getMessageTypes().get(4);
-    internal_static_T7_UpdateParams_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_T7_UpdateParams_descriptor,
-        new java.lang.String[] { "Tbd", });
+        new java.lang.String[] { "TerminateKey", });
     internal_static_T7_ConfigData_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_T7_ConfigData_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_T7_ConfigData_descriptor,
-        new java.lang.String[] { "Tbd", });
+        new java.lang.String[] { "ConfigKey", });
     internal_static_T7_MoveCamera_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_T7_MoveCamera_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_T7_MoveCamera_descriptor,
-        new java.lang.String[] { "Tbd", });
+        new java.lang.String[] { "ArrowKey", });
     internal_static_T7_Accel_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_T7_Accel_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_T7_Accel_descriptor,
         new java.lang.String[] { "X", "Y", "Z", });
     internal_static_T7_Gyro_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_T7_Gyro_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_T7_Gyro_descriptor,
         new java.lang.String[] { "X", "Y", "Z", });
     internal_static_T7_Altitude_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_T7_Altitude_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_T7_Altitude_descriptor,
         new java.lang.String[] { "Alt", });
     internal_static_T7_Attitude_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_T7_Attitude_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_T7_Attitude_descriptor,
         new java.lang.String[] { "Roll", "Pitch", "Yaw", });
     internal_static_T7_Temp_descriptor =
-      getDescriptor().getMessageTypes().get(11);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_T7_Temp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_T7_Temp_descriptor,
-        new java.lang.String[] { "Time", "Temp", });
+        new java.lang.String[] { "Temp", });
     internal_static_T7_Battery_descriptor =
-      getDescriptor().getMessageTypes().get(12);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_T7_Battery_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_T7_Battery_descriptor,
-        new java.lang.String[] { "Time", "Percent", });
+        new java.lang.String[] { "Percent", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

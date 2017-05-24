@@ -17,6 +17,7 @@ import java.awt.BasicStroke;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.geom.GeneralPath;
@@ -69,6 +70,7 @@ public abstract class MwInstrumentJPanel extends MwJPanel implements
 
 	public MwInstrumentJPanel(Dimension dimension, MwConfiguration conf) {
 		this.conf = conf;
+		this.setLayout(new GridBagLayout());
 		setBackground(conf.color.getColor(MwColor.BACKGROUND_COLOR));
 		if (dimension == null) {
 			// Instance variables initialization

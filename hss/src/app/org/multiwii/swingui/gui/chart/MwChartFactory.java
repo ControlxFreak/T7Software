@@ -37,14 +37,14 @@ public final class MwChartFactory {
 		chart.setBorderVisible(false);
 		final XYPlot plot = chart.getXYPlot();
 
-		plot.setBackgroundPaint(conf.color.getColor(MwColor.BACKGROUND_COLOR));
+		plot.setBackgroundPaint(conf.color.getColor(MwColor.FORGROUND_COLOR));
 
 		plot.setDomainGridlinePaint(conf.color
-				.getColor(MwColor.FORGROUND_COLOR));
-		plot.setRangeGridlinePaint(conf.color.getColor(MwColor.FORGROUND_COLOR));
+				.getColor(MwColor.BACKGROUND_COLOR));
+		plot.setRangeGridlinePaint(conf.color.getColor(MwColor.BACKGROUND_COLOR));
 		plot.setDomainGridlinesVisible(false);
 		plot.setDomainCrosshairPaint(conf.color
-				.getColor(MwColor.FORGROUND_COLOR));
+				.getColor(MwColor.BACKGROUND_COLOR));
 		plot.setDomainCrosshairVisible(true);
 		plot.setRangeCrosshairVisible(true);
 
@@ -52,7 +52,7 @@ public final class MwChartFactory {
 		// axis.setDateFormatOverride(new SimpleDateFormat("mm''ss''''SSS"));
 		axis.setAxisLineVisible(false);
 		axis.setTickLabelsVisible(false);
-		axis.setTickLabelPaint(conf.color.getColor(MwColor.FORGROUND_COLOR));
+		axis.setTickLabelPaint(conf.color.getColor(MwColor.BACKGROUND_COLOR));
 
 		// force integer display
 		final ValueAxis va = plot.getRangeAxis();

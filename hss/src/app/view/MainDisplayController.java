@@ -16,13 +16,131 @@
  */
 package app.view;
 
-import T7.T7Messages.GenericMessage.MsgType;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.io.File;
+import java.util.logging.Logger;
+
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.border.EmptyBorder;
+
+import app.org.multiwii.msp.MSP;
+import app.org.multiwii.swingui.gui.MwConfiguration;
+import app.org.multiwii.swingui.gui.MwGuiFrame;
+import app.org.multiwii.swingui.gui.chart.MwChartFactory;
+import app.org.multiwii.swingui.gui.chart.MwChartPanel;
+import app.org.multiwii.swingui.gui.comp.MwJPanel;
+import app.org.multiwii.swingui.gui.instrument.MwCompasPanel;
+import app.org.multiwii.swingui.gui.instrument.MwHudPanel;
+import app.org.multiwii.swingui.gui.instrument.MwInstrumentJPanel;
+import app.org.multiwii.swingui.gui.instrument.MwRCDataPanel;
+import app.org.multiwii.swingui.gui.instrument.MwUAVPanel;
+import javafx.embed.swing.SwingNode;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 public class MainDisplayController {
 
+	private static Logger logger			= Logger.getLogger(MainDisplayController.class.getName());
+
+	@FXML
+	private ImageView video;
+	@FXML
+	private ImageView snapshot_display;
+	@FXML
+	private SwingNode chartNode;
+	@FXML
+	private SwingNode rcDataNode;
+	@FXML
+	private SwingNode uavNode;
+	@FXML
+	private SwingNode horizonNode;
+	@FXML
+	private SwingNode compassNode;
+
+	public void setup() {
+		logger.fine("Initializing MainDisplayController.");
+		
+		SwingNode tempGaugeNode = null;
+
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				logger.finest("Invoking swing thread.");
+				final int sizeX = 700;
+				final int sizeY = 400;
+
+				MwConfiguration.setLookAndFeel();
+				MwConfiguration conf = new MwConfiguration();
+				
+				//MwGuiFrame frame = new MwGuiFrame(conf);
+				
+				MwChartPanel realTimeChart = MwChartFactory.createChart(conf, MSP.getRealTimeData().getDataSet());
+				MSP.getRealTimeData().addListener(realTimeChart);
+				realTimeChart.setPreferredSize(
+						new java.awt.Dimension(sizeX, sizeY));
+
+				chartNode.setContent(realTimeChart);
+
+				MwInstrumentJPanel rcDataPanel = new MwRCDataPanel(conf);
+				MSP.getRealTimeData().addListener(rcDataPanel);
+				//pane.setMinimumSize(new Dimension(770, 200));
+				//pane.setMaximumSize(new Dimension(770, 200));
+				rcDataNode.setContent(rcDataPanel);
+				//centerRcBoxNodes();
+
+				MwUAVPanel uavPanel = new MwUAVPanel(conf);
+				MSP.getRealTimeData().addListener(uavPanel);
+				uavNode.setContent(uavPanel);
+
+				MwInstrumentJPanel hudPanel = new MwHudPanel(conf);
+				MSP.getRealTimeData().addListener(hudPanel);
+				horizonNode.setContent(hudPanel);
+				
+				MwInstrumentJPanel compasPanel = new MwCompasPanel(conf);
+				MSP.getRealTimeData().addListener(compasPanel);
+				compassNode.setContent(compasPanel);
+				
+				//frame.setVisible(true);
+				//frame.repaint();
+			}
+
+		});
+		logger.finer("Invoked swing thread later.");
+
+		/*
+		AnchorPane.setTopAnchor(chartPane, 100.0);
+		AnchorPane.setLeftAnchor(chartPane, 0.0);
+		AnchorPane.setRightAnchor(chartPane, 0.0);
+		AnchorPane.setBottomAnchor(chartPane, 0.0);
+		rootLayout.getChildren().add(chartPane);
+		 */
+		/*
+		lowerHalf.getChildren().add(0, chartNode);
+		receiversBox.getChildren().add(rcDataNode);
+		receiversBox.getChildren().add(uavNode);
+		horizonTempBox.getChildren().add(horizonNode);
+		*/
+		video.setImage(new Image(new File("/home/jarrett/Downloads/pics/fire800_400.jpg").toURI().toString()));
+		snapshot_display.setImage(new Image(new File("/home/jarrett/Downloads/pics/fire3.jpg").toURI().toString()));
+		centerImage();
+		//horizonTempBox.getChildren().add(tempGaugeNode);
+	}
+
 	/*
+	public void printHorizonWidths() {
+		System.out.println("Horizon VBox width: " + horizonTempBox.getWidth());
+		System.out.println("Horizon JPanel width: " + ((SwingNode)horizonTempBox.getChildren().get(1)).getContent().getWidth());
+		System.out.println("Horizon JPanel Dimension width: " + ((SwingNode)horizonTempBox.getChildren().get(1)).getContent().getSize().getWidth());
+	}
 	public void updateDatum(double d, MsgType type) {
 		String newVal = doubleDatumToLabelString(d);
 
@@ -66,6 +184,47 @@ public class MainDisplayController {
 			s = Double.toString(d);
 		}
 		return s;
+	}
+
+	/*
+	private void centerRcBoxNodes() {
+		SwingNode node1 = (SwingNode)receiversBox.getChildren().get(1);
+		SwingNode node2 = (SwingNode)receiversBox.getChildren().get(2);
+		JComponent comp1 = node1.getContent();
+		JComponent comp2 = node2.getContent();
+		if(comp1 != null && comp2 != null) {
+			double w = receiversBox.getWidth();
+			double xpos = receiversBox.getLayoutX();
+			double center = w/2 + xpos;
+
+			node1.setLayoutX(center);
+			node2.setLayoutX(center);
+		}
+	}
+	*/
+
+	private void centerImage() {
+		Image img = snapshot_display.getImage();
+		if(img != null) {
+			double w = 0;
+			double h = 0;
+
+			double ratioX = snapshot_display.getFitWidth() / img.getWidth();
+			double ratioY = snapshot_display.getFitHeight() / img.getHeight();
+
+			double reducCoeff = 0;
+			if(ratioX >= ratioY) {
+				reducCoeff = ratioY;
+			} else {
+				reducCoeff = ratioX;
+			}
+
+			w = img.getWidth() * reducCoeff;
+			h = img.getHeight() * reducCoeff;
+
+			snapshot_display.setX((snapshot_display.getFitWidth() - w) / 2);
+			//imageDisplay.setY((imageDisplay.getFitHeight() - h) / 2 + 1);
+		}
 	}
 }
 

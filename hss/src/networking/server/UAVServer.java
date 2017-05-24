@@ -25,6 +25,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
 
+import T7.T7Messages.ConfigData.ToggleKeys;
 import T7.T7Messages.GenericMessage.MsgType;
 import app.MainApp;
 import javafx.application.Platform;
@@ -107,8 +108,40 @@ public class UAVServer implements Runnable {
 		Platform.runLater(() -> MainApp.updateTelemetryDisplay(datum, type));
 	}
 
+	public void updateTelemetryData(double datumX, double datumY, double datumZ, MsgType type) {
+		System.out.println("Setting " + type + " X to " + datumX);
+		System.out.println("Setting " + type + " Y to " + datumY);
+		System.out.println("Setting " + type + " Z to " + datumZ);
+
+		Platform.runLater(() -> MainApp.updateTelemetryDisplay(datumX, datumY, datumZ, type));
+	}
+
 	public void clearTelemetryData(MsgType type) {
-		Platform.runLater(() -> MainApp.clearDisplay(type));
+		final ToggleKeys key;
+		
+		switch(type) {
+		case ACCEL:
+			key = ToggleKeys.toggleAccel;
+			break;
+		case GYRO:
+			key = ToggleKeys.toggleGyro;
+			break;
+		case ALTITUDE:
+			key = ToggleKeys.toggleAltitude;
+			break;
+		case ATTITUDE:
+			key = ToggleKeys.toggleAttitude;
+			break;
+		case TEMP:
+			key = ToggleKeys.toggleTemp;
+			break;
+		case BAT:
+			key = ToggleKeys.toggleBat;
+			break;
+			default:
+				throw new IllegalArgumentException("Illegal MsgType: " + type);
+		}
+		Platform.runLater(() -> MainApp.clearDisplay(key));
 	}
 
 }

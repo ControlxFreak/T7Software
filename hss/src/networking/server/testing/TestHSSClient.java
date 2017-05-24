@@ -58,9 +58,11 @@ public class TestHSSClient {
 				System.out.println("What would you like to do?");
 				System.out.println("0) Exit");
 				System.out.println("1) Make a new Accelerometer connection");
-				System.out.println("2) Make a new Altitude connection");
-				System.out.println("3) Make a new Gyroscope connection");
-				System.out.println("4) Make a new Temperature connection");
+				System.out.println("2) Make a new Gyroscope connection");
+				System.out.println("3) Make a new Altitude connection");
+				System.out.println("4) Make a new Attitude connection");
+				System.out.println("5) Make a new Temperature connection");
+				System.out.println("6) Make a new Battery connection");
 
 				while(!in.ready()) {
 					Thread.sleep(500);
@@ -77,16 +79,24 @@ public class TestHSSClient {
 					connType = MsgType.ACCEL;
 					break;
 				case 2:
-					System.out.println("Sending Altitude request.");
-					connType = MsgType.ALTITUDE;
-					break;
-				case 3:
 					System.out.println("Sending Gyroscope request.");
 					connType = MsgType.GYRO;
 					break;
+				case 3:
+					System.out.println("Sending Altitude request.");
+					connType = MsgType.ALTITUDE;
+					break;
 				case 4:
+					System.out.println("Sending Attitude request.");
+					connType = MsgType.ATTITUDE;
+					break;
+				case 5:
 					System.out.println("Sending Temperature request.");
 					connType = MsgType.TEMP;
+					break;
+				case 6:
+					System.out.println("Sending Battery request.");
+					connType = MsgType.BAT;
 					break;
 				default:
 					valid_input_received = false;
@@ -156,21 +166,28 @@ public class TestHSSClient {
 					gm.setTime(System.currentTimeMillis());
 					switch(connType) {
 					case ACCEL:
-						gm.setMsgtype(MsgType.ACCEL)
+						gm.setMsgtype(200)
 							.setAccel(Accel.newBuilder().setX(1.0).setY(2.0).setZ(3.0));
 						break;
-					case ALTITUDE:
-						gm.setMsgtype(MsgType.ALTITUDE)
-							.setAltitude(Altitude.newBuilder().setAlt(Double.parseDouble(input)));
-						break;
 					case GYRO:
-						gm.setMsgtype(MsgType.GYRO)
+						gm.setMsgtype(201)
 							.setGyro(Gyro.newBuilder().setX(3.0).setY(2.0).setZ(1.0));
 						break;
+					case ALTITUDE:
+						gm.setMsgtype(202)
+							.setAltitude(Altitude.newBuilder().setAlt(Double.parseDouble(input)));
+						break;
+					case ATTITUDE:
+						gm.setMsgtype(203)
+							.setAttitude(Attitude.newBuilder().setRoll(3.0).setPitch(2.0).setYaw(1.0));
+						break;
 					case TEMP:
-						gm.setMsgtype(MsgType.TEMP)
-							.setTemp(Temp.newBuilder().setTime(System.currentTimeMillis())
-									.setTemp(Double.parseDouble(input)));
+						gm.setMsgtype(204)
+							.setTemp(Temp.newBuilder().setTemp(Double.parseDouble(input)));
+						break;
+					case BAT:
+						gm.setMsgtype(205)
+							.setBat(Battery.newBuilder().setPercent(Double.parseDouble(input)));
 						break;
 					default:
 						break;

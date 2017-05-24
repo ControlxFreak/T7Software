@@ -59,7 +59,7 @@ public class DataConnectionHandler
 		try {
 			System.out.println("Parsing message.");
 			GenericMessage gm = GenericMessage.parseDelimitedFrom(in);
-			connType = gm.getMsgtype();
+			connType = MsgType.forNumber(gm.getMsgtype());
 			setHandler();
 			handlerMethod.accept(gm);
 		} catch (IOException e) {
@@ -99,18 +99,22 @@ public class DataConnectionHandler
 		if(MainApp.isDataTypeUnpaused(connType)) {
 			switch(connType) {
 			case ACCEL:
+				handlerMethod = this::handleAccelerationMessage;
 				break;
 			case GYRO:
+				handlerMethod = this::handleGyroscopeMessage;
 				break;
 			case ALTITUDE:
 				handlerMethod = this::handleAltitudeMessage;
 				break;
 			case ATTITUDE:
+				handlerMethod = this::handleAttitudeMessage;
 				break;
 			case TEMP:
 				handlerMethod = this::handleAirTempMessage;
 				break;
 			case BAT:
+				handlerMethod = this::handleBatteryMessage;
 				break;
 			default:
 				logger.warning("Unrecognized connection type.");
@@ -132,18 +136,33 @@ public class DataConnectionHandler
 	}
 
 	private void handleAccelerationMessage(GenericMessage gm) {
+		double x = gm.getAccel().getX();
+		double y = gm.getAccel().getY();
+		double z = gm.getAccel().getZ();
+		server.updateTelemetryData(x, y, z, connType);
 	}
 
 	private void handleGyroscopeMessage(GenericMessage gm) {
+		double x = gm.getGyro().getX();
+		double y = gm.getGyro().getY();
+		double z = gm.getGyro().getZ();
+		server.updateTelemetryData(x, y, z, connType);
 	}
 
 	private void handleAttitudeMessage(GenericMessage gm) {
+		double x = gm.getAttitude().getRoll();
+		double y = gm.getAttitude().getPitch();
+		double z = gm.getAttitude().getYaw();
+		server.updateTelemetryData(x, y, z, connType);
 	}
 
 	private void handleBatteryMessage(GenericMessage gm) {
+		double percent = gm.getBat().getPercent();
+		server.updateTelemetryData(percent, connType);
 	}
 
 	private void handlePaused(GenericMessage gm) {
+		/*
 		switch(connType) {
 		case TEMP:
 		case ALTITUDE:
@@ -157,6 +176,9 @@ public class DataConnectionHandler
 		default:
 			break;
 		}
+		*/
+		
+		server.clearTelemetryData(connType);
 	}
 
 }

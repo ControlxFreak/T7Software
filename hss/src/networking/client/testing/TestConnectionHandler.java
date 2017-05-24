@@ -5,8 +5,11 @@ import java.io.InputStream;
 import java.net.Socket;
 import java.util.function.Consumer;
 
+import T7.T7Messages.ConfigData.ToggleKeys;
 import T7.T7Messages.GenericMessage;
 import T7.T7Messages.GenericMessage.MsgType;
+import T7.T7Messages.MoveCamera.ArrowKeys;
+import T7.T7Messages.Terminate.TerminateKeys;
 
 public class TestConnectionHandler implements Runnable {
 
@@ -46,14 +49,18 @@ public class TestConnectionHandler implements Runnable {
 		try {
 			System.out.println("Parsing message.");
 			GenericMessage gm = GenericMessage.parseDelimitedFrom(in);
-			connType = gm.getMsgtype();
+			connType = MsgType.forNumber(gm.getMsgtype());
 			switch(connType) {
-			case UPDATE_PARAM:
-				break;
+			//case UPDATE_PARAM:
+			//	break;
 			case CONFIG_DATA:
+				handlerMethod = this::handleConfigMessage;
 				break;
 			case MOVE_CAMERA:
 				handlerMethod = this::handleCameraMessage;
+				break;
+			case TERMINATE:
+				handlerMethod = this::handleTerminateMessage;
 				break;
 			default:
 				break;
@@ -89,8 +96,18 @@ public class TestConnectionHandler implements Runnable {
 	}
 
 	private void handleCameraMessage(GenericMessage gm) {
-		boolean tbd = gm.getMovecamera().getTbd();
-		System.out.println("TBD = " + tbd);
+		int arrowKey = gm.getMovecamera().getArrowKey();
+		System.out.println("arrowKey = " + ArrowKeys.forNumber(arrowKey));
+	}
+
+	private void handleConfigMessage(GenericMessage gm) {
+		int configKey = gm.getConfigdata().getConfigKey();
+		System.out.println("configKey = " + ToggleKeys.forNumber(configKey));
+	}
+	
+	private void handleTerminateMessage(GenericMessage gm) {
+		int termKey = gm.getTerminate().getTerminateKey();
+		System.out.println("terminateKey = " + TerminateKeys.forNumber(termKey));
 	}
 
 }
