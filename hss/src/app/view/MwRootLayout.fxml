@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -12,7 +13,13 @@
          <children>
             <HBox prefHeight="400.0" prefWidth="1500.0">
                <children>
-                  <VBox prefHeight="400.0" prefWidth="900.0" />
+                  <VBox alignment="TOP_RIGHT" prefHeight="400.0" prefWidth="900.0">
+                     <children>
+                        <ImageView fx:id="video" fitHeight="390.0" fitWidth="880.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding></VBox>
                   <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="300.0" spacing="10.0">
                      <children>
                         <Label text="Receiver Channels" textFill="WHITE" />
@@ -42,8 +49,33 @@
                      </padding></VBox>
                </children>
             </HBox>
-            <HBox fx:id="lowerHalf" prefHeight="400.0" prefWidth="1500.0" />
+            <HBox fx:id="lowerHalf" prefHeight="400.0" prefWidth="1500.0">
+               <children>
+                  <VBox alignment="TOP_CENTER" spacing="20.0">
+                     <children>
+                        <Label text="Point of Interest" textFill="WHITE" />
+                        <AnchorPane maxHeight="300.0" maxWidth="397.0" minHeight="300.0" minWidth="397.0" prefHeight="300.0" prefWidth="397.0" style="-fx-border-color: ffffff; -fx-border-width: 4;">
+                           <children>
+                              <HBox alignment="CENTER" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0">
+                                 <children>
+                                    <ImageView fx:id="snapshot_display" fitHeight="292.0" fitWidth="492.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                     <padding>
+                        <Insets top="30.0" />
+                     </padding>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets left="50.0" />
+               </padding></HBox>
          </children>
+         <padding>
+            <Insets left="120.0" />
+         </padding>
       </VBox>
    </children>
 </AnchorPane>

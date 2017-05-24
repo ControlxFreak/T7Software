@@ -19,6 +19,7 @@ package app.view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.io.File;
 import java.util.logging.Logger;
 
 import javax.swing.JComponent;
@@ -41,6 +42,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -50,6 +52,10 @@ public class MainDisplayController {
 
 	@FXML
 	private HBox lowerHalf;
+	@FXML
+	private ImageView video;
+	@FXML
+	private ImageView snapshot_display;
 	@FXML
 	private VBox receiversBox;
 	@FXML
@@ -112,19 +118,22 @@ public class MainDisplayController {
 		AnchorPane.setBottomAnchor(chartPane, 0.0);
 		rootLayout.getChildren().add(chartPane);
 		 */
-		lowerHalf.getChildren().add(chartNode);
+		lowerHalf.getChildren().add(0, chartNode);
 		receiversBox.getChildren().add(rcDataNode);
 		receiversBox.getChildren().add(uavNode);
 		horizonTempBox.getChildren().add(horizonNode);
+		video.setImage(new Image(new File("/home/jarrett/Downloads/pics/fire800_400.jpg").toURI().toString()));
+		snapshot_display.setImage(new Image(new File("/home/jarrett/Downloads/pics/fire3.jpg").toURI().toString()));
+		centerImage();
 		//horizonTempBox.getChildren().add(tempGaugeNode);
 	}
-	
+
+	/*
 	public void printHorizonWidths() {
 		System.out.println("Horizon VBox width: " + horizonTempBox.getWidth());
 		System.out.println("Horizon JPanel width: " + ((SwingNode)horizonTempBox.getChildren().get(1)).getContent().getWidth());
 		System.out.println("Horizon JPanel Dimension width: " + ((SwingNode)horizonTempBox.getChildren().get(1)).getContent().getSize().getWidth());
 	}
-	/*
 	public void updateDatum(double d, MsgType type) {
 		String newVal = doubleDatumToLabelString(d);
 
@@ -182,6 +191,30 @@ public class MainDisplayController {
 
 			node1.setLayoutX(center);
 			node2.setLayoutX(center);
+		}
+	}
+
+	private void centerImage() {
+		Image img = snapshot_display.getImage();
+		if(img != null) {
+			double w = 0;
+			double h = 0;
+
+			double ratioX = snapshot_display.getFitWidth() / img.getWidth();
+			double ratioY = snapshot_display.getFitHeight() / img.getHeight();
+
+			double reducCoeff = 0;
+			if(ratioX >= ratioY) {
+				reducCoeff = ratioY;
+			} else {
+				reducCoeff = ratioX;
+			}
+
+			w = img.getWidth() * reducCoeff;
+			h = img.getHeight() * reducCoeff;
+
+			snapshot_display.setX((snapshot_display.getFitWidth() - w) / 2);
+			//imageDisplay.setY((imageDisplay.getFitHeight() - h) / 2 + 1);
 		}
 	}
 }
