@@ -777,7 +777,7 @@ public final class MwGuiFrame extends JFrame implements
 			centerChartPanel = new MwJPanel(new BorderLayout());
 			centerChartPanel.add(getChartPanel(), BorderLayout.CENTER);
 			//centerChartPanel.add(getChartCheckBoxPanel(), BorderLayout.EAST);
-			centerChartPanel.add(getInstrumentPanel(), BorderLayout.SOUTH);
+			//centerChartPanel.add(getInstrumentPanel(), BorderLayout.SOUTH);
 
 			realTimePanel = new MwJPanel();
 			realTimePanel.setLayout(new BorderLayout());

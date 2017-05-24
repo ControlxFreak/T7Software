@@ -16,12 +16,102 @@
  */
 package app.view;
 
-import T7.T7Messages.GenericMessage.MsgType;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.util.logging.Logger;
+
+import javax.swing.SwingUtilities;
+import javax.swing.border.EmptyBorder;
+
+import app.org.multiwii.msp.MSP;
+import app.org.multiwii.swingui.gui.MwConfiguration;
+import app.org.multiwii.swingui.gui.MwGuiFrame;
+import app.org.multiwii.swingui.gui.chart.MwChartFactory;
+import app.org.multiwii.swingui.gui.chart.MwChartPanel;
+import app.org.multiwii.swingui.gui.comp.MwJPanel;
+import app.org.multiwii.swingui.gui.instrument.MwHudPanel;
+import app.org.multiwii.swingui.gui.instrument.MwInstrumentJPanel;
+import app.org.multiwii.swingui.gui.instrument.MwRCDataPanel;
+import app.org.multiwii.swingui.gui.instrument.MwUAVPanel;
+import javafx.embed.swing.SwingNode;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 public class MainDisplayController {
 
+	private static Logger logger			= Logger.getLogger(MainDisplayController.class.getName());
+
+	@FXML
+	private HBox lowerHalf;
+	@FXML
+	private VBox receiversBox;
+	@FXML
+	private VBox horizonTempBox;
+
+	public void setup() {
+		logger.fine("Initializing MainDisplayController.");
+		
+		SwingNode chartNode = new SwingNode();
+		SwingNode rcDataNode = new SwingNode();
+		SwingNode uavNode = new SwingNode();
+		SwingNode horizonNode = new SwingNode();
+		SwingNode tempGaugeNode = null;
+
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				logger.finest("Invoking swing thread.");
+				final int sizeX = 700;
+				final int sizeY = 400;
+
+				MwConfiguration.setLookAndFeel();
+				MwConfiguration conf = new MwConfiguration();
+				
+				//MwGuiFrame frame = new MwGuiFrame(conf);
+				
+				MwChartPanel realTimeChart = MwChartFactory.createChart(conf, MSP.getRealTimeData().getDataSet());
+				MSP.getRealTimeData().addListener(realTimeChart);
+				realTimeChart.setPreferredSize(
+						new java.awt.Dimension(sizeX, sizeY));
+
+				chartNode.setContent(realTimeChart);
+
+				MwInstrumentJPanel rcDataPanel = new MwRCDataPanel(conf);
+				MSP.getRealTimeData().addListener(rcDataPanel);
+				//pane.setMinimumSize(new Dimension(770, 200));
+				//pane.setMaximumSize(new Dimension(770, 200));
+				rcDataNode.setContent(rcDataPanel);
+
+				MwUAVPanel uavPanel = new MwUAVPanel(conf);
+				MSP.getRealTimeData().addListener(uavPanel);
+				uavNode.setContent(uavPanel);
+
+				MwInstrumentJPanel hudPanel = new MwHudPanel(conf);
+				MSP.getRealTimeData().addListener(hudPanel);
+				horizonNode.setContent(hudPanel);
+				
+				//frame.setVisible(true);
+				//frame.repaint();
+			}
+
+		});
+		logger.finer("Invoked swing thread later.");
+
+		/*
+		AnchorPane.setTopAnchor(chartPane, 100.0);
+		AnchorPane.setLeftAnchor(chartPane, 0.0);
+		AnchorPane.setRightAnchor(chartPane, 0.0);
+		AnchorPane.setBottomAnchor(chartPane, 0.0);
+		rootLayout.getChildren().add(chartPane);
+		 */
+		lowerHalf.getChildren().add(chartNode);
+		receiversBox.getChildren().add(rcDataNode);
+		receiversBox.getChildren().add(uavNode);
+		horizonTempBox.getChildren().add(horizonNode);
+		//horizonTempBox.getChildren().add(tempGaugeNode);
+	}
 	/*
 	public void updateDatum(double d, MsgType type) {
 		String newVal = doubleDatumToLabelString(d);

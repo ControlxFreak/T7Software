@@ -20,7 +20,9 @@ package app;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -29,11 +31,14 @@ import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
 
+import org.apache.logging.log4j.spi.Terminable;
+
 import app.org.multiwii.swingui.gui.MwConfiguration;
 import app.org.multiwii.swingui.gui.MwGuiFrame;
 
 import T7.T7Messages.GenericMessage;
 import T7.T7Messages.MoveCamera;
+import T7.T7Messages.Terminate;
 import T7.T7Messages.ConfigData;
 import T7.T7Messages.ConfigData.ToggleKeys;
 import T7.T7Messages.GenericMessage.MsgType;
@@ -53,11 +58,13 @@ import javafx.scene.control.DialogPane;
 import javafx.scene.image.Image;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import app.org.multiwii.swingui.gui.MwConfiguration;
 import networking.client.UAVClient;
 import networking.server.UAVServer;
@@ -77,6 +84,7 @@ public class MainApp extends Application {
 	private static UAVServer server = new UAVServer();
 	private static UAVClient camera_client = null;
 	private static UAVClient config_client = null;
+	private static UAVClient termination_client = null;
 	private static ObservableList<Snapshot> snapshotData = FXCollections.observableArrayList();
 	//private static Map<MsgType, Boolean> configMap = new HashMap<MsgType, Boolean>();
 	private static boolean[] config_arr = new boolean[6];
@@ -87,8 +95,6 @@ public class MainApp extends Application {
 		this.primaryStage.setTitle("Home Station");
 
 		initRootLayout();
-
-		showMainDisplay();
 
 		initDataConfiguration();
 
@@ -137,6 +143,9 @@ public class MainApp extends Application {
 
 		config_client = new UAVClient();
 		new Thread(config_client).start();
+
+		termination_client = new UAVClient();
+		new Thread(termination_client).start();
 	}
 
 	private void initServer() {
@@ -220,6 +229,29 @@ public class MainApp extends Application {
 		}
 	}
 
+	private void showUavTerminationDialog() {
+		List<String> choices = new ArrayList<>();
+		choices.add("Reboot Software");
+		choices.add("Soft Shutdown");
+		choices.add("Emergency Stop");
+		
+		ChoiceDialog<String> dialog = new ChoiceDialog<String>("Reboot Software", choices);
+		dialog.setTitle("UAV Termination");
+		dialog.setHeaderText("Select a termination command to send to the UAV."
+				 + '\n' + '\t' + "Reboot Software:	Reboot software, but do not affect hardware."
+				 + '\n' + '\t' + "Soft Shutdown:	Come to a safe landing, then shut down software."
+				 + '\n' + '\t' + "Emergency Stop:	Shut down software and hardware now. WARNING - Use with caution!");
+		dialog.setContentText("Command:");
+		
+		Optional<String> result = dialog.showAndWait();
+		if(result.isPresent()) {
+			logger.finer("Your choice: " + result.get());
+			termination_client.sendMessage(GenericMessage.newBuilder().setMsgtype(MsgType.TERMINATE_VALUE)
+					.setTime(System.currentTimeMillis()).setTerminate(Terminate.newBuilder()
+							.setTerminateKey(choices.indexOf(result.get()))).build());
+		}
+	}
+
 	public static void clearDisplay(ToggleKeys type) {
 		switch(type) {
 		case toggleAccel:
@@ -250,32 +282,6 @@ public class MainApp extends Application {
 	}
 
 	private void showMainDisplay() {
-		SwingNode swingNode = new SwingNode();
-
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-
-				MwConfiguration.setLookAndFeel();
-
-				MwGuiFrame frame = new MwGuiFrame(new MwConfiguration());
-				swingNode.setContent(frame.getRealTimePanel());
-				frame.setVisible(true);
-				frame.repaint();
-			}
-
-		});
-
-		AnchorPane.setTopAnchor(swingNode, 0.0);
-		AnchorPane.setLeftAnchor(swingNode, 0.0);
-		AnchorPane.setRightAnchor(swingNode, 0.0);
-		AnchorPane.setBottomAnchor(swingNode, 0.0);
-		rootLayout.getChildren().add(swingNode);
-
-		/*
-		main_controller = (MainDisplayController)main_loader.getController();
-		System.out.println("TEL_CONTROLLER = " + main_controller);
-		*/
 	}
 
 	private void initSnapLayout() {
@@ -290,10 +296,12 @@ public class MainApp extends Application {
 		try {
 			// Load root layout from fxml file.
 			FXMLLoader loader = new FXMLLoader();
-			System.out.println("RootLayout resource = " + getClass().getResource("view/MwRootLayout.fxml"));
+			logger.finest("RootLayout resource = " + getClass().getResource("view/MwRootLayout.fxml"));
 			loader.setLocation(getClass().getResource("view/MwRootLayout.fxml"));
-			System.out.println("RootLayout loader location=" + loader.getLocation());
+			logger.finest("RootLayout loader location=" + loader.getLocation());
 			rootLayout = (AnchorPane) loader.load();
+			main_controller = loader.getController();
+			logger.finest("Got main_controller.");
 
 			Scene scene = new Scene(rootLayout);
 
@@ -337,8 +345,11 @@ public class MainApp extends Application {
 						case E:
 							showSnapshotExplorer();
 							break;
-						case T:
+						case S:
 							takeSnapshot();
+							break;
+						case T:
+							showUavTerminationDialog();
 							break;
 						default:
 							break;
@@ -347,13 +358,21 @@ public class MainApp extends Application {
 				}
 			};
 			scene.addEventFilter(KeyEvent.ANY, keyHandler);
-
+			main_controller.setup();
 			primaryStage.setScene(scene);
+			logger.finest("Set scene for Main Display.");
 			primaryStage.show();
+			logger.finest("Showed Main Display.");
+			/*
+			primaryStage.setOnHiding(new EventHandler<WindowEvent>() {
+				public void handle(WindowEvent we) {
+					System.out.println("Primary stage is closing.");
+				}
+			});
+			*/
 		} catch (IOException e) {
 			logger.fine(e.toString());
 		}
-
 	}
 
 	public Stage getPrimaryStage() {
@@ -383,6 +402,7 @@ public class MainApp extends Application {
 		server.shutDown();
 		camera_client.shutDown();
 		config_client.shutDown();
+		termination_client.shutDown();
 	}
 
 	public static boolean[] getConfigArr() {
