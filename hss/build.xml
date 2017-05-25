@@ -16,7 +16,6 @@
 			<classpath refid="google-classpath"/>
 		</javac>
 		<record name="build.log" action="stop"/>
-		<copy file="src/app/view/RootLayout.fxml" todir="classes/app/view"/>
 		<copy file="src/app/view/TelemetryDataOverview.fxml" todir="classes/app/view"/>
 		<copy file="src/app/view/DataConfiguration.fxml" todir="classes/app/view"/>
 		<copy file="src/app/view/SnapshotExplorer.fxml" todir="classes/app/view"/>
