@@ -50,6 +50,8 @@ import javafx.scene.layout.VBox;
 import jfxtras.internal.scene.control.gauge.linear.skin.AbstractLinearGaugeSkin;
 import jfxtras.scene.control.gauge.linear.BasicRoundDailGauge;
 import jfxtras.scene.control.gauge.linear.SimpleMetroArcGauge;
+import jfxtras.scene.control.gauge.linear.elements.PercentSegment;
+import jfxtras.scene.control.gauge.linear.elements.Segment;
 
 public class MainDisplayController {
 
@@ -147,6 +149,28 @@ public class MainDisplayController {
 		tempGauge = new SimpleMetroArcGauge();
 		tempGauge.setPrefSize(175.0, 175.0);
 		tempGauge.setMinSize(175.0, 175.0);
+		/*
+		tempGauge.getStyleClass().add("colorscheme-green-to-red-6");
+		for(int i = 0; i < 10; i++) {
+			Segment lSegment = new PercentSegment(tempGauge, i*(100.0/6), (i+1)*100.0/6);
+			tempGauge.segments().add(lSegment);
+		}
+		*/
+		System.out.println("StyleClass: " + tempGauge.getStyleClass());
+		/*
+		tempGauge.setStyle("-fxx-segment0-color: #11632f");
+		tempGauge.setStyle("-fxx-segment1-color: #ffdb28");
+		tempGauge.setStyle("-fxx-segment2-color: #ff312a");
+		 */
+		tempGauge.getStylesheets().add("file:/home/jarrett/T7Software/hss/src/app/view/temperature_segment.css");
+		tempGauge.getStyleClass().add("colorscheme-green-to-red-3");
+		System.out.println("tempGauge StyleClasses: " + tempGauge.getStyleClass());
+		Segment gSeg = new PercentSegment(tempGauge, 0.0, 70.0);
+		Segment ySeg = new PercentSegment(tempGauge, 70.0, 90.0);
+		Segment rSeg = new PercentSegment(tempGauge, 90.0, 100.0);
+		tempGauge.segments().add(gSeg);
+		tempGauge.segments().add(ySeg);
+		tempGauge.segments().add(rSeg);
 		tempBox.getChildren().add(tempGauge);
 	}
 
@@ -163,6 +187,7 @@ public class MainDisplayController {
 
 		switch(type) {
 		case TEMP:
+			tempGauge.setValue(d);
 			break;
 		case ALTITUDE:
 			compasPanel.readNewValue("alt", d);
