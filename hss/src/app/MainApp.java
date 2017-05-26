@@ -381,11 +381,11 @@ public class MainApp extends Application {
 	}
 
 	public static void updateTelemetryDisplay(double datum, MsgType type) {
-		//main_controller.updateDatum(datum, type);
+		main_controller.updateDatum(datum, type);
 	}
 
 	public static void updateTelemetryDisplay(double datumX, double datumY, double datumZ, MsgType type) {
-		//main_controller.updateVectorDatum(data, type);
+		main_controller.updateVectorData(datumX, datumY, datumZ, type);
 	}
 
 	public void updateSnapshotDisplay(Snapshot snap) {

@@ -2,6 +2,7 @@
 
 <?import javafx.embed.swing.SwingNode?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,15 +10,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="814.0" prefWidth="1500.0" style="-fx-background-color: rgb(51, 51, 51);" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.view.MainDisplayController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="864.0" prefWidth="1500.0" style="-fx-background-color: rgb(51, 51, 51);" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.view.MainDisplayController">
    <children>
-      <VBox prefHeight="814.0" prefWidth="1500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox prefHeight="864.0" prefWidth="1500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox prefHeight="414.0" prefWidth="1380.0">
+            <HBox prefHeight="464.0" prefWidth="1380.0">
                <children>
                   <VBox alignment="TOP_RIGHT" prefHeight="400.0" prefWidth="900.0">
                      <children>
-                        <ImageView fx:id="video" fitHeight="390.0" fitWidth="880.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="video" fitHeight="450.0" fitWidth="880.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                      <padding>
                         <Insets top="10.0" />
@@ -53,26 +54,28 @@
                      </padding></VBox>
                   <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="300.0" spacing="10.0">
                      <children>
-                        <Label text="Flight Dynamics" textFill="WHITE">
-                           <font>
-                              <Font size="15.0" />
-                           </font></Label>
-                        <VBox prefHeight="367.0" prefWidth="300.0" spacing="10.0">
-                           <padding>
-                              <Insets left="50.0" />
-                           </padding>
+                        <VBox alignment="TOP_CENTER" prefHeight="367.0" prefWidth="300.0" spacing="10.0">
                            <children>
+                              <Label text="Flight Dynamics" textFill="WHITE">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
                               <SwingNode fx:id="horizonNode" />
                            </children>
                         </VBox>
-                        <Label text="External Temperature" textFill="WHITE">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
+                        <VBox fx:id="tempBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                           <children>
+                              <Label text="External Temperature" textFill="WHITE">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
                      </children>
                      <padding>
-                        <Insets top="10.0" />
+                        <Insets left="30.0" right="20.0" top="10.0" />
                      </padding></VBox>
                </children>
                <padding>
@@ -125,4 +128,7 @@
          </padding>
       </VBox>
    </children>
+   <cursor>
+      <Cursor fx:constant="DEFAULT" />
+   </cursor>
 </AnchorPane>

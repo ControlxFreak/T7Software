@@ -27,6 +27,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
+import T7.T7Messages.GenericMessage.MsgType;
 import app.org.multiwii.msp.MSP;
 import app.org.multiwii.swingui.gui.MwConfiguration;
 import app.org.multiwii.swingui.gui.MwGuiFrame;
@@ -46,6 +47,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import jfxtras.internal.scene.control.gauge.linear.skin.AbstractLinearGaugeSkin;
+import jfxtras.scene.control.gauge.linear.BasicRoundDailGauge;
+import jfxtras.scene.control.gauge.linear.SimpleMetroArcGauge;
 
 public class MainDisplayController {
 
@@ -65,6 +69,13 @@ public class MainDisplayController {
 	private SwingNode horizonNode;
 	@FXML
 	private SwingNode compassNode;
+	@FXML
+	private VBox tempBox;
+	
+	private MwRCDataPanel rcDataPanel;
+	private MwHudPanel hudPanel;
+	private MwCompasPanel compasPanel;
+	private SimpleMetroArcGauge tempGauge;
 
 	public void setup() {
 		logger.fine("Initializing MainDisplayController.");
@@ -90,7 +101,7 @@ public class MainDisplayController {
 
 				chartNode.setContent(realTimeChart);
 
-				MwInstrumentJPanel rcDataPanel = new MwRCDataPanel(conf);
+				rcDataPanel = new MwRCDataPanel(conf);
 				MSP.getRealTimeData().addListener(rcDataPanel);
 				//pane.setMinimumSize(new Dimension(770, 200));
 				//pane.setMaximumSize(new Dimension(770, 200));
@@ -101,11 +112,11 @@ public class MainDisplayController {
 				MSP.getRealTimeData().addListener(uavPanel);
 				uavNode.setContent(uavPanel);
 
-				MwInstrumentJPanel hudPanel = new MwHudPanel(conf);
+				hudPanel = new MwHudPanel(conf);
 				MSP.getRealTimeData().addListener(hudPanel);
 				horizonNode.setContent(hudPanel);
 				
-				MwInstrumentJPanel compasPanel = new MwCompasPanel(conf);
+				compasPanel = new MwCompasPanel(conf);
 				MSP.getRealTimeData().addListener(compasPanel);
 				compassNode.setContent(compasPanel);
 				
@@ -133,6 +144,10 @@ public class MainDisplayController {
 		snapshot_display.setImage(new Image(new File("/home/jarrett/T7Software/hss/src/main/resources/images/fire3.jpg").toURI().toString()));
 		centerImage();
 		//horizonTempBox.getChildren().add(tempGaugeNode);
+		tempGauge = new SimpleMetroArcGauge();
+		tempGauge.setPrefSize(175.0, 175.0);
+		tempGauge.setMinSize(175.0, 175.0);
+		tempBox.getChildren().add(tempGauge);
 	}
 
 	/*
@@ -141,42 +156,40 @@ public class MainDisplayController {
 		System.out.println("Horizon JPanel width: " + ((SwingNode)horizonTempBox.getChildren().get(1)).getContent().getWidth());
 		System.out.println("Horizon JPanel Dimension width: " + ((SwingNode)horizonTempBox.getChildren().get(1)).getContent().getSize().getWidth());
 	}
+	*/
+	
 	public void updateDatum(double d, MsgType type) {
 		String newVal = doubleDatumToLabelString(d);
 
 		switch(type) {
 		case TEMP:
-			airTempLabel.setText(newVal);
 			break;
 		case ALTITUDE:
-			altitudeLabel.setText(newVal);
+			compasPanel.readNewValue("alt", d);
 			break;
 		default:
 			break;
 		}
 	}
 
-	public void updateVectorDatum(double[] datum, MsgType type) {
-		String x = "";
-		String y = "";
-		String z = "";
+	public void updateVectorData(double datumX, double datumY, double datumZ, MsgType type) {
 
 		switch(type) {
 		case ACCEL:
-			xAccelLabel.setText(x);
-			yAccelLabel.setText(y);
-			zAccelLabel.setText(z);
 			break;
 		case GYRO:
-			rollLabel.setText(x);
-			pitchLabel.setText(y);
-			yawLabel.setText(z);
+			break;
+		case ATTITUDE:
+			hudPanel.readNewValue("angx", datumX);
+			hudPanel.readNewValue("angy", datumY);
+			rcDataPanel.readNewValue("roll", datumX);
+			rcDataPanel.readNewValue("pitch", datumY);
+			rcDataPanel.readNewValue("yaw", datumZ);
 			break;
 		default:
 			break;
 		}
 	}
-	*/
 
 	private String doubleDatumToLabelString(double d) {
 		String s = "";

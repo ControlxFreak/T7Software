@@ -160,26 +160,36 @@ public class TestHSSClient {
 						Thread.sleep(500);
 					}
 					input = in.readLine();
+					String input2;
+					String input3;
 
-					System.out.println("Sending data.");
 					GenericMessage.Builder gm = GenericMessage.newBuilder();
 					gm.setTime(System.currentTimeMillis());
 					switch(connType) {
 					case ACCEL:
+						input2 = in.readLine();
+						input3 = in.readLine();
 						gm.setMsgtype(200)
-							.setAccel(Accel.newBuilder().setX(1.0).setY(2.0).setZ(3.0));
+							.setAccel(Accel.newBuilder().setX(Double.parseDouble(input))
+									.setY(Double.parseDouble(input2)).setZ(Double.parseDouble(input3)));
 						break;
 					case GYRO:
+						input2 = in.readLine();
+						input3 = in.readLine();
 						gm.setMsgtype(201)
-							.setGyro(Gyro.newBuilder().setX(3.0).setY(2.0).setZ(1.0));
+							.setGyro(Gyro.newBuilder().setX(Double.parseDouble(input))
+									.setY(Double.parseDouble(input2)).setZ(Double.parseDouble(input3)));
 						break;
 					case ALTITUDE:
 						gm.setMsgtype(202)
 							.setAltitude(Altitude.newBuilder().setAlt(Double.parseDouble(input)));
 						break;
 					case ATTITUDE:
+						input2 = in.readLine();
+						input3 = in.readLine();
 						gm.setMsgtype(203)
-							.setAttitude(Attitude.newBuilder().setRoll(3.0).setPitch(2.0).setYaw(1.0));
+							.setAttitude(Attitude.newBuilder().setRoll(Double.parseDouble(input))
+									.setPitch(Double.parseDouble(input2)).setYaw(Double.parseDouble(input3)));
 						break;
 					case TEMP:
 						gm.setMsgtype(204)
@@ -192,6 +202,7 @@ public class TestHSSClient {
 					default:
 						break;
 					}
+					System.out.println("Sending data.");
 					gm.build().writeDelimitedTo(out);
 					out.flush();
 					System.out.println("Sent message.");
