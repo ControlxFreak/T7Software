@@ -46,6 +46,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
@@ -67,6 +68,8 @@ public class MainDisplayController {
 	private WebView video;
 	@FXML
 	private ImageView snapshot_display;
+	@FXML
+	private AnchorPane snapshot_anchor;
 	@FXML
 	private SwingNode chartNode;
 	@FXML
@@ -267,8 +270,8 @@ public class MainDisplayController {
 			w = img.getWidth() * reducCoeff;
 			h = img.getHeight() * reducCoeff;
 
-			snapshot_display.setX((snapshot_display.getFitWidth() - w) / 2);
-			//imageDisplay.setY((imageDisplay.getFitHeight() - h) / 2 + 1);
+			snapshot_display.setX((snapshot_display.getFitWidth() - w) / 2 + 4);
+			snapshot_display.setY((snapshot_display.getFitHeight() - h) / 2 + 4);
 		}
 	}
 
@@ -278,6 +281,11 @@ public class MainDisplayController {
 	
 	public void displaySnapshot(Snapshot snap) {
 		snapshot_display.setImage(snap.getImage());
+		centerImage();
+		/*
+		snapshot_anchor.setPrefWidth(snapshot_display.getFitWidth());
+		snapshot_anchor.setPrefHeight(snapshot_display.getFitHeight());
+		*/
 	}
 
 	/*

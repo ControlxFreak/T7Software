@@ -160,8 +160,8 @@ public class SnapshotExplorerController {
 			w = img.getWidth() * reducCoeff;
 			h = img.getHeight() * reducCoeff;
 
-			imageDisplay.setX((imageDisplay.getFitWidth() - w) / 2);
-			//imageDisplay.setY((imageDisplay.getFitHeight() - h) / 2 + 1);
+			imageDisplay.setX((imageDisplay.getFitWidth() - w) / 2 + 3);
+			imageDisplay.setY((imageDisplay.getFitHeight() - h) / 2 + 3);
 		}
 	}
 	
