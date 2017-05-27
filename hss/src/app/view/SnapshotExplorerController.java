@@ -112,6 +112,8 @@ public class SnapshotExplorerController {
 		snap.setDescription(descriptionField.getText());
 		snap.setNotes(notesArea.getText());
 		snap.setPriority(prioritySpinner.getValue());
+		
+		main_controller.displaySnapshot(snap);
 	}
 
 	@FXML

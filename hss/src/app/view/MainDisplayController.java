@@ -44,6 +44,7 @@ import javafx.embed.swing.SwingNode;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -68,6 +69,10 @@ public class MainDisplayController {
 	private WebView video;
 	@FXML
 	private ImageView snapshot_display;
+	@FXML
+	private ImageView pin_display;
+	@FXML
+	private Label priLabel;
 	@FXML
 	private SwingNode chartNode;
 	@FXML
@@ -279,6 +284,8 @@ public class MainDisplayController {
 	
 	public void displaySnapshot(Snapshot snap) {
 		snapshot_display.setImage(snap.getImage());
+		pin_display.setImage(Snapshot.getPin());
+		priLabel.setText(Integer.toString(snap.getPriority()));
 		centerImage();
 		/*
 		snapshot_anchor.setPrefWidth(snapshot_display.getFitWidth());
@@ -289,6 +296,8 @@ public class MainDisplayController {
 	public void checkDisplayedSnapshot(Snapshot snapshot) {
 		if(snapshot_display.getImage().equals(snapshot.getImage())) {
 			snapshot_display.setImage(null);
+			pin_display.setImage(null);
+			priLabel.setText("");
 			
 			System.out.println("w: " + snapshot_display.getFitWidth() + ", h: " + snapshot_display.getFitHeight());
 		}

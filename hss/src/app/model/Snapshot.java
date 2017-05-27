@@ -1,20 +1,22 @@
 package app.model;
 
+import java.io.File;
 import java.util.Date;
 
 import javafx.scene.image.Image;
 
 public class Snapshot {
+	
+	private static final Image pin = new Image((new File("/home/jarrett/T7Software/hss/src/main/resources/images/default/red_pin.png")).toURI().toString());
 
 	private Image image;
-	private int priority;
+	private int priority = 1;
 	private String description;
 	private String notes;
-	private Date timestamp;
+	private Date timestamp = new Date();
 
 	public Snapshot(Image image) {
 		this.image = image;
-		timestamp = new Date();
 	}
 
 	public Image getImage() {
@@ -53,4 +55,7 @@ public class Snapshot {
 		this.timestamp = timestamp;
 	}
 
+	public static Image getPin() {
+		return pin;
+	}
 }
