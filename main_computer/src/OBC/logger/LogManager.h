@@ -30,10 +30,11 @@ Change Log
 #include <fstream>
 #include <iostream>
 #include <chrono>
-#include "boost/thread.hpp"
-#include "boost/date_time.hpp"
-#include "boost/format.hpp"
-#include "boost/filesystem.hpp"
+#include <thread>
+#include <mutex>
+//#include "boost/date_time.hpp"
+//#include "boost/format.hpp"
+//#include "boost/filesystem.hpp"
 
 using namespace std;
 
@@ -61,7 +62,7 @@ private:
     
     int maxBuffSize = 1;
     stringstream buffer_ = stringstream();
-    boost::mutex mutex_;
+    mutex mutex_;
     ofstream logFile;
     string logFileName;
     int suffix_ = 0;

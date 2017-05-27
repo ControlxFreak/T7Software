@@ -26,30 +26,21 @@ Change Log
 #ifndef EXECUTIVE_H
 #define EXECUTIVE_H
 
-#include <string>
-#include <signal.h>
-#include "ThreadManager.h"
-#include "WatchDog.h"
 #include "IOManager.h"
+#include "WatchDog.h"
 #include "DataManager.h"
 #include "LogManager.h"
 
-using namespace std;
 class Executive {
 public:
     // ---------------------------------------------------------------------- //
-    // Properties:
+    // Public Properties:
     // ---------------------------------------------------------------------- //   
-    // Managers:
-    ThreadManager TM;
-    IOManager IO;
-    
-    // Singletons
-    DataManager* data;
-    LogManager* LM;
-    WatchDog* WD;
-    
     bool needsCleaning = false;
+    IOManager IO;
+    LogManager* LM;
+    DataManager* data;
+    WatchDog* WD;
     
     // ---------------------------------------------------------------------- //
     // Public Methods:
@@ -65,14 +56,10 @@ public:
     Executive(const Executive& orig);
     virtual ~Executive();
 private:
-    
-    // Properties
-    bool timeToDie = false;
     // ---------------------------------------------------------------------- //
     // Private Methods:
     // ---------------------------------------------------------------------- //
     void run();
-    
 };
 
 #endif /* EXECUTIVE_H */

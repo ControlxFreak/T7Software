@@ -111,7 +111,7 @@ void LogManager::print(){
 //----------------------------------------------------------------------------//
 void LogManager::init(){
     mutex_.lock();
-    
+    /*
     // Grab the current time and create the log filename
     auto now = Clock::now();
     time_t now_c = Clock::to_time_t(now);
@@ -121,6 +121,7 @@ void LogManager::init(){
     int day =  parts->tm_mday;
     int hour = parts->tm_hour;
     int min = parts->tm_min;
+    
     
     // Grab our current path and append point it towards the logs directory subpath
     boost::filesystem::path curpath(boost::filesystem::current_path());
@@ -137,7 +138,7 @@ void LogManager::init(){
     s = boost::str(boost::format("%s%d_%d_%d_%d:%d_%d_logfile.log") %path % year % mon % day % hour %min % suffix_);
     logFileName = s;
     suffix_++;
-    
+    */
     mutex_.unlock();
 } // init()
 

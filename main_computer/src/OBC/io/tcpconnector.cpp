@@ -41,13 +41,13 @@ TCPStream* TCPConnector::connect(const char* server, int port)
     } 
 
     // Create and connect the socket, bail if we fail in either case
-    int sd = socket(AF_INET, SOCK_STREAM | SOCK_NONBLOCK, 0);
+    int sd = socket(AF_INET, SOCK_STREAM, 0);
     if (sd < 0) {
-        perror("socket() failed");
+        //perror("socket() failed");
         return NULL;
     }
     if (::connect(sd, (struct sockaddr*)&address, sizeof(address)) != 0) {
-        perror("connect() failed");
+        //perror("connect() failed");
         close(sd);
         return NULL;
     }
@@ -75,7 +75,7 @@ TCPStream* TCPConnector::connect(const char* server, int port, int timeout)
     
     // Bail if we fail to create the socket
     if (sd < 0) {
-        //perror("socket() failed");
+        perror("socket() failed");
         return NULL;
     }    
 
@@ -85,6 +85,7 @@ TCPStream* TCPConnector::connect(const char* server, int port, int timeout)
     fcntl(sd, F_SETFL, arg);
     
     // Connect with time limit
+    string message;
     if ((result = ::connect(sd, (struct sockaddr *)&address, sizeof(address))) < 0) 
     {
         if (errno == EINPROGRESS)
@@ -102,14 +103,14 @@ TCPStream* TCPConnector::connect(const char* server, int port, int timeout)
                 len = sizeof(int);
                 getsockopt(sd, SOL_SOCKET, SO_ERROR, (void*)(&valopt), &len);
                 if (valopt) {
-                    //fprintf(stderr, "connect() error %d - %s\n", valopt, strerror(valopt));
+                    fprintf(stderr, "connect() error %d - %s\n", valopt, strerror(valopt));
                 }
                 // connection established
                 else result = 0;
             }
-            //else fprintf(stderr, "connect() timed out\n");
+            else fprintf(stderr, "connect() timed out\n");
         }
-        //else fprintf(stderr, "connect() error %d - %s\n", errno, strerror(errno));
+        else fprintf(stderr, "connect() error %d - %s\n", errno, strerror(errno));
     }
 
     // Return socket to blocking mode 

@@ -30,10 +30,10 @@ Change Log
 //       is set to true.
 //----------------------------------------------------------------------------//
 void WatchDog::launch(){
-    while(!timeToDie)
+    DataManager* data = DataManager::getInstance();
+    while(!timeToDie || !data->timeToDieMap[data->WATCHDOG_SHUTDOWN])
     {
         // Check for thread interruptions
-        boost::this_thread::interruption_point();
     } //while(!ttd)
 } // launch()
 

@@ -27,7 +27,7 @@ Change Log
 #ifndef THREADMANAGER_H
 #define THREADMANAGER_H
 #include <map>
-#include <boost/thread.hpp>
+#include <thread>
 #include "WatchDog.h"
 #include "IOManager.h"
 #include "LogManager.h"
@@ -36,19 +36,29 @@ Change Log
 using namespace std;
 class ThreadManager {
 public:
-    DataManager* data; 
     
-    void launch(IOManager*);
+    DataManager* data; 
+    IOManager* IO;
+    LogManager* LM;
+    WatchDog* WD;
+    
+    void launch();
+    void launch_tcp();
+    void launch_serial();
+    
     void clean();
     ThreadManager();
     ThreadManager(const ThreadManager& orig);
     virtual ~ThreadManager();
 private:
-    void socketHandler(IOManager*,int);    
-    void sensorHandler(IOManager*);
+    void serverSocketHandler();    
+    void clientSocketHandler();
+    void sensorHandler();
     
-    map<int, boost::thread*> threadMap;
-    enum threadKeys { 
+    map<int, thread*> threadMap;
+    
+    enum 
+    threadKeys { 
                    // Sockets Threads //
                    // Server //
                    HeartSock,

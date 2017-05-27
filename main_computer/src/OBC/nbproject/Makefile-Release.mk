@@ -43,7 +43,6 @@ OBJECTFILES= \
 	${OBJECTDIR}/io/tcpstream.o \
 	${OBJECTDIR}/logger/LogManager.o \
 	${OBJECTDIR}/main.o \
-	${OBJECTDIR}/managers/ThreadManager.o \
 	${OBJECTDIR}/types/TSQueue.o \
 	${OBJECTDIR}/watchdog/WatchDog.o
 
@@ -111,11 +110,6 @@ ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -DPRINT_TO_CONSOLE -Ialgorithms -Ibuild -Idist -Iinfo -Iio -Imain -Iexec -Iexternal/boost_1_63_0 -I/usr/local/include/opencv2/calib3d -I/usr/local/include/opencv2/core -I/usr/local/include/opencv2/features2d -I/usr/local/include/opencv2/flann -I/usr/local/include/opencv2/highgui -I/usr/local/include/opencv2/imgcodecs -I/usr/local/include/opencv2/imgproc -I/usr/local/include/opencv2/ml -I/usr/local/include/opencv2/objdetect -I/usr/local/include/opencv2/photo -I/usr/local/include/opencv2/shape -I/usr/local/include/opencv2/stitching -I/usr/local/include/opencv2/superres -I/usr/local/include/opencv2/video -I/usr/local/include/opencv2/videoio -I/usr/local/include/opencv2/videostab -Iexternal/pugi -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
-
-${OBJECTDIR}/managers/ThreadManager.o: managers/ThreadManager.cpp
-	${MKDIR} -p ${OBJECTDIR}/managers
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -DPRINT_TO_CONSOLE -Ialgorithms -Ibuild -Idist -Iinfo -Iio -Imain -Iexec -Iexternal/boost_1_63_0 -I/usr/local/include/opencv2/calib3d -I/usr/local/include/opencv2/core -I/usr/local/include/opencv2/features2d -I/usr/local/include/opencv2/flann -I/usr/local/include/opencv2/highgui -I/usr/local/include/opencv2/imgcodecs -I/usr/local/include/opencv2/imgproc -I/usr/local/include/opencv2/ml -I/usr/local/include/opencv2/objdetect -I/usr/local/include/opencv2/photo -I/usr/local/include/opencv2/shape -I/usr/local/include/opencv2/stitching -I/usr/local/include/opencv2/superres -I/usr/local/include/opencv2/video -I/usr/local/include/opencv2/videoio -I/usr/local/include/opencv2/videostab -Iexternal/pugi -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/managers/ThreadManager.o managers/ThreadManager.cpp
 
 ${OBJECTDIR}/types/TSQueue.o: types/TSQueue.cpp
 	${MKDIR} -p ${OBJECTDIR}/types

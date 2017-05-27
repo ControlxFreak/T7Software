@@ -13,6 +13,7 @@ Anthony Trezza
 --------------------------------------------------------------------------------
 Change Log
 	04 March 2017 - att - Document Birthday!
+	26 March 2017 - Jarrett Mead - Adding MC->HSS connection request message that got lost during branch merging.
 --------------------------------------------------------------------------------
 
 
@@ -45,7 +46,7 @@ The data does not necessarily have to be a character array.  Could be binary / h
 
 Message ID (MID):
 
-When the 3 character bytes are converted into digits, the MID will be 3 digit a signed integer value between -99-999.
+When the 3 character bytes are converted into digits, the MID will be 3 digit a signed integer value between -99 and 999.
 
 This will provide the reader the information needed to know what type of data is being recieved.
 
@@ -77,7 +78,7 @@ MID 000 -> Heartbeat
 HSS -> MCS
 MID: 100 -> Update Mission Parameters
 				Description: This allows the opperator to be able to update mission parameters on the fly. 
-		 		-> Data Format:
+		 		->Data Format:
 						[header][[Mission Parameter ID][New Data]]	
 MID: 101 -> Configure Incoming Sensor Data 
 				Description: This will allow the operator to choose what data gets sent to them.  They can turn on and off sensor information.
@@ -87,6 +88,10 @@ MID: 102 -> Move the Camera Pan Tilt Motor
 				Description: This will command the new direction of where the camera should point
 				->Data Format:
 						[header][3x1 Vector of new pointing vector]
+MID: 103 -> Connection Request
+				Description: This allows the MC to spawn a thread of the appropriate type to handle the connection.
+				->Data Format:
+						[header][MID of data type]
 ---
 MCS -> HSS
 MID: 200 -> Accelerometer Data
@@ -105,6 +110,10 @@ MID: 203 -> Temperature Data
 MID: 204 -> Camera Data
 				Description: raw camera data
 						[header][optical data]
+MID: 205 -> Connection Request
+				Description: This allows the HSS to spawn a thread of the appropriate type to handle the connection.
+						[header][MID of data type]
+
 
 
 

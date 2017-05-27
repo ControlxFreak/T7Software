@@ -26,18 +26,13 @@ Change Log
 #ifndef TSQUEUE_H
 #define TSQUEUE_H
 
-#include <stdexcept>
 #include <queue>
-#include <string>
-#include <vector>
-#include "boost/thread.hpp"
+#include <mutex>
 
 using namespace std;
-
 template <typename T>
 class TSQueue {
 public:
-    
     
     int size();
     bool isEmpty();
@@ -55,7 +50,7 @@ public:
 
 protected:
     queue<T> data_;
-    boost::mutex mutex_;
+    mutex mutex_;
 private:
 
 };

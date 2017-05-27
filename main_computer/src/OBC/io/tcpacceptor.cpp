@@ -42,7 +42,7 @@ int TCPAcceptor::start()
         return 0;
     }
 
-    m_lsd = socket(AF_INET, SOCK_STREAM | SOCK_NONBLOCK, 0);
+    m_lsd = socket(PF_INET, SOCK_STREAM, 0);
     struct sockaddr_in address;
 
     memset(&address, 0, sizeof(address));
@@ -60,13 +60,13 @@ int TCPAcceptor::start()
     
     int result = bind(m_lsd, (struct sockaddr*)&address, sizeof(address));
     if (result != 0) {
-        //perror("bind() failed");
+        perror("bind() failed");
         return result;
     }
     
     result = listen(m_lsd, 5);
     if (result != 0) {
-        //perror("listen() failed");
+        perror("listen() failed");
         return result;
     }
     m_listening = true;
@@ -76,17 +76,15 @@ int TCPAcceptor::start()
 TCPStream* TCPAcceptor::accept() 
 {
     if (m_listening == false) {
-        start();
         return NULL;
     }
 
     struct sockaddr_in address;
     socklen_t len = sizeof(address);
     memset(&address, 0, sizeof(address));
-    
     int sd = ::accept(m_lsd, (struct sockaddr*)&address, &len);
     if (sd < 0) {
-        //perror("accept() failed");
+        perror("accept() failed");
         return NULL;
     }
     return new TCPStream(sd, &address);

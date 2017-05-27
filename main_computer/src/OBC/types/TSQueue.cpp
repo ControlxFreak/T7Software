@@ -23,13 +23,15 @@ Change Log
 --------------------------------------------------------------------------------
  */
 #include "TSQueue.h"
+#include <vector>
+#include <stdexcept>
 
 //------------------------------------------------------------------------//
 // Clear the data from the queue //
 //------------------------------------------------------------------------//
 template<typename T>
 void TSQueue<T>::clear(){
-    boost::lock_guard<boost::mutex> guard(mutex_);
+    lock_guard<mutex> guard(mutex_);
     queue<T> empty;
     swap(data_,empty);
 }
@@ -39,7 +41,7 @@ void TSQueue<T>::clear(){
 //------------------------------------------------------------------------//
 template<typename T>
 int TSQueue<T>::size(){
-    boost::lock_guard<boost::mutex> guard(mutex_);
+    lock_guard<mutex> guard(mutex_);
     return data_.size();
 };
 
@@ -48,7 +50,7 @@ int TSQueue<T>::size(){
 //------------------------------------------------------------------------//
 template<typename T>
 bool TSQueue<T>::isEmpty(){
-    boost::lock_guard<boost::mutex> guard(mutex_);
+    lock_guard<mutex> guard(mutex_);
     return data_.empty();
 };
 
@@ -57,7 +59,7 @@ bool TSQueue<T>::isEmpty(){
 //------------------------------------------------------------------------//
 template<typename T>
 void TSQueue<T>::push(T elem){
-    boost::lock_guard<boost::mutex> guard(mutex_);
+    lock_guard<mutex> guard(mutex_);
     data_.push(elem);
 };
 
@@ -66,7 +68,7 @@ void TSQueue<T>::push(T elem){
 //------------------------------------------------------------------------//
 template<typename T>
 T TSQueue<T>::front(){
-    boost::lock_guard<boost::mutex> guard(mutex_);
+    lock_guard<mutex> guard(mutex_);
     if(data_.empty()) throw out_of_range("No elements in the queue");
     return data_.front();
 };
@@ -76,28 +78,23 @@ T TSQueue<T>::front(){
 template<typename T>
 void TSQueue<T>::pop()
 {
-    boost::lock_guard<boost::mutex> guard(mutex_);
+    lock_guard<mutex> guard(mutex_);
     if(data_.empty()) throw out_of_range("No elements in the queue");
     data_.pop();   
 }
 
 template<typename T>
-TSQueue<T>::TSQueue()
-{
-    
-}
+TSQueue<T>::TSQueue(){}
 template<typename T>
-TSQueue<T>::~TSQueue()
-{
-    
-}
+TSQueue<T>::~TSQueue(){}
 
+template class TSQueue< vector<double> >;
+/*
 template class TSQueue<int>;
 template class TSQueue<float>;
 template class TSQueue<double>;
 template class TSQueue<string>;
-
 template class TSQueue< vector<int> >;
 template class TSQueue< vector<float> >;
-template class TSQueue< vector<double> >;
 template class TSQueue< vector<string> >;
+*/

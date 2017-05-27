@@ -30,35 +30,68 @@ Change Log
 #include "DataManager.h"
 #include "LogManager.h"
 #include "WatchDog.h"
-#include "tcpconnector.h"
 #include "tcpacceptor.h"
+#include "tcpconnector.h"
+#include "tcpstream.h"
+#include "SocketException.h"
 #include "T7Messages.pb.h"
 #include <string>
-#include <boost/thread/thread.hpp>
+#include <thread>
+#include <map>
 
+using namespace std;
 
 class IOManager {
 public:
+    
+    // Store singleton parameters
+    DataManager* data; 
+    IOManager* IO;
+    LogManager* LM;
+    WatchDog* WD;
+    
     // Define the IO parameters needed for communication
-    int PORT_NUMBER = 9001;
-    
     string HSS_IP = "127.0.0.1";
+    int CLIENT_PORT_NUMBER = 9001;
+    int SERVER_PORT_NUMBER = 9002;
     
-    int ACCEPTOR_TIMEOUT  = 1;   // [s]
-    int CONNECTOR_TIMEOUT = 1;  // [s]
-    int SLEEP_TIME = 1e6;       // [s]
+    int CLIENT_TIMEOUT = 1e6;
     
-    bool timeToDie = false; 
-    
-    void kill(){timeToDie = true;};
-    void clean(){timeToDie = false;};
-    void launch_sensor(){};
-    void socketHandler(int id);
+    void launch();
+    void launch_clients();
+    void launch_server();
+    void launch_serial();
+    void client_handler(int id);
+    void server_handler();
+    void acceptor_handler(TCPStream*,int id);
+    void clean(){};
     IOManager();
     IOManager(const IOManager& orig);
     virtual ~IOManager();
 private:
-      
+    map<int,thread*>sockThreadMap;
+    
+    enum 
+    threadKeys { 
+                   // Sockets Threads //
+                   // Server //
+                   ServerSock,
+                   HeartSock,
+                   TerminateSock,
+                   ConfigSock,
+                   MoveCamSock,
+
+                   // Client //
+                   AccelSock,
+                   GyroSock,
+                   AltSock,
+                   AttSock,
+                   TempSock,
+                   BatSock,
+
+                   // Sensor Threads //
+                   SensorKey 
+                 };
 };
 
 #endif /* IOManager */

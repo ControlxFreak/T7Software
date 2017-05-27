@@ -23,6 +23,8 @@ Anthony Trezza
 --------------------------------------------------------------------------------
 Change Log
     15 Feb 2017 - t3 - Happy Birthday!
+    22 Apr 2017 - t3 - Added relaunch logic
+    21 May 2017 - t3 - Added quit handler
 --------------------------------------------------------------------------------
  */
 
@@ -35,28 +37,31 @@ using namespace std;
 //   Quit Signal Handler
 // ------------------------------------------------------------------------------
 // this function is called when you press Ctrl-C
+
 void
-quit_handler(int s)
-{
+quit_handler(int s) {
     LogManager* LM = LogManager::getInstance();
     LM->append("\n");
     LM->append("TERMINATING AT USER REQUEST\n");
     LM->append("\n");
-    
+
     Executive* Exec = Executive::getInstance();
     Exec->clean();
-    
+
     // end program here
     exit(0);
 } // quit_handler
 
-int main()
-{
+// ------------------------------------------------------------------------------
+//   Quit Signal Handler
+// ------------------------------------------------------------------------------
+// this function is called when you press Ctrl-C
+
+int
+main() {
     // Initialize the Executive
     Executive* Exec = Executive::getInstance();
-    
-    // Initialize the signal handler
-      
+
     // Setup the quit handler
     struct sigaction sigIntHandler;
 
@@ -65,20 +70,18 @@ int main()
     sigIntHandler.sa_flags = 0;
 
     sigaction(SIGINT, &sigIntHandler, NULL);
-     
-    while(true)
-    {   
-        try
-        {
+
+    while (true) {
+        try {
             // Launch the Executive
             Exec->launch();
             // If the watchdog says that we are complete, then do it!
-            if(Exec->WD->SystemHealth == Exec->WD->noFailure) break;
-            
+            if (Exec->WD->SystemHealth == Exec->WD->noFailure){ break; }
+
             Exec->needsCleaning = true;
-        }catch(...){}
-    }
-    
+        } catch (...) {} // try catch
+    } // while (true)
+
     // Cleanup!!
     Exec->clean();
     // Return the code determined by the executive

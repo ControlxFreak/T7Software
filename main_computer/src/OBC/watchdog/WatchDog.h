@@ -25,7 +25,7 @@ Change Log
 
 #ifndef WATCHDOG_H
 #define WATCHDOG_H
-#include <boost/thread.hpp>
+#include "DataManager.h"
 
 class WatchDog {
 public:
@@ -47,10 +47,12 @@ public:
                        moderateFailure,
                        issolatedFailure,
                        smallFailure,
+                       RESTART,
                        // Socket Failures
+                       SOCKET_FAILURE,
+                       CONNECT_FAIL,
                        UNK_SOCK, 
-                       SERVER_CONNECT_FAIL, 
-                       SERVER_ACCEPT_FAIL, 
+                       socketDisconnected,
                        //Successes
                        noFailure=0,
                        //Socket Success
@@ -58,6 +60,7 @@ public:
     
     int SystemHealth = failureCodes::noFailure;
     bool timeToDie = false;
+    bool HSSAlive = true;
     
     // Methods //
     void launch();

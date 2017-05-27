@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<project name="HOPPS Home Station Software" basedir="." default="build">
+	<property file="build.properties.dev"/>
+
+	<path id="google-classpath">
+		<fileset dir="${basedir}/lib">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
+
+	<target name="build" description="Compile source tree java files">
+		<mkdir dir="${build.dir}"/>
+		<record name="build.log" action="start"/>
+		<javac destdir="${build.dir}" debug="true">
+			<src path="${src.dir}"/>
+			<classpath refid="google-classpath"/>
+		</javac>
+		<record name="build.log" action="stop"/>
+		<copy file="src/app/view/TelemetryDataOverview.fxml" todir="classes/app/view"/>
+		<copy file="src/app/view/DataConfiguration.fxml" todir="classes/app/view"/>
+		<copy file="src/app/view/SnapshotExplorer.fxml" todir="classes/app/view"/>
+		<copy file="src/app/view/MwRootLayout.fxml" todir="classes/app/view"/>
+		<jar destfile="${lib.dir}/hss.jar" basedir="${build.dir}"/>
+	</target>
+
+	<target name="clean" description="Clean output directories">
+		<delete dir="${build.dir}"/>
+		<delete file="${lib.dir}/hss.jar"/>
+	</target>
+
+</project>

@@ -7,12 +7,6 @@
       <logicalFolder name="f2" displayName="Executive" projectFiles="true">
         <itemPath>executive/Executive.h</itemPath>
       </logicalFolder>
-      <logicalFolder name="f4" displayName="info" projectFiles="true">
-        <itemPath>info/MissionParameters.h</itemPath>
-        <itemPath>external/pugi/pugiconfig.hpp</itemPath>
-        <itemPath>external/pugi/pugixml.hpp</itemPath>
-        <itemPath>info/version.h</itemPath>
-      </logicalFolder>
       <logicalFolder name="f1" displayName="Managers" projectFiles="true">
         <logicalFolder name="f2" displayName="Data" projectFiles="true">
           <itemPath>types/DataManager.h</itemPath>
@@ -22,9 +16,6 @@
         </logicalFolder>
         <logicalFolder name="f6" displayName="Logger" projectFiles="true">
           <itemPath>logger/LogManager.h</itemPath>
-        </logicalFolder>
-        <logicalFolder name="f1" displayName="Thread" projectFiles="true">
-          <itemPath>managers/ThreadManager.h</itemPath>
         </logicalFolder>
         <logicalFolder name="f3" displayName="WatchDog" projectFiles="true">
           <itemPath>watchdog/WatchDog.h</itemPath>
@@ -36,6 +27,7 @@
       </logicalFolder>
       <logicalFolder name="f5" displayName="utility" projectFiles="true">
         <logicalFolder name="f1" displayName="tcp" projectFiles="true">
+          <itemPath>io/SocketException.h</itemPath>
           <itemPath>io/tcpacceptor.h</itemPath>
           <itemPath>io/tcpconnector.h</itemPath>
           <itemPath>io/tcpstream.h</itemPath>
@@ -58,9 +50,6 @@
         </logicalFolder>
         <logicalFolder name="f2" displayName="Logger" projectFiles="true">
           <itemPath>logger/LogManager.cpp</itemPath>
-        </logicalFolder>
-        <logicalFolder name="f1" displayName="Thread" projectFiles="true">
-          <itemPath>managers/ThreadManager.cpp</itemPath>
         </logicalFolder>
         <logicalFolder name="f3" displayName="WatchDog" projectFiles="true">
           <itemPath>watchdog/WatchDog.cpp</itemPath>
@@ -103,12 +92,9 @@
         <ccTool>
           <standard>8</standard>
           <incDir>
-            <pElem>build</pElem>
-            <pElem>dist</pElem>
             <pElem>io</pElem>
             <pElem>main</pElem>
             <pElem>executive</pElem>
-            <pElem>external/boost_1_63_0</pElem>
             <pElem>managers</pElem>
             <pElem>watchdog</pElem>
             <pElem>types</pElem>
@@ -123,82 +109,6 @@
           <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/obc</output>
           <linkerLibItems>
             <linkerLibStdlibItem>PosixThreads</linkerLibStdlibItem>
-            <linkerLibLibItem>boost_atomic</linkerLibLibItem>
-            <linkerLibLibItem>boost_atomic</linkerLibLibItem>
-            <linkerLibLibItem>boost_chrono</linkerLibLibItem>
-            <linkerLibLibItem>boost_chrono</linkerLibLibItem>
-            <linkerLibLibItem>boost_context</linkerLibLibItem>
-            <linkerLibLibItem>boost_context</linkerLibLibItem>
-            <linkerLibLibItem>boost_coroutine</linkerLibLibItem>
-            <linkerLibLibItem>boost_coroutine</linkerLibLibItem>
-            <linkerLibLibItem>boost_date_time</linkerLibLibItem>
-            <linkerLibLibItem>boost_date_time</linkerLibLibItem>
-            <linkerLibLibItem>boost_exception</linkerLibLibItem>
-            <linkerLibLibItem>boost_filesystem</linkerLibLibItem>
-            <linkerLibLibItem>boost_filesystem</linkerLibLibItem>
-            <linkerLibLibItem>boost_graph</linkerLibLibItem>
-            <linkerLibLibItem>boost_graph</linkerLibLibItem>
-            <linkerLibLibItem>boost_graph_parallel</linkerLibLibItem>
-            <linkerLibLibItem>boost_graph_parallel</linkerLibLibItem>
-            <linkerLibLibItem>boost_iostreams</linkerLibLibItem>
-            <linkerLibLibItem>boost_iostreams</linkerLibLibItem>
-            <linkerLibLibItem>boost_locale</linkerLibLibItem>
-            <linkerLibLibItem>boost_locale</linkerLibLibItem>
-            <linkerLibLibItem>boost_log</linkerLibLibItem>
-            <linkerLibLibItem>boost_log</linkerLibLibItem>
-            <linkerLibLibItem>boost_log_setup</linkerLibLibItem>
-            <linkerLibLibItem>boost_log_setup</linkerLibLibItem>
-            <linkerLibLibItem>boost_math_c99</linkerLibLibItem>
-            <linkerLibLibItem>boost_math_c99</linkerLibLibItem>
-            <linkerLibLibItem>boost_math_c99f</linkerLibLibItem>
-            <linkerLibLibItem>boost_math_c99f</linkerLibLibItem>
-            <linkerLibLibItem>boost_math_c99l</linkerLibLibItem>
-            <linkerLibLibItem>boost_math_c99l</linkerLibLibItem>
-            <linkerLibLibItem>boost_math_tr1</linkerLibLibItem>
-            <linkerLibLibItem>boost_math_tr1</linkerLibLibItem>
-            <linkerLibLibItem>boost_math_tr1f</linkerLibLibItem>
-            <linkerLibLibItem>boost_math_tr1f</linkerLibLibItem>
-            <linkerLibLibItem>boost_math_tr1l</linkerLibLibItem>
-            <linkerLibLibItem>boost_math_tr1l</linkerLibLibItem>
-            <linkerLibLibItem>boost_mpi</linkerLibLibItem>
-            <linkerLibLibItem>boost_mpi</linkerLibLibItem>
-            <linkerLibLibItem>boost_mpi_python-py27</linkerLibLibItem>
-            <linkerLibLibItem>boost_mpi_python-py27</linkerLibLibItem>
-            <linkerLibLibItem>boost_mpi_python-py35</linkerLibLibItem>
-            <linkerLibLibItem>boost_mpi_python-py35</linkerLibLibItem>
-            <linkerLibLibItem>boost_mpi_python</linkerLibLibItem>
-            <linkerLibLibItem>boost_mpi_python</linkerLibLibItem>
-            <linkerLibLibItem>boost_prg_exec_monitor</linkerLibLibItem>
-            <linkerLibLibItem>boost_prg_exec_monitor</linkerLibLibItem>
-            <linkerLibLibItem>boost_program_options</linkerLibLibItem>
-            <linkerLibLibItem>boost_program_options</linkerLibLibItem>
-            <linkerLibLibItem>boost_python-py27</linkerLibLibItem>
-            <linkerLibLibItem>boost_python-py27</linkerLibLibItem>
-            <linkerLibLibItem>boost_python-py35</linkerLibLibItem>
-            <linkerLibLibItem>boost_python-py35</linkerLibLibItem>
-            <linkerLibLibItem>boost_python</linkerLibLibItem>
-            <linkerLibLibItem>boost_python</linkerLibLibItem>
-            <linkerLibLibItem>boost_random</linkerLibLibItem>
-            <linkerLibLibItem>boost_random</linkerLibLibItem>
-            <linkerLibLibItem>boost_regex</linkerLibLibItem>
-            <linkerLibLibItem>boost_regex</linkerLibLibItem>
-            <linkerLibLibItem>boost_serialization</linkerLibLibItem>
-            <linkerLibLibItem>boost_serialization</linkerLibLibItem>
-            <linkerLibLibItem>boost_signals</linkerLibLibItem>
-            <linkerLibLibItem>boost_signals</linkerLibLibItem>
-            <linkerLibLibItem>boost_system</linkerLibLibItem>
-            <linkerLibLibItem>boost_system</linkerLibLibItem>
-            <linkerLibLibItem>boost_test_exec_monitor</linkerLibLibItem>
-            <linkerLibLibItem>boost_thread</linkerLibLibItem>
-            <linkerLibLibItem>boost_thread</linkerLibLibItem>
-            <linkerLibLibItem>boost_timer</linkerLibLibItem>
-            <linkerLibLibItem>boost_timer</linkerLibLibItem>
-            <linkerLibLibItem>boost_unit_test_framework</linkerLibLibItem>
-            <linkerLibLibItem>boost_unit_test_framework</linkerLibLibItem>
-            <linkerLibLibItem>boost_wave</linkerLibLibItem>
-            <linkerLibLibItem>boost_wave</linkerLibLibItem>
-            <linkerLibLibItem>boost_wserialization</linkerLibLibItem>
-            <linkerLibLibItem>boost_wserialization</linkerLibLibItem>
             <linkerOptionItem>`pkg-config --libs protobuf`</linkerOptionItem>
           </linkerLibItems>
         </linkerTool>
@@ -207,17 +117,11 @@
       </item>
       <item path="executive/Executive.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="external/pugi/pugiconfig.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="external/pugi/pugixml.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="info/MissionParameters.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="info/version.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="io/IOManager.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="io/IOManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="io/SocketException.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="io/T7Messages.pb.cc" ex="false" tool="1" flavor2="0">
       </item>
@@ -240,10 +144,6 @@
       <item path="logger/LogManager.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="managers/ThreadManager.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="managers/ThreadManager.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="types/DataManager.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -316,17 +216,11 @@
       </item>
       <item path="executive/Executive.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="external/pugi/pugiconfig.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="external/pugi/pugixml.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="info/MissionParameters.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="info/version.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="io/IOManager.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="io/IOManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="io/SocketException.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="io/T7Messages.pb.cc" ex="false" tool="1" flavor2="0">
       </item>
@@ -349,10 +243,6 @@
       <item path="logger/LogManager.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="managers/ThreadManager.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="managers/ThreadManager.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="types/DataManager.h" ex="false" tool="3" flavor2="0">
       </item>

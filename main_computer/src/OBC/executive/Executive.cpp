@@ -23,34 +23,24 @@ Change Log
 --------------------------------------------------------------------------------
  */
 
-
+#include <string>
 #include "Executive.h"
 
+using namespace std;
 //----------------------------------------------------------------------------//
 // launch() method launches the executive and all of it's managers 
 //----------------------------------------------------------------------------//
 void Executive::launch()
 {
     // Cleanup so we can start fresh!
-    if(needsCleaning) clean();
+    if(needsCleaning){ clean(); }
     
-    // Initialize the Logger Instance
-    LM = LogManager::getInstance();
-       
     // Print out the header
     LM->appendHeader();
-    
-    // Initialize the Data Singleton
-    LM->append("Initializing the Data Singleton\n");
-    data = DataManager::getInstance();
-   
-    // Initialize the Watchdog
-    LM->append("Initializing the WatchDog Singleton\n");
-    WD = WatchDog::getInstance();
-    
+
     // Launch the thread manager
-    LM->append("Launching Thread Manager\n");
-    TM.launch(&IO);
+    LM->append("Launching IO Manager\n");
+    IO.launch();
   
     // Run the executive
     run();
@@ -60,24 +50,22 @@ void Executive::launch()
 // clean() method cleans the executive and all of it's managers up
 //----------------------------------------------------------------------------//
 void Executive::clean()
-{
-    LM->append("Cleaning Up!\n");
-    // Clean yourself up!
-    timeToDie = false;
+{ 
+    LM->append("Executive Cleaning Up!\n");
     
+    // Tell Everyone To Die... incase it hasn't happened already
+    data->set_all_timeToDie(true);
+            
     // Clean up the managers!
+    LM->append("Cleaning IO Manager!\n");
+    IO.clean();
+    
     LM->append("Cleaning Data!\n");
     data->clean();
     
-    LM->append("Cleaning Thread Manager!\n");
-    TM.clean();
-    
     LM->append("Cleaning Watch Dog!\n");
     WD->clean();
-    
-    LM->append("Cleaning IO Manager!\n");
-    IO.clean();    
-    
+        
     LM->append("Cleaning Logger!\n");
     LM->clean();
 } // clean()
@@ -92,7 +80,7 @@ void Executive::run()
 
     vector< double > accel;
     // Loop until it is time to die
-    while(!timeToDie)
+    while(!data->timeToDieMap[data->EXECUTIVE_SHUTDOWN])
     {
         if(data->accelQueue.size() < 10)
         {
@@ -104,16 +92,24 @@ void Executive::run()
             data->accelQueue.push(accel);
             accel.clear();
         }
-        usleep(3e6);
-        // TODO: Add WatchDog stuff here.
-        if(data->globalShutdown) {timeToDie = true;break;}
+        //usleep(3e6);
+        //WD->check();
     } //while(!timeToDie)
 } //run()
 
 //----------------------------------------------------------------------------//
 // Constructors 
 //----------------------------------------------------------------------------//
-Executive::Executive() {}
+Executive::Executive() {
+    // Initialize the Logger Instance
+    LM = LogManager::getInstance();
+    
+    // Initialize the Data Instance
+    data = DataManager::getInstance();
+        
+    // Initialize the Data Instance
+    WD = WatchDog::getInstance();
+}
 Executive::Executive(const Executive& orig) {}
 //----------------------------------------------------------------------------//
 // Destructor - Although the singletons are not explicitly deleted but yet, 

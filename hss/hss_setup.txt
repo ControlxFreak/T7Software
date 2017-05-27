@@ -1,0 +1,11 @@
+1.) Install vim/gvim: sudo apt install vim-gtk
+2.) Install tcsh: sudo apt-get install tcsh (NOTE: may have to install csh first. But probably not.)
+3.) Add Oracle's PPA: sudo apt-get update; sudo add-apt-repository ppa:webupd8team/java; sudo apt-get update
+4.) Install JDK 8: sudo apt-get install oracle-java8-installer
+5.) Source HOPPS.cshrc: If you get the message "LD_LIBRARY_PATH: Undefined variable.", do "setenv LD_LIBRARY_PATH /usr/lib/firefox"
+6.) Install Maven (Not sure if this is needed.): sudo apt-get install maven
+7.) Download Eclipse: http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/neon/3/eclipse-jee-neon-3-linux-gtk-x86_64.tar.gz&mirror_id=1249
+8.) Untar Eclipse: cd; tar -xzvf <path_to_eclipse_tar>
+9.) Increase memory: cd; gvim eclipse/eclipse.ini; Change -Xmx number to 2048
+10.) Install git: sudo apt-get install git-all
+11.) Clone T7Software repo: 
