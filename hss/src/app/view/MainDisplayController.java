@@ -271,6 +271,10 @@ public class MainDisplayController {
 		}
 	}
 
+	public Image takeSnapshot() {
+		return video.snapshot(null, null);
+	}
+
 	/*
 	public void streamVideo() {
 		MediaPlayer player = new MediaPlayer(new Media("http://youtu.be/ShgtqhZE42Y"));

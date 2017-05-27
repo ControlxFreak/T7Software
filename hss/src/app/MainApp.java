@@ -153,7 +153,8 @@ public class MainApp extends Application {
 	}
 
 	private void takeSnapshot() {
-		snapshotData.add(0, new Snapshot(new Image((new File("/home/jarrett/T7Software/hss/src/main/resources/images/topanga.jpg")).toURI().toString())));
+		//snapshotData.add(0, new Snapshot(new Image((new File("/home/jarrett/T7Software/hss/src/main/resources/images/topanga.jpg")).toURI().toString())));
+		snapshotData.add(0, new Snapshot(main_controller.takeSnapshot()));
 
 		showSnapshotExplorer();
 	}
