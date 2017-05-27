@@ -47,6 +47,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import jfxtras.internal.scene.control.gauge.linear.skin.AbstractLinearGaugeSkin;
 import jfxtras.scene.control.gauge.linear.BasicRoundDailGauge;
 import jfxtras.scene.control.gauge.linear.SimpleMetroArcGauge;
@@ -58,7 +63,7 @@ public class MainDisplayController {
 	private static Logger logger			= Logger.getLogger(MainDisplayController.class.getName());
 
 	@FXML
-	private ImageView video;
+	private WebView video;
 	@FXML
 	private ImageView snapshot_display;
 	@FXML
@@ -142,7 +147,8 @@ public class MainDisplayController {
 		receiversBox.getChildren().add(uavNode);
 		horizonTempBox.getChildren().add(horizonNode);
 		*/
-		video.setImage(new Image(new File("/home/jarrett/T7Software/hss/src/main/resources/images/fire800_400.jpg").toURI().toString()));
+		WebEngine engine = video.getEngine();
+		engine.load("https://www.youtube.com");
 		snapshot_display.setImage(new Image(new File("/home/jarrett/T7Software/hss/src/main/resources/images/fire3.jpg").toURI().toString()));
 		centerImage();
 		//horizonTempBox.getChildren().add(tempGaugeNode);
@@ -264,5 +270,13 @@ public class MainDisplayController {
 			//imageDisplay.setY((imageDisplay.getFitHeight() - h) / 2 + 1);
 		}
 	}
+
+	/*
+	public void streamVideo() {
+		MediaPlayer player = new MediaPlayer(new Media("http://youtu.be/ShgtqhZE42Y"));
+		video.setMediaPlayer(player);
+		player.play();
+	}
+	*/
 }
 
