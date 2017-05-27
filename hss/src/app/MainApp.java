@@ -173,10 +173,8 @@ public class MainApp extends Application {
 		Scene scene = new Scene(explorer);
 		explorerStage.setScene(scene);
 
-		/*
 		SnapshotExplorerController controller = loader.getController();
-		controller.setDialogStage(explorerStage);
-		*/
+		controller.setMainController(main_controller);
 
 		System.out.println("list before dialog: " + snapshotData.toString());
 		explorerStage.showAndWait();

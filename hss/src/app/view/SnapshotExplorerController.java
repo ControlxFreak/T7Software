@@ -33,7 +33,8 @@ import javafx.util.Callback;
 
 public class SnapshotExplorerController {
 
-	private static Logger logger			= Logger.getLogger(SnapshotExplorerController.class.getName());
+	private static Logger logger					= Logger.getLogger(SnapshotExplorerController.class.getName());
+	private MainDisplayController main_controller;
 
 	@FXML
 	private ImageView imageDisplay;
@@ -111,7 +112,10 @@ public class SnapshotExplorerController {
 
 	@FXML
 	private void handleDisplay() {
-
+		int index = thumbnails.getSelectionModel().getSelectedIndex();
+		Snapshot snap = MainApp.getSnapshotData().get(index);
+		
+		main_controller.displaySnapshot(snap);
 	}
 
 	private void showSnapshotDetails(Snapshot snap) {
@@ -159,6 +163,10 @@ public class SnapshotExplorerController {
 			imageDisplay.setX((imageDisplay.getFitWidth() - w) / 2);
 			//imageDisplay.setY((imageDisplay.getFitHeight() - h) / 2 + 1);
 		}
+	}
+	
+	public void setMainController(MainDisplayController main_controller) {
+		this.main_controller = main_controller;
 	}
 }
 

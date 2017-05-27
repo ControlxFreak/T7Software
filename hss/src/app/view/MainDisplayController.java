@@ -28,6 +28,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import T7.T7Messages.GenericMessage.MsgType;
+import app.model.Snapshot;
 import app.org.multiwii.msp.MSP;
 import app.org.multiwii.swingui.gui.MwConfiguration;
 import app.org.multiwii.swingui.gui.MwGuiFrame;
@@ -149,7 +150,7 @@ public class MainDisplayController {
 		*/
 		WebEngine engine = video.getEngine();
 		engine.load("https://www.youtube.com");
-		snapshot_display.setImage(new Image(new File("/home/jarrett/T7Software/hss/src/main/resources/images/fire3.jpg").toURI().toString()));
+		//snapshot_display.setImage(new Image(new File("/home/jarrett/T7Software/hss/src/main/resources/images/fire3.jpg").toURI().toString()));
 		centerImage();
 		//horizonTempBox.getChildren().add(tempGaugeNode);
 		tempGauge = new SimpleMetroArcGauge();
@@ -273,6 +274,10 @@ public class MainDisplayController {
 
 	public Image takeSnapshot() {
 		return video.snapshot(null, null);
+	}
+	
+	public void displaySnapshot(Snapshot snap) {
+		snapshot_display.setImage(snap.getImage());
 	}
 
 	/*
