@@ -16,10 +16,12 @@
  */
 package app.view;
 
+import java.util.Observable;
 import java.util.logging.Logger;
 
 import app.MainApp;
 import app.model.Snapshot;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -92,7 +94,9 @@ public class SnapshotExplorerController {
 	@FXML
 	private void handleDelete() {
 		int index = thumbnails.getSelectionModel().getSelectedIndex();
-		MainApp.getSnapshotData().remove(index);
+		ObservableList<Snapshot> snap_list = MainApp.getSnapshotData();
+		main_controller.checkDisplayedSnapshot(snap_list.get(index));
+		snap_list.remove(index);
 	}
 
 	@FXML

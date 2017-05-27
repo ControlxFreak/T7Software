@@ -288,6 +288,17 @@ public class MainDisplayController {
 		*/
 	}
 
+	public void checkDisplayedSnapshot(Snapshot snapshot) {
+		if(snapshot_display.getImage().equals(snapshot.getImage())) {
+			snapshot_display.setImage(null);
+			snapshot_anchor.setPrefHeight(298);
+			snapshot_anchor.setPrefWidth(500);
+			
+			System.out.println("w: " + snapshot_anchor.getWidth() + ", h: " + snapshot_anchor.getHeight());
+			System.out.println("w: " + snapshot_display.getFitWidth() + ", h: " + snapshot_display.getFitHeight());
+		}
+	}
+
 	/*
 	public void streamVideo() {
 		MediaPlayer player = new MediaPlayer(new Media("http://youtu.be/ShgtqhZE42Y"));
