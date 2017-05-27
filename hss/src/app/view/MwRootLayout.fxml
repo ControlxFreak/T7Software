@@ -92,11 +92,7 @@
                            <font>
                               <Font size="15.0" />
                            </font></Label>
-                        <AnchorPane fx:id="snapshot_anchor" maxWidth="500.0" style="-fx-border-width: 3; -fx-border-color: #ffffff; -fx-background-color: E8E8E8;">
-                           <children>
-                              <ImageView fx:id="snapshot_display" fitHeight="292.0" fitWidth="492.0" pickOnBounds="true" preserveRatio="true" />
-                           </children>
-                        </AnchorPane>
+                        <ImageView fx:id="snapshot_display" fitHeight="292.0" fitWidth="492.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                      <padding>
                         <Insets top="30.0" />
