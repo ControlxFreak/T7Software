@@ -20,17 +20,21 @@ import java.util.Observable;
 import java.util.logging.Logger;
 
 import app.MainApp;
+import app.model.Animal;
 import app.model.Snapshot;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 
 public class SnapshotExplorerController {
@@ -39,22 +43,30 @@ public class SnapshotExplorerController {
 	private MainDisplayController main_controller;
 
 	@FXML
+	private RadioButton targetRadio;
+	@FXML
+	private RadioButton nonTargetRadio;
+	@FXML
 	private ImageView imageDisplay;
 	@FXML
 	private TextField descriptionField;
-	@FXML
-	private Spinner<Integer> prioritySpinner;
 	@FXML
 	private TextField timestampField;
 	@FXML
 	private TextArea notesArea;
 	@FXML
+	private TextField priorityField;
+	@FXML
 	private ListView<Snapshot> thumbnails;
+	@FXML
+	private VBox targetBox;
+	@FXML
+	private ChoiceBox<Animal> animalBox;
+	@FXML
+	private Spinner<Integer> qtySpinner;
 
 	@FXML
 	private void initialize() {
-		IntegerSpinnerValueFactory factory = new IntegerSpinnerValueFactory(1, 10);
-		prioritySpinner.setValueFactory(factory);
 		thumbnails.setItems(MainApp.getSnapshotData());
 		thumbnails.setCellFactory(new Callback<ListView<Snapshot>, ListCell<Snapshot>>()
 		{
@@ -89,6 +101,8 @@ public class SnapshotExplorerController {
 		}
 		thumbnails.getSelectionModel().selectedItemProperty().addListener(
 				(observable, oldValue, newValue) -> showSnapshotDetails(newValue));
+		qtySpinner.setValueFactory(new IntegerSpinnerValueFactory(1, 99));
+		animalBox.getItems().addAll(Animal.values());
 	}
 
 	@FXML
@@ -111,9 +125,18 @@ public class SnapshotExplorerController {
 
 		snap.setDescription(descriptionField.getText());
 		snap.setNotes(notesArea.getText());
-		snap.setPriority(prioritySpinner.getValue());
 		
-		main_controller.displaySnapshot(snap);
+		//main_controller.displaySnapshot(snap);
+		
+		calculatePriority();
+		snap.setPriority(Integer.valueOf(priorityField.getText()));
+		snap.setTarget(targetRadio.isSelected());
+		snap.setAnimal(animalBox.getValue());
+		snap.setAnimalQty(qtySpinner.getValue());
+	}
+
+	private void calculatePriority() {
+		priorityField.setText("1");
 	}
 
 	@FXML
@@ -123,6 +146,21 @@ public class SnapshotExplorerController {
 		
 		main_controller.displaySnapshot(snap);
 	}
+	
+	@FXML
+	private void handleTargetSelection() {
+		targetRadio.setSelected(true);
+		nonTargetRadio.setSelected(false);
+		targetBox.setVisible(true);
+		//priorityField.setText("");
+	}
+	
+	@FXML
+	private void handleNonTargetSelection() {
+		targetRadio.setSelected(false);
+		nonTargetRadio.setSelected(true);
+		targetBox.setVisible(false);
+	}
 
 	private void showSnapshotDetails(Snapshot snap) {
 		boolean imagePresent = false;
@@ -130,19 +168,35 @@ public class SnapshotExplorerController {
 			logger.warning("Tried to show null snapshot.");
 			imageDisplay.setImage(null);
 			descriptionField.setText("");
-			prioritySpinner.getValueFactory().setValue(1);
+			priorityField.setText("");
 			timestampField.setText("");
 			notesArea.setText("");
+			animalBox.setValue(Animal.UNKNOWN);
+			qtySpinner.getValueFactory().setValue(1);
+			priorityField.setText("");
+			handleNonTargetSelection();
 		} else {
 			imagePresent = true;
 			imageDisplay.setImage(snap.getImage());
+			if(snap.isTarget()) {
+				handleTargetSelection();
+			} else {
+				handleNonTargetSelection();
+			}
 			descriptionField.setText(snap.getDescription());
-			prioritySpinner.getValueFactory().setValue(snap.getPriority());
 			timestampField.setText(snap.getTimestamp().toString());
 			notesArea.setText(snap.getNotes());
+			animalBox.setValue(snap.getAnimal());
+			if(qtySpinner.getValueFactory() != null) {
+				qtySpinner.getValueFactory().setValue(snap.getAnimalQty());
+			}
+			if(snap.getPriority() == -1) {
+				priorityField.setText("");
+			} else {
+				priorityField.setText(Integer.toString(snap.getPriority()));
+			}
 		}
 		descriptionField.setEditable(imagePresent);
-		prioritySpinner.setEditable(imagePresent);
 		notesArea.setEditable(imagePresent);
 		centerImage();
 	}

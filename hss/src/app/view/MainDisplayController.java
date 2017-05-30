@@ -285,7 +285,8 @@ public class MainDisplayController {
 	public void displaySnapshot(Snapshot snap) {
 		snapshot_display.setImage(snap.getImage());
 		pin_display.setImage(Snapshot.getPin());
-		priLabel.setText(Integer.toString(snap.getPriority()));
+		//priLabel.setText(Integer.toString(snap.getPriority()));
+		priLabel.setText(Integer.toString(1));
 		centerImage();
 		/*
 		snapshot_anchor.setPrefWidth(snapshot_display.getFitWidth());
@@ -294,12 +295,14 @@ public class MainDisplayController {
 	}
 
 	public void checkDisplayedSnapshot(Snapshot snapshot) {
-		if(snapshot_display.getImage().equals(snapshot.getImage())) {
-			snapshot_display.setImage(null);
-			pin_display.setImage(null);
-			priLabel.setText("");
-			
-			System.out.println("w: " + snapshot_display.getFitWidth() + ", h: " + snapshot_display.getFitHeight());
+		if(snapshot_display.getImage() != null) {
+			if(snapshot_display.getImage().equals(snapshot.getImage())) {
+				snapshot_display.setImage(null);
+				pin_display.setImage(null);
+				priLabel.setText("");
+
+				System.out.println("w: " + snapshot_display.getFitWidth() + ", h: " + snapshot_display.getFitHeight());
+			}
 		}
 	}
 
