@@ -32,7 +32,7 @@ import app.org.multiwii.swingui.gui.comp.MwJPanel;
 public abstract class MwInstrumentJPanel extends MwJPanel implements
 		MwDataSourceListener {
 
-	private static final Float FONTSIZE = 12.0f;
+	//private static final Float FONTSIZE = 12.0f;
 
 	/**
      *

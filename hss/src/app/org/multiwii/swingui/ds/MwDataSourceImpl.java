@@ -15,12 +15,7 @@ package app.org.multiwii.swingui.ds;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import org.apache.log4j.Logger;
-import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.XYDataset;
 
@@ -30,8 +25,8 @@ import org.jfree.data.xy.XYDataset;
  * @author treym
  */
 public class MwDataSourceImpl implements MwDataSource {
-	private static final Logger LOGGER = Logger
-			.getLogger(MwDataSourceImpl.class);
+	//private static final Logger LOGGER = Logger
+			//.getLogger(MwDataSourceImpl.class);
 
 	// TODO impl factory
 	// private MwDataSourceImpl(){}
@@ -44,7 +39,7 @@ public class MwDataSourceImpl implements MwDataSource {
 	private long maxItemAge = 2000;
 
 	//private final Map<Class<? extends MwSensorClass>, Map<String, TimeSeries>> sensors = new Hashtable<Class<? extends MwSensorClass>, Map<String, TimeSeries>>();
-	private final Map<String, TimeSeries> sensors = new HashMap<String, TimeSeries>();
+	//private final Map<String, TimeSeries> sensors = new HashMap<String, TimeSeries>();
 
 	// public int getMaxItemCount() {
 	// return maxItemCount;

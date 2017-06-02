@@ -28,10 +28,7 @@ import java.util.Properties;
 import java.util.Timer;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -133,14 +130,14 @@ public final class MwGuiFrame extends JFrame implements
 
 	private static final Logger LOGGER = Logger.getLogger(MwGuiFrame.class);
 
-	private static final Integer DEFAULT_BAUDRATE = 115200;
-	private static final Integer DEAULT_RATE = 10;
+	//private static final Integer DEFAULT_BAUDRATE = 115200;
+	//private static final Integer DEAULT_RATE = 10;
 
-	private Integer refreshRate = DEAULT_RATE;
+	//private Integer refreshRate = DEAULT_RATE;
 
 	public static final List<Integer> SERIAL_REFRESHRATES = initializeMap();
 
-	private static ButtonGroup baudRateMenuGroup;
+	//private static ButtonGroup baudRateMenuGroup;
 	//private static MwSensorCheckBoxJPanel chartCheckBoxsPanel;
 
 	//private static SerialCom com;
@@ -156,14 +153,14 @@ public final class MwGuiFrame extends JFrame implements
 	private static MwJMenuItem disconnectSerial;
 	private static MwJMenuItem rescanSerial;
 	*/
-	private static JMenu serialMenuPort;
+	//private static JMenu serialMenuPort;
 
-	private boolean inited = false;
+	//private boolean inited = false;
 
-	private MwGuiFrame instance;
+	//private MwGuiFrame instance;
 
-	private static JMenuBar menuBar;
-	private static ButtonGroup portNameMenuGroup;
+	//private static JMenuBar menuBar;
+	//private static ButtonGroup portNameMenuGroup;
 
 	private static MwChartPanel realTimeChart;
 
@@ -181,10 +178,12 @@ public final class MwGuiFrame extends JFrame implements
      *
      */
 	private static final long serialVersionUID = 1L;
+	/*
 	private static final String TEXT_ABOUT = "MwGui A Java Swing frontend for multiwii\n\n"
 			+ "This program comes with ABSOLUTELY NO WARRANTY.\n"
 			+ "This is free software, and you are welcome to redistribute it\n"
 			+ "under certain conditions";
+			*/
 	// private static LogViewerFrame motorFrame;
 	// private static LogViewerFrame servoFrame;
 	private static Timer timer;
@@ -523,7 +522,7 @@ public final class MwGuiFrame extends JFrame implements
 			}
 		});
 		*/
-		instance = this;
+		//instance = this;
 		conf = mwConfiguration;
 		MSP.getRealTimeData().addListener(this);
 
@@ -904,7 +903,7 @@ public final class MwGuiFrame extends JFrame implements
 	public void readNewValue(Integer string, int i) {
 		switch (string) {
 		case MSP.UAVVERSION_KEY:
-			inited = true;
+			//inited = true;
 			break;
 		case MSP.UAVTYPE_KEY:
 			uavPanel.setUavType(i);

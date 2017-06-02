@@ -49,7 +49,7 @@ public class MwDataModel {
 
 	// ------ TODO
 	// global ident
-	private final int version = -1, multiType = -1;
+	//private final int version = -1, multiType = -1;
 
 	public MwDataModel() {
 		super();

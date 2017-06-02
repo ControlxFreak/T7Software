@@ -45,8 +45,8 @@ public final class MSP {
 
 	// TODO create classes for constant value for each msp version
 	// we might have more than 8 motors in the future
-	private static final int MAXSERVO = 8;
-	private static final int MAXMOTOR = 8;
+	//private static final int MAXSERVO = 8;
+	//private static final int MAXMOTOR = 8;
 
 	public static final int UAV_TRI = 1;
 	public static final int UAV_QUADP = 2;

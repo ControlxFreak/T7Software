@@ -75,7 +75,7 @@ public class MainDisplayController {
 	public void setup() {
 		logger.fine("Initializing MainDisplayController.");
 		
-		SwingNode tempGaugeNode = null;
+		//SwingNode tempGaugeNode = null;
 
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -177,7 +177,7 @@ public class MainDisplayController {
 	*/
 	
 	public void updateDatum(double d, MsgType type) {
-		String newVal = doubleDatumToLabelString(d);
+		//String newVal = doubleDatumToLabelString(d);
 
 		switch(type) {
 		case TEMP:
@@ -210,6 +210,7 @@ public class MainDisplayController {
 		}
 	}
 
+	/*
 	private String doubleDatumToLabelString(double d) {
 		String s = "";
 		if(d != Double.MIN_VALUE) {
@@ -218,7 +219,6 @@ public class MainDisplayController {
 		return s;
 	}
 
-	/*
 	private void centerRcBoxNodes() {
 		SwingNode node1 = (SwingNode)receiversBox.getChildren().get(1);
 		SwingNode node2 = (SwingNode)receiversBox.getChildren().get(2);

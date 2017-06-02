@@ -26,7 +26,6 @@ import T7.T7Messages.GenericMessage;
 public class UAVClient implements Runnable{
 
 	private static final int PORT_NUM		= 9001;
-	@SuppressWarnings("unused")
 	private static Logger logger			= Logger.getLogger(UAVClient.class.getName());
 	private Socket mc_sock;
 	private volatile boolean timeToExit = false;

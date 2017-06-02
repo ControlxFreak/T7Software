@@ -18,7 +18,6 @@ package app;
 
 
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,7 +41,6 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -55,14 +53,8 @@ public class MainApp extends Application {
 
 	private static Logger logger			= Logger.getLogger(MainApp.class.getName());
 	private Stage primaryStage;
-	private Stage secondaryStage;
 	private static AnchorPane rootLayout;
-	private static AnchorPane snapLayout;
-	private static AnchorPane configLayout;
 	private static MainDisplayController main_controller;
-	private static SnapshotExplorerController snap_controller;
-	private static DataConfigurationDialogController config_controller;
-	private static FXMLLoader main_loader;
 	private static UAVServer server = new UAVServer();
 	private static UAVClient camera_client = null;
 	private static UAVClient config_client = null;
@@ -88,6 +80,7 @@ public class MainApp extends Application {
 		initClients();
 	}
 
+	/*
 	private void testInitSnapshot() {
 			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/kelly.jpg")).toURI().toString())));
 			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/jessie.jpg")).toURI().toString())));
@@ -109,6 +102,7 @@ public class MainApp extends Application {
 		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/T7Software/hss/src/main/resources/images/landscape2.jpg").toURI().toString())));
 		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/T7Software/hss/src/main/resources/images/landscape3.jpg").toURI().toString())));
 	}
+	*/
 
 	private void initDataConfiguration() {		
 		config_arr[ToggleKeys.toggleAccel_VALUE] = true;
@@ -261,20 +255,11 @@ public class MainApp extends Application {
 		}
 	}
 
+	/*
 	private static void setConfig(boolean[] config_arr) {
 		MainApp.config_arr = config_arr;
 	}
-
-	private void showMainDisplay() {
-	}
-
-	private void initSnapLayout() {
-
-	}
-
-	private void initConfigLayout() {
-
-	}
+	*/
 
 	private void initRootLayout() {
 		try {
