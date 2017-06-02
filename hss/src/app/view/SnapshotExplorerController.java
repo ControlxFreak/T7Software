@@ -16,6 +16,8 @@
  */
 package app.view;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Observable;
 import java.util.logging.Logger;
 
@@ -109,8 +111,10 @@ public class SnapshotExplorerController {
 	private void handleDelete() {
 		int index = thumbnails.getSelectionModel().getSelectedIndex();
 		ObservableList<Snapshot> snap_list = MainApp.getSnapshotData();
-		main_controller.checkDisplayedSnapshot(snap_list.get(index));
+		main_controller.checkDeleteDisplayedSnapshot(snap_list.get(index));
 		snap_list.remove(index);
+		MainApp.updatePriorities();
+		main_controller.updateEmbeddedSnap();
 	}
 
 	@FXML
@@ -127,16 +131,22 @@ public class SnapshotExplorerController {
 		snap.setNotes(notesArea.getText());
 		
 		//main_controller.displaySnapshot(snap);
-		
-		calculatePriority();
-		snap.setPriority(Integer.valueOf(priorityField.getText()));
+
 		snap.setTarget(targetRadio.isSelected());
 		snap.setAnimal(animalBox.getValue());
 		snap.setAnimalQty(qtySpinner.getValue());
-	}
 
-	private void calculatePriority() {
-		priorityField.setText("1");
+		snap.refreshPriorityVal();	//TODO Add temperature
+		MainApp.updatePriorities();
+		if(snap.isTarget()) {
+			handleTargetSelection();
+		} else {
+			handleNonTargetSelection();
+		}
+		
+		priorityField.setText(Integer.toString(snap.getRelativePriority()));
+		System.out.println("main_controller = " + main_controller);
+		main_controller.updateEmbeddedSnap();
 	}
 
 	@FXML
@@ -152,7 +162,7 @@ public class SnapshotExplorerController {
 		targetRadio.setSelected(true);
 		nonTargetRadio.setSelected(false);
 		targetBox.setVisible(true);
-		//priorityField.setText("");
+		priorityField.setVisible(true);
 	}
 	
 	@FXML
@@ -160,6 +170,7 @@ public class SnapshotExplorerController {
 		targetRadio.setSelected(false);
 		nonTargetRadio.setSelected(true);
 		targetBox.setVisible(false);
+		priorityField.setVisible(false);
 	}
 
 	private void showSnapshotDetails(Snapshot snap) {
@@ -173,7 +184,6 @@ public class SnapshotExplorerController {
 			notesArea.setText("");
 			animalBox.setValue(Animal.UNKNOWN);
 			qtySpinner.getValueFactory().setValue(1);
-			priorityField.setText("");
 			handleNonTargetSelection();
 		} else {
 			imagePresent = true;
@@ -186,14 +196,10 @@ public class SnapshotExplorerController {
 			descriptionField.setText(snap.getDescription());
 			timestampField.setText(snap.getTimestamp().toString());
 			notesArea.setText(snap.getNotes());
+			priorityField.setText(Integer.toString(snap.getRelativePriority()));
 			animalBox.setValue(snap.getAnimal());
 			if(qtySpinner.getValueFactory() != null) {
 				qtySpinner.getValueFactory().setValue(snap.getAnimalQty());
-			}
-			if(snap.getPriority() == -1) {
-				priorityField.setText("");
-			} else {
-				priorityField.setText(Integer.toString(snap.getPriority()));
 			}
 		}
 		descriptionField.setEditable(imagePresent);

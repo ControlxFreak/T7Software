@@ -21,6 +21,7 @@ package app;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -99,7 +100,7 @@ public class MainApp extends Application {
 		initDataConfiguration();
 
 		//testInitSnapshot();
-		testInitSnapshot2();
+		//testInitSnapshot2();
 
 		initServer();
 
@@ -155,6 +156,7 @@ public class MainApp extends Application {
 	private void takeSnapshot() {
 		//snapshotData.add(0, new Snapshot(new Image((new File("/home/jarrett/T7Software/hss/src/main/resources/images/topanga.jpg")).toURI().toString())));
 		snapshotData.add(0, new Snapshot(main_controller.takeSnapshot()));
+		updatePriorities();
 
 		showSnapshotExplorer();
 	}
@@ -174,6 +176,7 @@ public class MainApp extends Application {
 		explorerStage.setScene(scene);
 
 		SnapshotExplorerController controller = loader.getController();
+		System.out.println("main_controller = " + main_controller);
 		controller.setMainController(main_controller);
 
 		System.out.println("list before dialog: " + snapshotData.toString());
@@ -425,6 +428,22 @@ public class MainApp extends Application {
 			return config_arr[ToggleKeys.toggleBat_VALUE];
 		default:
 			throw new IllegalArgumentException("Illegal MsgType: " + type);
+		}
+	}
+	
+	public static void updatePriorities() {
+		ArrayList<Snapshot> orderedSnaps = new ArrayList<>();
+		orderedSnaps.addAll(snapshotData);
+		for(int i = 0; i < orderedSnaps.size(); i++) {
+			Snapshot s = orderedSnaps.get(i);
+			if(!s.isTarget()) {
+				orderedSnaps.remove(i);
+			}
+		}
+		Collections.sort(orderedSnaps);
+		
+		for(int i = 0; i < orderedSnaps.size(); i++) {
+			orderedSnaps.get(i).setRelativePriority(orderedSnaps.size() - i);
 		}
 	}
 }

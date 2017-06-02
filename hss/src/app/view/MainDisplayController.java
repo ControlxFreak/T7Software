@@ -90,6 +90,7 @@ public class MainDisplayController {
 	private MwHudPanel hudPanel;
 	private MwCompasPanel compasPanel;
 	private SimpleMetroArcGauge tempGauge;
+	private Snapshot embedded_snap;
 
 	public void setup() {
 		logger.fine("Initializing MainDisplayController.");
@@ -283,10 +284,11 @@ public class MainDisplayController {
 	}
 	
 	public void displaySnapshot(Snapshot snap) {
+		setEmbeddedSnap(snap);
 		snapshot_display.setImage(snap.getImage());
 		pin_display.setImage(Snapshot.getPin());
 		//priLabel.setText(Integer.toString(snap.getPriority()));
-		priLabel.setText(Integer.toString(1));
+		priLabel.setText(Integer.toString(snap.getRelativePriority()));
 		centerImage();
 		/*
 		snapshot_anchor.setPrefWidth(snapshot_display.getFitWidth());
@@ -294,14 +296,33 @@ public class MainDisplayController {
 		*/
 	}
 
-	public void checkDisplayedSnapshot(Snapshot snapshot) {
+	public void checkDeleteDisplayedSnapshot(Snapshot snapshot) {
 		if(snapshot_display.getImage() != null) {
 			if(snapshot_display.getImage().equals(snapshot.getImage())) {
 				snapshot_display.setImage(null);
 				pin_display.setImage(null);
 				priLabel.setText("");
+				embedded_snap = null;
 
 				System.out.println("w: " + snapshot_display.getFitWidth() + ", h: " + snapshot_display.getFitHeight());
+			}
+		}
+	}
+
+	public Snapshot getEmbeddedSnap() {
+		return embedded_snap;
+	}
+
+	public void setEmbeddedSnap(Snapshot embedded_snap) {
+		this.embedded_snap = embedded_snap;
+	}
+
+	public void updateEmbeddedSnap() {
+		if(embedded_snap != null) {
+			if(embedded_snap.isTarget()) {
+				priLabel.setText(Integer.toString(embedded_snap.getRelativePriority()));
+			} else {
+				priLabel.setText("");
 			}
 		}
 	}

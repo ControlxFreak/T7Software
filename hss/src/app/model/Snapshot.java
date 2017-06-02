@@ -5,18 +5,20 @@ import java.util.Date;
 
 import javafx.scene.image.Image;
 
-public class Snapshot {
+public class Snapshot implements Comparable<Snapshot>{
 	
 	private static final Image pin = new Image((new File("/home/jarrett/T7Software/hss/src/main/resources/images/default/red_pin.png")).toURI().toString());
 
 	private Image image;
-	private int priority = -1;
+	private double priorityVal = -1;
+	private int relativePriority = -1;
 	private String description;
 	private String notes;
 	private Date timestamp = new Date();
 	private boolean target = true;
 	private Animal animal = Animal.UNKNOWN;
-	private int animalQty = 0;
+	private int animalQty = 1;
+	private double maxThermal = 0.0;
 
 	public Snapshot(Image image) {
 		this.image = image;
@@ -26,12 +28,12 @@ public class Snapshot {
 		return image;
 	}
 
-	public void setPriority(int priority) {
-		this.priority = priority;
+	public void setPriorityVal(double priority) {
+		this.priorityVal = priority;
 	}
 
-	public int getPriority() {
-		return priority;
+	public double getPriorityVal() {
+		return priorityVal;
 	}
 
 	public String getDescription() {
@@ -84,5 +86,38 @@ public class Snapshot {
 
 	public void setAnimalQty(int animalQty) {
 		this.animalQty = animalQty;
+	}
+
+	@Override
+	public int compareTo(Snapshot o) {
+		double d = this.priorityVal - o.priorityVal;
+		
+		if(d < 0) {
+			return -1;
+		} if (d == 0) {
+			return 0;
+		} else {
+			return 1;
+		}
+	}
+
+	public int getRelativePriority() {
+		return relativePriority;
+	}
+
+	public void setRelativePriority(int relativePriority) {
+		this.relativePriority = relativePriority;
+	}
+
+	public void refreshPriorityVal() {
+		priorityVal = animal.getPriority() * animalQty + 0*maxThermal;
+	}
+
+	public double getMaxThermal() {
+		return maxThermal;
+	}
+
+	public void setMaxThermal(double maxThermal) {
+		this.maxThermal = maxThermal;
 	}
 }

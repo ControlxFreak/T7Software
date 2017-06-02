@@ -20,7 +20,7 @@ public enum Animal {
 		this.priority = priority;
 	}
 	
-	int priority() {
+	public int getPriority() {
 		return priority;
 	}
 }
