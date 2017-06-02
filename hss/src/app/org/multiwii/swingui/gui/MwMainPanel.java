@@ -16,10 +16,7 @@ package app.org.multiwii.swingui.gui;
 import java.awt.Component;
 import java.awt.GridLayout;
 
-import javax.swing.JTabbedPane;
-
 import app.org.multiwii.swingui.gui.comp.MwJPanel;
-import app.org.multiwii.swingui.gui.comp.MwJTabbedPane;
 
 public class MwMainPanel extends MwJPanel {
 

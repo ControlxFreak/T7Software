@@ -22,6 +22,7 @@ public class MwColorDefault extends MwColor {
 	public List<Color> COLOR_GRAPH = getGraphColor();
 	public List<Color> COLOR = getColor();
 
+	@Override
 	public Color getColorImpl(int colortype, int colorKey) {
 		switch (colortype) {
 		case COLORSETGRAPH:

@@ -16,47 +16,27 @@
  */
 package app.view;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.io.File;
 import java.util.logging.Logger;
 
-import javax.swing.JComponent;
-import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-import javax.swing.border.EmptyBorder;
-
 import T7.T7Messages.GenericMessage.MsgType;
 import app.model.Snapshot;
 import app.org.multiwii.msp.MSP;
 import app.org.multiwii.swingui.gui.MwConfiguration;
-import app.org.multiwii.swingui.gui.MwGuiFrame;
 import app.org.multiwii.swingui.gui.chart.MwChartFactory;
 import app.org.multiwii.swingui.gui.chart.MwChartPanel;
-import app.org.multiwii.swingui.gui.comp.MwJPanel;
 import app.org.multiwii.swingui.gui.instrument.MwCompasPanel;
 import app.org.multiwii.swingui.gui.instrument.MwHudPanel;
-import app.org.multiwii.swingui.gui.instrument.MwInstrumentJPanel;
 import app.org.multiwii.swingui.gui.instrument.MwRCDataPanel;
 import app.org.multiwii.swingui.gui.instrument.MwUAVPanel;
 import javafx.embed.swing.SwingNode;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import jfxtras.internal.scene.control.gauge.linear.skin.AbstractLinearGaugeSkin;
-import jfxtras.scene.control.gauge.linear.BasicRoundDailGauge;
 import jfxtras.scene.control.gauge.linear.SimpleMetroArcGauge;
 import jfxtras.scene.control.gauge.linear.elements.PercentSegment;
 import jfxtras.scene.control.gauge.linear.elements.Segment;

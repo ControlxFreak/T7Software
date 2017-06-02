@@ -21,10 +21,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.stage.Stage;
 
-import java.util.Map;
-
 import T7.T7Messages.ConfigData.ToggleKeys;
-import T7.T7Messages.GenericMessage.MsgType;
 
 public class DataConfigurationDialogController {
 

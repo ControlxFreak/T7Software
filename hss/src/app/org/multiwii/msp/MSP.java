@@ -18,8 +18,6 @@ package app.org.multiwii.msp;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.util.Date;
-
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeListener;
 
@@ -117,6 +115,7 @@ public final class MSP {
 			return ret;
 		}
 
+		@Override
 		public void run() {
 			// check sum has already been verified, running this on event
 			// dispatching thread.

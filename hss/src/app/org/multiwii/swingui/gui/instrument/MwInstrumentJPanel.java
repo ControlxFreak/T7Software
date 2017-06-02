@@ -23,10 +23,6 @@ import java.awt.Toolkit;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Path2D;
 import java.awt.geom.Point2D;
-import java.io.File;
-import java.io.InputStream;
-import java.net.URL;
-
 import app.org.multiwii.swingui.ds.MwDataSourceListener;
 import app.org.multiwii.swingui.gui.MwConfiguration;
 import app.org.multiwii.swingui.gui.MwGuiRuntimeException;

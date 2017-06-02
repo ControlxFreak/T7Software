@@ -22,20 +22,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.logging.Logger;
-
-import javax.imageio.ImageIO;
-import javax.swing.JComponent;
-import javax.swing.SwingUtilities;
-
-import org.apache.logging.log4j.spi.Terminable;
-
-import app.org.multiwii.swingui.gui.MwConfiguration;
-import app.org.multiwii.swingui.gui.MwGuiFrame;
 
 import T7.T7Messages.GenericMessage;
 import T7.T7Messages.MoveCamera;
@@ -50,23 +39,15 @@ import app.view.SnapshotExplorerController;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.embed.swing.SwingNode;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.DialogPane;
 import javafx.scene.image.Image;
-import javafx.scene.control.ButtonBar.ButtonData;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
-import app.org.multiwii.swingui.gui.MwConfiguration;
 import networking.client.UAVClient;
 import networking.server.UAVServer;
 
