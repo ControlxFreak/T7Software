@@ -35,6 +35,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import jfxtras.scene.control.gauge.linear.SimpleMetroArcGauge;
@@ -136,7 +139,8 @@ public class MainDisplayController {
 		horizonTempBox.getChildren().add(horizonNode);
 		*/
 		WebEngine engine = video.getEngine();
-		engine.load("https://www.youtube.com");
+		engine.load("http://t7rpi.asuscomm.com/html/");
+		video.setZoom(1.5);
 		//snapshot_display.setImage(new Image(new File("/home/jarrett/T7Software/hss/src/main/resources/images/fire3.jpg").toURI().toString()));
 		centerImage();
 		//horizonTempBox.getChildren().add(tempGaugeNode);
@@ -309,7 +313,7 @@ public class MainDisplayController {
 
 	/*
 	public void streamVideo() {
-		MediaPlayer player = new MediaPlayer(new Media("http://youtu.be/ShgtqhZE42Y"));
+		MediaPlayer player = new MediaPlayer(new Media("http://t7rpi.asuscomm.com/html"));
 		video.setMediaPlayer(player);
 		player.play();
 	}
