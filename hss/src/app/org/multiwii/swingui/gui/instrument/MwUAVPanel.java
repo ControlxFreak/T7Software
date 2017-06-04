@@ -76,7 +76,7 @@ public class MwUAVPanel extends MwInstrumentJPanel {
 
 	private Image[] getImages() {
 		Image[] mm = new Image[14];
-		for (int i = 1; i < mm.length; i++) {
+		for (int i = 3; i < 4; i++) {
 			mm[i] = super.getImage("uav/" + i + ".png");
 		}
 		return mm;

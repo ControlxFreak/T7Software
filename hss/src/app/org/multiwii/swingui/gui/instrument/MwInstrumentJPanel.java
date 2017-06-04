@@ -23,6 +23,10 @@ import java.awt.Toolkit;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Path2D;
 import java.awt.geom.Point2D;
+import java.io.File;
+
+import javax.imageio.ImageIO;
+
 import app.org.multiwii.swingui.ds.MwDataSourceListener;
 import app.org.multiwii.swingui.gui.MwConfiguration;
 import app.org.multiwii.swingui.gui.MwGuiRuntimeException;
@@ -282,12 +286,16 @@ public abstract class MwInstrumentJPanel extends MwJPanel implements
 		String fpath = conf.getPath(MwConfiguration.THEME) + image;
 
 		try {
-			//System.out.println("fpath:"+fpath);
+			System.out.println("fpath:"+fpath);
 			//URL url = this.getClass().getResource(fpath);
 			//URL url = new URL(fpath);
 			//System.out.println(url);
 			//System.out.println(Toolkit.getDefaultToolkit());
+			/*
 			return Toolkit.getDefaultToolkit().getImage(fpath);
+			*/
+			
+			return ImageIO.read(new File(fpath));
 
 		} catch (Throwable e) {
 			// this never works, images seem to be loaded on another thread

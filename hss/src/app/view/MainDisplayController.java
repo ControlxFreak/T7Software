@@ -120,6 +120,11 @@ public class MainDisplayController {
 				
 				//frame.setVisible(true);
 				//frame.repaint();
+				realTimeChart.repaint();
+				rcDataPanel.repaint();
+				uavPanel.repaint();
+				hudPanel.repaint();
+				compasPanel.repaint();
 			}
 
 		});
