@@ -29,3 +29,5 @@
 # Miscellaneous #
 ######################
 *.swp
+/main_computer/src/OBC/build/
+/main_computer/src/OBC/dist/

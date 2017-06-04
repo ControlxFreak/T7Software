@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------------
-Function Name: CoreProcessor.h
+Function Name: WatchDog.cpp
 
 --------------------------------------------------------------------------------
 Inputs:
@@ -26,40 +26,50 @@ Change Log
 #include "WatchDog.h"
 
 //----------------------------------------------------------------------------//
-// launch() this method is the main method that will run until the timeToDie flag 
-//       is set to true.
+// check() this method that will check the health of the OBC software
 //----------------------------------------------------------------------------//
-void WatchDog::launch(){
-    DataManager* data = DataManager::getInstance();
-    while(!timeToDie || !data->timeToDieMap[data->WATCHDOG_SHUTDOWN])
-    {
-        // Check for thread interruptions
-    } //while(!ttd)
+
+void
+WatchDog::check() {
+
+    // ---------------------------------------------------------------------- //
+    //Check the time to die map!
+    if (data->timeToDieMap[timeToDieFlags::GLOBAL_SHUTDOWN]) {
+        data->set_all_timeToDie(true);
+        return;
+    } //global shutdown
+
+    // ---------------------------------------------------------------------- //
+    // Check the socket healths
+    if (data->sockHealth[sockKeys::ACCEL] == failureCodes::socketDisconnected) {
+        IO->relaunch_client(sockKeys::ACCEL);
+    }
+    if (data->sockHealth[sockKeys::ALTITUDE] == failureCodes::socketDisconnected) {
+        IO->relaunch_client(sockKeys::ALTITUDE);
+    }
+    if (data->sockHealth[sockKeys::ATTITUDE] == failureCodes::socketDisconnected) {
+        IO->relaunch_client(sockKeys::ATTITUDE);
+    }
+    if (data->sockHealth[sockKeys::BAT] == failureCodes::socketDisconnected) {
+        IO->relaunch_client(sockKeys::BAT);
+    }
+    if (data->sockHealth[sockKeys::GYRO] == failureCodes::socketDisconnected) {
+        IO->relaunch_client(sockKeys::GYRO);
+    }
+    if (data->sockHealth[sockKeys::TEMP] == failureCodes::socketDisconnected) {
+        IO->relaunch_client(sockKeys::TEMP);
+    }
+
 } // launch()
 
-//----------------------------------------------------------------------------//
-// clean() this method cleans up the watchdog
-//----------------------------------------------------------------------------//
-void WatchDog::clean()
-{
-    SystemHealth = failureCodes::noFailure; 
-    timeToDie = false;
-} //clean()
-
-
-//----------------------------------------------------------------------------//
-// kill() as the name implys, this sets the timeToDie flag to true and kills 
-//        the run 
-//----------------------------------------------------------------------------//
-void WatchDog::kill()
-{
-    timeToDie = true;
-} // kill()
 
 //----------------------------------------------------------------------------//
 // Constructors and Destructors
 //----------------------------------------------------------------------------//
+
 WatchDog::WatchDog() {
+    data = DataManager::getInstance();
+    IO = IOManager::getInstance();
 }
 
 WatchDog::WatchDog(const WatchDog& orig) {

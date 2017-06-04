@@ -29,9 +29,11 @@ Change Log
  */
 
 #include "Executive.h"
-#include "logger/LogManager.h"
-using namespace std;
+#include "LogManager.h"
+#include "T7Types.h"
+#include <signal.h>
 
+using namespace std;
 
 // ------------------------------------------------------------------------------
 //   Quit Signal Handler
@@ -76,7 +78,7 @@ main() {
             // Launch the Executive
             Exec->launch();
             // If the watchdog says that we are complete, then do it!
-            if (Exec->WD->SystemHealth == Exec->WD->noFailure){ break; }
+            if (Exec->data->SystemHealth != failureCodes::RESTART){ break; }
 
             Exec->needsCleaning = true;
         } catch (...) {} // try catch
@@ -85,7 +87,7 @@ main() {
     // Cleanup!!
     Exec->clean();
     // Return the code determined by the executive
-    return Exec->WD->SystemHealth;
+    return 0;
 } // main
 
 
