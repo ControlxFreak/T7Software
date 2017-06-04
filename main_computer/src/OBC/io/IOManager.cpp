@@ -74,6 +74,7 @@ IOManager::launch_clients() {
 //----------------------------------------------------------------------------//
 // launch_server() launches the tcp server
 //----------------------------------------------------------------------------//
+
 void
 IOManager::launch_server() {
 
@@ -85,6 +86,7 @@ IOManager::launch_server() {
 //----------------------------------------------------------------------------//
 // launch_serial() launches the serial thread
 //----------------------------------------------------------------------------//
+
 void
 IOManager::launch_serial() {
 
@@ -95,6 +97,7 @@ IOManager::launch_serial() {
 //----------------------------------------------------------------------------//
 // client_handler() handles all tcp client communication
 //----------------------------------------------------------------------------//
+
 void
 IOManager::client_handler(int id) {
 
@@ -517,18 +520,29 @@ IOManager::acceptor_handler(TCPStream* stream, int id) {
 } // acceptor_handler
 
 void
-IOManager::clean(){
-    
+IOManager::clean() {
+    data->set_threads_timeToDie(true);
 } // clean
 
-void 
-IOManager::relaunch_client(int id){
-    
-}
+void
+IOManager::relaunch_client(int id) {
+    if (sockThreadMap[id] == NULL || data->sockHealth[id] == failureCodes::socketDisconnected) {
+        char pbuff[256];
+        snprintf(pbuff, 256, "Re-launching Socket:  ID = %d\n", id);
+        string sbuff(pbuff);
+        LM->append(sbuff);
+        
+        // reset the socket codes
+        data->sockHealth[id] = failureCodes::noFailure;
+        data->timeToDieMap[id] = false;
+        sockThreadMap[id] = new thread(&IOManager::client_handler, this, id);
+    } // if
+} // relaunch_client
 
 // -------------------------------------------------------------------------- //
 // Constructors and Destructor
 // -------------------------------------------------------------------------- //
+
 IOManager::IOManager() {
     // Initialize the Logger Instance
     LM = LogManager::getInstance();

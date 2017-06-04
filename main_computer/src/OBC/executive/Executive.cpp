@@ -81,6 +81,7 @@ Executive::run()
     LM->append("Running Executive\n");
     WatchDog WD = WatchDog();
     
+    vector< double > gyro;
     vector< double > accel;
     // Loop until it is time to die
     while(!data->timeToDieMap[timeToDieFlags::EXECUTIVE_SHUTDOWN])
@@ -92,8 +93,16 @@ Executive::run()
             accel.push_back(3);
             accel.push_back(-9.3);
 
+            gyro.push_back(999);
+            gyro.push_back(99999);
+            gyro.push_back(12345);
+            gyro.push_back(000);
+            
             data->accelQueue.push(accel);
+            data->gyroQueue.push(gyro);
+            
             accel.clear();
+            gyro.clear();
         }
         WD.check();
     } //while(!timeToDie)

@@ -42,33 +42,21 @@ WatchDog::check() {
     // ---------------------------------------------------------------------- //
     // Check the socket healths
     if (data->sockHealth[sockKeys::ACCEL] == failureCodes::socketDisconnected) {
-        data->sockHealth[sockKeys::ACCEL] = failureCodes::noFailure;
-        data->timeToDieMap[sockKeys::ACCEL] = false;
         IO->relaunch_client(sockKeys::ACCEL);
     }
     if (data->sockHealth[sockKeys::ALTITUDE] == failureCodes::socketDisconnected) {
-        data->sockHealth[sockKeys::ALTITUDE] = failureCodes::noFailure;
-        data->timeToDieMap[sockKeys::ALTITUDE] = false;
         IO->relaunch_client(sockKeys::ALTITUDE);
     }
     if (data->sockHealth[sockKeys::ATTITUDE] == failureCodes::socketDisconnected) {
-        data->sockHealth[sockKeys::ATTITUDE] = failureCodes::noFailure;
-        data->timeToDieMap[sockKeys::ATTITUDE] = false;
         IO->relaunch_client(sockKeys::ATTITUDE);
     }
     if (data->sockHealth[sockKeys::BAT] == failureCodes::socketDisconnected) {
-        data->sockHealth[sockKeys::BAT] = failureCodes::noFailure;
-        data->timeToDieMap[sockKeys::BAT] = false;
         IO->relaunch_client(sockKeys::BAT);
     }
     if (data->sockHealth[sockKeys::GYRO] == failureCodes::socketDisconnected) {
-        data->sockHealth[sockKeys::GYRO] = failureCodes::noFailure;
-        data->timeToDieMap[sockKeys::GYRO] = false;
         IO->relaunch_client(sockKeys::GYRO);
     }
     if (data->sockHealth[sockKeys::TEMP] == failureCodes::socketDisconnected) {
-        data->sockHealth[sockKeys::TEMP] = failureCodes::noFailure;
-        data->timeToDieMap[sockKeys::TEMP] = false;
         IO->relaunch_client(sockKeys::TEMP);
     }
 
