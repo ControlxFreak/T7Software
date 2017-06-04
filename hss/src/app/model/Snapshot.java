@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 
 public class Snapshot implements Comparable<Snapshot>{
 	
-	private static final Image pin = new Image((new File("/home/jarrett/T7Software/hss/src/main/resources/images/default/red_pin.png")).toURI().toString());
+	private static final Image pin = new Image((new File("src/main/resources/images/default/red_pin.png")).toURI().toString());
 
 	private Image image;
 	private double priorityVal = -1;

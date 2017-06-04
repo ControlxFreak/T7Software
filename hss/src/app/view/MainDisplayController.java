@@ -165,7 +165,7 @@ public class MainDisplayController {
 		tempGauge.setStyle("-fxx-segment1-color: #ffdb28");
 		tempGauge.setStyle("-fxx-segment2-color: #ff312a");
 		 */
-		tempGauge.getStylesheets().add("file:/home/jarrett/T7Software/hss/src/app/view/temperature_segment.css");
+		tempGauge.getStylesheets().add("file:src/app/view/temperature_segment.css");
 		tempGauge.getStyleClass().add("colorscheme-green-to-red-3");
 		System.out.println("tempGauge StyleClasses: " + tempGauge.getStyleClass());
 		Segment gSeg = new PercentSegment(tempGauge, 0.0, 70.0);
