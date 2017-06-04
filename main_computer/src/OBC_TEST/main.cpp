@@ -22,7 +22,8 @@ using namespace std;
 
 // send_terminate does what it sounds like...
 
-void send_terminate() {
+void 
+send_terminate() {
 
     // Verify that the version of the library that we linked against is
     // compatible with the version of the headers we compiled against.
@@ -54,16 +55,89 @@ void send_terminate() {
     return;
 }
 
-// test_tcp does what it sounds like...
+void
+test_client(int mid) {
+    TCPStream* stream;
+    TCPAcceptor* acceptor;
+    acceptor = new TCPAcceptor(9001, "127.0.0.1");
 
-void test_tcp(int id) {
+    bool timeToDie = false;
+    // Initialize the Message
+    T7::GenericMessage GM;
+    // Initialize the buffer
+    char cbuff[256];
+    char pbuff[256];
+    int id = -1;
+    while (!timeToDie) {
+        if (acceptor->start() == 0) {
+            stream = acceptor->accept();
+            // Tell the WatchDog that you are having trouble connecting!
+            if (stream != NULL) {
+                cout << "Successful Accept\n";
+                if (stream->receive(cbuff, sizeof (cbuff), 1) > 0) {
+                    GM.ParseFromArray(cbuff, sizeof (cbuff));
+                    id = (int) GM.msgtype();
+
+                    // ONLY RE LAUNCH IF THE CURRENT ONE IS DEAD!
+                    if (mid == id) {
+                        switch (mid) {
+                            case 200:
+                                //stream = acceptor->accept();
+                                if (stream != NULL) {
+                                    ssize_t len;
+                                    char line[256];
+                                    while ((len = stream->receive(line, sizeof (line), 5e6)) > 0) {
+                                        GM.ParseFromArray(line, sizeof (line));
+                                        printf("time - %f\n", GM.time());
+                                        printf("accel x - %f\n", GM.accel().x());
+                                        printf("accel y - %f\n", GM.accel().y());
+                                        printf("accel z - %f\n", GM.accel().z());
+                                    }
+                                    delete stream;
+                                }
+                                timeToDie = true;
+                                break;
+                            case 201:
+                                stream = acceptor->accept();
+                                if (stream != NULL) {
+                                    ssize_t len;
+                                    char line[256];
+                                    while ((len = stream->receive(line, sizeof (line))) > 0) {
+                                        GM.ParseFromArray(line, sizeof (line));
+                                        printf("time - %f\n", GM.time());
+                                        printf("Gyro x - %f\n", GM.gyro().x());
+                                        printf("Gyro y - %f\n", GM.gyro().y());
+                                        printf("Gyro z - %f\n", GM.gyro().z());
+                                    }
+                                    delete stream;
+                                }
+                                timeToDie = true;
+                                break;
+                            default:
+                                cout << "Unsupported Command!\n";
+                                timeToDie = true;
+                                break;
+                        }
+
+                    }
+                    stream = NULL;
+                } else {
+                    cout << "Unsuccessful Receive.\n";
+                } //if receive
+            } // if steam
+        } // if start
+    } //while
+}
+
+// test_tcp does what it sounds like...
+void
+test_server(int id) {
     // Verify that the version of the library that we linked against is
     // compatible with the version of the headers we compiled against.
     GOOGLE_PROTOBUF_VERIFY_VERSION;
 
     // Initialize the TCP Classes
     TCPStream* stream;
-    TCPAcceptor* acceptor;
     TCPConnector* connector;
 
     // Initialize the Message
@@ -74,12 +148,12 @@ void test_tcp(int id) {
     {
         connector = new TCPConnector();
         bool connected = false;
-        
+
         while (!connected) {
             stream = connector->connect("127.0.0.1", 9002);
             if (stream == NULL) {
                 if (tryNum > 1E6) {
-                    cout <<"waiting..\n";
+                    cout << "waiting..\n";
                     tryNum = 0;
                 } else {
                     tryNum++;
@@ -90,25 +164,14 @@ void test_tcp(int id) {
             } // if   
         }
     } else {
-        // Initialize the TCP acceptor
-        acceptor = new TCPAcceptor(9001, "127.0.0.1");
-
-        // Keep trying to accept!
-        //acceptor->start();
-        stream == NULL;
-        if (acceptor->start() == 0) {
-            while (stream == NULL) {
-                stream = acceptor->accept();
-            }
-            cout << "successful accept\n";
-        }
-    } //else
+        cout << "bad id\n";
+    }
 
 
     // Loop through until you we're done!
     bool timeToDie = false;
     string buff;
-    int rc =1;
+    int rc = 1;
     while (!timeToDie) {
         // Clear the generic message for this round
         GM.Clear();
@@ -121,7 +184,7 @@ void test_tcp(int id) {
                     GM.set_time((google::protobuf::int32) 0);
                     GM.mutable_heartbeat()->set_alive(false);
                     GM.SerializeToString(&buff);
-                    while(rc > 0){
+                    while (rc > 0) {
                         rc = stream->send(buff.c_str(), buff.length());
                         usleep(1e6);
                     }
@@ -146,11 +209,11 @@ void test_tcp(int id) {
                     GM.set_time((google::protobuf::int32) 0);
                     GM.mutable_configdata()->set_configkey((google::protobuf::int32) 0);
                     GM.SerializeToString(&buff);
-                    while(rc > 0){
+                    while (rc > 0) {
                         rc = stream->send(buff.c_str(), buff.length());
                         usleep(1e6);
                     }
-                   // timeToDie = true;
+                    // timeToDie = true;
                 }
                 timeToDie = true;
                 break;
@@ -160,43 +223,11 @@ void test_tcp(int id) {
                     GM.set_time((google::protobuf::int32) 0);
                     GM.mutable_movecamera()->set_arrowkey((google::protobuf::int32) 0);
                     GM.SerializeToString(&buff);
-                    while(rc > 0){
+                    while (rc > 0) {
                         rc = stream->send(buff.c_str(), buff.length());
                         usleep(1e6);
                     }
                     //timeToDie = true;
-                }
-                timeToDie = true;
-                break;
-            case 200:
-                //stream = acceptor->accept();
-                if (stream != NULL) {
-                    ssize_t len;
-                    char line[256];
-                    while ((len = stream->receive(line, sizeof (line), 5e6)) > 0) {
-                        GM.ParseFromArray(line, sizeof (line));
-                        printf("time - %f\n", GM.time());
-                        printf("accel x - %f\n", GM.accel().x());
-                        printf("accel y - %f\n", GM.accel().y());
-                        printf("accel z - %f\n", GM.accel().z());
-                    }
-                    delete stream;
-                }
-                timeToDie = true;
-                break;
-            case 201:
-                stream = acceptor->accept();
-                if (stream != NULL) {
-                    ssize_t len;
-                    char line[256];
-                    while ((len = stream->receive(line, sizeof (line))) > 0) {
-                        GM.ParseFromArray(line, sizeof (line));
-                        printf("time - %f\n", GM.time());
-                        printf("Gyro x - %f\n", GM.gyro().x());
-                        printf("Gyro y - %f\n", GM.gyro().y());
-                        printf("Gyro z - %f\n", GM.gyro().z());
-                    }
-                    delete stream;
                 }
                 timeToDie = true;
                 break;
@@ -209,7 +240,8 @@ void test_tcp(int id) {
     return;
 }
 
-int main(int argc, char** argv) {
+int 
+main(int argc, char** argv) {
 
     cout << "Welcome to the T7 OBC Test Environment.\n";
     int rply = 0;
@@ -236,7 +268,10 @@ int main(int argc, char** argv) {
                 cout << "205 Bat\n";
                 cout << "999 ALL\n";
                 cin >> id;
-                test_tcp(id);
+                if (id < 200)
+                        test_server(id);
+                else
+                    test_client(id);
                 break;
             case 2:
                 return 0;

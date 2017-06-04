@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------------
-Function Name: CoreProcessor.h
+Function Name: DataManager.h
 
 --------------------------------------------------------------------------------
 Inputs:
@@ -27,6 +27,7 @@ Change Log
 #ifndef DATA_H
 #define DATA_H
 #include "TSQueue.h"
+#include "T7Types.h"
 #include <map>
 
 using namespace std;
@@ -56,70 +57,12 @@ public:
 
     // thread Death
     map<int,bool>timeToDieMap;
-
-    // Define the socket keys as exactly the same values that the protobuf enum msgType has.
-    // TODO: att - potentially just import that enumeration.
-
-    enum
-    sockKeys {
-        // INFO MESSAGE //
-        RESPONSE = 0,
-        HEARTBEAT = 1,
-        TERMINATE = 2,
-
-        // HSS -> UAV //
-        CONFIG_DATA = 101,
-        MOVE_CAMERA = 102,
-
-        // UAV -> HSS //
-        ACCEL = 200,
-        GYRO = 201,
-        ALTITUDE = 202,
-        ATTITUDE = 203,
-        TEMP = 204,
-        BAT = 205
-    };
     
-   // TimeToDieFlags
-    enum
-    timeToDieFlags {
-        GLOBAL_SHUTDOWN = -99,
-        EXECUTIVE_SHUTDOWN = -98,
-        WATCHDOG_SHUTDOWN = -97,
-        SERVER_SHUTDOWN = 999,
-        HEARTBEAT_SHUTDOWN = sockKeys::HEARTBEAT,
-        TERMINATE_SHUTDOWN = sockKeys::TERMINATE,
-        CONFIG_SHUTDOWN = sockKeys::CONFIG_DATA,
-        MOVE_SHUTDOWN = sockKeys::MOVE_CAMERA,
-        ACCEL_SHUTDOWN = sockKeys::ACCEL,
-        GYRO_SHUTDOWN = sockKeys::GYRO,
-        ALT_SHUTDOWN = sockKeys::ALTITUDE,
-        ATT_SHUTDOWN = sockKeys::ATTITUDE,
-        TEMP_SHUTDOWN = sockKeys::TEMP,
-        BAT_SHUTDOWN = sockKeys::BAT
-    };
-    
-    // Define the terminate keys
-    enum
-    terminateKeys {
-        SELF_TERMINATE = 0,
-        SOFT_SHUTDOWN = 1,
-        EMERGENCY_STOP = 2
-    };
-
-    // Define the toggle keys
-    enum 
-    toggleKeys {
-        TOGGLE_ACCEL = 0,
-        TOGGLE_GYRO = 1,
-        TOGGLE_ALTITUDE = 2,
-        TOGGLE_ATTITUDE = 3,
-        TOGGLE_TEMP = 4,
-        TOGGLE_BAT = 5,
-    };
+    int SystemHealth = failureCodes::noFailure;
+    bool timeToDie = false;
+    bool HSSAlive = true;
 
     // Cleanup method
-
     void
     clean() {
         DataManager* data = getInstance();

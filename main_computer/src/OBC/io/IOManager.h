@@ -29,12 +29,8 @@ Change Log
 
 #include "DataManager.h"
 #include "LogManager.h"
-#include "WatchDog.h"
-#include "tcpacceptor.h"
-#include "tcpconnector.h"
 #include "tcpstream.h"
-#include "SocketException.h"
-#include "T7Messages.pb.h"
+#include "T7Types.h"
 #include <string>
 #include <thread>
 #include <map>
@@ -46,9 +42,7 @@ public:
     
     // Store singleton parameters
     DataManager* data; 
-    IOManager* IO;
     LogManager* LM;
-    WatchDog* WD;
     
     // Define the IO parameters needed for communication
     string HSS_IP = "127.0.0.1";
@@ -62,36 +56,22 @@ public:
     void launch_server();
     void launch_serial();
     void client_handler(int id);
+    void relaunch_client(int id);
     void server_handler();
     void acceptor_handler(TCPStream*,int id);
-    void clean(){};
+    void clean();
+    
+    // Static singleton initializer 
+    static IOManager* getInstance() {
+        static IOManager* p_IOManager = new IOManager();
+        return p_IOManager;
+    };
+    
     IOManager();
     IOManager(const IOManager& orig);
     virtual ~IOManager();
 private:
     map<int,thread*>sockThreadMap;
-    
-    enum 
-    threadKeys { 
-                   // Sockets Threads //
-                   // Server //
-                   ServerSock,
-                   HeartSock,
-                   TerminateSock,
-                   ConfigSock,
-                   MoveCamSock,
-
-                   // Client //
-                   AccelSock,
-                   GyroSock,
-                   AltSock,
-                   AttSock,
-                   TempSock,
-                   BatSock,
-
-                   // Sensor Threads //
-                   SensorKey 
-                 };
 };
 
 #endif /* IOManager */

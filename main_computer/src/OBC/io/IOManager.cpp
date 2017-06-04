@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------------
-Function Name: CoreProcessor.h
+Function Name: IOManager.cpp
 
 --------------------------------------------------------------------------------
 Inputs:
@@ -25,7 +25,9 @@ Change Log
  */
 
 #include "IOManager.h"
-
+#include "tcpacceptor.h"
+#include "tcpconnector.h"
+#include "T7Messages.pb.h"
 //----------------------------------------------------------------------------//
 // launch() launches the tcp and serial IO communications
 //----------------------------------------------------------------------------//
@@ -52,30 +54,26 @@ void
 IOManager::launch_clients() {
 
     LM->append("Launching Accelerometer Socket\n");
-    sockThreadMap[AccelSock] = new thread(&IOManager::client_handler, this, data->ACCEL);
+    sockThreadMap[AccelSock] = new thread(&IOManager::client_handler, this, sockKeys::ACCEL);
+    LM->append("Launching Gyroscope Socket\n");
+    sockThreadMap[GyroSock] = new thread(&IOManager::client_handler, this, sockKeys::GYRO);
 
-    /*
-        LM->append("Launching Gyroscope Socket\n");
-        sockThreadMap[GyroSock] = new thread(&IOManager::client_handler, this, data->GYRO);
+    LM->append("Launching Altitude Socket\n");
+    sockThreadMap[AltSock] = new thread(&IOManager::client_handler, this, sockKeys::ALTITUDE);
 
-        LM->append("Launching Altitude Socket\n");
-        sockThreadMap[AltSock] = new thread(&IOManager::client_handler, this, data->ALTITUDE);
+    LM->append("Launching Attitude Socket\n");
+    sockThreadMap[AttSock] = new thread(&IOManager::client_handler, this, sockKeys::ATTITUDE);
 
-        LM->append("Launching Attitude Socket\n");
-        sockThreadMap[AttSock] = new thread(&IOManager::client_handler, this, data->ATTITUDE);
+    LM->append("Launching Temperature Socket\n");
+    sockThreadMap[TempSock] = new thread(&IOManager::client_handler, this, sockKeys::TEMP);
 
-        LM->append("Launching Temperature Socket\n");
-        sockThreadMap[TempSock] = new thread(&IOManager::client_handler, this, data->TEMP);
-
-        LM->append("Launching Battery Socket\n");
-        sockThreadMap[BatSock] = new thread(&IOManager::client_handler, this, data->BAT);
-     */
+    LM->append("Launching Battery Socket\n");
+    sockThreadMap[BatSock] = new thread(&IOManager::client_handler, this, sockKeys::BAT);
 }//launch_clients()
 
 //----------------------------------------------------------------------------//
 // launch_server() launches the tcp server
 //----------------------------------------------------------------------------//
-
 void
 IOManager::launch_server() {
 
@@ -87,7 +85,6 @@ IOManager::launch_server() {
 //----------------------------------------------------------------------------//
 // launch_serial() launches the serial thread
 //----------------------------------------------------------------------------//
-
 void
 IOManager::launch_serial() {
 
@@ -98,7 +95,6 @@ IOManager::launch_serial() {
 //----------------------------------------------------------------------------//
 // client_handler() handles all tcp client communication
 //----------------------------------------------------------------------------//
-
 void
 IOManager::client_handler(int id) {
 
@@ -110,7 +106,7 @@ IOManager::client_handler(int id) {
     T7::GenericMessage GM;
 
     // Initialize the socket health
-    data->sockHealth[id] = WD->noFailure;
+    data->sockHealth[id] = failureCodes::noFailure;
 
     // Initialize the TCP Classes
     TCPStream* stream;
@@ -144,13 +140,13 @@ IOManager::client_handler(int id) {
         } else {
             connected = true;
             LM->append("Successful Connect!\n");
-            data->sockHealth[id] = WD->socketConnected;
+            data->sockHealth[id] = failureCodes::socketConnected;
         } // if
     } //while
 
     while (!data->timeToDieMap[id]) {
         switch (id) {
-            case data->ACCEL:
+            case sockKeys::ACCEL:
                 if (data->sendAccel) {
                     if (!data->accelQueue.isEmpty()) {
                         // grab the data and remove it from the queue
@@ -170,7 +166,7 @@ IOManager::client_handler(int id) {
                             snprintf(cbuff, 256, "Socket %d Failure.  Exception: Dead Socket\n", id);
                             string sbuff(cbuff);
                             LM->append(sbuff);
-                            data->sockHealth[id] = WD->SOCKET_FAILURE;
+                            data->sockHealth[id] = failureCodes::SOCKET_FAILURE;
                             data->timeToDieMap[id] = true;
                         }
                         buff.clear();
@@ -178,7 +174,7 @@ IOManager::client_handler(int id) {
                 } // if sendAccel
                 break;
 
-            case data->GYRO:
+            case sockKeys::GYRO:
                 if (data->sendGyro) {
                     if (!data->gyroQueue.isEmpty()) {
                         // grab the data and remove it from the queue
@@ -198,14 +194,14 @@ IOManager::client_handler(int id) {
                             snprintf(cbuff, 256, "Socket %d Failure.  Exception: Dead Socket\n", id);
                             string sbuff(cbuff);
                             LM->append(sbuff);
-                            data->sockHealth[id] = WD->SOCKET_FAILURE;
+                            data->sockHealth[id] = failureCodes::SOCKET_FAILURE;
                             data->timeToDieMap[id] = true;
                         }
                         buff.clear();
                     } // if gyroQueue is not empty
                 } // if sendGyro
                 break;
-            case data->ALTITUDE:
+            case sockKeys::ALTITUDE:
                 if (data->sendAlt) {
                     // if there is data, send it!
                     if (!data->altitudeQueue.isEmpty()) {
@@ -224,14 +220,42 @@ IOManager::client_handler(int id) {
                             snprintf(cbuff, 256, "Socket %d Failure.  Exception: Dead Socket\n", id);
                             string sbuff(cbuff);
                             LM->append(sbuff);
-                            data->sockHealth[id] = WD->SOCKET_FAILURE;
+                            data->sockHealth[id] = failureCodes::SOCKET_FAILURE;
                             data->timeToDieMap[id] = true;
                         }
                         buff.clear();
                     } // if altitude queue is not empty
                 } // if send alt
                 break;
-            case data->TEMP:
+            case sockKeys::ATTITUDE:
+                if (data->sendAtt) {
+                    // if there is data, send it!
+                    if (!data->attitudeQueue.isEmpty()) {
+                        // grab the data and remove it from the queue
+                        vector<double> att = data->attitudeQueue.front();
+                        data->attitudeQueue.pop();
+                        // set the message type equal to the id
+                        GM.set_msgtype((google::protobuf::int32) id);
+                        GM.set_time((double) att[0]);
+                        GM.mutable_attitude()->set_roll(att[1]);
+                        GM.mutable_attitude()->set_pitch(att[2]);
+                        GM.mutable_attitude()->set_yaw(att[3]);
+                        // Serialize and send it!
+                        GM.SerializeToString(&buff);
+                        rc = stream->send(buff.c_str(), buff.length());
+
+                        if (rc < 0 || stream == NULL) {
+                            snprintf(cbuff, 256, "Socket %d Failure.  Exception: Dead Socket\n", id);
+                            string sbuff(cbuff);
+                            LM->append(sbuff);
+                            data->sockHealth[id] = failureCodes::SOCKET_FAILURE;
+                            data->timeToDieMap[id] = true;
+                        }
+                        buff.clear();
+                    } // if attitude queue is not empty
+                } // if send att
+                break;
+            case sockKeys::TEMP:
                 if (data->sendTemp) {
                     // if there is data, send it!
                     if (!data->tempQueue.isEmpty()) {
@@ -250,14 +274,14 @@ IOManager::client_handler(int id) {
                             snprintf(cbuff, 256, "Socket %d Failure.  Exception: Dead Socket\n", id);
                             string sbuff(cbuff);
                             LM->append(sbuff);
-                            data->sockHealth[id] = WD->SOCKET_FAILURE;
+                            data->sockHealth[id] = failureCodes::SOCKET_FAILURE;
                             data->timeToDieMap[id] = true;
                         }
                         buff.clear();
                     } // if altitude queue is not empty
                 } // if sendTemp
                 break;
-            case data->BAT:
+            case sockKeys::BAT:
                 if (data->sendBat) {
                     // if there is data, send it!
                     if (!data->batteryQueue.isEmpty()) {
@@ -276,7 +300,7 @@ IOManager::client_handler(int id) {
                             snprintf(cbuff, 256, "Socket %d Failure.  Exception: Dead Socket\n", id);
                             string sbuff(cbuff);
                             LM->append(sbuff);
-                            data->sockHealth[id] = WD->SOCKET_FAILURE;
+                            data->sockHealth[id] = failureCodes::SOCKET_FAILURE;
                             data->timeToDieMap[id] = true;
                         }
                         buff.clear();
@@ -284,12 +308,12 @@ IOManager::client_handler(int id) {
                 }// if sendTemp
                 break;
             default:
-                data->sockHealth[id] = WD->UNK_SOCK;
+                data->sockHealth[id] = failureCodes::UNK_SOCK;
                 data->timeToDieMap[id] = true;
         } // switch
     } // while(!timeToDie)
     delete connector;
-    data->sockHealth[id] = WD->socketDisconnected;
+    data->sockHealth[id] = failureCodes::socketDisconnected;
     return;
 }//launch_client()
 
@@ -317,7 +341,7 @@ IOManager::server_handler() {
     // Initialize the TCP connector
     LM->append("Initializing Server\n");
 
-    while (!data->timeToDieMap[data->SERVER_SHUTDOWN]) {
+    while (!data->timeToDieMap[timeToDieFlags::SERVER_SHUTDOWN]) {
         if (acceptor->start() == 0) {
             stream = acceptor->accept();
             // Tell the WatchDog that you are having trouble connecting!
@@ -328,10 +352,12 @@ IOManager::server_handler() {
                     id = (int) GM.msgtype();
 
                     // ONLY RE LAUNCH IF THE CURRENT ONE IS DEAD!
-                    if (sockThreadMap[id] == NULL || data->sockHealth[id] == WD->socketDisconnected) {
+                    if (sockThreadMap[id] == NULL || data->sockHealth[id] == failureCodes::socketDisconnected) {
                         snprintf(pbuff, 256, "Launching Acceptor for Socket %d!\n", id);
                         string sbuff(pbuff);
                         LM->append(sbuff);
+                        data->timeToDieMap[id] = false;
+                        data->sockHealth[id] = failureCodes::noFailure;
                         sockThreadMap[id] = new thread(&IOManager::acceptor_handler, this, stream, id);
                     }
                     stream = NULL;
@@ -359,21 +385,21 @@ IOManager::acceptor_handler(TCPStream* stream, int id) {
     int rc;
 
     // Initialize the socket health
-    data->sockHealth[id] = WD->socketConnected;
+    data->sockHealth[id] = failureCodes::socketConnected;
     data->timeToDieMap[id] = false;
 
     while (!data->timeToDieMap[id]) {
         switch (id) {
-            case data->HEARTBEAT:
+            case sockKeys::HEARTBEAT:
                 rc = stream->receive(cbuff, sizeof (cbuff), CLIENT_TIMEOUT);
                 if (rc > 0) {
                     GM.ParseFromArray(cbuff, sizeof (cbuff));
                     if ((int) GM.msgtype() == id) {
                         if (GM.heartbeat().alive()) {
-                            WD->HSSAlive = true;
+                            data->HSSAlive = true;
                             LM->append("RECIEVED: HSSAlive == True\n");
                         } else {
-                            WD->HSSAlive = false;
+                            data->HSSAlive = false;
                             LM->append("RECIEVED: HSSAlive == False\n");
                         } // alive
                     } else {
@@ -389,22 +415,22 @@ IOManager::acceptor_handler(TCPStream* stream, int id) {
                     data->timeToDieMap[id] = true;
                 }
                 break;
-            case data->TERMINATE:
+            case sockKeys::TERMINATE:
                 if (stream->receive(cbuff, sizeof (cbuff), CLIENT_TIMEOUT) > 0) {
                     GM.ParseFromArray(cbuff, sizeof (cbuff));
                     if ((int) GM.msgtype() == id) {
                         switch (GM.terminate().terminatekey()) {
-                            case data->SELF_TERMINATE:
+                            case terminateKeys::SELF_TERMINATE:
                                 LM->append("RECIEVED: SELF TERMINATE COMMAND!\n");
                                 data->timeToDieMap[id] = true;
-                                data->timeToDieMap[data->GLOBAL_SHUTDOWN] = true;
-                                WD->SystemHealth = WD->RESTART;
+                                data->timeToDieMap[timeToDieFlags::GLOBAL_SHUTDOWN] = true;
+                                data->SystemHealth = failureCodes::RESTART;
                                 break;
-                            case data->SOFT_SHUTDOWN:
+                            case terminateKeys::SOFT_SHUTDOWN:
                                 // TODO 05May2017 att
                                 LM->append("RECIEVED: SOFT SHUTDOWN COMMAND!\n");
                                 break;
-                            case data->EMERGENCY_STOP:
+                            case terminateKeys::EMERGENCY_STOP:
                                 //TODO 05May2017 att
                                 LM->append("RECIEVED: EMERGENCY STOP COMMAND!\n");
                                 break;
@@ -420,485 +446,89 @@ IOManager::acceptor_handler(TCPStream* stream, int id) {
                     }//id check
                 } //if stream
                 break;
-                case data->CONFIG_DATA:
-                    rc = stream->receive(cbuff, sizeof (cbuff), CLIENT_TIMEOUT);
-                    if (rc > 0) {
-                            GM.ParseFromArray(cbuff, sizeof (cbuff));
-                            switch (GM.configdata().configkey()) {
-                                case data->TOGGLE_ACCEL:
-                                    LM->append("RECIEVED: Toggle Acceleration!\n");
-                                    data->sendAccel = !data->sendAccel;
-                                    break;
-                                case data->TOGGLE_GYRO:
-                                    LM->append("RECIEVED: Toggle Gyro!\n");
-                                    data->sendGyro = !data->sendGyro;
-                                    break;
-                                case data->TOGGLE_ALTITUDE:
-                                    LM->append("RECIEVED: Toggle Altitude!\n");
-                                    data->sendAlt = !data->sendAlt;
-                                    break;
-                                case data->TOGGLE_ATTITUDE:
-                                    LM->append("RECIEVED: Toggle Attitude!\n");
-                                    data->sendAtt = !data->sendAtt;
-                                    break;
-                                case data->TOGGLE_TEMP:
-                                    LM->append("RECIEVED: Toggle Temperature!\n");
-                                    data->sendTemp = !data->sendTemp;
-                                    break;
-                                case data->TOGGLE_BAT:
-                                    LM->append("RECIEVED: Toggle Bat!\n");
-                                    data->sendBat = !data->sendBat;
-                                    break;
-                                default:
-                                    LM->append("Unidentified ConfigData Message.\n");
-                                    break;
-                            } // switch      
-                        } // if
-                    break;
-                case data->MOVE_CAMERA:
-                    rc = stream->receive(cbuff, sizeof (cbuff), CLIENT_TIMEOUT);
-                    if (rc > 0) {
-                            GM.ParseFromArray(cbuff, sizeof (cbuff));
-                            switch (GM.movecamera().arrowkey()) {
-                                case 0:
-                                    LM->append("RECIEVED: Move Camera Up Command!\n");
-                                    break;
-                                case 1:
-                                    LM->append("RECIEVED: Move Camera Right Command!\n");
-                                    break;
-                                case data->TOGGLE_ALTITUDE:
-                                    LM->append("RECIEVED: Move Camera Down Command!\n");
-                                    break;
-                                case data->TOGGLE_ATTITUDE:
-                                    LM->append("RECIEVED: Move Camera Left Command!\n");
-                                    break;
-                                default:
-                                    LM->append("Unidentified Move Camera Command.\n");
-                                    break;
-                            } // switch      
-                        } // if
-                    break;
+            case sockKeys::CONFIG_DATA:
+                rc = stream->receive(cbuff, sizeof (cbuff), CLIENT_TIMEOUT);
+                if (rc > 0) {
+                    GM.ParseFromArray(cbuff, sizeof (cbuff));
+                    switch (GM.configdata().configkey()) {
+                        case toggleKeys::TOGGLE_ACCEL:
+                            LM->append("RECIEVED: Toggle Acceleration!\n");
+                            data->sendAccel = !data->sendAccel;
+                            break;
+                        case toggleKeys::TOGGLE_GYRO:
+                            LM->append("RECIEVED: Toggle Gyro!\n");
+                            data->sendGyro = !data->sendGyro;
+                            break;
+                        case toggleKeys::TOGGLE_ALTITUDE:
+                            LM->append("RECIEVED: Toggle Altitude!\n");
+                            data->sendAlt = !data->sendAlt;
+                            break;
+                        case toggleKeys::TOGGLE_ATTITUDE:
+                            LM->append("RECIEVED: Toggle Attitude!\n");
+                            data->sendAtt = !data->sendAtt;
+                            break;
+                        case toggleKeys::TOGGLE_TEMP:
+                            LM->append("RECIEVED: Toggle Temperature!\n");
+                            data->sendTemp = !data->sendTemp;
+                            break;
+                        case toggleKeys::TOGGLE_BAT:
+                            LM->append("RECIEVED: Toggle Bat!\n");
+                            data->sendBat = !data->sendBat;
+                            break;
+                        default:
+                            LM->append("Unidentified ConfigData Message.\n");
+                            break;
+                    } // switch      
+                } // if
+                break;
+            case sockKeys::MOVE_CAMERA:
+                rc = stream->receive(cbuff, sizeof (cbuff), CLIENT_TIMEOUT);
+                if (rc > 0) {
+                    GM.ParseFromArray(cbuff, sizeof (cbuff));
+                    switch (GM.movecamera().arrowkey()) {
+                        case camKeys::MOVE_UP:
+                            LM->append("RECIEVED: Move Camera Up Command!\n");
+                            break;
+                        case camKeys::MOVE_RIGHT:
+                            LM->append("RECIEVED: Move Camera Right Command!\n");
+                            break;
+                        case camKeys::MOVE_DOWN:
+                            LM->append("RECIEVED: Move Camera Down Command!\n");
+                            break;
+                        case camKeys::MOVE_LEFT:
+                            LM->append("RECIEVED: Move Camera Left Command!\n");
+                            break;
+                        default:
+                            LM->append("Unidentified Move Camera Command.\n");
+                            break;
+                    } // switch      
+                } // if
+                break;
             default:
-                data->sockHealth[id] = WD->UNK_SOCK;
+                data->sockHealth[id] = failureCodes::UNK_SOCK;
                 data->timeToDieMap[id] = true;
         } //switch
     } // while
 
-    data->sockHealth[id] = WD->socketDisconnected;
+    data->sockHealth[id] = failureCodes::socketDisconnected;
     delete stream;
 
     return;
 } // acceptor_handler
 
-
-//----------------------------------------------------------------------------//
-// socketHandler() launches and runs a socket thread until the timeToDie 
-//              flag is set or it is interrupted by the thread manager
-//----------------------------------------------------------------------------//
-/*
-void IOManager::socketHandler(int id) {
-
-    // Verify that the version of the library that we linked against is
-    // compatible with the version of the headers we compiled against.
-    GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-    // Initialize the TCP Classes
-    TCPStream* stream;
-    TCPAcceptor* acceptor;
-    TCPConnector* connector;
-
-    // Initialize the Message
-    T7::GenericMessage GM;
-
-    // Grab an instance of the LogManager
-    LogManager* LM = LogManager::getInstance();
-
-    // Grab an instance of the Watchdog
-    WatchDog* WD = WatchDog::getInstance();
-
-    // Grab the instance of the data manager
-    DataManager* data = DataManager::getInstance();
-
-    // Initialize the socket health
-    data->sockHealth[id] = WD->noFailure;
-
-    // Initialize the buffer
-    char cbuff[10000];
-    string buff;
-
-    // Initialize the TCP stream depending on if it is a server or client connection
-    if (id >= 200) // then it is a client
-    {
-        // Initialize the TCP connector
-        LM->append("Initializing Connector\n");
-        connector = new TCPConnector();
-
-        // Keep trying to connect!
-        bool connected = false;
-        while (!connected && !data->globalShutdown) {
-            stream = connector->connect(HSS_IP.c_str(), PORT_NUMBER + id, CONNECTOR_TIMEOUT);
-            // Check for thread interruptions
-            usleep(SLEEP_TIME);
-            // Tell the WatchDog that you are having trouble connecting!
-            if (stream == NULL) {
-                data->sockHealth[id] = WD->SERVER_CONNECT_FAIL;
-            } else {
-                connected = true;
-                LM->append("Successful Connect!\n");
-            }
-        } //while
-        data->sockHealth[id] = WD->socketConnected;
-
-    } else {
-        // Initialize the TCP acceptor
-        LM->append("Initializing Acceptor\n");
-        acceptor = new TCPAcceptor(PORT_NUMBER + id, HSS_IP.c_str());
-
-        // Keep trying to accept!
-        bool accepted = false;
-        while (!accepted && !(data->globalShutdown)) {
-            stream = acceptor->accept();
-            // Check for thread interruptions
-            usleep(SLEEP_TIME);
-            // Tell the WatchDog that you are having trouble connecting!
-            if (stream == NULL) {
-                data->sockHealth[id] = WD->SERVER_CONNECT_FAIL;
-            } else {
-                accepted = true;
-                LM->append("Successful Accept\n");
-            }
-
-        } //while
-        data->sockHealth[id] = WD->socketConnected;
-    } //else
-
-    // Loop through until you we're done!
-    while (!timeToDie && !data->globalShutdown) {
-        // Clear the generic message for this round
-        GM.Clear();
-
-        // Switch based on the sock id
-        switch (id) {
-            case data->RESPONSE:
-                stream = acceptor->accept();
-                // Tell the WatchDog that you are having trouble connecting!
-                if (stream == NULL) data->sockHealth[id] = WD->SERVER_ACCEPT_FAIL;
-                else {
-                    if (stream->receive(cbuff, sizeof (cbuff), ACCEPTOR_TIMEOUT) > 0) {
-                        GM.ParseFromArray(cbuff, sizeof (cbuff));
-                        if (GM.response().roger_that()) data->HSSAlive = true;
-                    } //if
-                }//if
-                break;
-            case data->HEARTBEAT:
-                stream = acceptor->accept();
-                // Tell the WatchDog that you are having trouble connecting!
-                if (stream == NULL) data->sockHealth[id] = WD->SERVER_ACCEPT_FAIL;
-                else {
-                    if (stream->receive(cbuff, sizeof (cbuff), ACCEPTOR_TIMEOUT) > 0) {
-
-                        string db;
-                        GM.ParseFromArray(cbuff, sizeof (cbuff));
-                        if (GM.heartbeat().alive()) {
-                            data->HSSAlive = true;
-                            LM->append("RECIEVED: HSSAlive == True\n");
-                        } else {
-                            data->HSSAlive = false;
-                            LM->append("RECIEVED: HSSAlive == False\n");
-                        }
-                    }
-                }
-                break;
-            case data->TERMINATE:
-                stream = acceptor->accept();
-                // Tell the WatchDog that you are having trouble connecting!
-                if (stream == NULL) data->sockHealth[id] = WD->SERVER_ACCEPT_FAIL;
-                else {
-                    if (stream->receive(cbuff, sizeof (cbuff), ACCEPTOR_TIMEOUT) > 0) {
-                        GM.ParseFromArray(cbuff, sizeof (cbuff));
-                        switch (GM.terminate().terminatekey()) {
-                            case data->SELF_TERMINATE:
-                                LM->append("RECIEVED: SELF TERMINATE COMMAND!\n");
-                                timeToDie = true;
-                                data->globalShutdown = true;
-                                // Cleanup!
-                                delete stream;
-                                delete acceptor;
-                                delete connector;
-                                google::protobuf::ShutdownProtobufLibrary();
-                                return;
-                            case data->SOFT_SHUTDOWN:
-                                // TODO 05May2017 att
-                                LM->append("RECIEVED: SOFT SHUTDOWN COMMAND!\n");
-                                break;
-                            case data->EMERGENCY_STOP:
-                                //TODO 05May2017 att
-                                LM->append("RECIEVED: EMERGENCY STOP COMMAND!\n");
-                                break;
-                            default:
-                                //TODO 05May2017 att
-                                LM->append("Unidentified Terminate Message.\n");
-                        }
-                    }
-                }
-                break;
-            case data->CONFIG_DATA:
-                stream = acceptor->accept();
-                // Tell the WatchDog that you are having trouble connecting!
-                if (stream == NULL) data->sockHealth[id] = WD->SERVER_ACCEPT_FAIL;
-                else {
-                    if (stream->receive(cbuff, sizeof (cbuff), ACCEPTOR_TIMEOUT) > 0) {
-                        GM.ParseFromArray(cbuff, sizeof (cbuff));
-                        switch (GM.configdata().configkey()) {
-                            case data->TOGGLE_ACCEL:
-                                LM->append("RECIEVED: Toggle Acceleration!\n");
-                                data->sendAccel = !data->sendAccel;
-                                break;
-                            case data->TOGGLE_GYRO:
-                                LM->append("RECIEVED: Toggle Gyro!\n");
-                                data->sendGyro = !data->sendGyro;
-                                break;
-                            case data->TOGGLE_ALTITUDE:
-                                LM->append("RECIEVED: Toggle Altitude!\n");
-                                data->sendAlt = !data->sendAlt;
-                                break;
-                            case data->TOGGLE_ATTITUDE:
-                                LM->append("RECIEVED: Toggle Attitude!\n");
-                                data->sendAtt = !data->sendAtt;
-                                break;
-                            case data->TOGGLE_TEMP:
-                                LM->append("RECIEVED: Toggle Temperature!\n");
-                                data->sendTemp = !data->sendTemp;
-                                break;
-                            case data->TOGGLE_BAT:
-                                LM->append("RECIEVED: Toggle Bat!\n");
-                                data->sendBat = !data->sendBat;
-                                break;
-                            default:
-                                LM->append("Unidentified ConfigData Message.\n");
-                                break;
-                        } // switch      
-                    } // if
-                } // else
-                break;
-            case data->MOVE_CAMERA:
-                stream = acceptor->accept();
-                // Tell the WatchDog that you are having trouble connecting!
-                if (stream == NULL) data->sockHealth[id] = WD->SERVER_ACCEPT_FAIL;
-                else {
-                    if (stream->receive(cbuff, sizeof (cbuff), ACCEPTOR_TIMEOUT) > 0) {
-                        GM.ParseFromArray(cbuff, sizeof (cbuff));
-                        switch (GM.movecamera().arrowkey()) {
-                            case 0:
-                                LM->append("RECIEVED: Move Camera Up Command!\n");
-                                break;
-                            case 1:
-                                LM->append("RECIEVED: Move Camera Right Command!\n");
-                                break;
-                            case data->TOGGLE_ALTITUDE:
-                                LM->append("RECIEVED: Move Camera Down Command!\n");
-                                break;
-                            case data->TOGGLE_ATTITUDE:
-                                LM->append("RECIEVED: Move Camera Left Command!\n");
-                                break;
-                            default:
-                                LM->append("Unidentified Move Camera Command.\n");
-                                break;
-                        } // switch      
-                    } // if
-                } // else
-                break;
-            case data->ACCEL:
-                if (data->sendAccel) {
-                    if (!data->accelQueue.isEmpty()) {
-                        // grab the data and remove it from the queue
-                        vector<double> accel = data->accelQueue.front();
-                        data->accelQueue.pop();
-                        // set the message type equal to the id
-                        GM.set_msgtype((google::protobuf::int32) id);
-                        GM.set_time((double) accel[0]);
-                        GM.mutable_accel()->set_x(accel[1]);
-                        GM.mutable_accel()->set_y(accel[2]);
-                        GM.mutable_accel()->set_z(accel[3]);
-                        // Serialize and send it!
-                        GM.SerializeToString(&buff);
-                        stream->send(buff.c_str(), buff.length());
-                        buff.clear();
-                    } // if accelQueue is not empty
-                } // if sendAccel
-                break;
-            case data->GYRO:
-                if (data->sendGyro) {
-                    if (!data->gyroQueue.isEmpty()) {
-                        // grab the data and remove it from the queue
-                        vector<double> gyro = data->gyroQueue.front();
-                        data->gyroQueue.pop();
-                        // set the message type equal to the id
-                        GM.set_msgtype((google::protobuf::int32) id);
-                        GM.set_time((double) gyro[0]);
-                        GM.mutable_gyro()->set_x(gyro[1]);
-                        GM.mutable_gyro()->set_y(gyro[2]);
-                        GM.mutable_gyro()->set_z(gyro[3]);
-                        // Serialize and send it!
-                        GM.SerializeToString(&buff);
-                        stream->send(buff.c_str(), buff.length());
-                        buff.clear();
-                    } // if gyroQueue is not empty
-                } // if sendGyro
-                break;
-            case data->ALTITUDE:
-                if (data->sendAlt) {
-                    // if there is data, send it!
-                    if (!data->altitudeQueue.isEmpty()) {
-                        // grab the data and remove it from the queue
-                        vector<double> alt = data->altitudeQueue.front();
-                        data->altitudeQueue.pop();
-                        // set the message type equal to the id
-                        GM.set_msgtype((google::protobuf::int32) id);
-                        GM.set_time((double) alt[0]);
-                        GM.mutable_altitude()->set_alt(alt[1]);
-                        // Serialize and send it!
-                        GM.SerializeToString(&buff);
-                        stream->send(buff.c_str(), buff.length());
-                        buff.clear();
-                    } // if altitude queue is not empty
-                } // if send alt
-                break;
-            case data->TEMP:
-                if (data->sendTemp) {
-                    // if there is data, send it!
-                    if (!data->tempQueue.isEmpty()) {
-                        // grab the data and remove it from the queue
-                        vector<double> temp = data->tempQueue.front();
-                        data->tempQueue.pop();
-                        // set the message type equal to the id
-                        GM.set_msgtype((google::protobuf::int32) id);
-                        GM.set_time((double) temp[0]);
-                        GM.mutable_temp()->set_temp(temp[1]);
-                        // Serialize and send it!
-                        GM.SerializeToString(&buff);
-                        stream->send(buff.c_str(), buff.length());
-                        buff.clear();
-                    } // if altitude queue is not empty
-                } // if sendTemp
-                break;
-            case data->BAT:
-                if (data->sendBat) {
-                    // if there is data, send it!
-                    if (!data->batteryQueue.isEmpty()) {
-                        // grab the data and remove it from the queue
-                        vector<double> bat = data->batteryQueue.front();
-                        data->batteryQueue.pop();
-                        // set the message type equal to the id
-                        GM.set_msgtype((google::protobuf::int32) id);
-                        GM.set_time((double) bat[0]);
-                        GM.mutable_bat()->set_percent(bat[1]);
-                        // Serialize and send it!
-                        GM.SerializeToString(&buff);
-                        stream->send(buff.c_str(), buff.length());
-                        buff.clear();
-                    } // if altitude queue is not empty
-                }// if sendTemp
-                break;
-            default:
-                data->sockHealth[id] = WD->UNK_SOCK;
-                // Cleanup!
-                delete stream;
-                delete acceptor;
-                delete connector;
-
-                return;
-        }
-    } //while(!timeToDie)
-
-    // Cleanup!
-    delete stream;
-    delete acceptor;
-    delete connector;
-} // socketHandler()
- */
-//----------------------------------------------------------------------------//
-// socketHandler() launches and runs a socket thread until the timeToDie 
-//              flag is set or it is interrupted by the thread manager
-//----------------------------------------------------------------------------//
-
-/*
 void
-IOManager::clientHandler(int id) {
+IOManager::clean(){
+    
+} // clean
 
-    // Verify that the version of the library that we linked against is
-    // compatible with the version of the headers we compiled against.
-    GOOGLE_PROTOBUF_VERIFY_VERSION;
+void 
+IOManager::relaunch_client(int id){
+    
+}
 
-    // Initialize the Message
-    T7::GenericMessage GM;
-
-    // Grab an instance of the LogManager
-    LogManager* LM = LogManager::getInstance();
-
-    // Grab an instance of the Watchdog
-    WatchDog* WD = WatchDog::getInstance();
-
-    // Grab the instance of the data manager
-    DataManager* data = DataManager::getInstance();
-
-    // Initialize the socket health
-    data->sockHealth[id] = WD->noFailure;
-        
-    // Initialize the buffer
-    string buff;
-
-    try {
-        // Initialize the socket
-        ClientSocket client_socket(HSS_IP, CLIENT_PORT_NUMBER);
-
-        // try to send the message
-        while (!timeToDie) {
-            try {
-                switch (id) {
-                    case data->ACCEL:
-                        if (data->sendAccel) {
-                            if (!data->accelQueue.isEmpty()) {
-                                // grab the data and remove it from the queue
-                                vector<double> accel = data->accelQueue.front();
-                                data->accelQueue.pop();
-                                // set the message type equal to the id
-                                GM.set_msgtype((google::protobuf::int32) id);
-                                GM.set_time((double) accel[0]);
-                                GM.mutable_accel()->set_x(accel[1]);
-                                GM.mutable_accel()->set_y(accel[2]);
-                                GM.mutable_accel()->set_z(accel[3]);
-                                // Serialize and send it!
-                                GM.SerializeToString(&buff);
-                                client_socket << buff;
-                                buff.clear();
-                            } // if accelQueue is not empty
-                        } // if sendAccel
-                        break;
-                    default:
-                        data->sockHealth[id] = WD->UNK_SOCK;
-                        return;
-                } // switch
-            } catch (SocketException& e) {
-                char cbuff[200];
-                snprintf(cbuff, 200, "Socket %d Failure.  Exception: %s", id, e.description().c_str());
-                string sbuff(cbuff);
-                LM->append(sbuff);
-                data->sockHealth[id] = WD->SOCKET_FAILURE;
-            } // catch
-        } // while(!timeToDie)
-    } catch (SocketException& e) {
-        char cbuff[200];
-        snprintf(cbuff, 200, "Socket %d Failure.  Exception: %s", id, e.description().c_str());
-        string sbuff(cbuff);
-        LM->append(sbuff);
-        data->sockHealth[id] = WD->SOCKET_FAILURE;
-        return;
-    }//catch(SocketException&)
-    return;
-} // clientHandler
- */
-
+// -------------------------------------------------------------------------- //
+// Constructors and Destructor
+// -------------------------------------------------------------------------- //
 IOManager::IOManager() {
     // Initialize the Logger Instance
     LM = LogManager::getInstance();
@@ -906,8 +536,6 @@ IOManager::IOManager() {
     // Initialize the Data Instance
     data = DataManager::getInstance();
 
-    // Initialize the Data Instance
-    WD = WatchDog::getInstance();
 }
 
 IOManager::IOManager(const IOManager & orig) {

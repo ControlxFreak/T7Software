@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------------
-Function Name: CoreProcessor.h
+Function Name: Executive.h
 
 --------------------------------------------------------------------------------
 Inputs:
@@ -27,7 +27,6 @@ Change Log
 #define EXECUTIVE_H
 
 #include "IOManager.h"
-#include "WatchDog.h"
 #include "DataManager.h"
 #include "LogManager.h"
 
@@ -37,10 +36,9 @@ public:
     // Public Properties:
     // ---------------------------------------------------------------------- //   
     bool needsCleaning = false;
-    IOManager IO;
+    IOManager* IO;
     LogManager* LM;
     DataManager* data;
-    WatchDog* WD;
     
     // ---------------------------------------------------------------------- //
     // Public Methods:
@@ -50,6 +48,7 @@ public:
         static Executive* p_Executive = new Executive();
         return p_Executive;
     };    
+    
     void launch();
     void clean();
     Executive();

@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------------
-Function Name: CoreProcessor.h
+Function Name: LogManager.cpp
 
 --------------------------------------------------------------------------------
 Inputs:
@@ -21,12 +21,6 @@ Anthony Trezza
 Change Log
     15 Feb 2017 - t3 - Happy Birthday!
 --------------------------------------------------------------------------------
- */
-/* 
- * File:   LogManager.cpp
- * Author: controlxfreak
- * 
- * Created on April 8, 2017, 9:59 AM
  */
 
 #include "LogManager.h"
