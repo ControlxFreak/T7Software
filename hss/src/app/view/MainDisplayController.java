@@ -186,6 +186,7 @@ public class MainDisplayController {
 		tempGauge = new SimpleMetroArcGauge();
 		tempGauge.setPrefSize(175.0, 175.0);
 		tempGauge.setMinSize(175.0, 175.0);
+		tempGauge.setMaxValue(500.0);
 		/*
 		tempGauge.getStyleClass().add("colorscheme-green-to-red-6");
 		for(int i = 0; i < 10; i++) {

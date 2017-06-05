@@ -15,11 +15,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1700.0" style="-fx-background-color: rgb(51, 51, 51);" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.view.MainDisplayController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1800.0" style="-fx-background-color: rgb(51, 51, 51);" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.view.MainDisplayController">
    <children>
       <HBox spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox alignment="TOP_CENTER" minWidth="200.0" prefHeight="950.0" prefWidth="214.0" spacing="250.0">
+            <VBox alignment="TOP_CENTER" prefHeight="950.0" prefWidth="214.0" spacing="250.0">
                <children>
                   <ImageView fx:id="logo" fitWidth="85.0" pickOnBounds="true" preserveRatio="true" />
                   <VBox alignment="TOP_CENTER" spacing="20.0">
@@ -38,11 +38,11 @@
                                           <Font name="System Bold" size="13.0" />
                                        </font>
                                     </Label>
-                                    <GridPane alignment="CENTER" gridLinesVisible="true">
+                                    <GridPane alignment="CENTER" gridLinesVisible="true" minWidth="250.0">
                                       <columnConstraints>
                                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="136.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.0" minWidth="10.0" prefWidth="34.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="10.0" prefWidth="22.0" />
+                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="34.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="10.0" prefWidth="15.0" />
                                       </columnConstraints>
                                       <rowConstraints>
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -67,11 +67,11 @@
                                           <Font name="System Bold" size="13.0" />
                                        </font>
                                     </Label>
-                                    <GridPane alignment="CENTER" gridLinesVisible="true">
+                                    <GridPane alignment="CENTER" gridLinesVisible="true" minWidth="250.0">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="136.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.0" minWidth="10.0" prefWidth="34.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="10.0" prefWidth="22.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="34.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="10.0" prefWidth="15.0" />
                                        </columnConstraints>
                                        <rowConstraints>
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -96,11 +96,11 @@
                                           <Font name="System Bold" size="13.0" />
                                        </font>
                                     </Label>
-                                    <GridPane alignment="CENTER" gridLinesVisible="true">
+                                    <GridPane alignment="CENTER" gridLinesVisible="true" minWidth="250.0">
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="136.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.0" minWidth="10.0" prefWidth="34.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="10.0" prefWidth="22.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="34.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="10.0" prefWidth="15.0" />
                                        </columnConstraints>
                                        <rowConstraints>
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -118,11 +118,11 @@
                                     </GridPane>
                                  </children>
                               </VBox>
-                              <GridPane gridLinesVisible="true" minHeight="120.0">
+                              <GridPane gridLinesVisible="true" minHeight="120.0" minWidth="250.0">
                                  <columnConstraints>
-                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="136.0" minWidth="10.0" prefWidth="136.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.0" minWidth="10.0" prefWidth="34.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="10.0" prefWidth="22.0" />
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="136.0" />
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="34.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="10.0" prefWidth="15.0" />
                                  </columnConstraints>
                                  <rowConstraints>
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -166,7 +166,7 @@
                   <Insets bottom="15.0" left="10.0" top="30.0" />
                </padding>
             </VBox>
-            <VBox prefHeight="864.0" prefWidth="1700.0">
+            <VBox prefHeight="864.0" prefWidth="1600.0">
                <children>
                   <HBox prefHeight="550.0" prefWidth="1380.0">
                      <children>
@@ -178,26 +178,19 @@
                               <WebView fx:id="video" prefHeight="550.0" prefWidth="900.0" />
                            </children>
                         </VBox>
-                        <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="300.0" spacing="10.0">
+                        <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="300.0" spacing="20.0">
                            <children>
                               <Label text="Receiver Channels" textFill="WHITE">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <VBox alignment="TOP_CENTER" prefHeight="250.0" prefWidth="300.0">
+                              <VBox alignment="TOP_CENTER" prefHeight="490.0" prefWidth="300.0" spacing="40.0">
                                  <padding>
                                     <Insets left="50.0" />
                                  </padding>
                                  <children>
                                     <SwingNode fx:id="rcDataNode" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="TOP_CENTER" minHeight="210.0" prefHeight="250.0" prefWidth="300.0">
-                                 <padding>
-                                    <Insets left="50.0" />
-                                 </padding>
-                                 <children>
                                     <SwingNode fx:id="uavNode" />
                                  </children>
                               </VBox>
@@ -218,7 +211,14 @@
                                           <Font size="15.0" />
                                        </font>
                                     </Label>
-                                    <SwingNode fx:id="horizonNode" />
+                                    <VBox>
+                                       <children>
+                                          <SwingNode fx:id="horizonNode" />
+                                       </children>
+                                       <padding>
+                                          <Insets left="30.0" />
+                                       </padding>
+                                    </VBox>
                                  </children>
                               </VBox>
                               <VBox fx:id="tempBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
@@ -240,7 +240,7 @@
                         <Insets bottom="5.0" />
                      </padding>
                   </HBox>
-                  <HBox minWidth="1700.0" prefHeight="400.0" prefWidth="1700.0" spacing="10.0">
+                  <HBox minWidth="-Infinity" prefHeight="400.0" prefWidth="1600.0" spacing="10.0">
                      <children>
                         <SwingNode fx:id="chartNode" />
                         <VBox alignment="TOP_CENTER" minWidth="500.0" prefWidth="500.0" spacing="20.0">
