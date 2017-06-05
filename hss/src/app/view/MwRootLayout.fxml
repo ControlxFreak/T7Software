@@ -19,7 +19,7 @@
    <children>
       <HBox spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="950.0" prefWidth="214.0" spacing="250.0">
+            <VBox alignment="TOP_CENTER" prefHeight="950.0" prefWidth="214.0" spacing="195.0">
                <children>
                   <ImageView fx:id="logo" fitWidth="128.0" pickOnBounds="true" preserveRatio="true" />
                   <VBox alignment="TOP_CENTER" spacing="20.0">
@@ -240,7 +240,7 @@
                         <Insets bottom="5.0" />
                      </padding>
                   </HBox>
-                  <HBox minWidth="-Infinity" prefHeight="400.0" prefWidth="1600.0" spacing="10.0">
+                  <HBox minWidth="-Infinity" prefHeight="400.0" prefWidth="1600.0" spacing="25.0">
                      <children>
                         <SwingNode fx:id="chartNode" />
                         <VBox alignment="TOP_CENTER" minWidth="500.0" prefWidth="500.0" spacing="20.0">
@@ -280,6 +280,9 @@
                            </padding>
                         </VBox>
                      </children>
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
                   </HBox>
                </children>
             </VBox>
