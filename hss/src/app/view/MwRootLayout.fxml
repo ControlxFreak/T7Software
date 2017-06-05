@@ -21,7 +21,7 @@
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="950.0" prefWidth="214.0" spacing="250.0">
                <children>
-                  <ImageView fx:id="logo" fitWidth="85.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="logo" fitWidth="128.0" pickOnBounds="true" preserveRatio="true" />
                   <VBox alignment="TOP_CENTER" spacing="20.0">
                      <children>
                         <Label text="Sensor Data" textFill="WHITE">

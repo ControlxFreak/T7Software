@@ -179,7 +179,7 @@ public class MainDisplayController {
 		//snapshot_display.setImage(new Image(new File("/home/jarrett/T7Software/hss/src/main/resources/images/fire3.jpg").toURI().toString()));
 		centerImage();
 		
-		logo.setImage(new Image((new File("src/main/resources/images/default/svn_logo_small.png")).toURI().toString()));
+		logo.setImage(new Image((new File("src/main/resources/images/default/svn_logo_medium.png")).toURI().toString()));
 		logo.setFitWidth(logo.getFitWidth()*2);
 		logo.setFitHeight(logo.getFitHeight()*2);
 		//horizonTempBox.getChildren().add(tempGaugeNode);
