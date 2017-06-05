@@ -4,7 +4,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -20,13 +19,9 @@
    <children>
       <HBox spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox alignment="TOP_CENTER" minWidth="200.0" prefHeight="950.0" prefWidth="214.0" spacing="320.0">
+            <VBox alignment="TOP_CENTER" minWidth="200.0" prefHeight="950.0" prefWidth="214.0" spacing="250.0">
                <children>
-                  <ImageView pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../Downloads/SVN-stark_blue_fix_small2.png" />
-                     </image>
-                  </ImageView>
+                  <ImageView fx:id="logo" fitWidth="85.0" pickOnBounds="true" preserveRatio="true" />
                   <VBox alignment="TOP_CENTER" spacing="20.0">
                      <children>
                         <Label text="Sensor Data" textFill="WHITE">
@@ -34,45 +29,98 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
+                        <VBox>
                            <children>
-                              <Label text="Acceleration" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
-                              </Label>
-                              <GridPane alignment="CENTER" gridLinesVisible="true">
-                                <columnConstraints>
-                                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="136.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.0" minWidth="10.0" prefWidth="34.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="10.0" prefWidth="22.0" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <Label text="X" textFill="WHITE" />
-                                    <Label text="Y" textFill="WHITE" GridPane.rowIndex="1" />
-                                    <Label text="Z" textFill="WHITE" GridPane.rowIndex="2" />
-                                    <Label fx:id="acc_x_label" textFill="WHITE" GridPane.columnIndex="1" />
-                                    <Label fx:id="acc_y_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Label fx:id="acc_z_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label text="Acceleration" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <GridPane alignment="CENTER" gridLinesVisible="true">
+                                      <columnConstraints>
+                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="136.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.0" minWidth="10.0" prefWidth="34.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="10.0" prefWidth="22.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Label text="X" textFill="WHITE" />
+                                          <Label text="Y" textFill="WHITE" GridPane.rowIndex="1" />
+                                          <Label text="Z" textFill="WHITE" GridPane.rowIndex="2" />
+                                          <Label fx:id="acc_x_label" textFill="WHITE" GridPane.columnIndex="1" />
+                                          <Label fx:id="acc_y_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <Label fx:id="acc_z_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                       </children>
+                                    </GridPane>
                                  </children>
-                              </GridPane>
-                           </children>
-                        </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <Label text="Gyro" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
-                              </Label>
-                              <GridPane alignment="CENTER" gridLinesVisible="true">
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label text="Gyro" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <GridPane alignment="CENTER" gridLinesVisible="true">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="136.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.0" minWidth="10.0" prefWidth="34.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="10.0" prefWidth="22.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Label text="Roll" textFill="WHITE" />
+                                          <Label text="Pitch" textFill="WHITE" GridPane.rowIndex="1" />
+                                          <Label text="Yaw" textFill="WHITE" GridPane.rowIndex="2" />
+                                          <Label fx:id="gyro_roll_label" textFill="WHITE" GridPane.columnIndex="1" />
+                                          <Label fx:id="gyro_pitch_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <Label fx:id="gyro_yaw_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label text="Attitude (deg.)" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <GridPane alignment="CENTER" gridLinesVisible="true">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="136.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.0" minWidth="10.0" prefWidth="34.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="10.0" prefWidth="22.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Label text="Roll" textFill="WHITE" />
+                                          <Label text="Pitch" textFill="WHITE" GridPane.rowIndex="1" />
+                                          <Label text="Yaw" textFill="WHITE" GridPane.rowIndex="2" />
+                                          <Label fx:id="att_x_label" textFill="WHITE" GridPane.columnIndex="1" />
+                                          <Label fx:id="att_y_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <Label fx:id="att_z_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </VBox>
+                              <GridPane gridLinesVisible="true" minHeight="120.0">
                                  <columnConstraints>
-                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="136.0" />
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="136.0" minWidth="10.0" prefWidth="136.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.0" minWidth="10.0" prefWidth="34.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="10.0" prefWidth="22.0" />
                                  </columnConstraints>
@@ -80,91 +128,42 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Label text="Roll" textFill="WHITE" />
-                                    <Label text="Pitch" textFill="WHITE" GridPane.rowIndex="1" />
-                                    <Label text="Yaw" textFill="WHITE" GridPane.rowIndex="2" />
-                                    <Label fx:id="gyro_roll_label" textFill="WHITE" GridPane.columnIndex="1" />
-                                    <Label fx:id="gyro_pitch_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Label fx:id="gyro_yaw_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label text="Altitude (ft.)" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Heading" textFill="WHITE" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Battery (%)" textFill="WHITE" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="alt_label" textFill="WHITE" GridPane.columnIndex="1" />
+                                    <Label fx:id="head_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label fx:id="batt_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label text="Temperature (°C)" textFill="WHITE" GridPane.rowIndex="3">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="temp_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                  </children>
                               </GridPane>
                            </children>
                         </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <Label text="Attitude (deg.)" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
-                              </Label>
-                              <GridPane alignment="CENTER" gridLinesVisible="true">
-                                 <columnConstraints>
-                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="136.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.0" minWidth="10.0" prefWidth="34.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="10.0" prefWidth="22.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                                 <children>
-                                    <Label text="Roll" textFill="WHITE" />
-                                    <Label text="Pitch" textFill="WHITE" GridPane.rowIndex="1" />
-                                    <Label text="Yaw" textFill="WHITE" GridPane.rowIndex="2" />
-                                    <Label fx:id="att_x_label" textFill="WHITE" GridPane.columnIndex="1" />
-                                    <Label fx:id="att_y_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Label fx:id="att_z_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                 </children>
-                              </GridPane>
-                           </children>
-                        </VBox>
-                        <GridPane gridLinesVisible="true" minHeight="120.0">
-                           <columnConstraints>
-                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="136.0" minWidth="10.0" prefWidth="136.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.0" minWidth="10.0" prefWidth="34.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="10.0" prefWidth="22.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                           <children>
-                              <Label text="Altitude (ft.)" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
-                              </Label>
-                              <Label text="Heading" textFill="WHITE" GridPane.rowIndex="1">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
-                              </Label>
-                              <Label text="Battery (%)" textFill="WHITE" GridPane.rowIndex="2">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="alt_label" textFill="WHITE" GridPane.columnIndex="1" />
-                              <Label fx:id="head_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Label fx:id="batt_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Label text="Temperature (°C)" textFill="WHITE" GridPane.rowIndex="3">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="temp_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                           </children>
-                        </GridPane>
                      </children>
                   </VBox>
                </children>
                <padding>
-                  <Insets bottom="25.0" left="10.0" top="15.0" />
+                  <Insets bottom="15.0" left="10.0" top="30.0" />
                </padding>
             </VBox>
             <VBox prefHeight="864.0" prefWidth="1700.0">

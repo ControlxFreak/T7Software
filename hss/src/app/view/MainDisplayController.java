@@ -16,8 +16,10 @@
  */
 package app.view;
 
+import java.io.File;
 import java.util.logging.Logger;
 
+import javax.imageio.ImageIO;
 import javax.swing.SwingUtilities;
 import T7.T7Messages.GenericMessage.MsgType;
 import app.model.Snapshot;
@@ -94,6 +96,8 @@ public class MainDisplayController {
 	private Label batt_label;
 	@FXML
 	private Label temp_label;
+	@FXML
+	private ImageView logo;
 	
 	private MwRCDataPanel rcDataPanel;
 	private MwHudPanel hudPanel;
@@ -174,6 +178,10 @@ public class MainDisplayController {
 		video.setZoom(1.5);
 		//snapshot_display.setImage(new Image(new File("/home/jarrett/T7Software/hss/src/main/resources/images/fire3.jpg").toURI().toString()));
 		centerImage();
+		
+		logo.setImage(new Image((new File("src/main/resources/images/default/svn_logo_small.png")).toURI().toString()));
+		logo.setFitWidth(logo.getFitWidth()*2);
+		logo.setFitHeight(logo.getFitHeight()*2);
 		//horizonTempBox.getChildren().add(tempGaugeNode);
 		tempGauge = new SimpleMetroArcGauge();
 		tempGauge.setPrefSize(175.0, 175.0);
