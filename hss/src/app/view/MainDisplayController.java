@@ -68,6 +68,32 @@ public class MainDisplayController {
 	private SwingNode compassNode;
 	@FXML
 	private VBox tempBox;
+	@FXML
+	private Label acc_x_label;
+	@FXML
+	private Label acc_y_label;
+	@FXML
+	private Label acc_z_label;
+	@FXML
+	private Label gyro_roll_label;
+	@FXML
+	private Label gyro_pitch_label;
+	@FXML
+	private Label gyro_yaw_label;
+	@FXML
+	private Label att_x_label;
+	@FXML
+	private Label att_y_label;
+	@FXML
+	private Label att_z_label;
+	@FXML
+	private Label alt_label;
+	@FXML
+	private Label head_label;
+	@FXML
+	private Label batt_label;
+	@FXML
+	private Label temp_label;
 	
 	private MwRCDataPanel rcDataPanel;
 	private MwHudPanel hudPanel;
@@ -191,9 +217,11 @@ public class MainDisplayController {
 		switch(type) {
 		case TEMP:
 			tempGauge.setValue(d);
+			temp_label.setText(doubleDatumToLabelString(d));
 			break;
 		case ALTITUDE:
 			compasPanel.readNewValue("alt", d);
+			alt_label.setText(doubleDatumToLabelString(d));
 			break;
 		default:
 			break;
@@ -204,8 +232,14 @@ public class MainDisplayController {
 
 		switch(type) {
 		case ACCEL:
+			acc_x_label.setText(doubleDatumToLabelString(datumX));
+			acc_y_label.setText(doubleDatumToLabelString(datumY));
+			acc_z_label.setText(doubleDatumToLabelString(datumZ));
 			break;
 		case GYRO:
+			gyro_roll_label.setText(doubleDatumToLabelString(datumX));
+			gyro_pitch_label.setText(doubleDatumToLabelString(datumY));
+			gyro_yaw_label.setText(doubleDatumToLabelString(datumZ));
 			break;
 		case ATTITUDE:
 			hudPanel.readNewValue("angx", datumX);
@@ -213,13 +247,15 @@ public class MainDisplayController {
 			rcDataPanel.readNewValue("roll", datumX);
 			rcDataPanel.readNewValue("pitch", datumY);
 			rcDataPanel.readNewValue("yaw", datumZ);
+			att_x_label.setText(doubleDatumToLabelString(datumX));
+			att_y_label.setText(doubleDatumToLabelString(datumY));
+			att_z_label.setText(doubleDatumToLabelString(datumZ));
 			break;
 		default:
 			break;
 		}
 	}
 
-	/*
 	private String doubleDatumToLabelString(double d) {
 		String s = "";
 		if(d != Double.MIN_VALUE) {
@@ -227,7 +263,7 @@ public class MainDisplayController {
 		}
 		return s;
 	}
-
+	/*
 	private void centerRcBoxNodes() {
 		SwingNode node1 = (SwingNode)receiversBox.getChildren().get(1);
 		SwingNode node2 = (SwingNode)receiversBox.getChildren().get(2);

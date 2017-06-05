@@ -56,9 +56,9 @@
                                     <Label text="X" textFill="WHITE" />
                                     <Label text="Y" textFill="WHITE" GridPane.rowIndex="1" />
                                     <Label text="Z" textFill="WHITE" GridPane.rowIndex="2" />
-                                    <Label textFill="WHITE" GridPane.columnIndex="1" />
-                                    <Label textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Label textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label fx:id="acc_x_label" textFill="WHITE" GridPane.columnIndex="1" />
+                                    <Label fx:id="acc_y_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label fx:id="acc_z_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                  </children>
                               </GridPane>
                            </children>
@@ -85,16 +85,16 @@
                                     <Label text="Roll" textFill="WHITE" />
                                     <Label text="Pitch" textFill="WHITE" GridPane.rowIndex="1" />
                                     <Label text="Yaw" textFill="WHITE" GridPane.rowIndex="2" />
-                                    <Label textFill="WHITE" GridPane.columnIndex="1" />
-                                    <Label textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Label textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label fx:id="gyro_roll_label" textFill="WHITE" GridPane.columnIndex="1" />
+                                    <Label fx:id="gyro_pitch_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label fx:id="gyro_yaw_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                  </children>
                               </GridPane>
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label text="Acceleration" textFill="WHITE">
+                              <Label text="Attitude" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
@@ -114,20 +114,21 @@
                                     <Label text="Roll" textFill="WHITE" />
                                     <Label text="Pitch" textFill="WHITE" GridPane.rowIndex="1" />
                                     <Label text="Yaw" textFill="WHITE" GridPane.rowIndex="2" />
-                                    <Label textFill="WHITE" GridPane.columnIndex="1" />
-                                    <Label textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Label textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label fx:id="att_x_label" textFill="WHITE" GridPane.columnIndex="1" />
+                                    <Label fx:id="att_y_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label fx:id="att_z_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                  </children>
                               </GridPane>
                            </children>
                         </VBox>
-                        <GridPane minHeight="75.0">
+                        <GridPane minHeight="90.0">
                            <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="104.0" minWidth="10.0" prefWidth="104.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.0" minWidth="10.0" prefWidth="52.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="10.0" prefWidth="46.0" />
                            </columnConstraints>
                            <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -148,6 +149,15 @@
                                     <Font name="System Bold" size="13.0" />
                                  </font>
                               </Label>
+                              <Label fx:id="alt_label" textFill="WHITE" GridPane.columnIndex="1" />
+                              <Label fx:id="head_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label fx:id="batt_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label text="Temperature" textFill="WHITE" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="temp_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                            </children>
                         </GridPane>
                      </children>
