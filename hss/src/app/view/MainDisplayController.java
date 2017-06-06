@@ -231,6 +231,7 @@ public class MainDisplayController {
 		case ALTITUDE:
 			compasPanel.readNewValue("alt", d);
 			alt_label.setText(doubleDatumToLabelString(d));
+			((MwRCDataPanel)(rcDataNode.getContent())).readNewValue(MSP.IDRCALTITUDE, d);
 			break;
 		default:
 			break;

@@ -31,6 +31,9 @@ public class MwRCDataPanel extends MwInstrumentJPanel {
 	private final Image background = super.getImage("rcdata.png");
 	private final int[] startx = initializePositionX();
 	private final int[] starty = initializePositionY();
+	private final int[] gMax = initializeGreenMax();
+	private final int[] yMax = initializeYellowMax();
+	private final int[] valMax = initializeValMax();
 	private final int rcDatabarWidth = 7;
 
 	private int[] initializePositionY() {
@@ -40,6 +43,30 @@ public class MwRCDataPanel extends MwInstrumentJPanel {
 			m[i] = starty;
 			starty += rcDatabarWidth + 8;
 		}
+		return m;
+	}
+
+	private int[] initializeGreenMax() {
+		int[] m = new int[8];
+		
+		m[0] = 15;
+		
+		return m;
+	}
+
+	private int[] initializeYellowMax() {
+		int[] m = new int[8];
+		
+		m[0] = 20;
+		
+		return m;
+	}
+
+	private int[] initializeValMax() {
+		int[] m = new int[8];
+		
+		m[0] = 30;
+		
 		return m;
 	}
 
@@ -90,7 +117,11 @@ public class MwRCDataPanel extends MwInstrumentJPanel {
 
 		drawBackground(g2d);
 
-		drawBar(g2d, 2, dataRC, null, startx, starty, XAXIS);
+		//drawBar(g2d, 2, dataRC, null, startx, starty, XAXIS);
+		
+		for(int i = 0; i < dataRC.length; i++) {
+			drawRcBar(g2d, 2, dataRC[i], startx[i], starty[i], gMax[i], yMax[i], valMax[i]);
+		}
 	}
 
 	@Override
@@ -102,7 +133,7 @@ public class MwRCDataPanel extends MwInstrumentJPanel {
 	@Override
 	public void readNewValue(String name, Double value) {
 
-		if (MSP.IDRCTHROTTLE.equals(name)) {
+		if (MSP.IDRCALTITUDE.equals(name)) {
 			dataRC[0] = value;
 		} else if (MSP.IDRCPITCH.equals(name)) {
 			dataRC[1] = value;

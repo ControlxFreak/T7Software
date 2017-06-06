@@ -391,7 +391,7 @@ public final class MSP {
 	public static final String IDRCAUX4 = "aux4";
 	public static final String IDRCPITCH = "pitch";
 	public static final String IDRCROLL = "roll";
-	public static final String IDRCTHROTTLE = "throttle";
+	public static final String IDRCALTITUDE = "altitude";
 	public static final String IDRCYAW = "yaw";
 	public static final String IDVBAT = "vbat";
 

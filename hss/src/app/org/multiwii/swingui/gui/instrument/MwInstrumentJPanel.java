@@ -282,6 +282,60 @@ public abstract class MwInstrumentJPanel extends MwJPanel implements
 		}
 	}
 
+	/**
+	 * will draw bar value for each position defined in xpoint,ypoint ; there
+	 * must enough value to draw in values
+	 *
+	 * @param g2d
+	 *            is the graphic (where we draw)
+	 * @param offset
+	 *            the bar limit , allow the bar to reach barMax + offset and
+	 *            -offest value
+	 * @param value
+	 *            , Value to draw
+	 * @param xpoint
+	 *            , the x position for the bar to draw
+	 * @param ypoint
+	 *            , the y position for the bar to draw
+	 */
+	protected void drawRcBar(Graphics2D g2d, int offset, double value,
+			int xpoint, int ypoint, int gMax, int yMax, int valMax) {
+
+		GeneralPath bar = new GeneralPath(Path2D.WIND_EVEN_ODD);
+		double absValue = Math.abs(value);
+		int barValue = new Double((absValue / valMax) * barMax).intValue();
+
+		if (barValue > barMax + offset) {
+			barValue = barMax + offset;
+		}
+
+		if (absValue <= gMax) {
+			g2d.setPaint(conf.color.getColor(MwColor.INSTR_BAR_GREEN));
+		} else if (absValue <= yMax) {
+			g2d.setPaint(conf.color.getColor(MwColor.INSTR_BAR_YELLOW));
+		} else {
+			g2d.setPaint(conf.color.getColor(MwColor.INSTR_BAR_RED));
+		}
+		g2d.setStroke(new BasicStroke(1));
+		bar = new GeneralPath(Path2D.WIND_EVEN_ODD);
+		bar.moveTo(xpoint, ypoint);
+
+		/*
+		case YAXIS:
+			bar.lineTo(xpoint[i], ypoint[i] - barValue);
+			bar.lineTo(xpoint[i] + barWidth, ypoint[i] - barValue);
+			bar.lineTo(xpoint[i] + barWidth, ypoint[i]);
+			break;
+		 */
+
+		bar.lineTo(xpoint + barValue, ypoint);
+		bar.lineTo(xpoint + barValue, ypoint + barWidth);
+		bar.lineTo(xpoint, ypoint + barWidth);
+
+		bar.closePath();
+		g2d.fill(bar);
+	}
+
 	Image getImage(String image) {
 		String fpath = conf.getPath(MwConfiguration.THEME) + image;
 
@@ -293,8 +347,8 @@ public abstract class MwInstrumentJPanel extends MwJPanel implements
 			//System.out.println(Toolkit.getDefaultToolkit());
 			/*
 			return Toolkit.getDefaultToolkit().getImage(fpath);
-			*/
-			
+			 */
+
 			return ImageIO.read(new File(fpath));
 
 		} catch (Throwable e) {
