@@ -393,6 +393,10 @@ public final class MSP {
 	public static final String IDRCROLL = "roll";
 	public static final String IDRCALTITUDE = "altitude";
 	public static final String IDRCYAW = "yaw";
+	public static final String IDRCRANGE = "range";
+	public static final String IDRCACCX = "accelX";
+	public static final String IDRCACCY = "accelY";
+	public static final String IDRCACCZ = "accelZ";
 	public static final String IDVBAT = "vbat";
 
 	// For accessing values that do not change (often) over time , switches and

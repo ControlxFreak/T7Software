@@ -50,6 +50,13 @@ public class MwRCDataPanel extends MwInstrumentJPanel {
 		int[] m = new int[8];
 		
 		m[0] = 15;
+		m[1] = 40;
+		m[2] = 40;
+		m[3] = 40;
+		m[4] = 150;
+		m[5] = 25;
+		m[6] = 25;
+		m[7] = 25;
 		
 		return m;
 	}
@@ -58,6 +65,13 @@ public class MwRCDataPanel extends MwInstrumentJPanel {
 		int[] m = new int[8];
 		
 		m[0] = 20;
+		m[1] = 55;
+		m[2] = 55;
+		m[3] = 55;
+		m[4] = 185;
+		m[5] = 32;
+		m[6] = 32;
+		m[7] = 32;
 		
 		return m;
 	}
@@ -66,6 +80,13 @@ public class MwRCDataPanel extends MwInstrumentJPanel {
 		int[] m = new int[8];
 		
 		m[0] = 30;
+		m[1] = 80;
+		m[2] = 80;
+		m[3] = 80;
+		m[4] = 200;
+		m[5] = 35;
+		m[6] = 35;
+		m[7] = 35;
 		
 		return m;
 	}
@@ -135,19 +156,19 @@ public class MwRCDataPanel extends MwInstrumentJPanel {
 
 		if (MSP.IDRCALTITUDE.equals(name)) {
 			dataRC[0] = value;
-		} else if (MSP.IDRCPITCH.equals(name)) {
-			dataRC[1] = value;
 		} else if (MSP.IDRCROLL.equals(name)) {
+			dataRC[1] = value;
+		} else if (MSP.IDRCPITCH.equals(name)) {
 			dataRC[2] = value;
 		} else if (MSP.IDRCYAW.equals(name)) {
 			dataRC[3] = value;
-		} else if (MSP.IDRCAUX1.equals(name)) {
+		} else if (MSP.IDRCRANGE.equals(name)) {
 			dataRC[4] = value;
-		} else if (MSP.IDRCAUX2.equals(name)) {
+		} else if (MSP.IDRCACCX.equals(name)) {
 			dataRC[5] = value;
-		} else if (MSP.IDRCAUX3.equals(name)) {
+		} else if (MSP.IDRCACCY.equals(name)) {
 			dataRC[6] = value;
-		} else if (MSP.IDRCAUX4.equals(name)) {
+		} else if (MSP.IDRCACCZ.equals(name)) {
 			dataRC[7] = value;
 		}
 		repaint();

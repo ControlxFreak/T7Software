@@ -100,6 +100,7 @@ public class MainDisplayController {
 	private ImageView logo;
 	
 	private MwRCDataPanel rcDataPanel;
+	private MwUAVPanel uavPanel;
 	private MwHudPanel hudPanel;
 	private MwCompasPanel compasPanel;
 	private SimpleMetroArcGauge tempGauge;
@@ -136,7 +137,7 @@ public class MainDisplayController {
 				rcDataNode.setContent(rcDataPanel);
 				//centerRcBoxNodes();
 
-				MwUAVPanel uavPanel = new MwUAVPanel(conf);
+				uavPanel = new MwUAVPanel(conf);
 				MSP.getRealTimeData().addListener(uavPanel);
 				uavNode.setContent(uavPanel);
 
@@ -186,7 +187,7 @@ public class MainDisplayController {
 		tempGauge = new SimpleMetroArcGauge();
 		tempGauge.setPrefSize(175.0, 175.0);
 		tempGauge.setMinSize(175.0, 175.0);
-		tempGauge.setMaxValue(500.0);
+		tempGauge.setMaxValue(350.0);
 		/*
 		tempGauge.getStyleClass().add("colorscheme-green-to-red-6");
 		for(int i = 0; i < 10; i++) {
@@ -203,9 +204,9 @@ public class MainDisplayController {
 		tempGauge.getStylesheets().add("file:src/app/view/temperature_segment.css");
 		tempGauge.getStyleClass().add("colorscheme-green-to-red-3");
 		System.out.println("tempGauge StyleClasses: " + tempGauge.getStyleClass());
-		Segment gSeg = new PercentSegment(tempGauge, 0.0, 70.0);
-		Segment ySeg = new PercentSegment(tempGauge, 70.0, 90.0);
-		Segment rSeg = new PercentSegment(tempGauge, 90.0, 100.0);
+		Segment gSeg = new PercentSegment(tempGauge, 0.0, 68.0);
+		Segment ySeg = new PercentSegment(tempGauge, 68.0, 88.0);
+		Segment rSeg = new PercentSegment(tempGauge, 88.0, 100.0);
 		tempGauge.segments().add(gSeg);
 		tempGauge.segments().add(ySeg);
 		tempGauge.segments().add(rSeg);
@@ -231,7 +232,7 @@ public class MainDisplayController {
 		case ALTITUDE:
 			compasPanel.readNewValue("alt", d);
 			alt_label.setText(doubleDatumToLabelString(d));
-			((MwRCDataPanel)(rcDataNode.getContent())).readNewValue(MSP.IDRCALTITUDE, d);
+			rcDataPanel.readNewValue(MSP.IDRCALTITUDE, d);
 			break;
 		default:
 			break;
@@ -245,6 +246,9 @@ public class MainDisplayController {
 			acc_x_label.setText(doubleDatumToLabelString(datumX));
 			acc_y_label.setText(doubleDatumToLabelString(datumY));
 			acc_z_label.setText(doubleDatumToLabelString(datumZ));
+			rcDataPanel.readNewValue(MSP.IDRCACCX, datumX);
+			rcDataPanel.readNewValue(MSP.IDRCACCY, datumY);
+			rcDataPanel.readNewValue(MSP.IDRCACCZ, datumZ);
 			break;
 		case GYRO:
 			gyro_roll_label.setText(doubleDatumToLabelString(datumX));
