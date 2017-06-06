@@ -249,6 +249,10 @@ public class MainDisplayController {
 			rcDataPanel.readNewValue(MSP.IDRCACCX, datumX);
 			rcDataPanel.readNewValue(MSP.IDRCACCY, datumY);
 			rcDataPanel.readNewValue(MSP.IDRCACCZ, datumZ);
+			uavPanel.readNewValue("0", 2000.0);
+			uavPanel.readNewValue("1", 2000.0);
+			uavPanel.readNewValue("2", 2000.0);
+			uavPanel.readNewValue("3", 2000.0);
 			break;
 		case GYRO:
 			gyro_roll_label.setText(doubleDatumToLabelString(datumX));

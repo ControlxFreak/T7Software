@@ -118,13 +118,14 @@
                                     </GridPane>
                                  </children>
                               </VBox>
-                              <GridPane gridLinesVisible="true" minHeight="120.0" minWidth="250.0">
+                              <GridPane gridLinesVisible="true" minHeight="150.0" minWidth="250.0">
                                  <columnConstraints>
                                     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="136.0" />
                                     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="34.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="10.0" prefWidth="15.0" />
                                  </columnConstraints>
                                  <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -136,25 +137,30 @@
                                           <Font name="System Bold" size="13.0" />
                                        </font>
                                     </Label>
-                                    <Label text="Heading" textFill="WHITE" GridPane.rowIndex="1">
+                                    <Label text="Heading" textFill="WHITE" GridPane.rowIndex="2">
                                        <font>
                                           <Font name="System Bold" size="13.0" />
                                        </font>
                                     </Label>
-                                    <Label text="Battery (%)" textFill="WHITE" GridPane.rowIndex="2">
+                                    <Label text="Battery (%)" textFill="WHITE" GridPane.rowIndex="3">
                                        <font>
                                           <Font name="System Bold" size="13.0" />
                                        </font>
                                     </Label>
                                     <Label fx:id="alt_label" textFill="WHITE" GridPane.columnIndex="1" />
-                                    <Label fx:id="head_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Label fx:id="batt_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <Label text="Temperature (°C)" textFill="WHITE" GridPane.rowIndex="3">
+                                    <Label fx:id="head_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label fx:id="batt_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Label text="Temperature (°C)" textFill="WHITE" GridPane.rowIndex="4">
                                        <font>
                                           <Font name="System Bold" size="13.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="temp_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Label fx:id="temp_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Label text="Range (ft.)" textFill="WHITE" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
                                  </children>
                               </GridPane>
                            </children>
