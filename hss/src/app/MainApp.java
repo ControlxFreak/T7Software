@@ -166,41 +166,41 @@ public class MainApp extends Application {
 
 	private void showDataConfigManager() {
 		try {
-		// Load the fxml file and create a new dialog.
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("view/DataConfiguration.fxml"));
-		AnchorPane dialog = (AnchorPane) loader.load();
+			// Load the fxml file and create a new dialog.
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("view/DataConfiguration.fxml"));
+			AnchorPane dialog = (AnchorPane) loader.load();
 
-		Stage dialogStage = new Stage();
-		dialogStage.setTitle("Data Configuration Manager");
-		dialogStage.initModality(Modality.WINDOW_MODAL);
-		dialogStage.initOwner(primaryStage);
-		Scene scene = new Scene(dialog);
-		dialogStage.setScene(scene);
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Data Configuration Manager");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			Scene scene = new Scene(dialog);
+			dialogStage.setScene(scene);
 
-		DataConfigurationDialogController controller = loader.getController();
-		controller.setDialogStage(dialogStage);
-		
-		boolean[] copy_arr = config_arr.clone();
+			DataConfigurationDialogController controller = loader.getController();
+			controller.setDialogStage(dialogStage);
 
-		System.out.println("array before dialog: " + config_arr.toString());
-		dialogStage.showAndWait();
-		System.out.println("array after dialog: " + config_arr.toString());
-		for(int i = 0; i < config_arr.length; i++) {
-			if(!config_arr[i]) {
-				clearDisplay(ToggleKeys.forNumber(i));
+			boolean[] copy_arr = config_arr.clone();
+
+			System.out.println("array before dialog: " + config_arr.toString());
+			dialogStage.showAndWait();
+			System.out.println("array after dialog: " + config_arr.toString());
+			for(int i = 0; i < config_arr.length; i++) {
+				if(!config_arr[i]) {
+					clearDisplay(ToggleKeys.forNumber(i));
+				}
 			}
-		}
 
-		// Send configData messages
-		for(int i = 0; i < config_arr.length; i++) {
-			if(copy_arr[i] != config_arr[i]) {
-				GenericMessage.Builder gmBuilder = GenericMessage.newBuilder();
-				gmBuilder.setMsgtype(MsgType.CONFIG_DATA.getNumber()).setTime(System.currentTimeMillis())
+			// Send configData messages
+			for(int i = 0; i < config_arr.length; i++) {
+				if(copy_arr[i] != config_arr[i]) {
+					GenericMessage.Builder gmBuilder = GenericMessage.newBuilder();
+					gmBuilder.setMsgtype(MsgType.CONFIG_DATA.getNumber()).setTime(System.currentTimeMillis())
 					.setConfigdata(ConfigData.newBuilder().setConfigKey(i));
-				config_client.sendMessage(gmBuilder.build());
+					config_client.sendMessage(gmBuilder.build());
+				}
 			}
-		}
 
 		} catch(IOException e) {
 			logger.warning("Exception when trying to show data config manager dialog: " + e.getMessage());
@@ -214,7 +214,7 @@ public class MainApp extends Application {
 		choices.add("Reboot Software");
 		choices.add("Soft Shutdown");
 		choices.add("Emergency Stop");
-		
+
 		ChoiceDialog<String> dialog = new ChoiceDialog<String>("Reboot Software", choices);
 		dialog.setTitle("UAV Termination");
 		dialog.setHeaderText("Select a termination command to send to the UAV."
@@ -251,6 +251,9 @@ public class MainApp extends Application {
 			break;
 		case toggleBat:
 			updateTelemetryDisplay(Double.MIN_VALUE, MsgType.BAT);
+			break;
+		case toggleHead:
+			updateTelemetryDisplay(Double.MIN_VALUE, MsgType.HEAD);
 			break;
 		default:
 			break;

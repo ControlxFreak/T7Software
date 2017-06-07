@@ -63,6 +63,7 @@ public class TestHSSClient {
 				System.out.println("4) Make a new Attitude connection");
 				System.out.println("5) Make a new Temperature connection");
 				System.out.println("6) Make a new Battery connection");
+				System.out.println("7) Make a new Heading connection");
 
 				while(!in.ready()) {
 					Thread.sleep(500);
@@ -97,6 +98,10 @@ public class TestHSSClient {
 				case 6:
 					System.out.println("Sending Battery request.");
 					connType = MsgType.BAT;
+					break;
+				case 7:
+					System.out.println("Sending Heading request.");
+					connType = MsgType.HEAD;
 					break;
 				default:
 					valid_input_received = false;
@@ -198,6 +203,10 @@ public class TestHSSClient {
 					case BAT:
 						gm.setMsgtype(205)
 							.setBat(Battery.newBuilder().setPercent(Double.parseDouble(input)));
+						break;
+					case HEAD:
+						gm.setMsgtype(206)
+							.setHead(Heading.newBuilder().setHeading(Double.parseDouble(input)));
 						break;
 					default:
 						break;

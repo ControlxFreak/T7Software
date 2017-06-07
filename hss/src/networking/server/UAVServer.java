@@ -137,8 +137,11 @@ public class UAVServer implements Runnable {
 		case BAT:
 			key = ToggleKeys.toggleBat;
 			break;
-			default:
-				throw new IllegalArgumentException("Illegal MsgType: " + type);
+		case HEAD:
+			key = ToggleKeys.toggleHead;
+			break;
+		default:
+			throw new IllegalArgumentException("Illegal MsgType: " + type);
 		}
 		Platform.runLater(() -> MainApp.clearDisplay(key));
 	}
