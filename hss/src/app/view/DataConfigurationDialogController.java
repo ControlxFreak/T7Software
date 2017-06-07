@@ -51,7 +51,7 @@ public class DataConfigurationDialogController {
 		attitude.setSelected(config_arr[ToggleKeys.toggleAttitude_VALUE]);
 		temperature.setSelected(config_arr[ToggleKeys.toggleTemp_VALUE]);
 		battery.setSelected(config_arr[ToggleKeys.toggleBat_VALUE]);
-		thermal.setSelected(true);
+		thermal.setSelected(config_arr[ToggleKeys.toggleArray_VALUE]);
 	}
 
 	public void setDialogStage(Stage dialogStage) {
@@ -66,6 +66,7 @@ public class DataConfigurationDialogController {
 		config_arr[ToggleKeys.toggleAttitude_VALUE] = attitude.isSelected();
 		config_arr[ToggleKeys.toggleTemp_VALUE] = temperature.isSelected();
 		config_arr[ToggleKeys.toggleBat_VALUE] = battery.isSelected();
+		config_arr[ToggleKeys.toggleArray_VALUE] = thermal.isSelected();
 
 		dialogStage.close();
 	}
