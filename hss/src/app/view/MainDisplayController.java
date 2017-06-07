@@ -230,10 +230,13 @@ public class MainDisplayController {
 			temp_label.setText(doubleDatumToLabelString(d));
 			break;
 		case ALTITUDE:
-			compasPanel.readNewValue("alt", d);
+			compasPanel.readNewValue(MSP.IDALT, d);
 			alt_label.setText(doubleDatumToLabelString(d));
 			rcDataPanel.readNewValue(MSP.IDRCALTITUDE, d);
 			break;
+		case HEAD:
+			compasPanel.readNewValue(MSP.IDHEAD, d);
+			head_label.setText(doubleDatumToLabelString(d));
 		default:
 			break;
 		}

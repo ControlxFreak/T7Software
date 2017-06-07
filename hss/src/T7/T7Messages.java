@@ -5249,6 +5249,10 @@ public final class T7Messages {
        * <code>toggleArray = 6;</code>
        */
       toggleArray(6),
+      /**
+       * <code>toggleHead = 7;</code>
+       */
+      toggleHead(7),
       UNRECOGNIZED(-1),
       ;
 
@@ -5280,6 +5284,10 @@ public final class T7Messages {
        * <code>toggleArray = 6;</code>
        */
       public static final int toggleArray_VALUE = 6;
+      /**
+       * <code>toggleHead = 7;</code>
+       */
+      public static final int toggleHead_VALUE = 7;
 
 
       public final int getNumber() {
@@ -5307,6 +5315,7 @@ public final class T7Messages {
           case 4: return toggleTemp;
           case 5: return toggleBat;
           case 6: return toggleArray;
+          case 7: return toggleHead;
           default: return null;
         }
       }
@@ -11185,22 +11194,22 @@ public final class T7Messages {
       "roger_that\030\001 \001(\010\"\032\n\tHeartBeat\022\r\n\005alive\030\001",
       " \001(\010\"j\n\tTerminate\022\024\n\014terminateKey\030\001 \001(\005\"" +
       "G\n\rTerminateKeys\022\021\n\rselfTerminate\020\000\022\020\n\014s" +
-      "oftShutdown\020\001\022\021\n\remergencyStop\020\002\"\247\001\n\nCon" +
-      "figData\022\021\n\tconfigKey\030\001 \001(\005\"\205\001\n\nToggleKey" +
+      "oftShutdown\020\001\022\021\n\remergencyStop\020\002\"\267\001\n\nCon" +
+      "figData\022\021\n\tconfigKey\030\001 \001(\005\"\225\001\n\nToggleKey" +
       "s\022\017\n\013toggleAccel\020\000\022\016\n\ntoggleGyro\020\001\022\022\n\016to" +
       "ggleAltitude\020\002\022\022\n\016toggleAttitude\020\003\022\016\n\nto" +
       "ggleTemp\020\004\022\r\n\ttoggleBat\020\005\022\017\n\013toggleArray" +
-      "\020\006\"R\n\nMoveCamera\022\020\n\010arrowKey\030\001 \001(\005\"2\n\tAr" +
-      "rowKeys\022\006\n\002UP\020\000\022\t\n\005RIGHT\020\001\022\010\n\004DOWN\020\002\022\010\n\004" +
-      "LEFT\020\003\"!\n\016ThermalRequest\022\017\n\007request\030\001 \001(",
-      "\010\"(\n\005Accel\022\t\n\001x\030\001 \001(\001\022\t\n\001y\030\002 \001(\001\022\t\n\001z\030\003 " +
-      "\001(\001\"\'\n\004Gyro\022\t\n\001x\030\001 \001(\001\022\t\n\001y\030\002 \001(\001\022\t\n\001z\030\003" +
-      " \001(\001\"\027\n\010Altitude\022\013\n\003alt\030\001 \001(\001\"4\n\010Attitud" +
-      "e\022\014\n\004roll\030\001 \001(\001\022\r\n\005pitch\030\002 \001(\001\022\013\n\003yaw\030\003 " +
-      "\001(\001\"\024\n\004Temp\022\014\n\004temp\030\001 \001(\001\"\032\n\007Battery\022\017\n\007" +
-      "percent\030\001 \001(\001\"\032\n\007Heading\022\017\n\007heading\030\001 \001(" +
-      "\001\"#\n\017ThermalResponse\022\020\n\010response\030\001 \001(\001b\006" +
-      "proto3"
+      "\020\006\022\016\n\ntoggleHead\020\007\"R\n\nMoveCamera\022\020\n\010arro" +
+      "wKey\030\001 \001(\005\"2\n\tArrowKeys\022\006\n\002UP\020\000\022\t\n\005RIGHT" +
+      "\020\001\022\010\n\004DOWN\020\002\022\010\n\004LEFT\020\003\"!\n\016ThermalRequest",
+      "\022\017\n\007request\030\001 \001(\010\"(\n\005Accel\022\t\n\001x\030\001 \001(\001\022\t\n" +
+      "\001y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\"\'\n\004Gyro\022\t\n\001x\030\001 \001(\001\022\t" +
+      "\n\001y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\"\027\n\010Altitude\022\013\n\003alt\030" +
+      "\001 \001(\001\"4\n\010Attitude\022\014\n\004roll\030\001 \001(\001\022\r\n\005pitch" +
+      "\030\002 \001(\001\022\013\n\003yaw\030\003 \001(\001\"\024\n\004Temp\022\014\n\004temp\030\001 \001(" +
+      "\001\"\032\n\007Battery\022\017\n\007percent\030\001 \001(\001\"\032\n\007Heading" +
+      "\022\017\n\007heading\030\001 \001(\001\"#\n\017ThermalResponse\022\020\n\010" +
+      "response\030\001 \001(\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

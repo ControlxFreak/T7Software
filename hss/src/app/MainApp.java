@@ -61,7 +61,7 @@ public class MainApp extends Application {
 	private static UAVClient termination_client = null;
 	private static ObservableList<Snapshot> snapshotData = FXCollections.observableArrayList();
 	//private static Map<MsgType, Boolean> configMap = new HashMap<MsgType, Boolean>();
-	private static boolean[] config_arr = new boolean[7];
+	private static boolean[] config_arr = new boolean[8];
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -112,6 +112,7 @@ public class MainApp extends Application {
 		config_arr[ToggleKeys.toggleTemp_VALUE] = true;
 		config_arr[ToggleKeys.toggleBat_VALUE] = true;
 		config_arr[ToggleKeys.toggleArray_VALUE] = true;
+		config_arr[ToggleKeys.toggleHead_VALUE] = true;
 	}
 
 	private void initClients() {
@@ -393,6 +394,8 @@ public class MainApp extends Application {
 			return config_arr[ToggleKeys.toggleTemp_VALUE];
 		case BAT:
 			return config_arr[ToggleKeys.toggleBat_VALUE];
+		case HEAD:
+			return config_arr[ToggleKeys.toggleHead_VALUE];
 		default:
 			throw new IllegalArgumentException("Illegal MsgType: " + type);
 		}

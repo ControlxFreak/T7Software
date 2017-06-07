@@ -116,6 +116,8 @@ public class DataConnectionHandler
 			case BAT:
 				handlerMethod = this::handleBatteryMessage;
 				break;
+			case HEAD:
+				handlerMethod = this::handleHeadingMessage;
 			default:
 				logger.warning("Unrecognized connection type.");
 				break;
@@ -159,6 +161,11 @@ public class DataConnectionHandler
 	private void handleBatteryMessage(GenericMessage gm) {
 		double percent = gm.getBat().getPercent();
 		server.updateTelemetryData(percent, connType);
+	}
+	
+	private void handleHeadingMessage(GenericMessage gm) {
+		double heading = gm.getHead().getHeading();
+		server.updateTelemetryData(heading, connType);
 	}
 
 	private void handlePaused(GenericMessage gm) {

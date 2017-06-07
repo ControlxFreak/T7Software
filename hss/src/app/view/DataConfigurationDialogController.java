@@ -36,6 +36,8 @@ public class DataConfigurationDialogController {
 	@FXML
 	private CheckBox gyroscope;
 	@FXML
+	private CheckBox heading;
+	@FXML
 	private CheckBox temperature;
 	@FXML
 	private CheckBox thermal;
@@ -52,6 +54,7 @@ public class DataConfigurationDialogController {
 		temperature.setSelected(config_arr[ToggleKeys.toggleTemp_VALUE]);
 		battery.setSelected(config_arr[ToggleKeys.toggleBat_VALUE]);
 		thermal.setSelected(config_arr[ToggleKeys.toggleArray_VALUE]);
+		heading.setSelected(config_arr[ToggleKeys.toggleHead_VALUE]);
 	}
 
 	public void setDialogStage(Stage dialogStage) {
@@ -67,6 +70,7 @@ public class DataConfigurationDialogController {
 		config_arr[ToggleKeys.toggleTemp_VALUE] = temperature.isSelected();
 		config_arr[ToggleKeys.toggleBat_VALUE] = battery.isSelected();
 		config_arr[ToggleKeys.toggleArray_VALUE] = thermal.isSelected();
+		config_arr[ToggleKeys.toggleHead_VALUE] = heading.isSelected();
 
 		dialogStage.close();
 	}

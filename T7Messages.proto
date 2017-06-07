@@ -129,6 +129,7 @@ message ConfigData {
 	     toggleTemp = 4;
 	     toggleBat = 5;
 	     toggleArray = 6;
+	     toggleHead = 7;
 	}
 }
 
