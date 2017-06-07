@@ -111,7 +111,6 @@ public class SnapshotExplorerController {
 		main_controller.checkDeleteDisplayedSnapshot(snap_list.get(index));
 		snap_list.remove(index);
 		MainApp.updatePriorities();
-		main_controller.updateEmbeddedSnap();
 	}
 
 	@FXML
@@ -133,7 +132,6 @@ public class SnapshotExplorerController {
 		snap.setAnimal(animalBox.getValue());
 		snap.setAnimalQty(qtySpinner.getValue());
 
-		snap.refreshPriorityVal();	//TODO Add temperature
 		MainApp.updatePriorities();
 		if(snap.isTarget()) {
 			handleTargetSelection();
@@ -143,7 +141,6 @@ public class SnapshotExplorerController {
 		
 		priorityField.setText(Integer.toString(snap.getRelativePriority()));
 		System.out.println("main_controller = " + main_controller);
-		main_controller.updateEmbeddedSnap();
 	}
 
 	@FXML

@@ -62,6 +62,9 @@ public class TestConnectionHandler implements Runnable {
 			case TERMINATE:
 				handlerMethod = this::handleTerminateMessage;
 				break;
+			case THERMAL_REQUEST:
+				handlerMethod = this::handleThermalRequestMessage;
+				break;
 			default:
 				break;
 			}
@@ -108,6 +111,10 @@ public class TestConnectionHandler implements Runnable {
 	private void handleTerminateMessage(GenericMessage gm) {
 		int termKey = gm.getTerminate().getTerminateKey();
 		System.out.println("terminateKey = " + TerminateKeys.forNumber(termKey));
+	}
+	
+	private void handleThermalRequestMessage(GenericMessage gm) {
+		System.out.println("request = " + gm.getThermalrequest().getRequest());
 	}
 
 }

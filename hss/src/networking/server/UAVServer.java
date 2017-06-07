@@ -115,6 +115,12 @@ public class UAVServer implements Runnable {
 		Platform.runLater(() -> MainApp.updateTelemetryDisplay(datumX, datumY, datumZ, type));
 	}
 
+	public void updateSnapshotThermalReading(double response) {
+		System.out.println("Setting snapshot maxThermal to " + response);
+		
+		Platform.runLater(() -> MainApp.updateSnapshotThermalReading(response));
+	}
+
 	public void clearTelemetryData(MsgType type) {
 		final ToggleKeys key;
 		
@@ -140,6 +146,8 @@ public class UAVServer implements Runnable {
 		case HEAD:
 			key = ToggleKeys.toggleHead;
 			break;
+		case THERMAL_RESPONSE:
+			return;
 		default:
 			throw new IllegalArgumentException("Illegal MsgType: " + type);
 		}

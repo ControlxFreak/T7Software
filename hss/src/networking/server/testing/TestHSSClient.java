@@ -64,6 +64,7 @@ public class TestHSSClient {
 				System.out.println("5) Make a new Temperature connection");
 				System.out.println("6) Make a new Battery connection");
 				System.out.println("7) Make a new Heading connection");
+				System.out.println("8) Make a new Thermal Response connection");
 
 				while(!in.ready()) {
 					Thread.sleep(500);
@@ -102,6 +103,10 @@ public class TestHSSClient {
 				case 7:
 					System.out.println("Sending Heading request.");
 					connType = MsgType.HEAD;
+					break;
+				case 8:
+					System.out.println("Sending Thermal Response request.");
+					connType = MsgType.THERMAL_RESPONSE;
 					break;
 				default:
 					valid_input_received = false;
@@ -207,6 +212,10 @@ public class TestHSSClient {
 					case HEAD:
 						gm.setMsgtype(206)
 							.setHead(Heading.newBuilder().setHeading(Double.parseDouble(input)));
+						break;
+					case THERMAL_RESPONSE:
+						gm.setMsgtype(207)
+							.setThermalresponse(ThermalResponse.newBuilder().setResponse(Double.parseDouble(input)));
 						break;
 					default:
 						break;

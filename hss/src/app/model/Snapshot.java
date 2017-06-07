@@ -18,7 +18,7 @@ public class Snapshot implements Comparable<Snapshot>{
 	private boolean target = true;
 	private Animal animal = Animal.UNKNOWN;
 	private int animalQty = 1;
-	private double maxThermal = 0.0;
+	private double maxThermal = Double.MIN_VALUE;
 
 	public Snapshot(Image image) {
 		this.image = image;
@@ -26,14 +26,6 @@ public class Snapshot implements Comparable<Snapshot>{
 
 	public Image getImage() {
 		return image;
-	}
-
-	public void setPriorityVal(double priority) {
-		this.priorityVal = priority;
-	}
-
-	public double getPriorityVal() {
-		return priorityVal;
 	}
 
 	public String getDescription() {
@@ -78,6 +70,7 @@ public class Snapshot implements Comparable<Snapshot>{
 
 	public void setAnimal(Animal animal) {
 		this.animal = animal;
+		refreshPriorityVal();
 	}
 
 	public int getAnimalQty() {
@@ -86,6 +79,7 @@ public class Snapshot implements Comparable<Snapshot>{
 
 	public void setAnimalQty(int animalQty) {
 		this.animalQty = animalQty;
+		refreshPriorityVal();
 	}
 
 	@Override
@@ -109,8 +103,8 @@ public class Snapshot implements Comparable<Snapshot>{
 		this.relativePriority = relativePriority;
 	}
 
-	public void refreshPriorityVal() {
-		priorityVal = animal.getPriority() * animalQty + 0*maxThermal;
+	private void refreshPriorityVal() {
+		priorityVal = animal.getPriority() * animalQty + .03*maxThermal;
 	}
 
 	public double getMaxThermal() {
@@ -119,5 +113,6 @@ public class Snapshot implements Comparable<Snapshot>{
 
 	public void setMaxThermal(double maxThermal) {
 		this.maxThermal = maxThermal;
+		refreshPriorityVal();
 	}
 }

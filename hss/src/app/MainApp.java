@@ -28,6 +28,7 @@ import java.util.logging.Logger;
 import T7.T7Messages.GenericMessage;
 import T7.T7Messages.MoveCamera;
 import T7.T7Messages.Terminate;
+import T7.T7Messages.ThermalRequest;
 import T7.T7Messages.ConfigData;
 import T7.T7Messages.ConfigData.ToggleKeys;
 import T7.T7Messages.GenericMessage.MsgType;
@@ -36,6 +37,7 @@ import app.view.DataConfigurationDialogController;
 import app.view.MainDisplayController;
 import app.view.SnapshotExplorerController;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -52,13 +54,14 @@ import networking.server.UAVServer;
 public class MainApp extends Application {
 
 	private static Logger logger			= Logger.getLogger(MainApp.class.getName());
-	private Stage primaryStage;
+	private static Stage primaryStage;
 	private static AnchorPane rootLayout;
 	private static MainDisplayController main_controller;
 	private static UAVServer server = new UAVServer();
 	private static UAVClient camera_client = null;
 	private static UAVClient config_client = null;
 	private static UAVClient termination_client = null;
+	private static UAVClient array_client = null;
 	private static ObservableList<Snapshot> snapshotData = FXCollections.observableArrayList();
 	//private static Map<MsgType, Boolean> configMap = new HashMap<MsgType, Boolean>();
 	private static boolean[] config_arr = new boolean[8];
@@ -124,6 +127,9 @@ public class MainApp extends Application {
 
 		termination_client = new UAVClient();
 		new Thread(termination_client).start();
+		
+		array_client = new UAVClient();
+		new Thread(array_client).start();
 	}
 
 	private void initServer() {
@@ -133,16 +139,35 @@ public class MainApp extends Application {
 	private void takeSnapshot() {
 		//snapshotData.add(0, new Snapshot(new Image((new File("/home/jarrett/T7Software/hss/src/main/resources/images/topanga.jpg")).toURI().toString())));
 		snapshotData.add(0, new Snapshot(main_controller.takeSnapshot()));
-		updatePriorities();
+		GenericMessage.Builder gmBuilder = GenericMessage.newBuilder();
+		gmBuilder.setMsgtype(MsgType.THERMAL_REQUEST.getNumber()).setTime(System.currentTimeMillis())
+		.setThermalrequest(ThermalRequest.newBuilder().setRequest(true));
+		array_client.sendMessage(gmBuilder.build());
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				while(snapshotData.get(0).getMaxThermal() == Double.MIN_VALUE) {
+					System.out.println("Waiting for thermal response.");
+					try {
+						Thread.sleep(250);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				Platform.runLater(() -> MainApp.updatePriorities());
 
-		showSnapshotExplorer();
+				Platform.runLater(() -> MainApp.showSnapshotExplorer());
+			}
+		}).start();
 	}
 
-	private void showSnapshotExplorer() {
+	private static void showSnapshotExplorer() {
 		try {
 		// Load the fxml file and create a new dialog.
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("view/SnapshotExplorer.fxml"));
+		loader.setLocation(MainApp.class.getResource("view/SnapshotExplorer.fxml"));
 		AnchorPane explorer = (AnchorPane) loader.load();
 
 		Stage explorerStage = new Stage();
@@ -361,6 +386,10 @@ public class MainApp extends Application {
 		main_controller.updateVectorData(datumX, datumY, datumZ, type);
 	}
 
+	public static void updateSnapshotThermalReading(double response) {
+		snapshotData.get(0).setMaxThermal(response);
+	}
+
 	public void updateSnapshotDisplay(Snapshot snap) {
 
 	}
@@ -377,6 +406,7 @@ public class MainApp extends Application {
 		camera_client.shutDown();
 		config_client.shutDown();
 		termination_client.shutDown();
+		array_client.shutDown();
 	}
 
 	public static boolean[] getConfigArr() {
@@ -399,6 +429,8 @@ public class MainApp extends Application {
 			return config_arr[ToggleKeys.toggleBat_VALUE];
 		case HEAD:
 			return config_arr[ToggleKeys.toggleHead_VALUE];
+		case THERMAL_RESPONSE:
+			return true;
 		default:
 			throw new IllegalArgumentException("Illegal MsgType: " + type);
 		}
@@ -418,5 +450,7 @@ public class MainApp extends Application {
 		for(int i = 0; i < orderedSnaps.size(); i++) {
 			orderedSnaps.get(i).setRelativePriority(orderedSnaps.size() - i);
 		}
+		
+		main_controller.updateEmbeddedSnap();
 	}
 }

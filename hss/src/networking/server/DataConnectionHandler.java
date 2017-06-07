@@ -94,6 +94,7 @@ public class DataConnectionHandler
 
 	private void setHandler() {
 		System.out.println("SETTING HANDLER");
+		System.out.println("connType = " + connType);
 		System.out.println("Paused? = " + !MainApp.isDataTypeUnpaused(connType));
 		logger.finest("Setting handler.");
 		if(MainApp.isDataTypeUnpaused(connType)) {
@@ -118,6 +119,10 @@ public class DataConnectionHandler
 				break;
 			case HEAD:
 				handlerMethod = this::handleHeadingMessage;
+				break;
+			case THERMAL_RESPONSE:
+				handlerMethod = this::handleThermalResponseMessage;
+				break;
 			default:
 				logger.warning("Unrecognized connection type.");
 				break;
@@ -166,6 +171,11 @@ public class DataConnectionHandler
 	private void handleHeadingMessage(GenericMessage gm) {
 		double heading = gm.getHead().getHeading();
 		server.updateTelemetryData(heading, connType);
+	}
+	
+	private void handleThermalResponseMessage(GenericMessage gm) {
+		double response = gm.getThermalresponse().getResponse();
+		server.updateSnapshotThermalReading(response);
 	}
 
 	private void handlePaused(GenericMessage gm) {
