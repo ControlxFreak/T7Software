@@ -16,6 +16,9 @@
 //		         and emergency stops. Also - removed 
 //			 unnecessary updateparams. Also removed
 //			 the unnecessary times in temp and bat
+// 06 June 2017	- jfm - Adding messages for UAV heading, thermal
+//			array max reading request and response,
+//			and thermal array toggle.
 // ---------------------------------------------------------- //
 
 syntax = "proto3"; // Newest version of the protocol language
@@ -39,6 +42,7 @@ message GenericMessage {
 	// HSS -> UAV //
 	ConfigData configdata = 6;
 	MoveCamera movecamera = 7;
+	ThermalRequest thermalrequest = 15;
 
 	// UAV->HSS //
 	Accel accel = 8;
@@ -47,6 +51,8 @@ message GenericMessage {
 	Attitude attitude = 11;
 	Temp temp = 12;
 	Battery bat = 13;
+	Heading head = 14;
+	ThermalResponse thermalresponse = 16;
 
 	enum MsgType {
 		// INFO MESSAGE //
@@ -57,6 +63,7 @@ message GenericMessage {
 		// HSS -> UAV //
 		CONFIG_DATA = 101;
 		MOVE_CAMERA = 102;
+		THERMAL_REQUEST = 103;
 
 		// UAV -> HSS //
 		ACCEL = 200;
@@ -65,6 +72,8 @@ message GenericMessage {
 		ATTITUDE = 203;
 		TEMP = 204;
 		BAT = 205;
+		HEAD = 206;
+		THERMAL_RESPONSE = 207;
 	}
 
 }
@@ -119,6 +128,7 @@ message ConfigData {
 	     toggleAttitude = 3;
 	     toggleTemp = 4;
 	     toggleBat = 5;
+	     toggleArray = 6;
 	}
 }
 
@@ -134,6 +144,13 @@ message MoveCamera  {
 		DOWN = 2;
 		LEFT = 3;
 	}
+}
+
+// ThermalRequest //
+// This message will request the maximum reading from the
+// thermal array at the current time.
+message ThermalRequest {
+	bool request = 1; // Not sure if message with no fields is allowed.
 }
 
 // ---------------------------------------------------------- //
@@ -179,4 +196,18 @@ message Temp {
 // This message defines the battery message.
 message Battery {
 	 double percent = 1;	//   [%]
+}
+
+// Heading //
+// This message defines the heading message.
+message Heading {
+	double heading = 1;	// [rad]
+}
+
+// ThermalResponse //
+// This message contains the maximum reading from the
+// thermal array at the current time. Used in the
+// prioritization algorithm.
+message ThermalResponse {
+	double response = 1;	// [c]
 }
