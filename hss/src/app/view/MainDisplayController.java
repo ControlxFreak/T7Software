@@ -262,7 +262,6 @@ public class MainDisplayController {
 		tempGauge.segments().add(rSeg);
 		tempBox.getChildren().add(tempGauge);
 		
-		/*
 		dataset.addSeries(accXSeries);
 		dataset.addSeries(accYSeries);
 		dataset.addSeries(accZSeries);
@@ -276,7 +275,6 @@ public class MainDisplayController {
 		dataset.addSeries(rangeSeries);
 		dataset.addSeries(headSeries);
 		dataset.addSeries(batSeries);
-		*/
 		dataset.addSeries(tempSeries);
 		
 		JFreeChart chart = ChartFactory.createTimeSeriesChart("", "", "", dataset, false, true, true);
@@ -330,7 +328,8 @@ public class MainDisplayController {
 	}
 
 	public void updateVectorData(double datumX, double datumY, double datumZ, MsgType type) {
-		Date date = new Date();
+		Calendar cal = Calendar.getInstance();
+		Millisecond milli = new Millisecond(cal.getTime());
 		TimeSeries xSeries = null;
 		TimeSeries ySeries = null;
 		TimeSeries zSeries = null;
@@ -376,11 +375,9 @@ public class MainDisplayController {
 			return;
 		}
 		
-		/*
-		xSeries.getData().add(new XYChart.Data<String, Number>(dateFormat.format(date), datumX));
-		ySeries.getData().add(new XYChart.Data<String, Number>(dateFormat.format(date), datumY));
-		zSeries.getData().add(new XYChart.Data<String, Number>(dateFormat.format(date), datumZ));
-		*/
+		xSeries.add(milli, datumX);
+		ySeries.add(milli, datumY);
+		zSeries.add(milli, datumZ);
 	}
 
 	private String doubleDatumToLabelString(double d) {
