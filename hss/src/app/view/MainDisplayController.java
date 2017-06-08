@@ -17,10 +17,16 @@
 package app.view;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.SwingUtilities;
+
+import org.jfree.chart.axis.DateAxis;
+import org.jfree.data.xy.XYSeries;
+
 import T7.T7Messages.GenericMessage.MsgType;
 import app.model.Snapshot;
 import app.org.multiwii.msp.MSP;
@@ -33,6 +39,10 @@ import app.org.multiwii.swingui.gui.instrument.MwRCDataPanel;
 import app.org.multiwii.swingui.gui.instrument.MwUAVPanel;
 import javafx.embed.swing.SwingNode;
 import javafx.fxml.FXML;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -58,8 +68,12 @@ public class MainDisplayController {
 	private ImageView pin_display;
 	@FXML
 	private Label priLabel;
+	/*
 	@FXML
 	private SwingNode chartNode;
+	*/
+	@FXML
+	private LineChart<String, Number> lineChart;
 	@FXML
 	private SwingNode rcDataNode;
 	@FXML
@@ -105,6 +119,23 @@ public class MainDisplayController {
 	private MwCompasPanel compasPanel;
 	private SimpleMetroArcGauge tempGauge;
 	private Snapshot embedded_snap;
+	
+	private Series<String, Number> accXSeries = new XYChart.Series<>();
+	private Series<String, Number> accYSeries = new XYChart.Series<>();
+	private Series<String, Number> accZSeries = new XYChart.Series<>();
+	private Series<String, Number> gyroXSeries = new XYChart.Series<>();
+	private Series<String, Number> gyroYSeries = new XYChart.Series<>();
+	private Series<String, Number> gyroZSeries = new XYChart.Series<>();
+	private Series<String, Number> attXSeries = new XYChart.Series<>();
+	private Series<String, Number> attYSeries = new XYChart.Series<>();
+	private Series<String, Number> attZSeries = new XYChart.Series<>();
+	private Series<String, Number> altSeries = new XYChart.Series<>();
+	private Series<String, Number> rangeSeries = new XYChart.Series<>();
+	private Series<String, Number> headSeries = new XYChart.Series<>();
+	private Series<String, Number> batSeries = new XYChart.Series<>();
+	private Series<String, Number> tempSeries = new XYChart.Series<>();
+	
+	private final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
 	public void setup() {
 		logger.fine("Initializing MainDisplayController.");
@@ -115,20 +146,23 @@ public class MainDisplayController {
 			@Override
 			public void run() {
 				logger.finest("Invoking swing thread.");
+				/*
 				final int sizeX = 700;
 				final int sizeY = 400;
+				*/
 
 				MwConfiguration.setLookAndFeel();
 				MwConfiguration conf = new MwConfiguration();
 				
 				//MwGuiFrame frame = new MwGuiFrame(conf);
-				
+				/*
 				MwChartPanel realTimeChart = MwChartFactory.createChart(conf, MSP.getRealTimeData().getDataSet());
 				MSP.getRealTimeData().addListener(realTimeChart);
 				realTimeChart.setPreferredSize(
 						new java.awt.Dimension(sizeX, sizeY));
 
 				chartNode.setContent(realTimeChart);
+				 */
 
 				rcDataPanel = new MwRCDataPanel(conf);
 				MSP.getRealTimeData().addListener(rcDataPanel);
@@ -151,7 +185,7 @@ public class MainDisplayController {
 				
 				//frame.setVisible(true);
 				//frame.repaint();
-				realTimeChart.repaint();
+				//realTimeChart.repaint();
 				rcDataPanel.repaint();
 				uavPanel.repaint();
 				hudPanel.repaint();
@@ -211,6 +245,8 @@ public class MainDisplayController {
 		tempGauge.segments().add(ySeg);
 		tempGauge.segments().add(rSeg);
 		tempBox.getChildren().add(tempGauge);
+		
+		lineChart.getData().add(tempSeries);
 	}
 
 	/*
@@ -223,26 +259,38 @@ public class MainDisplayController {
 	
 	public void updateDatum(double d, MsgType type) {
 		//String newVal = doubleDatumToLabelString(d);
+		Date date = new Date();
+		Series<String, Number> datumSeries = null;
 
 		switch(type) {
 		case TEMP:
 			tempGauge.setValue(d);
 			temp_label.setText(doubleDatumToLabelString(d));
+			datumSeries = tempSeries;
 			break;
 		case ALTITUDE:
 			compasPanel.readNewValue(MSP.IDALT, d);
 			alt_label.setText(doubleDatumToLabelString(d));
 			rcDataPanel.readNewValue(MSP.IDRCALTITUDE, d);
+			datumSeries = altSeries;
 			break;
 		case HEAD:
 			compasPanel.readNewValue(MSP.IDHEAD, d);
 			head_label.setText(doubleDatumToLabelString(d));
-		default:
+			datumSeries = headSeries;
 			break;
+		default:
+			return;
 		}
+		
+		datumSeries.getData().add(new XYChart.Data<String, Number>(dateFormat.format(date), d));
 	}
 
 	public void updateVectorData(double datumX, double datumY, double datumZ, MsgType type) {
+		Date date = new Date();
+		Series<String, Number> xSeries = null;
+		Series<String, Number> ySeries = null;
+		Series<String, Number> zSeries = null;
 
 		switch(type) {
 		case ACCEL:
@@ -256,11 +304,17 @@ public class MainDisplayController {
 			uavPanel.readNewValue("1", 2000.0);
 			uavPanel.readNewValue("2", 2000.0);
 			uavPanel.readNewValue("3", 2000.0);
+			xSeries = accXSeries;
+			ySeries = accYSeries;
+			zSeries = accZSeries;
 			break;
 		case GYRO:
 			gyro_roll_label.setText(doubleDatumToLabelString(datumX));
 			gyro_pitch_label.setText(doubleDatumToLabelString(datumY));
 			gyro_yaw_label.setText(doubleDatumToLabelString(datumZ));
+			xSeries = gyroXSeries;
+			ySeries = gyroYSeries;
+			zSeries = gyroZSeries;
 			break;
 		case ATTITUDE:
 			hudPanel.readNewValue("angx", datumX);
@@ -271,10 +325,17 @@ public class MainDisplayController {
 			att_x_label.setText(doubleDatumToLabelString(datumX));
 			att_y_label.setText(doubleDatumToLabelString(datumY));
 			att_z_label.setText(doubleDatumToLabelString(datumZ));
+			xSeries = attXSeries;
+			ySeries = attYSeries;
+			zSeries = attZSeries;
 			break;
 		default:
-			break;
+			return;
 		}
+		
+		xSeries.getData().add(new XYChart.Data<String, Number>(dateFormat.format(date), datumX));
+		ySeries.getData().add(new XYChart.Data<String, Number>(dateFormat.format(date), datumY));
+		zSeries.getData().add(new XYChart.Data<String, Number>(dateFormat.format(date), datumZ));
 	}
 
 	private String doubleDatumToLabelString(double d) {
