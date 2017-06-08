@@ -18,13 +18,24 @@ package app.view;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.SwingUtilities;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.DateAxis;
+import org.jfree.chart.axis.DateTickMarkPosition;
+import org.jfree.chart.axis.DateTickUnit;
+import org.jfree.chart.axis.DateTickUnitType;
+import org.jfree.data.time.Millisecond;
+import org.jfree.data.time.Minute;
+import org.jfree.data.time.TimeSeries;
+import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.XYSeries;
 
 import T7.T7Messages.GenericMessage.MsgType;
@@ -37,6 +48,8 @@ import app.org.multiwii.swingui.gui.instrument.MwCompasPanel;
 import app.org.multiwii.swingui.gui.instrument.MwHudPanel;
 import app.org.multiwii.swingui.gui.instrument.MwRCDataPanel;
 import app.org.multiwii.swingui.gui.instrument.MwUAVPanel;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingNode;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
@@ -46,6 +59,7 @@ import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -73,7 +87,7 @@ public class MainDisplayController {
 	private SwingNode chartNode;
 	*/
 	@FXML
-	private LineChart<String, Number> lineChart;
+	private SwingNode chartNode;
 	@FXML
 	private SwingNode rcDataNode;
 	@FXML
@@ -120,20 +134,22 @@ public class MainDisplayController {
 	private SimpleMetroArcGauge tempGauge;
 	private Snapshot embedded_snap;
 	
-	private Series<String, Number> accXSeries = new XYChart.Series<>();
-	private Series<String, Number> accYSeries = new XYChart.Series<>();
-	private Series<String, Number> accZSeries = new XYChart.Series<>();
-	private Series<String, Number> gyroXSeries = new XYChart.Series<>();
-	private Series<String, Number> gyroYSeries = new XYChart.Series<>();
-	private Series<String, Number> gyroZSeries = new XYChart.Series<>();
-	private Series<String, Number> attXSeries = new XYChart.Series<>();
-	private Series<String, Number> attYSeries = new XYChart.Series<>();
-	private Series<String, Number> attZSeries = new XYChart.Series<>();
-	private Series<String, Number> altSeries = new XYChart.Series<>();
-	private Series<String, Number> rangeSeries = new XYChart.Series<>();
-	private Series<String, Number> headSeries = new XYChart.Series<>();
-	private Series<String, Number> batSeries = new XYChart.Series<>();
-	private Series<String, Number> tempSeries = new XYChart.Series<>();
+	private TimeSeriesCollection dataset = new TimeSeriesCollection();
+	
+	private TimeSeries accXSeries = new TimeSeries("");
+	private TimeSeries accYSeries = new TimeSeries("");
+	private TimeSeries accZSeries = new TimeSeries("");
+	private TimeSeries gyroXSeries = new TimeSeries("");
+	private TimeSeries gyroYSeries = new TimeSeries("");
+	private TimeSeries gyroZSeries = new TimeSeries("");
+	private TimeSeries attXSeries = new TimeSeries("");
+	private TimeSeries attYSeries = new TimeSeries("");
+	private TimeSeries attZSeries = new TimeSeries("");
+	private TimeSeries altSeries = new TimeSeries("");
+	private TimeSeries rangeSeries = new TimeSeries("");
+	private TimeSeries headSeries = new TimeSeries("");
+	private TimeSeries batSeries = new TimeSeries("");
+	private TimeSeries tempSeries = new TimeSeries("");
 	
 	private final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
@@ -246,7 +262,33 @@ public class MainDisplayController {
 		tempGauge.segments().add(rSeg);
 		tempBox.getChildren().add(tempGauge);
 		
-		lineChart.getData().add(tempSeries);
+		/*
+		dataset.addSeries(accXSeries);
+		dataset.addSeries(accYSeries);
+		dataset.addSeries(accZSeries);
+		dataset.addSeries(gyroXSeries);
+		dataset.addSeries(gyroYSeries);
+		dataset.addSeries(gyroZSeries);
+		dataset.addSeries(attXSeries);
+		dataset.addSeries(attYSeries);
+		dataset.addSeries(attZSeries);
+		dataset.addSeries(altSeries);
+		dataset.addSeries(rangeSeries);
+		dataset.addSeries(headSeries);
+		dataset.addSeries(batSeries);
+		*/
+		dataset.addSeries(tempSeries);
+		
+		JFreeChart chart = ChartFactory.createTimeSeriesChart("", "", "", dataset, false, true, true);
+		DateAxis dateAxis = (DateAxis) chart.getXYPlot().getDomainAxis();
+		dateAxis.setTickUnit(new DateTickUnit(DateTickUnitType.MINUTE, 1));
+		dateAxis.setTickMarkPosition(DateTickMarkPosition.START);
+		dateAxis.setDateFormatOverride(new SimpleDateFormat("HH:mm"));
+		chart.setAntiAlias(true);
+		chart.setTextAntiAlias(true);
+		ChartPanel chartPanel = new ChartPanel(chart);
+		
+		chartNode.setContent(chartPanel);
 	}
 
 	/*
@@ -259,8 +301,9 @@ public class MainDisplayController {
 	
 	public void updateDatum(double d, MsgType type) {
 		//String newVal = doubleDatumToLabelString(d);
-		Date date = new Date();
-		Series<String, Number> datumSeries = null;
+		Calendar cal = Calendar.getInstance();
+		Millisecond milli = new Millisecond(cal.getTime());
+		TimeSeries datumSeries = null;
 
 		switch(type) {
 		case TEMP:
@@ -283,14 +326,14 @@ public class MainDisplayController {
 			return;
 		}
 		
-		datumSeries.getData().add(new XYChart.Data<String, Number>(dateFormat.format(date), d));
+		datumSeries.add(milli, d);
 	}
 
 	public void updateVectorData(double datumX, double datumY, double datumZ, MsgType type) {
 		Date date = new Date();
-		Series<String, Number> xSeries = null;
-		Series<String, Number> ySeries = null;
-		Series<String, Number> zSeries = null;
+		TimeSeries xSeries = null;
+		TimeSeries ySeries = null;
+		TimeSeries zSeries = null;
 
 		switch(type) {
 		case ACCEL:
@@ -333,9 +376,11 @@ public class MainDisplayController {
 			return;
 		}
 		
+		/*
 		xSeries.getData().add(new XYChart.Data<String, Number>(dateFormat.format(date), datumX));
 		ySeries.getData().add(new XYChart.Data<String, Number>(dateFormat.format(date), datumY));
 		zSeries.getData().add(new XYChart.Data<String, Number>(dateFormat.format(date), datumZ));
+		*/
 	}
 
 	private String doubleDatumToLabelString(double d) {
