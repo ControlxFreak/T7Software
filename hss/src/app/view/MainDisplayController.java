@@ -32,6 +32,8 @@ import org.jfree.chart.axis.DateAxis;
 import org.jfree.chart.axis.DateTickMarkPosition;
 import org.jfree.chart.axis.DateTickUnit;
 import org.jfree.chart.axis.DateTickUnitType;
+import org.jfree.chart.axis.ValueAxis;
+import org.jfree.data.Range;
 import org.jfree.data.time.Millisecond;
 import org.jfree.data.time.Minute;
 import org.jfree.data.time.TimeSeries;
@@ -150,6 +152,9 @@ public class MainDisplayController {
 	private TimeSeries headSeries = new TimeSeries("");
 	private TimeSeries batSeries = new TimeSeries("");
 	private TimeSeries tempSeries = new TimeSeries("");
+	
+	private DateAxis dateAxis;
+	private ValueAxis valueAxis;
 	
 	private final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
@@ -278,10 +283,11 @@ public class MainDisplayController {
 		dataset.addSeries(tempSeries);
 		
 		JFreeChart chart = ChartFactory.createTimeSeriesChart("", "", "", dataset, false, true, true);
-		DateAxis dateAxis = (DateAxis) chart.getXYPlot().getDomainAxis();
+		dateAxis = (DateAxis) chart.getXYPlot().getDomainAxis();
 		dateAxis.setTickUnit(new DateTickUnit(DateTickUnitType.MINUTE, 1));
 		dateAxis.setTickMarkPosition(DateTickMarkPosition.START);
 		dateAxis.setDateFormatOverride(new SimpleDateFormat("HH:mm"));
+		valueAxis = (ValueAxis) chart.getXYPlot().getRangeAxis();
 		chart.setAntiAlias(true);
 		chart.setTextAntiAlias(true);
 		ChartPanel chartPanel = new ChartPanel(chart);
@@ -325,6 +331,7 @@ public class MainDisplayController {
 		}
 		
 		datumSeries.add(milli, d);
+		resizeChart();
 	}
 
 	public void updateVectorData(double datumX, double datumY, double datumZ, MsgType type) {
@@ -378,6 +385,42 @@ public class MainDisplayController {
 		xSeries.add(milli, datumX);
 		ySeries.add(milli, datumY);
 		zSeries.add(milli, datumZ);
+		resizeChart();
+	}
+	
+	/*
+	private void resizeChart() {
+		Range xRange = dataset.getDomainBounds(false);
+		Range yRange = dataset.getRangeBounds(false);
+		
+		double xUp = xRange.getUpperBound();
+		double xLow = xRange.getLowerBound();
+		double yUp = yRange.getUpperBound();
+		double yLow = yRange.getLowerBound();
+		
+		dateAxis.setUpperBound(xUp);
+		if(xUp - xLow > 10) {
+			dateAxis.setLowerBound(xUp - 10);
+		}
+		
+		valueAxis.setUpperBound(yUp);
+		if(yUp - yLow > 50) {
+			valueAxis.setLowerBound(yUp - 50);
+		}
+	}
+	*/
+	
+	private void resizeChart() {
+		Range xRange = dataset.getDomainBounds(false);
+		System.out.println("xRange = " + xRange.toString());
+		System.out.println("X upper bound = " + xRange.getUpperBound());
+		dateAxis.setRangeAboutValue(xRange.getUpperBound(), 10);
+		
+		Range yRange = dataset.getRangeBounds(false);
+		System.out.println("yRange = " + yRange.toString());
+		System.out.println("Y upper bound = " + yRange.getUpperBound());
+		System.out.println("Y lower bound = " + yRange.getLowerBound());
+		valueAxis.setRange(yRange.getLowerBound(), yRange.getUpperBound());
 	}
 
 	private String doubleDatumToLabelString(double d) {
