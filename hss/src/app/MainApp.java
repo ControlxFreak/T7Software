@@ -20,6 +20,7 @@ package app;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -44,6 +45,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceDialog;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
@@ -65,6 +67,8 @@ public class MainApp extends Application {
 	private static ObservableList<Snapshot> snapshotData = FXCollections.observableArrayList();
 	//private static Map<MsgType, Boolean> configMap = new HashMap<MsgType, Boolean>();
 	private static boolean[] config_arr = new boolean[8];
+	private static KeySpinner keySpinner = null;
+	private static long firstTapTime = 0;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -350,6 +354,11 @@ public class MainApp extends Application {
 						case T:
 							showUavTerminationDialog();
 							break;
+						case B:
+							long startTime = System.currentTimeMillis();
+							if(startTime - firstTapTime <= 750) {
+								keySpinner.spin();
+							}
 						default:
 							break;
 						}
@@ -400,6 +409,9 @@ public class MainApp extends Application {
 	}
 
 	public static void main(String[] args) {
+		KeyCode[] key_arr = {KeyCode.S, KeyCode.E, KeyCode.C, KeyCode.T};
+		keySpinner = new KeySpinner(new ArrayList<KeyCode>(Arrays.asList(key_arr)));
+		
 		launch(args);
 
 		server.shutDown();
@@ -434,6 +446,10 @@ public class MainApp extends Application {
 		default:
 			throw new IllegalArgumentException("Illegal MsgType: " + type);
 		}
+	}
+	
+	public static void cycleFootswitch() {
+		
 	}
 	
 	public static void updatePriorities() {
