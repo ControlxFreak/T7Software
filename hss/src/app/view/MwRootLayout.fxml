@@ -24,14 +24,14 @@
                   <ImageView fx:id="logo" fitWidth="128.0" pickOnBounds="true" preserveRatio="true" />
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label text="Pedal Key" textFill="WHITE">
+                        <Label text="Pedal Action" textFill="WHITE">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label textFill="WHITE">
+                        <Label fx:id="keyLabel" textFill="WHITE">
                            <font>
-                              <Font size="36.0" />
+                              <Font size="24.0" />
                            </font>
                         </Label>
                      </children>

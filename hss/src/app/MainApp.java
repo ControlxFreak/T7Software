@@ -42,6 +42,7 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceDialog;
@@ -67,8 +68,7 @@ public class MainApp extends Application {
 	private static ObservableList<Snapshot> snapshotData = FXCollections.observableArrayList();
 	//private static Map<MsgType, Boolean> configMap = new HashMap<MsgType, Boolean>();
 	private static boolean[] config_arr = new boolean[8];
-	private static KeySpinner keySpinner = null;
-	private static long firstTapTime = 0;
+	private static long tapStart = 0;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -308,7 +308,7 @@ public class MainApp extends Application {
 
 			Scene scene = new Scene(rootLayout);
 
-			// Create event handler for arrow keys.
+			// Create event handler for keys.
 			EventHandler<KeyEvent> keyHandler = new EventHandler<KeyEvent>() {
 				@Override
 				public void handle(KeyEvent e) {
@@ -337,6 +337,11 @@ public class MainApp extends Application {
 							.setMovecamera(MoveCamera.newBuilder().setArrowKey(3));
 							camera_client.sendMessage(gmBuilder.build());
 							break;
+						case B:
+							if(tapStart == 0) {
+								tapStart = System.currentTimeMillis();
+							}
+							break;
 						default:
 							break;
 						}
@@ -355,10 +360,21 @@ public class MainApp extends Application {
 							showUavTerminationDialog();
 							break;
 						case B:
-							long startTime = System.currentTimeMillis();
-							if(startTime - firstTapTime <= 750) {
-								keySpinner.spin();
+							long tapEnd = System.currentTimeMillis();
+							if(tapEnd - tapStart > 750) {
+								main_controller.spinKey();
+							} else {
+								KeyCode code = main_controller.getKeySpinner().getKey();
+								KeyEvent artificialEvent =
+										new KeyEvent(KeyEvent.KEY_RELEASED,
+												code.getName(),
+												"Forwarded from foot switch.",
+												code,
+												false, false, false, false);
+								handle(artificialEvent);
 							}
+							tapStart = 0;
+							break;
 						default:
 							break;
 						}
@@ -409,9 +425,6 @@ public class MainApp extends Application {
 	}
 
 	public static void main(String[] args) {
-		KeyCode[] key_arr = {KeyCode.S, KeyCode.E, KeyCode.C, KeyCode.T};
-		keySpinner = new KeySpinner(new ArrayList<KeyCode>(Arrays.asList(key_arr)));
-		
 		launch(args);
 
 		server.shutDown();

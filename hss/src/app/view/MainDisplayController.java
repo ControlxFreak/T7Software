@@ -18,6 +18,8 @@ package app.view;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Logger;
@@ -41,6 +43,7 @@ import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.XYSeries;
 
 import T7.T7Messages.GenericMessage.MsgType;
+import app.KeySpinner;
 import app.model.Snapshot;
 import app.org.multiwii.msp.MSP;
 import app.org.multiwii.swingui.gui.MwConfiguration;
@@ -61,6 +64,7 @@ import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
@@ -128,6 +132,8 @@ public class MainDisplayController {
 	private Label temp_label;
 	@FXML
 	private ImageView logo;
+	@FXML
+	private Label keyLabel;
 	
 	private MwRCDataPanel rcDataPanel;
 	private MwUAVPanel uavPanel;
@@ -135,6 +141,7 @@ public class MainDisplayController {
 	private MwCompasPanel compasPanel;
 	private SimpleMetroArcGauge tempGauge;
 	private Snapshot embedded_snap;
+	private static KeySpinner keySpinner = null;
 	
 	private TimeSeriesCollection dataset = new TimeSeriesCollection();
 	
@@ -215,6 +222,10 @@ public class MainDisplayController {
 
 		});
 		logger.finer("Invoked swing thread later.");
+
+		KeyCode[] key_arr = {KeyCode.S, KeyCode.E, KeyCode.C, KeyCode.T};
+		keySpinner = new KeySpinner(new ArrayList<KeyCode>(Arrays.asList(key_arr)));
+		refreshKeyLabel();
 
 		/*
 		AnchorPane.setTopAnchor(chartPane, 100.0);
@@ -508,6 +519,32 @@ public class MainDisplayController {
 	public void setEmbeddedSnap(Snapshot embedded_snap) {
 		this.embedded_snap = embedded_snap;
 	}
+	
+	public void spinKey() {
+		keySpinner.spin();
+		refreshKeyLabel();
+	}
+	
+	public void refreshKeyLabel() {
+		String actionStr = "";
+		switch(keySpinner.getKey()) {
+		case S:
+			actionStr = "Take Snapshot";
+			break;
+		case E:
+			actionStr = "Snapshot Explorer";
+			break;
+		case C:
+			actionStr = "Data Configuration Manager";
+			break;
+		case T:
+			actionStr = "UAV Termination Menu";
+			break;
+		default:
+			break;
+		}
+		keyLabel.setText(actionStr);
+	}
 
 	public void updateEmbeddedSnap() {
 		if(embedded_snap != null) {
@@ -517,6 +554,10 @@ public class MainDisplayController {
 				priLabel.setText("");
 			}
 		}
+	}
+	
+	public KeySpinner getKeySpinner() {
+		return keySpinner;
 	}
 
 	/*
