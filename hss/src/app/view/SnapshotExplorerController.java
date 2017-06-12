@@ -16,12 +16,17 @@
  */
 package app.view;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.logging.Logger;
 
+import app.KeySpinner;
 import app.MainApp;
 import app.model.Animal;
 import app.model.Snapshot;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListCell;
@@ -33,6 +38,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 
@@ -52,7 +59,7 @@ public class SnapshotExplorerController {
 	@FXML
 	private TextField timestampField;
 	@FXML
-	private TextArea notesArea;
+	private TextField notesField;
 	@FXML
 	private TextField priorityField;
 	@FXML
@@ -63,9 +70,48 @@ public class SnapshotExplorerController {
 	private ChoiceBox<Animal> animalBox;
 	@FXML
 	private Spinner<Integer> qtySpinner;
+	
+	private KeySpinner keySpinner;
 
 	@FXML
 	private void initialize() {
+
+		KeyCode[] key_arr = {KeyCode.S, KeyCode.E, KeyCode.C, KeyCode.T};
+		Image[] image_arr = {new Image((new File("src/main/resources/images/default/camera.png")).toURI().toString()),
+				new Image((new File("src/main/resources/images/default/polaroid.jpg")).toURI().toString()),
+				new Image((new File("src/main/resources/images/default/configuration.png")).toURI().toString()),
+				new Image((new File("src/main/resources/images/default/power.png")).toURI().toString())};
+		keySpinner = new KeySpinner(new ArrayList<KeyCode>(Arrays.asList(key_arr)),
+				new ArrayList<Image>(Arrays.asList(image_arr)));
+		
+		targetRadio.setOnKeyReleased(new EventHandler<KeyEvent>() {
+			
+			@Override
+			public void handle(KeyEvent ke)
+			{
+				System.out.println("Key typed: " + ke.getCode());
+				if(ke.getCode() == KeyCode.ENTER)
+				{
+					handleTargetSelection();
+				}
+			}
+		});
+		
+		nonTargetRadio.setOnKeyReleased(new EventHandler<KeyEvent>() {
+			
+			@Override
+			public void handle(KeyEvent ke)
+			{
+				System.out.println("Key typed: " + ke.getCode());
+				if(ke.getCode() == KeyCode.ENTER)
+				{
+					handleNonTargetSelection();
+				}
+			}
+		});
+		
+		qtySpinner.setValueFactory(new IntegerSpinnerValueFactory(1, 99));
+		animalBox.getItems().addAll(Animal.values());
 		thumbnails.setItems(MainApp.getSnapshotData());
 		thumbnails.setCellFactory(new Callback<ListView<Snapshot>, ListCell<Snapshot>>()
 		{
@@ -93,15 +139,13 @@ public class SnapshotExplorerController {
 			}
 		});
 		if(thumbnails.getItems().size() > 0) {
-			thumbnails.getSelectionModel().select(0);
 			showSnapshotDetails(thumbnails.getItems().get(0));
+			thumbnails.getSelectionModel().select(0);
 		} else {
 			showSnapshotDetails(null);
 		}
 		thumbnails.getSelectionModel().selectedItemProperty().addListener(
 				(observable, oldValue, newValue) -> showSnapshotDetails(newValue));
-		qtySpinner.setValueFactory(new IntegerSpinnerValueFactory(1, 99));
-		animalBox.getItems().addAll(Animal.values());
 	}
 
 	@FXML
@@ -124,7 +168,7 @@ public class SnapshotExplorerController {
 		Snapshot snap = MainApp.getSnapshotData().get(index);
 
 		snap.setDescription(descriptionField.getText());
-		snap.setNotes(notesArea.getText());
+		snap.setNotes(notesField.getText());
 		
 		//main_controller.displaySnapshot(snap);
 
@@ -153,6 +197,7 @@ public class SnapshotExplorerController {
 	
 	@FXML
 	private void handleTargetSelection() {
+		
 		targetRadio.setSelected(true);
 		nonTargetRadio.setSelected(false);
 		targetBox.setVisible(true);
@@ -175,7 +220,7 @@ public class SnapshotExplorerController {
 			descriptionField.setText("");
 			priorityField.setText("");
 			timestampField.setText("");
-			notesArea.setText("");
+			notesField.setText("");
 			animalBox.setValue(Animal.UNKNOWN);
 			qtySpinner.getValueFactory().setValue(1);
 			handleNonTargetSelection();
@@ -189,7 +234,7 @@ public class SnapshotExplorerController {
 			}
 			descriptionField.setText(snap.getDescription());
 			timestampField.setText(snap.getTimestamp().toString());
-			notesArea.setText(snap.getNotes());
+			notesField.setText(snap.getNotes());
 			priorityField.setText(Integer.toString(snap.getRelativePriority()));
 			animalBox.setValue(snap.getAnimal());
 			if(qtySpinner.getValueFactory() != null) {
@@ -197,7 +242,7 @@ public class SnapshotExplorerController {
 			}
 		}
 		descriptionField.setEditable(imagePresent);
-		notesArea.setEditable(imagePresent);
+		notesField.setEditable(imagePresent);
 		centerImage();
 	}
 
