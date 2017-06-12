@@ -65,6 +65,7 @@ public class TestHSSClient {
 				System.out.println("6) Make a new Battery connection");
 				System.out.println("7) Make a new Heading connection");
 				System.out.println("8) Make a new Thermal Response connection");
+				System.out.println("9) Make a new Heartbeat connection");
 
 				while(!in.ready()) {
 					Thread.sleep(500);
@@ -107,6 +108,10 @@ public class TestHSSClient {
 				case 8:
 					System.out.println("Sending Thermal Response request.");
 					connType = MsgType.THERMAL_RESPONSE;
+					break;
+				case 9:
+					System.out.println("Sending Heartbeat request.");
+					connType = MsgType.HEARTBEAT;
 					break;
 				default:
 					valid_input_received = false;
@@ -216,6 +221,12 @@ public class TestHSSClient {
 					case THERMAL_RESPONSE:
 						gm.setMsgtype(207)
 							.setThermalresponse(ThermalResponse.newBuilder().setResponse(Double.parseDouble(input)));
+						break;
+					case HEARTBEAT:
+						boolean alive;
+						alive = Double.parseDouble(input) == 1.0; 
+						gm.setMsgtype(1)
+							.setHeartbeat(HeartBeat.newBuilder().setAlive(alive));
 						break;
 					default:
 						break;

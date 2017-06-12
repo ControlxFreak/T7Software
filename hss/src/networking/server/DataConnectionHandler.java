@@ -48,7 +48,7 @@ public class DataConnectionHandler
 	public void run() {
 		logger.info("Running handler!");
 		try {
-			while(in.available()<1) {
+			while(in.available()<1 && !timeToExit) {
 
 			}
 		} catch (IOException e2) {
@@ -56,15 +56,18 @@ public class DataConnectionHandler
 			e2.printStackTrace();
 			shutDown();
 		}
-		try {
-			System.out.println("Parsing message.");
-			GenericMessage gm = GenericMessage.parseDelimitedFrom(in);
-			connType = MsgType.forNumber(gm.getMsgtype());
-			setHandler();
-			handlerMethod.accept(gm);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
+		if(!timeToExit) {
+			try {
+				System.out.println("Parsing message.");
+				GenericMessage gm = GenericMessage.parseDelimitedFrom(in);
+				connType = MsgType.forNumber(gm.getMsgtype());
+				setHandler();
+				handlerMethod.accept(gm);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 		while(!timeToExit) {
@@ -123,6 +126,9 @@ public class DataConnectionHandler
 			case THERMAL_RESPONSE:
 				handlerMethod = this::handleThermalResponseMessage;
 				break;
+			case HEARTBEAT:
+				handlerMethod = this::handleHeartbeatMessage;
+				break;
 			default:
 				logger.warning("Unrecognized connection type.");
 				break;
@@ -176,6 +182,11 @@ public class DataConnectionHandler
 	private void handleThermalResponseMessage(GenericMessage gm) {
 		double response = gm.getThermalresponse().getResponse();
 		server.updateSnapshotThermalReading(response);
+	}
+	
+	private void handleHeartbeatMessage(GenericMessage gm) {
+		boolean alive = gm.getHeartbeat().getAlive();
+		server.updateTelemetryData(alive ? 1.0 : -1.0, connType);
 	}
 
 	private void handlePaused(GenericMessage gm) {

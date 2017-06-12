@@ -337,6 +337,18 @@ public class MainDisplayController {
 			head_label.setText(doubleDatumToLabelString(d));
 			datumSeries = headSeries;
 			break;
+		case HEARTBEAT:
+			if(d == 1.0) {
+				uavPanel.readNewValue("0", 2000.0);
+				uavPanel.readNewValue("1", 2000.0);
+				uavPanel.readNewValue("2", 2000.0);
+				uavPanel.readNewValue("3", 2000.0);
+			} else {
+				uavPanel.readNewValue("0", 0.0);
+				uavPanel.readNewValue("1", 0.0);
+				uavPanel.readNewValue("2", 0.0);
+				uavPanel.readNewValue("3", 0.0);
+			}
 		default:
 			return;
 		}
@@ -360,10 +372,12 @@ public class MainDisplayController {
 			rcDataPanel.readNewValue(MSP.IDRCACCX, datumX);
 			rcDataPanel.readNewValue(MSP.IDRCACCY, datumY);
 			rcDataPanel.readNewValue(MSP.IDRCACCZ, datumZ);
+			/*
 			uavPanel.readNewValue("0", 2000.0);
 			uavPanel.readNewValue("1", 2000.0);
 			uavPanel.readNewValue("2", 2000.0);
 			uavPanel.readNewValue("3", 2000.0);
+			*/
 			xSeries = accXSeries;
 			ySeries = accYSeries;
 			zSeries = accZSeries;

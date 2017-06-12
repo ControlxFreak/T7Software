@@ -148,6 +148,9 @@ public class UAVServer implements Runnable {
 			break;
 		case THERMAL_RESPONSE:
 			return;
+		case HEARTBEAT:
+			Platform.runLater(() -> MainApp.clearHeartbeat());
+			return;
 		default:
 			throw new IllegalArgumentException("Illegal MsgType: " + type);
 		}

@@ -260,6 +260,10 @@ public class MainApp extends Application {
 							.setTerminateKey(choices.indexOf(result.get()))).build());
 		}
 	}
+	
+	public static void clearHeartbeat() {
+		updateTelemetryDisplay(Double.MIN_VALUE, MsgType.HEARTBEAT);
+	}
 
 	public static void clearDisplay(ToggleKeys type) {
 		switch(type) {
@@ -455,6 +459,8 @@ public class MainApp extends Application {
 		case HEAD:
 			return config_arr[ToggleKeys.toggleHead_VALUE];
 		case THERMAL_RESPONSE:
+			return true;
+		case HEARTBEAT:
 			return true;
 		default:
 			throw new IllegalArgumentException("Illegal MsgType: " + type);
