@@ -29,11 +29,7 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="keyLabel" textFill="WHITE">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
+                        <ImageView fx:id="keyImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </VBox>
                   <VBox alignment="TOP_CENTER" spacing="20.0">

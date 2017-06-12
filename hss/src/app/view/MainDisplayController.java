@@ -133,7 +133,7 @@ public class MainDisplayController {
 	@FXML
 	private ImageView logo;
 	@FXML
-	private Label keyLabel;
+	private ImageView keyImage;
 	
 	private MwRCDataPanel rcDataPanel;
 	private MwUAVPanel uavPanel;
@@ -224,8 +224,14 @@ public class MainDisplayController {
 		logger.finer("Invoked swing thread later.");
 
 		KeyCode[] key_arr = {KeyCode.S, KeyCode.E, KeyCode.C, KeyCode.T};
-		keySpinner = new KeySpinner(new ArrayList<KeyCode>(Arrays.asList(key_arr)));
-		refreshKeyLabel();
+		Image[] image_arr = {new Image((new File("src/main/resources/images/default/camera.png")).toURI().toString()),
+				new Image((new File("src/main/resources/images/default/polaroid.jpg")).toURI().toString()),
+				new Image((new File("src/main/resources/images/default/configuration.png")).toURI().toString()),
+				new Image((new File("src/main/resources/images/default/power.png")).toURI().toString())};
+		keySpinner = new KeySpinner(new ArrayList<KeyCode>(Arrays.asList(key_arr)),
+				new ArrayList<Image>(Arrays.asList(image_arr)));
+		//refreshKeyLabel();
+		keyImage.setImage(keySpinner.getIcon());
 
 		/*
 		AnchorPane.setTopAnchor(chartPane, 100.0);
@@ -536,9 +542,11 @@ public class MainDisplayController {
 	
 	public void spinKey() {
 		keySpinner.spin();
-		refreshKeyLabel();
+		//refreshKeyLabel();
+		keyImage.setImage(keySpinner.getIcon());
 	}
 	
+	/*
 	public void refreshKeyLabel() {
 		String actionStr = "";
 		switch(keySpinner.getKey()) {
@@ -559,6 +567,7 @@ public class MainDisplayController {
 		}
 		keyLabel.setText(actionStr);
 	}
+	*/
 
 	public void updateEmbeddedSnap() {
 		if(embedded_snap != null) {
