@@ -68,7 +68,11 @@ public class MainApp extends Application {
 	private static ObservableList<Snapshot> snapshotData = FXCollections.observableArrayList();
 	//private static Map<MsgType, Boolean> configMap = new HashMap<MsgType, Boolean>();
 	private static boolean[] config_arr = new boolean[8];
-	private static long tapStart = 0;
+	private static volatile long tapStart = 0;
+	private static volatile boolean foot_down = false;
+	private static volatile int tapNum = 1;
+	private static volatile int timerNum = 1;
+	private static EventHandler<KeyEvent> keyHandler;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -313,7 +317,7 @@ public class MainApp extends Application {
 			Scene scene = new Scene(rootLayout);
 
 			// Create event handler for keys.
-			EventHandler<KeyEvent> keyHandler = new EventHandler<KeyEvent>() {
+			keyHandler = new EventHandler<KeyEvent>() {
 				@Override
 				public void handle(KeyEvent e) {
 					logger.finest("Key event: " + e.getText());
@@ -342,9 +346,26 @@ public class MainApp extends Application {
 							camera_client.sendMessage(gmBuilder.build());
 							break;
 						case B:
-							if(tapStart == 0) {
-								tapStart = System.currentTimeMillis();
-							}
+							tapStart = System.currentTimeMillis();
+							foot_down = true;
+							
+							new Thread(new Runnable() {
+
+								@Override
+								public void run() {
+									int currentTap = timerNum++;
+									try {
+										Thread.sleep(700);
+									} catch (InterruptedException e1) {
+										// TODO Auto-generated catch block
+										e1.printStackTrace();
+									}
+
+									if(currentTap == tapNum) {
+										Platform.runLater(() -> MainApp.footswitchLaunch());
+									}
+								}
+							}).start();
 							break;
 						default:
 							break;
@@ -364,20 +385,14 @@ public class MainApp extends Application {
 							showUavTerminationDialog();
 							break;
 						case B:
+							foot_down = false;
+							++tapNum;
+							timerNum = tapNum;
 							long tapEnd = System.currentTimeMillis();
-							if(tapEnd - tapStart < 500) {
+							if(tapEnd - tapStart < 700) {
 								main_controller.spinKey();
-							} else {
-								KeyCode code = main_controller.getKeySpinner().getKey();
-								KeyEvent artificialEvent =
-										new KeyEvent(KeyEvent.KEY_RELEASED,
-												code.getName(),
-												"Forwarded from foot switch.",
-												code,
-												false, false, false, false);
-								handle(artificialEvent);
 							}
-							tapStart = 0;
+							//tapStart = 0;
 							break;
 						default:
 							break;
@@ -467,8 +482,19 @@ public class MainApp extends Application {
 		}
 	}
 	
-	public static void cycleFootswitch() {
+	public static void footswitchCycle() {
 		
+	}
+	
+	public static void footswitchLaunch() {
+		KeyCode code = main_controller.getKeySpinner().getKey();
+		KeyEvent artificialEvent =
+				new KeyEvent(KeyEvent.KEY_RELEASED,
+						code.getName(),
+						"Forwarded from foot switch.",
+						code,
+						false, false, false, false);
+		keyHandler.handle(artificialEvent);
 	}
 	
 	public static void updatePriorities() {
