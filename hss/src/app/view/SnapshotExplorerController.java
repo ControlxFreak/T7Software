@@ -40,6 +40,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 
@@ -70,6 +71,8 @@ public class SnapshotExplorerController {
 	private ChoiceBox<Animal> animalBox;
 	@FXML
 	private Spinner<Integer> qtySpinner;
+	@FXML
+	private HBox controlsBox;
 	
 	private KeySpinner keySpinner;
 
@@ -83,8 +86,10 @@ public class SnapshotExplorerController {
 				new Image((new File("src/main/resources/images/default/power.png")).toURI().toString())};
 		keySpinner = new KeySpinner(new ArrayList<KeyCode>(Arrays.asList(key_arr)),
 				new ArrayList<Image>(Arrays.asList(image_arr)));
+
+		ObservableList<Snapshot> snapList = MainApp.getSnapshotData();
 		
-		targetRadio.setOnKeyReleased(new EventHandler<KeyEvent>() {
+		targetRadio.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			
 			@Override
 			public void handle(KeyEvent ke)
@@ -97,7 +102,7 @@ public class SnapshotExplorerController {
 			}
 		});
 		
-		nonTargetRadio.setOnKeyReleased(new EventHandler<KeyEvent>() {
+		nonTargetRadio.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			
 			@Override
 			public void handle(KeyEvent ke)
@@ -110,8 +115,40 @@ public class SnapshotExplorerController {
 			}
 		});
 		
+		animalBox.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			
+			@Override
+			public void handle(KeyEvent ke)
+			{
+				System.out.println("Key typed: " + ke.getCode());
+				if(ke.getCode() == KeyCode.ENTER)
+				{
+					animalBox.show();
+				}
+			}
+		});
+		
+		qtySpinner.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			
+			@Override
+			public void handle(KeyEvent ke)
+			{
+				System.out.println("Key typed: " + ke.getCode());
+				if(ke.getCode() == KeyCode.ENTER)
+				{
+					qtySpinner.increment();
+				}
+			}
+		});
+		
 		qtySpinner.setValueFactory(new IntegerSpinnerValueFactory(1, 99));
 		animalBox.getItems().addAll(Animal.values());
+		
+		if(snapList.size() == 0) {
+			
+		controlsBox.setDisable(true);
+		}
+		
 		thumbnails.setItems(MainApp.getSnapshotData());
 		thumbnails.setCellFactory(new Callback<ListView<Snapshot>, ListCell<Snapshot>>()
 		{
@@ -155,6 +192,11 @@ public class SnapshotExplorerController {
 		main_controller.checkDeleteDisplayedSnapshot(snap_list.get(index));
 		snap_list.remove(index);
 		MainApp.updatePriorities();
+		
+		if(snap_list.size() == 0) {
+			
+		controlsBox.setDisable(true);
+		}
 	}
 
 	@FXML

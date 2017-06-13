@@ -29,7 +29,7 @@
                         <ImageView fx:id="imageDisplay" fitHeight="375.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </AnchorPane>
-                  <HBox>
+                  <HBox fx:id="controlsBox">
                      <children>
                         <VBox prefWidth="470.0">
                            <children>
