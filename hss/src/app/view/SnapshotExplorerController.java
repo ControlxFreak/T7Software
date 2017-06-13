@@ -43,6 +43,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 public class SnapshotExplorerController {
@@ -82,6 +83,8 @@ public class SnapshotExplorerController {
 	private Button updateButton;
 	@FXML
 	private Button displayButton;
+	@FXML
+	private Button exitButton;
 	
 	private KeySpinner keySpinner;
 
@@ -206,6 +209,19 @@ public class SnapshotExplorerController {
 			}
 		});
 		
+		exitButton.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			
+			@Override
+			public void handle(KeyEvent ke)
+			{
+				System.out.println("Key typed: " + ke.getCode());
+				if(ke.getCode() == KeyCode.ENTER)
+				{
+					handleExit();
+				}
+			}
+		});
+		
 		qtySpinner.setValueFactory(new IntegerSpinnerValueFactory(1, 10));
 		animalBox.getItems().addAll(Animal.values());
 		
@@ -302,6 +318,12 @@ public class SnapshotExplorerController {
 		Snapshot snap = MainApp.getSnapshotData().get(index);
 		
 		main_controller.displaySnapshot(snap);
+	}
+
+	@FXML
+	private void handleExit() {
+		Stage stage = MainApp.getExplorerStage();
+		stage.close();
 	}
 	
 	@FXML

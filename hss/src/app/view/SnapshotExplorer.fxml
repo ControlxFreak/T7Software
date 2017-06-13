@@ -97,9 +97,9 @@
                               <Insets top="10.0" />
                            </padding>
                         </Separator>
-                        <VBox fx:id="targetBox" alignment="CENTER_LEFT" prefHeight="358.0" prefWidth="460.0" spacing="15.0">
+                        <VBox fx:id="targetBox" alignment="BOTTOM_LEFT" prefHeight="358.0" prefWidth="460.0" spacing="15.0">
                            <padding>
-                              <Insets bottom="30.0" left="20.0" top="10.0" />
+                              <Insets bottom="10.0" left="20.0" top="10.0" />
                            </padding>
                            <opaqueInsets>
                               <Insets />
@@ -127,6 +127,14 @@
                                     <TextField fx:id="priorityField" editable="false" maxWidth="60.0" prefHeight="26.0" prefWidth="60.0" />
                                  </children>
                               </VBox>
+                              <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="320.0">
+                                 <children>
+                                    <Button fx:id="exitButton" mnemonicParsing="false" onMouseClicked="#handleExit" prefHeight="26.0" prefWidth="85.0" text="Exit" />
+                                 </children>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
                            </children>
                         </VBox>
                      </children>

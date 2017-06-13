@@ -58,6 +58,7 @@ public class MainApp extends Application {
 
 	private static Logger logger			= Logger.getLogger(MainApp.class.getName());
 	private static Stage primaryStage;
+	private static Stage explorerStage;
 	private static AnchorPane rootLayout;
 	private static MainDisplayController main_controller;
 	private static UAVServer server = new UAVServer();
@@ -178,7 +179,7 @@ public class MainApp extends Application {
 		loader.setLocation(MainApp.class.getResource("view/SnapshotExplorer.fxml"));
 		AnchorPane explorer = (AnchorPane) loader.load();
 
-		Stage explorerStage = new Stage();
+		explorerStage = new Stage();
 		explorerStage.setTitle("Snapshot Explorer");
 		explorerStage.initModality(Modality.WINDOW_MODAL);
 		explorerStage.initOwner(primaryStage);
@@ -513,5 +514,9 @@ public class MainApp extends Application {
 		}
 		
 		main_controller.updateEmbeddedSnap();
+	}
+
+	public static Stage getExplorerStage() {
+		return explorerStage;
 	}
 }
