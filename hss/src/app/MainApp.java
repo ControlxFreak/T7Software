@@ -61,6 +61,7 @@ public class MainApp extends Application {
 	private static Stage explorerStage;
 	private static AnchorPane rootLayout;
 	private static MainDisplayController main_controller;
+	private static SnapshotExplorerController snapshotExplorerController;
 	private static UAVServer server = new UAVServer();
 	private static UAVClient camera_client = null;
 	private static UAVClient config_client = null;
@@ -186,9 +187,9 @@ public class MainApp extends Application {
 		Scene scene = new Scene(explorer);
 		explorerStage.setScene(scene);
 
-		SnapshotExplorerController controller = loader.getController();
+		snapshotExplorerController = loader.getController();
 		System.out.println("main_controller = " + main_controller);
-		controller.setMainController(main_controller);
+		snapshotExplorerController.setMainController(main_controller);
 
 		System.out.println("list before dialog: " + snapshotData.toString());
 		explorerStage.showAndWait();
@@ -518,5 +519,9 @@ public class MainApp extends Application {
 
 	public static Stage getExplorerStage() {
 		return explorerStage;
+	}
+
+	public static SnapshotExplorerController getSnapshotExplorerController() {
+		return snapshotExplorerController;
 	}
 }

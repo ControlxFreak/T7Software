@@ -21,11 +21,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.logging.Logger;
 
+import T7.T7Messages.GenericMessage;
+import T7.T7Messages.MoveCamera;
+import T7.T7Messages.GenericMessage.MsgType;
 import app.KeySpinner;
 import app.MainApp;
 import app.model.Animal;
 import app.model.Snapshot;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -87,10 +92,17 @@ public class SnapshotExplorerController {
 	private Button exitButton;
 	
 	private KeySpinner keySpinner;
+	private static volatile boolean thumb_spinning = false;
+	private volatile long tapStart = 0;
+	private volatile boolean foot_down = false;
+	private volatile int tapNum = 1;
+	private volatile int timerNum = 1;
+	private volatile boolean singleTap = false;
 
 	@FXML
 	private void initialize() {
 
+		/*
 		KeyCode[] key_arr = {KeyCode.S, KeyCode.E, KeyCode.C, KeyCode.T};
 		Image[] image_arr = {new Image((new File("src/main/resources/images/default/camera.png")).toURI().toString()),
 				new Image((new File("src/main/resources/images/default/polaroid.jpg")).toURI().toString()),
@@ -98,6 +110,7 @@ public class SnapshotExplorerController {
 				new Image((new File("src/main/resources/images/default/power.png")).toURI().toString())};
 		keySpinner = new KeySpinner(new ArrayList<KeyCode>(Arrays.asList(key_arr)),
 				new ArrayList<Image>(Arrays.asList(image_arr)));
+				*/
 
 		ObservableList<Snapshot> snapList = MainApp.getSnapshotData();
 		
@@ -222,6 +235,120 @@ public class SnapshotExplorerController {
 			}
 		});
 		
+		/*
+		thumbnails.addEventFilter(KeyEvent.ANY, new EventHandler<KeyEvent>() {
+				@Override
+				public void handle(KeyEvent e) {
+					logger.finest("Key event: " + e.getText());
+					System.out.println("Key event: " + e.getText() + " - " + e.getEventType());
+					if(e.getEventType() == KeyEvent.KEY_PRESSED) {
+						switch(e.getCode()) {
+						case B:
+							tapStart = System.currentTimeMillis();
+							foot_down = true;
+							
+							new Thread(new Runnable() {
+
+								@Override
+								public void run() {
+									int currentTap = timerNum++;
+									try {
+										Thread.sleep(700);
+									} catch (InterruptedException e1) {
+										// TODO Auto-generated catch block
+										e1.printStackTrace();
+									}
+
+									if(currentTap == tapNum) {
+										Platform.runLater(() -> SnapshotExplorerController.reverseThumbSpinning());
+									}
+								}
+							}).start();
+							break;
+						default:
+							break;
+						}
+					} else if (e.getEventType() == KeyEvent.KEY_RELEASED) {
+						switch(e.getCode()) {
+						case RIGHT:
+							int index = thumbnails.getSelectionModel().getSelectedIndex();
+							if(index == thumbnails.getChildrenUnmodifiable().size() -1) {
+								thumbnails.getSelectionModel().select(0);
+							} else {
+								thumbnails.getSelectionModel().select(index + 1);
+							}
+							break;
+						case TAB:
+							Event.fireEvent(e.getTarget(), e);
+							e.consume();
+							break;
+						case B:
+							foot_down = false;
+							++tapNum;
+							timerNum = tapNum;
+							long tapEnd = System.currentTimeMillis();
+							if(tapEnd - tapStart < 700) {
+								KeyEvent artificialEvent;
+								if(thumb_spinning) {
+									artificialEvent = new KeyEvent(KeyEvent.KEY_RELEASED,
+											KeyCode.RIGHT.getName(), "Forwarded from foot switch.",
+											KeyCode.RIGHT, false, false, false, false);
+								} else {
+									artificialEvent = new KeyEvent(KeyEvent.KEY_RELEASED,
+											KeyCode.TAB.getName(), "Forwarded from foot switch.",
+											KeyCode.TAB, false, false, false, false);
+								}
+								handle(artificialEvent);
+							}
+							//tapStart = 0;
+							break;
+						default:
+							break;
+						}
+					}
+				}
+			});
+			*/
+		
+		thumbnails.setOnKeyTyped(new EventHandler<KeyEvent>() {
+			
+			@Override
+			public void handle(KeyEvent ke)
+			{
+				System.out.println("Key typed: " + ke.getCharacter());
+				if(ke.getCharacter().equals("b"))
+				{
+					if(!singleTap) {
+						singleTap = true;
+						System.out.println("singleTap = true");
+
+						new Thread(new Runnable() {
+
+							@Override
+							public void run() {
+								System.out.println("Kicking off timer.");
+								try {
+									Thread.sleep(400);
+								} catch (InterruptedException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+
+								if(singleTap) {
+									Platform.runLater(() -> MainApp.getSnapshotExplorerController().singleTap());
+								} else {
+									Platform.runLater(() -> SnapshotExplorerController.doubleTap());
+								}
+							}
+						}).start();
+					} else {
+						singleTap = false;
+						System.out.println("singleTap = false");
+					}
+				}
+			}
+		});
+		
 		qtySpinner.setValueFactory(new IntegerSpinnerValueFactory(1, 10));
 		animalBox.getItems().addAll(Animal.values());
 		
@@ -264,6 +391,28 @@ public class SnapshotExplorerController {
 		}
 		thumbnails.getSelectionModel().selectedItemProperty().addListener(
 				(observable, oldValue, newValue) -> showSnapshotDetails(newValue));
+	}
+
+	protected static void doubleTap() {
+		System.out.println("Running doubleTap!");
+		thumb_spinning = !thumb_spinning;
+	}
+
+	protected void singleTap() {
+		System.out.println("Running singleTap!");
+		System.out.println("thumb_spinning = " + thumb_spinning);
+		singleTap = false;
+		if(thumb_spinning) {
+			int index = thumbnails.getSelectionModel().getSelectedIndex();
+			if(index == thumbnails.getItems().size() - 1) {
+				System.out.println("Last snap!");
+				System.out.println("Snap index: " + index);
+				thumbnails.getSelectionModel().clearAndSelect(0);
+			} else {
+				System.out.println("Snap index: " + index);
+				thumbnails.getSelectionModel().clearAndSelect(index + 1);
+			}
+		}
 	}
 
 	@FXML
