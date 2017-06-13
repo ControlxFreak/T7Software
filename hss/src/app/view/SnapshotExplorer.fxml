@@ -78,10 +78,10 @@
                               </VBox>
                               <ButtonBar prefHeight="40.0" prefWidth="366.0">
                                 <buttons>
-                                  <Button mnemonicParsing="false" onMouseClicked="#handleReset" text="Reset" />
-                                    <Button mnemonicParsing="false" onMouseClicked="#handleDelete" text="Delete" />
-                                    <Button mnemonicParsing="false" onMouseClicked="#handleUpdate" text="Update" />
-                                    <Button mnemonicParsing="false" onMouseClicked="#handleDisplay" text="Display" />
+                                  <Button fx:id="resetButton" mnemonicParsing="false" onMouseClicked="#handleReset" text="Reset" />
+                                    <Button fx:id="deleteButton" mnemonicParsing="false" onMouseClicked="#handleDelete" text="Delete" />
+                                    <Button fx:id="updateButton" mnemonicParsing="false" onMouseClicked="#handleUpdate" text="Update" />
+                                    <Button fx:id="displayButton" mnemonicParsing="false" onMouseClicked="#handleDisplay" text="Display" />
                                 </buttons>
                               </ButtonBar>
                            </children>

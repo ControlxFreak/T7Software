@@ -28,6 +28,7 @@ import app.model.Snapshot;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -73,6 +74,14 @@ public class SnapshotExplorerController {
 	private Spinner<Integer> qtySpinner;
 	@FXML
 	private HBox controlsBox;
+	@FXML
+	private Button resetButton;
+	@FXML
+	private Button deleteButton;
+	@FXML
+	private Button updateButton;
+	@FXML
+	private Button displayButton;
 	
 	private KeySpinner keySpinner;
 
@@ -115,6 +124,58 @@ public class SnapshotExplorerController {
 			}
 		});
 		
+		resetButton.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			
+			@Override
+			public void handle(KeyEvent ke)
+			{
+				System.out.println("Key typed: " + ke.getCode());
+				if(ke.getCode() == KeyCode.ENTER)
+				{
+					handleReset();
+				}
+			}
+		});
+		
+		deleteButton.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			
+			@Override
+			public void handle(KeyEvent ke)
+			{
+				System.out.println("Key typed: " + ke.getCode());
+				if(ke.getCode() == KeyCode.ENTER)
+				{
+					handleDelete();
+				}
+			}
+		});
+		
+		updateButton.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			
+			@Override
+			public void handle(KeyEvent ke)
+			{
+				System.out.println("Key typed: " + ke.getCode());
+				if(ke.getCode() == KeyCode.ENTER)
+				{
+					handleUpdate();
+				}
+			}
+		});
+		
+		displayButton.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			
+			@Override
+			public void handle(KeyEvent ke)
+			{
+				System.out.println("Key typed: " + ke.getCode());
+				if(ke.getCode() == KeyCode.ENTER)
+				{
+					handleDisplay();
+				}
+			}
+		});
+		
 		animalBox.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			
 			@Override
@@ -136,12 +197,16 @@ public class SnapshotExplorerController {
 				System.out.println("Key typed: " + ke.getCode());
 				if(ke.getCode() == KeyCode.ENTER)
 				{
-					qtySpinner.increment();
+					if(qtySpinner.getValueFactory().getValue() == 10) {
+						qtySpinner.getValueFactory().setValue(1);
+					} else {
+						qtySpinner.increment();
+					}
 				}
 			}
 		});
 		
-		qtySpinner.setValueFactory(new IntegerSpinnerValueFactory(1, 99));
+		qtySpinner.setValueFactory(new IntegerSpinnerValueFactory(1, 10));
 		animalBox.getItems().addAll(Animal.values());
 		
 		if(snapList.size() == 0) {
@@ -277,7 +342,11 @@ public class SnapshotExplorerController {
 			descriptionField.setText(snap.getDescription());
 			timestampField.setText(snap.getTimestamp().toString());
 			notesField.setText(snap.getNotes());
-			priorityField.setText(Integer.toString(snap.getRelativePriority()));
+			if(snap.getRelativePriority() == -1) {
+				priorityField.setText(null);
+			} else {
+				priorityField.setText(Integer.toString(snap.getRelativePriority()));
+			}
 			animalBox.setValue(snap.getAnimal());
 			if(qtySpinner.getValueFactory() != null) {
 				qtySpinner.getValueFactory().setValue(snap.getAnimalQty());
