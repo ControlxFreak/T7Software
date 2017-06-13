@@ -365,7 +365,7 @@ public class MainApp extends Application {
 							break;
 						case B:
 							long tapEnd = System.currentTimeMillis();
-							if(tapEnd - tapStart > 500) {
+							if(tapEnd - tapStart < 500) {
 								main_controller.spinKey();
 							} else {
 								KeyCode code = main_controller.getKeySpinner().getKey();
