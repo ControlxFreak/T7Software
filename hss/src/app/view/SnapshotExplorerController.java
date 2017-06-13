@@ -296,6 +296,8 @@ public class SnapshotExplorerController {
 
 	@FXML
 	private void handleDisplay() {
+		handleUpdate();
+		
 		int index = thumbnails.getSelectionModel().getSelectedIndex();
 		Snapshot snap = MainApp.getSnapshotData().get(index);
 		
