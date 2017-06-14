@@ -33,8 +33,10 @@ import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
@@ -51,7 +53,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
-public class SnapshotExplorerController {
+public class SnapshotExplorerController extends Tapper {
 
 	private static Logger logger					= Logger.getLogger(SnapshotExplorerController.class.getName());
 	private MainDisplayController main_controller;
@@ -69,13 +71,21 @@ public class SnapshotExplorerController {
 	@FXML
 	private TextField notesField;
 	@FXML
+	private Label priorityLabel;
+	@FXML
 	private TextField priorityField;
 	@FXML
 	private ListView<Snapshot> thumbnails;
+	/*
 	@FXML
 	private VBox targetBox;
+	*/
+	@FXML
+	private Label animalLabel;
 	@FXML
 	private ChoiceBox<Animal> animalBox;
+	@FXML
+	private Label qtyLabel;
 	@FXML
 	private Spinner<Integer> qtySpinner;
 	@FXML
@@ -97,22 +107,26 @@ public class SnapshotExplorerController {
 	private volatile boolean foot_down = false;
 	private volatile int tapNum = 1;
 	private volatile int timerNum = 1;
-	private volatile boolean singleTap = false;
+	//private volatile boolean singleTap = false;
+	private ArrayList<Node> focusList = new ArrayList<>();
 
 	@FXML
 	private void initialize() {
-
-		/*
-		KeyCode[] key_arr = {KeyCode.S, KeyCode.E, KeyCode.C, KeyCode.T};
-		Image[] image_arr = {new Image((new File("src/main/resources/images/default/camera.png")).toURI().toString()),
-				new Image((new File("src/main/resources/images/default/polaroid.jpg")).toURI().toString()),
-				new Image((new File("src/main/resources/images/default/configuration.png")).toURI().toString()),
-				new Image((new File("src/main/resources/images/default/power.png")).toURI().toString())};
-		keySpinner = new KeySpinner(new ArrayList<KeyCode>(Arrays.asList(key_arr)),
-				new ArrayList<Image>(Arrays.asList(image_arr)));
-				*/
+		
+		focusList.add(targetRadio);
+		focusList.add(nonTargetRadio);
+		focusList.add(animalBox);
+		focusList.add(qtySpinner);
+		focusList.add(resetButton);
+		focusList.add(deleteButton);
+		focusList.add(updateButton);
+		focusList.add(displayButton);
+		focusList.add(exitButton);
+		focusList.add(thumbnails);
 
 		ObservableList<Snapshot> snapList = MainApp.getSnapshotData();
+		
+		Tapper tapper = this;
 		
 		targetRadio.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			
@@ -122,24 +136,50 @@ public class SnapshotExplorerController {
 				System.out.println("Key typed: " + ke.getCode());
 				if(ke.getCode() == KeyCode.ENTER)
 				{
+					System.out.println("ENTER received, handling target selection.");
 					handleTargetSelection();
+				}
+				else if(ke.getCode() == KeyCode.B)
+				{
+					if(!singleTap) {
+						singleTap = true;
+						System.out.println("singleTap = true");
+
+						new Thread(new TapTimer(tapper, targetRadio)).start();
+					} else {
+						singleTap = false;
+						System.out.println("singleTap = false");
+					}
 				}
 			}
 		});
-		
+
 		nonTargetRadio.setOnKeyPressed(new EventHandler<KeyEvent>() {
-			
+
 			@Override
 			public void handle(KeyEvent ke)
 			{
 				System.out.println("Key typed: " + ke.getCode());
 				if(ke.getCode() == KeyCode.ENTER)
 				{
+					System.out.println("ENTER received, handling non-target selection.");
 					handleNonTargetSelection();
+				}
+				else if(ke.getCode() == KeyCode.B)
+				{
+					if(!singleTap) {
+						singleTap = true;
+						System.out.println("singleTap = true");
+
+						new Thread(new TapTimer(tapper, nonTargetRadio)).start();
+					} else {
+						singleTap = false;
+						System.out.println("singleTap = false");
+					}
 				}
 			}
 		});
-		
+
 		resetButton.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			
 			@Override
@@ -338,7 +378,46 @@ public class SnapshotExplorerController {
 				thumbnails.getSelectionModel().clearAndSelect(index + 1);
 			}
 		} else {
-			targetRadio.requestFocus();
+			singleTap(thumbnails);
+		}
+	}
+	
+	protected void doubleTap(Node n) {
+		KeyEvent artificialEvent = new KeyEvent(KeyEvent.KEY_PRESSED,
+				KeyCode.ENTER.getName(), "Forwarded from foot switch.",
+				KeyCode.ENTER, false, false, false, false);
+		System.out.println("About to handle artificial ENTER.");
+		n.getOnKeyPressed().handle(artificialEvent);
+	}
+	
+	protected void singleTap(Node n) {
+		singleTap = false;
+		
+		int index = focusList.indexOf(n);
+		int new_index = index+1;
+		
+		/*
+		if(index == focusList.size() - 1) {
+			focusList.get(0).requestFocus();
+		} else {
+			focusList.get(index + 1).requestFocus();
+		}
+		*/
+		
+		while(index != new_index) {
+			if(new_index == focusList.size() - 1) {
+				new_index = 0;
+			}
+			
+			Node target = focusList.get(new_index);
+			
+			if(!target.isVisible()) {
+				new_index++;
+				continue;
+			}
+			
+			target.requestFocus();
+			return;
 		}
 	}
 
@@ -407,7 +486,11 @@ public class SnapshotExplorerController {
 		
 		targetRadio.setSelected(true);
 		nonTargetRadio.setSelected(false);
-		targetBox.setVisible(true);
+		animalLabel.setVisible(true);
+		animalBox.setVisible(true);
+		qtySpinner.setVisible(true);
+		qtyLabel.setVisible(true);
+		priorityLabel.setVisible(true);
 		priorityField.setVisible(true);
 	}
 	
@@ -415,7 +498,11 @@ public class SnapshotExplorerController {
 	private void handleNonTargetSelection() {
 		targetRadio.setSelected(false);
 		nonTargetRadio.setSelected(true);
-		targetBox.setVisible(false);
+		animalLabel.setVisible(false);
+		animalBox.setVisible(false);
+		qtyLabel.setVisible(false);
+		qtySpinner.setVisible(false);
+		priorityLabel.setVisible(false);
 		priorityField.setVisible(false);
 	}
 

@@ -97,7 +97,7 @@
                               <Insets top="10.0" />
                            </padding>
                         </Separator>
-                        <VBox fx:id="targetBox" alignment="BOTTOM_LEFT" prefHeight="358.0" prefWidth="460.0" spacing="15.0">
+                        <VBox alignment="BOTTOM_LEFT" prefHeight="358.0" prefWidth="460.0" spacing="15.0">
                            <padding>
                               <Insets bottom="10.0" left="20.0" top="10.0" />
                            </padding>
@@ -109,13 +109,13 @@
                                  <children>
                                     <VBox>
                                        <children>
-                                          <Label text="Animal" />
+                                          <Label fx:id="animalLabel" text="Animal" />
                                           <ChoiceBox fx:id="animalBox" prefWidth="150.0" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0">
                                        <children>
-                                          <Label text="Quantity" />
+                                          <Label fx:id="qtyLabel" text="Quantity" />
                                           <Spinner fx:id="qtySpinner" maxWidth="80.0" />
                                        </children>
                                     </VBox>
@@ -123,7 +123,7 @@
                               </HBox>
                               <VBox maxHeight="50.0" prefHeight="50.0" prefWidth="100.0">
                                  <children>
-                                    <Label text="Priority" />
+                                    <Label fx:id="priorityLabel" text="Priority" />
                                     <TextField fx:id="priorityField" editable="false" maxWidth="60.0" prefHeight="26.0" prefWidth="60.0" />
                                  </children>
                               </VBox>
