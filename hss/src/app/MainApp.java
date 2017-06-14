@@ -357,7 +357,7 @@ public class MainApp extends Application {
 								public void run() {
 									int currentTap = timerNum++;
 									try {
-										Thread.sleep(700);
+										Thread.sleep(500);
 									} catch (InterruptedException e1) {
 										// TODO Auto-generated catch block
 										e1.printStackTrace();
