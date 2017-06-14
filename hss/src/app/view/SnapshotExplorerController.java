@@ -235,81 +235,6 @@ public class SnapshotExplorerController {
 			}
 		});
 		
-		/*
-		thumbnails.addEventFilter(KeyEvent.ANY, new EventHandler<KeyEvent>() {
-				@Override
-				public void handle(KeyEvent e) {
-					logger.finest("Key event: " + e.getText());
-					System.out.println("Key event: " + e.getText() + " - " + e.getEventType());
-					if(e.getEventType() == KeyEvent.KEY_PRESSED) {
-						switch(e.getCode()) {
-						case B:
-							tapStart = System.currentTimeMillis();
-							foot_down = true;
-							
-							new Thread(new Runnable() {
-
-								@Override
-								public void run() {
-									int currentTap = timerNum++;
-									try {
-										Thread.sleep(700);
-									} catch (InterruptedException e1) {
-										// TODO Auto-generated catch block
-										e1.printStackTrace();
-									}
-
-									if(currentTap == tapNum) {
-										Platform.runLater(() -> SnapshotExplorerController.reverseThumbSpinning());
-									}
-								}
-							}).start();
-							break;
-						default:
-							break;
-						}
-					} else if (e.getEventType() == KeyEvent.KEY_RELEASED) {
-						switch(e.getCode()) {
-						case RIGHT:
-							int index = thumbnails.getSelectionModel().getSelectedIndex();
-							if(index == thumbnails.getChildrenUnmodifiable().size() -1) {
-								thumbnails.getSelectionModel().select(0);
-							} else {
-								thumbnails.getSelectionModel().select(index + 1);
-							}
-							break;
-						case TAB:
-							Event.fireEvent(e.getTarget(), e);
-							e.consume();
-							break;
-						case B:
-							foot_down = false;
-							++tapNum;
-							timerNum = tapNum;
-							long tapEnd = System.currentTimeMillis();
-							if(tapEnd - tapStart < 700) {
-								KeyEvent artificialEvent;
-								if(thumb_spinning) {
-									artificialEvent = new KeyEvent(KeyEvent.KEY_RELEASED,
-											KeyCode.RIGHT.getName(), "Forwarded from foot switch.",
-											KeyCode.RIGHT, false, false, false, false);
-								} else {
-									artificialEvent = new KeyEvent(KeyEvent.KEY_RELEASED,
-											KeyCode.TAB.getName(), "Forwarded from foot switch.",
-											KeyCode.TAB, false, false, false, false);
-								}
-								handle(artificialEvent);
-							}
-							//tapStart = 0;
-							break;
-						default:
-							break;
-						}
-					}
-				}
-			});
-			*/
-		
 		thumbnails.setOnKeyTyped(new EventHandler<KeyEvent>() {
 			
 			@Override
@@ -337,7 +262,7 @@ public class SnapshotExplorerController {
 								if(singleTap) {
 									Platform.runLater(() -> MainApp.getSnapshotExplorerController().singleTap());
 								} else {
-									Platform.runLater(() -> SnapshotExplorerController.doubleTap());
+									Platform.runLater(() -> MainApp.getSnapshotExplorerController().doubleTap());
 								}
 							}
 						}).start();
@@ -393,7 +318,7 @@ public class SnapshotExplorerController {
 				(observable, oldValue, newValue) -> showSnapshotDetails(newValue));
 	}
 
-	protected static void doubleTap() {
+	protected void doubleTap() {
 		System.out.println("Running doubleTap!");
 		thumb_spinning = !thumb_spinning;
 	}
@@ -412,6 +337,8 @@ public class SnapshotExplorerController {
 				System.out.println("Snap index: " + index);
 				thumbnails.getSelectionModel().clearAndSelect(index + 1);
 			}
+		} else {
+			targetRadio.requestFocus();
 		}
 	}
 
