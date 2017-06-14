@@ -190,6 +190,18 @@ public class SnapshotExplorerController extends Tapper {
 				{
 					handleReset();
 				}
+				else if(ke.getCode() == KeyCode.B)
+				{
+					if(!singleTap) {
+						singleTap = true;
+						System.out.println("singleTap = true");
+
+						new Thread(new TapTimer(tapper, resetButton)).start();
+					} else {
+						singleTap = false;
+						System.out.println("singleTap = false");
+					}
+				}
 			}
 		});
 		
@@ -202,6 +214,18 @@ public class SnapshotExplorerController extends Tapper {
 				if(ke.getCode() == KeyCode.ENTER)
 				{
 					handleDelete();
+				}
+				else if(ke.getCode() == KeyCode.B)
+				{
+					if(!singleTap) {
+						singleTap = true;
+						System.out.println("singleTap = true");
+
+						new Thread(new TapTimer(tapper, deleteButton)).start();
+					} else {
+						singleTap = false;
+						System.out.println("singleTap = false");
+					}
 				}
 			}
 		});
@@ -216,6 +240,18 @@ public class SnapshotExplorerController extends Tapper {
 				{
 					handleUpdate();
 				}
+				else if(ke.getCode() == KeyCode.B)
+				{
+					if(!singleTap) {
+						singleTap = true;
+						System.out.println("singleTap = true");
+
+						new Thread(new TapTimer(tapper, updateButton)).start();
+					} else {
+						singleTap = false;
+						System.out.println("singleTap = false");
+					}
+				}
 			}
 		});
 		
@@ -229,6 +265,18 @@ public class SnapshotExplorerController extends Tapper {
 				{
 					handleDisplay();
 				}
+				else if(ke.getCode() == KeyCode.B)
+				{
+					if(!singleTap) {
+						singleTap = true;
+						System.out.println("singleTap = true");
+
+						new Thread(new TapTimer(tapper, displayButton)).start();
+					} else {
+						singleTap = false;
+						System.out.println("singleTap = false");
+					}
+				}
 			}
 		});
 		
@@ -241,6 +289,18 @@ public class SnapshotExplorerController extends Tapper {
 				if(ke.getCode() == KeyCode.ENTER)
 				{
 					animalBox.show();
+				}
+				else if(ke.getCode() == KeyCode.B)
+				{
+					if(!singleTap) {
+						singleTap = true;
+						System.out.println("singleTap = true");
+
+						new Thread(new TapTimer(tapper, animalBox)).start();
+					} else {
+						singleTap = false;
+						System.out.println("singleTap = false");
+					}
 				}
 			}
 		});
@@ -259,6 +319,18 @@ public class SnapshotExplorerController extends Tapper {
 						qtySpinner.increment();
 					}
 				}
+				else if(ke.getCode() == KeyCode.B)
+				{
+					if(!singleTap) {
+						singleTap = true;
+						System.out.println("singleTap = true");
+
+						new Thread(new TapTimer(tapper, qtySpinner)).start();
+					} else {
+						singleTap = false;
+						System.out.println("singleTap = false");
+					}
+				}
 			}
 		});
 		
@@ -271,6 +343,18 @@ public class SnapshotExplorerController extends Tapper {
 				if(ke.getCode() == KeyCode.ENTER)
 				{
 					handleExit();
+				}
+				else if(ke.getCode() == KeyCode.B)
+				{
+					if(!singleTap) {
+						singleTap = true;
+						System.out.println("singleTap = true");
+
+						new Thread(new TapTimer(tapper, exitButton)).start();
+					} else {
+						singleTap = false;
+						System.out.println("singleTap = false");
+					}
 				}
 			}
 		});
@@ -405,7 +489,7 @@ public class SnapshotExplorerController extends Tapper {
 		*/
 		
 		while(index != new_index) {
-			if(new_index == focusList.size() - 1) {
+			if(new_index == focusList.size()) {
 				new_index = 0;
 			}
 			
