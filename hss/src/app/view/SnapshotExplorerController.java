@@ -40,6 +40,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -288,7 +289,11 @@ public class SnapshotExplorerController extends Tapper {
 				System.out.println("Key typed: " + ke.getCode());
 				if(ke.getCode() == KeyCode.ENTER)
 				{
-					animalBox.show();
+					if(!animalBox.isShowing()) {
+						animalBox.show();
+					} else {
+						animalBox.hide();
+					}
 				}
 				else if(ke.getCode() == KeyCode.B)
 				{
@@ -476,6 +481,21 @@ public class SnapshotExplorerController extends Tapper {
 	
 	protected void singleTap(Node n) {
 		singleTap = false;
+		
+		if(n == animalBox && animalBox.isShowing()) {
+			/*
+			SingleSelectionModel<Animal> model = animalBox.getSelectionModel();
+			int index = model.getSelectedIndex();
+			if(index == model.)
+			*/
+			if(animalBox.getSelectionModel().getSelectedIndex() == 12) {
+				animalBox.getSelectionModel().select(0);
+			} else {
+				animalBox.getSelectionModel().selectNext();
+			}
+			animalBox.show();
+			return;
+		}
 		
 		int index = focusList.indexOf(n);
 		int new_index = index+1;
