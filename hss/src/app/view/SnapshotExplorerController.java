@@ -409,6 +409,7 @@ public class SnapshotExplorerController extends Tapper {
 		if(snapList.size() == 0) {
 			
 		controlsBox.setDisable(true);
+		handleExit();
 		}
 		
 		thumbnails.setItems(MainApp.getSnapshotData());
@@ -450,6 +451,10 @@ public class SnapshotExplorerController extends Tapper {
 	protected void doubleTap() {
 		System.out.println("Running doubleTap!");
 		thumb_spinning = !thumb_spinning;
+		
+		if(MainApp.getSnapshotData().isEmpty()) {
+			handleExit();
+		}
 	}
 
 	protected void singleTap() {
@@ -536,6 +541,7 @@ public class SnapshotExplorerController extends Tapper {
 		if(snap_list.size() == 0) {
 			
 		controlsBox.setDisable(true);
+		handleExit();
 		}
 	}
 

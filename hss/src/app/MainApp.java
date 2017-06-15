@@ -174,6 +174,11 @@ public class MainApp extends Application {
 	}
 
 	private static void showSnapshotExplorer() {
+		if(getSnapshotData().isEmpty()) {
+			System.out.println("No snapshots!");
+			return;
+		}
+		
 		try {
 		// Load the fxml file and create a new dialog.
 		FXMLLoader loader = new FXMLLoader();
