@@ -134,6 +134,10 @@ public class MainDisplayController {
 	private ImageView logo;
 	@FXML
 	private ImageView keyImage;
+	@FXML
+	private ImageView batteryImage;
+	@FXML
+	private Label batteryLabel;
 	
 	private MwRCDataPanel rcDataPanel;
 	private MwUAVPanel uavPanel;
@@ -310,6 +314,8 @@ public class MainDisplayController {
 		ChartPanel chartPanel = new ChartPanel(chart);
 		
 		chartNode.setContent(chartPanel);
+		
+		batteryImage.setImage(new Image((new File("src/main/resources/images/default/battery-00-gray.png")).toURI().toString()));
 	}
 
 	/*
@@ -354,6 +360,27 @@ public class MainDisplayController {
 				uavPanel.readNewValue("1", 0.0);
 				uavPanel.readNewValue("2", 0.0);
 				uavPanel.readNewValue("3", 0.0);
+			}
+			break;
+		case BAT:
+			if(d > 80.0) {
+				batteryImage.setImage(new Image((new File("src/main/resources/images/default/battery-100-gray.png")).toURI().toString()));
+			} else if (d > 60.0) {
+				batteryImage.setImage(new Image((new File("src/main/resources/images/default/battery-80-gray.png")).toURI().toString()));
+			} else if (d > 40.0) {
+				batteryImage.setImage(new Image((new File("src/main/resources/images/default/battery-60-gray.png")).toURI().toString()));
+			} else if (d > 20.0) {
+				batteryImage.setImage(new Image((new File("src/main/resources/images/default/battery-40-gray.png")).toURI().toString()));
+			} else if (d > 5.0) {
+				batteryImage.setImage(new Image((new File("src/main/resources/images/default/battery-20-gray.png")).toURI().toString()));
+			} else {
+				batteryImage.setImage(new Image((new File("src/main/resources/images/default/battery-00-gray.png")).toURI().toString()));
+			}
+			
+			if(d == Double.MIN_VALUE) {
+				batteryLabel.setText(null);
+			} else {
+				batteryLabel.setText(doubleDatumToLabelString(d) + "%");
 			}
 		default:
 			return;
