@@ -52,6 +52,9 @@ extern GenericMessageDefaultTypeInternal _GenericMessage_default_instance_;
 class Gyro;
 class GyroDefaultTypeInternal;
 extern GyroDefaultTypeInternal _Gyro_default_instance_;
+class Heading;
+class HeadingDefaultTypeInternal;
+extern HeadingDefaultTypeInternal _Heading_default_instance_;
 class HeartBeat;
 class HeartBeatDefaultTypeInternal;
 extern HeartBeatDefaultTypeInternal _HeartBeat_default_instance_;
@@ -67,6 +70,12 @@ extern TempDefaultTypeInternal _Temp_default_instance_;
 class Terminate;
 class TerminateDefaultTypeInternal;
 extern TerminateDefaultTypeInternal _Terminate_default_instance_;
+class ThermalRequest;
+class ThermalRequestDefaultTypeInternal;
+extern ThermalRequestDefaultTypeInternal _ThermalRequest_default_instance_;
+class ThermalResponse;
+class ThermalResponseDefaultTypeInternal;
+extern ThermalResponseDefaultTypeInternal _ThermalResponse_default_instance_;
 }  // namespace T7
 
 namespace T7 {
@@ -88,18 +97,21 @@ enum GenericMessage_MsgType {
   GenericMessage_MsgType_TERMINATE = 2,
   GenericMessage_MsgType_CONFIG_DATA = 101,
   GenericMessage_MsgType_MOVE_CAMERA = 102,
+  GenericMessage_MsgType_THERMAL_REQUEST = 103,
   GenericMessage_MsgType_ACCEL = 200,
   GenericMessage_MsgType_GYRO = 201,
   GenericMessage_MsgType_ALTITUDE = 202,
   GenericMessage_MsgType_ATTITUDE = 203,
   GenericMessage_MsgType_TEMP = 204,
   GenericMessage_MsgType_BAT = 205,
+  GenericMessage_MsgType_HEAD = 206,
+  GenericMessage_MsgType_THERMAL_RESPONSE = 207,
   GenericMessage_MsgType_GenericMessage_MsgType_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
   GenericMessage_MsgType_GenericMessage_MsgType_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
 };
 bool GenericMessage_MsgType_IsValid(int value);
 const GenericMessage_MsgType GenericMessage_MsgType_MsgType_MIN = GenericMessage_MsgType_RESPONSE;
-const GenericMessage_MsgType GenericMessage_MsgType_MsgType_MAX = GenericMessage_MsgType_BAT;
+const GenericMessage_MsgType GenericMessage_MsgType_MsgType_MAX = GenericMessage_MsgType_THERMAL_RESPONSE;
 const int GenericMessage_MsgType_MsgType_ARRAYSIZE = GenericMessage_MsgType_MsgType_MAX + 1;
 
 const ::google::protobuf::EnumDescriptor* GenericMessage_MsgType_descriptor();
@@ -141,12 +153,14 @@ enum ConfigData_ToggleKeys {
   ConfigData_ToggleKeys_toggleAttitude = 3,
   ConfigData_ToggleKeys_toggleTemp = 4,
   ConfigData_ToggleKeys_toggleBat = 5,
+  ConfigData_ToggleKeys_toggleArray = 6,
+  ConfigData_ToggleKeys_toggleHead = 7,
   ConfigData_ToggleKeys_ConfigData_ToggleKeys_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
   ConfigData_ToggleKeys_ConfigData_ToggleKeys_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
 };
 bool ConfigData_ToggleKeys_IsValid(int value);
 const ConfigData_ToggleKeys ConfigData_ToggleKeys_ToggleKeys_MIN = ConfigData_ToggleKeys_toggleAccel;
-const ConfigData_ToggleKeys ConfigData_ToggleKeys_ToggleKeys_MAX = ConfigData_ToggleKeys_toggleBat;
+const ConfigData_ToggleKeys ConfigData_ToggleKeys_ToggleKeys_MAX = ConfigData_ToggleKeys_toggleHead;
 const int ConfigData_ToggleKeys_ToggleKeys_ARRAYSIZE = ConfigData_ToggleKeys_ToggleKeys_MAX + 1;
 
 const ::google::protobuf::EnumDescriptor* ConfigData_ToggleKeys_descriptor();
@@ -260,6 +274,8 @@ class GenericMessage : public ::google::protobuf::Message /* @@protoc_insertion_
     GenericMessage_MsgType_CONFIG_DATA;
   static const MsgType MOVE_CAMERA =
     GenericMessage_MsgType_MOVE_CAMERA;
+  static const MsgType THERMAL_REQUEST =
+    GenericMessage_MsgType_THERMAL_REQUEST;
   static const MsgType ACCEL =
     GenericMessage_MsgType_ACCEL;
   static const MsgType GYRO =
@@ -272,6 +288,10 @@ class GenericMessage : public ::google::protobuf::Message /* @@protoc_insertion_
     GenericMessage_MsgType_TEMP;
   static const MsgType BAT =
     GenericMessage_MsgType_BAT;
+  static const MsgType HEAD =
+    GenericMessage_MsgType_HEAD;
+  static const MsgType THERMAL_RESPONSE =
+    GenericMessage_MsgType_THERMAL_RESPONSE;
   static inline bool MsgType_IsValid(int value) {
     return GenericMessage_MsgType_IsValid(value);
   }
@@ -340,6 +360,15 @@ class GenericMessage : public ::google::protobuf::Message /* @@protoc_insertion_
   ::T7::MoveCamera* release_movecamera();
   void set_allocated_movecamera(::T7::MoveCamera* movecamera);
 
+  // .T7.ThermalRequest thermalrequest = 15;
+  bool has_thermalrequest() const;
+  void clear_thermalrequest();
+  static const int kThermalrequestFieldNumber = 15;
+  const ::T7::ThermalRequest& thermalrequest() const;
+  ::T7::ThermalRequest* mutable_thermalrequest();
+  ::T7::ThermalRequest* release_thermalrequest();
+  void set_allocated_thermalrequest(::T7::ThermalRequest* thermalrequest);
+
   // .T7.Accel accel = 8;
   bool has_accel() const;
   void clear_accel();
@@ -394,6 +423,24 @@ class GenericMessage : public ::google::protobuf::Message /* @@protoc_insertion_
   ::T7::Battery* release_bat();
   void set_allocated_bat(::T7::Battery* bat);
 
+  // .T7.Heading head = 14;
+  bool has_head() const;
+  void clear_head();
+  static const int kHeadFieldNumber = 14;
+  const ::T7::Heading& head() const;
+  ::T7::Heading* mutable_head();
+  ::T7::Heading* release_head();
+  void set_allocated_head(::T7::Heading* head);
+
+  // .T7.ThermalResponse thermalresponse = 16;
+  bool has_thermalresponse() const;
+  void clear_thermalresponse();
+  static const int kThermalresponseFieldNumber = 16;
+  const ::T7::ThermalResponse& thermalresponse() const;
+  ::T7::ThermalResponse* mutable_thermalresponse();
+  ::T7::ThermalResponse* release_thermalresponse();
+  void set_allocated_thermalresponse(::T7::ThermalResponse* thermalresponse);
+
   // double time = 2;
   void clear_time();
   static const int kTimeFieldNumber = 2;
@@ -415,12 +462,15 @@ class GenericMessage : public ::google::protobuf::Message /* @@protoc_insertion_
   ::T7::Terminate* terminate_;
   ::T7::ConfigData* configdata_;
   ::T7::MoveCamera* movecamera_;
+  ::T7::ThermalRequest* thermalrequest_;
   ::T7::Accel* accel_;
   ::T7::Gyro* gyro_;
   ::T7::Altitude* altitude_;
   ::T7::Attitude* attitude_;
   ::T7::Temp* temp_;
   ::T7::Battery* bat_;
+  ::T7::Heading* head_;
+  ::T7::ThermalResponse* thermalresponse_;
   double time_;
   ::google::protobuf::int32 msgtype_;
   mutable int _cached_size_;
@@ -783,6 +833,10 @@ class ConfigData : public ::google::protobuf::Message /* @@protoc_insertion_poin
     ConfigData_ToggleKeys_toggleTemp;
   static const ToggleKeys toggleBat =
     ConfigData_ToggleKeys_toggleBat;
+  static const ToggleKeys toggleArray =
+    ConfigData_ToggleKeys_toggleArray;
+  static const ToggleKeys toggleHead =
+    ConfigData_ToggleKeys_toggleHead;
   static inline bool ToggleKeys_IsValid(int value) {
     return ConfigData_ToggleKeys_IsValid(value);
   }
@@ -930,6 +984,89 @@ class MoveCamera : public ::google::protobuf::Message /* @@protoc_insertion_poin
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::int32 arrowkey_;
+  mutable int _cached_size_;
+  friend struct protobuf_T7Messages_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class ThermalRequest : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:T7.ThermalRequest) */ {
+ public:
+  ThermalRequest();
+  virtual ~ThermalRequest();
+
+  ThermalRequest(const ThermalRequest& from);
+
+  inline ThermalRequest& operator=(const ThermalRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const ThermalRequest& default_instance();
+
+  static inline const ThermalRequest* internal_default_instance() {
+    return reinterpret_cast<const ThermalRequest*>(
+               &_ThermalRequest_default_instance_);
+  }
+
+  void Swap(ThermalRequest* other);
+
+  // implements Message ----------------------------------------------
+
+  inline ThermalRequest* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  ThermalRequest* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const ThermalRequest& from);
+  void MergeFrom(const ThermalRequest& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output)
+      const PROTOBUF_FINAL {
+    return InternalSerializeWithCachedSizesToArray(
+        ::google::protobuf::io::CodedOutputStream::IsDefaultSerializationDeterministic(), output);
+  }
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(ThermalRequest* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // bool request = 1;
+  void clear_request();
+  static const int kRequestFieldNumber = 1;
+  bool request() const;
+  void set_request(bool value);
+
+  // @@protoc_insertion_point(class_scope:T7.ThermalRequest)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool request_;
   mutable int _cached_size_;
   friend struct protobuf_T7Messages_2eproto::TableStruct;
 };
@@ -1473,6 +1610,172 @@ class Battery : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   mutable int _cached_size_;
   friend struct protobuf_T7Messages_2eproto::TableStruct;
 };
+// -------------------------------------------------------------------
+
+class Heading : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:T7.Heading) */ {
+ public:
+  Heading();
+  virtual ~Heading();
+
+  Heading(const Heading& from);
+
+  inline Heading& operator=(const Heading& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Heading& default_instance();
+
+  static inline const Heading* internal_default_instance() {
+    return reinterpret_cast<const Heading*>(
+               &_Heading_default_instance_);
+  }
+
+  void Swap(Heading* other);
+
+  // implements Message ----------------------------------------------
+
+  inline Heading* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  Heading* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const Heading& from);
+  void MergeFrom(const Heading& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output)
+      const PROTOBUF_FINAL {
+    return InternalSerializeWithCachedSizesToArray(
+        ::google::protobuf::io::CodedOutputStream::IsDefaultSerializationDeterministic(), output);
+  }
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(Heading* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // double heading = 1;
+  void clear_heading();
+  static const int kHeadingFieldNumber = 1;
+  double heading() const;
+  void set_heading(double value);
+
+  // @@protoc_insertion_point(class_scope:T7.Heading)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  double heading_;
+  mutable int _cached_size_;
+  friend struct protobuf_T7Messages_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class ThermalResponse : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:T7.ThermalResponse) */ {
+ public:
+  ThermalResponse();
+  virtual ~ThermalResponse();
+
+  ThermalResponse(const ThermalResponse& from);
+
+  inline ThermalResponse& operator=(const ThermalResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const ThermalResponse& default_instance();
+
+  static inline const ThermalResponse* internal_default_instance() {
+    return reinterpret_cast<const ThermalResponse*>(
+               &_ThermalResponse_default_instance_);
+  }
+
+  void Swap(ThermalResponse* other);
+
+  // implements Message ----------------------------------------------
+
+  inline ThermalResponse* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  ThermalResponse* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const ThermalResponse& from);
+  void MergeFrom(const ThermalResponse& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output)
+      const PROTOBUF_FINAL {
+    return InternalSerializeWithCachedSizesToArray(
+        ::google::protobuf::io::CodedOutputStream::IsDefaultSerializationDeterministic(), output);
+  }
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(ThermalResponse* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // double response = 1;
+  void clear_response();
+  static const int kResponseFieldNumber = 1;
+  double response() const;
+  void set_response(double value);
+
+  // @@protoc_insertion_point(class_scope:T7.ThermalResponse)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  double response_;
+  mutable int _cached_size_;
+  friend struct protobuf_T7Messages_2eproto::TableStruct;
+};
 // ===================================================================
 
 
@@ -1702,6 +2005,45 @@ inline void GenericMessage::set_allocated_movecamera(::T7::MoveCamera* movecamer
     
   }
   // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.movecamera)
+}
+
+// .T7.ThermalRequest thermalrequest = 15;
+inline bool GenericMessage::has_thermalrequest() const {
+  return this != internal_default_instance() && thermalrequest_ != NULL;
+}
+inline void GenericMessage::clear_thermalrequest() {
+  if (GetArenaNoVirtual() == NULL && thermalrequest_ != NULL) delete thermalrequest_;
+  thermalrequest_ = NULL;
+}
+inline const ::T7::ThermalRequest& GenericMessage::thermalrequest() const {
+  // @@protoc_insertion_point(field_get:T7.GenericMessage.thermalrequest)
+  return thermalrequest_ != NULL ? *thermalrequest_
+                         : *::T7::ThermalRequest::internal_default_instance();
+}
+inline ::T7::ThermalRequest* GenericMessage::mutable_thermalrequest() {
+  
+  if (thermalrequest_ == NULL) {
+    thermalrequest_ = new ::T7::ThermalRequest;
+  }
+  // @@protoc_insertion_point(field_mutable:T7.GenericMessage.thermalrequest)
+  return thermalrequest_;
+}
+inline ::T7::ThermalRequest* GenericMessage::release_thermalrequest() {
+  // @@protoc_insertion_point(field_release:T7.GenericMessage.thermalrequest)
+  
+  ::T7::ThermalRequest* temp = thermalrequest_;
+  thermalrequest_ = NULL;
+  return temp;
+}
+inline void GenericMessage::set_allocated_thermalrequest(::T7::ThermalRequest* thermalrequest) {
+  delete thermalrequest_;
+  thermalrequest_ = thermalrequest;
+  if (thermalrequest) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.thermalrequest)
 }
 
 // .T7.Accel accel = 8;
@@ -1938,6 +2280,84 @@ inline void GenericMessage::set_allocated_bat(::T7::Battery* bat) {
   // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.bat)
 }
 
+// .T7.Heading head = 14;
+inline bool GenericMessage::has_head() const {
+  return this != internal_default_instance() && head_ != NULL;
+}
+inline void GenericMessage::clear_head() {
+  if (GetArenaNoVirtual() == NULL && head_ != NULL) delete head_;
+  head_ = NULL;
+}
+inline const ::T7::Heading& GenericMessage::head() const {
+  // @@protoc_insertion_point(field_get:T7.GenericMessage.head)
+  return head_ != NULL ? *head_
+                         : *::T7::Heading::internal_default_instance();
+}
+inline ::T7::Heading* GenericMessage::mutable_head() {
+  
+  if (head_ == NULL) {
+    head_ = new ::T7::Heading;
+  }
+  // @@protoc_insertion_point(field_mutable:T7.GenericMessage.head)
+  return head_;
+}
+inline ::T7::Heading* GenericMessage::release_head() {
+  // @@protoc_insertion_point(field_release:T7.GenericMessage.head)
+  
+  ::T7::Heading* temp = head_;
+  head_ = NULL;
+  return temp;
+}
+inline void GenericMessage::set_allocated_head(::T7::Heading* head) {
+  delete head_;
+  head_ = head;
+  if (head) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.head)
+}
+
+// .T7.ThermalResponse thermalresponse = 16;
+inline bool GenericMessage::has_thermalresponse() const {
+  return this != internal_default_instance() && thermalresponse_ != NULL;
+}
+inline void GenericMessage::clear_thermalresponse() {
+  if (GetArenaNoVirtual() == NULL && thermalresponse_ != NULL) delete thermalresponse_;
+  thermalresponse_ = NULL;
+}
+inline const ::T7::ThermalResponse& GenericMessage::thermalresponse() const {
+  // @@protoc_insertion_point(field_get:T7.GenericMessage.thermalresponse)
+  return thermalresponse_ != NULL ? *thermalresponse_
+                         : *::T7::ThermalResponse::internal_default_instance();
+}
+inline ::T7::ThermalResponse* GenericMessage::mutable_thermalresponse() {
+  
+  if (thermalresponse_ == NULL) {
+    thermalresponse_ = new ::T7::ThermalResponse;
+  }
+  // @@protoc_insertion_point(field_mutable:T7.GenericMessage.thermalresponse)
+  return thermalresponse_;
+}
+inline ::T7::ThermalResponse* GenericMessage::release_thermalresponse() {
+  // @@protoc_insertion_point(field_release:T7.GenericMessage.thermalresponse)
+  
+  ::T7::ThermalResponse* temp = thermalresponse_;
+  thermalresponse_ = NULL;
+  return temp;
+}
+inline void GenericMessage::set_allocated_thermalresponse(::T7::ThermalResponse* thermalresponse) {
+  delete thermalresponse_;
+  thermalresponse_ = thermalresponse;
+  if (thermalresponse) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.thermalresponse)
+}
+
 // -------------------------------------------------------------------
 
 // Response
@@ -2026,6 +2446,24 @@ inline void MoveCamera::set_arrowkey(::google::protobuf::int32 value) {
   
   arrowkey_ = value;
   // @@protoc_insertion_point(field_set:T7.MoveCamera.arrowKey)
+}
+
+// -------------------------------------------------------------------
+
+// ThermalRequest
+
+// bool request = 1;
+inline void ThermalRequest::clear_request() {
+  request_ = false;
+}
+inline bool ThermalRequest::request() const {
+  // @@protoc_insertion_point(field_get:T7.ThermalRequest.request)
+  return request_;
+}
+inline void ThermalRequest::set_request(bool value) {
+  
+  request_ = value;
+  // @@protoc_insertion_point(field_set:T7.ThermalRequest.request)
 }
 
 // -------------------------------------------------------------------
@@ -2220,7 +2658,49 @@ inline void Battery::set_percent(double value) {
   // @@protoc_insertion_point(field_set:T7.Battery.percent)
 }
 
+// -------------------------------------------------------------------
+
+// Heading
+
+// double heading = 1;
+inline void Heading::clear_heading() {
+  heading_ = 0;
+}
+inline double Heading::heading() const {
+  // @@protoc_insertion_point(field_get:T7.Heading.heading)
+  return heading_;
+}
+inline void Heading::set_heading(double value) {
+  
+  heading_ = value;
+  // @@protoc_insertion_point(field_set:T7.Heading.heading)
+}
+
+// -------------------------------------------------------------------
+
+// ThermalResponse
+
+// double response = 1;
+inline void ThermalResponse::clear_response() {
+  response_ = 0;
+}
+inline double ThermalResponse::response() const {
+  // @@protoc_insertion_point(field_get:T7.ThermalResponse.response)
+  return response_;
+}
+inline void ThermalResponse::set_response(double value) {
+  
+  response_ = value;
+  // @@protoc_insertion_point(field_set:T7.ThermalResponse.response)
+}
+
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

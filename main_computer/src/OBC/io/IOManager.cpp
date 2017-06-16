@@ -25,9 +25,7 @@ Change Log
  */
 
 #include "IOManager.h"
-#include "tcpacceptor.h"
-#include "tcpconnector.h"
-#include "T7Messages.pb.h"
+
 //----------------------------------------------------------------------------//
 // launch() launches the tcp and serial IO communications
 //----------------------------------------------------------------------------//
@@ -55,9 +53,10 @@ IOManager::launch_clients() {
 
     LM->append("Launching Accelerometer Socket\n");
     sockThreadMap[AccelSock] = new thread(&IOManager::client_handler, this, sockKeys::ACCEL);
+    
     LM->append("Launching Gyroscope Socket\n");
     sockThreadMap[GyroSock] = new thread(&IOManager::client_handler, this, sockKeys::GYRO);
-
+    
     LM->append("Launching Altitude Socket\n");
     sockThreadMap[AltSock] = new thread(&IOManager::client_handler, this, sockKeys::ALTITUDE);
 
@@ -69,6 +68,7 @@ IOManager::launch_clients() {
 
     LM->append("Launching Battery Socket\n");
     sockThreadMap[BatSock] = new thread(&IOManager::client_handler, this, sockKeys::BAT);
+    
 }//launch_clients()
 
 //----------------------------------------------------------------------------//
@@ -92,7 +92,7 @@ IOManager::launch_serial() {
 
     LM->append("Launching Serial Communication\n");
 
-}//launch_server()
+}//launch_serial()
 
 //----------------------------------------------------------------------------//
 // client_handler() handles all tcp client communication
@@ -147,6 +147,8 @@ IOManager::client_handler(int id) {
         } // if
     } //while
 
+    google::protobuf::io::ZeroCopyOutputStream* ZCO = new google::protobuf::io::FileOutputStream(stream->m_sd);
+                        
     while (!data->timeToDieMap[id]) {
         switch (id) {
             case sockKeys::ACCEL:
@@ -162,17 +164,15 @@ IOManager::client_handler(int id) {
                         GM.mutable_accel()->set_y(accel[2]);
                         GM.mutable_accel()->set_z(accel[3]);
                         // Serialize and send it!
-                        GM.SerializeToString(&buff);
-                        rc = stream->send(buff.c_str(), buff.length());
 
-                        if (rc < 0 || stream == NULL) {
+                        if (!writeDelimitedTo(GM,ZCO) || stream == NULL) {
                             snprintf(cbuff, 256, "Socket %d Failure.  Exception: Dead Socket\n", id);
                             string sbuff(cbuff);
                             LM->append(sbuff);
                             data->sockHealth[id] = failureCodes::SOCKET_FAILURE;
                             data->timeToDieMap[id] = true;
                         }
-                        buff.clear();
+                         
                     } // if accelQueue is not empty
                 } // if sendAccel
                 break;
@@ -190,10 +190,7 @@ IOManager::client_handler(int id) {
                         GM.mutable_gyro()->set_y(gyro[2]);
                         GM.mutable_gyro()->set_z(gyro[3]);
                         // Serialize and send it!
-                        GM.SerializeToString(&buff);
-                        rc = stream->send(buff.c_str(), buff.length());
-
-                        if (rc < 0 || stream == NULL) {
+                        if (!writeDelimitedTo(GM,ZCO) || stream == NULL) {
                             snprintf(cbuff, 256, "Socket %d Failure.  Exception: Dead Socket\n", id);
                             string sbuff(cbuff);
                             LM->append(sbuff);
@@ -216,10 +213,7 @@ IOManager::client_handler(int id) {
                         GM.set_time((double) alt[0]);
                         GM.mutable_altitude()->set_alt(alt[1]);
                         // Serialize and send it!
-                        GM.SerializeToString(&buff);
-                        rc = stream->send(buff.c_str(), buff.length());
-
-                        if (rc < 0 || stream == NULL) {
+                        if (!writeDelimitedTo(GM,ZCO) || stream == NULL) {
                             snprintf(cbuff, 256, "Socket %d Failure.  Exception: Dead Socket\n", id);
                             string sbuff(cbuff);
                             LM->append(sbuff);
@@ -244,10 +238,7 @@ IOManager::client_handler(int id) {
                         GM.mutable_attitude()->set_pitch(att[2]);
                         GM.mutable_attitude()->set_yaw(att[3]);
                         // Serialize and send it!
-                        GM.SerializeToString(&buff);
-                        rc = stream->send(buff.c_str(), buff.length());
-
-                        if (rc < 0 || stream == NULL) {
+                        if (!writeDelimitedTo(GM,ZCO) || stream == NULL) {
                             snprintf(cbuff, 256, "Socket %d Failure.  Exception: Dead Socket\n", id);
                             string sbuff(cbuff);
                             LM->append(sbuff);
@@ -270,10 +261,7 @@ IOManager::client_handler(int id) {
                         GM.set_time((double) temp[0]);
                         GM.mutable_temp()->set_temp(temp[1]);
                         // Serialize and send it!
-                        GM.SerializeToString(&buff);
-                        rc = stream->send(buff.c_str(), buff.length());
-
-                        if (rc < 0 || stream == NULL) {
+                        if (!writeDelimitedTo(GM,ZCO)|| stream == NULL) {
                             snprintf(cbuff, 256, "Socket %d Failure.  Exception: Dead Socket\n", id);
                             string sbuff(cbuff);
                             LM->append(sbuff);
@@ -296,10 +284,7 @@ IOManager::client_handler(int id) {
                         GM.set_time((double) bat[0]);
                         GM.mutable_bat()->set_percent(bat[1]);
                         // Serialize and send it!
-                        GM.SerializeToString(&buff);
-                        rc = stream->send(buff.c_str(), buff.length());
-
-                        if (rc < 0 || stream == NULL) {
+                        if (!writeDelimitedTo(GM,ZCO) || stream == NULL) {
                             snprintf(cbuff, 256, "Socket %d Failure.  Exception: Dead Socket\n", id);
                             string sbuff(cbuff);
                             LM->append(sbuff);
@@ -343,15 +328,17 @@ IOManager::server_handler() {
 
     // Initialize the TCP connector
     LM->append("Initializing Server\n");
-
+          
     while (!data->timeToDieMap[timeToDieFlags::SERVER_SHUTDOWN]) {
         if (acceptor->start() == 0) {
             stream = acceptor->accept();
             // Tell the WatchDog that you are having trouble connecting!
             if (stream != NULL) {
                 LM->append("Successful Accept\n");
-                if (stream->receive(cbuff, sizeof (cbuff), CLIENT_TIMEOUT) > 0) {
-                    GM.ParseFromArray(cbuff, sizeof (cbuff));
+                
+                google::protobuf::io::ZeroCopyInputStream* ZIS = new google::protobuf::io::FileInputStream(stream->m_sd);
+                if (readDelimitedFrom(ZIS,&GM)) {
+                    //GM.ParseFromArray(cbuff, sizeof (cbuff));
                     id = (int) GM.msgtype();
 
                     // ONLY RE LAUNCH IF THE CURRENT ONE IS DEAD!
@@ -391,6 +378,8 @@ IOManager::acceptor_handler(TCPStream* stream, int id) {
     data->sockHealth[id] = failureCodes::socketConnected;
     data->timeToDieMap[id] = false;
 
+    google::protobuf::io::ZeroCopyInputStream* ZIS = new google::protobuf::io::FileInputStream(stream->m_sd);
+               
     while (!data->timeToDieMap[id]) {
         switch (id) {
             case sockKeys::HEARTBEAT:
@@ -485,9 +474,11 @@ IOManager::acceptor_handler(TCPStream* stream, int id) {
                 } // if
                 break;
             case sockKeys::MOVE_CAMERA:
-                rc = stream->receive(cbuff, sizeof (cbuff), CLIENT_TIMEOUT);
-                if (rc > 0) {
-                    GM.ParseFromArray(cbuff, sizeof (cbuff));
+                
+                
+                //rc = stream->receive(cbuff, sizeof (cbuff), CLIENT_TIMEOUT);
+                if (readDelimitedFrom(ZIS,&GM)) {
+                    //GM.ParseFromArray(cbuff, sizeof (cbuff));
                     switch (GM.movecamera().arrowkey()) {
                         case camKeys::MOVE_UP:
                             LM->append("RECIEVED: Move Camera Up Command!\n");
@@ -559,3 +550,50 @@ IOManager::~IOManager() {
     clean();
 }
 
+
+bool IOManager::writeDelimitedTo(T7::GenericMessage message, google::protobuf::io::ZeroCopyOutputStream* rawOutput) {
+  // We create a new coded stream for each message.  Don't worry, this is fast.
+  google::protobuf::io::CodedOutputStream output(rawOutput);
+
+  // Write the size.
+  const int size = message.ByteSize();
+  output.WriteVarint32(size);
+
+  uint8_t* buffer = output.GetDirectBufferForNBytesAndAdvance(size);
+  if (buffer != NULL) {
+    // Optimization:  The message fits in one buffer, so use the faster
+    // direct-to-array serialization path.
+    message.SerializeWithCachedSizesToArray(buffer);
+  } else {
+    // Slightly-slower path when the message is multiple buffers.
+    message.SerializeWithCachedSizes(&output);
+    if (output.HadError()) return false;
+  }
+
+  return true;
+}
+
+bool IOManager::readDelimitedFrom(google::protobuf::io::ZeroCopyInputStream* rawInput, T7::GenericMessage* message) {
+  // We create a new coded stream for each message.  Don't worry, this is fast,
+  // and it makes sure the 64MB total size limit is imposed per-message rather
+  // than on the whole stream.  (See the CodedInputStream interface for more
+  // info on this limit.)
+  google::protobuf::io::CodedInputStream input(rawInput);
+
+  // Read the size.
+  uint32_t size;
+  if (!input.ReadVarint32(&size)) return false;
+
+  // Tell the stream not to read beyond that size.
+  google::protobuf::io::CodedInputStream::Limit limit =
+      input.PushLimit(size);
+
+  // Parse the message.
+  if (!message->MergeFromCodedStream(&input)) return false;
+  if (!input.ConsumedEntireMessage()) return false;
+
+  // Release the limit.
+  input.PopLimit(limit);
+
+  return true;
+}

@@ -40,7 +40,8 @@ send_terminate() {
     connector = new TCPConnector();
 
     stream = connector->connect("127.0.0.1", 9002);
-
+    //stream = connector->connect("192.168.1.134", 9002);
+    
     // Check for thread interruptions
     string buff;
     GM.set_msgtype((google::protobuf::int32) 2);
@@ -60,6 +61,7 @@ test_client(int mid) {
     TCPStream* stream;
     TCPAcceptor* acceptor;
     acceptor = new TCPAcceptor(9001, "127.0.0.1");
+    //acceptor = new TCPAcceptor(9001, "192.168.1.134");
 
     bool timeToDie = false;
     // Initialize the Message
@@ -150,7 +152,9 @@ test_server(int id) {
         bool connected = false;
 
         while (!connected) {
-            stream = connector->connect("127.0.0.1", 9002);
+            //stream = connector->connect("127.0.0.1", 9002);
+            stream = connector->connect("192.168.1.134", 9002);
+            
             if (stream == NULL) {
                 if (tryNum > 1E6) {
                     cout << "waiting..\n";

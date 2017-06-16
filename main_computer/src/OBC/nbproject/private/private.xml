@@ -7,6 +7,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/home/controlxfreak/repos/ELDP/T7Software/main_computer/src/OBC/main.cpp</file>
+            <file>file:/home/controlxfreak/repos/ELDP/T7Software/main_computer/src/OBC/io/tcpacceptor.cpp</file>
             <file>file:/home/controlxfreak/repos/ELDP/T7Software/main_computer/src/OBC/executive/Executive.cpp</file>
             <file>file:/home/controlxfreak/repos/ELDP/T7Software/main_computer/src/OBC/io/IOManager.cpp</file>
         </group>

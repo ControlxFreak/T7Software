@@ -33,11 +33,13 @@ using namespace std;
 
 class TCPStream
 {
+
+  public:
+      
     int     m_sd;
     string  m_peerIP;
     int     m_peerPort;
-
-  public:
+    
     friend class TCPAcceptor;
     friend class TCPConnector;
 

@@ -29,6 +29,9 @@
 #include <errno.h>
 #include "tcpconnector.h"
 
+// temp
+#include <iostream>
+
 TCPStream* TCPConnector::connect(const char* server, int port)
 {
     struct sockaddr_in address;
@@ -41,13 +44,14 @@ TCPStream* TCPConnector::connect(const char* server, int port)
     } 
 
     // Create and connect the socket, bail if we fail in either case
-    int sd = socket(AF_INET, SOCK_STREAM, 0);
+    int sd = socket(AF_INET, SOCK_STREAM, 0); // socket descriptor == sd
     if (sd < 0) {
         //perror("socket() failed");
         return NULL;
     }
+    
     if (::connect(sd, (struct sockaddr*)&address, sizeof(address)) != 0) {
-        //perror("connect() failed");
+        perror("connect() failed");
         close(sd);
         return NULL;
     }

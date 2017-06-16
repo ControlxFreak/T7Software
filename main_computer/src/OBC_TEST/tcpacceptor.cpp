@@ -49,7 +49,8 @@ int TCPAcceptor::start()
     address.sin_family = PF_INET;
     address.sin_port = htons(m_port);
     if (m_address.size() > 0) {
-        inet_pton(PF_INET, m_address.c_str(), &(address.sin_addr));
+        //inet_pton(PF_INET, m_address.c_str(), &(address.sin_addr));
+        address.sin_addr.s_addr = inet_addr(m_address.c_str());
     }
     else {
         address.sin_addr.s_addr = INADDR_ANY;
@@ -61,6 +62,9 @@ int TCPAcceptor::start()
     int result = bind(m_lsd, (struct sockaddr*)&address, sizeof(address));
     if (result != 0) {
         perror("bind() failed");
+        if (m_lsd > 0) {
+            close(m_lsd);
+        }
         return result;
     }
     
