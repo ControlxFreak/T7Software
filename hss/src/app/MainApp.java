@@ -458,6 +458,7 @@ public class MainApp extends Application {
 		config_client.shutDown();
 		termination_client.shutDown();
 		array_client.shutDown();
+		main_controller.stopTimer();
 	}
 
 	public static boolean[] getConfigArr() {

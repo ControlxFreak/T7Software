@@ -16,16 +16,21 @@
  */
 package app.view;
 
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -35,11 +40,15 @@ import org.jfree.chart.axis.DateTickMarkPosition;
 import org.jfree.chart.axis.DateTickUnit;
 import org.jfree.chart.axis.DateTickUnitType;
 import org.jfree.chart.axis.ValueAxis;
+import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.Range;
+import org.jfree.data.time.DynamicTimeSeriesCollection;
 import org.jfree.data.time.Millisecond;
 import org.jfree.data.time.Minute;
+import org.jfree.data.time.Second;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
+import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 
 import T7.T7Messages.GenericMessage.MsgType;
@@ -79,7 +88,9 @@ import jfxtras.scene.control.gauge.linear.elements.Segment;
 public class MainDisplayController {
 
 	private static Logger logger			= Logger.getLogger(MainDisplayController.class.getName());
-
+	private static final int COUNT = 2 * 60;
+	private static final int SERIESNUM = 7;
+	
 	@FXML
 	private WebView video;
 	@FXML
@@ -147,8 +158,25 @@ public class MainDisplayController {
 	private Snapshot embedded_snap;
 	private static KeySpinner keySpinner = null;
 	
-	private TimeSeriesCollection dataset = new TimeSeriesCollection();
-	
+	private DynamicTimeSeriesCollection dataset = new DynamicTimeSeriesCollection(SERIESNUM, COUNT, new Second(), TimeZone.getDefault());
+
+	/*
+	private ArrayList<Double> accXList = new ArrayList<Double>();
+	private ArrayList<Double> accYList = new ArrayList<Double>();
+	private ArrayList<Double> accZList = new ArrayList<Double>();
+	private ArrayList<Double> gyroXList = new ArrayList<Double>();
+	private ArrayList<Double> gyroYList = new ArrayList<Double>();
+	private ArrayList<Double> gyroZList = new ArrayList<Double>();
+	*/
+	private ArrayList<Double> attXList = new ArrayList<Double>();
+	private ArrayList<Double> attYList = new ArrayList<Double>();
+	private ArrayList<Double> attZList = new ArrayList<Double>();
+	private ArrayList<Double> altList = new ArrayList<Double>();
+	private ArrayList<Double> rangeList = new ArrayList<Double>();
+	//private ArrayList<Double> headList = new ArrayList<Double>();
+	private ArrayList<Double> batList = new ArrayList<Double>();
+	private ArrayList<Double> tempList = new ArrayList<Double>();
+	/*
 	private TimeSeries accXSeries = new TimeSeries("");
 	private TimeSeries accYSeries = new TimeSeries("");
 	private TimeSeries accZSeries = new TimeSeries("");
@@ -163,6 +191,9 @@ public class MainDisplayController {
 	private TimeSeries headSeries = new TimeSeries("");
 	private TimeSeries batSeries = new TimeSeries("");
 	private TimeSeries tempSeries = new TimeSeries("");
+	*/
+	
+	private Timer timer;
 	
 	private DateAxis dateAxis;
 	private ValueAxis valueAxis;
@@ -288,6 +319,8 @@ public class MainDisplayController {
 		tempGauge.segments().add(rSeg);
 		tempBox.getChildren().add(tempGauge);
 		
+		dataset.setTimeBase(new Second());
+		/*
 		dataset.addSeries(accXSeries);
 		dataset.addSeries(accYSeries);
 		dataset.addSeries(accZSeries);
@@ -302,8 +335,17 @@ public class MainDisplayController {
 		dataset.addSeries(headSeries);
 		dataset.addSeries(batSeries);
 		dataset.addSeries(tempSeries);
+		*/
+		dataset.addSeries(new float[COUNT], 0, "Roll");
+		dataset.addSeries(new float[COUNT], 1, "Pitch");
+		dataset.addSeries(new float[COUNT], 2, "Yaw");
+		dataset.addSeries(new float[COUNT], 3, "Altitude");
+		dataset.addSeries(new float[COUNT], 4, "Range");
+		dataset.addSeries(new float[COUNT], 5, "Battery");
+		dataset.addSeries(new float[COUNT], 6, "Air Temperature");
 		
-		JFreeChart chart = ChartFactory.createTimeSeriesChart("", "", "", dataset, false, true, true);
+		//JFreeChart chart = ChartFactory.createTimeSeriesChart("", "", "", dataset, false, true, true);
+		JFreeChart chart = createChart(dataset);
 		dateAxis = (DateAxis) chart.getXYPlot().getDomainAxis();
 		dateAxis.setTickUnit(new DateTickUnit(DateTickUnitType.MINUTE, 1));
 		dateAxis.setTickMarkPosition(DateTickMarkPosition.START);
@@ -314,6 +356,19 @@ public class MainDisplayController {
 		ChartPanel chartPanel = new ChartPanel(chart);
 		
 		chartNode.setContent(chartPanel);
+		
+		timer = new Timer(500, new ActionListener() {
+			
+			
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				refreshChart();
+				//resizeChart();
+			}
+		});
+		
+		timer.start();
 		
 		batteryImage.setImage(new Image((new File("src/main/resources/images/default/battery-00-gray.png")).toURI().toString()));
 	}
@@ -326,29 +381,42 @@ public class MainDisplayController {
 	}
 	*/
 	
+	private JFreeChart createChart(final XYDataset dataset) {
+		final JFreeChart result = ChartFactory.createTimeSeriesChart(
+				"", "", "", dataset, true, true, false);
+		final XYPlot plot = result.getXYPlot();
+		ValueAxis domain = plot.getDomainAxis();
+		domain.setAutoRange(true);
+		ValueAxis range = plot.getRangeAxis();
+		//range.setRange(-100, 100);
+		range.setAutoRange(true);
+		return result;
+	}
+
 	public void updateDatum(double d, MsgType type) {
-		//String newVal = doubleDatumToLabelString(d);
+		/*
+		String newVal = doubleDatumToLabelString(d);
 		Calendar cal = Calendar.getInstance();
 		Millisecond milli = new Millisecond(cal.getTime());
-		TimeSeries datumSeries = null;
+		*/
+		ArrayList<Double> datumList = null;
 
 		switch(type) {
 		case TEMP:
 			tempGauge.setValue(d);
 			temp_label.setText(doubleDatumToLabelString(d));
-			datumSeries = tempSeries;
+			datumList = tempList;
 			break;
 		case ALTITUDE:
 			compasPanel.readNewValue(MSP.IDALT, d);
 			alt_label.setText(doubleDatumToLabelString(d));
 			rcDataPanel.readNewValue(MSP.IDRCALTITUDE, d);
-			datumSeries = altSeries;
+			datumList = altList;
 			break;
 		case HEAD:
 			compasPanel.readNewValue(MSP.IDHEAD, d);
 			head_label.setText(doubleDatumToLabelString(d));
-			datumSeries = headSeries;
-			break;
+			return;
 		case HEARTBEAT:
 			if(d == 1.0) {
 				uavPanel.readNewValue("0", 2000.0);
@@ -379,23 +447,29 @@ public class MainDisplayController {
 			
 			if(d == Double.MIN_VALUE) {
 				batteryLabel.setText(null);
+				d = 0;
 			} else {
 				batteryLabel.setText(doubleDatumToLabelString(d) + "%");
 			}
+			datumList = batList;
+			break;
 		default:
 			return;
 		}
 		
-		datumSeries.add(milli, d);
-		resizeChart();
+		datumList.add(d);
+		//refreshChart();
+		//resizeChart();
 	}
 
 	public void updateVectorData(double datumX, double datumY, double datumZ, MsgType type) {
+		/*
 		Calendar cal = Calendar.getInstance();
 		Millisecond milli = new Millisecond(cal.getTime());
-		TimeSeries xSeries = null;
-		TimeSeries ySeries = null;
-		TimeSeries zSeries = null;
+		*/
+		ArrayList<Double> xList = null;
+		ArrayList<Double> yList = null;
+		ArrayList<Double> zList = null;
 
 		switch(type) {
 		case ACCEL:
@@ -411,18 +485,12 @@ public class MainDisplayController {
 			uavPanel.readNewValue("2", 2000.0);
 			uavPanel.readNewValue("3", 2000.0);
 			*/
-			xSeries = accXSeries;
-			ySeries = accYSeries;
-			zSeries = accZSeries;
-			break;
+			return;
 		case GYRO:
 			gyro_roll_label.setText(doubleDatumToLabelString(datumX));
 			gyro_pitch_label.setText(doubleDatumToLabelString(datumY));
 			gyro_yaw_label.setText(doubleDatumToLabelString(datumZ));
-			xSeries = gyroXSeries;
-			ySeries = gyroYSeries;
-			zSeries = gyroZSeries;
-			break;
+			return;
 		case ATTITUDE:
 			hudPanel.readNewValue("angx", datumX);
 			hudPanel.readNewValue("angy", datumY);
@@ -432,18 +500,19 @@ public class MainDisplayController {
 			att_x_label.setText(doubleDatumToLabelString(datumX));
 			att_y_label.setText(doubleDatumToLabelString(datumY));
 			att_z_label.setText(doubleDatumToLabelString(datumZ));
-			xSeries = attXSeries;
-			ySeries = attYSeries;
-			zSeries = attZSeries;
+			xList = attXList;
+			yList = attYList;
+			zList = attZList;
 			break;
 		default:
 			return;
 		}
 		
-		xSeries.add(milli, datumX);
-		ySeries.add(milli, datumY);
-		zSeries.add(milli, datumZ);
-		resizeChart();
+		xList.add(datumX);
+		yList.add(datumY);
+		zList.add(datumZ);
+		//refreshChart();
+		//resizeChart();
 	}
 	
 	/*
@@ -469,16 +538,22 @@ public class MainDisplayController {
 	*/
 	
 	private void resizeChart() {
+		/*
 		Range xRange = dataset.getDomainBounds(false);
 		System.out.println("xRange = " + xRange.toString());
 		System.out.println("X upper bound = " + xRange.getUpperBound());
-		dateAxis.setRangeAboutValue(xRange.getUpperBound(), 10);
+		if(xRange.getLength() > 0) {
+			dateAxis.setRangeAboutValue(xRange.getUpperBound(), 10);
+		}
+		*/
 		
 		Range yRange = dataset.getRangeBounds(false);
 		System.out.println("yRange = " + yRange.toString());
 		System.out.println("Y upper bound = " + yRange.getUpperBound());
 		System.out.println("Y lower bound = " + yRange.getLowerBound());
-		valueAxis.setRange(yRange.getLowerBound(), yRange.getUpperBound());
+		if(yRange.getLength() > 0) {
+			valueAxis.setRange(yRange.getLowerBound(), yRange.getUpperBound());
+		}
 	}
 
 	private String doubleDatumToLabelString(double d) {
@@ -608,6 +683,75 @@ public class MainDisplayController {
 	
 	public KeySpinner getKeySpinner() {
 		return keySpinner;
+	}
+	
+	private void refreshChart() {
+		float[] newData = new float[SERIESNUM];
+		/*
+		private ArrayList<Double> accXList = new ArrayList<Double>();
+		private ArrayList<Double> accYList = new ArrayList<Double>();
+		private ArrayList<Double> accZList = new ArrayList<Double>();
+		private ArrayList<Double> gyroXList = new ArrayList<Double>();
+		private ArrayList<Double> gyroYList = new ArrayList<Double>();
+		private ArrayList<Double> gyroZList = new ArrayList<Double>();
+		private ArrayList<Double> attXList = new ArrayList<Double>();
+		private ArrayList<Double> attYList = new ArrayList<Double>();
+		private ArrayList<Double> attZList = new ArrayList<Double>();
+		private ArrayList<Double> altList = new ArrayList<Double>();
+		private ArrayList<Double> rangeList = new ArrayList<Double>();
+		private ArrayList<Double> headList = new ArrayList<Double>();
+		private ArrayList<Double> batList = new ArrayList<Double>();
+		private ArrayList<Double> tempList = new ArrayList<Double>();
+		*/
+
+		if(attXList.size() == 0) {
+			newData[0] = 0;
+		} else {
+			newData[0] = attXList.get(attXList.size()-1).floatValue();
+		}
+
+		if(attYList.size() == 0) {
+			newData[1] = 0;
+		} else {
+			newData[1] = attYList.get(attYList.size()-1).floatValue();
+		}
+
+		if(attZList.size() == 0) {
+			newData[2] = 0;
+		} else {
+			newData[2] = attZList.get(attZList.size()-1).floatValue();
+		}
+
+		if(altList.size() == 0) {
+			newData[3] = 0;
+		} else {
+			newData[3] = altList.get(altList.size()-1).floatValue();
+		}
+
+		if(rangeList.size() == 0) {
+			newData[4] = 0;
+		} else {
+			newData[4] = rangeList.get(rangeList.size()-1).floatValue();
+		}
+
+		if(batList.size() == 0) {
+			newData[5] = 0;
+		} else {
+			newData[5] = batList.get(batList.size()-1).floatValue();
+		}
+
+		if(tempList.size() == 0) {
+			newData[6] = 0;
+		} else {
+			newData[6] = tempList.get(tempList.size()-1).floatValue();
+		}
+		
+		dataset.advanceTime();
+		dataset.appendData(newData);
+	}
+
+	public void stopTimer() {
+		timer.stop();
 	}
 
 	/*
