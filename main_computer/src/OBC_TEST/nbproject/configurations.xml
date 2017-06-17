@@ -43,8 +43,12 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
+        <cTool>
+          <commandlineTool>gcc-5</commandlineTool>
+        </cTool>
         <ccTool>
           <standard>8</standard>
+          <commandlineTool>g++-5</commandlineTool>
         </ccTool>
         <linkerTool>
           <linkerLibItems>

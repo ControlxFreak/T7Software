@@ -30,6 +30,8 @@ class ConfigDataDefaultTypeInternal : public ::google::protobuf::internal::Expli
 } _ConfigData_default_instance_;
 class MoveCameraDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<MoveCamera> {
 } _MoveCamera_default_instance_;
+class ThermalRequestDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<ThermalRequest> {
+} _ThermalRequest_default_instance_;
 class AccelDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<Accel> {
 } _Accel_default_instance_;
 class GyroDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<Gyro> {
@@ -42,13 +44,17 @@ class TempDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyC
 } _Temp_default_instance_;
 class BatteryDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<Battery> {
 } _Battery_default_instance_;
+class HeadingDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<Heading> {
+} _Heading_default_instance_;
+class ThermalResponseDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<ThermalResponse> {
+} _ThermalResponse_default_instance_;
 
 namespace protobuf_T7Messages_2eproto {
 
 
 namespace {
 
-::google::protobuf::Metadata file_level_metadata[12];
+::google::protobuf::Metadata file_level_metadata[15];
 const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[4];
 
 }  // namespace
@@ -65,12 +71,15 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericMessage, terminate_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericMessage, configdata_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericMessage, movecamera_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericMessage, thermalrequest_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericMessage, accel_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericMessage, gyro_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericMessage, altitude_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericMessage, attitude_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericMessage, temp_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericMessage, bat_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericMessage, head_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericMessage, thermalresponse_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Response, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -96,6 +105,11 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MoveCamera, arrowkey_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ThermalRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ThermalRequest, request_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Accel, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -132,21 +146,34 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Battery, percent_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Heading, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Heading, heading_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ThermalResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ThermalResponse, response_),
 };
 
 static const ::google::protobuf::internal::MigrationSchema schemas[] = {
   { 0, -1, sizeof(GenericMessage)},
-  { 17, -1, sizeof(Response)},
-  { 22, -1, sizeof(HeartBeat)},
-  { 27, -1, sizeof(Terminate)},
-  { 32, -1, sizeof(ConfigData)},
-  { 37, -1, sizeof(MoveCamera)},
-  { 42, -1, sizeof(Accel)},
-  { 49, -1, sizeof(Gyro)},
-  { 56, -1, sizeof(Altitude)},
-  { 61, -1, sizeof(Attitude)},
-  { 68, -1, sizeof(Temp)},
-  { 73, -1, sizeof(Battery)},
+  { 20, -1, sizeof(Response)},
+  { 25, -1, sizeof(HeartBeat)},
+  { 30, -1, sizeof(Terminate)},
+  { 35, -1, sizeof(ConfigData)},
+  { 40, -1, sizeof(MoveCamera)},
+  { 45, -1, sizeof(ThermalRequest)},
+  { 50, -1, sizeof(Accel)},
+  { 57, -1, sizeof(Gyro)},
+  { 64, -1, sizeof(Altitude)},
+  { 69, -1, sizeof(Attitude)},
+  { 76, -1, sizeof(Temp)},
+  { 81, -1, sizeof(Battery)},
+  { 86, -1, sizeof(Heading)},
+  { 91, -1, sizeof(ThermalResponse)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -156,12 +183,15 @@ static ::google::protobuf::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::google::protobuf::Message*>(&_Terminate_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_ConfigData_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_MoveCamera_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_ThermalRequest_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_Accel_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_Gyro_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_Altitude_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_Attitude_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_Temp_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_Battery_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_Heading_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_ThermalResponse_default_instance_),
 };
 
 namespace {
@@ -182,7 +212,7 @@ void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 12);
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 15);
 }
 
 }  // namespace
@@ -200,18 +230,24 @@ void TableStruct::Shutdown() {
   delete file_level_metadata[4].reflection;
   _MoveCamera_default_instance_.Shutdown();
   delete file_level_metadata[5].reflection;
-  _Accel_default_instance_.Shutdown();
+  _ThermalRequest_default_instance_.Shutdown();
   delete file_level_metadata[6].reflection;
-  _Gyro_default_instance_.Shutdown();
+  _Accel_default_instance_.Shutdown();
   delete file_level_metadata[7].reflection;
-  _Altitude_default_instance_.Shutdown();
+  _Gyro_default_instance_.Shutdown();
   delete file_level_metadata[8].reflection;
-  _Attitude_default_instance_.Shutdown();
+  _Altitude_default_instance_.Shutdown();
   delete file_level_metadata[9].reflection;
-  _Temp_default_instance_.Shutdown();
+  _Attitude_default_instance_.Shutdown();
   delete file_level_metadata[10].reflection;
-  _Battery_default_instance_.Shutdown();
+  _Temp_default_instance_.Shutdown();
   delete file_level_metadata[11].reflection;
+  _Battery_default_instance_.Shutdown();
+  delete file_level_metadata[12].reflection;
+  _Heading_default_instance_.Shutdown();
+  delete file_level_metadata[13].reflection;
+  _ThermalResponse_default_instance_.Shutdown();
+  delete file_level_metadata[14].reflection;
 }
 
 void TableStruct::InitDefaultsImpl() {
@@ -224,12 +260,15 @@ void TableStruct::InitDefaultsImpl() {
   _Terminate_default_instance_.DefaultConstruct();
   _ConfigData_default_instance_.DefaultConstruct();
   _MoveCamera_default_instance_.DefaultConstruct();
+  _ThermalRequest_default_instance_.DefaultConstruct();
   _Accel_default_instance_.DefaultConstruct();
   _Gyro_default_instance_.DefaultConstruct();
   _Altitude_default_instance_.DefaultConstruct();
   _Attitude_default_instance_.DefaultConstruct();
   _Temp_default_instance_.DefaultConstruct();
   _Battery_default_instance_.DefaultConstruct();
+  _Heading_default_instance_.DefaultConstruct();
+  _ThermalResponse_default_instance_.DefaultConstruct();
   _GenericMessage_default_instance_.get_mutable()->response_ = const_cast< ::T7::Response*>(
       ::T7::Response::internal_default_instance());
   _GenericMessage_default_instance_.get_mutable()->heartbeat_ = const_cast< ::T7::HeartBeat*>(
@@ -240,6 +279,8 @@ void TableStruct::InitDefaultsImpl() {
       ::T7::ConfigData::internal_default_instance());
   _GenericMessage_default_instance_.get_mutable()->movecamera_ = const_cast< ::T7::MoveCamera*>(
       ::T7::MoveCamera::internal_default_instance());
+  _GenericMessage_default_instance_.get_mutable()->thermalrequest_ = const_cast< ::T7::ThermalRequest*>(
+      ::T7::ThermalRequest::internal_default_instance());
   _GenericMessage_default_instance_.get_mutable()->accel_ = const_cast< ::T7::Accel*>(
       ::T7::Accel::internal_default_instance());
   _GenericMessage_default_instance_.get_mutable()->gyro_ = const_cast< ::T7::Gyro*>(
@@ -252,6 +293,10 @@ void TableStruct::InitDefaultsImpl() {
       ::T7::Temp::internal_default_instance());
   _GenericMessage_default_instance_.get_mutable()->bat_ = const_cast< ::T7::Battery*>(
       ::T7::Battery::internal_default_instance());
+  _GenericMessage_default_instance_.get_mutable()->head_ = const_cast< ::T7::Heading*>(
+      ::T7::Heading::internal_default_instance());
+  _GenericMessage_default_instance_.get_mutable()->thermalresponse_ = const_cast< ::T7::ThermalResponse*>(
+      ::T7::ThermalResponse::internal_default_instance());
 }
 
 void InitDefaults() {
@@ -261,39 +306,47 @@ void InitDefaults() {
 void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] = {
-      "\n\020T7Messages.proto\022\002T7\"\243\004\n\016GenericMessag"
+      "\n\020T7Messages.proto\022\002T7\"\317\005\n\016GenericMessag"
       "e\022\017\n\007msgtype\030\001 \001(\005\022\014\n\004time\030\002 \001(\001\022\036\n\010resp"
       "onse\030\003 \001(\0132\014.T7.Response\022 \n\theartbeat\030\004 "
       "\001(\0132\r.T7.HeartBeat\022 \n\tterminate\030\005 \001(\0132\r."
       "T7.Terminate\022\"\n\nconfigdata\030\006 \001(\0132\016.T7.Co"
       "nfigData\022\"\n\nmovecamera\030\007 \001(\0132\016.T7.MoveCa"
-      "mera\022\030\n\005accel\030\010 \001(\0132\t.T7.Accel\022\026\n\004gyro\030\t"
-      " \001(\0132\010.T7.Gyro\022\036\n\010altitude\030\n \001(\0132\014.T7.Al"
-      "titude\022\036\n\010attitude\030\013 \001(\0132\014.T7.Attitude\022\026"
-      "\n\004temp\030\014 \001(\0132\010.T7.Temp\022\030\n\003bat\030\r \001(\0132\013.T7"
-      ".Battery\"\241\001\n\007MsgType\022\014\n\010RESPONSE\020\000\022\r\n\tHE"
-      "ARTBEAT\020\001\022\r\n\tTERMINATE\020\002\022\017\n\013CONFIG_DATA\020"
-      "e\022\017\n\013MOVE_CAMERA\020f\022\n\n\005ACCEL\020\310\001\022\t\n\004GYRO\020\311"
-      "\001\022\r\n\010ALTITUDE\020\312\001\022\r\n\010ATTITUDE\020\313\001\022\t\n\004TEMP\020"
-      "\314\001\022\010\n\003BAT\020\315\001\"\036\n\010Response\022\022\n\nroger_that\030\001"
-      " \001(\010\"\032\n\tHeartBeat\022\r\n\005alive\030\001 \001(\010\"j\n\tTerm"
-      "inate\022\024\n\014terminateKey\030\001 \001(\005\"G\n\rTerminate"
-      "Keys\022\021\n\rselfTerminate\020\000\022\020\n\014softShutdown\020"
-      "\001\022\021\n\remergencyStop\020\002\"\225\001\n\nConfigData\022\021\n\tc"
-      "onfigKey\030\001 \001(\005\"t\n\nToggleKeys\022\017\n\013toggleAc"
-      "cel\020\000\022\016\n\ntoggleGyro\020\001\022\022\n\016toggleAltitude\020"
-      "\002\022\022\n\016toggleAttitude\020\003\022\016\n\ntoggleTemp\020\004\022\r\n"
-      "\ttoggleBat\020\005\"R\n\nMoveCamera\022\020\n\010arrowKey\030\001"
-      " \001(\005\"2\n\tArrowKeys\022\006\n\002UP\020\000\022\t\n\005RIGHT\020\001\022\010\n\004"
-      "DOWN\020\002\022\010\n\004LEFT\020\003\"(\n\005Accel\022\t\n\001x\030\001 \001(\001\022\t\n\001"
-      "y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\"\'\n\004Gyro\022\t\n\001x\030\001 \001(\001\022\t\n"
-      "\001y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\"\027\n\010Altitude\022\013\n\003alt\030\001"
-      " \001(\001\"4\n\010Attitude\022\014\n\004roll\030\001 \001(\001\022\r\n\005pitch\030"
-      "\002 \001(\001\022\013\n\003yaw\030\003 \001(\001\"\024\n\004Temp\022\014\n\004temp\030\001 \001(\001"
-      "\"\032\n\007Battery\022\017\n\007percent\030\001 \001(\001b\006proto3"
+      "mera\022*\n\016thermalrequest\030\017 \001(\0132\022.T7.Therma"
+      "lRequest\022\030\n\005accel\030\010 \001(\0132\t.T7.Accel\022\026\n\004gy"
+      "ro\030\t \001(\0132\010.T7.Gyro\022\036\n\010altitude\030\n \001(\0132\014.T"
+      "7.Altitude\022\036\n\010attitude\030\013 \001(\0132\014.T7.Attitu"
+      "de\022\026\n\004temp\030\014 \001(\0132\010.T7.Temp\022\030\n\003bat\030\r \001(\0132"
+      "\013.T7.Battery\022\031\n\004head\030\016 \001(\0132\013.T7.Heading\022"
+      ",\n\017thermalresponse\030\020 \001(\0132\023.T7.ThermalRes"
+      "ponse\"\330\001\n\007MsgType\022\014\n\010RESPONSE\020\000\022\r\n\tHEART"
+      "BEAT\020\001\022\r\n\tTERMINATE\020\002\022\017\n\013CONFIG_DATA\020e\022\017"
+      "\n\013MOVE_CAMERA\020f\022\023\n\017THERMAL_REQUEST\020g\022\n\n\005"
+      "ACCEL\020\310\001\022\t\n\004GYRO\020\311\001\022\r\n\010ALTITUDE\020\312\001\022\r\n\010AT"
+      "TITUDE\020\313\001\022\t\n\004TEMP\020\314\001\022\010\n\003BAT\020\315\001\022\t\n\004HEAD\020\316"
+      "\001\022\025\n\020THERMAL_RESPONSE\020\317\001\"\036\n\010Response\022\022\n\n"
+      "roger_that\030\001 \001(\010\"\032\n\tHeartBeat\022\r\n\005alive\030\001"
+      " \001(\010\"j\n\tTerminate\022\024\n\014terminateKey\030\001 \001(\005\""
+      "G\n\rTerminateKeys\022\021\n\rselfTerminate\020\000\022\020\n\014s"
+      "oftShutdown\020\001\022\021\n\remergencyStop\020\002\"\267\001\n\nCon"
+      "figData\022\021\n\tconfigKey\030\001 \001(\005\"\225\001\n\nToggleKey"
+      "s\022\017\n\013toggleAccel\020\000\022\016\n\ntoggleGyro\020\001\022\022\n\016to"
+      "ggleAltitude\020\002\022\022\n\016toggleAttitude\020\003\022\016\n\nto"
+      "ggleTemp\020\004\022\r\n\ttoggleBat\020\005\022\017\n\013toggleArray"
+      "\020\006\022\016\n\ntoggleHead\020\007\"R\n\nMoveCamera\022\020\n\010arro"
+      "wKey\030\001 \001(\005\"2\n\tArrowKeys\022\006\n\002UP\020\000\022\t\n\005RIGHT"
+      "\020\001\022\010\n\004DOWN\020\002\022\010\n\004LEFT\020\003\"!\n\016ThermalRequest"
+      "\022\017\n\007request\030\001 \001(\010\"(\n\005Accel\022\t\n\001x\030\001 \001(\001\022\t\n"
+      "\001y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\"\'\n\004Gyro\022\t\n\001x\030\001 \001(\001\022\t"
+      "\n\001y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\"\027\n\010Altitude\022\013\n\003alt\030"
+      "\001 \001(\001\"4\n\010Attitude\022\014\n\004roll\030\001 \001(\001\022\r\n\005pitch"
+      "\030\002 \001(\001\022\013\n\003yaw\030\003 \001(\001\"\024\n\004Temp\022\014\n\004temp\030\001 \001("
+      "\001\"\032\n\007Battery\022\017\n\007percent\030\001 \001(\001\"\032\n\007Heading"
+      "\022\017\n\007heading\030\001 \001(\001\"#\n\017ThermalResponse\022\020\n\010"
+      "response\030\001 \001(\001b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 1196);
+      descriptor, 1502);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "T7Messages.proto", &protobuf_RegisterTypes);
   ::google::protobuf::internal::OnShutdown(&TableStruct::Shutdown);
@@ -323,12 +376,15 @@ bool GenericMessage_MsgType_IsValid(int value) {
     case 2:
     case 101:
     case 102:
+    case 103:
     case 200:
     case 201:
     case 202:
     case 203:
     case 204:
     case 205:
+    case 206:
+    case 207:
       return true;
     default:
       return false;
@@ -341,12 +397,15 @@ const GenericMessage_MsgType GenericMessage::HEARTBEAT;
 const GenericMessage_MsgType GenericMessage::TERMINATE;
 const GenericMessage_MsgType GenericMessage::CONFIG_DATA;
 const GenericMessage_MsgType GenericMessage::MOVE_CAMERA;
+const GenericMessage_MsgType GenericMessage::THERMAL_REQUEST;
 const GenericMessage_MsgType GenericMessage::ACCEL;
 const GenericMessage_MsgType GenericMessage::GYRO;
 const GenericMessage_MsgType GenericMessage::ALTITUDE;
 const GenericMessage_MsgType GenericMessage::ATTITUDE;
 const GenericMessage_MsgType GenericMessage::TEMP;
 const GenericMessage_MsgType GenericMessage::BAT;
+const GenericMessage_MsgType GenericMessage::HEAD;
+const GenericMessage_MsgType GenericMessage::THERMAL_RESPONSE;
 const GenericMessage_MsgType GenericMessage::MsgType_MIN;
 const GenericMessage_MsgType GenericMessage::MsgType_MAX;
 const int GenericMessage::MsgType_ARRAYSIZE;
@@ -386,6 +445,8 @@ bool ConfigData_ToggleKeys_IsValid(int value) {
     case 3:
     case 4:
     case 5:
+    case 6:
+    case 7:
       return true;
     default:
       return false;
@@ -399,6 +460,8 @@ const ConfigData_ToggleKeys ConfigData::toggleAltitude;
 const ConfigData_ToggleKeys ConfigData::toggleAttitude;
 const ConfigData_ToggleKeys ConfigData::toggleTemp;
 const ConfigData_ToggleKeys ConfigData::toggleBat;
+const ConfigData_ToggleKeys ConfigData::toggleArray;
+const ConfigData_ToggleKeys ConfigData::toggleHead;
 const ConfigData_ToggleKeys ConfigData::ToggleKeys_MIN;
 const ConfigData_ToggleKeys ConfigData::ToggleKeys_MAX;
 const int ConfigData::ToggleKeys_ARRAYSIZE;
@@ -439,12 +502,15 @@ const int GenericMessage::kHeartbeatFieldNumber;
 const int GenericMessage::kTerminateFieldNumber;
 const int GenericMessage::kConfigdataFieldNumber;
 const int GenericMessage::kMovecameraFieldNumber;
+const int GenericMessage::kThermalrequestFieldNumber;
 const int GenericMessage::kAccelFieldNumber;
 const int GenericMessage::kGyroFieldNumber;
 const int GenericMessage::kAltitudeFieldNumber;
 const int GenericMessage::kAttitudeFieldNumber;
 const int GenericMessage::kTempFieldNumber;
 const int GenericMessage::kBatFieldNumber;
+const int GenericMessage::kHeadFieldNumber;
+const int GenericMessage::kThermalresponseFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 GenericMessage::GenericMessage()
@@ -485,6 +551,11 @@ GenericMessage::GenericMessage(const GenericMessage& from)
   } else {
     movecamera_ = NULL;
   }
+  if (from.has_thermalrequest()) {
+    thermalrequest_ = new ::T7::ThermalRequest(*from.thermalrequest_);
+  } else {
+    thermalrequest_ = NULL;
+  }
   if (from.has_accel()) {
     accel_ = new ::T7::Accel(*from.accel_);
   } else {
@@ -514,6 +585,16 @@ GenericMessage::GenericMessage(const GenericMessage& from)
     bat_ = new ::T7::Battery(*from.bat_);
   } else {
     bat_ = NULL;
+  }
+  if (from.has_head()) {
+    head_ = new ::T7::Heading(*from.head_);
+  } else {
+    head_ = NULL;
+  }
+  if (from.has_thermalresponse()) {
+    thermalresponse_ = new ::T7::ThermalResponse(*from.thermalresponse_);
+  } else {
+    thermalresponse_ = NULL;
   }
   ::memcpy(&time_, &from.time_,
     reinterpret_cast<char*>(&msgtype_) -
@@ -549,6 +630,9 @@ void GenericMessage::SharedDtor() {
     delete movecamera_;
   }
   if (this != internal_default_instance()) {
+    delete thermalrequest_;
+  }
+  if (this != internal_default_instance()) {
     delete accel_;
   }
   if (this != internal_default_instance()) {
@@ -565,6 +649,12 @@ void GenericMessage::SharedDtor() {
   }
   if (this != internal_default_instance()) {
     delete bat_;
+  }
+  if (this != internal_default_instance()) {
+    delete head_;
+  }
+  if (this != internal_default_instance()) {
+    delete thermalresponse_;
   }
 }
 
@@ -613,6 +703,10 @@ void GenericMessage::Clear() {
     delete movecamera_;
   }
   movecamera_ = NULL;
+  if (GetArenaNoVirtual() == NULL && thermalrequest_ != NULL) {
+    delete thermalrequest_;
+  }
+  thermalrequest_ = NULL;
   if (GetArenaNoVirtual() == NULL && accel_ != NULL) {
     delete accel_;
   }
@@ -637,6 +731,14 @@ void GenericMessage::Clear() {
     delete bat_;
   }
   bat_ = NULL;
+  if (GetArenaNoVirtual() == NULL && head_ != NULL) {
+    delete head_;
+  }
+  head_ = NULL;
+  if (GetArenaNoVirtual() == NULL && thermalresponse_ != NULL) {
+    delete thermalresponse_;
+  }
+  thermalresponse_ = NULL;
   ::memset(&time_, 0, reinterpret_cast<char*>(&msgtype_) -
     reinterpret_cast<char*>(&time_) + sizeof(msgtype_));
 }
@@ -647,7 +749,7 @@ bool GenericMessage::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:T7.GenericMessage)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(16383u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
@@ -811,6 +913,42 @@ bool GenericMessage::MergePartialFromCodedStream(
         break;
       }
 
+      // .T7.Heading head = 14;
+      case 14: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(114u)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_head()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .T7.ThermalRequest thermalrequest = 15;
+      case 15: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(122u)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_thermalrequest()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .T7.ThermalResponse thermalresponse = 16;
+      case 16: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(130u)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_thermalresponse()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0 ||
@@ -911,6 +1049,24 @@ void GenericMessage::SerializeWithCachedSizes(
       13, *this->bat_, output);
   }
 
+  // .T7.Heading head = 14;
+  if (this->has_head()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      14, *this->head_, output);
+  }
+
+  // .T7.ThermalRequest thermalrequest = 15;
+  if (this->has_thermalrequest()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      15, *this->thermalrequest_, output);
+  }
+
+  // .T7.ThermalResponse thermalresponse = 16;
+  if (this->has_thermalresponse()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      16, *this->thermalresponse_, output);
+  }
+
   // @@protoc_insertion_point(serialize_end:T7.GenericMessage)
 }
 
@@ -1005,6 +1161,27 @@ void GenericMessage::SerializeWithCachedSizes(
         13, *this->bat_, false, target);
   }
 
+  // .T7.Heading head = 14;
+  if (this->has_head()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        14, *this->head_, false, target);
+  }
+
+  // .T7.ThermalRequest thermalrequest = 15;
+  if (this->has_thermalrequest()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        15, *this->thermalrequest_, false, target);
+  }
+
+  // .T7.ThermalResponse thermalresponse = 16;
+  if (this->has_thermalresponse()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        16, *this->thermalresponse_, false, target);
+  }
+
   // @@protoc_insertion_point(serialize_to_array_end:T7.GenericMessage)
   return target;
 }
@@ -1048,6 +1225,13 @@ size_t GenericMessage::ByteSizeLong() const {
         *this->movecamera_);
   }
 
+  // .T7.ThermalRequest thermalrequest = 15;
+  if (this->has_thermalrequest()) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        *this->thermalrequest_);
+  }
+
   // .T7.Accel accel = 8;
   if (this->has_accel()) {
     total_size += 1 +
@@ -1088,6 +1272,20 @@ size_t GenericMessage::ByteSizeLong() const {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
         *this->bat_);
+  }
+
+  // .T7.Heading head = 14;
+  if (this->has_head()) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        *this->head_);
+  }
+
+  // .T7.ThermalResponse thermalresponse = 16;
+  if (this->has_thermalresponse()) {
+    total_size += 2 +
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        *this->thermalresponse_);
   }
 
   // double time = 2;
@@ -1143,6 +1341,9 @@ void GenericMessage::MergeFrom(const GenericMessage& from) {
   if (from.has_movecamera()) {
     mutable_movecamera()->::T7::MoveCamera::MergeFrom(from.movecamera());
   }
+  if (from.has_thermalrequest()) {
+    mutable_thermalrequest()->::T7::ThermalRequest::MergeFrom(from.thermalrequest());
+  }
   if (from.has_accel()) {
     mutable_accel()->::T7::Accel::MergeFrom(from.accel());
   }
@@ -1160,6 +1361,12 @@ void GenericMessage::MergeFrom(const GenericMessage& from) {
   }
   if (from.has_bat()) {
     mutable_bat()->::T7::Battery::MergeFrom(from.bat());
+  }
+  if (from.has_head()) {
+    mutable_head()->::T7::Heading::MergeFrom(from.head());
+  }
+  if (from.has_thermalresponse()) {
+    mutable_thermalresponse()->::T7::ThermalResponse::MergeFrom(from.thermalresponse());
   }
   if (from.time() != 0) {
     set_time(from.time());
@@ -1197,12 +1404,15 @@ void GenericMessage::InternalSwap(GenericMessage* other) {
   std::swap(terminate_, other->terminate_);
   std::swap(configdata_, other->configdata_);
   std::swap(movecamera_, other->movecamera_);
+  std::swap(thermalrequest_, other->thermalrequest_);
   std::swap(accel_, other->accel_);
   std::swap(gyro_, other->gyro_);
   std::swap(altitude_, other->altitude_);
   std::swap(attitude_, other->attitude_);
   std::swap(temp_, other->temp_);
   std::swap(bat_, other->bat_);
+  std::swap(head_, other->head_);
+  std::swap(thermalresponse_, other->thermalresponse_);
   std::swap(time_, other->time_);
   std::swap(msgtype_, other->msgtype_);
   std::swap(_cached_size_, other->_cached_size_);
@@ -1439,6 +1649,45 @@ void GenericMessage::set_allocated_movecamera(::T7::MoveCamera* movecamera) {
   // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.movecamera)
 }
 
+// .T7.ThermalRequest thermalrequest = 15;
+bool GenericMessage::has_thermalrequest() const {
+  return this != internal_default_instance() && thermalrequest_ != NULL;
+}
+void GenericMessage::clear_thermalrequest() {
+  if (GetArenaNoVirtual() == NULL && thermalrequest_ != NULL) delete thermalrequest_;
+  thermalrequest_ = NULL;
+}
+const ::T7::ThermalRequest& GenericMessage::thermalrequest() const {
+  // @@protoc_insertion_point(field_get:T7.GenericMessage.thermalrequest)
+  return thermalrequest_ != NULL ? *thermalrequest_
+                         : *::T7::ThermalRequest::internal_default_instance();
+}
+::T7::ThermalRequest* GenericMessage::mutable_thermalrequest() {
+  
+  if (thermalrequest_ == NULL) {
+    thermalrequest_ = new ::T7::ThermalRequest;
+  }
+  // @@protoc_insertion_point(field_mutable:T7.GenericMessage.thermalrequest)
+  return thermalrequest_;
+}
+::T7::ThermalRequest* GenericMessage::release_thermalrequest() {
+  // @@protoc_insertion_point(field_release:T7.GenericMessage.thermalrequest)
+  
+  ::T7::ThermalRequest* temp = thermalrequest_;
+  thermalrequest_ = NULL;
+  return temp;
+}
+void GenericMessage::set_allocated_thermalrequest(::T7::ThermalRequest* thermalrequest) {
+  delete thermalrequest_;
+  thermalrequest_ = thermalrequest;
+  if (thermalrequest) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.thermalrequest)
+}
+
 // .T7.Accel accel = 8;
 bool GenericMessage::has_accel() const {
   return this != internal_default_instance() && accel_ != NULL;
@@ -1671,6 +1920,84 @@ void GenericMessage::set_allocated_bat(::T7::Battery* bat) {
     
   }
   // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.bat)
+}
+
+// .T7.Heading head = 14;
+bool GenericMessage::has_head() const {
+  return this != internal_default_instance() && head_ != NULL;
+}
+void GenericMessage::clear_head() {
+  if (GetArenaNoVirtual() == NULL && head_ != NULL) delete head_;
+  head_ = NULL;
+}
+const ::T7::Heading& GenericMessage::head() const {
+  // @@protoc_insertion_point(field_get:T7.GenericMessage.head)
+  return head_ != NULL ? *head_
+                         : *::T7::Heading::internal_default_instance();
+}
+::T7::Heading* GenericMessage::mutable_head() {
+  
+  if (head_ == NULL) {
+    head_ = new ::T7::Heading;
+  }
+  // @@protoc_insertion_point(field_mutable:T7.GenericMessage.head)
+  return head_;
+}
+::T7::Heading* GenericMessage::release_head() {
+  // @@protoc_insertion_point(field_release:T7.GenericMessage.head)
+  
+  ::T7::Heading* temp = head_;
+  head_ = NULL;
+  return temp;
+}
+void GenericMessage::set_allocated_head(::T7::Heading* head) {
+  delete head_;
+  head_ = head;
+  if (head) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.head)
+}
+
+// .T7.ThermalResponse thermalresponse = 16;
+bool GenericMessage::has_thermalresponse() const {
+  return this != internal_default_instance() && thermalresponse_ != NULL;
+}
+void GenericMessage::clear_thermalresponse() {
+  if (GetArenaNoVirtual() == NULL && thermalresponse_ != NULL) delete thermalresponse_;
+  thermalresponse_ = NULL;
+}
+const ::T7::ThermalResponse& GenericMessage::thermalresponse() const {
+  // @@protoc_insertion_point(field_get:T7.GenericMessage.thermalresponse)
+  return thermalresponse_ != NULL ? *thermalresponse_
+                         : *::T7::ThermalResponse::internal_default_instance();
+}
+::T7::ThermalResponse* GenericMessage::mutable_thermalresponse() {
+  
+  if (thermalresponse_ == NULL) {
+    thermalresponse_ = new ::T7::ThermalResponse;
+  }
+  // @@protoc_insertion_point(field_mutable:T7.GenericMessage.thermalresponse)
+  return thermalresponse_;
+}
+::T7::ThermalResponse* GenericMessage::release_thermalresponse() {
+  // @@protoc_insertion_point(field_release:T7.GenericMessage.thermalresponse)
+  
+  ::T7::ThermalResponse* temp = thermalresponse_;
+  thermalresponse_ = NULL;
+  return temp;
+}
+void GenericMessage::set_allocated_thermalresponse(::T7::ThermalResponse* thermalresponse) {
+  delete thermalresponse_;
+  thermalresponse_ = thermalresponse;
+  if (thermalresponse) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.thermalresponse)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -2804,6 +3131,230 @@ void MoveCamera::set_arrowkey(::google::protobuf::int32 value) {
 // ===================================================================
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int ThermalRequest::kRequestFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+ThermalRequest::ThermalRequest()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_T7Messages_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:T7.ThermalRequest)
+}
+ThermalRequest::ThermalRequest(const ThermalRequest& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  request_ = from.request_;
+  // @@protoc_insertion_point(copy_constructor:T7.ThermalRequest)
+}
+
+void ThermalRequest::SharedCtor() {
+  request_ = false;
+  _cached_size_ = 0;
+}
+
+ThermalRequest::~ThermalRequest() {
+  // @@protoc_insertion_point(destructor:T7.ThermalRequest)
+  SharedDtor();
+}
+
+void ThermalRequest::SharedDtor() {
+}
+
+void ThermalRequest::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* ThermalRequest::descriptor() {
+  protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_T7Messages_2eproto::file_level_metadata[6].descriptor;
+}
+
+const ThermalRequest& ThermalRequest::default_instance() {
+  protobuf_T7Messages_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+ThermalRequest* ThermalRequest::New(::google::protobuf::Arena* arena) const {
+  ThermalRequest* n = new ThermalRequest;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void ThermalRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:T7.ThermalRequest)
+  request_ = false;
+}
+
+bool ThermalRequest::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:T7.ThermalRequest)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // bool request = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(8u)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &request_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:T7.ThermalRequest)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:T7.ThermalRequest)
+  return false;
+#undef DO_
+}
+
+void ThermalRequest::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:T7.ThermalRequest)
+  // bool request = 1;
+  if (this->request() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(1, this->request(), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:T7.ThermalRequest)
+}
+
+::google::protobuf::uint8* ThermalRequest::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:T7.ThermalRequest)
+  // bool request = 1;
+  if (this->request() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(1, this->request(), target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:T7.ThermalRequest)
+  return target;
+}
+
+size_t ThermalRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:T7.ThermalRequest)
+  size_t total_size = 0;
+
+  // bool request = 1;
+  if (this->request() != 0) {
+    total_size += 1 + 1;
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void ThermalRequest::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:T7.ThermalRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ThermalRequest* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const ThermalRequest>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:T7.ThermalRequest)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:T7.ThermalRequest)
+    MergeFrom(*source);
+  }
+}
+
+void ThermalRequest::MergeFrom(const ThermalRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:T7.ThermalRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from.request() != 0) {
+    set_request(from.request());
+  }
+}
+
+void ThermalRequest::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:T7.ThermalRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void ThermalRequest::CopyFrom(const ThermalRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:T7.ThermalRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ThermalRequest::IsInitialized() const {
+  return true;
+}
+
+void ThermalRequest::Swap(ThermalRequest* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void ThermalRequest::InternalSwap(ThermalRequest* other) {
+  std::swap(request_, other->request_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata ThermalRequest::GetMetadata() const {
+  protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_T7Messages_2eproto::file_level_metadata[6];
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// ThermalRequest
+
+// bool request = 1;
+void ThermalRequest::clear_request() {
+  request_ = false;
+}
+bool ThermalRequest::request() const {
+  // @@protoc_insertion_point(field_get:T7.ThermalRequest.request)
+  return request_;
+}
+void ThermalRequest::set_request(bool value) {
+  
+  request_ = value;
+  // @@protoc_insertion_point(field_set:T7.ThermalRequest.request)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int Accel::kXFieldNumber;
 const int Accel::kYFieldNumber;
 const int Accel::kZFieldNumber;
@@ -2849,7 +3400,7 @@ void Accel::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* Accel::descriptor() {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[6].descriptor;
+  return protobuf_T7Messages_2eproto::file_level_metadata[7].descriptor;
 }
 
 const Accel& Accel::default_instance() {
@@ -3075,7 +3626,7 @@ void Accel::InternalSwap(Accel* other) {
 
 ::google::protobuf::Metadata Accel::GetMetadata() const {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[6];
+  return protobuf_T7Messages_2eproto::file_level_metadata[7];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -3173,7 +3724,7 @@ void Gyro::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* Gyro::descriptor() {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[7].descriptor;
+  return protobuf_T7Messages_2eproto::file_level_metadata[8].descriptor;
 }
 
 const Gyro& Gyro::default_instance() {
@@ -3399,7 +3950,7 @@ void Gyro::InternalSwap(Gyro* other) {
 
 ::google::protobuf::Metadata Gyro::GetMetadata() const {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[7];
+  return protobuf_T7Messages_2eproto::file_level_metadata[8];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -3492,7 +4043,7 @@ void Altitude::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* Altitude::descriptor() {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[8].descriptor;
+  return protobuf_T7Messages_2eproto::file_level_metadata[9].descriptor;
 }
 
 const Altitude& Altitude::default_instance() {
@@ -3651,7 +4202,7 @@ void Altitude::InternalSwap(Altitude* other) {
 
 ::google::protobuf::Metadata Altitude::GetMetadata() const {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[8];
+  return protobuf_T7Messages_2eproto::file_level_metadata[9];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -3721,7 +4272,7 @@ void Attitude::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* Attitude::descriptor() {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[9].descriptor;
+  return protobuf_T7Messages_2eproto::file_level_metadata[10].descriptor;
 }
 
 const Attitude& Attitude::default_instance() {
@@ -3947,7 +4498,7 @@ void Attitude::InternalSwap(Attitude* other) {
 
 ::google::protobuf::Metadata Attitude::GetMetadata() const {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[9];
+  return protobuf_T7Messages_2eproto::file_level_metadata[10];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -4040,7 +4591,7 @@ void Temp::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* Temp::descriptor() {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[10].descriptor;
+  return protobuf_T7Messages_2eproto::file_level_metadata[11].descriptor;
 }
 
 const Temp& Temp::default_instance() {
@@ -4199,7 +4750,7 @@ void Temp::InternalSwap(Temp* other) {
 
 ::google::protobuf::Metadata Temp::GetMetadata() const {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[10];
+  return protobuf_T7Messages_2eproto::file_level_metadata[11];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -4264,7 +4815,7 @@ void Battery::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* Battery::descriptor() {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[11].descriptor;
+  return protobuf_T7Messages_2eproto::file_level_metadata[12].descriptor;
 }
 
 const Battery& Battery::default_instance() {
@@ -4423,7 +4974,7 @@ void Battery::InternalSwap(Battery* other) {
 
 ::google::protobuf::Metadata Battery::GetMetadata() const {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[11];
+  return protobuf_T7Messages_2eproto::file_level_metadata[12];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -4441,6 +4992,454 @@ void Battery::set_percent(double value) {
   
   percent_ = value;
   // @@protoc_insertion_point(field_set:T7.Battery.percent)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int Heading::kHeadingFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+Heading::Heading()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_T7Messages_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:T7.Heading)
+}
+Heading::Heading(const Heading& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  heading_ = from.heading_;
+  // @@protoc_insertion_point(copy_constructor:T7.Heading)
+}
+
+void Heading::SharedCtor() {
+  heading_ = 0;
+  _cached_size_ = 0;
+}
+
+Heading::~Heading() {
+  // @@protoc_insertion_point(destructor:T7.Heading)
+  SharedDtor();
+}
+
+void Heading::SharedDtor() {
+}
+
+void Heading::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* Heading::descriptor() {
+  protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_T7Messages_2eproto::file_level_metadata[13].descriptor;
+}
+
+const Heading& Heading::default_instance() {
+  protobuf_T7Messages_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+Heading* Heading::New(::google::protobuf::Arena* arena) const {
+  Heading* n = new Heading;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void Heading::Clear() {
+// @@protoc_insertion_point(message_clear_start:T7.Heading)
+  heading_ = 0;
+}
+
+bool Heading::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:T7.Heading)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // double heading = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(9u)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
+                 input, &heading_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:T7.Heading)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:T7.Heading)
+  return false;
+#undef DO_
+}
+
+void Heading::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:T7.Heading)
+  // double heading = 1;
+  if (this->heading() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(1, this->heading(), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:T7.Heading)
+}
+
+::google::protobuf::uint8* Heading::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:T7.Heading)
+  // double heading = 1;
+  if (this->heading() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(1, this->heading(), target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:T7.Heading)
+  return target;
+}
+
+size_t Heading::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:T7.Heading)
+  size_t total_size = 0;
+
+  // double heading = 1;
+  if (this->heading() != 0) {
+    total_size += 1 + 8;
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void Heading::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:T7.Heading)
+  GOOGLE_DCHECK_NE(&from, this);
+  const Heading* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const Heading>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:T7.Heading)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:T7.Heading)
+    MergeFrom(*source);
+  }
+}
+
+void Heading::MergeFrom(const Heading& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:T7.Heading)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from.heading() != 0) {
+    set_heading(from.heading());
+  }
+}
+
+void Heading::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:T7.Heading)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void Heading::CopyFrom(const Heading& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:T7.Heading)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Heading::IsInitialized() const {
+  return true;
+}
+
+void Heading::Swap(Heading* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void Heading::InternalSwap(Heading* other) {
+  std::swap(heading_, other->heading_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata Heading::GetMetadata() const {
+  protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_T7Messages_2eproto::file_level_metadata[13];
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// Heading
+
+// double heading = 1;
+void Heading::clear_heading() {
+  heading_ = 0;
+}
+double Heading::heading() const {
+  // @@protoc_insertion_point(field_get:T7.Heading.heading)
+  return heading_;
+}
+void Heading::set_heading(double value) {
+  
+  heading_ = value;
+  // @@protoc_insertion_point(field_set:T7.Heading.heading)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int ThermalResponse::kResponseFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+ThermalResponse::ThermalResponse()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_T7Messages_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:T7.ThermalResponse)
+}
+ThermalResponse::ThermalResponse(const ThermalResponse& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  response_ = from.response_;
+  // @@protoc_insertion_point(copy_constructor:T7.ThermalResponse)
+}
+
+void ThermalResponse::SharedCtor() {
+  response_ = 0;
+  _cached_size_ = 0;
+}
+
+ThermalResponse::~ThermalResponse() {
+  // @@protoc_insertion_point(destructor:T7.ThermalResponse)
+  SharedDtor();
+}
+
+void ThermalResponse::SharedDtor() {
+}
+
+void ThermalResponse::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* ThermalResponse::descriptor() {
+  protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_T7Messages_2eproto::file_level_metadata[14].descriptor;
+}
+
+const ThermalResponse& ThermalResponse::default_instance() {
+  protobuf_T7Messages_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+ThermalResponse* ThermalResponse::New(::google::protobuf::Arena* arena) const {
+  ThermalResponse* n = new ThermalResponse;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void ThermalResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:T7.ThermalResponse)
+  response_ = 0;
+}
+
+bool ThermalResponse::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:T7.ThermalResponse)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // double response = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(9u)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
+                 input, &response_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:T7.ThermalResponse)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:T7.ThermalResponse)
+  return false;
+#undef DO_
+}
+
+void ThermalResponse::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:T7.ThermalResponse)
+  // double response = 1;
+  if (this->response() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(1, this->response(), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:T7.ThermalResponse)
+}
+
+::google::protobuf::uint8* ThermalResponse::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:T7.ThermalResponse)
+  // double response = 1;
+  if (this->response() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(1, this->response(), target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:T7.ThermalResponse)
+  return target;
+}
+
+size_t ThermalResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:T7.ThermalResponse)
+  size_t total_size = 0;
+
+  // double response = 1;
+  if (this->response() != 0) {
+    total_size += 1 + 8;
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void ThermalResponse::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:T7.ThermalResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ThermalResponse* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const ThermalResponse>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:T7.ThermalResponse)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:T7.ThermalResponse)
+    MergeFrom(*source);
+  }
+}
+
+void ThermalResponse::MergeFrom(const ThermalResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:T7.ThermalResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from.response() != 0) {
+    set_response(from.response());
+  }
+}
+
+void ThermalResponse::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:T7.ThermalResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void ThermalResponse::CopyFrom(const ThermalResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:T7.ThermalResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ThermalResponse::IsInitialized() const {
+  return true;
+}
+
+void ThermalResponse::Swap(ThermalResponse* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void ThermalResponse::InternalSwap(ThermalResponse* other) {
+  std::swap(response_, other->response_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata ThermalResponse::GetMetadata() const {
+  protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_T7Messages_2eproto::file_level_metadata[14];
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// ThermalResponse
+
+// double response = 1;
+void ThermalResponse::clear_response() {
+  response_ = 0;
+}
+double ThermalResponse::response() const {
+  // @@protoc_insertion_point(field_get:T7.ThermalResponse.response)
+  return response_;
+}
+void ThermalResponse::set_response(double value) {
+  
+  response_ = value;
+  // @@protoc_insertion_point(field_set:T7.ThermalResponse.response)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS

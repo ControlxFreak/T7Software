@@ -35,6 +35,11 @@ Change Log
 #include <thread>
 #include <map>
 
+#include "tcpacceptor.h"
+#include "tcpconnector.h"
+#include "T7Messages.pb.h"
+#include <google/protobuf/io/zero_copy_stream_impl.h>
+
 using namespace std;
 
 class IOManager {
@@ -46,8 +51,8 @@ public:
     
     // Define the IO parameters needed for communication
     string HSS_IP = "127.0.0.1";
-    int CLIENT_PORT_NUMBER = 9001;
-    int SERVER_PORT_NUMBER = 9002;
+    int CLIENT_PORT_NUMBER = 9002;
+    int SERVER_PORT_NUMBER = 9001;
     
     int CLIENT_TIMEOUT = 1e6;
     
@@ -61,6 +66,9 @@ public:
     void acceptor_handler(TCPStream*,int id);
     void clean();
     
+    bool writeDelimitedTo(T7::GenericMessage message, google::protobuf::io::ZeroCopyOutputStream* rawOutput);
+    
+    bool readDelimitedFrom(google::protobuf::io::ZeroCopyInputStream* rawInput, T7::GenericMessage* message);
     // Static singleton initializer 
     static IOManager* getInstance() {
         static IOManager* p_IOManager = new IOManager();
@@ -70,8 +78,11 @@ public:
     IOManager();
     IOManager(const IOManager& orig);
     virtual ~IOManager();
+    
 private:
     map<int,thread*>sockThreadMap;
+    
+    
 };
 
 #endif /* IOManager */
