@@ -19,6 +19,7 @@ package networking.client;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.logging.Logger;
 
 import T7.T7Messages.GenericMessage;
@@ -30,9 +31,11 @@ public class UAVClient implements Runnable{
 	private Socket mc_sock;
 	private volatile boolean timeToExit = false;
 
-	public void sendMessage(GenericMessage gm) {
+	public void sendMessage(GenericMessage gm) throws SocketException {
 		try {
 			gm.writeDelimitedTo(mc_sock.getOutputStream());
+		} catch (SocketException e) {
+			throw e;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

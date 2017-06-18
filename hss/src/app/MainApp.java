@@ -20,12 +20,15 @@ package app;
 
 
 import java.io.IOException;
+import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
+
+import javax.smartcardio.TerminalFactorySpi;
 
 import T7.T7Messages.GenericMessage;
 import T7.T7Messages.MoveCamera;
@@ -153,7 +156,14 @@ public class MainApp extends Application {
 		GenericMessage.Builder gmBuilder = GenericMessage.newBuilder();
 		gmBuilder.setMsgtype(MsgType.THERMAL_REQUEST.getNumber()).setTime(System.currentTimeMillis())
 		.setThermalrequest(ThermalRequest.newBuilder().setRequest(true));
-		array_client.sendMessage(gmBuilder.build());
+		try {
+			array_client.sendMessage(gmBuilder.build());
+		} catch(SocketException e) {
+			e.printStackTrace();
+			array_client.shutDown();
+			array_client = new UAVClient();
+			new Thread(array_client).start();
+		}
 		new Thread(new Runnable() {
 			
 			@Override
@@ -267,9 +277,16 @@ public class MainApp extends Application {
 		Optional<String> result = dialog.showAndWait();
 		if(result.isPresent()) {
 			logger.finer("Your choice: " + result.get());
-			termination_client.sendMessage(GenericMessage.newBuilder().setMsgtype(MsgType.TERMINATE_VALUE)
-					.setTime(System.currentTimeMillis()).setTerminate(Terminate.newBuilder()
-							.setTerminateKey(choices.indexOf(result.get()))).build());
+			try {
+				termination_client.sendMessage(GenericMessage.newBuilder().setMsgtype(MsgType.TERMINATE_VALUE)
+						.setTime(System.currentTimeMillis()).setTerminate(Terminate.newBuilder()
+								.setTerminateKey(choices.indexOf(result.get()))).build());
+			} catch (SocketException e) {
+				e.printStackTrace();
+				termination_client.shutDown();
+				termination_client = new UAVClient();
+				new Thread(termination_client).start();
+			}
 		}
 	}
 	
@@ -336,22 +353,50 @@ public class MainApp extends Application {
 						case UP:
 							gmBuilder.setMsgtype(MsgType.MOVE_CAMERA.getNumber()).setTime(System.currentTimeMillis())
 							.setMovecamera(MoveCamera.newBuilder().setArrowKey(0));
-							camera_client.sendMessage(gmBuilder.build());
+							try {
+								camera_client.sendMessage(gmBuilder.build());
+							} catch (SocketException e2) {
+								e2.printStackTrace();
+								camera_client.shutDown();
+								camera_client = new UAVClient();
+								new Thread(camera_client).start();
+							}
 							break;
 						case RIGHT:
 							gmBuilder.setMsgtype(MsgType.MOVE_CAMERA.getNumber()).setTime(System.currentTimeMillis())
 							.setMovecamera(MoveCamera.newBuilder().setArrowKey(1));
-							camera_client.sendMessage(gmBuilder.build());
+							try {
+								camera_client.sendMessage(gmBuilder.build());
+							} catch (SocketException e2) {
+								e2.printStackTrace();
+								camera_client.shutDown();
+								camera_client = new UAVClient();
+								new Thread(camera_client).start();
+							}
 							break;
 						case DOWN:
 							gmBuilder.setMsgtype(MsgType.MOVE_CAMERA.getNumber()).setTime(System.currentTimeMillis())
 							.setMovecamera(MoveCamera.newBuilder().setArrowKey(2));
-							camera_client.sendMessage(gmBuilder.build());
+							try {
+								camera_client.sendMessage(gmBuilder.build());
+							} catch (SocketException e2) {
+								e2.printStackTrace();
+								camera_client.shutDown();
+								camera_client = new UAVClient();
+								new Thread(camera_client).start();
+							}
 							break;
 						case LEFT:
 							gmBuilder.setMsgtype(MsgType.MOVE_CAMERA.getNumber()).setTime(System.currentTimeMillis())
 							.setMovecamera(MoveCamera.newBuilder().setArrowKey(3));
-							camera_client.sendMessage(gmBuilder.build());
+							try {
+								camera_client.sendMessage(gmBuilder.build());
+							} catch (SocketException e2) {
+								e2.printStackTrace();
+								camera_client.shutDown();
+								camera_client = new UAVClient();
+								new Thread(camera_client).start();
+							}
 							break;
 						case B:
 							tapStart = System.currentTimeMillis();
