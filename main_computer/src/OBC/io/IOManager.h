@@ -63,7 +63,8 @@ public:
     void client_handler(int id);
     void relaunch_client(int id);
     void server_handler();
-    void acceptor_handler(TCPStream*,int id);
+    void acceptor_handler(TCPStream*,int id, T7::GenericMessage GM);
+    void pre_acceptor_handler(TCPStream*);
     void clean();
     
     bool writeDelimitedTo(T7::GenericMessage message, google::protobuf::io::ZeroCopyOutputStream* rawOutput);

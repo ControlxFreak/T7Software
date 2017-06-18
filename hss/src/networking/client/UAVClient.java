@@ -32,7 +32,10 @@ public class UAVClient implements Runnable{
 
 	public void sendMessage(GenericMessage gm) {
 		try {
+			System.out.println("debug1");
 			gm.writeDelimitedTo(mc_sock.getOutputStream());
+			mc_sock.getOutputStream().flush();
+			System.out.println("debug2");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -59,7 +62,9 @@ public class UAVClient implements Runnable{
 			try {
 				Thread.sleep(1000);
 				System.out.println("Establishing connection.");
-				mc_sock = new Socket(InetAddress.getLocalHost(), PORT_NUM);
+				//mc_sock = new Socket(InetAddress.getLocalHost(), PORT_NUM);
+				mc_sock = new Socket("127.0.0.1",9001);
+
 			} catch(Exception e) {
 				logger.finer(e.getMessage());
 				continue;

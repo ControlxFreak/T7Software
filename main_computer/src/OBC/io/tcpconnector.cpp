@@ -51,7 +51,7 @@ TCPStream* TCPConnector::connect(const char* server, int port)
     }
     
     if (::connect(sd, (struct sockaddr*)&address, sizeof(address)) != 0) {
-        perror("connect() failed");
+        //perror("connect() failed");
         close(sd);
         return NULL;
     }

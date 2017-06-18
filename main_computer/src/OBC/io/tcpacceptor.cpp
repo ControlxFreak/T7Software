@@ -25,6 +25,7 @@
 #include <string.h>
 #include <arpa/inet.h>
 #include "tcpacceptor.h"
+#include <fcntl.h>
 
 TCPAcceptor::TCPAcceptor(int port, const char* address) 
     : m_lsd(0), m_port(port), m_address(address), m_listening(false) {} 
@@ -57,7 +58,7 @@ int TCPAcceptor::start()
     
     int optval = 1;
     setsockopt(m_lsd, SOL_SOCKET, SO_REUSEADDR, &optval, sizeof optval); 
-    
+
     int result = bind(m_lsd, (struct sockaddr*)&address, sizeof(address));
     if (result != 0) {
         perror("bind() failed");
