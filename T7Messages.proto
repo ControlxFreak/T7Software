@@ -221,4 +221,5 @@ message ThermalResponse {
 // the currently connected host on WLAN[0]
 message WiFi {
      double strength = 1; // dB
+     double freq = 2; // MHz
 }
