@@ -62,7 +62,9 @@ public class UAVClient implements Runnable{
 			try {
 				Thread.sleep(1000);
 				System.out.println("Establishing connection.");
-				mc_sock = new Socket(InetAddress.getLocalHost(), PORT_NUM);
+				//mc_sock = new Socket(InetAddress.getLocalHost(), PORT_NUM);
+				mc_sock = new Socket("127.0.0.1",9001);
+
 			} catch(Exception e) {
 				logger.finer(e.getMessage());
 				continue;

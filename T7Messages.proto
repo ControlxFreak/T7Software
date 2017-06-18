@@ -19,6 +19,7 @@
 // 06 June 2017	- jfm - Adding messages for UAV heading, thermal
 //			array max reading request and response,
 //			and thermal array toggle.
+// 19 June 2017 - att - Added WiFi Signal Strength Message
 // ---------------------------------------------------------- //
 
 syntax = "proto3"; // Newest version of the protocol language
@@ -53,6 +54,7 @@ message GenericMessage {
 	Battery bat = 13;
 	Heading head = 14;
 	ThermalResponse thermalresponse = 16;
+        WiFi = 17;
 
 	enum MsgType {
 		// INFO MESSAGE //
@@ -74,6 +76,7 @@ message GenericMessage {
 		BAT = 205;
 		HEAD = 206;
 		THERMAL_RESPONSE = 207;
+                WIFI = 208;
 	}
 
 }
@@ -211,4 +214,11 @@ message Heading {
 // prioritization algorithm.
 message ThermalResponse {
 	double response = 1;	// [c]
+}
+
+// WiFi //
+// This message contains the wifi signal strength of
+// the currently connected host on WLAN[0]
+message WiFi {
+     double strength = 1; // dB
 }
