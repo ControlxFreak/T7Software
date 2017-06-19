@@ -530,8 +530,7 @@ public final class T7Messages {
       return T7.T7Messages.internal_static_T7_GenericMessage_descriptor;
     }
 
-    @Override
-	protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return T7.T7Messages.internal_static_T7_GenericMessage_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -692,8 +691,7 @@ public final class T7Messages {
       public static final int WIFI_VALUE = 208;
 
 
-      @Override
-	public final int getNumber() {
+      public final int getNumber() {
         if (this == UNRECOGNIZED) {
           throw new java.lang.IllegalArgumentException(
               "Can't get the number of an unknown enum value.");
@@ -737,19 +735,16 @@ public final class T7Messages {
       private static final com.google.protobuf.Internal.EnumLiteMap<
           MsgType> internalValueMap =
             new com.google.protobuf.Internal.EnumLiteMap<MsgType>() {
-              @Override
-			public MsgType findValueByNumber(int number) {
+              public MsgType findValueByNumber(int number) {
                 return MsgType.forNumber(number);
               }
             };
 
-      @Override
-	public final com.google.protobuf.Descriptors.EnumValueDescriptor
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
         return getDescriptor().getValues().get(ordinal());
       }
-      @Override
-	public final com.google.protobuf.Descriptors.EnumDescriptor
+      public final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptorForType() {
         return getDescriptor();
       }
@@ -786,8 +781,7 @@ public final class T7Messages {
     /**
      * <code>int32 msgtype = 1;</code>
      */
-    @Override
-	public int getMsgtype() {
+    public int getMsgtype() {
       return msgtype_;
     }
 
@@ -796,8 +790,7 @@ public final class T7Messages {
     /**
      * <code>double time = 2;</code>
      */
-    @Override
-	public double getTime() {
+    public double getTime() {
       return time_;
     }
 
@@ -810,8 +803,7 @@ public final class T7Messages {
      *
      * <code>.T7.Response response = 3;</code>
      */
-    @Override
-	public boolean hasResponse() {
+    public boolean hasResponse() {
       return response_ != null;
     }
     /**
@@ -821,8 +813,7 @@ public final class T7Messages {
      *
      * <code>.T7.Response response = 3;</code>
      */
-    @Override
-	public T7.T7Messages.Response getResponse() {
+    public T7.T7Messages.Response getResponse() {
       return response_ == null ? T7.T7Messages.Response.getDefaultInstance() : response_;
     }
     /**
@@ -832,8 +823,7 @@ public final class T7Messages {
      *
      * <code>.T7.Response response = 3;</code>
      */
-    @Override
-	public T7.T7Messages.ResponseOrBuilder getResponseOrBuilder() {
+    public T7.T7Messages.ResponseOrBuilder getResponseOrBuilder() {
       return getResponse();
     }
 
@@ -842,22 +832,19 @@ public final class T7Messages {
     /**
      * <code>.T7.HeartBeat heartbeat = 4;</code>
      */
-    @Override
-	public boolean hasHeartbeat() {
+    public boolean hasHeartbeat() {
       return heartbeat_ != null;
     }
     /**
      * <code>.T7.HeartBeat heartbeat = 4;</code>
      */
-    @Override
-	public T7.T7Messages.HeartBeat getHeartbeat() {
+    public T7.T7Messages.HeartBeat getHeartbeat() {
       return heartbeat_ == null ? T7.T7Messages.HeartBeat.getDefaultInstance() : heartbeat_;
     }
     /**
      * <code>.T7.HeartBeat heartbeat = 4;</code>
      */
-    @Override
-	public T7.T7Messages.HeartBeatOrBuilder getHeartbeatOrBuilder() {
+    public T7.T7Messages.HeartBeatOrBuilder getHeartbeatOrBuilder() {
       return getHeartbeat();
     }
 
@@ -866,22 +853,19 @@ public final class T7Messages {
     /**
      * <code>.T7.Terminate terminate = 5;</code>
      */
-    @Override
-	public boolean hasTerminate() {
+    public boolean hasTerminate() {
       return terminate_ != null;
     }
     /**
      * <code>.T7.Terminate terminate = 5;</code>
      */
-    @Override
-	public T7.T7Messages.Terminate getTerminate() {
+    public T7.T7Messages.Terminate getTerminate() {
       return terminate_ == null ? T7.T7Messages.Terminate.getDefaultInstance() : terminate_;
     }
     /**
      * <code>.T7.Terminate terminate = 5;</code>
      */
-    @Override
-	public T7.T7Messages.TerminateOrBuilder getTerminateOrBuilder() {
+    public T7.T7Messages.TerminateOrBuilder getTerminateOrBuilder() {
       return getTerminate();
     }
 
@@ -894,8 +878,7 @@ public final class T7Messages {
      *
      * <code>.T7.ConfigData configdata = 6;</code>
      */
-    @Override
-	public boolean hasConfigdata() {
+    public boolean hasConfigdata() {
       return configdata_ != null;
     }
     /**
@@ -905,8 +888,7 @@ public final class T7Messages {
      *
      * <code>.T7.ConfigData configdata = 6;</code>
      */
-    @Override
-	public T7.T7Messages.ConfigData getConfigdata() {
+    public T7.T7Messages.ConfigData getConfigdata() {
       return configdata_ == null ? T7.T7Messages.ConfigData.getDefaultInstance() : configdata_;
     }
     /**
@@ -916,8 +898,7 @@ public final class T7Messages {
      *
      * <code>.T7.ConfigData configdata = 6;</code>
      */
-    @Override
-	public T7.T7Messages.ConfigDataOrBuilder getConfigdataOrBuilder() {
+    public T7.T7Messages.ConfigDataOrBuilder getConfigdataOrBuilder() {
       return getConfigdata();
     }
 
@@ -926,22 +907,19 @@ public final class T7Messages {
     /**
      * <code>.T7.MoveCamera movecamera = 7;</code>
      */
-    @Override
-	public boolean hasMovecamera() {
+    public boolean hasMovecamera() {
       return movecamera_ != null;
     }
     /**
      * <code>.T7.MoveCamera movecamera = 7;</code>
      */
-    @Override
-	public T7.T7Messages.MoveCamera getMovecamera() {
+    public T7.T7Messages.MoveCamera getMovecamera() {
       return movecamera_ == null ? T7.T7Messages.MoveCamera.getDefaultInstance() : movecamera_;
     }
     /**
      * <code>.T7.MoveCamera movecamera = 7;</code>
      */
-    @Override
-	public T7.T7Messages.MoveCameraOrBuilder getMovecameraOrBuilder() {
+    public T7.T7Messages.MoveCameraOrBuilder getMovecameraOrBuilder() {
       return getMovecamera();
     }
 
@@ -950,22 +928,19 @@ public final class T7Messages {
     /**
      * <code>.T7.ThermalRequest thermalrequest = 15;</code>
      */
-    @Override
-	public boolean hasThermalrequest() {
+    public boolean hasThermalrequest() {
       return thermalrequest_ != null;
     }
     /**
      * <code>.T7.ThermalRequest thermalrequest = 15;</code>
      */
-    @Override
-	public T7.T7Messages.ThermalRequest getThermalrequest() {
+    public T7.T7Messages.ThermalRequest getThermalrequest() {
       return thermalrequest_ == null ? T7.T7Messages.ThermalRequest.getDefaultInstance() : thermalrequest_;
     }
     /**
      * <code>.T7.ThermalRequest thermalrequest = 15;</code>
      */
-    @Override
-	public T7.T7Messages.ThermalRequestOrBuilder getThermalrequestOrBuilder() {
+    public T7.T7Messages.ThermalRequestOrBuilder getThermalrequestOrBuilder() {
       return getThermalrequest();
     }
 
@@ -978,8 +953,7 @@ public final class T7Messages {
      *
      * <code>.T7.Accel accel = 8;</code>
      */
-    @Override
-	public boolean hasAccel() {
+    public boolean hasAccel() {
       return accel_ != null;
     }
     /**
@@ -989,8 +963,7 @@ public final class T7Messages {
      *
      * <code>.T7.Accel accel = 8;</code>
      */
-    @Override
-	public T7.T7Messages.Accel getAccel() {
+    public T7.T7Messages.Accel getAccel() {
       return accel_ == null ? T7.T7Messages.Accel.getDefaultInstance() : accel_;
     }
     /**
@@ -1000,8 +973,7 @@ public final class T7Messages {
      *
      * <code>.T7.Accel accel = 8;</code>
      */
-    @Override
-	public T7.T7Messages.AccelOrBuilder getAccelOrBuilder() {
+    public T7.T7Messages.AccelOrBuilder getAccelOrBuilder() {
       return getAccel();
     }
 
@@ -1010,22 +982,19 @@ public final class T7Messages {
     /**
      * <code>.T7.Gyro gyro = 9;</code>
      */
-    @Override
-	public boolean hasGyro() {
+    public boolean hasGyro() {
       return gyro_ != null;
     }
     /**
      * <code>.T7.Gyro gyro = 9;</code>
      */
-    @Override
-	public T7.T7Messages.Gyro getGyro() {
+    public T7.T7Messages.Gyro getGyro() {
       return gyro_ == null ? T7.T7Messages.Gyro.getDefaultInstance() : gyro_;
     }
     /**
      * <code>.T7.Gyro gyro = 9;</code>
      */
-    @Override
-	public T7.T7Messages.GyroOrBuilder getGyroOrBuilder() {
+    public T7.T7Messages.GyroOrBuilder getGyroOrBuilder() {
       return getGyro();
     }
 
@@ -1034,22 +1003,19 @@ public final class T7Messages {
     /**
      * <code>.T7.Altitude altitude = 10;</code>
      */
-    @Override
-	public boolean hasAltitude() {
+    public boolean hasAltitude() {
       return altitude_ != null;
     }
     /**
      * <code>.T7.Altitude altitude = 10;</code>
      */
-    @Override
-	public T7.T7Messages.Altitude getAltitude() {
+    public T7.T7Messages.Altitude getAltitude() {
       return altitude_ == null ? T7.T7Messages.Altitude.getDefaultInstance() : altitude_;
     }
     /**
      * <code>.T7.Altitude altitude = 10;</code>
      */
-    @Override
-	public T7.T7Messages.AltitudeOrBuilder getAltitudeOrBuilder() {
+    public T7.T7Messages.AltitudeOrBuilder getAltitudeOrBuilder() {
       return getAltitude();
     }
 
@@ -1058,22 +1024,19 @@ public final class T7Messages {
     /**
      * <code>.T7.Attitude attitude = 11;</code>
      */
-    @Override
-	public boolean hasAttitude() {
+    public boolean hasAttitude() {
       return attitude_ != null;
     }
     /**
      * <code>.T7.Attitude attitude = 11;</code>
      */
-    @Override
-	public T7.T7Messages.Attitude getAttitude() {
+    public T7.T7Messages.Attitude getAttitude() {
       return attitude_ == null ? T7.T7Messages.Attitude.getDefaultInstance() : attitude_;
     }
     /**
      * <code>.T7.Attitude attitude = 11;</code>
      */
-    @Override
-	public T7.T7Messages.AttitudeOrBuilder getAttitudeOrBuilder() {
+    public T7.T7Messages.AttitudeOrBuilder getAttitudeOrBuilder() {
       return getAttitude();
     }
 
@@ -1082,22 +1045,19 @@ public final class T7Messages {
     /**
      * <code>.T7.Temp temp = 12;</code>
      */
-    @Override
-	public boolean hasTemp() {
+    public boolean hasTemp() {
       return temp_ != null;
     }
     /**
      * <code>.T7.Temp temp = 12;</code>
      */
-    @Override
-	public T7.T7Messages.Temp getTemp() {
+    public T7.T7Messages.Temp getTemp() {
       return temp_ == null ? T7.T7Messages.Temp.getDefaultInstance() : temp_;
     }
     /**
      * <code>.T7.Temp temp = 12;</code>
      */
-    @Override
-	public T7.T7Messages.TempOrBuilder getTempOrBuilder() {
+    public T7.T7Messages.TempOrBuilder getTempOrBuilder() {
       return getTemp();
     }
 
@@ -1106,22 +1066,19 @@ public final class T7Messages {
     /**
      * <code>.T7.Battery bat = 13;</code>
      */
-    @Override
-	public boolean hasBat() {
+    public boolean hasBat() {
       return bat_ != null;
     }
     /**
      * <code>.T7.Battery bat = 13;</code>
      */
-    @Override
-	public T7.T7Messages.Battery getBat() {
+    public T7.T7Messages.Battery getBat() {
       return bat_ == null ? T7.T7Messages.Battery.getDefaultInstance() : bat_;
     }
     /**
      * <code>.T7.Battery bat = 13;</code>
      */
-    @Override
-	public T7.T7Messages.BatteryOrBuilder getBatOrBuilder() {
+    public T7.T7Messages.BatteryOrBuilder getBatOrBuilder() {
       return getBat();
     }
 
@@ -1130,22 +1087,19 @@ public final class T7Messages {
     /**
      * <code>.T7.Heading head = 14;</code>
      */
-    @Override
-	public boolean hasHead() {
+    public boolean hasHead() {
       return head_ != null;
     }
     /**
      * <code>.T7.Heading head = 14;</code>
      */
-    @Override
-	public T7.T7Messages.Heading getHead() {
+    public T7.T7Messages.Heading getHead() {
       return head_ == null ? T7.T7Messages.Heading.getDefaultInstance() : head_;
     }
     /**
      * <code>.T7.Heading head = 14;</code>
      */
-    @Override
-	public T7.T7Messages.HeadingOrBuilder getHeadOrBuilder() {
+    public T7.T7Messages.HeadingOrBuilder getHeadOrBuilder() {
       return getHead();
     }
 
@@ -1154,22 +1108,19 @@ public final class T7Messages {
     /**
      * <code>.T7.ThermalResponse thermalresponse = 16;</code>
      */
-    @Override
-	public boolean hasThermalresponse() {
+    public boolean hasThermalresponse() {
       return thermalresponse_ != null;
     }
     /**
      * <code>.T7.ThermalResponse thermalresponse = 16;</code>
      */
-    @Override
-	public T7.T7Messages.ThermalResponse getThermalresponse() {
+    public T7.T7Messages.ThermalResponse getThermalresponse() {
       return thermalresponse_ == null ? T7.T7Messages.ThermalResponse.getDefaultInstance() : thermalresponse_;
     }
     /**
      * <code>.T7.ThermalResponse thermalresponse = 16;</code>
      */
-    @Override
-	public T7.T7Messages.ThermalResponseOrBuilder getThermalresponseOrBuilder() {
+    public T7.T7Messages.ThermalResponseOrBuilder getThermalresponseOrBuilder() {
       return getThermalresponse();
     }
 
@@ -1178,28 +1129,24 @@ public final class T7Messages {
     /**
      * <code>.T7.WiFi wifi = 17;</code>
      */
-    @Override
-	public boolean hasWifi() {
+    public boolean hasWifi() {
       return wifi_ != null;
     }
     /**
      * <code>.T7.WiFi wifi = 17;</code>
      */
-    @Override
-	public T7.T7Messages.WiFi getWifi() {
+    public T7.T7Messages.WiFi getWifi() {
       return wifi_ == null ? T7.T7Messages.WiFi.getDefaultInstance() : wifi_;
     }
     /**
      * <code>.T7.WiFi wifi = 17;</code>
      */
-    @Override
-	public T7.T7Messages.WiFiOrBuilder getWifiOrBuilder() {
+    public T7.T7Messages.WiFiOrBuilder getWifiOrBuilder() {
       return getWifi();
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
-	public final boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -1208,8 +1155,7 @@ public final class T7Messages {
       return true;
     }
 
-    @Override
-	public void writeTo(com.google.protobuf.CodedOutputStream output)
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (msgtype_ != 0) {
         output.writeInt32(1, msgtype_);
@@ -1264,8 +1210,7 @@ public final class T7Messages {
       }
     }
 
-    @Override
-	public int getSerializedSize() {
+    public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
 
@@ -1585,16 +1530,14 @@ public final class T7Messages {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
-	public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(T7.T7Messages.GenericMessage prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
-	public Builder toBuilder() {
+    public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
@@ -1626,8 +1569,7 @@ public final class T7Messages {
         return T7.T7Messages.internal_static_T7_GenericMessage_descriptor;
       }
 
-      @Override
-	protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return T7.T7Messages.internal_static_T7_GenericMessage_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -1649,8 +1591,7 @@ public final class T7Messages {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
-	public Builder clear() {
+      public Builder clear() {
         super.clear();
         msgtype_ = 0;
 
@@ -1749,19 +1690,16 @@ public final class T7Messages {
         return this;
       }
 
-      @Override
-	public com.google.protobuf.Descriptors.Descriptor
+      public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
         return T7.T7Messages.internal_static_T7_GenericMessage_descriptor;
       }
 
-      @Override
-	public T7.T7Messages.GenericMessage getDefaultInstanceForType() {
+      public T7.T7Messages.GenericMessage getDefaultInstanceForType() {
         return T7.T7Messages.GenericMessage.getDefaultInstance();
       }
 
-      @Override
-	public T7.T7Messages.GenericMessage build() {
+      public T7.T7Messages.GenericMessage build() {
         T7.T7Messages.GenericMessage result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
@@ -1769,8 +1707,7 @@ public final class T7Messages {
         return result;
       }
 
-      @Override
-	public T7.T7Messages.GenericMessage buildPartial() {
+      public T7.T7Messages.GenericMessage buildPartial() {
         T7.T7Messages.GenericMessage result = new T7.T7Messages.GenericMessage(this);
         result.msgtype_ = msgtype_;
         result.time_ = time_;
@@ -1853,40 +1790,33 @@ public final class T7Messages {
         return result;
       }
 
-      @Override
-	public Builder clone() {
-        return super.clone();
+      public Builder clone() {
+        return (Builder) super.clone();
       }
-      @Override
-	public Builder setField(
+      public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
-      @Override
-	public Builder clearField(
+      public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
-      @Override
-	public Builder clearOneof(
+      public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
-      @Override
-	public Builder setRepeatedField(
+      public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
-      @Override
-	public Builder addRepeatedField(
+      public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
-      @Override
-	public Builder mergeFrom(com.google.protobuf.Message other) {
+      public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof T7.T7Messages.GenericMessage) {
           return mergeFrom((T7.T7Messages.GenericMessage)other);
         } else {
@@ -1952,13 +1882,11 @@ public final class T7Messages {
         return this;
       }
 
-      @Override
-	public final boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
-      @Override
-	public Builder mergeFrom(
+      public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
@@ -1980,8 +1908,7 @@ public final class T7Messages {
       /**
        * <code>int32 msgtype = 1;</code>
        */
-      @Override
-	public int getMsgtype() {
+      public int getMsgtype() {
         return msgtype_;
       }
       /**
@@ -2007,8 +1934,7 @@ public final class T7Messages {
       /**
        * <code>double time = 2;</code>
        */
-      @Override
-	public double getTime() {
+      public double getTime() {
         return time_;
       }
       /**
@@ -2040,8 +1966,7 @@ public final class T7Messages {
        *
        * <code>.T7.Response response = 3;</code>
        */
-      @Override
-	public boolean hasResponse() {
+      public boolean hasResponse() {
         return responseBuilder_ != null || response_ != null;
       }
       /**
@@ -2051,8 +1976,7 @@ public final class T7Messages {
        *
        * <code>.T7.Response response = 3;</code>
        */
-      @Override
-	public T7.T7Messages.Response getResponse() {
+      public T7.T7Messages.Response getResponse() {
         if (responseBuilder_ == null) {
           return response_ == null ? T7.T7Messages.Response.getDefaultInstance() : response_;
         } else {
@@ -2156,8 +2080,7 @@ public final class T7Messages {
        *
        * <code>.T7.Response response = 3;</code>
        */
-      @Override
-	public T7.T7Messages.ResponseOrBuilder getResponseOrBuilder() {
+      public T7.T7Messages.ResponseOrBuilder getResponseOrBuilder() {
         if (responseBuilder_ != null) {
           return responseBuilder_.getMessageOrBuilder();
         } else {
@@ -2192,15 +2115,13 @@ public final class T7Messages {
       /**
        * <code>.T7.HeartBeat heartbeat = 4;</code>
        */
-      @Override
-	public boolean hasHeartbeat() {
+      public boolean hasHeartbeat() {
         return heartbeatBuilder_ != null || heartbeat_ != null;
       }
       /**
        * <code>.T7.HeartBeat heartbeat = 4;</code>
        */
-      @Override
-	public T7.T7Messages.HeartBeat getHeartbeat() {
+      public T7.T7Messages.HeartBeat getHeartbeat() {
         if (heartbeatBuilder_ == null) {
           return heartbeat_ == null ? T7.T7Messages.HeartBeat.getDefaultInstance() : heartbeat_;
         } else {
@@ -2280,8 +2201,7 @@ public final class T7Messages {
       /**
        * <code>.T7.HeartBeat heartbeat = 4;</code>
        */
-      @Override
-	public T7.T7Messages.HeartBeatOrBuilder getHeartbeatOrBuilder() {
+      public T7.T7Messages.HeartBeatOrBuilder getHeartbeatOrBuilder() {
         if (heartbeatBuilder_ != null) {
           return heartbeatBuilder_.getMessageOrBuilder();
         } else {
@@ -2312,15 +2232,13 @@ public final class T7Messages {
       /**
        * <code>.T7.Terminate terminate = 5;</code>
        */
-      @Override
-	public boolean hasTerminate() {
+      public boolean hasTerminate() {
         return terminateBuilder_ != null || terminate_ != null;
       }
       /**
        * <code>.T7.Terminate terminate = 5;</code>
        */
-      @Override
-	public T7.T7Messages.Terminate getTerminate() {
+      public T7.T7Messages.Terminate getTerminate() {
         if (terminateBuilder_ == null) {
           return terminate_ == null ? T7.T7Messages.Terminate.getDefaultInstance() : terminate_;
         } else {
@@ -2400,8 +2318,7 @@ public final class T7Messages {
       /**
        * <code>.T7.Terminate terminate = 5;</code>
        */
-      @Override
-	public T7.T7Messages.TerminateOrBuilder getTerminateOrBuilder() {
+      public T7.T7Messages.TerminateOrBuilder getTerminateOrBuilder() {
         if (terminateBuilder_ != null) {
           return terminateBuilder_.getMessageOrBuilder();
         } else {
@@ -2436,8 +2353,7 @@ public final class T7Messages {
        *
        * <code>.T7.ConfigData configdata = 6;</code>
        */
-      @Override
-	public boolean hasConfigdata() {
+      public boolean hasConfigdata() {
         return configdataBuilder_ != null || configdata_ != null;
       }
       /**
@@ -2447,8 +2363,7 @@ public final class T7Messages {
        *
        * <code>.T7.ConfigData configdata = 6;</code>
        */
-      @Override
-	public T7.T7Messages.ConfigData getConfigdata() {
+      public T7.T7Messages.ConfigData getConfigdata() {
         if (configdataBuilder_ == null) {
           return configdata_ == null ? T7.T7Messages.ConfigData.getDefaultInstance() : configdata_;
         } else {
@@ -2552,8 +2467,7 @@ public final class T7Messages {
        *
        * <code>.T7.ConfigData configdata = 6;</code>
        */
-      @Override
-	public T7.T7Messages.ConfigDataOrBuilder getConfigdataOrBuilder() {
+      public T7.T7Messages.ConfigDataOrBuilder getConfigdataOrBuilder() {
         if (configdataBuilder_ != null) {
           return configdataBuilder_.getMessageOrBuilder();
         } else {
@@ -2588,15 +2502,13 @@ public final class T7Messages {
       /**
        * <code>.T7.MoveCamera movecamera = 7;</code>
        */
-      @Override
-	public boolean hasMovecamera() {
+      public boolean hasMovecamera() {
         return movecameraBuilder_ != null || movecamera_ != null;
       }
       /**
        * <code>.T7.MoveCamera movecamera = 7;</code>
        */
-      @Override
-	public T7.T7Messages.MoveCamera getMovecamera() {
+      public T7.T7Messages.MoveCamera getMovecamera() {
         if (movecameraBuilder_ == null) {
           return movecamera_ == null ? T7.T7Messages.MoveCamera.getDefaultInstance() : movecamera_;
         } else {
@@ -2676,8 +2588,7 @@ public final class T7Messages {
       /**
        * <code>.T7.MoveCamera movecamera = 7;</code>
        */
-      @Override
-	public T7.T7Messages.MoveCameraOrBuilder getMovecameraOrBuilder() {
+      public T7.T7Messages.MoveCameraOrBuilder getMovecameraOrBuilder() {
         if (movecameraBuilder_ != null) {
           return movecameraBuilder_.getMessageOrBuilder();
         } else {
@@ -2708,15 +2619,13 @@ public final class T7Messages {
       /**
        * <code>.T7.ThermalRequest thermalrequest = 15;</code>
        */
-      @Override
-	public boolean hasThermalrequest() {
+      public boolean hasThermalrequest() {
         return thermalrequestBuilder_ != null || thermalrequest_ != null;
       }
       /**
        * <code>.T7.ThermalRequest thermalrequest = 15;</code>
        */
-      @Override
-	public T7.T7Messages.ThermalRequest getThermalrequest() {
+      public T7.T7Messages.ThermalRequest getThermalrequest() {
         if (thermalrequestBuilder_ == null) {
           return thermalrequest_ == null ? T7.T7Messages.ThermalRequest.getDefaultInstance() : thermalrequest_;
         } else {
@@ -2796,8 +2705,7 @@ public final class T7Messages {
       /**
        * <code>.T7.ThermalRequest thermalrequest = 15;</code>
        */
-      @Override
-	public T7.T7Messages.ThermalRequestOrBuilder getThermalrequestOrBuilder() {
+      public T7.T7Messages.ThermalRequestOrBuilder getThermalrequestOrBuilder() {
         if (thermalrequestBuilder_ != null) {
           return thermalrequestBuilder_.getMessageOrBuilder();
         } else {
@@ -2832,8 +2740,7 @@ public final class T7Messages {
        *
        * <code>.T7.Accel accel = 8;</code>
        */
-      @Override
-	public boolean hasAccel() {
+      public boolean hasAccel() {
         return accelBuilder_ != null || accel_ != null;
       }
       /**
@@ -2843,8 +2750,7 @@ public final class T7Messages {
        *
        * <code>.T7.Accel accel = 8;</code>
        */
-      @Override
-	public T7.T7Messages.Accel getAccel() {
+      public T7.T7Messages.Accel getAccel() {
         if (accelBuilder_ == null) {
           return accel_ == null ? T7.T7Messages.Accel.getDefaultInstance() : accel_;
         } else {
@@ -2948,8 +2854,7 @@ public final class T7Messages {
        *
        * <code>.T7.Accel accel = 8;</code>
        */
-      @Override
-	public T7.T7Messages.AccelOrBuilder getAccelOrBuilder() {
+      public T7.T7Messages.AccelOrBuilder getAccelOrBuilder() {
         if (accelBuilder_ != null) {
           return accelBuilder_.getMessageOrBuilder();
         } else {
@@ -2984,15 +2889,13 @@ public final class T7Messages {
       /**
        * <code>.T7.Gyro gyro = 9;</code>
        */
-      @Override
-	public boolean hasGyro() {
+      public boolean hasGyro() {
         return gyroBuilder_ != null || gyro_ != null;
       }
       /**
        * <code>.T7.Gyro gyro = 9;</code>
        */
-      @Override
-	public T7.T7Messages.Gyro getGyro() {
+      public T7.T7Messages.Gyro getGyro() {
         if (gyroBuilder_ == null) {
           return gyro_ == null ? T7.T7Messages.Gyro.getDefaultInstance() : gyro_;
         } else {
@@ -3072,8 +2975,7 @@ public final class T7Messages {
       /**
        * <code>.T7.Gyro gyro = 9;</code>
        */
-      @Override
-	public T7.T7Messages.GyroOrBuilder getGyroOrBuilder() {
+      public T7.T7Messages.GyroOrBuilder getGyroOrBuilder() {
         if (gyroBuilder_ != null) {
           return gyroBuilder_.getMessageOrBuilder();
         } else {
@@ -3104,15 +3006,13 @@ public final class T7Messages {
       /**
        * <code>.T7.Altitude altitude = 10;</code>
        */
-      @Override
-	public boolean hasAltitude() {
+      public boolean hasAltitude() {
         return altitudeBuilder_ != null || altitude_ != null;
       }
       /**
        * <code>.T7.Altitude altitude = 10;</code>
        */
-      @Override
-	public T7.T7Messages.Altitude getAltitude() {
+      public T7.T7Messages.Altitude getAltitude() {
         if (altitudeBuilder_ == null) {
           return altitude_ == null ? T7.T7Messages.Altitude.getDefaultInstance() : altitude_;
         } else {
@@ -3192,8 +3092,7 @@ public final class T7Messages {
       /**
        * <code>.T7.Altitude altitude = 10;</code>
        */
-      @Override
-	public T7.T7Messages.AltitudeOrBuilder getAltitudeOrBuilder() {
+      public T7.T7Messages.AltitudeOrBuilder getAltitudeOrBuilder() {
         if (altitudeBuilder_ != null) {
           return altitudeBuilder_.getMessageOrBuilder();
         } else {
@@ -3224,15 +3123,13 @@ public final class T7Messages {
       /**
        * <code>.T7.Attitude attitude = 11;</code>
        */
-      @Override
-	public boolean hasAttitude() {
+      public boolean hasAttitude() {
         return attitudeBuilder_ != null || attitude_ != null;
       }
       /**
        * <code>.T7.Attitude attitude = 11;</code>
        */
-      @Override
-	public T7.T7Messages.Attitude getAttitude() {
+      public T7.T7Messages.Attitude getAttitude() {
         if (attitudeBuilder_ == null) {
           return attitude_ == null ? T7.T7Messages.Attitude.getDefaultInstance() : attitude_;
         } else {
@@ -3312,8 +3209,7 @@ public final class T7Messages {
       /**
        * <code>.T7.Attitude attitude = 11;</code>
        */
-      @Override
-	public T7.T7Messages.AttitudeOrBuilder getAttitudeOrBuilder() {
+      public T7.T7Messages.AttitudeOrBuilder getAttitudeOrBuilder() {
         if (attitudeBuilder_ != null) {
           return attitudeBuilder_.getMessageOrBuilder();
         } else {
@@ -3344,15 +3240,13 @@ public final class T7Messages {
       /**
        * <code>.T7.Temp temp = 12;</code>
        */
-      @Override
-	public boolean hasTemp() {
+      public boolean hasTemp() {
         return tempBuilder_ != null || temp_ != null;
       }
       /**
        * <code>.T7.Temp temp = 12;</code>
        */
-      @Override
-	public T7.T7Messages.Temp getTemp() {
+      public T7.T7Messages.Temp getTemp() {
         if (tempBuilder_ == null) {
           return temp_ == null ? T7.T7Messages.Temp.getDefaultInstance() : temp_;
         } else {
@@ -3432,8 +3326,7 @@ public final class T7Messages {
       /**
        * <code>.T7.Temp temp = 12;</code>
        */
-      @Override
-	public T7.T7Messages.TempOrBuilder getTempOrBuilder() {
+      public T7.T7Messages.TempOrBuilder getTempOrBuilder() {
         if (tempBuilder_ != null) {
           return tempBuilder_.getMessageOrBuilder();
         } else {
@@ -3464,15 +3357,13 @@ public final class T7Messages {
       /**
        * <code>.T7.Battery bat = 13;</code>
        */
-      @Override
-	public boolean hasBat() {
+      public boolean hasBat() {
         return batBuilder_ != null || bat_ != null;
       }
       /**
        * <code>.T7.Battery bat = 13;</code>
        */
-      @Override
-	public T7.T7Messages.Battery getBat() {
+      public T7.T7Messages.Battery getBat() {
         if (batBuilder_ == null) {
           return bat_ == null ? T7.T7Messages.Battery.getDefaultInstance() : bat_;
         } else {
@@ -3552,8 +3443,7 @@ public final class T7Messages {
       /**
        * <code>.T7.Battery bat = 13;</code>
        */
-      @Override
-	public T7.T7Messages.BatteryOrBuilder getBatOrBuilder() {
+      public T7.T7Messages.BatteryOrBuilder getBatOrBuilder() {
         if (batBuilder_ != null) {
           return batBuilder_.getMessageOrBuilder();
         } else {
@@ -3584,15 +3474,13 @@ public final class T7Messages {
       /**
        * <code>.T7.Heading head = 14;</code>
        */
-      @Override
-	public boolean hasHead() {
+      public boolean hasHead() {
         return headBuilder_ != null || head_ != null;
       }
       /**
        * <code>.T7.Heading head = 14;</code>
        */
-      @Override
-	public T7.T7Messages.Heading getHead() {
+      public T7.T7Messages.Heading getHead() {
         if (headBuilder_ == null) {
           return head_ == null ? T7.T7Messages.Heading.getDefaultInstance() : head_;
         } else {
@@ -3672,8 +3560,7 @@ public final class T7Messages {
       /**
        * <code>.T7.Heading head = 14;</code>
        */
-      @Override
-	public T7.T7Messages.HeadingOrBuilder getHeadOrBuilder() {
+      public T7.T7Messages.HeadingOrBuilder getHeadOrBuilder() {
         if (headBuilder_ != null) {
           return headBuilder_.getMessageOrBuilder();
         } else {
@@ -3704,15 +3591,13 @@ public final class T7Messages {
       /**
        * <code>.T7.ThermalResponse thermalresponse = 16;</code>
        */
-      @Override
-	public boolean hasThermalresponse() {
+      public boolean hasThermalresponse() {
         return thermalresponseBuilder_ != null || thermalresponse_ != null;
       }
       /**
        * <code>.T7.ThermalResponse thermalresponse = 16;</code>
        */
-      @Override
-	public T7.T7Messages.ThermalResponse getThermalresponse() {
+      public T7.T7Messages.ThermalResponse getThermalresponse() {
         if (thermalresponseBuilder_ == null) {
           return thermalresponse_ == null ? T7.T7Messages.ThermalResponse.getDefaultInstance() : thermalresponse_;
         } else {
@@ -3792,8 +3677,7 @@ public final class T7Messages {
       /**
        * <code>.T7.ThermalResponse thermalresponse = 16;</code>
        */
-      @Override
-	public T7.T7Messages.ThermalResponseOrBuilder getThermalresponseOrBuilder() {
+      public T7.T7Messages.ThermalResponseOrBuilder getThermalresponseOrBuilder() {
         if (thermalresponseBuilder_ != null) {
           return thermalresponseBuilder_.getMessageOrBuilder();
         } else {
@@ -3824,15 +3708,13 @@ public final class T7Messages {
       /**
        * <code>.T7.WiFi wifi = 17;</code>
        */
-      @Override
-	public boolean hasWifi() {
+      public boolean hasWifi() {
         return wifiBuilder_ != null || wifi_ != null;
       }
       /**
        * <code>.T7.WiFi wifi = 17;</code>
        */
-      @Override
-	public T7.T7Messages.WiFi getWifi() {
+      public T7.T7Messages.WiFi getWifi() {
         if (wifiBuilder_ == null) {
           return wifi_ == null ? T7.T7Messages.WiFi.getDefaultInstance() : wifi_;
         } else {
@@ -3912,8 +3794,7 @@ public final class T7Messages {
       /**
        * <code>.T7.WiFi wifi = 17;</code>
        */
-      @Override
-	public T7.T7Messages.WiFiOrBuilder getWifiOrBuilder() {
+      public T7.T7Messages.WiFiOrBuilder getWifiOrBuilder() {
         if (wifiBuilder_ != null) {
           return wifiBuilder_.getMessageOrBuilder();
         } else {
@@ -3937,14 +3818,12 @@ public final class T7Messages {
         }
         return wifiBuilder_;
       }
-      @Override
-	public final Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
 
-      @Override
-	public final Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
@@ -3965,8 +3844,7 @@ public final class T7Messages {
 
     private static final com.google.protobuf.Parser<GenericMessage>
         PARSER = new com.google.protobuf.AbstractParser<GenericMessage>() {
-      @Override
-	public GenericMessage parsePartialFrom(
+      public GenericMessage parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -3983,8 +3861,7 @@ public final class T7Messages {
       return PARSER;
     }
 
-    @Override
-	public T7.T7Messages.GenericMessage getDefaultInstanceForType() {
+    public T7.T7Messages.GenericMessage getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -4066,8 +3943,7 @@ public final class T7Messages {
       return T7.T7Messages.internal_static_T7_Response_descriptor;
     }
 
-    @Override
-	protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return T7.T7Messages.internal_static_T7_Response_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -4079,14 +3955,12 @@ public final class T7Messages {
     /**
      * <code>bool roger_that = 1;</code>
      */
-    @Override
-	public boolean getRogerThat() {
+    public boolean getRogerThat() {
       return rogerThat_;
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
-	public final boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -4095,16 +3969,14 @@ public final class T7Messages {
       return true;
     }
 
-    @Override
-	public void writeTo(com.google.protobuf.CodedOutputStream output)
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (rogerThat_ != false) {
         output.writeBool(1, rogerThat_);
       }
     }
 
-    @Override
-	public int getSerializedSize() {
+    public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
 
@@ -4219,16 +4091,14 @@ public final class T7Messages {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
-	public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(T7.T7Messages.Response prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
-	public Builder toBuilder() {
+    public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
@@ -4257,8 +4127,7 @@ public final class T7Messages {
         return T7.T7Messages.internal_static_T7_Response_descriptor;
       }
 
-      @Override
-	protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return T7.T7Messages.internal_static_T7_Response_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -4280,27 +4149,23 @@ public final class T7Messages {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
-	public Builder clear() {
+      public Builder clear() {
         super.clear();
         rogerThat_ = false;
 
         return this;
       }
 
-      @Override
-	public com.google.protobuf.Descriptors.Descriptor
+      public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
         return T7.T7Messages.internal_static_T7_Response_descriptor;
       }
 
-      @Override
-	public T7.T7Messages.Response getDefaultInstanceForType() {
+      public T7.T7Messages.Response getDefaultInstanceForType() {
         return T7.T7Messages.Response.getDefaultInstance();
       }
 
-      @Override
-	public T7.T7Messages.Response build() {
+      public T7.T7Messages.Response build() {
         T7.T7Messages.Response result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
@@ -4308,48 +4173,40 @@ public final class T7Messages {
         return result;
       }
 
-      @Override
-	public T7.T7Messages.Response buildPartial() {
+      public T7.T7Messages.Response buildPartial() {
         T7.T7Messages.Response result = new T7.T7Messages.Response(this);
         result.rogerThat_ = rogerThat_;
         onBuilt();
         return result;
       }
 
-      @Override
-	public Builder clone() {
-        return super.clone();
+      public Builder clone() {
+        return (Builder) super.clone();
       }
-      @Override
-	public Builder setField(
+      public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
-      @Override
-	public Builder clearField(
+      public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
-      @Override
-	public Builder clearOneof(
+      public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
-      @Override
-	public Builder setRepeatedField(
+      public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
-      @Override
-	public Builder addRepeatedField(
+      public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
-      @Override
-	public Builder mergeFrom(com.google.protobuf.Message other) {
+      public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof T7.T7Messages.Response) {
           return mergeFrom((T7.T7Messages.Response)other);
         } else {
@@ -4367,13 +4224,11 @@ public final class T7Messages {
         return this;
       }
 
-      @Override
-	public final boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
-      @Override
-	public Builder mergeFrom(
+      public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
@@ -4395,8 +4250,7 @@ public final class T7Messages {
       /**
        * <code>bool roger_that = 1;</code>
        */
-      @Override
-	public boolean getRogerThat() {
+      public boolean getRogerThat() {
         return rogerThat_;
       }
       /**
@@ -4417,14 +4271,12 @@ public final class T7Messages {
         onChanged();
         return this;
       }
-      @Override
-	public final Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
 
-      @Override
-	public final Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
@@ -4445,8 +4297,7 @@ public final class T7Messages {
 
     private static final com.google.protobuf.Parser<Response>
         PARSER = new com.google.protobuf.AbstractParser<Response>() {
-      @Override
-	public Response parsePartialFrom(
+      public Response parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -4463,8 +4314,7 @@ public final class T7Messages {
       return PARSER;
     }
 
-    @Override
-	public T7.T7Messages.Response getDefaultInstanceForType() {
+    public T7.T7Messages.Response getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -4546,8 +4396,7 @@ public final class T7Messages {
       return T7.T7Messages.internal_static_T7_HeartBeat_descriptor;
     }
 
-    @Override
-	protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return T7.T7Messages.internal_static_T7_HeartBeat_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -4559,14 +4408,12 @@ public final class T7Messages {
     /**
      * <code>bool alive = 1;</code>
      */
-    @Override
-	public boolean getAlive() {
+    public boolean getAlive() {
       return alive_;
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
-	public final boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -4575,16 +4422,14 @@ public final class T7Messages {
       return true;
     }
 
-    @Override
-	public void writeTo(com.google.protobuf.CodedOutputStream output)
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (alive_ != false) {
         output.writeBool(1, alive_);
       }
     }
 
-    @Override
-	public int getSerializedSize() {
+    public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
 
@@ -4699,16 +4544,14 @@ public final class T7Messages {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
-	public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(T7.T7Messages.HeartBeat prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
-	public Builder toBuilder() {
+    public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
@@ -4737,8 +4580,7 @@ public final class T7Messages {
         return T7.T7Messages.internal_static_T7_HeartBeat_descriptor;
       }
 
-      @Override
-	protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return T7.T7Messages.internal_static_T7_HeartBeat_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -4760,27 +4602,23 @@ public final class T7Messages {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
-	public Builder clear() {
+      public Builder clear() {
         super.clear();
         alive_ = false;
 
         return this;
       }
 
-      @Override
-	public com.google.protobuf.Descriptors.Descriptor
+      public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
         return T7.T7Messages.internal_static_T7_HeartBeat_descriptor;
       }
 
-      @Override
-	public T7.T7Messages.HeartBeat getDefaultInstanceForType() {
+      public T7.T7Messages.HeartBeat getDefaultInstanceForType() {
         return T7.T7Messages.HeartBeat.getDefaultInstance();
       }
 
-      @Override
-	public T7.T7Messages.HeartBeat build() {
+      public T7.T7Messages.HeartBeat build() {
         T7.T7Messages.HeartBeat result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
@@ -4788,48 +4626,40 @@ public final class T7Messages {
         return result;
       }
 
-      @Override
-	public T7.T7Messages.HeartBeat buildPartial() {
+      public T7.T7Messages.HeartBeat buildPartial() {
         T7.T7Messages.HeartBeat result = new T7.T7Messages.HeartBeat(this);
         result.alive_ = alive_;
         onBuilt();
         return result;
       }
 
-      @Override
-	public Builder clone() {
-        return super.clone();
+      public Builder clone() {
+        return (Builder) super.clone();
       }
-      @Override
-	public Builder setField(
+      public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
-      @Override
-	public Builder clearField(
+      public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
-      @Override
-	public Builder clearOneof(
+      public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
-      @Override
-	public Builder setRepeatedField(
+      public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
-      @Override
-	public Builder addRepeatedField(
+      public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
-      @Override
-	public Builder mergeFrom(com.google.protobuf.Message other) {
+      public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof T7.T7Messages.HeartBeat) {
           return mergeFrom((T7.T7Messages.HeartBeat)other);
         } else {
@@ -4847,13 +4677,11 @@ public final class T7Messages {
         return this;
       }
 
-      @Override
-	public final boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
-      @Override
-	public Builder mergeFrom(
+      public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
@@ -4875,8 +4703,7 @@ public final class T7Messages {
       /**
        * <code>bool alive = 1;</code>
        */
-      @Override
-	public boolean getAlive() {
+      public boolean getAlive() {
         return alive_;
       }
       /**
@@ -4897,14 +4724,12 @@ public final class T7Messages {
         onChanged();
         return this;
       }
-      @Override
-	public final Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
 
-      @Override
-	public final Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
@@ -4925,8 +4750,7 @@ public final class T7Messages {
 
     private static final com.google.protobuf.Parser<HeartBeat>
         PARSER = new com.google.protobuf.AbstractParser<HeartBeat>() {
-      @Override
-	public HeartBeat parsePartialFrom(
+      public HeartBeat parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -4943,8 +4767,7 @@ public final class T7Messages {
       return PARSER;
     }
 
-    @Override
-	public T7.T7Messages.HeartBeat getDefaultInstanceForType() {
+    public T7.T7Messages.HeartBeat getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -5026,8 +4849,7 @@ public final class T7Messages {
       return T7.T7Messages.internal_static_T7_Terminate_descriptor;
     }
 
-    @Override
-	protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return T7.T7Messages.internal_static_T7_Terminate_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -5068,8 +4890,7 @@ public final class T7Messages {
       public static final int emergencyStop_VALUE = 2;
 
 
-      @Override
-	public final int getNumber() {
+      public final int getNumber() {
         if (this == UNRECOGNIZED) {
           throw new java.lang.IllegalArgumentException(
               "Can't get the number of an unknown enum value.");
@@ -5101,19 +4922,16 @@ public final class T7Messages {
       private static final com.google.protobuf.Internal.EnumLiteMap<
           TerminateKeys> internalValueMap =
             new com.google.protobuf.Internal.EnumLiteMap<TerminateKeys>() {
-              @Override
-			public TerminateKeys findValueByNumber(int number) {
+              public TerminateKeys findValueByNumber(int number) {
                 return TerminateKeys.forNumber(number);
               }
             };
 
-      @Override
-	public final com.google.protobuf.Descriptors.EnumValueDescriptor
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
         return getDescriptor().getValues().get(ordinal());
       }
-      @Override
-	public final com.google.protobuf.Descriptors.EnumDescriptor
+      public final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptorForType() {
         return getDescriptor();
       }
@@ -5150,14 +4968,12 @@ public final class T7Messages {
     /**
      * <code>int32 terminateKey = 1;</code>
      */
-    @Override
-	public int getTerminateKey() {
+    public int getTerminateKey() {
       return terminateKey_;
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
-	public final boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -5166,16 +4982,14 @@ public final class T7Messages {
       return true;
     }
 
-    @Override
-	public void writeTo(com.google.protobuf.CodedOutputStream output)
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (terminateKey_ != 0) {
         output.writeInt32(1, terminateKey_);
       }
     }
 
-    @Override
-	public int getSerializedSize() {
+    public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
 
@@ -5289,16 +5103,14 @@ public final class T7Messages {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
-	public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(T7.T7Messages.Terminate prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
-	public Builder toBuilder() {
+    public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
@@ -5327,8 +5139,7 @@ public final class T7Messages {
         return T7.T7Messages.internal_static_T7_Terminate_descriptor;
       }
 
-      @Override
-	protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return T7.T7Messages.internal_static_T7_Terminate_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -5350,27 +5161,23 @@ public final class T7Messages {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
-	public Builder clear() {
+      public Builder clear() {
         super.clear();
         terminateKey_ = 0;
 
         return this;
       }
 
-      @Override
-	public com.google.protobuf.Descriptors.Descriptor
+      public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
         return T7.T7Messages.internal_static_T7_Terminate_descriptor;
       }
 
-      @Override
-	public T7.T7Messages.Terminate getDefaultInstanceForType() {
+      public T7.T7Messages.Terminate getDefaultInstanceForType() {
         return T7.T7Messages.Terminate.getDefaultInstance();
       }
 
-      @Override
-	public T7.T7Messages.Terminate build() {
+      public T7.T7Messages.Terminate build() {
         T7.T7Messages.Terminate result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
@@ -5378,48 +5185,40 @@ public final class T7Messages {
         return result;
       }
 
-      @Override
-	public T7.T7Messages.Terminate buildPartial() {
+      public T7.T7Messages.Terminate buildPartial() {
         T7.T7Messages.Terminate result = new T7.T7Messages.Terminate(this);
         result.terminateKey_ = terminateKey_;
         onBuilt();
         return result;
       }
 
-      @Override
-	public Builder clone() {
-        return super.clone();
+      public Builder clone() {
+        return (Builder) super.clone();
       }
-      @Override
-	public Builder setField(
+      public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
-      @Override
-	public Builder clearField(
+      public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
-      @Override
-	public Builder clearOneof(
+      public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
-      @Override
-	public Builder setRepeatedField(
+      public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
-      @Override
-	public Builder addRepeatedField(
+      public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
-      @Override
-	public Builder mergeFrom(com.google.protobuf.Message other) {
+      public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof T7.T7Messages.Terminate) {
           return mergeFrom((T7.T7Messages.Terminate)other);
         } else {
@@ -5437,13 +5236,11 @@ public final class T7Messages {
         return this;
       }
 
-      @Override
-	public final boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
-      @Override
-	public Builder mergeFrom(
+      public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
@@ -5465,8 +5262,7 @@ public final class T7Messages {
       /**
        * <code>int32 terminateKey = 1;</code>
        */
-      @Override
-	public int getTerminateKey() {
+      public int getTerminateKey() {
         return terminateKey_;
       }
       /**
@@ -5487,14 +5283,12 @@ public final class T7Messages {
         onChanged();
         return this;
       }
-      @Override
-	public final Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
 
-      @Override
-	public final Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
@@ -5515,8 +5309,7 @@ public final class T7Messages {
 
     private static final com.google.protobuf.Parser<Terminate>
         PARSER = new com.google.protobuf.AbstractParser<Terminate>() {
-      @Override
-	public Terminate parsePartialFrom(
+      public Terminate parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -5533,8 +5326,7 @@ public final class T7Messages {
       return PARSER;
     }
 
-    @Override
-	public T7.T7Messages.Terminate getDefaultInstanceForType() {
+    public T7.T7Messages.Terminate getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -5616,8 +5408,7 @@ public final class T7Messages {
       return T7.T7Messages.internal_static_T7_ConfigData_descriptor;
     }
 
-    @Override
-	protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return T7.T7Messages.internal_static_T7_ConfigData_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -5710,8 +5501,7 @@ public final class T7Messages {
       public static final int toggleWifi_VALUE = 8;
 
 
-      @Override
-	public final int getNumber() {
+      public final int getNumber() {
         if (this == UNRECOGNIZED) {
           throw new java.lang.IllegalArgumentException(
               "Can't get the number of an unknown enum value.");
@@ -5749,19 +5539,16 @@ public final class T7Messages {
       private static final com.google.protobuf.Internal.EnumLiteMap<
           ToggleKeys> internalValueMap =
             new com.google.protobuf.Internal.EnumLiteMap<ToggleKeys>() {
-              @Override
-			public ToggleKeys findValueByNumber(int number) {
+              public ToggleKeys findValueByNumber(int number) {
                 return ToggleKeys.forNumber(number);
               }
             };
 
-      @Override
-	public final com.google.protobuf.Descriptors.EnumValueDescriptor
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
         return getDescriptor().getValues().get(ordinal());
       }
-      @Override
-	public final com.google.protobuf.Descriptors.EnumDescriptor
+      public final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptorForType() {
         return getDescriptor();
       }
@@ -5798,14 +5585,12 @@ public final class T7Messages {
     /**
      * <code>int32 configKey = 1;</code>
      */
-    @Override
-	public int getConfigKey() {
+    public int getConfigKey() {
       return configKey_;
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
-	public final boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -5814,16 +5599,14 @@ public final class T7Messages {
       return true;
     }
 
-    @Override
-	public void writeTo(com.google.protobuf.CodedOutputStream output)
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (configKey_ != 0) {
         output.writeInt32(1, configKey_);
       }
     }
 
-    @Override
-	public int getSerializedSize() {
+    public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
 
@@ -5937,16 +5720,14 @@ public final class T7Messages {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
-	public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(T7.T7Messages.ConfigData prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
-	public Builder toBuilder() {
+    public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
@@ -5975,8 +5756,7 @@ public final class T7Messages {
         return T7.T7Messages.internal_static_T7_ConfigData_descriptor;
       }
 
-      @Override
-	protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return T7.T7Messages.internal_static_T7_ConfigData_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -5998,27 +5778,23 @@ public final class T7Messages {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
-	public Builder clear() {
+      public Builder clear() {
         super.clear();
         configKey_ = 0;
 
         return this;
       }
 
-      @Override
-	public com.google.protobuf.Descriptors.Descriptor
+      public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
         return T7.T7Messages.internal_static_T7_ConfigData_descriptor;
       }
 
-      @Override
-	public T7.T7Messages.ConfigData getDefaultInstanceForType() {
+      public T7.T7Messages.ConfigData getDefaultInstanceForType() {
         return T7.T7Messages.ConfigData.getDefaultInstance();
       }
 
-      @Override
-	public T7.T7Messages.ConfigData build() {
+      public T7.T7Messages.ConfigData build() {
         T7.T7Messages.ConfigData result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
@@ -6026,48 +5802,40 @@ public final class T7Messages {
         return result;
       }
 
-      @Override
-	public T7.T7Messages.ConfigData buildPartial() {
+      public T7.T7Messages.ConfigData buildPartial() {
         T7.T7Messages.ConfigData result = new T7.T7Messages.ConfigData(this);
         result.configKey_ = configKey_;
         onBuilt();
         return result;
       }
 
-      @Override
-	public Builder clone() {
-        return super.clone();
+      public Builder clone() {
+        return (Builder) super.clone();
       }
-      @Override
-	public Builder setField(
+      public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
-      @Override
-	public Builder clearField(
+      public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
-      @Override
-	public Builder clearOneof(
+      public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
-      @Override
-	public Builder setRepeatedField(
+      public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
-      @Override
-	public Builder addRepeatedField(
+      public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
-      @Override
-	public Builder mergeFrom(com.google.protobuf.Message other) {
+      public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof T7.T7Messages.ConfigData) {
           return mergeFrom((T7.T7Messages.ConfigData)other);
         } else {
@@ -6085,13 +5853,11 @@ public final class T7Messages {
         return this;
       }
 
-      @Override
-	public final boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
-      @Override
-	public Builder mergeFrom(
+      public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
@@ -6113,8 +5879,7 @@ public final class T7Messages {
       /**
        * <code>int32 configKey = 1;</code>
        */
-      @Override
-	public int getConfigKey() {
+      public int getConfigKey() {
         return configKey_;
       }
       /**
@@ -6135,14 +5900,12 @@ public final class T7Messages {
         onChanged();
         return this;
       }
-      @Override
-	public final Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
 
-      @Override
-	public final Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
@@ -6163,8 +5926,7 @@ public final class T7Messages {
 
     private static final com.google.protobuf.Parser<ConfigData>
         PARSER = new com.google.protobuf.AbstractParser<ConfigData>() {
-      @Override
-	public ConfigData parsePartialFrom(
+      public ConfigData parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -6181,8 +5943,7 @@ public final class T7Messages {
       return PARSER;
     }
 
-    @Override
-	public T7.T7Messages.ConfigData getDefaultInstanceForType() {
+    public T7.T7Messages.ConfigData getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -6264,8 +6025,7 @@ public final class T7Messages {
       return T7.T7Messages.internal_static_T7_MoveCamera_descriptor;
     }
 
-    @Override
-	protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return T7.T7Messages.internal_static_T7_MoveCamera_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -6314,8 +6074,7 @@ public final class T7Messages {
       public static final int LEFT_VALUE = 3;
 
 
-      @Override
-	public final int getNumber() {
+      public final int getNumber() {
         if (this == UNRECOGNIZED) {
           throw new java.lang.IllegalArgumentException(
               "Can't get the number of an unknown enum value.");
@@ -6348,19 +6107,16 @@ public final class T7Messages {
       private static final com.google.protobuf.Internal.EnumLiteMap<
           ArrowKeys> internalValueMap =
             new com.google.protobuf.Internal.EnumLiteMap<ArrowKeys>() {
-              @Override
-			public ArrowKeys findValueByNumber(int number) {
+              public ArrowKeys findValueByNumber(int number) {
                 return ArrowKeys.forNumber(number);
               }
             };
 
-      @Override
-	public final com.google.protobuf.Descriptors.EnumValueDescriptor
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
         return getDescriptor().getValues().get(ordinal());
       }
-      @Override
-	public final com.google.protobuf.Descriptors.EnumDescriptor
+      public final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptorForType() {
         return getDescriptor();
       }
@@ -6397,14 +6153,12 @@ public final class T7Messages {
     /**
      * <code>int32 arrowKey = 1;</code>
      */
-    @Override
-	public int getArrowKey() {
+    public int getArrowKey() {
       return arrowKey_;
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
-	public final boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -6413,16 +6167,14 @@ public final class T7Messages {
       return true;
     }
 
-    @Override
-	public void writeTo(com.google.protobuf.CodedOutputStream output)
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (arrowKey_ != 0) {
         output.writeInt32(1, arrowKey_);
       }
     }
 
-    @Override
-	public int getSerializedSize() {
+    public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
 
@@ -6536,16 +6288,14 @@ public final class T7Messages {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
-	public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(T7.T7Messages.MoveCamera prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
-	public Builder toBuilder() {
+    public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
@@ -6574,8 +6324,7 @@ public final class T7Messages {
         return T7.T7Messages.internal_static_T7_MoveCamera_descriptor;
       }
 
-      @Override
-	protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return T7.T7Messages.internal_static_T7_MoveCamera_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -6597,27 +6346,23 @@ public final class T7Messages {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
-	public Builder clear() {
+      public Builder clear() {
         super.clear();
         arrowKey_ = 0;
 
         return this;
       }
 
-      @Override
-	public com.google.protobuf.Descriptors.Descriptor
+      public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
         return T7.T7Messages.internal_static_T7_MoveCamera_descriptor;
       }
 
-      @Override
-	public T7.T7Messages.MoveCamera getDefaultInstanceForType() {
+      public T7.T7Messages.MoveCamera getDefaultInstanceForType() {
         return T7.T7Messages.MoveCamera.getDefaultInstance();
       }
 
-      @Override
-	public T7.T7Messages.MoveCamera build() {
+      public T7.T7Messages.MoveCamera build() {
         T7.T7Messages.MoveCamera result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
@@ -6625,48 +6370,40 @@ public final class T7Messages {
         return result;
       }
 
-      @Override
-	public T7.T7Messages.MoveCamera buildPartial() {
+      public T7.T7Messages.MoveCamera buildPartial() {
         T7.T7Messages.MoveCamera result = new T7.T7Messages.MoveCamera(this);
         result.arrowKey_ = arrowKey_;
         onBuilt();
         return result;
       }
 
-      @Override
-	public Builder clone() {
-        return super.clone();
+      public Builder clone() {
+        return (Builder) super.clone();
       }
-      @Override
-	public Builder setField(
+      public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
-      @Override
-	public Builder clearField(
+      public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
-      @Override
-	public Builder clearOneof(
+      public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
-      @Override
-	public Builder setRepeatedField(
+      public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
-      @Override
-	public Builder addRepeatedField(
+      public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
-      @Override
-	public Builder mergeFrom(com.google.protobuf.Message other) {
+      public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof T7.T7Messages.MoveCamera) {
           return mergeFrom((T7.T7Messages.MoveCamera)other);
         } else {
@@ -6684,13 +6421,11 @@ public final class T7Messages {
         return this;
       }
 
-      @Override
-	public final boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
-      @Override
-	public Builder mergeFrom(
+      public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
@@ -6712,8 +6447,7 @@ public final class T7Messages {
       /**
        * <code>int32 arrowKey = 1;</code>
        */
-      @Override
-	public int getArrowKey() {
+      public int getArrowKey() {
         return arrowKey_;
       }
       /**
@@ -6734,14 +6468,12 @@ public final class T7Messages {
         onChanged();
         return this;
       }
-      @Override
-	public final Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
 
-      @Override
-	public final Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
@@ -6762,8 +6494,7 @@ public final class T7Messages {
 
     private static final com.google.protobuf.Parser<MoveCamera>
         PARSER = new com.google.protobuf.AbstractParser<MoveCamera>() {
-      @Override
-	public MoveCamera parsePartialFrom(
+      public MoveCamera parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -6780,8 +6511,7 @@ public final class T7Messages {
       return PARSER;
     }
 
-    @Override
-	public T7.T7Messages.MoveCamera getDefaultInstanceForType() {
+    public T7.T7Messages.MoveCamera getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -6867,8 +6597,7 @@ public final class T7Messages {
       return T7.T7Messages.internal_static_T7_ThermalRequest_descriptor;
     }
 
-    @Override
-	protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return T7.T7Messages.internal_static_T7_ThermalRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -6884,14 +6613,12 @@ public final class T7Messages {
      *
      * <code>bool request = 1;</code>
      */
-    @Override
-	public boolean getRequest() {
+    public boolean getRequest() {
       return request_;
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
-	public final boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -6900,16 +6627,14 @@ public final class T7Messages {
       return true;
     }
 
-    @Override
-	public void writeTo(com.google.protobuf.CodedOutputStream output)
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (request_ != false) {
         output.writeBool(1, request_);
       }
     }
 
-    @Override
-	public int getSerializedSize() {
+    public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
 
@@ -7024,16 +6749,14 @@ public final class T7Messages {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
-	public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(T7.T7Messages.ThermalRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
-	public Builder toBuilder() {
+    public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
@@ -7062,8 +6785,7 @@ public final class T7Messages {
         return T7.T7Messages.internal_static_T7_ThermalRequest_descriptor;
       }
 
-      @Override
-	protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return T7.T7Messages.internal_static_T7_ThermalRequest_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -7085,27 +6807,23 @@ public final class T7Messages {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
-	public Builder clear() {
+      public Builder clear() {
         super.clear();
         request_ = false;
 
         return this;
       }
 
-      @Override
-	public com.google.protobuf.Descriptors.Descriptor
+      public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
         return T7.T7Messages.internal_static_T7_ThermalRequest_descriptor;
       }
 
-      @Override
-	public T7.T7Messages.ThermalRequest getDefaultInstanceForType() {
+      public T7.T7Messages.ThermalRequest getDefaultInstanceForType() {
         return T7.T7Messages.ThermalRequest.getDefaultInstance();
       }
 
-      @Override
-	public T7.T7Messages.ThermalRequest build() {
+      public T7.T7Messages.ThermalRequest build() {
         T7.T7Messages.ThermalRequest result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
@@ -7113,48 +6831,40 @@ public final class T7Messages {
         return result;
       }
 
-      @Override
-	public T7.T7Messages.ThermalRequest buildPartial() {
+      public T7.T7Messages.ThermalRequest buildPartial() {
         T7.T7Messages.ThermalRequest result = new T7.T7Messages.ThermalRequest(this);
         result.request_ = request_;
         onBuilt();
         return result;
       }
 
-      @Override
-	public Builder clone() {
-        return super.clone();
+      public Builder clone() {
+        return (Builder) super.clone();
       }
-      @Override
-	public Builder setField(
+      public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
-      @Override
-	public Builder clearField(
+      public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
-      @Override
-	public Builder clearOneof(
+      public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
-      @Override
-	public Builder setRepeatedField(
+      public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
-      @Override
-	public Builder addRepeatedField(
+      public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
-      @Override
-	public Builder mergeFrom(com.google.protobuf.Message other) {
+      public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof T7.T7Messages.ThermalRequest) {
           return mergeFrom((T7.T7Messages.ThermalRequest)other);
         } else {
@@ -7172,13 +6882,11 @@ public final class T7Messages {
         return this;
       }
 
-      @Override
-	public final boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
-      @Override
-	public Builder mergeFrom(
+      public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
@@ -7204,8 +6912,7 @@ public final class T7Messages {
        *
        * <code>bool request = 1;</code>
        */
-      @Override
-	public boolean getRequest() {
+      public boolean getRequest() {
         return request_;
       }
       /**
@@ -7234,14 +6941,12 @@ public final class T7Messages {
         onChanged();
         return this;
       }
-      @Override
-	public final Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
 
-      @Override
-	public final Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
@@ -7262,8 +6967,7 @@ public final class T7Messages {
 
     private static final com.google.protobuf.Parser<ThermalRequest>
         PARSER = new com.google.protobuf.AbstractParser<ThermalRequest>() {
-      @Override
-	public ThermalRequest parsePartialFrom(
+      public ThermalRequest parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -7280,8 +6984,7 @@ public final class T7Messages {
       return PARSER;
     }
 
-    @Override
-	public T7.T7Messages.ThermalRequest getDefaultInstanceForType() {
+    public T7.T7Messages.ThermalRequest getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -7399,8 +7102,7 @@ public final class T7Messages {
       return T7.T7Messages.internal_static_T7_Accel_descriptor;
     }
 
-    @Override
-	protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return T7.T7Messages.internal_static_T7_Accel_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -7416,8 +7118,7 @@ public final class T7Messages {
      *
      * <code>double x = 1;</code>
      */
-    @Override
-	public double getX() {
+    public double getX() {
       return x_;
     }
 
@@ -7430,8 +7131,7 @@ public final class T7Messages {
      *
      * <code>double y = 2;</code>
      */
-    @Override
-	public double getY() {
+    public double getY() {
       return y_;
     }
 
@@ -7444,14 +7144,12 @@ public final class T7Messages {
      *
      * <code>double z = 3;</code>
      */
-    @Override
-	public double getZ() {
+    public double getZ() {
       return z_;
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
-	public final boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -7460,8 +7158,7 @@ public final class T7Messages {
       return true;
     }
 
-    @Override
-	public void writeTo(com.google.protobuf.CodedOutputStream output)
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (x_ != 0D) {
         output.writeDouble(1, x_);
@@ -7474,8 +7171,7 @@ public final class T7Messages {
       }
     }
 
-    @Override
-	public int getSerializedSize() {
+    public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
 
@@ -7614,16 +7310,14 @@ public final class T7Messages {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
-	public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(T7.T7Messages.Accel prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
-	public Builder toBuilder() {
+    public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
@@ -7654,8 +7348,7 @@ public final class T7Messages {
         return T7.T7Messages.internal_static_T7_Accel_descriptor;
       }
 
-      @Override
-	protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return T7.T7Messages.internal_static_T7_Accel_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -7677,8 +7370,7 @@ public final class T7Messages {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
-	public Builder clear() {
+      public Builder clear() {
         super.clear();
         x_ = 0D;
 
@@ -7689,19 +7381,16 @@ public final class T7Messages {
         return this;
       }
 
-      @Override
-	public com.google.protobuf.Descriptors.Descriptor
+      public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
         return T7.T7Messages.internal_static_T7_Accel_descriptor;
       }
 
-      @Override
-	public T7.T7Messages.Accel getDefaultInstanceForType() {
+      public T7.T7Messages.Accel getDefaultInstanceForType() {
         return T7.T7Messages.Accel.getDefaultInstance();
       }
 
-      @Override
-	public T7.T7Messages.Accel build() {
+      public T7.T7Messages.Accel build() {
         T7.T7Messages.Accel result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
@@ -7709,8 +7398,7 @@ public final class T7Messages {
         return result;
       }
 
-      @Override
-	public T7.T7Messages.Accel buildPartial() {
+      public T7.T7Messages.Accel buildPartial() {
         T7.T7Messages.Accel result = new T7.T7Messages.Accel(this);
         result.x_ = x_;
         result.y_ = y_;
@@ -7719,40 +7407,33 @@ public final class T7Messages {
         return result;
       }
 
-      @Override
-	public Builder clone() {
-        return super.clone();
+      public Builder clone() {
+        return (Builder) super.clone();
       }
-      @Override
-	public Builder setField(
+      public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
-      @Override
-	public Builder clearField(
+      public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
-      @Override
-	public Builder clearOneof(
+      public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
-      @Override
-	public Builder setRepeatedField(
+      public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
-      @Override
-	public Builder addRepeatedField(
+      public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
-      @Override
-	public Builder mergeFrom(com.google.protobuf.Message other) {
+      public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof T7.T7Messages.Accel) {
           return mergeFrom((T7.T7Messages.Accel)other);
         } else {
@@ -7776,13 +7457,11 @@ public final class T7Messages {
         return this;
       }
 
-      @Override
-	public final boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
-      @Override
-	public Builder mergeFrom(
+      public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
@@ -7808,8 +7487,7 @@ public final class T7Messages {
        *
        * <code>double x = 1;</code>
        */
-      @Override
-	public double getX() {
+      public double getX() {
         return x_;
       }
       /**
@@ -7847,8 +7525,7 @@ public final class T7Messages {
        *
        * <code>double y = 2;</code>
        */
-      @Override
-	public double getY() {
+      public double getY() {
         return y_;
       }
       /**
@@ -7886,8 +7563,7 @@ public final class T7Messages {
        *
        * <code>double z = 3;</code>
        */
-      @Override
-	public double getZ() {
+      public double getZ() {
         return z_;
       }
       /**
@@ -7916,14 +7592,12 @@ public final class T7Messages {
         onChanged();
         return this;
       }
-      @Override
-	public final Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
 
-      @Override
-	public final Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
@@ -7944,8 +7618,7 @@ public final class T7Messages {
 
     private static final com.google.protobuf.Parser<Accel>
         PARSER = new com.google.protobuf.AbstractParser<Accel>() {
-      @Override
-	public Accel parsePartialFrom(
+      public Accel parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -7962,8 +7635,7 @@ public final class T7Messages {
       return PARSER;
     }
 
-    @Override
-	public T7.T7Messages.Accel getDefaultInstanceForType() {
+    public T7.T7Messages.Accel getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -8078,8 +7750,7 @@ public final class T7Messages {
       return T7.T7Messages.internal_static_T7_Gyro_descriptor;
     }
 
-    @Override
-	protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return T7.T7Messages.internal_static_T7_Gyro_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -8095,8 +7766,7 @@ public final class T7Messages {
      *
      * <code>double x = 1;</code>
      */
-    @Override
-	public double getX() {
+    public double getX() {
       return x_;
     }
 
@@ -8109,8 +7779,7 @@ public final class T7Messages {
      *
      * <code>double y = 2;</code>
      */
-    @Override
-	public double getY() {
+    public double getY() {
       return y_;
     }
 
@@ -8123,14 +7792,12 @@ public final class T7Messages {
      *
      * <code>double z = 3;</code>
      */
-    @Override
-	public double getZ() {
+    public double getZ() {
       return z_;
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
-	public final boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -8139,8 +7806,7 @@ public final class T7Messages {
       return true;
     }
 
-    @Override
-	public void writeTo(com.google.protobuf.CodedOutputStream output)
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (x_ != 0D) {
         output.writeDouble(1, x_);
@@ -8153,8 +7819,7 @@ public final class T7Messages {
       }
     }
 
-    @Override
-	public int getSerializedSize() {
+    public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
 
@@ -8293,16 +7958,14 @@ public final class T7Messages {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
-	public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(T7.T7Messages.Gyro prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
-	public Builder toBuilder() {
+    public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
@@ -8330,8 +7993,7 @@ public final class T7Messages {
         return T7.T7Messages.internal_static_T7_Gyro_descriptor;
       }
 
-      @Override
-	protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return T7.T7Messages.internal_static_T7_Gyro_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -8353,8 +8015,7 @@ public final class T7Messages {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
-	public Builder clear() {
+      public Builder clear() {
         super.clear();
         x_ = 0D;
 
@@ -8365,19 +8026,16 @@ public final class T7Messages {
         return this;
       }
 
-      @Override
-	public com.google.protobuf.Descriptors.Descriptor
+      public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
         return T7.T7Messages.internal_static_T7_Gyro_descriptor;
       }
 
-      @Override
-	public T7.T7Messages.Gyro getDefaultInstanceForType() {
+      public T7.T7Messages.Gyro getDefaultInstanceForType() {
         return T7.T7Messages.Gyro.getDefaultInstance();
       }
 
-      @Override
-	public T7.T7Messages.Gyro build() {
+      public T7.T7Messages.Gyro build() {
         T7.T7Messages.Gyro result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
@@ -8385,8 +8043,7 @@ public final class T7Messages {
         return result;
       }
 
-      @Override
-	public T7.T7Messages.Gyro buildPartial() {
+      public T7.T7Messages.Gyro buildPartial() {
         T7.T7Messages.Gyro result = new T7.T7Messages.Gyro(this);
         result.x_ = x_;
         result.y_ = y_;
@@ -8395,40 +8052,33 @@ public final class T7Messages {
         return result;
       }
 
-      @Override
-	public Builder clone() {
-        return super.clone();
+      public Builder clone() {
+        return (Builder) super.clone();
       }
-      @Override
-	public Builder setField(
+      public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
-      @Override
-	public Builder clearField(
+      public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
-      @Override
-	public Builder clearOneof(
+      public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
-      @Override
-	public Builder setRepeatedField(
+      public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
-      @Override
-	public Builder addRepeatedField(
+      public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
-      @Override
-	public Builder mergeFrom(com.google.protobuf.Message other) {
+      public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof T7.T7Messages.Gyro) {
           return mergeFrom((T7.T7Messages.Gyro)other);
         } else {
@@ -8452,13 +8102,11 @@ public final class T7Messages {
         return this;
       }
 
-      @Override
-	public final boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
-      @Override
-	public Builder mergeFrom(
+      public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
@@ -8484,8 +8132,7 @@ public final class T7Messages {
        *
        * <code>double x = 1;</code>
        */
-      @Override
-	public double getX() {
+      public double getX() {
         return x_;
       }
       /**
@@ -8523,8 +8170,7 @@ public final class T7Messages {
        *
        * <code>double y = 2;</code>
        */
-      @Override
-	public double getY() {
+      public double getY() {
         return y_;
       }
       /**
@@ -8562,8 +8208,7 @@ public final class T7Messages {
        *
        * <code>double z = 3;</code>
        */
-      @Override
-	public double getZ() {
+      public double getZ() {
         return z_;
       }
       /**
@@ -8592,14 +8237,12 @@ public final class T7Messages {
         onChanged();
         return this;
       }
-      @Override
-	public final Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
 
-      @Override
-	public final Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
@@ -8620,8 +8263,7 @@ public final class T7Messages {
 
     private static final com.google.protobuf.Parser<Gyro>
         PARSER = new com.google.protobuf.AbstractParser<Gyro>() {
-      @Override
-	public Gyro parsePartialFrom(
+      public Gyro parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -8638,8 +8280,7 @@ public final class T7Messages {
       return PARSER;
     }
 
-    @Override
-	public T7.T7Messages.Gyro getDefaultInstanceForType() {
+    public T7.T7Messages.Gyro getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -8724,8 +8365,7 @@ public final class T7Messages {
       return T7.T7Messages.internal_static_T7_Altitude_descriptor;
     }
 
-    @Override
-	protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return T7.T7Messages.internal_static_T7_Altitude_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -8741,14 +8381,12 @@ public final class T7Messages {
      *
      * <code>double alt = 1;</code>
      */
-    @Override
-	public double getAlt() {
+    public double getAlt() {
       return alt_;
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
-	public final boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -8757,16 +8395,14 @@ public final class T7Messages {
       return true;
     }
 
-    @Override
-	public void writeTo(com.google.protobuf.CodedOutputStream output)
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (alt_ != 0D) {
         output.writeDouble(1, alt_);
       }
     }
 
-    @Override
-	public int getSerializedSize() {
+    public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
 
@@ -8883,16 +8519,14 @@ public final class T7Messages {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
-	public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(T7.T7Messages.Altitude prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
-	public Builder toBuilder() {
+    public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
@@ -8920,8 +8554,7 @@ public final class T7Messages {
         return T7.T7Messages.internal_static_T7_Altitude_descriptor;
       }
 
-      @Override
-	protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return T7.T7Messages.internal_static_T7_Altitude_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -8943,27 +8576,23 @@ public final class T7Messages {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
-	public Builder clear() {
+      public Builder clear() {
         super.clear();
         alt_ = 0D;
 
         return this;
       }
 
-      @Override
-	public com.google.protobuf.Descriptors.Descriptor
+      public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
         return T7.T7Messages.internal_static_T7_Altitude_descriptor;
       }
 
-      @Override
-	public T7.T7Messages.Altitude getDefaultInstanceForType() {
+      public T7.T7Messages.Altitude getDefaultInstanceForType() {
         return T7.T7Messages.Altitude.getDefaultInstance();
       }
 
-      @Override
-	public T7.T7Messages.Altitude build() {
+      public T7.T7Messages.Altitude build() {
         T7.T7Messages.Altitude result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
@@ -8971,48 +8600,40 @@ public final class T7Messages {
         return result;
       }
 
-      @Override
-	public T7.T7Messages.Altitude buildPartial() {
+      public T7.T7Messages.Altitude buildPartial() {
         T7.T7Messages.Altitude result = new T7.T7Messages.Altitude(this);
         result.alt_ = alt_;
         onBuilt();
         return result;
       }
 
-      @Override
-	public Builder clone() {
-        return super.clone();
+      public Builder clone() {
+        return (Builder) super.clone();
       }
-      @Override
-	public Builder setField(
+      public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
-      @Override
-	public Builder clearField(
+      public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
-      @Override
-	public Builder clearOneof(
+      public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
-      @Override
-	public Builder setRepeatedField(
+      public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
-      @Override
-	public Builder addRepeatedField(
+      public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
-      @Override
-	public Builder mergeFrom(com.google.protobuf.Message other) {
+      public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof T7.T7Messages.Altitude) {
           return mergeFrom((T7.T7Messages.Altitude)other);
         } else {
@@ -9030,13 +8651,11 @@ public final class T7Messages {
         return this;
       }
 
-      @Override
-	public final boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
-      @Override
-	public Builder mergeFrom(
+      public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
@@ -9062,8 +8681,7 @@ public final class T7Messages {
        *
        * <code>double alt = 1;</code>
        */
-      @Override
-	public double getAlt() {
+      public double getAlt() {
         return alt_;
       }
       /**
@@ -9092,14 +8710,12 @@ public final class T7Messages {
         onChanged();
         return this;
       }
-      @Override
-	public final Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
 
-      @Override
-	public final Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
@@ -9120,8 +8736,7 @@ public final class T7Messages {
 
     private static final com.google.protobuf.Parser<Altitude>
         PARSER = new com.google.protobuf.AbstractParser<Altitude>() {
-      @Override
-	public Altitude parsePartialFrom(
+      public Altitude parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -9138,8 +8753,7 @@ public final class T7Messages {
       return PARSER;
     }
 
-    @Override
-	public T7.T7Messages.Altitude getDefaultInstanceForType() {
+    public T7.T7Messages.Altitude getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -9254,8 +8868,7 @@ public final class T7Messages {
       return T7.T7Messages.internal_static_T7_Attitude_descriptor;
     }
 
-    @Override
-	protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return T7.T7Messages.internal_static_T7_Attitude_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -9271,8 +8884,7 @@ public final class T7Messages {
      *
      * <code>double roll = 1;</code>
      */
-    @Override
-	public double getRoll() {
+    public double getRoll() {
       return roll_;
     }
 
@@ -9285,8 +8897,7 @@ public final class T7Messages {
      *
      * <code>double pitch = 2;</code>
      */
-    @Override
-	public double getPitch() {
+    public double getPitch() {
       return pitch_;
     }
 
@@ -9299,14 +8910,12 @@ public final class T7Messages {
      *
      * <code>double yaw = 3;</code>
      */
-    @Override
-	public double getYaw() {
+    public double getYaw() {
       return yaw_;
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
-	public final boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -9315,8 +8924,7 @@ public final class T7Messages {
       return true;
     }
 
-    @Override
-	public void writeTo(com.google.protobuf.CodedOutputStream output)
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (roll_ != 0D) {
         output.writeDouble(1, roll_);
@@ -9329,8 +8937,7 @@ public final class T7Messages {
       }
     }
 
-    @Override
-	public int getSerializedSize() {
+    public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
 
@@ -9469,16 +9076,14 @@ public final class T7Messages {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
-	public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(T7.T7Messages.Attitude prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
-	public Builder toBuilder() {
+    public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
@@ -9506,8 +9111,7 @@ public final class T7Messages {
         return T7.T7Messages.internal_static_T7_Attitude_descriptor;
       }
 
-      @Override
-	protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return T7.T7Messages.internal_static_T7_Attitude_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -9529,8 +9133,7 @@ public final class T7Messages {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
-	public Builder clear() {
+      public Builder clear() {
         super.clear();
         roll_ = 0D;
 
@@ -9541,19 +9144,16 @@ public final class T7Messages {
         return this;
       }
 
-      @Override
-	public com.google.protobuf.Descriptors.Descriptor
+      public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
         return T7.T7Messages.internal_static_T7_Attitude_descriptor;
       }
 
-      @Override
-	public T7.T7Messages.Attitude getDefaultInstanceForType() {
+      public T7.T7Messages.Attitude getDefaultInstanceForType() {
         return T7.T7Messages.Attitude.getDefaultInstance();
       }
 
-      @Override
-	public T7.T7Messages.Attitude build() {
+      public T7.T7Messages.Attitude build() {
         T7.T7Messages.Attitude result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
@@ -9561,8 +9161,7 @@ public final class T7Messages {
         return result;
       }
 
-      @Override
-	public T7.T7Messages.Attitude buildPartial() {
+      public T7.T7Messages.Attitude buildPartial() {
         T7.T7Messages.Attitude result = new T7.T7Messages.Attitude(this);
         result.roll_ = roll_;
         result.pitch_ = pitch_;
@@ -9571,40 +9170,33 @@ public final class T7Messages {
         return result;
       }
 
-      @Override
-	public Builder clone() {
-        return super.clone();
+      public Builder clone() {
+        return (Builder) super.clone();
       }
-      @Override
-	public Builder setField(
+      public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
-      @Override
-	public Builder clearField(
+      public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
-      @Override
-	public Builder clearOneof(
+      public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
-      @Override
-	public Builder setRepeatedField(
+      public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
-      @Override
-	public Builder addRepeatedField(
+      public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
-      @Override
-	public Builder mergeFrom(com.google.protobuf.Message other) {
+      public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof T7.T7Messages.Attitude) {
           return mergeFrom((T7.T7Messages.Attitude)other);
         } else {
@@ -9628,13 +9220,11 @@ public final class T7Messages {
         return this;
       }
 
-      @Override
-	public final boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
-      @Override
-	public Builder mergeFrom(
+      public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
@@ -9660,8 +9250,7 @@ public final class T7Messages {
        *
        * <code>double roll = 1;</code>
        */
-      @Override
-	public double getRoll() {
+      public double getRoll() {
         return roll_;
       }
       /**
@@ -9699,8 +9288,7 @@ public final class T7Messages {
        *
        * <code>double pitch = 2;</code>
        */
-      @Override
-	public double getPitch() {
+      public double getPitch() {
         return pitch_;
       }
       /**
@@ -9738,8 +9326,7 @@ public final class T7Messages {
        *
        * <code>double yaw = 3;</code>
        */
-      @Override
-	public double getYaw() {
+      public double getYaw() {
         return yaw_;
       }
       /**
@@ -9768,14 +9355,12 @@ public final class T7Messages {
         onChanged();
         return this;
       }
-      @Override
-	public final Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
 
-      @Override
-	public final Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
@@ -9796,8 +9381,7 @@ public final class T7Messages {
 
     private static final com.google.protobuf.Parser<Attitude>
         PARSER = new com.google.protobuf.AbstractParser<Attitude>() {
-      @Override
-	public Attitude parsePartialFrom(
+      public Attitude parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -9814,8 +9398,7 @@ public final class T7Messages {
       return PARSER;
     }
 
-    @Override
-	public T7.T7Messages.Attitude getDefaultInstanceForType() {
+    public T7.T7Messages.Attitude getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -9900,8 +9483,7 @@ public final class T7Messages {
       return T7.T7Messages.internal_static_T7_Temp_descriptor;
     }
 
-    @Override
-	protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return T7.T7Messages.internal_static_T7_Temp_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -9917,14 +9499,12 @@ public final class T7Messages {
      *
      * <code>double temp = 1;</code>
      */
-    @Override
-	public double getTemp() {
+    public double getTemp() {
       return temp_;
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
-	public final boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -9933,16 +9513,14 @@ public final class T7Messages {
       return true;
     }
 
-    @Override
-	public void writeTo(com.google.protobuf.CodedOutputStream output)
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (temp_ != 0D) {
         output.writeDouble(1, temp_);
       }
     }
 
-    @Override
-	public int getSerializedSize() {
+    public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
 
@@ -10059,16 +9637,14 @@ public final class T7Messages {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
-	public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(T7.T7Messages.Temp prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
-	public Builder toBuilder() {
+    public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
@@ -10096,8 +9672,7 @@ public final class T7Messages {
         return T7.T7Messages.internal_static_T7_Temp_descriptor;
       }
 
-      @Override
-	protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return T7.T7Messages.internal_static_T7_Temp_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -10119,27 +9694,23 @@ public final class T7Messages {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
-	public Builder clear() {
+      public Builder clear() {
         super.clear();
         temp_ = 0D;
 
         return this;
       }
 
-      @Override
-	public com.google.protobuf.Descriptors.Descriptor
+      public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
         return T7.T7Messages.internal_static_T7_Temp_descriptor;
       }
 
-      @Override
-	public T7.T7Messages.Temp getDefaultInstanceForType() {
+      public T7.T7Messages.Temp getDefaultInstanceForType() {
         return T7.T7Messages.Temp.getDefaultInstance();
       }
 
-      @Override
-	public T7.T7Messages.Temp build() {
+      public T7.T7Messages.Temp build() {
         T7.T7Messages.Temp result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
@@ -10147,48 +9718,40 @@ public final class T7Messages {
         return result;
       }
 
-      @Override
-	public T7.T7Messages.Temp buildPartial() {
+      public T7.T7Messages.Temp buildPartial() {
         T7.T7Messages.Temp result = new T7.T7Messages.Temp(this);
         result.temp_ = temp_;
         onBuilt();
         return result;
       }
 
-      @Override
-	public Builder clone() {
-        return super.clone();
+      public Builder clone() {
+        return (Builder) super.clone();
       }
-      @Override
-	public Builder setField(
+      public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
-      @Override
-	public Builder clearField(
+      public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
-      @Override
-	public Builder clearOneof(
+      public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
-      @Override
-	public Builder setRepeatedField(
+      public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
-      @Override
-	public Builder addRepeatedField(
+      public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
-      @Override
-	public Builder mergeFrom(com.google.protobuf.Message other) {
+      public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof T7.T7Messages.Temp) {
           return mergeFrom((T7.T7Messages.Temp)other);
         } else {
@@ -10206,13 +9769,11 @@ public final class T7Messages {
         return this;
       }
 
-      @Override
-	public final boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
-      @Override
-	public Builder mergeFrom(
+      public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
@@ -10238,8 +9799,7 @@ public final class T7Messages {
        *
        * <code>double temp = 1;</code>
        */
-      @Override
-	public double getTemp() {
+      public double getTemp() {
         return temp_;
       }
       /**
@@ -10268,14 +9828,12 @@ public final class T7Messages {
         onChanged();
         return this;
       }
-      @Override
-	public final Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
 
-      @Override
-	public final Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
@@ -10296,8 +9854,7 @@ public final class T7Messages {
 
     private static final com.google.protobuf.Parser<Temp>
         PARSER = new com.google.protobuf.AbstractParser<Temp>() {
-      @Override
-	public Temp parsePartialFrom(
+      public Temp parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -10314,8 +9871,7 @@ public final class T7Messages {
       return PARSER;
     }
 
-    @Override
-	public T7.T7Messages.Temp getDefaultInstanceForType() {
+    public T7.T7Messages.Temp getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -10400,8 +9956,7 @@ public final class T7Messages {
       return T7.T7Messages.internal_static_T7_Battery_descriptor;
     }
 
-    @Override
-	protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return T7.T7Messages.internal_static_T7_Battery_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -10417,14 +9972,12 @@ public final class T7Messages {
      *
      * <code>double percent = 1;</code>
      */
-    @Override
-	public double getPercent() {
+    public double getPercent() {
       return percent_;
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
-	public final boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -10433,16 +9986,14 @@ public final class T7Messages {
       return true;
     }
 
-    @Override
-	public void writeTo(com.google.protobuf.CodedOutputStream output)
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (percent_ != 0D) {
         output.writeDouble(1, percent_);
       }
     }
 
-    @Override
-	public int getSerializedSize() {
+    public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
 
@@ -10559,16 +10110,14 @@ public final class T7Messages {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
-	public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(T7.T7Messages.Battery prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
-	public Builder toBuilder() {
+    public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
@@ -10596,8 +10145,7 @@ public final class T7Messages {
         return T7.T7Messages.internal_static_T7_Battery_descriptor;
       }
 
-      @Override
-	protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return T7.T7Messages.internal_static_T7_Battery_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -10619,27 +10167,23 @@ public final class T7Messages {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
-	public Builder clear() {
+      public Builder clear() {
         super.clear();
         percent_ = 0D;
 
         return this;
       }
 
-      @Override
-	public com.google.protobuf.Descriptors.Descriptor
+      public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
         return T7.T7Messages.internal_static_T7_Battery_descriptor;
       }
 
-      @Override
-	public T7.T7Messages.Battery getDefaultInstanceForType() {
+      public T7.T7Messages.Battery getDefaultInstanceForType() {
         return T7.T7Messages.Battery.getDefaultInstance();
       }
 
-      @Override
-	public T7.T7Messages.Battery build() {
+      public T7.T7Messages.Battery build() {
         T7.T7Messages.Battery result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
@@ -10647,48 +10191,40 @@ public final class T7Messages {
         return result;
       }
 
-      @Override
-	public T7.T7Messages.Battery buildPartial() {
+      public T7.T7Messages.Battery buildPartial() {
         T7.T7Messages.Battery result = new T7.T7Messages.Battery(this);
         result.percent_ = percent_;
         onBuilt();
         return result;
       }
 
-      @Override
-	public Builder clone() {
-        return super.clone();
+      public Builder clone() {
+        return (Builder) super.clone();
       }
-      @Override
-	public Builder setField(
+      public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
-      @Override
-	public Builder clearField(
+      public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
-      @Override
-	public Builder clearOneof(
+      public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
-      @Override
-	public Builder setRepeatedField(
+      public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
-      @Override
-	public Builder addRepeatedField(
+      public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
-      @Override
-	public Builder mergeFrom(com.google.protobuf.Message other) {
+      public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof T7.T7Messages.Battery) {
           return mergeFrom((T7.T7Messages.Battery)other);
         } else {
@@ -10706,13 +10242,11 @@ public final class T7Messages {
         return this;
       }
 
-      @Override
-	public final boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
-      @Override
-	public Builder mergeFrom(
+      public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
@@ -10738,8 +10272,7 @@ public final class T7Messages {
        *
        * <code>double percent = 1;</code>
        */
-      @Override
-	public double getPercent() {
+      public double getPercent() {
         return percent_;
       }
       /**
@@ -10768,14 +10301,12 @@ public final class T7Messages {
         onChanged();
         return this;
       }
-      @Override
-	public final Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
 
-      @Override
-	public final Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
@@ -10796,8 +10327,7 @@ public final class T7Messages {
 
     private static final com.google.protobuf.Parser<Battery>
         PARSER = new com.google.protobuf.AbstractParser<Battery>() {
-      @Override
-	public Battery parsePartialFrom(
+      public Battery parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -10814,8 +10344,7 @@ public final class T7Messages {
       return PARSER;
     }
 
-    @Override
-	public T7.T7Messages.Battery getDefaultInstanceForType() {
+    public T7.T7Messages.Battery getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -10900,8 +10429,7 @@ public final class T7Messages {
       return T7.T7Messages.internal_static_T7_Heading_descriptor;
     }
 
-    @Override
-	protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return T7.T7Messages.internal_static_T7_Heading_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -10917,14 +10445,12 @@ public final class T7Messages {
      *
      * <code>double heading = 1;</code>
      */
-    @Override
-	public double getHeading() {
+    public double getHeading() {
       return heading_;
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
-	public final boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -10933,16 +10459,14 @@ public final class T7Messages {
       return true;
     }
 
-    @Override
-	public void writeTo(com.google.protobuf.CodedOutputStream output)
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (heading_ != 0D) {
         output.writeDouble(1, heading_);
       }
     }
 
-    @Override
-	public int getSerializedSize() {
+    public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
 
@@ -11059,16 +10583,14 @@ public final class T7Messages {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
-	public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(T7.T7Messages.Heading prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
-	public Builder toBuilder() {
+    public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
@@ -11096,8 +10618,7 @@ public final class T7Messages {
         return T7.T7Messages.internal_static_T7_Heading_descriptor;
       }
 
-      @Override
-	protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return T7.T7Messages.internal_static_T7_Heading_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -11119,27 +10640,23 @@ public final class T7Messages {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
-	public Builder clear() {
+      public Builder clear() {
         super.clear();
         heading_ = 0D;
 
         return this;
       }
 
-      @Override
-	public com.google.protobuf.Descriptors.Descriptor
+      public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
         return T7.T7Messages.internal_static_T7_Heading_descriptor;
       }
 
-      @Override
-	public T7.T7Messages.Heading getDefaultInstanceForType() {
+      public T7.T7Messages.Heading getDefaultInstanceForType() {
         return T7.T7Messages.Heading.getDefaultInstance();
       }
 
-      @Override
-	public T7.T7Messages.Heading build() {
+      public T7.T7Messages.Heading build() {
         T7.T7Messages.Heading result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
@@ -11147,48 +10664,40 @@ public final class T7Messages {
         return result;
       }
 
-      @Override
-	public T7.T7Messages.Heading buildPartial() {
+      public T7.T7Messages.Heading buildPartial() {
         T7.T7Messages.Heading result = new T7.T7Messages.Heading(this);
         result.heading_ = heading_;
         onBuilt();
         return result;
       }
 
-      @Override
-	public Builder clone() {
-        return super.clone();
+      public Builder clone() {
+        return (Builder) super.clone();
       }
-      @Override
-	public Builder setField(
+      public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
-      @Override
-	public Builder clearField(
+      public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
-      @Override
-	public Builder clearOneof(
+      public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
-      @Override
-	public Builder setRepeatedField(
+      public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
-      @Override
-	public Builder addRepeatedField(
+      public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
-      @Override
-	public Builder mergeFrom(com.google.protobuf.Message other) {
+      public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof T7.T7Messages.Heading) {
           return mergeFrom((T7.T7Messages.Heading)other);
         } else {
@@ -11206,13 +10715,11 @@ public final class T7Messages {
         return this;
       }
 
-      @Override
-	public final boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
-      @Override
-	public Builder mergeFrom(
+      public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
@@ -11238,8 +10745,7 @@ public final class T7Messages {
        *
        * <code>double heading = 1;</code>
        */
-      @Override
-	public double getHeading() {
+      public double getHeading() {
         return heading_;
       }
       /**
@@ -11268,14 +10774,12 @@ public final class T7Messages {
         onChanged();
         return this;
       }
-      @Override
-	public final Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
 
-      @Override
-	public final Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
@@ -11296,8 +10800,7 @@ public final class T7Messages {
 
     private static final com.google.protobuf.Parser<Heading>
         PARSER = new com.google.protobuf.AbstractParser<Heading>() {
-      @Override
-	public Heading parsePartialFrom(
+      public Heading parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -11314,8 +10817,7 @@ public final class T7Messages {
       return PARSER;
     }
 
-    @Override
-	public T7.T7Messages.Heading getDefaultInstanceForType() {
+    public T7.T7Messages.Heading getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -11402,8 +10904,7 @@ public final class T7Messages {
       return T7.T7Messages.internal_static_T7_ThermalResponse_descriptor;
     }
 
-    @Override
-	protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return T7.T7Messages.internal_static_T7_ThermalResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -11419,14 +10920,12 @@ public final class T7Messages {
      *
      * <code>double response = 1;</code>
      */
-    @Override
-	public double getResponse() {
+    public double getResponse() {
       return response_;
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
-	public final boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -11435,16 +10934,14 @@ public final class T7Messages {
       return true;
     }
 
-    @Override
-	public void writeTo(com.google.protobuf.CodedOutputStream output)
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (response_ != 0D) {
         output.writeDouble(1, response_);
       }
     }
 
-    @Override
-	public int getSerializedSize() {
+    public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
 
@@ -11561,16 +11058,14 @@ public final class T7Messages {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
-	public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(T7.T7Messages.ThermalResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
-	public Builder toBuilder() {
+    public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
@@ -11600,8 +11095,7 @@ public final class T7Messages {
         return T7.T7Messages.internal_static_T7_ThermalResponse_descriptor;
       }
 
-      @Override
-	protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return T7.T7Messages.internal_static_T7_ThermalResponse_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -11623,27 +11117,23 @@ public final class T7Messages {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
-	public Builder clear() {
+      public Builder clear() {
         super.clear();
         response_ = 0D;
 
         return this;
       }
 
-      @Override
-	public com.google.protobuf.Descriptors.Descriptor
+      public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
         return T7.T7Messages.internal_static_T7_ThermalResponse_descriptor;
       }
 
-      @Override
-	public T7.T7Messages.ThermalResponse getDefaultInstanceForType() {
+      public T7.T7Messages.ThermalResponse getDefaultInstanceForType() {
         return T7.T7Messages.ThermalResponse.getDefaultInstance();
       }
 
-      @Override
-	public T7.T7Messages.ThermalResponse build() {
+      public T7.T7Messages.ThermalResponse build() {
         T7.T7Messages.ThermalResponse result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
@@ -11651,48 +11141,40 @@ public final class T7Messages {
         return result;
       }
 
-      @Override
-	public T7.T7Messages.ThermalResponse buildPartial() {
+      public T7.T7Messages.ThermalResponse buildPartial() {
         T7.T7Messages.ThermalResponse result = new T7.T7Messages.ThermalResponse(this);
         result.response_ = response_;
         onBuilt();
         return result;
       }
 
-      @Override
-	public Builder clone() {
-        return super.clone();
+      public Builder clone() {
+        return (Builder) super.clone();
       }
-      @Override
-	public Builder setField(
+      public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
-      @Override
-	public Builder clearField(
+      public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
-      @Override
-	public Builder clearOneof(
+      public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
-      @Override
-	public Builder setRepeatedField(
+      public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
-      @Override
-	public Builder addRepeatedField(
+      public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
-      @Override
-	public Builder mergeFrom(com.google.protobuf.Message other) {
+      public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof T7.T7Messages.ThermalResponse) {
           return mergeFrom((T7.T7Messages.ThermalResponse)other);
         } else {
@@ -11710,13 +11192,11 @@ public final class T7Messages {
         return this;
       }
 
-      @Override
-	public final boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
-      @Override
-	public Builder mergeFrom(
+      public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
@@ -11742,8 +11222,7 @@ public final class T7Messages {
        *
        * <code>double response = 1;</code>
        */
-      @Override
-	public double getResponse() {
+      public double getResponse() {
         return response_;
       }
       /**
@@ -11772,14 +11251,12 @@ public final class T7Messages {
         onChanged();
         return this;
       }
-      @Override
-	public final Builder setUnknownFields(
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
 
-      @Override
-	public final Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
@@ -11800,8 +11277,7 @@ public final class T7Messages {
 
     private static final com.google.protobuf.Parser<ThermalResponse>
         PARSER = new com.google.protobuf.AbstractParser<ThermalResponse>() {
-      @Override
-	public ThermalResponse parsePartialFrom(
+      public ThermalResponse parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -11818,8 +11294,7 @@ public final class T7Messages {
       return PARSER;
     }
 
-    @Override
-	public T7.T7Messages.ThermalResponse getDefaultInstanceForType() {
+    public T7.T7Messages.ThermalResponse getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -11837,6 +11312,15 @@ public final class T7Messages {
      * <code>double strength = 1;</code>
      */
     double getStrength();
+
+    /**
+     * <pre>
+     * MHz
+     * </pre>
+     *
+     * <code>double freq = 2;</code>
+     */
+    double getFreq();
   }
   /**
    * <pre>
@@ -11857,6 +11341,7 @@ public final class T7Messages {
     }
     private WiFi() {
       strength_ = 0D;
+      freq_ = 0D;
     }
 
     @java.lang.Override
@@ -11889,6 +11374,11 @@ public final class T7Messages {
               strength_ = input.readDouble();
               break;
             }
+            case 17: {
+
+              freq_ = input.readDouble();
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -11905,8 +11395,7 @@ public final class T7Messages {
       return T7.T7Messages.internal_static_T7_WiFi_descriptor;
     }
 
-    @Override
-	protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return T7.T7Messages.internal_static_T7_WiFi_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -11922,14 +11411,25 @@ public final class T7Messages {
      *
      * <code>double strength = 1;</code>
      */
-    @Override
-	public double getStrength() {
+    public double getStrength() {
       return strength_;
     }
 
+    public static final int FREQ_FIELD_NUMBER = 2;
+    private double freq_;
+    /**
+     * <pre>
+     * MHz
+     * </pre>
+     *
+     * <code>double freq = 2;</code>
+     */
+    public double getFreq() {
+      return freq_;
+    }
+
     private byte memoizedIsInitialized = -1;
-    @Override
-	public final boolean isInitialized() {
+    public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
@@ -11938,16 +11438,17 @@ public final class T7Messages {
       return true;
     }
 
-    @Override
-	public void writeTo(com.google.protobuf.CodedOutputStream output)
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (strength_ != 0D) {
         output.writeDouble(1, strength_);
       }
+      if (freq_ != 0D) {
+        output.writeDouble(2, freq_);
+      }
     }
 
-    @Override
-	public int getSerializedSize() {
+    public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
 
@@ -11955,6 +11456,10 @@ public final class T7Messages {
       if (strength_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
           .computeDoubleSize(1, strength_);
+      }
+      if (freq_ != 0D) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(2, freq_);
       }
       memoizedSize = size;
       return size;
@@ -11976,6 +11481,10 @@ public final class T7Messages {
           java.lang.Double.doubleToLongBits(getStrength())
           == java.lang.Double.doubleToLongBits(
               other.getStrength()));
+      result = result && (
+          java.lang.Double.doubleToLongBits(getFreq())
+          == java.lang.Double.doubleToLongBits(
+              other.getFreq()));
       return result;
     }
 
@@ -11989,6 +11498,9 @@ public final class T7Messages {
       hash = (37 * hash) + STRENGTH_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           java.lang.Double.doubleToLongBits(getStrength()));
+      hash = (37 * hash) + FREQ_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getFreq()));
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -12064,16 +11576,14 @@ public final class T7Messages {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
-	public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
     public static Builder newBuilder(T7.T7Messages.WiFi prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
-	public Builder toBuilder() {
+    public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
@@ -12102,8 +11612,7 @@ public final class T7Messages {
         return T7.T7Messages.internal_static_T7_WiFi_descriptor;
       }
 
-      @Override
-	protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return T7.T7Messages.internal_static_T7_WiFi_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -12125,27 +11634,25 @@ public final class T7Messages {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
-	public Builder clear() {
+      public Builder clear() {
         super.clear();
         strength_ = 0D;
+
+        freq_ = 0D;
 
         return this;
       }
 
-      @Override
-	public com.google.protobuf.Descriptors.Descriptor
+      public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
         return T7.T7Messages.internal_static_T7_WiFi_descriptor;
       }
 
-      @Override
-	public T7.T7Messages.WiFi getDefaultInstanceForType() {
+      public T7.T7Messages.WiFi getDefaultInstanceForType() {
         return T7.T7Messages.WiFi.getDefaultInstance();
       }
 
-      @Override
-	public T7.T7Messages.WiFi build() {
+      public T7.T7Messages.WiFi build() {
         T7.T7Messages.WiFi result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
@@ -12153,48 +11660,41 @@ public final class T7Messages {
         return result;
       }
 
-      @Override
-	public T7.T7Messages.WiFi buildPartial() {
+      public T7.T7Messages.WiFi buildPartial() {
         T7.T7Messages.WiFi result = new T7.T7Messages.WiFi(this);
         result.strength_ = strength_;
+        result.freq_ = freq_;
         onBuilt();
         return result;
       }
 
-      @Override
-	public Builder clone() {
-        return super.clone();
+      public Builder clone() {
+        return (Builder) super.clone();
       }
-      @Override
-	public Builder setField(
+      public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.setField(field, value);
+        return (Builder) super.setField(field, value);
       }
-      @Override
-	public Builder clearField(
+      public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
+        return (Builder) super.clearField(field);
       }
-      @Override
-	public Builder clearOneof(
+      public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
+        return (Builder) super.clearOneof(oneof);
       }
-      @Override
-	public Builder setRepeatedField(
+      public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, Object value) {
-        return super.setRepeatedField(field, index, value);
+        return (Builder) super.setRepeatedField(field, index, value);
       }
-      @Override
-	public Builder addRepeatedField(
+      public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           Object value) {
-        return super.addRepeatedField(field, value);
+        return (Builder) super.addRepeatedField(field, value);
       }
-      @Override
-	public Builder mergeFrom(com.google.protobuf.Message other) {
+      public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof T7.T7Messages.WiFi) {
           return mergeFrom((T7.T7Messages.WiFi)other);
         } else {
@@ -12208,17 +11708,18 @@ public final class T7Messages {
         if (other.getStrength() != 0D) {
           setStrength(other.getStrength());
         }
+        if (other.getFreq() != 0D) {
+          setFreq(other.getFreq());
+        }
         onChanged();
         return this;
       }
 
-      @Override
-	public final boolean isInitialized() {
+      public final boolean isInitialized() {
         return true;
       }
 
-      @Override
-	public Builder mergeFrom(
+      public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
@@ -12244,8 +11745,7 @@ public final class T7Messages {
        *
        * <code>double strength = 1;</code>
        */
-      @Override
-	public double getStrength() {
+      public double getStrength() {
         return strength_;
       }
       /**
@@ -12274,14 +11774,50 @@ public final class T7Messages {
         onChanged();
         return this;
       }
-      @Override
-	public final Builder setUnknownFields(
+
+      private double freq_ ;
+      /**
+       * <pre>
+       * MHz
+       * </pre>
+       *
+       * <code>double freq = 2;</code>
+       */
+      public double getFreq() {
+        return freq_;
+      }
+      /**
+       * <pre>
+       * MHz
+       * </pre>
+       *
+       * <code>double freq = 2;</code>
+       */
+      public Builder setFreq(double value) {
+        
+        freq_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * MHz
+       * </pre>
+       *
+       * <code>double freq = 2;</code>
+       */
+      public Builder clearFreq() {
+        
+        freq_ = 0D;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
 
-      @Override
-	public final Builder mergeUnknownFields(
+      public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
@@ -12302,8 +11838,7 @@ public final class T7Messages {
 
     private static final com.google.protobuf.Parser<WiFi>
         PARSER = new com.google.protobuf.AbstractParser<WiFi>() {
-      @Override
-	public WiFi parsePartialFrom(
+      public WiFi parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -12320,8 +11855,7 @@ public final class T7Messages {
       return PARSER;
     }
 
-    @Override
-	public T7.T7Messages.WiFi getDefaultInstanceForType() {
+    public T7.T7Messages.WiFi getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -12454,13 +11988,12 @@ public final class T7Messages {
       "(\001\022\r\n\005pitch\030\002 \001(\001\022\013\n\003yaw\030\003 \001(\001\"\024\n\004Temp\022\014" +
       "\n\004temp\030\001 \001(\001\"\032\n\007Battery\022\017\n\007percent\030\001 \001(\001" +
       "\"\032\n\007Heading\022\017\n\007heading\030\001 \001(\001\"#\n\017ThermalR" +
-      "esponse\022\020\n\010response\030\001 \001(\001\"\030\n\004WiFi\022\020\n\010str" +
-      "ength\030\001 \001(\001b\006proto3"
+      "esponse\022\020\n\010response\030\001 \001(\001\"&\n\004WiFi\022\020\n\010str" +
+      "ength\030\001 \001(\001\022\014\n\004freq\030\002 \001(\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
-          @Override
-		public com.google.protobuf.ExtensionRegistry assignDescriptors(
+          public com.google.protobuf.ExtensionRegistry assignDescriptors(
               com.google.protobuf.Descriptors.FileDescriptor root) {
             descriptor = root;
             return null;
@@ -12565,7 +12098,7 @@ public final class T7Messages {
     internal_static_T7_WiFi_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_T7_WiFi_descriptor,
-        new java.lang.String[] { "Strength", });
+        new java.lang.String[] { "Strength", "Freq", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
