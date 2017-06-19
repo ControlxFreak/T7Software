@@ -138,6 +138,9 @@ public class DataConnectionHandler
 			case HEARTBEAT:
 				handlerMethod = this::handleHeartbeatMessage;
 				break;
+			case WIFI:
+				handlerMethod = this::handleWiFiMessage;
+				break;
 			default:
 				logger.warning("Unrecognized connection type.");
 				break;
@@ -196,6 +199,14 @@ public class DataConnectionHandler
 	private void handleHeartbeatMessage(GenericMessage gm) {
 		boolean alive = gm.getHeartbeat().getAlive();
 		server.updateTelemetryData(alive ? 1.0 : -1.0, connType);
+	}
+	
+	private void handleWiFiMessage(GenericMessage gm) {
+		double strength = gm.getWifi().getStrength();
+		double freqInMHz = 1.0;	//TODO Is this supplied in the message or just tweaked?
+		double exp = (27.55 - (20 * Math.log10(freqInMHz)) + Math.abs(strength)) / 20.0;
+		double rangeInMeters = Math.pow(10.0, exp);
+		server.updateTelemetryData(rangeInMeters * 3.28084, connType);
 	}
 
 	private void handlePaused(GenericMessage gm) {

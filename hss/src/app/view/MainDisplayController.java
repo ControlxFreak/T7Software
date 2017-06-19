@@ -136,6 +136,8 @@ public class MainDisplayController {
 	@FXML
 	private Label alt_label;
 	@FXML
+	private Label range_label;
+	@FXML
 	private Label head_label;
 	@FXML
 	private Label batt_label;
@@ -429,7 +431,7 @@ public class MainDisplayController {
 				uavPanel.readNewValue("2", 0.0);
 				uavPanel.readNewValue("3", 0.0);
 			}
-			break;
+			return;
 		case BAT:
 			if(d > 80.0) {
 				batteryImage.setImage(new Image((new File("src/main/resources/images/default/battery-100-gray.png")).toURI().toString()));
@@ -452,6 +454,11 @@ public class MainDisplayController {
 				batteryLabel.setText(doubleDatumToLabelString(d) + "%");
 			}
 			datumList = batList;
+			break;
+		case WIFI:
+			rcDataPanel.readNewValue(MSP.IDRCRANGE, d);
+			range_label.setText(doubleDatumToLabelString(d));
+			datumList = rangeList;
 			break;
 		default:
 			return;

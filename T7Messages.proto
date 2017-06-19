@@ -54,7 +54,7 @@ message GenericMessage {
 	Battery bat = 13;
 	Heading head = 14;
 	ThermalResponse thermalresponse = 16;
-        WiFi = 17;
+        WiFi wifi = 17;
 
 	enum MsgType {
 		// INFO MESSAGE //
@@ -133,6 +133,7 @@ message ConfigData {
 	     toggleBat = 5;
 	     toggleArray = 6;
 	     toggleHead = 7;
+	     toggleWifi = 8;
 	}
 }
 

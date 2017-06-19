@@ -73,7 +73,7 @@ public class MainApp extends Application {
 	private static UAVClient array_client = null;
 	private static ObservableList<Snapshot> snapshotData = FXCollections.observableArrayList();
 	//private static Map<MsgType, Boolean> configMap = new HashMap<MsgType, Boolean>();
-	private static boolean[] config_arr = new boolean[8];
+	private static boolean[] config_arr = new boolean[9];
 	private static volatile long tapStart = 0;
 	private static volatile boolean foot_down = false;
 	private static volatile int tapNum = 1;
@@ -130,6 +130,7 @@ public class MainApp extends Application {
 		config_arr[ToggleKeys.toggleBat_VALUE] = true;
 		config_arr[ToggleKeys.toggleArray_VALUE] = true;
 		config_arr[ToggleKeys.toggleHead_VALUE] = true;
+		config_arr[ToggleKeys.toggleWifi_VALUE] = true;
 	}
 
 	private void initClients() {
@@ -316,6 +317,9 @@ public class MainApp extends Application {
 			break;
 		case toggleHead:
 			updateTelemetryDisplay(Double.MIN_VALUE, MsgType.HEAD);
+			break;
+		case toggleWifi:
+			updateTelemetryDisplay(Double.MIN_VALUE, MsgType.WIFI);
 			break;
 		default:
 			break;
@@ -531,6 +535,8 @@ public class MainApp extends Application {
 			return true;
 		case HEARTBEAT:
 			return true;
+		case WIFI:
+			return config_arr[ToggleKeys.toggleWifi_VALUE];
 		default:
 			throw new IllegalArgumentException("Illegal MsgType: " + type);
 		}

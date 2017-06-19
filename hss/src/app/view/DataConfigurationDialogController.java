@@ -41,6 +41,8 @@ public class DataConfigurationDialogController {
 	private CheckBox temperature;
 	@FXML
 	private CheckBox thermal;
+	@FXML
+	private CheckBox range;
 
 	private boolean[] config_arr = MainApp.getConfigArr();
 	private Stage dialogStage;
@@ -55,6 +57,7 @@ public class DataConfigurationDialogController {
 		battery.setSelected(config_arr[ToggleKeys.toggleBat_VALUE]);
 		thermal.setSelected(config_arr[ToggleKeys.toggleArray_VALUE]);
 		heading.setSelected(config_arr[ToggleKeys.toggleHead_VALUE]);
+		range.setSelected(config_arr[ToggleKeys.toggleWifi_VALUE]);
 	}
 
 	public void setDialogStage(Stage dialogStage) {
@@ -71,6 +74,7 @@ public class DataConfigurationDialogController {
 		config_arr[ToggleKeys.toggleBat_VALUE] = battery.isSelected();
 		config_arr[ToggleKeys.toggleArray_VALUE] = thermal.isSelected();
 		config_arr[ToggleKeys.toggleHead_VALUE] = heading.isSelected();
+		config_arr[ToggleKeys.toggleWifi_VALUE] = range.isSelected();
 
 		dialogStage.close();
 	}

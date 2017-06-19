@@ -151,6 +151,9 @@ public class UAVServer implements Runnable {
 		case HEARTBEAT:
 			Platform.runLater(() -> MainApp.clearHeartbeat());
 			return;
+		case WIFI:
+			key = ToggleKeys.toggleWifi;
+			break;
 		default:
 			throw new IllegalArgumentException("Illegal MsgType: " + type);
 		}

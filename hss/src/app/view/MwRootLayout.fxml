@@ -167,6 +167,7 @@
                                           <Font name="System Bold" size="13.0" />
                                        </font>
                                     </Label>
+                                    <Label fx:id="range_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                  </children>
                               </GridPane>
                            </children>
