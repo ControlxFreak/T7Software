@@ -16,21 +16,15 @@
  */
 package app.view;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.logging.Logger;
 
-import T7.T7Messages.GenericMessage;
-import T7.T7Messages.MoveCamera;
-import T7.T7Messages.GenericMessage.MsgType;
 import app.KeySpinner;
 import app.MainApp;
 import app.model.Animal;
 import app.model.Snapshot;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -40,9 +34,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Spinner;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory;
 import javafx.scene.image.Image;
@@ -50,7 +42,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -77,10 +68,6 @@ public class SnapshotExplorerController extends Tapper {
 	private TextField priorityField;
 	@FXML
 	private ListView<Snapshot> thumbnails;
-	/*
-	@FXML
-	private VBox targetBox;
-	*/
 	@FXML
 	private Label animalLabel;
 	@FXML
@@ -102,13 +89,7 @@ public class SnapshotExplorerController extends Tapper {
 	@FXML
 	private Button exitButton;
 	
-	private KeySpinner keySpinner;
 	private static volatile boolean thumb_spinning = false;
-	private volatile long tapStart = 0;
-	private volatile boolean foot_down = false;
-	private volatile int tapNum = 1;
-	private volatile int timerNum = 1;
-	//private volatile boolean singleTap = false;
 	private ArrayList<Node> focusList = new ArrayList<>();
 
 	@FXML
@@ -488,11 +469,6 @@ public class SnapshotExplorerController extends Tapper {
 		singleTap = false;
 		
 		if(n == animalBox && animalBox.isShowing()) {
-			/*
-			SingleSelectionModel<Animal> model = animalBox.getSelectionModel();
-			int index = model.getSelectedIndex();
-			if(index == model.)
-			*/
 			if(animalBox.getSelectionModel().getSelectedIndex() == 12) {
 				animalBox.getSelectionModel().select(0);
 			} else {
@@ -504,14 +480,6 @@ public class SnapshotExplorerController extends Tapper {
 		
 		int index = focusList.indexOf(n);
 		int new_index = index+1;
-		
-		/*
-		if(index == focusList.size() - 1) {
-			focusList.get(0).requestFocus();
-		} else {
-			focusList.get(index + 1).requestFocus();
-		}
-		*/
 		
 		while(index != new_index) {
 			if(new_index == focusList.size()) {
@@ -557,8 +525,6 @@ public class SnapshotExplorerController extends Tapper {
 
 		snap.setDescription(descriptionField.getText());
 		snap.setNotes(notesField.getText());
-		
-		//main_controller.displaySnapshot(snap);
 
 		snap.setTarget(targetRadio.isSelected());
 		snap.setAnimal(animalBox.getValue());

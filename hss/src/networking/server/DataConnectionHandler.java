@@ -61,10 +61,6 @@ public class DataConnectionHandler
 			try {
 				System.out.println("Parsing message.");
 				GenericMessage gm = GenericMessage.parseDelimitedFrom(in);
-				/*byte[] x = new byte[128];
-				in.read(x);
-				GenericMessage gm = GenericMessage.parseFrom(x);
-				*/
 				connType = MsgType.forNumber(gm.getMsgtype());
 				setHandler();
 				handlerMethod.accept(gm);
@@ -78,11 +74,6 @@ public class DataConnectionHandler
 			GenericMessage gm;
 			try {
 				gm = GenericMessage.parseDelimitedFrom(in);
-				/*
-				byte[] x = new byte[128];
-				in.read(x);
-				gm = GenericMessage.parseFrom(x);
-				*/
 				setHandler();
 				if(gm == null) {
 					throw new Exception();
@@ -209,23 +200,7 @@ public class DataConnectionHandler
 		server.updateTelemetryData(rangeInMeters * 3.28084, connType);
 	}
 
-	private void handlePaused(GenericMessage gm) {
-		/*
-		switch(connType) {
-		case TEMP:
-		case ALTITUDE:
-		case ATTITUDE:
-		case BAT:
-			server.clearTelemetryData(connType);
-			break;
-		case ACCEL:
-		case GYRO:
-			break;
-		default:
-			break;
-		}
-		*/
-		
+	private void handlePaused(GenericMessage gm) {		
 		server.clearTelemetryData(connType);
 	}
 

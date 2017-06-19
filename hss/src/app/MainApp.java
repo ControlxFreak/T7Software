@@ -22,13 +22,10 @@ package app;
 import java.io.IOException;
 import java.net.SocketException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
-
-import javax.smartcardio.TerminalFactorySpi;
 
 import T7.T7Messages.GenericMessage;
 import T7.T7Messages.MoveCamera;
@@ -46,7 +43,6 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceDialog;
@@ -72,54 +68,25 @@ public class MainApp extends Application {
 	private static UAVClient termination_client = null;
 	private static UAVClient array_client = null;
 	private static ObservableList<Snapshot> snapshotData = FXCollections.observableArrayList();
-	//private static Map<MsgType, Boolean> configMap = new HashMap<MsgType, Boolean>();
 	private static boolean[] config_arr = new boolean[9];
 	private static volatile long tapStart = 0;
-	private static volatile boolean foot_down = false;
 	private static volatile int tapNum = 1;
 	private static volatile int timerNum = 1;
 	private static EventHandler<KeyEvent> keyHandler;
 
 	@Override
 	public void start(Stage primaryStage) {
-		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("Home Station");
+		MainApp.primaryStage = primaryStage;
+		MainApp.primaryStage.setTitle("Home Station");
 
 		initRootLayout();
 
 		initDataConfiguration();
 
-		//testInitSnapshot();
-		//testInitSnapshot2();
-
 		initServer();
 
 		initClients();
 	}
-
-	/*
-	private void testInitSnapshot() {
-			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/kelly.jpg")).toURI().toString())));
-			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/jessie.jpg")).toURI().toString())));
-			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/topanga.jpg")).toURI().toString())));
-			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/dani.jpg")).toURI().toString())));
-			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/lenna.png")).toURI().toString())));
-			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/alexandra.gif")).toURI().toString())));
-			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/audrey.jpg")).toURI().toString())));
-			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/shelly.gif")).toURI().toString())));
-			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/dolores.jpg")).toURI().toString())));
-			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/gina.jpg")).toURI().toString())));
-	}
-
-	private void testInitSnapshot2() {
-		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/T7Software/hss/src/main/resources/images/fire1.jpg").toURI().toString())));
-		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/T7Software/hss/src/main/resources/images/fire2.jpeg").toURI().toString())));
-		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/T7Software/hss/src/main/resources/images/fire3.jpg").toURI().toString())));
-		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/T7Software/hss/src/main/resources/images/landscape1.jpg").toURI().toString())));
-		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/T7Software/hss/src/main/resources/images/landscape2.jpg").toURI().toString())));
-		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/T7Software/hss/src/main/resources/images/landscape3.jpg").toURI().toString())));
-	}
-	*/
 
 	private void initDataConfiguration() {		
 		config_arr[ToggleKeys.toggleAccel_VALUE] = true;
@@ -152,7 +119,6 @@ public class MainApp extends Application {
 	}
 
 	private void takeSnapshot() {
-		//snapshotData.add(0, new Snapshot(new Image((new File("/home/jarrett/T7Software/hss/src/main/resources/images/topanga.jpg")).toURI().toString())));
 		snapshotData.add(0, new Snapshot(main_controller.takeSnapshot()));
 		GenericMessage.Builder gmBuilder = GenericMessage.newBuilder();
 		gmBuilder.setMsgtype(MsgType.THERMAL_REQUEST.getNumber()).setTime(System.currentTimeMillis())
@@ -261,7 +227,6 @@ public class MainApp extends Application {
 	}
 
 	private void showUavTerminationDialog() {
-		//main_controller.printHorizonWidths();
 		List<String> choices = new ArrayList<>();
 		choices.add("Reboot Software");
 		choices.add("Soft Shutdown");
@@ -325,12 +290,6 @@ public class MainApp extends Application {
 			break;
 		}
 	}
-
-	/*
-	private static void setConfig(boolean[] config_arr) {
-		MainApp.config_arr = config_arr;
-	}
-	*/
 
 	private void initRootLayout() {
 		try {
@@ -404,8 +363,6 @@ public class MainApp extends Application {
 							break;
 						case B:
 							tapStart = System.currentTimeMillis();
-							foot_down = true;
-							
 							new Thread(new Runnable() {
 
 								@Override
@@ -442,14 +399,12 @@ public class MainApp extends Application {
 							showUavTerminationDialog();
 							break;
 						case B:
-							foot_down = false;
 							++tapNum;
 							timerNum = tapNum;
 							long tapEnd = System.currentTimeMillis();
 							if(tapEnd - tapStart < 700) {
 								main_controller.spinKey();
 							}
-							//tapStart = 0;
 							break;
 						default:
 							break;
@@ -463,13 +418,6 @@ public class MainApp extends Application {
 			logger.finest("Set scene for Main Display.");
 			primaryStage.show();
 			logger.finest("Showed Main Display.");
-			/*
-			primaryStage.setOnHiding(new EventHandler<WindowEvent>() {
-				public void handle(WindowEvent we) {
-					System.out.println("Primary stage is closing.");
-				}
-			});
-			*/
 		} catch (IOException e) {
 			logger.fine(e.toString());
 		}
