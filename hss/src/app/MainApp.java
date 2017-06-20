@@ -44,7 +44,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -240,6 +243,31 @@ public class MainApp extends Application {
 				 + '\n' + '\t' + "Soft Shutdown:	Come to a safe landing, then shut down software."
 				 + '\n' + '\t' + "Emergency Stop:	Shut down software and hardware now. WARNING - Use with caution!");
 		dialog.setContentText("Command:");
+		
+		Node ok = dialog.getDialogPane().lookupButton(ButtonType.OK);
+		ok.setOnKeyReleased(new EventHandler<KeyEvent>() {
+
+			@Override
+			public void handle(KeyEvent event) {
+				if(event.getCode() == KeyCode.B)
+				{
+					dialog.close();
+				}
+			}
+			
+		});
+		
+		dialog.getDialogPane().setOnKeyReleased(new EventHandler<KeyEvent>() {
+
+			@Override
+			public void handle(KeyEvent event) {
+				if(event.getCode() == KeyCode.B)
+				{
+					ok.requestFocus();
+				}
+			}
+			
+		});
 		
 		Optional<String> result = dialog.showAndWait();
 		if(result.isPresent()) {
