@@ -539,6 +539,7 @@ public class SnapshotExplorerController extends Tapper {
 		
 		priorityField.setText(Integer.toString(snap.getRelativePriority()));
 		System.out.println("main_controller = " + main_controller);
+		System.out.println("PriLabel visibility (snap controller = " + priorityLabel.isVisible());
 	}
 
 	@FXML

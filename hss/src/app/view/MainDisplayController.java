@@ -426,7 +426,11 @@ public class MainDisplayController {
 		setEmbeddedSnap(snap);
 		snapshot_display.setImage(snap.getImage());
 		pin_display.setImage(Snapshot.getPin());
-		priLabel.setText(Integer.toString(snap.getRelativePriority()));
+		if(snap.isTarget()) {
+			priLabel.setText(Integer.toString(snap.getRelativePriority()));
+		} else {
+			priLabel.setText("");
+		}
 		centerImage();
 	}
 
