@@ -20,6 +20,9 @@ class TapTimer implements Runnable {
 		if(tapper instanceof SnapshotExplorerController) {
 			singleTap = MainApp.getSnapshotExplorerController()::singleTap;
 			doubleTap = MainApp.getSnapshotExplorerController()::doubleTap;
+		} else if(tapper instanceof DataConfigurationDialogController) {
+			singleTap = MainApp.getConfigController()::singleTap;
+			doubleTap = MainApp.getConfigController()::doubleTap;
 		}
 	}
 

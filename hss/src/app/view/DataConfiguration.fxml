@@ -205,12 +205,12 @@
             </AnchorPane>
             <ButtonBar prefHeight="40.0" prefWidth="200.0">
               <buttons>
-                <Button cancelButton="true" mnemonicParsing="false" onAction="#handleCancel" text="Cancel">
+                <Button fx:id="cancel" cancelButton="true" mnemonicParsing="false" onAction="#handleCancel" text="Cancel">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button defaultButton="true" mnemonicParsing="false" onAction="#handleOk" text="OK">
+                  <Button fx:id="ok" defaultButton="true" mnemonicParsing="false" onAction="#handleOk" text="OK">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

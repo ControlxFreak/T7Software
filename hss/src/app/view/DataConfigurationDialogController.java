@@ -17,13 +17,20 @@
 package app.view;
 
 import app.MainApp;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
 
 import T7.T7Messages.ConfigData.ToggleKeys;
 
-public class DataConfigurationDialogController {
+public class DataConfigurationDialogController extends Tapper {
 
 	@FXML
 	private CheckBox acceleration;
@@ -43,12 +50,29 @@ public class DataConfigurationDialogController {
 	private CheckBox thermal;
 	@FXML
 	private CheckBox range;
+	@FXML
+	private Button cancel;
+	@FXML
+	private Button ok;
 
 	private boolean[] config_arr = MainApp.getConfigArr();
 	private Stage dialogStage;
+	private ArrayList<Node> focusList = new ArrayList<>();
 
 	@FXML
 	private void initialize() {
+		focusList.add(acceleration);
+		focusList.add(altitude);
+		focusList.add(attitude);
+		focusList.add(battery);
+		focusList.add(gyroscope);
+		focusList.add(heading);
+		focusList.add(range);
+		focusList.add(temperature);
+		focusList.add(thermal);
+		focusList.add(cancel);
+		focusList.add(ok);
+		
 		acceleration.setSelected(config_arr[ToggleKeys.toggleAccel_VALUE]);
 		gyroscope.setSelected(config_arr[ToggleKeys.toggleGyro_VALUE]);
 		altitude.setSelected(config_arr[ToggleKeys.toggleAltitude_VALUE]);
@@ -58,6 +82,84 @@ public class DataConfigurationDialogController {
 		thermal.setSelected(config_arr[ToggleKeys.toggleArray_VALUE]);
 		heading.setSelected(config_arr[ToggleKeys.toggleHead_VALUE]);
 		range.setSelected(config_arr[ToggleKeys.toggleWifi_VALUE]);
+		
+		Tapper tapper = this;
+		
+		EventHandler<KeyEvent> boxHandler = new EventHandler<KeyEvent>() {
+
+			@Override
+			public void handle(KeyEvent event) {
+				System.out.println("Key typed: " + event.getCode());
+				CheckBox box = (CheckBox) dialogStage.getScene().getFocusOwner();
+				if(event.getCode() == KeyCode.ENTER)
+				{
+					System.out.println("ENTER received, handling box selection.");
+					
+					if(box.isSelected()) {
+						box.setSelected(false);
+					} else {
+						box.setSelected(true);
+					}
+				} else if(event.getCode() == KeyCode.B)
+				{
+					if(!singleTap) {
+						singleTap = true;
+						System.out.println("singleTap = true");
+						
+						new Thread(new TapTimer(tapper, box)).start();
+					} else {
+						singleTap = false;
+						System.out.println("singleTap = false");
+					}
+				}
+			}
+			
+		};
+
+		acceleration.setOnKeyPressed(boxHandler);
+		altitude.setOnKeyPressed(boxHandler);
+		attitude.setOnKeyPressed(boxHandler);
+		battery.setOnKeyPressed(boxHandler);
+		gyroscope.setOnKeyPressed(boxHandler);
+		heading.setOnKeyPressed(boxHandler);
+		temperature.setOnKeyPressed(boxHandler);
+		thermal.setOnKeyPressed(boxHandler);
+		range.setOnKeyPressed(boxHandler);
+		
+		EventHandler<KeyEvent> buttonHandler = new EventHandler<KeyEvent>() {
+
+			@Override
+			public void handle(KeyEvent event) {
+				System.out.println("Key typed: " + event.getCode());
+				Button button = (Button) dialogStage.getScene().getFocusOwner();
+
+				if(event.getCode() == KeyCode.ENTER)
+				{
+					System.out.println("ENTER received, handling box selection.");
+					
+					if(button == cancel) {
+						handleCancel();
+					} else if(button == ok) {
+						handleOk();
+					}
+				} else if(event.getCode() == KeyCode.B)
+				{
+					if(!singleTap) {
+						singleTap = true;
+						System.out.println("singleTap = true");
+						
+						new Thread(new TapTimer(tapper, button)).start();
+					} else {
+						singleTap = false;
+						System.out.println("singleTap = false");
+					}
+				}
+			}
+			
+		};
+		
+		cancel.setOnKeyPressed(buttonHandler);
+		ok.setOnKeyPressed(buttonHandler);
 	}
 
 	public void setDialogStage(Stage dialogStage) {
@@ -82,6 +184,29 @@ public class DataConfigurationDialogController {
 	@FXML
 	private void handleCancel() {
 		dialogStage.close();
+	}
+	
+	protected void doubleTap(Node n) {
+		KeyEvent artificialEvent = new KeyEvent(KeyEvent.KEY_PRESSED,
+				KeyCode.ENTER.getName(), "Forwarded from foot switch.",
+				KeyCode.ENTER, false, false, false, false);
+		System.out.println("About to handle artificial ENTER.");
+		n.getOnKeyPressed().handle(artificialEvent);
+	}
+	
+	protected void singleTap(Node n) {
+		singleTap = false;
+
+		int index = focusList.indexOf(n);
+		int new_index = index+1;
+
+		if(new_index == focusList.size()) {
+			new_index = 0;
+		}
+
+		Node target = focusList.get(new_index);
+
+		target.requestFocus();
 	}
 }
 

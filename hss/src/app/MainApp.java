@@ -61,6 +61,7 @@ public class MainApp extends Application {
 	private static Stage explorerStage;
 	private static AnchorPane rootLayout;
 	private static MainDisplayController main_controller;
+	private static DataConfigurationDialogController configController;
 	private static SnapshotExplorerController snapshotExplorerController;
 	private static UAVServer server = new UAVServer();
 	private static UAVClient camera_client = null;
@@ -196,8 +197,8 @@ public class MainApp extends Application {
 			Scene scene = new Scene(dialog);
 			dialogStage.setScene(scene);
 
-			DataConfigurationDialogController controller = loader.getController();
-			controller.setDialogStage(dialogStage);
+			configController = loader.getController();
+			configController.setDialogStage(dialogStage);
 
 			boolean[] copy_arr = config_arr.clone();
 
@@ -529,5 +530,9 @@ public class MainApp extends Application {
 
 	public static SnapshotExplorerController getSnapshotExplorerController() {
 		return snapshotExplorerController;
+	}
+
+	public static DataConfigurationDialogController getConfigController() {
+		return configController;
 	}
 }
