@@ -39,6 +39,7 @@ import org.jfree.chart.axis.ValueAxis;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.Range;
 import org.jfree.data.time.DynamicTimeSeriesCollection;
+import org.jfree.data.time.Millisecond;
 import org.jfree.data.time.Second;
 import org.jfree.data.xy.XYDataset;
 import T7.T7Messages.GenericMessage.MsgType;
@@ -66,7 +67,7 @@ import jfxtras.scene.control.gauge.linear.elements.Segment;
 public class MainDisplayController {
 
 	private static Logger logger			= Logger.getLogger(MainDisplayController.class.getName());
-	private static final int COUNT = 2 * 60;
+	private static final int COUNT = 1000; //2 * 60;
 	private static final int SERIESNUM = 7;
 	
 	@FXML
@@ -134,7 +135,7 @@ public class MainDisplayController {
 	private Snapshot embedded_snap;
 	private static KeySpinner keySpinner = null;
 	
-	private DynamicTimeSeriesCollection dataset = new DynamicTimeSeriesCollection(SERIESNUM, COUNT, new Second(), TimeZone.getDefault());
+	private DynamicTimeSeriesCollection dataset = new DynamicTimeSeriesCollection(SERIESNUM, COUNT, new Millisecond(), TimeZone.getDefault());
 
 	private ArrayList<Double> attXList = new ArrayList<Double>();
 	private ArrayList<Double> attYList = new ArrayList<Double>();
@@ -220,7 +221,7 @@ public class MainDisplayController {
 		tempGauge.segments().add(rSeg);
 		tempBox.getChildren().add(tempGauge);
 		
-		dataset.setTimeBase(new Second());
+		dataset.setTimeBase(new Millisecond());
 		dataset.addSeries(new float[COUNT], 0, "Roll");
 		dataset.addSeries(new float[COUNT], 1, "Pitch");
 		dataset.addSeries(new float[COUNT], 2, "Yaw");
@@ -241,7 +242,7 @@ public class MainDisplayController {
 		
 		chartNode.setContent(chartPanel);
 		
-		timer = new Timer(500, new ActionListener() {
+		timer = new Timer(1, new ActionListener() {
 			
 			
 			
