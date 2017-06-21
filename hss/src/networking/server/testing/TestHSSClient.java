@@ -234,8 +234,10 @@ public class TestHSSClient {
 							.setHeartbeat(HeartBeat.newBuilder().setAlive(alive));
 						break;
 					case WIFI:
+						input2 = in.readLine();
 						gm.setMsgtype(208)
-							.setWifi(WiFi.newBuilder().setStrength(Double.parseDouble(input)));
+							.setWifi(WiFi.newBuilder().setStrength(Double.parseDouble(input))
+									.setFreq(Double.parseDouble(input2)));
 						break;
 					default:
 						break;
