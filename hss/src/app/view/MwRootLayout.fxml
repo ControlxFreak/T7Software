@@ -266,7 +266,7 @@
                   </HBox>
                </children>
             </VBox>
-            <VBox spacing="100.0">
+            <VBox alignment="CENTER" spacing="100.0">
                <children>
                   <VBox alignment="TOP_CENTER" spacing="10.0">
                      <children>
@@ -275,17 +275,14 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <VBox>
+                        <VBox alignment="TOP_CENTER">
                            <children>
                               <SwingNode fx:id="horizonNode" />
                            </children>
-                           <padding>
-                              <Insets left="30.0" />
-                           </padding>
                         </VBox>
                      </children>
                   </VBox>
-                  <VBox fx:id="tempBox" alignment="CENTER" spacing="10.0">
+                  <VBox fx:id="tempBox" alignment="TOP_CENTER" spacing="10.0">
                      <children>
                         <Label text="External Temperature (°C)" textFill="WHITE">
                            <font>
@@ -301,7 +298,11 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <SwingNode fx:id="compassNode" />
+                        <VBox alignment="TOP_CENTER">
+                           <children>
+                              <SwingNode fx:id="compassNode" />
+                           </children>
+                        </VBox>
                      </children>
                   </VBox>
                </children>

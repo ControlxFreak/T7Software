@@ -22,6 +22,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.TimeZone;
 import java.util.logging.Logger;
 
@@ -67,7 +68,7 @@ import jfxtras.scene.control.gauge.linear.elements.Segment;
 public class MainDisplayController {
 
 	private static Logger logger			= Logger.getLogger(MainDisplayController.class.getName());
-	private static final int COUNT = 1000; //2 * 60;
+	private static final int COUNT = 2 * 60;
 	private static final int SERIESNUM = 7;
 	
 	@FXML
@@ -135,7 +136,7 @@ public class MainDisplayController {
 	private Snapshot embedded_snap;
 	private static KeySpinner keySpinner = null;
 	
-	private DynamicTimeSeriesCollection dataset = new DynamicTimeSeriesCollection(SERIESNUM, COUNT, new Millisecond(), TimeZone.getDefault());
+	private DynamicTimeSeriesCollection dataset = new DynamicTimeSeriesCollection(SERIESNUM, COUNT, new Second(), TimeZone.getDefault());
 
 	private ArrayList<Double> attXList = new ArrayList<Double>();
 	private ArrayList<Double> attYList = new ArrayList<Double>();
@@ -221,7 +222,7 @@ public class MainDisplayController {
 		tempGauge.segments().add(rSeg);
 		tempBox.getChildren().add(tempGauge);
 		
-		dataset.setTimeBase(new Millisecond());
+		dataset.setTimeBase(new Second(new Date(System.currentTimeMillis() - (1000 * 60 * 2))));
 		dataset.addSeries(new float[COUNT], 0, "Roll");
 		dataset.addSeries(new float[COUNT], 1, "Pitch");
 		dataset.addSeries(new float[COUNT], 2, "Yaw");
@@ -242,7 +243,7 @@ public class MainDisplayController {
 		
 		chartNode.setContent(chartPanel);
 		
-		timer = new Timer(1, new ActionListener() {
+		timer = new Timer(1000, new ActionListener() {
 			
 			
 			
@@ -317,9 +318,11 @@ public class MainDisplayController {
 			
 			if(d == Double.MIN_VALUE) {
 				batteryLabel.setText(null);
+				batt_label.setText(null);
 				d = 0;
 			} else {
 				batteryLabel.setText(doubleDatumToLabelString(d) + "%");
+				batt_label.setText(doubleDatumToLabelString(d));
 			}
 			datumList = batList;
 			break;
