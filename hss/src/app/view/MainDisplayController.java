@@ -209,14 +209,14 @@ public class MainDisplayController {
 		tempGauge = new SimpleMetroArcGauge();
 		tempGauge.setPrefSize(175.0, 175.0);
 		tempGauge.setMinSize(175.0, 175.0);
-		tempGauge.setMaxValue(350.0);
+		tempGauge.setMaxValue(100.0);
 		System.out.println("StyleClass: " + tempGauge.getStyleClass());
 		tempGauge.getStylesheets().add("file:src/app/view/temperature_segment.css");
 		tempGauge.getStyleClass().add("colorscheme-green-to-red-3");
 		System.out.println("tempGauge StyleClasses: " + tempGauge.getStyleClass());
-		Segment gSeg = new PercentSegment(tempGauge, 0.0, 68.0);
-		Segment ySeg = new PercentSegment(tempGauge, 68.0, 88.0);
-		Segment rSeg = new PercentSegment(tempGauge, 88.0, 100.0);
+		Segment gSeg = new PercentSegment(tempGauge, 0.0, 60.0);
+		Segment ySeg = new PercentSegment(tempGauge, 60.0, 85.0);
+		Segment rSeg = new PercentSegment(tempGauge, 85.0, 100.0);
 		tempGauge.segments().add(gSeg);
 		tempGauge.segments().add(ySeg);
 		tempGauge.segments().add(rSeg);
