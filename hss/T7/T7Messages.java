@@ -118,6 +118,19 @@ public final class T7Messages {
     T7.T7Messages.MoveCameraOrBuilder getMovecameraOrBuilder();
 
     /**
+     * <code>.T7.ThermalRequest thermalrequest = 15;</code>
+     */
+    boolean hasThermalrequest();
+    /**
+     * <code>.T7.ThermalRequest thermalrequest = 15;</code>
+     */
+    T7.T7Messages.ThermalRequest getThermalrequest();
+    /**
+     * <code>.T7.ThermalRequest thermalrequest = 15;</code>
+     */
+    T7.T7Messages.ThermalRequestOrBuilder getThermalrequestOrBuilder();
+
+    /**
      * <pre>
      * UAV-&gt;HSS //
      * </pre>
@@ -206,6 +219,45 @@ public final class T7Messages {
      * <code>.T7.Battery bat = 13;</code>
      */
     T7.T7Messages.BatteryOrBuilder getBatOrBuilder();
+
+    /**
+     * <code>.T7.Heading head = 14;</code>
+     */
+    boolean hasHead();
+    /**
+     * <code>.T7.Heading head = 14;</code>
+     */
+    T7.T7Messages.Heading getHead();
+    /**
+     * <code>.T7.Heading head = 14;</code>
+     */
+    T7.T7Messages.HeadingOrBuilder getHeadOrBuilder();
+
+    /**
+     * <code>.T7.ThermalResponse thermalresponse = 16;</code>
+     */
+    boolean hasThermalresponse();
+    /**
+     * <code>.T7.ThermalResponse thermalresponse = 16;</code>
+     */
+    T7.T7Messages.ThermalResponse getThermalresponse();
+    /**
+     * <code>.T7.ThermalResponse thermalresponse = 16;</code>
+     */
+    T7.T7Messages.ThermalResponseOrBuilder getThermalresponseOrBuilder();
+
+    /**
+     * <code>.T7.WiFi wifi = 17;</code>
+     */
+    boolean hasWifi();
+    /**
+     * <code>.T7.WiFi wifi = 17;</code>
+     */
+    T7.T7Messages.WiFi getWifi();
+    /**
+     * <code>.T7.WiFi wifi = 17;</code>
+     */
+    T7.T7Messages.WiFiOrBuilder getWifiOrBuilder();
   }
   /**
    * <pre>
@@ -410,6 +462,58 @@ public final class T7Messages {
 
               break;
             }
+            case 114: {
+              T7.T7Messages.Heading.Builder subBuilder = null;
+              if (head_ != null) {
+                subBuilder = head_.toBuilder();
+              }
+              head_ = input.readMessage(T7.T7Messages.Heading.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(head_);
+                head_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 122: {
+              T7.T7Messages.ThermalRequest.Builder subBuilder = null;
+              if (thermalrequest_ != null) {
+                subBuilder = thermalrequest_.toBuilder();
+              }
+              thermalrequest_ = input.readMessage(T7.T7Messages.ThermalRequest.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(thermalrequest_);
+                thermalrequest_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 130: {
+              T7.T7Messages.ThermalResponse.Builder subBuilder = null;
+              if (thermalresponse_ != null) {
+                subBuilder = thermalresponse_.toBuilder();
+              }
+              thermalresponse_ = input.readMessage(T7.T7Messages.ThermalResponse.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(thermalresponse_);
+                thermalresponse_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 138: {
+              T7.T7Messages.WiFi.Builder subBuilder = null;
+              if (wifi_ != null) {
+                subBuilder = wifi_.toBuilder();
+              }
+              wifi_ = input.readMessage(T7.T7Messages.WiFi.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(wifi_);
+                wifi_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -467,6 +571,10 @@ public final class T7Messages {
        */
       MOVE_CAMERA(102),
       /**
+       * <code>THERMAL_REQUEST = 103;</code>
+       */
+      THERMAL_REQUEST(103),
+      /**
        * <pre>
        * UAV -&gt; HSS //
        * </pre>
@@ -494,6 +602,18 @@ public final class T7Messages {
        * <code>BAT = 205;</code>
        */
       BAT(205),
+      /**
+       * <code>HEAD = 206;</code>
+       */
+      HEAD(206),
+      /**
+       * <code>THERMAL_RESPONSE = 207;</code>
+       */
+      THERMAL_RESPONSE(207),
+      /**
+       * <code>WIFI = 208;</code>
+       */
+      WIFI(208),
       UNRECOGNIZED(-1),
       ;
 
@@ -526,6 +646,10 @@ public final class T7Messages {
        */
       public static final int MOVE_CAMERA_VALUE = 102;
       /**
+       * <code>THERMAL_REQUEST = 103;</code>
+       */
+      public static final int THERMAL_REQUEST_VALUE = 103;
+      /**
        * <pre>
        * UAV -&gt; HSS //
        * </pre>
@@ -553,6 +677,18 @@ public final class T7Messages {
        * <code>BAT = 205;</code>
        */
       public static final int BAT_VALUE = 205;
+      /**
+       * <code>HEAD = 206;</code>
+       */
+      public static final int HEAD_VALUE = 206;
+      /**
+       * <code>THERMAL_RESPONSE = 207;</code>
+       */
+      public static final int THERMAL_RESPONSE_VALUE = 207;
+      /**
+       * <code>WIFI = 208;</code>
+       */
+      public static final int WIFI_VALUE = 208;
 
 
       public final int getNumber() {
@@ -578,12 +714,16 @@ public final class T7Messages {
           case 2: return TERMINATE;
           case 101: return CONFIG_DATA;
           case 102: return MOVE_CAMERA;
+          case 103: return THERMAL_REQUEST;
           case 200: return ACCEL;
           case 201: return GYRO;
           case 202: return ALTITUDE;
           case 203: return ATTITUDE;
           case 204: return TEMP;
           case 205: return BAT;
+          case 206: return HEAD;
+          case 207: return THERMAL_RESPONSE;
+          case 208: return WIFI;
           default: return null;
         }
       }
@@ -783,6 +923,27 @@ public final class T7Messages {
       return getMovecamera();
     }
 
+    public static final int THERMALREQUEST_FIELD_NUMBER = 15;
+    private T7.T7Messages.ThermalRequest thermalrequest_;
+    /**
+     * <code>.T7.ThermalRequest thermalrequest = 15;</code>
+     */
+    public boolean hasThermalrequest() {
+      return thermalrequest_ != null;
+    }
+    /**
+     * <code>.T7.ThermalRequest thermalrequest = 15;</code>
+     */
+    public T7.T7Messages.ThermalRequest getThermalrequest() {
+      return thermalrequest_ == null ? T7.T7Messages.ThermalRequest.getDefaultInstance() : thermalrequest_;
+    }
+    /**
+     * <code>.T7.ThermalRequest thermalrequest = 15;</code>
+     */
+    public T7.T7Messages.ThermalRequestOrBuilder getThermalrequestOrBuilder() {
+      return getThermalrequest();
+    }
+
     public static final int ACCEL_FIELD_NUMBER = 8;
     private T7.T7Messages.Accel accel_;
     /**
@@ -921,6 +1082,69 @@ public final class T7Messages {
       return getBat();
     }
 
+    public static final int HEAD_FIELD_NUMBER = 14;
+    private T7.T7Messages.Heading head_;
+    /**
+     * <code>.T7.Heading head = 14;</code>
+     */
+    public boolean hasHead() {
+      return head_ != null;
+    }
+    /**
+     * <code>.T7.Heading head = 14;</code>
+     */
+    public T7.T7Messages.Heading getHead() {
+      return head_ == null ? T7.T7Messages.Heading.getDefaultInstance() : head_;
+    }
+    /**
+     * <code>.T7.Heading head = 14;</code>
+     */
+    public T7.T7Messages.HeadingOrBuilder getHeadOrBuilder() {
+      return getHead();
+    }
+
+    public static final int THERMALRESPONSE_FIELD_NUMBER = 16;
+    private T7.T7Messages.ThermalResponse thermalresponse_;
+    /**
+     * <code>.T7.ThermalResponse thermalresponse = 16;</code>
+     */
+    public boolean hasThermalresponse() {
+      return thermalresponse_ != null;
+    }
+    /**
+     * <code>.T7.ThermalResponse thermalresponse = 16;</code>
+     */
+    public T7.T7Messages.ThermalResponse getThermalresponse() {
+      return thermalresponse_ == null ? T7.T7Messages.ThermalResponse.getDefaultInstance() : thermalresponse_;
+    }
+    /**
+     * <code>.T7.ThermalResponse thermalresponse = 16;</code>
+     */
+    public T7.T7Messages.ThermalResponseOrBuilder getThermalresponseOrBuilder() {
+      return getThermalresponse();
+    }
+
+    public static final int WIFI_FIELD_NUMBER = 17;
+    private T7.T7Messages.WiFi wifi_;
+    /**
+     * <code>.T7.WiFi wifi = 17;</code>
+     */
+    public boolean hasWifi() {
+      return wifi_ != null;
+    }
+    /**
+     * <code>.T7.WiFi wifi = 17;</code>
+     */
+    public T7.T7Messages.WiFi getWifi() {
+      return wifi_ == null ? T7.T7Messages.WiFi.getDefaultInstance() : wifi_;
+    }
+    /**
+     * <code>.T7.WiFi wifi = 17;</code>
+     */
+    public T7.T7Messages.WiFiOrBuilder getWifiOrBuilder() {
+      return getWifi();
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -971,6 +1195,18 @@ public final class T7Messages {
       }
       if (bat_ != null) {
         output.writeMessage(13, getBat());
+      }
+      if (head_ != null) {
+        output.writeMessage(14, getHead());
+      }
+      if (thermalrequest_ != null) {
+        output.writeMessage(15, getThermalrequest());
+      }
+      if (thermalresponse_ != null) {
+        output.writeMessage(16, getThermalresponse());
+      }
+      if (wifi_ != null) {
+        output.writeMessage(17, getWifi());
       }
     }
 
@@ -1031,6 +1267,22 @@ public final class T7Messages {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(13, getBat());
       }
+      if (head_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(14, getHead());
+      }
+      if (thermalrequest_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(15, getThermalrequest());
+      }
+      if (thermalresponse_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(16, getThermalresponse());
+      }
+      if (wifi_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(17, getWifi());
+      }
       memoizedSize = size;
       return size;
     }
@@ -1078,6 +1330,11 @@ public final class T7Messages {
         result = result && getMovecamera()
             .equals(other.getMovecamera());
       }
+      result = result && (hasThermalrequest() == other.hasThermalrequest());
+      if (hasThermalrequest()) {
+        result = result && getThermalrequest()
+            .equals(other.getThermalrequest());
+      }
       result = result && (hasAccel() == other.hasAccel());
       if (hasAccel()) {
         result = result && getAccel()
@@ -1107,6 +1364,21 @@ public final class T7Messages {
       if (hasBat()) {
         result = result && getBat()
             .equals(other.getBat());
+      }
+      result = result && (hasHead() == other.hasHead());
+      if (hasHead()) {
+        result = result && getHead()
+            .equals(other.getHead());
+      }
+      result = result && (hasThermalresponse() == other.hasThermalresponse());
+      if (hasThermalresponse()) {
+        result = result && getThermalresponse()
+            .equals(other.getThermalresponse());
+      }
+      result = result && (hasWifi() == other.hasWifi());
+      if (hasWifi()) {
+        result = result && getWifi()
+            .equals(other.getWifi());
       }
       return result;
     }
@@ -1143,6 +1415,10 @@ public final class T7Messages {
         hash = (37 * hash) + MOVECAMERA_FIELD_NUMBER;
         hash = (53 * hash) + getMovecamera().hashCode();
       }
+      if (hasThermalrequest()) {
+        hash = (37 * hash) + THERMALREQUEST_FIELD_NUMBER;
+        hash = (53 * hash) + getThermalrequest().hashCode();
+      }
       if (hasAccel()) {
         hash = (37 * hash) + ACCEL_FIELD_NUMBER;
         hash = (53 * hash) + getAccel().hashCode();
@@ -1167,11 +1443,34 @@ public final class T7Messages {
         hash = (37 * hash) + BAT_FIELD_NUMBER;
         hash = (53 * hash) + getBat().hashCode();
       }
+      if (hasHead()) {
+        hash = (37 * hash) + HEAD_FIELD_NUMBER;
+        hash = (53 * hash) + getHead().hashCode();
+      }
+      if (hasThermalresponse()) {
+        hash = (37 * hash) + THERMALRESPONSE_FIELD_NUMBER;
+        hash = (53 * hash) + getThermalresponse().hashCode();
+      }
+      if (hasWifi()) {
+        hash = (37 * hash) + WIFI_FIELD_NUMBER;
+        hash = (53 * hash) + getWifi().hashCode();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
+    public static T7.T7Messages.GenericMessage parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static T7.T7Messages.GenericMessage parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
     public static T7.T7Messages.GenericMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1328,6 +1627,12 @@ public final class T7Messages {
           movecamera_ = null;
           movecameraBuilder_ = null;
         }
+        if (thermalrequestBuilder_ == null) {
+          thermalrequest_ = null;
+        } else {
+          thermalrequest_ = null;
+          thermalrequestBuilder_ = null;
+        }
         if (accelBuilder_ == null) {
           accel_ = null;
         } else {
@@ -1363,6 +1668,24 @@ public final class T7Messages {
         } else {
           bat_ = null;
           batBuilder_ = null;
+        }
+        if (headBuilder_ == null) {
+          head_ = null;
+        } else {
+          head_ = null;
+          headBuilder_ = null;
+        }
+        if (thermalresponseBuilder_ == null) {
+          thermalresponse_ = null;
+        } else {
+          thermalresponse_ = null;
+          thermalresponseBuilder_ = null;
+        }
+        if (wifiBuilder_ == null) {
+          wifi_ = null;
+        } else {
+          wifi_ = null;
+          wifiBuilder_ = null;
         }
         return this;
       }
@@ -1413,6 +1736,11 @@ public final class T7Messages {
         } else {
           result.movecamera_ = movecameraBuilder_.build();
         }
+        if (thermalrequestBuilder_ == null) {
+          result.thermalrequest_ = thermalrequest_;
+        } else {
+          result.thermalrequest_ = thermalrequestBuilder_.build();
+        }
         if (accelBuilder_ == null) {
           result.accel_ = accel_;
         } else {
@@ -1442,6 +1770,21 @@ public final class T7Messages {
           result.bat_ = bat_;
         } else {
           result.bat_ = batBuilder_.build();
+        }
+        if (headBuilder_ == null) {
+          result.head_ = head_;
+        } else {
+          result.head_ = headBuilder_.build();
+        }
+        if (thermalresponseBuilder_ == null) {
+          result.thermalresponse_ = thermalresponse_;
+        } else {
+          result.thermalresponse_ = thermalresponseBuilder_.build();
+        }
+        if (wifiBuilder_ == null) {
+          result.wifi_ = wifi_;
+        } else {
+          result.wifi_ = wifiBuilder_.build();
         }
         onBuilt();
         return result;
@@ -1505,6 +1848,9 @@ public final class T7Messages {
         if (other.hasMovecamera()) {
           mergeMovecamera(other.getMovecamera());
         }
+        if (other.hasThermalrequest()) {
+          mergeThermalrequest(other.getThermalrequest());
+        }
         if (other.hasAccel()) {
           mergeAccel(other.getAccel());
         }
@@ -1522,6 +1868,15 @@ public final class T7Messages {
         }
         if (other.hasBat()) {
           mergeBat(other.getBat());
+        }
+        if (other.hasHead()) {
+          mergeHead(other.getHead());
+        }
+        if (other.hasThermalresponse()) {
+          mergeThermalresponse(other.getThermalresponse());
+        }
+        if (other.hasWifi()) {
+          mergeWifi(other.getWifi());
         }
         onChanged();
         return this;
@@ -2256,6 +2611,123 @@ public final class T7Messages {
           movecamera_ = null;
         }
         return movecameraBuilder_;
+      }
+
+      private T7.T7Messages.ThermalRequest thermalrequest_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          T7.T7Messages.ThermalRequest, T7.T7Messages.ThermalRequest.Builder, T7.T7Messages.ThermalRequestOrBuilder> thermalrequestBuilder_;
+      /**
+       * <code>.T7.ThermalRequest thermalrequest = 15;</code>
+       */
+      public boolean hasThermalrequest() {
+        return thermalrequestBuilder_ != null || thermalrequest_ != null;
+      }
+      /**
+       * <code>.T7.ThermalRequest thermalrequest = 15;</code>
+       */
+      public T7.T7Messages.ThermalRequest getThermalrequest() {
+        if (thermalrequestBuilder_ == null) {
+          return thermalrequest_ == null ? T7.T7Messages.ThermalRequest.getDefaultInstance() : thermalrequest_;
+        } else {
+          return thermalrequestBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.T7.ThermalRequest thermalrequest = 15;</code>
+       */
+      public Builder setThermalrequest(T7.T7Messages.ThermalRequest value) {
+        if (thermalrequestBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          thermalrequest_ = value;
+          onChanged();
+        } else {
+          thermalrequestBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.T7.ThermalRequest thermalrequest = 15;</code>
+       */
+      public Builder setThermalrequest(
+          T7.T7Messages.ThermalRequest.Builder builderForValue) {
+        if (thermalrequestBuilder_ == null) {
+          thermalrequest_ = builderForValue.build();
+          onChanged();
+        } else {
+          thermalrequestBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.T7.ThermalRequest thermalrequest = 15;</code>
+       */
+      public Builder mergeThermalrequest(T7.T7Messages.ThermalRequest value) {
+        if (thermalrequestBuilder_ == null) {
+          if (thermalrequest_ != null) {
+            thermalrequest_ =
+              T7.T7Messages.ThermalRequest.newBuilder(thermalrequest_).mergeFrom(value).buildPartial();
+          } else {
+            thermalrequest_ = value;
+          }
+          onChanged();
+        } else {
+          thermalrequestBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.T7.ThermalRequest thermalrequest = 15;</code>
+       */
+      public Builder clearThermalrequest() {
+        if (thermalrequestBuilder_ == null) {
+          thermalrequest_ = null;
+          onChanged();
+        } else {
+          thermalrequest_ = null;
+          thermalrequestBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.T7.ThermalRequest thermalrequest = 15;</code>
+       */
+      public T7.T7Messages.ThermalRequest.Builder getThermalrequestBuilder() {
+        
+        onChanged();
+        return getThermalrequestFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.T7.ThermalRequest thermalrequest = 15;</code>
+       */
+      public T7.T7Messages.ThermalRequestOrBuilder getThermalrequestOrBuilder() {
+        if (thermalrequestBuilder_ != null) {
+          return thermalrequestBuilder_.getMessageOrBuilder();
+        } else {
+          return thermalrequest_ == null ?
+              T7.T7Messages.ThermalRequest.getDefaultInstance() : thermalrequest_;
+        }
+      }
+      /**
+       * <code>.T7.ThermalRequest thermalrequest = 15;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          T7.T7Messages.ThermalRequest, T7.T7Messages.ThermalRequest.Builder, T7.T7Messages.ThermalRequestOrBuilder> 
+          getThermalrequestFieldBuilder() {
+        if (thermalrequestBuilder_ == null) {
+          thermalrequestBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              T7.T7Messages.ThermalRequest, T7.T7Messages.ThermalRequest.Builder, T7.T7Messages.ThermalRequestOrBuilder>(
+                  getThermalrequest(),
+                  getParentForChildren(),
+                  isClean());
+          thermalrequest_ = null;
+        }
+        return thermalrequestBuilder_;
       }
 
       private T7.T7Messages.Accel accel_ = null;
@@ -2995,6 +3467,357 @@ public final class T7Messages {
         }
         return batBuilder_;
       }
+
+      private T7.T7Messages.Heading head_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          T7.T7Messages.Heading, T7.T7Messages.Heading.Builder, T7.T7Messages.HeadingOrBuilder> headBuilder_;
+      /**
+       * <code>.T7.Heading head = 14;</code>
+       */
+      public boolean hasHead() {
+        return headBuilder_ != null || head_ != null;
+      }
+      /**
+       * <code>.T7.Heading head = 14;</code>
+       */
+      public T7.T7Messages.Heading getHead() {
+        if (headBuilder_ == null) {
+          return head_ == null ? T7.T7Messages.Heading.getDefaultInstance() : head_;
+        } else {
+          return headBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.T7.Heading head = 14;</code>
+       */
+      public Builder setHead(T7.T7Messages.Heading value) {
+        if (headBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          head_ = value;
+          onChanged();
+        } else {
+          headBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.T7.Heading head = 14;</code>
+       */
+      public Builder setHead(
+          T7.T7Messages.Heading.Builder builderForValue) {
+        if (headBuilder_ == null) {
+          head_ = builderForValue.build();
+          onChanged();
+        } else {
+          headBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.T7.Heading head = 14;</code>
+       */
+      public Builder mergeHead(T7.T7Messages.Heading value) {
+        if (headBuilder_ == null) {
+          if (head_ != null) {
+            head_ =
+              T7.T7Messages.Heading.newBuilder(head_).mergeFrom(value).buildPartial();
+          } else {
+            head_ = value;
+          }
+          onChanged();
+        } else {
+          headBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.T7.Heading head = 14;</code>
+       */
+      public Builder clearHead() {
+        if (headBuilder_ == null) {
+          head_ = null;
+          onChanged();
+        } else {
+          head_ = null;
+          headBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.T7.Heading head = 14;</code>
+       */
+      public T7.T7Messages.Heading.Builder getHeadBuilder() {
+        
+        onChanged();
+        return getHeadFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.T7.Heading head = 14;</code>
+       */
+      public T7.T7Messages.HeadingOrBuilder getHeadOrBuilder() {
+        if (headBuilder_ != null) {
+          return headBuilder_.getMessageOrBuilder();
+        } else {
+          return head_ == null ?
+              T7.T7Messages.Heading.getDefaultInstance() : head_;
+        }
+      }
+      /**
+       * <code>.T7.Heading head = 14;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          T7.T7Messages.Heading, T7.T7Messages.Heading.Builder, T7.T7Messages.HeadingOrBuilder> 
+          getHeadFieldBuilder() {
+        if (headBuilder_ == null) {
+          headBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              T7.T7Messages.Heading, T7.T7Messages.Heading.Builder, T7.T7Messages.HeadingOrBuilder>(
+                  getHead(),
+                  getParentForChildren(),
+                  isClean());
+          head_ = null;
+        }
+        return headBuilder_;
+      }
+
+      private T7.T7Messages.ThermalResponse thermalresponse_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          T7.T7Messages.ThermalResponse, T7.T7Messages.ThermalResponse.Builder, T7.T7Messages.ThermalResponseOrBuilder> thermalresponseBuilder_;
+      /**
+       * <code>.T7.ThermalResponse thermalresponse = 16;</code>
+       */
+      public boolean hasThermalresponse() {
+        return thermalresponseBuilder_ != null || thermalresponse_ != null;
+      }
+      /**
+       * <code>.T7.ThermalResponse thermalresponse = 16;</code>
+       */
+      public T7.T7Messages.ThermalResponse getThermalresponse() {
+        if (thermalresponseBuilder_ == null) {
+          return thermalresponse_ == null ? T7.T7Messages.ThermalResponse.getDefaultInstance() : thermalresponse_;
+        } else {
+          return thermalresponseBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.T7.ThermalResponse thermalresponse = 16;</code>
+       */
+      public Builder setThermalresponse(T7.T7Messages.ThermalResponse value) {
+        if (thermalresponseBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          thermalresponse_ = value;
+          onChanged();
+        } else {
+          thermalresponseBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.T7.ThermalResponse thermalresponse = 16;</code>
+       */
+      public Builder setThermalresponse(
+          T7.T7Messages.ThermalResponse.Builder builderForValue) {
+        if (thermalresponseBuilder_ == null) {
+          thermalresponse_ = builderForValue.build();
+          onChanged();
+        } else {
+          thermalresponseBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.T7.ThermalResponse thermalresponse = 16;</code>
+       */
+      public Builder mergeThermalresponse(T7.T7Messages.ThermalResponse value) {
+        if (thermalresponseBuilder_ == null) {
+          if (thermalresponse_ != null) {
+            thermalresponse_ =
+              T7.T7Messages.ThermalResponse.newBuilder(thermalresponse_).mergeFrom(value).buildPartial();
+          } else {
+            thermalresponse_ = value;
+          }
+          onChanged();
+        } else {
+          thermalresponseBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.T7.ThermalResponse thermalresponse = 16;</code>
+       */
+      public Builder clearThermalresponse() {
+        if (thermalresponseBuilder_ == null) {
+          thermalresponse_ = null;
+          onChanged();
+        } else {
+          thermalresponse_ = null;
+          thermalresponseBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.T7.ThermalResponse thermalresponse = 16;</code>
+       */
+      public T7.T7Messages.ThermalResponse.Builder getThermalresponseBuilder() {
+        
+        onChanged();
+        return getThermalresponseFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.T7.ThermalResponse thermalresponse = 16;</code>
+       */
+      public T7.T7Messages.ThermalResponseOrBuilder getThermalresponseOrBuilder() {
+        if (thermalresponseBuilder_ != null) {
+          return thermalresponseBuilder_.getMessageOrBuilder();
+        } else {
+          return thermalresponse_ == null ?
+              T7.T7Messages.ThermalResponse.getDefaultInstance() : thermalresponse_;
+        }
+      }
+      /**
+       * <code>.T7.ThermalResponse thermalresponse = 16;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          T7.T7Messages.ThermalResponse, T7.T7Messages.ThermalResponse.Builder, T7.T7Messages.ThermalResponseOrBuilder> 
+          getThermalresponseFieldBuilder() {
+        if (thermalresponseBuilder_ == null) {
+          thermalresponseBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              T7.T7Messages.ThermalResponse, T7.T7Messages.ThermalResponse.Builder, T7.T7Messages.ThermalResponseOrBuilder>(
+                  getThermalresponse(),
+                  getParentForChildren(),
+                  isClean());
+          thermalresponse_ = null;
+        }
+        return thermalresponseBuilder_;
+      }
+
+      private T7.T7Messages.WiFi wifi_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          T7.T7Messages.WiFi, T7.T7Messages.WiFi.Builder, T7.T7Messages.WiFiOrBuilder> wifiBuilder_;
+      /**
+       * <code>.T7.WiFi wifi = 17;</code>
+       */
+      public boolean hasWifi() {
+        return wifiBuilder_ != null || wifi_ != null;
+      }
+      /**
+       * <code>.T7.WiFi wifi = 17;</code>
+       */
+      public T7.T7Messages.WiFi getWifi() {
+        if (wifiBuilder_ == null) {
+          return wifi_ == null ? T7.T7Messages.WiFi.getDefaultInstance() : wifi_;
+        } else {
+          return wifiBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.T7.WiFi wifi = 17;</code>
+       */
+      public Builder setWifi(T7.T7Messages.WiFi value) {
+        if (wifiBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          wifi_ = value;
+          onChanged();
+        } else {
+          wifiBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.T7.WiFi wifi = 17;</code>
+       */
+      public Builder setWifi(
+          T7.T7Messages.WiFi.Builder builderForValue) {
+        if (wifiBuilder_ == null) {
+          wifi_ = builderForValue.build();
+          onChanged();
+        } else {
+          wifiBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.T7.WiFi wifi = 17;</code>
+       */
+      public Builder mergeWifi(T7.T7Messages.WiFi value) {
+        if (wifiBuilder_ == null) {
+          if (wifi_ != null) {
+            wifi_ =
+              T7.T7Messages.WiFi.newBuilder(wifi_).mergeFrom(value).buildPartial();
+          } else {
+            wifi_ = value;
+          }
+          onChanged();
+        } else {
+          wifiBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.T7.WiFi wifi = 17;</code>
+       */
+      public Builder clearWifi() {
+        if (wifiBuilder_ == null) {
+          wifi_ = null;
+          onChanged();
+        } else {
+          wifi_ = null;
+          wifiBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.T7.WiFi wifi = 17;</code>
+       */
+      public T7.T7Messages.WiFi.Builder getWifiBuilder() {
+        
+        onChanged();
+        return getWifiFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.T7.WiFi wifi = 17;</code>
+       */
+      public T7.T7Messages.WiFiOrBuilder getWifiOrBuilder() {
+        if (wifiBuilder_ != null) {
+          return wifiBuilder_.getMessageOrBuilder();
+        } else {
+          return wifi_ == null ?
+              T7.T7Messages.WiFi.getDefaultInstance() : wifi_;
+        }
+      }
+      /**
+       * <code>.T7.WiFi wifi = 17;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          T7.T7Messages.WiFi, T7.T7Messages.WiFi.Builder, T7.T7Messages.WiFiOrBuilder> 
+          getWifiFieldBuilder() {
+        if (wifiBuilder_ == null) {
+          wifiBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              T7.T7Messages.WiFi, T7.T7Messages.WiFi.Builder, T7.T7Messages.WiFiOrBuilder>(
+                  getWifi(),
+                  getParentForChildren(),
+                  isClean());
+          wifi_ = null;
+        }
+        return wifiBuilder_;
+      }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
@@ -3198,6 +4021,17 @@ public final class T7Messages {
       return hash;
     }
 
+    public static T7.T7Messages.Response parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static T7.T7Messages.Response parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
     public static T7.T7Messages.Response parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -3640,6 +4474,17 @@ public final class T7Messages {
       return hash;
     }
 
+    public static T7.T7Messages.HeartBeat parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static T7.T7Messages.HeartBeat parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
     public static T7.T7Messages.HeartBeat parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -4189,6 +5034,17 @@ public final class T7Messages {
     }
 
     public static T7.T7Messages.Terminate parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static T7.T7Messages.Terminate parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static T7.T7Messages.Terminate parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
@@ -4592,6 +5448,18 @@ public final class T7Messages {
        * <code>toggleBat = 5;</code>
        */
       toggleBat(5),
+      /**
+       * <code>toggleArray = 6;</code>
+       */
+      toggleArray(6),
+      /**
+       * <code>toggleHead = 7;</code>
+       */
+      toggleHead(7),
+      /**
+       * <code>toggleWifi = 8;</code>
+       */
+      toggleWifi(8),
       UNRECOGNIZED(-1),
       ;
 
@@ -4619,6 +5487,18 @@ public final class T7Messages {
        * <code>toggleBat = 5;</code>
        */
       public static final int toggleBat_VALUE = 5;
+      /**
+       * <code>toggleArray = 6;</code>
+       */
+      public static final int toggleArray_VALUE = 6;
+      /**
+       * <code>toggleHead = 7;</code>
+       */
+      public static final int toggleHead_VALUE = 7;
+      /**
+       * <code>toggleWifi = 8;</code>
+       */
+      public static final int toggleWifi_VALUE = 8;
 
 
       public final int getNumber() {
@@ -4645,6 +5525,9 @@ public final class T7Messages {
           case 3: return toggleAttitude;
           case 4: return toggleTemp;
           case 5: return toggleBat;
+          case 6: return toggleArray;
+          case 7: return toggleHead;
+          case 8: return toggleWifi;
           default: return null;
         }
       }
@@ -4767,6 +5650,17 @@ public final class T7Messages {
       return hash;
     }
 
+    public static T7.T7Messages.ConfigData parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static T7.T7Messages.ConfigData parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
     public static T7.T7Messages.ConfigData parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -5325,6 +6219,17 @@ public final class T7Messages {
     }
 
     public static T7.T7Messages.MoveCamera parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static T7.T7Messages.MoveCamera parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static T7.T7Messages.MoveCamera parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
@@ -5612,6 +6517,479 @@ public final class T7Messages {
 
   }
 
+  public interface ThermalRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:T7.ThermalRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * Not sure if message with no fields is allowed.
+     * </pre>
+     *
+     * <code>bool request = 1;</code>
+     */
+    boolean getRequest();
+  }
+  /**
+   * <pre>
+   * ThermalRequest //
+   * This message will request the maximum reading from the
+   * thermal array at the current time.
+   * </pre>
+   *
+   * Protobuf type {@code T7.ThermalRequest}
+   */
+  public  static final class ThermalRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:T7.ThermalRequest)
+      ThermalRequestOrBuilder {
+    // Use ThermalRequest.newBuilder() to construct.
+    private ThermalRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ThermalRequest() {
+      request_ = false;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private ThermalRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              request_ = input.readBool();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return T7.T7Messages.internal_static_T7_ThermalRequest_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return T7.T7Messages.internal_static_T7_ThermalRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              T7.T7Messages.ThermalRequest.class, T7.T7Messages.ThermalRequest.Builder.class);
+    }
+
+    public static final int REQUEST_FIELD_NUMBER = 1;
+    private boolean request_;
+    /**
+     * <pre>
+     * Not sure if message with no fields is allowed.
+     * </pre>
+     *
+     * <code>bool request = 1;</code>
+     */
+    public boolean getRequest() {
+      return request_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (request_ != false) {
+        output.writeBool(1, request_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (request_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(1, request_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof T7.T7Messages.ThermalRequest)) {
+        return super.equals(obj);
+      }
+      T7.T7Messages.ThermalRequest other = (T7.T7Messages.ThermalRequest) obj;
+
+      boolean result = true;
+      result = result && (getRequest()
+          == other.getRequest());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + REQUEST_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getRequest());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static T7.T7Messages.ThermalRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static T7.T7Messages.ThermalRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static T7.T7Messages.ThermalRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static T7.T7Messages.ThermalRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static T7.T7Messages.ThermalRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static T7.T7Messages.ThermalRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static T7.T7Messages.ThermalRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static T7.T7Messages.ThermalRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static T7.T7Messages.ThermalRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static T7.T7Messages.ThermalRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static T7.T7Messages.ThermalRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static T7.T7Messages.ThermalRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(T7.T7Messages.ThermalRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * ThermalRequest //
+     * This message will request the maximum reading from the
+     * thermal array at the current time.
+     * </pre>
+     *
+     * Protobuf type {@code T7.ThermalRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:T7.ThermalRequest)
+        T7.T7Messages.ThermalRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return T7.T7Messages.internal_static_T7_ThermalRequest_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return T7.T7Messages.internal_static_T7_ThermalRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                T7.T7Messages.ThermalRequest.class, T7.T7Messages.ThermalRequest.Builder.class);
+      }
+
+      // Construct using T7.T7Messages.ThermalRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        request_ = false;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return T7.T7Messages.internal_static_T7_ThermalRequest_descriptor;
+      }
+
+      public T7.T7Messages.ThermalRequest getDefaultInstanceForType() {
+        return T7.T7Messages.ThermalRequest.getDefaultInstance();
+      }
+
+      public T7.T7Messages.ThermalRequest build() {
+        T7.T7Messages.ThermalRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public T7.T7Messages.ThermalRequest buildPartial() {
+        T7.T7Messages.ThermalRequest result = new T7.T7Messages.ThermalRequest(this);
+        result.request_ = request_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof T7.T7Messages.ThermalRequest) {
+          return mergeFrom((T7.T7Messages.ThermalRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(T7.T7Messages.ThermalRequest other) {
+        if (other == T7.T7Messages.ThermalRequest.getDefaultInstance()) return this;
+        if (other.getRequest() != false) {
+          setRequest(other.getRequest());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        T7.T7Messages.ThermalRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (T7.T7Messages.ThermalRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private boolean request_ ;
+      /**
+       * <pre>
+       * Not sure if message with no fields is allowed.
+       * </pre>
+       *
+       * <code>bool request = 1;</code>
+       */
+      public boolean getRequest() {
+        return request_;
+      }
+      /**
+       * <pre>
+       * Not sure if message with no fields is allowed.
+       * </pre>
+       *
+       * <code>bool request = 1;</code>
+       */
+      public Builder setRequest(boolean value) {
+        
+        request_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Not sure if message with no fields is allowed.
+       * </pre>
+       *
+       * <code>bool request = 1;</code>
+       */
+      public Builder clearRequest() {
+        
+        request_ = false;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:T7.ThermalRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:T7.ThermalRequest)
+    private static final T7.T7Messages.ThermalRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new T7.T7Messages.ThermalRequest();
+    }
+
+    public static T7.T7Messages.ThermalRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ThermalRequest>
+        PARSER = new com.google.protobuf.AbstractParser<ThermalRequest>() {
+      public ThermalRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new ThermalRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<ThermalRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ThermalRequest> getParserForType() {
+      return PARSER;
+    }
+
+    public T7.T7Messages.ThermalRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface AccelOrBuilder extends
       // @@protoc_insertion_point(interface_extends:T7.Accel)
       com.google.protobuf.MessageOrBuilder {
@@ -5862,6 +7240,17 @@ public final class T7Messages {
       return hash;
     }
 
+    public static T7.T7Messages.Accel parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static T7.T7Messages.Accel parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
     public static T7.T7Messages.Accel parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -6500,6 +7889,17 @@ public final class T7Messages {
     }
 
     public static T7.T7Messages.Gyro parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static T7.T7Messages.Gyro parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static T7.T7Messages.Gyro parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
@@ -7050,6 +8450,17 @@ public final class T7Messages {
     }
 
     public static T7.T7Messages.Altitude parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static T7.T7Messages.Altitude parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static T7.T7Messages.Altitude parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
@@ -7595,6 +9006,17 @@ public final class T7Messages {
       return hash;
     }
 
+    public static T7.T7Messages.Attitude parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static T7.T7Messages.Attitude parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
     public static T7.T7Messages.Attitude parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -8146,6 +9568,17 @@ public final class T7Messages {
     }
 
     public static T7.T7Messages.Temp parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static T7.T7Messages.Temp parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static T7.T7Messages.Temp parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
@@ -8608,6 +10041,17 @@ public final class T7Messages {
     }
 
     public static T7.T7Messages.Battery parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static T7.T7Messages.Battery parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static T7.T7Messages.Battery parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
@@ -8906,6 +10350,1517 @@ public final class T7Messages {
 
   }
 
+  public interface HeadingOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:T7.Heading)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * [rad]
+     * </pre>
+     *
+     * <code>double heading = 1;</code>
+     */
+    double getHeading();
+  }
+  /**
+   * <pre>
+   * Heading //
+   * This message defines the heading message.
+   * </pre>
+   *
+   * Protobuf type {@code T7.Heading}
+   */
+  public  static final class Heading extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:T7.Heading)
+      HeadingOrBuilder {
+    // Use Heading.newBuilder() to construct.
+    private Heading(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Heading() {
+      heading_ = 0D;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private Heading(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 9: {
+
+              heading_ = input.readDouble();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return T7.T7Messages.internal_static_T7_Heading_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return T7.T7Messages.internal_static_T7_Heading_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              T7.T7Messages.Heading.class, T7.T7Messages.Heading.Builder.class);
+    }
+
+    public static final int HEADING_FIELD_NUMBER = 1;
+    private double heading_;
+    /**
+     * <pre>
+     * [rad]
+     * </pre>
+     *
+     * <code>double heading = 1;</code>
+     */
+    public double getHeading() {
+      return heading_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (heading_ != 0D) {
+        output.writeDouble(1, heading_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (heading_ != 0D) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(1, heading_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof T7.T7Messages.Heading)) {
+        return super.equals(obj);
+      }
+      T7.T7Messages.Heading other = (T7.T7Messages.Heading) obj;
+
+      boolean result = true;
+      result = result && (
+          java.lang.Double.doubleToLongBits(getHeading())
+          == java.lang.Double.doubleToLongBits(
+              other.getHeading()));
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + HEADING_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getHeading()));
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static T7.T7Messages.Heading parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static T7.T7Messages.Heading parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static T7.T7Messages.Heading parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static T7.T7Messages.Heading parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static T7.T7Messages.Heading parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static T7.T7Messages.Heading parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static T7.T7Messages.Heading parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static T7.T7Messages.Heading parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static T7.T7Messages.Heading parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static T7.T7Messages.Heading parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static T7.T7Messages.Heading parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static T7.T7Messages.Heading parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(T7.T7Messages.Heading prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * Heading //
+     * This message defines the heading message.
+     * </pre>
+     *
+     * Protobuf type {@code T7.Heading}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:T7.Heading)
+        T7.T7Messages.HeadingOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return T7.T7Messages.internal_static_T7_Heading_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return T7.T7Messages.internal_static_T7_Heading_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                T7.T7Messages.Heading.class, T7.T7Messages.Heading.Builder.class);
+      }
+
+      // Construct using T7.T7Messages.Heading.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        heading_ = 0D;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return T7.T7Messages.internal_static_T7_Heading_descriptor;
+      }
+
+      public T7.T7Messages.Heading getDefaultInstanceForType() {
+        return T7.T7Messages.Heading.getDefaultInstance();
+      }
+
+      public T7.T7Messages.Heading build() {
+        T7.T7Messages.Heading result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public T7.T7Messages.Heading buildPartial() {
+        T7.T7Messages.Heading result = new T7.T7Messages.Heading(this);
+        result.heading_ = heading_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof T7.T7Messages.Heading) {
+          return mergeFrom((T7.T7Messages.Heading)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(T7.T7Messages.Heading other) {
+        if (other == T7.T7Messages.Heading.getDefaultInstance()) return this;
+        if (other.getHeading() != 0D) {
+          setHeading(other.getHeading());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        T7.T7Messages.Heading parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (T7.T7Messages.Heading) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private double heading_ ;
+      /**
+       * <pre>
+       * [rad]
+       * </pre>
+       *
+       * <code>double heading = 1;</code>
+       */
+      public double getHeading() {
+        return heading_;
+      }
+      /**
+       * <pre>
+       * [rad]
+       * </pre>
+       *
+       * <code>double heading = 1;</code>
+       */
+      public Builder setHeading(double value) {
+        
+        heading_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * [rad]
+       * </pre>
+       *
+       * <code>double heading = 1;</code>
+       */
+      public Builder clearHeading() {
+        
+        heading_ = 0D;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:T7.Heading)
+    }
+
+    // @@protoc_insertion_point(class_scope:T7.Heading)
+    private static final T7.T7Messages.Heading DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new T7.T7Messages.Heading();
+    }
+
+    public static T7.T7Messages.Heading getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Heading>
+        PARSER = new com.google.protobuf.AbstractParser<Heading>() {
+      public Heading parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Heading(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Heading> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Heading> getParserForType() {
+      return PARSER;
+    }
+
+    public T7.T7Messages.Heading getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ThermalResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:T7.ThermalResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * [c]
+     * </pre>
+     *
+     * <code>double response = 1;</code>
+     */
+    double getResponse();
+  }
+  /**
+   * <pre>
+   * ThermalResponse //
+   * This message contains the maximum reading from the
+   * thermal array at the current time. Used in the
+   * prioritization algorithm.
+   * </pre>
+   *
+   * Protobuf type {@code T7.ThermalResponse}
+   */
+  public  static final class ThermalResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:T7.ThermalResponse)
+      ThermalResponseOrBuilder {
+    // Use ThermalResponse.newBuilder() to construct.
+    private ThermalResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ThermalResponse() {
+      response_ = 0D;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private ThermalResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 9: {
+
+              response_ = input.readDouble();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return T7.T7Messages.internal_static_T7_ThermalResponse_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return T7.T7Messages.internal_static_T7_ThermalResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              T7.T7Messages.ThermalResponse.class, T7.T7Messages.ThermalResponse.Builder.class);
+    }
+
+    public static final int RESPONSE_FIELD_NUMBER = 1;
+    private double response_;
+    /**
+     * <pre>
+     * [c]
+     * </pre>
+     *
+     * <code>double response = 1;</code>
+     */
+    public double getResponse() {
+      return response_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (response_ != 0D) {
+        output.writeDouble(1, response_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (response_ != 0D) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(1, response_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof T7.T7Messages.ThermalResponse)) {
+        return super.equals(obj);
+      }
+      T7.T7Messages.ThermalResponse other = (T7.T7Messages.ThermalResponse) obj;
+
+      boolean result = true;
+      result = result && (
+          java.lang.Double.doubleToLongBits(getResponse())
+          == java.lang.Double.doubleToLongBits(
+              other.getResponse()));
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + RESPONSE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getResponse()));
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static T7.T7Messages.ThermalResponse parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static T7.T7Messages.ThermalResponse parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static T7.T7Messages.ThermalResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static T7.T7Messages.ThermalResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static T7.T7Messages.ThermalResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static T7.T7Messages.ThermalResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static T7.T7Messages.ThermalResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static T7.T7Messages.ThermalResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static T7.T7Messages.ThermalResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static T7.T7Messages.ThermalResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static T7.T7Messages.ThermalResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static T7.T7Messages.ThermalResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(T7.T7Messages.ThermalResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * ThermalResponse //
+     * This message contains the maximum reading from the
+     * thermal array at the current time. Used in the
+     * prioritization algorithm.
+     * </pre>
+     *
+     * Protobuf type {@code T7.ThermalResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:T7.ThermalResponse)
+        T7.T7Messages.ThermalResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return T7.T7Messages.internal_static_T7_ThermalResponse_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return T7.T7Messages.internal_static_T7_ThermalResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                T7.T7Messages.ThermalResponse.class, T7.T7Messages.ThermalResponse.Builder.class);
+      }
+
+      // Construct using T7.T7Messages.ThermalResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        response_ = 0D;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return T7.T7Messages.internal_static_T7_ThermalResponse_descriptor;
+      }
+
+      public T7.T7Messages.ThermalResponse getDefaultInstanceForType() {
+        return T7.T7Messages.ThermalResponse.getDefaultInstance();
+      }
+
+      public T7.T7Messages.ThermalResponse build() {
+        T7.T7Messages.ThermalResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public T7.T7Messages.ThermalResponse buildPartial() {
+        T7.T7Messages.ThermalResponse result = new T7.T7Messages.ThermalResponse(this);
+        result.response_ = response_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof T7.T7Messages.ThermalResponse) {
+          return mergeFrom((T7.T7Messages.ThermalResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(T7.T7Messages.ThermalResponse other) {
+        if (other == T7.T7Messages.ThermalResponse.getDefaultInstance()) return this;
+        if (other.getResponse() != 0D) {
+          setResponse(other.getResponse());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        T7.T7Messages.ThermalResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (T7.T7Messages.ThermalResponse) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private double response_ ;
+      /**
+       * <pre>
+       * [c]
+       * </pre>
+       *
+       * <code>double response = 1;</code>
+       */
+      public double getResponse() {
+        return response_;
+      }
+      /**
+       * <pre>
+       * [c]
+       * </pre>
+       *
+       * <code>double response = 1;</code>
+       */
+      public Builder setResponse(double value) {
+        
+        response_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * [c]
+       * </pre>
+       *
+       * <code>double response = 1;</code>
+       */
+      public Builder clearResponse() {
+        
+        response_ = 0D;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:T7.ThermalResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:T7.ThermalResponse)
+    private static final T7.T7Messages.ThermalResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new T7.T7Messages.ThermalResponse();
+    }
+
+    public static T7.T7Messages.ThermalResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ThermalResponse>
+        PARSER = new com.google.protobuf.AbstractParser<ThermalResponse>() {
+      public ThermalResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new ThermalResponse(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<ThermalResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ThermalResponse> getParserForType() {
+      return PARSER;
+    }
+
+    public T7.T7Messages.ThermalResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface WiFiOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:T7.WiFi)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * dB
+     * </pre>
+     *
+     * <code>double strength = 1;</code>
+     */
+    double getStrength();
+
+    /**
+     * <pre>
+     * MHz
+     * </pre>
+     *
+     * <code>double freq = 2;</code>
+     */
+    double getFreq();
+  }
+  /**
+   * <pre>
+   * WiFi //
+   * This message contains the wifi signal strength of
+   * the currently connected host on WLAN[0]
+   * </pre>
+   *
+   * Protobuf type {@code T7.WiFi}
+   */
+  public  static final class WiFi extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:T7.WiFi)
+      WiFiOrBuilder {
+    // Use WiFi.newBuilder() to construct.
+    private WiFi(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private WiFi() {
+      strength_ = 0D;
+      freq_ = 0D;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private WiFi(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 9: {
+
+              strength_ = input.readDouble();
+              break;
+            }
+            case 17: {
+
+              freq_ = input.readDouble();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return T7.T7Messages.internal_static_T7_WiFi_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return T7.T7Messages.internal_static_T7_WiFi_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              T7.T7Messages.WiFi.class, T7.T7Messages.WiFi.Builder.class);
+    }
+
+    public static final int STRENGTH_FIELD_NUMBER = 1;
+    private double strength_;
+    /**
+     * <pre>
+     * dB
+     * </pre>
+     *
+     * <code>double strength = 1;</code>
+     */
+    public double getStrength() {
+      return strength_;
+    }
+
+    public static final int FREQ_FIELD_NUMBER = 2;
+    private double freq_;
+    /**
+     * <pre>
+     * MHz
+     * </pre>
+     *
+     * <code>double freq = 2;</code>
+     */
+    public double getFreq() {
+      return freq_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (strength_ != 0D) {
+        output.writeDouble(1, strength_);
+      }
+      if (freq_ != 0D) {
+        output.writeDouble(2, freq_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (strength_ != 0D) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(1, strength_);
+      }
+      if (freq_ != 0D) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(2, freq_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof T7.T7Messages.WiFi)) {
+        return super.equals(obj);
+      }
+      T7.T7Messages.WiFi other = (T7.T7Messages.WiFi) obj;
+
+      boolean result = true;
+      result = result && (
+          java.lang.Double.doubleToLongBits(getStrength())
+          == java.lang.Double.doubleToLongBits(
+              other.getStrength()));
+      result = result && (
+          java.lang.Double.doubleToLongBits(getFreq())
+          == java.lang.Double.doubleToLongBits(
+              other.getFreq()));
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + STRENGTH_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getStrength()));
+      hash = (37 * hash) + FREQ_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getFreq()));
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static T7.T7Messages.WiFi parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static T7.T7Messages.WiFi parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static T7.T7Messages.WiFi parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static T7.T7Messages.WiFi parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static T7.T7Messages.WiFi parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static T7.T7Messages.WiFi parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static T7.T7Messages.WiFi parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static T7.T7Messages.WiFi parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static T7.T7Messages.WiFi parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static T7.T7Messages.WiFi parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static T7.T7Messages.WiFi parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static T7.T7Messages.WiFi parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(T7.T7Messages.WiFi prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * WiFi //
+     * This message contains the wifi signal strength of
+     * the currently connected host on WLAN[0]
+     * </pre>
+     *
+     * Protobuf type {@code T7.WiFi}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:T7.WiFi)
+        T7.T7Messages.WiFiOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return T7.T7Messages.internal_static_T7_WiFi_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return T7.T7Messages.internal_static_T7_WiFi_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                T7.T7Messages.WiFi.class, T7.T7Messages.WiFi.Builder.class);
+      }
+
+      // Construct using T7.T7Messages.WiFi.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        strength_ = 0D;
+
+        freq_ = 0D;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return T7.T7Messages.internal_static_T7_WiFi_descriptor;
+      }
+
+      public T7.T7Messages.WiFi getDefaultInstanceForType() {
+        return T7.T7Messages.WiFi.getDefaultInstance();
+      }
+
+      public T7.T7Messages.WiFi build() {
+        T7.T7Messages.WiFi result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public T7.T7Messages.WiFi buildPartial() {
+        T7.T7Messages.WiFi result = new T7.T7Messages.WiFi(this);
+        result.strength_ = strength_;
+        result.freq_ = freq_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof T7.T7Messages.WiFi) {
+          return mergeFrom((T7.T7Messages.WiFi)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(T7.T7Messages.WiFi other) {
+        if (other == T7.T7Messages.WiFi.getDefaultInstance()) return this;
+        if (other.getStrength() != 0D) {
+          setStrength(other.getStrength());
+        }
+        if (other.getFreq() != 0D) {
+          setFreq(other.getFreq());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        T7.T7Messages.WiFi parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (T7.T7Messages.WiFi) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private double strength_ ;
+      /**
+       * <pre>
+       * dB
+       * </pre>
+       *
+       * <code>double strength = 1;</code>
+       */
+      public double getStrength() {
+        return strength_;
+      }
+      /**
+       * <pre>
+       * dB
+       * </pre>
+       *
+       * <code>double strength = 1;</code>
+       */
+      public Builder setStrength(double value) {
+        
+        strength_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * dB
+       * </pre>
+       *
+       * <code>double strength = 1;</code>
+       */
+      public Builder clearStrength() {
+        
+        strength_ = 0D;
+        onChanged();
+        return this;
+      }
+
+      private double freq_ ;
+      /**
+       * <pre>
+       * MHz
+       * </pre>
+       *
+       * <code>double freq = 2;</code>
+       */
+      public double getFreq() {
+        return freq_;
+      }
+      /**
+       * <pre>
+       * MHz
+       * </pre>
+       *
+       * <code>double freq = 2;</code>
+       */
+      public Builder setFreq(double value) {
+        
+        freq_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * MHz
+       * </pre>
+       *
+       * <code>double freq = 2;</code>
+       */
+      public Builder clearFreq() {
+        
+        freq_ = 0D;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:T7.WiFi)
+    }
+
+    // @@protoc_insertion_point(class_scope:T7.WiFi)
+    private static final T7.T7Messages.WiFi DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new T7.T7Messages.WiFi();
+    }
+
+    public static T7.T7Messages.WiFi getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<WiFi>
+        PARSER = new com.google.protobuf.AbstractParser<WiFi>() {
+      public WiFi parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new WiFi(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<WiFi> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<WiFi> getParserForType() {
+      return PARSER;
+    }
+
+    public T7.T7Messages.WiFi getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_T7_GenericMessage_descriptor;
   private static final 
@@ -8937,6 +11892,11 @@ public final class T7Messages {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_T7_MoveCamera_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_T7_ThermalRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_T7_ThermalRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_T7_Accel_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -8966,6 +11926,21 @@ public final class T7Messages {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_T7_Battery_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_T7_Heading_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_T7_Heading_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_T7_ThermalResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_T7_ThermalResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_T7_WiFi_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_T7_WiFi_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -8975,36 +11950,46 @@ public final class T7Messages {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\020T7Messages.proto\022\002T7\"\243\004\n\016GenericMessag" +
+      "\n\020T7Messages.proto\022\002T7\"\362\005\n\016GenericMessag" +
       "e\022\017\n\007msgtype\030\001 \001(\005\022\014\n\004time\030\002 \001(\001\022\036\n\010resp" +
       "onse\030\003 \001(\0132\014.T7.Response\022 \n\theartbeat\030\004 " +
       "\001(\0132\r.T7.HeartBeat\022 \n\tterminate\030\005 \001(\0132\r." +
       "T7.Terminate\022\"\n\nconfigdata\030\006 \001(\0132\016.T7.Co" +
       "nfigData\022\"\n\nmovecamera\030\007 \001(\0132\016.T7.MoveCa" +
-      "mera\022\030\n\005accel\030\010 \001(\0132\t.T7.Accel\022\026\n\004gyro\030\t" +
-      " \001(\0132\010.T7.Gyro\022\036\n\010altitude\030\n \001(\0132\014.T7.Al" +
-      "titude\022\036\n\010attitude\030\013 \001(\0132\014.T7.Attitude\022\026" +
-      "\n\004temp\030\014 \001(\0132\010.T7.Temp\022\030\n\003bat\030\r \001(\0132\013.T7",
-      ".Battery\"\241\001\n\007MsgType\022\014\n\010RESPONSE\020\000\022\r\n\tHE" +
-      "ARTBEAT\020\001\022\r\n\tTERMINATE\020\002\022\017\n\013CONFIG_DATA\020" +
-      "e\022\017\n\013MOVE_CAMERA\020f\022\n\n\005ACCEL\020\310\001\022\t\n\004GYRO\020\311" +
-      "\001\022\r\n\010ALTITUDE\020\312\001\022\r\n\010ATTITUDE\020\313\001\022\t\n\004TEMP\020" +
-      "\314\001\022\010\n\003BAT\020\315\001\"\036\n\010Response\022\022\n\nroger_that\030\001" +
-      " \001(\010\"\032\n\tHeartBeat\022\r\n\005alive\030\001 \001(\010\"j\n\tTerm" +
-      "inate\022\024\n\014terminateKey\030\001 \001(\005\"G\n\rTerminate" +
-      "Keys\022\021\n\rselfTerminate\020\000\022\020\n\014softShutdown\020" +
-      "\001\022\021\n\remergencyStop\020\002\"\225\001\n\nConfigData\022\021\n\tc" +
-      "onfigKey\030\001 \001(\005\"t\n\nToggleKeys\022\017\n\013toggleAc",
-      "cel\020\000\022\016\n\ntoggleGyro\020\001\022\022\n\016toggleAltitude\020" +
-      "\002\022\022\n\016toggleAttitude\020\003\022\016\n\ntoggleTemp\020\004\022\r\n" +
-      "\ttoggleBat\020\005\"R\n\nMoveCamera\022\020\n\010arrowKey\030\001" +
-      " \001(\005\"2\n\tArrowKeys\022\006\n\002UP\020\000\022\t\n\005RIGHT\020\001\022\010\n\004" +
-      "DOWN\020\002\022\010\n\004LEFT\020\003\"(\n\005Accel\022\t\n\001x\030\001 \001(\001\022\t\n\001" +
-      "y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\"\'\n\004Gyro\022\t\n\001x\030\001 \001(\001\022\t\n" +
-      "\001y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\"\027\n\010Altitude\022\013\n\003alt\030\001" +
-      " \001(\001\"4\n\010Attitude\022\014\n\004roll\030\001 \001(\001\022\r\n\005pitch\030" +
-      "\002 \001(\001\022\013\n\003yaw\030\003 \001(\001\"\024\n\004Temp\022\014\n\004temp\030\001 \001(\001" +
-      "\"\032\n\007Battery\022\017\n\007percent\030\001 \001(\001b\006proto3"
+      "mera\022*\n\016thermalrequest\030\017 \001(\0132\022.T7.Therma" +
+      "lRequest\022\030\n\005accel\030\010 \001(\0132\t.T7.Accel\022\026\n\004gy" +
+      "ro\030\t \001(\0132\010.T7.Gyro\022\036\n\010altitude\030\n \001(\0132\014.T" +
+      "7.Altitude\022\036\n\010attitude\030\013 \001(\0132\014.T7.Attitu",
+      "de\022\026\n\004temp\030\014 \001(\0132\010.T7.Temp\022\030\n\003bat\030\r \001(\0132" +
+      "\013.T7.Battery\022\031\n\004head\030\016 \001(\0132\013.T7.Heading\022" +
+      ",\n\017thermalresponse\030\020 \001(\0132\023.T7.ThermalRes" +
+      "ponse\022\026\n\004wifi\030\021 \001(\0132\010.T7.WiFi\"\343\001\n\007MsgTyp" +
+      "e\022\014\n\010RESPONSE\020\000\022\r\n\tHEARTBEAT\020\001\022\r\n\tTERMIN" +
+      "ATE\020\002\022\017\n\013CONFIG_DATA\020e\022\017\n\013MOVE_CAMERA\020f\022" +
+      "\023\n\017THERMAL_REQUEST\020g\022\n\n\005ACCEL\020\310\001\022\t\n\004GYRO" +
+      "\020\311\001\022\r\n\010ALTITUDE\020\312\001\022\r\n\010ATTITUDE\020\313\001\022\t\n\004TEM" +
+      "P\020\314\001\022\010\n\003BAT\020\315\001\022\t\n\004HEAD\020\316\001\022\025\n\020THERMAL_RES" +
+      "PONSE\020\317\001\022\t\n\004WIFI\020\320\001\"\036\n\010Response\022\022\n\nroger",
+      "_that\030\001 \001(\010\"\032\n\tHeartBeat\022\r\n\005alive\030\001 \001(\010\"" +
+      "j\n\tTerminate\022\024\n\014terminateKey\030\001 \001(\005\"G\n\rTe" +
+      "rminateKeys\022\021\n\rselfTerminate\020\000\022\020\n\014softSh" +
+      "utdown\020\001\022\021\n\remergencyStop\020\002\"\307\001\n\nConfigDa" +
+      "ta\022\021\n\tconfigKey\030\001 \001(\005\"\245\001\n\nToggleKeys\022\017\n\013" +
+      "toggleAccel\020\000\022\016\n\ntoggleGyro\020\001\022\022\n\016toggleA" +
+      "ltitude\020\002\022\022\n\016toggleAttitude\020\003\022\016\n\ntoggleT" +
+      "emp\020\004\022\r\n\ttoggleBat\020\005\022\017\n\013toggleArray\020\006\022\016\n" +
+      "\ntoggleHead\020\007\022\016\n\ntoggleWifi\020\010\"R\n\nMoveCam" +
+      "era\022\020\n\010arrowKey\030\001 \001(\005\"2\n\tArrowKeys\022\006\n\002UP",
+      "\020\000\022\t\n\005RIGHT\020\001\022\010\n\004DOWN\020\002\022\010\n\004LEFT\020\003\"!\n\016The" +
+      "rmalRequest\022\017\n\007request\030\001 \001(\010\"(\n\005Accel\022\t\n" +
+      "\001x\030\001 \001(\001\022\t\n\001y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\"\'\n\004Gyro\022\t" +
+      "\n\001x\030\001 \001(\001\022\t\n\001y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\"\027\n\010Altit" +
+      "ude\022\013\n\003alt\030\001 \001(\001\"4\n\010Attitude\022\014\n\004roll\030\001 \001" +
+      "(\001\022\r\n\005pitch\030\002 \001(\001\022\013\n\003yaw\030\003 \001(\001\"\024\n\004Temp\022\014" +
+      "\n\004temp\030\001 \001(\001\"\032\n\007Battery\022\017\n\007percent\030\001 \001(\001" +
+      "\"\032\n\007Heading\022\017\n\007heading\030\001 \001(\001\"#\n\017ThermalR" +
+      "esponse\022\020\n\010response\030\001 \001(\001\"&\n\004WiFi\022\020\n\010str" +
+      "ength\030\001 \001(\001\022\014\n\004freq\030\002 \001(\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -9023,7 +12008,7 @@ public final class T7Messages {
     internal_static_T7_GenericMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_T7_GenericMessage_descriptor,
-        new java.lang.String[] { "Msgtype", "Time", "Response", "Heartbeat", "Terminate", "Configdata", "Movecamera", "Accel", "Gyro", "Altitude", "Attitude", "Temp", "Bat", });
+        new java.lang.String[] { "Msgtype", "Time", "Response", "Heartbeat", "Terminate", "Configdata", "Movecamera", "Thermalrequest", "Accel", "Gyro", "Altitude", "Attitude", "Temp", "Bat", "Head", "Thermalresponse", "Wifi", });
     internal_static_T7_Response_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_T7_Response_fieldAccessorTable = new
@@ -9054,42 +12039,66 @@ public final class T7Messages {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_T7_MoveCamera_descriptor,
         new java.lang.String[] { "ArrowKey", });
-    internal_static_T7_Accel_descriptor =
+    internal_static_T7_ThermalRequest_descriptor =
       getDescriptor().getMessageTypes().get(6);
+    internal_static_T7_ThermalRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_T7_ThermalRequest_descriptor,
+        new java.lang.String[] { "Request", });
+    internal_static_T7_Accel_descriptor =
+      getDescriptor().getMessageTypes().get(7);
     internal_static_T7_Accel_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_T7_Accel_descriptor,
         new java.lang.String[] { "X", "Y", "Z", });
     internal_static_T7_Gyro_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_T7_Gyro_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_T7_Gyro_descriptor,
         new java.lang.String[] { "X", "Y", "Z", });
     internal_static_T7_Altitude_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_T7_Altitude_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_T7_Altitude_descriptor,
         new java.lang.String[] { "Alt", });
     internal_static_T7_Attitude_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_T7_Attitude_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_T7_Attitude_descriptor,
         new java.lang.String[] { "Roll", "Pitch", "Yaw", });
     internal_static_T7_Temp_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_T7_Temp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_T7_Temp_descriptor,
         new java.lang.String[] { "Temp", });
     internal_static_T7_Battery_descriptor =
-      getDescriptor().getMessageTypes().get(11);
+      getDescriptor().getMessageTypes().get(12);
     internal_static_T7_Battery_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_T7_Battery_descriptor,
         new java.lang.String[] { "Percent", });
+    internal_static_T7_Heading_descriptor =
+      getDescriptor().getMessageTypes().get(13);
+    internal_static_T7_Heading_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_T7_Heading_descriptor,
+        new java.lang.String[] { "Heading", });
+    internal_static_T7_ThermalResponse_descriptor =
+      getDescriptor().getMessageTypes().get(14);
+    internal_static_T7_ThermalResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_T7_ThermalResponse_descriptor,
+        new java.lang.String[] { "Response", });
+    internal_static_T7_WiFi_descriptor =
+      getDescriptor().getMessageTypes().get(15);
+    internal_static_T7_WiFi_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_T7_WiFi_descriptor,
+        new java.lang.String[] { "Strength", "Freq", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

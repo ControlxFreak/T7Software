@@ -92,12 +92,46 @@ IOManager::launch_server() {
 
 void
 IOManager::launch_serial() {
+    setenv("PYTHONPATH", ".", 1);
 
     LM->append("Launching Serial Communication\n");
-
     Py_Initialize();
-    //PyObject *pName, *pModule, *pDict, *pFunc, *pArgs, *pValue;
 
+    PyObject* module = PyImport_ImportModule("pixhawk_helper");
+    assert(module != NULL);
+
+    PyObject* klass = PyObject_GetAttrString(module, "FlightController");
+    assert(klass != NULL);
+
+    PyObject* instance = PyInstance_New(klass, NULL, NULL);
+    assert(instance != NULL);
+
+    PyObject* result = PyObject_CallMethod(instance, "get_heartbeat",NULL);
+    assert(result != NULL);
+
+    PyObject* result2 = PyObject_CallMethod(instance, "get_battery",NULL);
+    assert(result2 != NULL);
+
+
+    PyObject* result3 = PyObject_CallMethod(instance, "get_armed",NULL);
+    assert(result3 != NULL);
+
+    PyObject* result4 = PyObject_CallMethod(instance, "get_velx",NULL);
+    assert(result4 != NULL);
+
+    PyObject* result5 = PyObject_CallMethod(instance, "get_firmware_major",NULL);
+    assert(result5 != NULL);
+
+    PyObject* result6 = PyObject_CallMethod(instance, "get_altitude",NULL);
+    assert(result6 != NULL);
+
+    printf("bestill my beating heart %0.6f\n", PyFloat_AsDouble(result));
+    printf("Armed: %d\n", PyInt_AsLong(result3));
+    printf("Velx: %0.6f\n", PyFloat_AsDouble(result4));
+    printf("Major: %d\n", PyInt_AsLong(result5));
+    printf("Alt: %0.6f\n",PyFloat_AsDouble(result6));
+    
+    
     Py_Finalize();
 
 }//launch_serial()
