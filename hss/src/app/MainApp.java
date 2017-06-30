@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 
 import T7.T7Messages.GenericMessage;
@@ -478,6 +479,16 @@ public class MainApp extends Application {
 	}
 
 	public static void main(String[] args) {
+		try {
+			Logger.getLogger("").addHandler(new FileHandler("mission_logs/telemetry%u.log", 100000000, 10, false));
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("MainApp Logger: " + logger.getName());
 		launch(args);
 
 		server.shutDown();
@@ -486,6 +497,7 @@ public class MainApp extends Application {
 		termination_client.shutDown();
 		array_client.shutDown();
 		main_controller.stopTimer();
+		Logger.getLogger("").getHandlers()[0].close();
 	}
 
 	public static boolean[] getConfigArr() {
