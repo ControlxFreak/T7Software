@@ -62,12 +62,14 @@ int TCPAcceptor::start()
     int result = bind(m_lsd, (struct sockaddr*)&address, sizeof(address));
     if (result != 0) {
         perror("bind() failed");
+        close(m_lsd);
         return result;
     }
     
     result = listen(m_lsd, 5);
     if (result != 0) {
         perror("listen() failed");
+        close(m_lsd);
         return result;
     }
     m_listening = true;

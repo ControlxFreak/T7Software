@@ -82,7 +82,7 @@ public:
     
 private:
     map<int,thread*>sockThreadMap;
-    
+    vector<TCPStream*>streams;    
     
 };
 

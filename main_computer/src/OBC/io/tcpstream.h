@@ -45,6 +45,7 @@ class TCPStream
 
     ~TCPStream();
 
+    void close_socket();
     ssize_t send(const char* buffer, size_t len);
     ssize_t receive(char* buffer, size_t len, int timeout=0);
 

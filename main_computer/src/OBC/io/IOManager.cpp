@@ -145,9 +145,17 @@ IOManager::client_handler(int id) {
             data->sockHealth[id] = failureCodes::socketConnected;
         } // if
     } //while
-
-    google::protobuf::io::ZeroCopyOutputStream* ZCO = new google::protobuf::io::FileOutputStream(stream->m_sd);
-
+    
+    google::protobuf::io::ZeroCopyOutputStream* ZCO;
+    if(stream != NULL){
+        ZCO = new google::protobuf::io::FileOutputStream(stream->m_sd);
+    }else{
+        LM->append("Dead Stream!\n");
+        delete connector;
+        delete stream;
+        return;
+    }
+        
     while (!data->timeToDieMap[id]) {
         switch (id) {
             case sockKeys::ACCEL:
@@ -319,20 +327,19 @@ IOManager::server_handler() {
 
     // Initialize the TCP connector
     LM->append("Initializing Server\n");
-
     while (!data->timeToDieMap[timeToDieFlags::SERVER_SHUTDOWN]) {
         if (acceptor->start() == 0) {
             stream = acceptor->accept();
             if (stream != NULL) {
                 LM->append("Successful Accept\n");
-                sockThreadMap[-1] = new thread(&IOManager::pre_acceptor_handler, this, stream);
+                streams.push_back(stream);
+                new thread(&IOManager::pre_acceptor_handler, this, stream);
                 stream = NULL;
             } else {
                 LM->append("Unsuccessful Receive.\n");
             } // if stream
         } // if start
     } // while
-    delete stream;
     delete acceptor;
 } //server_handler
 
@@ -348,23 +355,23 @@ IOManager::pre_acceptor_handler(TCPStream* stream) {
     // Grab the generic message
     T7::GenericMessage GM;
 
-    int id = -1;
+    int id;
     char pbuff[256];
 
     // Create an input stream
     google::protobuf::io::ZeroCopyInputStream* ZIS = new google::protobuf::io::FileInputStream(stream->m_sd);
-    if (readDelimitedFrom(ZIS, &GM))
+    if (readDelimitedFrom(ZIS, &GM)) {
         LM->append("New Acceptor Received!\n");
-    id = (int) GM.msgtype();
-
-    // ONLY RE LAUNCH IF THE CURRENT ONE IS DEAD!
-    if (sockThreadMap[id] == NULL || data->sockHealth[id] == failureCodes::socketDisconnected) {
-        snprintf(pbuff, 256, "Launching Acceptor for Socket %d!\n", id);
-        string sbuff(pbuff);
-        LM->append(sbuff);
-        data->timeToDieMap[id] = false;
-        data->sockHealth[id] = failureCodes::noFailure;
-        sockThreadMap[id] = new thread(&IOManager::acceptor_handler, this, stream, id, GM);
+        id = (int) GM.msgtype();
+        // ONLY RE LAUNCH IF THE CURRENT ONE IS DEAD!
+        if (sockThreadMap[id] == NULL || data->sockHealth[id] == failureCodes::socketDisconnected) {
+            snprintf(pbuff, 256, "Launching Acceptor for Socket %d!\n", id);
+            string sbuff(pbuff);
+            LM->append(sbuff);
+            data->timeToDieMap[id] = false;
+            data->sockHealth[id] = failureCodes::noFailure;
+            sockThreadMap[id] = new thread(&IOManager::acceptor_handler, this, stream, id, GM);
+        }
     }
     delete ZIS;
 } // pre_acceptor_handler
@@ -374,7 +381,7 @@ IOManager::pre_acceptor_handler(TCPStream* stream) {
 //----------------------------------------------------------------------------//
 
 void
-IOManager::acceptor_handler(TCPStream* stream, int id,T7::GenericMessage GM) {
+IOManager::acceptor_handler(TCPStream* stream, int id, T7::GenericMessage GM) {
 
     // Initialize the buffer
     char pbuff[256];
@@ -391,7 +398,7 @@ IOManager::acceptor_handler(TCPStream* stream, int id,T7::GenericMessage GM) {
             case sockKeys::HEARTBEAT:
                 if (firstMessage || readDelimitedFrom(ZIS, &GM)) {
                     firstMessage = false;
-		    if ((int) GM.msgtype() == id) {
+                    if ((int) GM.msgtype() == id) {
                         if (GM.heartbeat().alive()) {
                             data->HSSAlive = true;
                             LM->append("RECIEVED: HSSAlive == True\n");
@@ -450,8 +457,8 @@ IOManager::acceptor_handler(TCPStream* stream, int id,T7::GenericMessage GM) {
                 break;
             case sockKeys::CONFIG_DATA:
                 if (firstMessage || readDelimitedFrom(ZIS, &GM)) {
-                   firstMessage = false;
-		    switch (GM.configdata().configkey()) {
+                    firstMessage = false;
+                    switch (GM.configdata().configkey()) {
                         case toggleKeys::TOGGLE_ACCEL:
                             LM->append("RECIEVED: Toggle Acceleration!\n");
                             data->sendAccel = !data->sendAccel;
@@ -488,26 +495,26 @@ IOManager::acceptor_handler(TCPStream* stream, int id,T7::GenericMessage GM) {
                 }
                 break;
             case sockKeys::MOVE_CAMERA:
-                    if (firstMessage || readDelimitedFrom(ZIS, &GM)) {
-                        firstMessage = false;
-                        switch (GM.movecamera().arrowkey()) {
-                            case camKeys::MOVE_UP:
-                                LM->append("RECIEVED: Move Camera Up Command!\n");
-                                break;
-                            case camKeys::MOVE_RIGHT:
-                                LM->append("RECIEVED: Move Camera Right Command!\n");
-                                break;
-                            case camKeys::MOVE_DOWN:
-                                LM->append("RECIEVED: Move Camera Down Command!\n");
-                                break;
-                            case camKeys::MOVE_LEFT:
-                                LM->append("RECIEVED: Move Camera Left Command!\n");
-                                break;
-                            default:
-                                LM->append("Unidentified Move Camera Command.\n");
-                                break;
-                        } // switch      
-               } else {
+                if (firstMessage || readDelimitedFrom(ZIS, &GM)) {
+                    firstMessage = false;
+                    switch (GM.movecamera().arrowkey()) {
+                        case camKeys::MOVE_UP:
+                            LM->append("RECIEVED: Move Camera Up Command!\n");
+                            break;
+                        case camKeys::MOVE_RIGHT:
+                            LM->append("RECIEVED: Move Camera Right Command!\n");
+                            break;
+                        case camKeys::MOVE_DOWN:
+                            LM->append("RECIEVED: Move Camera Down Command!\n");
+                            break;
+                        case camKeys::MOVE_LEFT:
+                            LM->append("RECIEVED: Move Camera Left Command!\n");
+                            break;
+                        default:
+                            LM->append("Unidentified Move Camera Command.\n");
+                            break;
+                    } // switch      
+                } else {
                     snprintf(pbuff, 256, "Dead Stream!  ID = %d\n", id);
                     string sbuff(pbuff);
                     LM->append(sbuff);
@@ -528,7 +535,13 @@ IOManager::acceptor_handler(TCPStream* stream, int id,T7::GenericMessage GM) {
 
 void
 IOManager::clean() {
+    // Let them die off
     data->set_threads_timeToDie(true);
+    
+    // close the sockets.... just to be sure!
+    for(vector<TCPStream*>::iterator it = streams.begin(); it != streams.end(); ++it) {
+        (*it)->close_socket();
+    }    
 } // clean
 
 void
@@ -566,7 +579,8 @@ IOManager::~IOManager() {
     clean();
 }
 
-bool IOManager::writeDelimitedTo(T7::GenericMessage message, google::protobuf::io::ZeroCopyOutputStream * rawOutput) {
+bool 
+IOManager::writeDelimitedTo(T7::GenericMessage message, google::protobuf::io::ZeroCopyOutputStream * rawOutput) {
     // We create a new coded stream for each message.  Don't worry, this is fast.
     google::protobuf::io::CodedOutputStream output(rawOutput);
 
@@ -588,7 +602,8 @@ bool IOManager::writeDelimitedTo(T7::GenericMessage message, google::protobuf::i
     return true;
 }
 
-bool IOManager::readDelimitedFrom(google::protobuf::io::ZeroCopyInputStream* rawInput, T7::GenericMessage * message) {
+bool 
+IOManager::readDelimitedFrom(google::protobuf::io::ZeroCopyInputStream* rawInput, T7::GenericMessage * message) {
     // We create a new coded stream for each message.  Don't worry, this is fast,
     // and it makes sure the 64MB total size limit is imposed per-message rather
     // than on the whole stream.  (See the CodedInputStream interface for more

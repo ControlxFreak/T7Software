@@ -24,6 +24,14 @@
 #include <arpa/inet.h>
 #include "tcpstream.h"
 
+void
+TCPStream::close_socket(){
+    if (m_sd > 0) {
+        close(m_sd);
+    }
+}
+
+
 TCPStream::TCPStream(int sd, struct sockaddr_in* address) : m_sd(sd) {
     char ip[50];
     inet_ntop(PF_INET, (struct in_addr*)&(address->sin_addr.s_addr), ip, sizeof(ip)-1);
@@ -33,7 +41,9 @@ TCPStream::TCPStream(int sd, struct sockaddr_in* address) : m_sd(sd) {
 
 TCPStream::~TCPStream()
 {
-    close(m_sd);
+    if (m_sd > 0) {
+        close(m_sd);
+    }
 }
 
 ssize_t TCPStream::send(const char* buffer, size_t len) 

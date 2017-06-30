@@ -96,6 +96,14 @@ public:
         } // for...    
     } //set_all_timeToDie
 
+    void
+    set_all_sockhealth(int val){
+        DataManager* data = DataManager::getInstance();
+        for (auto& m : data->timeToDieMap) {
+            m.second = val;
+        } // for... 
+    }
+    
     // Static singleton initializer 
 
     static DataManager* getInstance() {

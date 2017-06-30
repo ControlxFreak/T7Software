@@ -38,6 +38,10 @@ Executive::launch()
     // Cleanup so we can start fresh!
     if(needsCleaning){ clean(); }
     
+    // Let everyone know its not time to die yet...
+    data->set_all_timeToDie(false);
+    data->set_all_sockhealth(failureCodes::noFailure);
+    
     // Print out the header
     LM->appendHeader();
 
@@ -69,6 +73,7 @@ Executive::clean()
         
     LM->append("Cleaning Logger!\n");
     LM->clean();
+    
 } // clean()
 
 //----------------------------------------------------------------------------//
