@@ -61,7 +61,7 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=-lpthread `pkg-config --libs protobuf`  
+LDLIBSOPTIONS=-L/usr/lib/python2.7/config-x86_64-linux-gnu -lpthread `pkg-config --libs protobuf` -lpython2.7  
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
@@ -74,52 +74,52 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/obc: ${OBJECTFILES}
 ${OBJECTDIR}/executive/Executive.o: executive/Executive.cpp
 	${MKDIR} -p ${OBJECTDIR}/executive
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -DNPRINT_TO_FILE -DPRINT_TO_CONSOLE -Iio -Imain -Iexecutive -Imanagers -Iwatchdog -Itypes -Ilogger `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/executive/Executive.o executive/Executive.cpp
+	$(COMPILE.cc) -g -DNPRINT_TO_FILE -DPRINT_TO_CONSOLE -Iio -Imain -Iexecutive -Imanagers -Iwatchdog -Itypes -Ilogger -I/usr/include/python2.7 `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/executive/Executive.o executive/Executive.cpp
 
 ${OBJECTDIR}/io/IOManager.o: io/IOManager.cpp
 	${MKDIR} -p ${OBJECTDIR}/io
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -DNPRINT_TO_FILE -DPRINT_TO_CONSOLE -Iio -Imain -Iexecutive -Imanagers -Iwatchdog -Itypes -Ilogger `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/io/IOManager.o io/IOManager.cpp
+	$(COMPILE.cc) -g -DNPRINT_TO_FILE -DPRINT_TO_CONSOLE -Iio -Imain -Iexecutive -Imanagers -Iwatchdog -Itypes -Ilogger -I/usr/include/python2.7 `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/io/IOManager.o io/IOManager.cpp
 
 ${OBJECTDIR}/io/T7Messages.pb.o: io/T7Messages.pb.cc
 	${MKDIR} -p ${OBJECTDIR}/io
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -DNPRINT_TO_FILE -DPRINT_TO_CONSOLE -Iio -Imain -Iexecutive -Imanagers -Iwatchdog -Itypes -Ilogger `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/io/T7Messages.pb.o io/T7Messages.pb.cc
+	$(COMPILE.cc) -g -DNPRINT_TO_FILE -DPRINT_TO_CONSOLE -Iio -Imain -Iexecutive -Imanagers -Iwatchdog -Itypes -Ilogger -I/usr/include/python2.7 `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/io/T7Messages.pb.o io/T7Messages.pb.cc
 
 ${OBJECTDIR}/io/tcpacceptor.o: io/tcpacceptor.cpp
 	${MKDIR} -p ${OBJECTDIR}/io
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -DNPRINT_TO_FILE -DPRINT_TO_CONSOLE -Iio -Imain -Iexecutive -Imanagers -Iwatchdog -Itypes -Ilogger `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/io/tcpacceptor.o io/tcpacceptor.cpp
+	$(COMPILE.cc) -g -DNPRINT_TO_FILE -DPRINT_TO_CONSOLE -Iio -Imain -Iexecutive -Imanagers -Iwatchdog -Itypes -Ilogger -I/usr/include/python2.7 `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/io/tcpacceptor.o io/tcpacceptor.cpp
 
 ${OBJECTDIR}/io/tcpconnector.o: io/tcpconnector.cpp
 	${MKDIR} -p ${OBJECTDIR}/io
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -DNPRINT_TO_FILE -DPRINT_TO_CONSOLE -Iio -Imain -Iexecutive -Imanagers -Iwatchdog -Itypes -Ilogger `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/io/tcpconnector.o io/tcpconnector.cpp
+	$(COMPILE.cc) -g -DNPRINT_TO_FILE -DPRINT_TO_CONSOLE -Iio -Imain -Iexecutive -Imanagers -Iwatchdog -Itypes -Ilogger -I/usr/include/python2.7 `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/io/tcpconnector.o io/tcpconnector.cpp
 
 ${OBJECTDIR}/io/tcpstream.o: io/tcpstream.cpp
 	${MKDIR} -p ${OBJECTDIR}/io
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -DNPRINT_TO_FILE -DPRINT_TO_CONSOLE -Iio -Imain -Iexecutive -Imanagers -Iwatchdog -Itypes -Ilogger `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/io/tcpstream.o io/tcpstream.cpp
+	$(COMPILE.cc) -g -DNPRINT_TO_FILE -DPRINT_TO_CONSOLE -Iio -Imain -Iexecutive -Imanagers -Iwatchdog -Itypes -Ilogger -I/usr/include/python2.7 `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/io/tcpstream.o io/tcpstream.cpp
 
 ${OBJECTDIR}/logger/LogManager.o: logger/LogManager.cpp
 	${MKDIR} -p ${OBJECTDIR}/logger
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -DNPRINT_TO_FILE -DPRINT_TO_CONSOLE -Iio -Imain -Iexecutive -Imanagers -Iwatchdog -Itypes -Ilogger `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/logger/LogManager.o logger/LogManager.cpp
+	$(COMPILE.cc) -g -DNPRINT_TO_FILE -DPRINT_TO_CONSOLE -Iio -Imain -Iexecutive -Imanagers -Iwatchdog -Itypes -Ilogger -I/usr/include/python2.7 `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/logger/LogManager.o logger/LogManager.cpp
 
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -DNPRINT_TO_FILE -DPRINT_TO_CONSOLE -Iio -Imain -Iexecutive -Imanagers -Iwatchdog -Itypes -Ilogger `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -g -DNPRINT_TO_FILE -DPRINT_TO_CONSOLE -Iio -Imain -Iexecutive -Imanagers -Iwatchdog -Itypes -Ilogger -I/usr/include/python2.7 `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 ${OBJECTDIR}/types/TSQueue.o: types/TSQueue.cpp
 	${MKDIR} -p ${OBJECTDIR}/types
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -DNPRINT_TO_FILE -DPRINT_TO_CONSOLE -Iio -Imain -Iexecutive -Imanagers -Iwatchdog -Itypes -Ilogger `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/types/TSQueue.o types/TSQueue.cpp
+	$(COMPILE.cc) -g -DNPRINT_TO_FILE -DPRINT_TO_CONSOLE -Iio -Imain -Iexecutive -Imanagers -Iwatchdog -Itypes -Ilogger -I/usr/include/python2.7 `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/types/TSQueue.o types/TSQueue.cpp
 
 ${OBJECTDIR}/watchdog/WatchDog.o: watchdog/WatchDog.cpp
 	${MKDIR} -p ${OBJECTDIR}/watchdog
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -DNPRINT_TO_FILE -DPRINT_TO_CONSOLE -Iio -Imain -Iexecutive -Imanagers -Iwatchdog -Itypes -Ilogger `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/watchdog/WatchDog.o watchdog/WatchDog.cpp
+	$(COMPILE.cc) -g -DNPRINT_TO_FILE -DPRINT_TO_CONSOLE -Iio -Imain -Iexecutive -Imanagers -Iwatchdog -Itypes -Ilogger -I/usr/include/python2.7 `pkg-config --cflags protobuf` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/watchdog/WatchDog.o watchdog/WatchDog.cpp
 
 # Subprojects
 .build-subprojects:

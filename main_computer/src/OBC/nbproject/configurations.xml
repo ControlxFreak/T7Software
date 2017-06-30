@@ -103,6 +103,7 @@
             <pElem>watchdog</pElem>
             <pElem>types</pElem>
             <pElem>logger</pElem>
+            <pElem>/usr/include/python2.7</pElem>
           </incDir>
           <preprocessorList>
             <Elem>NPRINT_TO_FILE</Elem>
@@ -111,9 +112,13 @@
         </ccTool>
         <linkerTool>
           <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/obc</output>
+          <linkerAddLib>
+            <pElem>/usr/lib/python2.7/config-x86_64-linux-gnu</pElem>
+          </linkerAddLib>
           <linkerLibItems>
             <linkerLibStdlibItem>PosixThreads</linkerLibStdlibItem>
             <linkerOptionItem>`pkg-config --libs protobuf`</linkerOptionItem>
+            <linkerLibLibItem>python2.7</linkerLibLibItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
