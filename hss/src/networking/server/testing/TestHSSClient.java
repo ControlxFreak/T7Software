@@ -66,6 +66,7 @@ public class TestHSSClient {
 				System.out.println("7) Make a new Heading connection");
 				System.out.println("8) Make a new Thermal Response connection");
 				System.out.println("9) Make a new Heartbeat connection");
+				System.out.println("10) Make a new WiFi connection");
 
 				while(!in.ready()) {
 					Thread.sleep(500);
@@ -112,6 +113,10 @@ public class TestHSSClient {
 				case 9:
 					System.out.println("Sending Heartbeat request.");
 					connType = MsgType.HEARTBEAT;
+					break;
+				case 10:
+					System.out.println("Sending WiFi request.");
+					connType = MsgType.WIFI;
 					break;
 				default:
 					valid_input_received = false;
@@ -227,6 +232,12 @@ public class TestHSSClient {
 						alive = Double.parseDouble(input) == 1.0; 
 						gm.setMsgtype(1)
 							.setHeartbeat(HeartBeat.newBuilder().setAlive(alive));
+						break;
+					case WIFI:
+						input2 = in.readLine();
+						gm.setMsgtype(208)
+							.setWifi(WiFi.newBuilder().setStrength(Double.parseDouble(input))
+									.setFreq(Double.parseDouble(input2)));
 						break;
 					default:
 						break;

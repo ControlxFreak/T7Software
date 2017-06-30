@@ -20,12 +20,14 @@ package app;
 
 
 import java.io.IOException;
+import java.net.SocketException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.FileHandler;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 import T7.T7Messages.GenericMessage;
 import T7.T7Messages.MoveCamera;
@@ -43,9 +45,11 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -62,6 +66,7 @@ public class MainApp extends Application {
 	private static Stage explorerStage;
 	private static AnchorPane rootLayout;
 	private static MainDisplayController main_controller;
+	private static DataConfigurationDialogController configController;
 	private static SnapshotExplorerController snapshotExplorerController;
 	private static UAVServer server = new UAVServer();
 	private static UAVClient camera_client = null;
@@ -69,54 +74,25 @@ public class MainApp extends Application {
 	private static UAVClient termination_client = null;
 	private static UAVClient array_client = null;
 	private static ObservableList<Snapshot> snapshotData = FXCollections.observableArrayList();
-	//private static Map<MsgType, Boolean> configMap = new HashMap<MsgType, Boolean>();
-	private static boolean[] config_arr = new boolean[8];
+	private static boolean[] config_arr = new boolean[9];
 	private static volatile long tapStart = 0;
-	private static volatile boolean foot_down = false;
 	private static volatile int tapNum = 1;
 	private static volatile int timerNum = 1;
 	private static EventHandler<KeyEvent> keyHandler;
 
 	@Override
 	public void start(Stage primaryStage) {
-		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("Home Station");
+		MainApp.primaryStage = primaryStage;
+		MainApp.primaryStage.setTitle("Home Station");
 
 		initRootLayout();
 
 		initDataConfiguration();
 
-		//testInitSnapshot();
-		//testInitSnapshot2();
-
 		initServer();
 
 		initClients();
 	}
-
-	/*
-	private void testInitSnapshot() {
-			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/kelly.jpg")).toURI().toString())));
-			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/jessie.jpg")).toURI().toString())));
-			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/topanga.jpg")).toURI().toString())));
-			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/dani.jpg")).toURI().toString())));
-			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/lenna.png")).toURI().toString())));
-			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/alexandra.gif")).toURI().toString())));
-			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/audrey.jpg")).toURI().toString())));
-			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/shelly.gif")).toURI().toString())));
-			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/dolores.jpg")).toURI().toString())));
-			snapshotData.add(new Snapshot(new Image((new File("/home/jarrett/Downloads/pics/gina.jpg")).toURI().toString())));
-	}
-
-	private void testInitSnapshot2() {
-		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/T7Software/hss/src/main/resources/images/fire1.jpg").toURI().toString())));
-		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/T7Software/hss/src/main/resources/images/fire2.jpeg").toURI().toString())));
-		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/T7Software/hss/src/main/resources/images/fire3.jpg").toURI().toString())));
-		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/T7Software/hss/src/main/resources/images/landscape1.jpg").toURI().toString())));
-		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/T7Software/hss/src/main/resources/images/landscape2.jpg").toURI().toString())));
-		snapshotData.add(new Snapshot(new Image(new File("/home/jarrett/T7Software/hss/src/main/resources/images/landscape3.jpg").toURI().toString())));
-	}
-	*/
 
 	private void initDataConfiguration() {		
 		config_arr[ToggleKeys.toggleAccel_VALUE] = true;
@@ -127,6 +103,7 @@ public class MainApp extends Application {
 		config_arr[ToggleKeys.toggleBat_VALUE] = true;
 		config_arr[ToggleKeys.toggleArray_VALUE] = true;
 		config_arr[ToggleKeys.toggleHead_VALUE] = true;
+		config_arr[ToggleKeys.toggleWifi_VALUE] = true;
 	}
 
 	private void initClients() {
@@ -148,12 +125,18 @@ public class MainApp extends Application {
 	}
 
 	private void takeSnapshot() {
-		//snapshotData.add(0, new Snapshot(new Image((new File("/home/jarrett/T7Software/hss/src/main/resources/images/topanga.jpg")).toURI().toString())));
 		snapshotData.add(0, new Snapshot(main_controller.takeSnapshot()));
 		GenericMessage.Builder gmBuilder = GenericMessage.newBuilder();
 		gmBuilder.setMsgtype(MsgType.THERMAL_REQUEST.getNumber()).setTime(System.currentTimeMillis())
 		.setThermalrequest(ThermalRequest.newBuilder().setRequest(true));
-		array_client.sendMessage(gmBuilder.build());
+		try {
+			array_client.sendMessage(gmBuilder.build());
+		} catch(SocketException e) {
+			e.printStackTrace();
+			array_client.shutDown();
+			array_client = new UAVClient();
+			new Thread(array_client).start();
+		}
 		new Thread(new Runnable() {
 			
 			@Override
@@ -219,8 +202,8 @@ public class MainApp extends Application {
 			Scene scene = new Scene(dialog);
 			dialogStage.setScene(scene);
 
-			DataConfigurationDialogController controller = loader.getController();
-			controller.setDialogStage(dialogStage);
+			configController = loader.getController();
+			configController.setDialogStage(dialogStage);
 
 			boolean[] copy_arr = config_arr.clone();
 
@@ -250,7 +233,6 @@ public class MainApp extends Application {
 	}
 
 	private void showUavTerminationDialog() {
-		//main_controller.printHorizonWidths();
 		List<String> choices = new ArrayList<>();
 		choices.add("Reboot Software");
 		choices.add("Soft Shutdown");
@@ -264,12 +246,44 @@ public class MainApp extends Application {
 				 + '\n' + '\t' + "Emergency Stop:	Shut down software and hardware now. WARNING - Use with caution!");
 		dialog.setContentText("Command:");
 		
+		Node ok = dialog.getDialogPane().lookupButton(ButtonType.OK);
+		ok.setOnKeyReleased(new EventHandler<KeyEvent>() {
+
+			@Override
+			public void handle(KeyEvent event) {
+				if(event.getCode() == KeyCode.B)
+				{
+					dialog.close();
+				}
+			}
+			
+		});
+		
+		dialog.getDialogPane().setOnKeyReleased(new EventHandler<KeyEvent>() {
+
+			@Override
+			public void handle(KeyEvent event) {
+				if(event.getCode() == KeyCode.B)
+				{
+					ok.requestFocus();
+				}
+			}
+			
+		});
+		
 		Optional<String> result = dialog.showAndWait();
 		if(result.isPresent()) {
 			logger.finer("Your choice: " + result.get());
-			termination_client.sendMessage(GenericMessage.newBuilder().setMsgtype(MsgType.TERMINATE_VALUE)
-					.setTime(System.currentTimeMillis()).setTerminate(Terminate.newBuilder()
-							.setTerminateKey(choices.indexOf(result.get()))).build());
+			try {
+				termination_client.sendMessage(GenericMessage.newBuilder().setMsgtype(MsgType.TERMINATE_VALUE)
+						.setTime(System.currentTimeMillis()).setTerminate(Terminate.newBuilder()
+								.setTerminateKey(choices.indexOf(result.get()))).build());
+			} catch (SocketException e) {
+				e.printStackTrace();
+				termination_client.shutDown();
+				termination_client = new UAVClient();
+				new Thread(termination_client).start();
+			}
 		}
 	}
 	
@@ -300,16 +314,13 @@ public class MainApp extends Application {
 		case toggleHead:
 			updateTelemetryDisplay(Double.MIN_VALUE, MsgType.HEAD);
 			break;
+		case toggleWifi:
+			updateTelemetryDisplay(Double.MIN_VALUE, MsgType.WIFI);
+			break;
 		default:
 			break;
 		}
 	}
-
-	/*
-	private static void setConfig(boolean[] config_arr) {
-		MainApp.config_arr = config_arr;
-	}
-	*/
 
 	private void initRootLayout() {
 		try {
@@ -334,29 +345,59 @@ public class MainApp extends Application {
 					if(e.getEventType() == KeyEvent.KEY_PRESSED) {
 						switch(e.getCode()) {
 						case UP:
+							logger.info("Sending camera command: " + e.getCode());
 							gmBuilder.setMsgtype(MsgType.MOVE_CAMERA.getNumber()).setTime(System.currentTimeMillis())
 							.setMovecamera(MoveCamera.newBuilder().setArrowKey(0));
-							camera_client.sendMessage(gmBuilder.build());
+							try {
+								camera_client.sendMessage(gmBuilder.build());
+							} catch (SocketException e2) {
+								e2.printStackTrace();
+								camera_client.shutDown();
+								camera_client = new UAVClient();
+								new Thread(camera_client).start();
+							}
 							break;
 						case RIGHT:
+							logger.info("Sending camera command: " + e.getCode());
 							gmBuilder.setMsgtype(MsgType.MOVE_CAMERA.getNumber()).setTime(System.currentTimeMillis())
 							.setMovecamera(MoveCamera.newBuilder().setArrowKey(1));
-							camera_client.sendMessage(gmBuilder.build());
+							try {
+								camera_client.sendMessage(gmBuilder.build());
+							} catch (SocketException e2) {
+								e2.printStackTrace();
+								camera_client.shutDown();
+								camera_client = new UAVClient();
+								new Thread(camera_client).start();
+							}
 							break;
 						case DOWN:
+							logger.info("Sending camera command: " + e.getCode());
 							gmBuilder.setMsgtype(MsgType.MOVE_CAMERA.getNumber()).setTime(System.currentTimeMillis())
 							.setMovecamera(MoveCamera.newBuilder().setArrowKey(2));
-							camera_client.sendMessage(gmBuilder.build());
+							try {
+								camera_client.sendMessage(gmBuilder.build());
+							} catch (SocketException e2) {
+								e2.printStackTrace();
+								camera_client.shutDown();
+								camera_client = new UAVClient();
+								new Thread(camera_client).start();
+							}
 							break;
 						case LEFT:
+							logger.info("Sending camera command: " + e.getCode());
 							gmBuilder.setMsgtype(MsgType.MOVE_CAMERA.getNumber()).setTime(System.currentTimeMillis())
 							.setMovecamera(MoveCamera.newBuilder().setArrowKey(3));
-							camera_client.sendMessage(gmBuilder.build());
+							try {
+								camera_client.sendMessage(gmBuilder.build());
+							} catch (SocketException e2) {
+								e2.printStackTrace();
+								camera_client.shutDown();
+								camera_client = new UAVClient();
+								new Thread(camera_client).start();
+							}
 							break;
 						case B:
 							tapStart = System.currentTimeMillis();
-							foot_down = true;
-							
 							new Thread(new Runnable() {
 
 								@Override
@@ -393,14 +434,12 @@ public class MainApp extends Application {
 							showUavTerminationDialog();
 							break;
 						case B:
-							foot_down = false;
 							++tapNum;
 							timerNum = tapNum;
 							long tapEnd = System.currentTimeMillis();
 							if(tapEnd - tapStart < 700) {
 								main_controller.spinKey();
 							}
-							//tapStart = 0;
 							break;
 						default:
 							break;
@@ -414,13 +453,6 @@ public class MainApp extends Application {
 			logger.finest("Set scene for Main Display.");
 			primaryStage.show();
 			logger.finest("Showed Main Display.");
-			/*
-			primaryStage.setOnHiding(new EventHandler<WindowEvent>() {
-				public void handle(WindowEvent we) {
-					System.out.println("Primary stage is closing.");
-				}
-			});
-			*/
 		} catch (IOException e) {
 			logger.fine(e.toString());
 		}
@@ -452,6 +484,21 @@ public class MainApp extends Application {
 	}
 
 	public static void main(String[] args) {
+		FileHandler handler = null;
+		SimpleFormatter sf = null;
+		try {
+			handler = new FileHandler("mission_logs/telemetry%u.log", 100000000, 10, false);
+			sf = new SimpleFormatter();
+			handler.setFormatter(sf);
+			Logger.getLogger("").addHandler(handler);
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("MainApp Logger: " + logger.getName());
 		launch(args);
 
 		server.shutDown();
@@ -460,6 +507,7 @@ public class MainApp extends Application {
 		termination_client.shutDown();
 		array_client.shutDown();
 		main_controller.stopTimer();
+		handler.close();
 	}
 
 	public static boolean[] getConfigArr() {
@@ -486,6 +534,8 @@ public class MainApp extends Application {
 			return true;
 		case HEARTBEAT:
 			return true;
+		case WIFI:
+			return config_arr[ToggleKeys.toggleWifi_VALUE];
 		default:
 			throw new IllegalArgumentException("Illegal MsgType: " + type);
 		}
@@ -530,5 +580,9 @@ public class MainApp extends Application {
 
 	public static SnapshotExplorerController getSnapshotExplorerController() {
 		return snapshotExplorerController;
+	}
+
+	public static DataConfigurationDialogController getConfigController() {
+		return configController;
 	}
 }

@@ -17,11 +17,12 @@
 package networking.client;
 
 import java.io.IOException;
-import java.net.InetAddress;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.logging.Logger;
 
 import T7.T7Messages.GenericMessage;
+import T7.T7Messages.GenericMessage.MsgType;
 
 public class UAVClient implements Runnable{
 
@@ -30,12 +31,12 @@ public class UAVClient implements Runnable{
 	private Socket mc_sock;
 	private volatile boolean timeToExit = false;
 
-	public void sendMessage(GenericMessage gm) {
+	public void sendMessage(GenericMessage gm) throws SocketException {
 		try {
-			System.out.println("debug1");
+			logger.info("Sending " + MsgType.forNumber(gm.getMsgtype()) + " message: " + gm.toString());
 			gm.writeDelimitedTo(mc_sock.getOutputStream());
-			mc_sock.getOutputStream().flush();
-			System.out.println("debug2");
+		} catch (SocketException e) {
+			throw e;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

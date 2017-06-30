@@ -16,19 +16,16 @@
  */
 package app.view;
 
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 import java.util.logging.Logger;
 
-import javax.imageio.ImageIO;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
@@ -44,41 +41,24 @@ import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.Range;
 import org.jfree.data.time.DynamicTimeSeriesCollection;
 import org.jfree.data.time.Millisecond;
-import org.jfree.data.time.Minute;
 import org.jfree.data.time.Second;
-import org.jfree.data.time.TimeSeries;
-import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.XYDataset;
-import org.jfree.data.xy.XYSeries;
-
 import T7.T7Messages.GenericMessage.MsgType;
 import app.KeySpinner;
 import app.model.Snapshot;
 import app.org.multiwii.msp.MSP;
 import app.org.multiwii.swingui.gui.MwConfiguration;
-import app.org.multiwii.swingui.gui.chart.MwChartFactory;
-import app.org.multiwii.swingui.gui.chart.MwChartPanel;
 import app.org.multiwii.swingui.gui.instrument.MwCompasPanel;
 import app.org.multiwii.swingui.gui.instrument.MwHudPanel;
 import app.org.multiwii.swingui.gui.instrument.MwRCDataPanel;
 import app.org.multiwii.swingui.gui.instrument.MwUAVPanel;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingNode;
 import javafx.fxml.FXML;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
-import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import jfxtras.scene.control.gauge.linear.SimpleMetroArcGauge;
@@ -99,10 +79,6 @@ public class MainDisplayController {
 	private ImageView pin_display;
 	@FXML
 	private Label priLabel;
-	/*
-	@FXML
-	private SwingNode chartNode;
-	*/
 	@FXML
 	private SwingNode chartNode;
 	@FXML
@@ -136,6 +112,8 @@ public class MainDisplayController {
 	@FXML
 	private Label alt_label;
 	@FXML
+	private Label range_label;
+	@FXML
 	private Label head_label;
 	@FXML
 	private Label batt_label;
@@ -160,38 +138,13 @@ public class MainDisplayController {
 	
 	private DynamicTimeSeriesCollection dataset = new DynamicTimeSeriesCollection(SERIESNUM, COUNT, new Second(), TimeZone.getDefault());
 
-	/*
-	private ArrayList<Double> accXList = new ArrayList<Double>();
-	private ArrayList<Double> accYList = new ArrayList<Double>();
-	private ArrayList<Double> accZList = new ArrayList<Double>();
-	private ArrayList<Double> gyroXList = new ArrayList<Double>();
-	private ArrayList<Double> gyroYList = new ArrayList<Double>();
-	private ArrayList<Double> gyroZList = new ArrayList<Double>();
-	*/
 	private ArrayList<Double> attXList = new ArrayList<Double>();
 	private ArrayList<Double> attYList = new ArrayList<Double>();
 	private ArrayList<Double> attZList = new ArrayList<Double>();
 	private ArrayList<Double> altList = new ArrayList<Double>();
 	private ArrayList<Double> rangeList = new ArrayList<Double>();
-	//private ArrayList<Double> headList = new ArrayList<Double>();
 	private ArrayList<Double> batList = new ArrayList<Double>();
 	private ArrayList<Double> tempList = new ArrayList<Double>();
-	/*
-	private TimeSeries accXSeries = new TimeSeries("");
-	private TimeSeries accYSeries = new TimeSeries("");
-	private TimeSeries accZSeries = new TimeSeries("");
-	private TimeSeries gyroXSeries = new TimeSeries("");
-	private TimeSeries gyroYSeries = new TimeSeries("");
-	private TimeSeries gyroZSeries = new TimeSeries("");
-	private TimeSeries attXSeries = new TimeSeries("");
-	private TimeSeries attYSeries = new TimeSeries("");
-	private TimeSeries attZSeries = new TimeSeries("");
-	private TimeSeries altSeries = new TimeSeries("");
-	private TimeSeries rangeSeries = new TimeSeries("");
-	private TimeSeries headSeries = new TimeSeries("");
-	private TimeSeries batSeries = new TimeSeries("");
-	private TimeSeries tempSeries = new TimeSeries("");
-	*/
 	
 	private Timer timer;
 	
@@ -202,37 +155,18 @@ public class MainDisplayController {
 
 	public void setup() {
 		logger.fine("Initializing MainDisplayController.");
-		
-		//SwingNode tempGaugeNode = null;
 
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
 				logger.finest("Invoking swing thread.");
-				/*
-				final int sizeX = 700;
-				final int sizeY = 400;
-				*/
 
 				MwConfiguration.setLookAndFeel();
 				MwConfiguration conf = new MwConfiguration();
-				
-				//MwGuiFrame frame = new MwGuiFrame(conf);
-				/*
-				MwChartPanel realTimeChart = MwChartFactory.createChart(conf, MSP.getRealTimeData().getDataSet());
-				MSP.getRealTimeData().addListener(realTimeChart);
-				realTimeChart.setPreferredSize(
-						new java.awt.Dimension(sizeX, sizeY));
-
-				chartNode.setContent(realTimeChart);
-				 */
 
 				rcDataPanel = new MwRCDataPanel(conf);
 				MSP.getRealTimeData().addListener(rcDataPanel);
-				//pane.setMinimumSize(new Dimension(770, 200));
-				//pane.setMaximumSize(new Dimension(770, 200));
 				rcDataNode.setContent(rcDataPanel);
-				//centerRcBoxNodes();
 
 				uavPanel = new MwUAVPanel(conf);
 				MSP.getRealTimeData().addListener(uavPanel);
@@ -246,9 +180,6 @@ public class MainDisplayController {
 				MSP.getRealTimeData().addListener(compasPanel);
 				compassNode.setContent(compasPanel);
 				
-				//frame.setVisible(true);
-				//frame.repaint();
-				//realTimeChart.repaint();
 				rcDataPanel.repaint();
 				uavPanel.repaint();
 				hudPanel.repaint();
@@ -265,77 +196,33 @@ public class MainDisplayController {
 				new Image((new File("src/main/resources/images/default/power.png")).toURI().toString())};
 		keySpinner = new KeySpinner(new ArrayList<KeyCode>(Arrays.asList(key_arr)),
 				new ArrayList<Image>(Arrays.asList(image_arr)));
-		//refreshKeyLabel();
 		keyImage.setImage(keySpinner.getIcon());
-
-		/*
-		AnchorPane.setTopAnchor(chartPane, 100.0);
-		AnchorPane.setLeftAnchor(chartPane, 0.0);
-		AnchorPane.setRightAnchor(chartPane, 0.0);
-		AnchorPane.setBottomAnchor(chartPane, 0.0);
-		rootLayout.getChildren().add(chartPane);
-		 */
-		/*
-		lowerHalf.getChildren().add(0, chartNode);
-		receiversBox.getChildren().add(rcDataNode);
-		receiversBox.getChildren().add(uavNode);
-		horizonTempBox.getChildren().add(horizonNode);
-		*/
+		
 		WebEngine engine = video.getEngine();
 		engine.load("http://t7rpi.asuscomm.com/html/");
 		video.setZoom(1.5);
-		//snapshot_display.setImage(new Image(new File("/home/jarrett/T7Software/hss/src/main/resources/images/fire3.jpg").toURI().toString()));
 		centerImage();
 		
 		logo.setImage(new Image((new File("src/main/resources/images/default/svn_logo_medium.png")).toURI().toString()));
 		logo.setFitWidth(logo.getFitWidth()*2);
 		logo.setFitHeight(logo.getFitHeight()*2);
-		//horizonTempBox.getChildren().add(tempGaugeNode);
 		tempGauge = new SimpleMetroArcGauge();
 		tempGauge.setPrefSize(175.0, 175.0);
 		tempGauge.setMinSize(175.0, 175.0);
-		tempGauge.setMaxValue(350.0);
-		/*
-		tempGauge.getStyleClass().add("colorscheme-green-to-red-6");
-		for(int i = 0; i < 10; i++) {
-			Segment lSegment = new PercentSegment(tempGauge, i*(100.0/6), (i+1)*100.0/6);
-			tempGauge.segments().add(lSegment);
-		}
-		*/
+		tempGauge.setMaxValue(100.0);
 		System.out.println("StyleClass: " + tempGauge.getStyleClass());
-		/*
-		tempGauge.setStyle("-fxx-segment0-color: #11632f");
-		tempGauge.setStyle("-fxx-segment1-color: #ffdb28");
-		tempGauge.setStyle("-fxx-segment2-color: #ff312a");
-		 */
 		tempGauge.getStylesheets().add("file:src/app/view/temperature_segment.css");
 		tempGauge.getStyleClass().add("colorscheme-green-to-red-3");
 		System.out.println("tempGauge StyleClasses: " + tempGauge.getStyleClass());
-		Segment gSeg = new PercentSegment(tempGauge, 0.0, 68.0);
-		Segment ySeg = new PercentSegment(tempGauge, 68.0, 88.0);
-		Segment rSeg = new PercentSegment(tempGauge, 88.0, 100.0);
+		Segment gSeg = new PercentSegment(tempGauge, 0.0, 60.0);
+		Segment ySeg = new PercentSegment(tempGauge, 60.0, 85.0);
+		Segment rSeg = new PercentSegment(tempGauge, 85.0, 100.0);
 		tempGauge.segments().add(gSeg);
 		tempGauge.segments().add(ySeg);
 		tempGauge.segments().add(rSeg);
 		tempBox.getChildren().add(tempGauge);
 		
-		dataset.setTimeBase(new Second());
-		/*
-		dataset.addSeries(accXSeries);
-		dataset.addSeries(accYSeries);
-		dataset.addSeries(accZSeries);
-		dataset.addSeries(gyroXSeries);
-		dataset.addSeries(gyroYSeries);
-		dataset.addSeries(gyroZSeries);
-		dataset.addSeries(attXSeries);
-		dataset.addSeries(attYSeries);
-		dataset.addSeries(attZSeries);
-		dataset.addSeries(altSeries);
-		dataset.addSeries(rangeSeries);
-		dataset.addSeries(headSeries);
-		dataset.addSeries(batSeries);
-		dataset.addSeries(tempSeries);
-		*/
+		dataset.setTimeBase(new Second(new Date(System.currentTimeMillis() - (1000 * 60 * 2))));
 		dataset.addSeries(new float[COUNT], 0, "Roll");
 		dataset.addSeries(new float[COUNT], 1, "Pitch");
 		dataset.addSeries(new float[COUNT], 2, "Yaw");
@@ -344,27 +231,25 @@ public class MainDisplayController {
 		dataset.addSeries(new float[COUNT], 5, "Battery");
 		dataset.addSeries(new float[COUNT], 6, "Air Temperature");
 		
-		//JFreeChart chart = ChartFactory.createTimeSeriesChart("", "", "", dataset, false, true, true);
 		JFreeChart chart = createChart(dataset);
 		dateAxis = (DateAxis) chart.getXYPlot().getDomainAxis();
 		dateAxis.setTickUnit(new DateTickUnit(DateTickUnitType.MINUTE, 1));
 		dateAxis.setTickMarkPosition(DateTickMarkPosition.START);
 		dateAxis.setDateFormatOverride(new SimpleDateFormat("HH:mm"));
-		valueAxis = (ValueAxis) chart.getXYPlot().getRangeAxis();
+		valueAxis = chart.getXYPlot().getRangeAxis();
 		chart.setAntiAlias(true);
 		chart.setTextAntiAlias(true);
 		ChartPanel chartPanel = new ChartPanel(chart);
 		
 		chartNode.setContent(chartPanel);
 		
-		timer = new Timer(500, new ActionListener() {
+		timer = new Timer(1000, new ActionListener() {
 			
 			
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				refreshChart();
-				//resizeChart();
 			}
 		});
 		
@@ -372,14 +257,6 @@ public class MainDisplayController {
 		
 		batteryImage.setImage(new Image((new File("src/main/resources/images/default/battery-00-gray.png")).toURI().toString()));
 	}
-
-	/*
-	public void printHorizonWidths() {
-		System.out.println("Horizon VBox width: " + horizonTempBox.getWidth());
-		System.out.println("Horizon JPanel width: " + ((SwingNode)horizonTempBox.getChildren().get(1)).getContent().getWidth());
-		System.out.println("Horizon JPanel Dimension width: " + ((SwingNode)horizonTempBox.getChildren().get(1)).getContent().getSize().getWidth());
-	}
-	*/
 	
 	private JFreeChart createChart(final XYDataset dataset) {
 		final JFreeChart result = ChartFactory.createTimeSeriesChart(
@@ -388,17 +265,11 @@ public class MainDisplayController {
 		ValueAxis domain = plot.getDomainAxis();
 		domain.setAutoRange(true);
 		ValueAxis range = plot.getRangeAxis();
-		//range.setRange(-100, 100);
 		range.setAutoRange(true);
 		return result;
 	}
 
 	public void updateDatum(double d, MsgType type) {
-		/*
-		String newVal = doubleDatumToLabelString(d);
-		Calendar cal = Calendar.getInstance();
-		Millisecond milli = new Millisecond(cal.getTime());
-		*/
 		ArrayList<Double> datumList = null;
 
 		switch(type) {
@@ -429,7 +300,7 @@ public class MainDisplayController {
 				uavPanel.readNewValue("2", 0.0);
 				uavPanel.readNewValue("3", 0.0);
 			}
-			break;
+			return;
 		case BAT:
 			if(d > 80.0) {
 				batteryImage.setImage(new Image((new File("src/main/resources/images/default/battery-100-gray.png")).toURI().toString()));
@@ -447,26 +318,27 @@ public class MainDisplayController {
 			
 			if(d == Double.MIN_VALUE) {
 				batteryLabel.setText(null);
+				batt_label.setText(null);
 				d = 0;
 			} else {
 				batteryLabel.setText(doubleDatumToLabelString(d) + "%");
+				batt_label.setText(doubleDatumToLabelString(d));
 			}
 			datumList = batList;
+			break;
+		case WIFI:
+			rcDataPanel.readNewValue(MSP.IDRCRANGE, d);
+			range_label.setText(doubleDatumToLabelString(d));
+			datumList = rangeList;
 			break;
 		default:
 			return;
 		}
 		
 		datumList.add(d);
-		//refreshChart();
-		//resizeChart();
 	}
 
 	public void updateVectorData(double datumX, double datumY, double datumZ, MsgType type) {
-		/*
-		Calendar cal = Calendar.getInstance();
-		Millisecond milli = new Millisecond(cal.getTime());
-		*/
 		ArrayList<Double> xList = null;
 		ArrayList<Double> yList = null;
 		ArrayList<Double> zList = null;
@@ -479,12 +351,6 @@ public class MainDisplayController {
 			rcDataPanel.readNewValue(MSP.IDRCACCX, datumX);
 			rcDataPanel.readNewValue(MSP.IDRCACCY, datumY);
 			rcDataPanel.readNewValue(MSP.IDRCACCZ, datumZ);
-			/*
-			uavPanel.readNewValue("0", 2000.0);
-			uavPanel.readNewValue("1", 2000.0);
-			uavPanel.readNewValue("2", 2000.0);
-			uavPanel.readNewValue("3", 2000.0);
-			*/
 			return;
 		case GYRO:
 			gyro_roll_label.setText(doubleDatumToLabelString(datumX));
@@ -511,41 +377,9 @@ public class MainDisplayController {
 		xList.add(datumX);
 		yList.add(datumY);
 		zList.add(datumZ);
-		//refreshChart();
-		//resizeChart();
 	}
 	
-	/*
 	private void resizeChart() {
-		Range xRange = dataset.getDomainBounds(false);
-		Range yRange = dataset.getRangeBounds(false);
-		
-		double xUp = xRange.getUpperBound();
-		double xLow = xRange.getLowerBound();
-		double yUp = yRange.getUpperBound();
-		double yLow = yRange.getLowerBound();
-		
-		dateAxis.setUpperBound(xUp);
-		if(xUp - xLow > 10) {
-			dateAxis.setLowerBound(xUp - 10);
-		}
-		
-		valueAxis.setUpperBound(yUp);
-		if(yUp - yLow > 50) {
-			valueAxis.setLowerBound(yUp - 50);
-		}
-	}
-	*/
-	
-	private void resizeChart() {
-		/*
-		Range xRange = dataset.getDomainBounds(false);
-		System.out.println("xRange = " + xRange.toString());
-		System.out.println("X upper bound = " + xRange.getUpperBound());
-		if(xRange.getLength() > 0) {
-			dateAxis.setRangeAboutValue(xRange.getUpperBound(), 10);
-		}
-		*/
 		
 		Range yRange = dataset.getRangeBounds(false);
 		System.out.println("yRange = " + yRange.toString());
@@ -563,22 +397,6 @@ public class MainDisplayController {
 		}
 		return s;
 	}
-	/*
-	private void centerRcBoxNodes() {
-		SwingNode node1 = (SwingNode)receiversBox.getChildren().get(1);
-		SwingNode node2 = (SwingNode)receiversBox.getChildren().get(2);
-		JComponent comp1 = node1.getContent();
-		JComponent comp2 = node2.getContent();
-		if(comp1 != null && comp2 != null) {
-			double w = receiversBox.getWidth();
-			double xpos = receiversBox.getLayoutX();
-			double center = w/2 + xpos;
-
-			node1.setLayoutX(center);
-			node2.setLayoutX(center);
-		}
-	}
-	*/
 
 	private void centerImage() {
 		Image img = snapshot_display.getImage();
@@ -612,13 +430,12 @@ public class MainDisplayController {
 		setEmbeddedSnap(snap);
 		snapshot_display.setImage(snap.getImage());
 		pin_display.setImage(Snapshot.getPin());
-		//priLabel.setText(Integer.toString(snap.getPriority()));
-		priLabel.setText(Integer.toString(snap.getRelativePriority()));
+		if(snap.isTarget()) {
+			priLabel.setText(Integer.toString(snap.getRelativePriority()));
+		} else {
+			priLabel.setText("");
+		}
 		centerImage();
-		/*
-		snapshot_anchor.setPrefWidth(snapshot_display.getFitWidth());
-		snapshot_anchor.setPrefHeight(snapshot_display.getFitHeight());
-		*/
 	}
 
 	public void checkDeleteDisplayedSnapshot(Snapshot snapshot) {
@@ -647,29 +464,6 @@ public class MainDisplayController {
 		//refreshKeyLabel();
 		keyImage.setImage(keySpinner.getIcon());
 	}
-	
-	/*
-	public void refreshKeyLabel() {
-		String actionStr = "";
-		switch(keySpinner.getKey()) {
-		case S:
-			actionStr = "Take Snapshot";
-			break;
-		case E:
-			actionStr = "Snapshot Explorer";
-			break;
-		case C:
-			actionStr = "Data Configuration Manager";
-			break;
-		case T:
-			actionStr = "UAV Termination Menu";
-			break;
-		default:
-			break;
-		}
-		keyLabel.setText(actionStr);
-	}
-	*/
 
 	public void updateEmbeddedSnap() {
 		if(embedded_snap != null) {
@@ -687,22 +481,6 @@ public class MainDisplayController {
 	
 	private void refreshChart() {
 		float[] newData = new float[SERIESNUM];
-		/*
-		private ArrayList<Double> accXList = new ArrayList<Double>();
-		private ArrayList<Double> accYList = new ArrayList<Double>();
-		private ArrayList<Double> accZList = new ArrayList<Double>();
-		private ArrayList<Double> gyroXList = new ArrayList<Double>();
-		private ArrayList<Double> gyroYList = new ArrayList<Double>();
-		private ArrayList<Double> gyroZList = new ArrayList<Double>();
-		private ArrayList<Double> attXList = new ArrayList<Double>();
-		private ArrayList<Double> attYList = new ArrayList<Double>();
-		private ArrayList<Double> attZList = new ArrayList<Double>();
-		private ArrayList<Double> altList = new ArrayList<Double>();
-		private ArrayList<Double> rangeList = new ArrayList<Double>();
-		private ArrayList<Double> headList = new ArrayList<Double>();
-		private ArrayList<Double> batList = new ArrayList<Double>();
-		private ArrayList<Double> tempList = new ArrayList<Double>();
-		*/
 
 		if(attXList.size() == 0) {
 			newData[0] = 0;
@@ -753,13 +531,5 @@ public class MainDisplayController {
 	public void stopTimer() {
 		timer.stop();
 	}
-
-	/*
-	public void streamVideo() {
-		MediaPlayer player = new MediaPlayer(new Media("http://t7rpi.asuscomm.com/html"));
-		video.setMediaPlayer(player);
-		player.play();
-	}
-	*/
 }
 

@@ -48,22 +48,54 @@ class HeadingDefaultTypeInternal : public ::google::protobuf::internal::Explicit
 } _Heading_default_instance_;
 class ThermalResponseDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<ThermalResponse> {
 } _ThermalResponse_default_instance_;
+class WiFiDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<WiFi> {
+} _WiFi_default_instance_;
 
 namespace protobuf_T7Messages_2eproto {
 
 
 namespace {
 
-::google::protobuf::Metadata file_level_metadata[15];
+::google::protobuf::Metadata file_level_metadata[16];
 const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[4];
 
 }  // namespace
+
+PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::ParseTableField
+    const TableStruct::entries[] = {
+  {0, 0, 0, ::google::protobuf::internal::kInvalidMask, 0, 0},
+};
+
+PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::AuxillaryParseTableField
+    const TableStruct::aux[] = {
+  ::google::protobuf::internal::AuxillaryParseTableField(),
+};
+PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::ParseTable const
+    TableStruct::schema[] = {
+  { NULL, NULL, 0, -1, -1, false },
+  { NULL, NULL, 0, -1, -1, false },
+  { NULL, NULL, 0, -1, -1, false },
+  { NULL, NULL, 0, -1, -1, false },
+  { NULL, NULL, 0, -1, -1, false },
+  { NULL, NULL, 0, -1, -1, false },
+  { NULL, NULL, 0, -1, -1, false },
+  { NULL, NULL, 0, -1, -1, false },
+  { NULL, NULL, 0, -1, -1, false },
+  { NULL, NULL, 0, -1, -1, false },
+  { NULL, NULL, 0, -1, -1, false },
+  { NULL, NULL, 0, -1, -1, false },
+  { NULL, NULL, 0, -1, -1, false },
+  { NULL, NULL, 0, -1, -1, false },
+  { NULL, NULL, 0, -1, -1, false },
+  { NULL, NULL, 0, -1, -1, false },
+};
 
 const ::google::protobuf::uint32 TableStruct::offsets[] = {
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericMessage, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericMessage, msgtype_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericMessage, time_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericMessage, response_),
@@ -80,40 +112,48 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericMessage, bat_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericMessage, head_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericMessage, thermalresponse_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericMessage, wifi_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Response, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Response, roger_that_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(HeartBeat, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(HeartBeat, alive_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Terminate, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Terminate, terminatekey_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ConfigData, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ConfigData, configkey_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MoveCamera, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MoveCamera, arrowkey_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ThermalRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ThermalRequest, request_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Accel, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Accel, x_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Accel, y_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Accel, z_),
@@ -121,6 +161,7 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Gyro, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Gyro, x_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Gyro, y_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Gyro, z_),
@@ -128,11 +169,13 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Altitude, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Altitude, alt_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Attitude, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Attitude, roll_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Attitude, pitch_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Attitude, yaw_),
@@ -140,40 +183,52 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Temp, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Temp, temp_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Battery, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Battery, percent_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Heading, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Heading, heading_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ThermalResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ThermalResponse, response_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(WiFi, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(WiFi, strength_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(WiFi, freq_),
 };
 
 static const ::google::protobuf::internal::MigrationSchema schemas[] = {
   { 0, -1, sizeof(GenericMessage)},
-  { 20, -1, sizeof(Response)},
-  { 25, -1, sizeof(HeartBeat)},
-  { 30, -1, sizeof(Terminate)},
-  { 35, -1, sizeof(ConfigData)},
-  { 40, -1, sizeof(MoveCamera)},
-  { 45, -1, sizeof(ThermalRequest)},
-  { 50, -1, sizeof(Accel)},
-  { 57, -1, sizeof(Gyro)},
-  { 64, -1, sizeof(Altitude)},
-  { 69, -1, sizeof(Attitude)},
-  { 76, -1, sizeof(Temp)},
-  { 81, -1, sizeof(Battery)},
-  { 86, -1, sizeof(Heading)},
-  { 91, -1, sizeof(ThermalResponse)},
+  { 22, -1, sizeof(Response)},
+  { 28, -1, sizeof(HeartBeat)},
+  { 34, -1, sizeof(Terminate)},
+  { 40, -1, sizeof(ConfigData)},
+  { 46, -1, sizeof(MoveCamera)},
+  { 52, -1, sizeof(ThermalRequest)},
+  { 58, -1, sizeof(Accel)},
+  { 66, -1, sizeof(Gyro)},
+  { 74, -1, sizeof(Altitude)},
+  { 80, -1, sizeof(Attitude)},
+  { 88, -1, sizeof(Temp)},
+  { 94, -1, sizeof(Battery)},
+  { 100, -1, sizeof(Heading)},
+  { 106, -1, sizeof(ThermalResponse)},
+  { 112, -1, sizeof(WiFi)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -192,6 +247,7 @@ static ::google::protobuf::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::google::protobuf::Message*>(&_Battery_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_Heading_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_ThermalResponse_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_WiFi_default_instance_),
 };
 
 namespace {
@@ -212,7 +268,7 @@ void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 15);
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 16);
 }
 
 }  // namespace
@@ -248,6 +304,8 @@ void TableStruct::Shutdown() {
   delete file_level_metadata[13].reflection;
   _ThermalResponse_default_instance_.Shutdown();
   delete file_level_metadata[14].reflection;
+  _WiFi_default_instance_.Shutdown();
+  delete file_level_metadata[15].reflection;
 }
 
 void TableStruct::InitDefaultsImpl() {
@@ -269,6 +327,7 @@ void TableStruct::InitDefaultsImpl() {
   _Battery_default_instance_.DefaultConstruct();
   _Heading_default_instance_.DefaultConstruct();
   _ThermalResponse_default_instance_.DefaultConstruct();
+  _WiFi_default_instance_.DefaultConstruct();
   _GenericMessage_default_instance_.get_mutable()->response_ = const_cast< ::T7::Response*>(
       ::T7::Response::internal_default_instance());
   _GenericMessage_default_instance_.get_mutable()->heartbeat_ = const_cast< ::T7::HeartBeat*>(
@@ -297,6 +356,8 @@ void TableStruct::InitDefaultsImpl() {
       ::T7::Heading::internal_default_instance());
   _GenericMessage_default_instance_.get_mutable()->thermalresponse_ = const_cast< ::T7::ThermalResponse*>(
       ::T7::ThermalResponse::internal_default_instance());
+  _GenericMessage_default_instance_.get_mutable()->wifi_ = const_cast< ::T7::WiFi*>(
+      ::T7::WiFi::internal_default_instance());
 }
 
 void InitDefaults() {
@@ -306,7 +367,7 @@ void InitDefaults() {
 void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] = {
-      "\n\020T7Messages.proto\022\002T7\"\317\005\n\016GenericMessag"
+      "\n\020T7Messages.proto\022\002T7\"\362\005\n\016GenericMessag"
       "e\022\017\n\007msgtype\030\001 \001(\005\022\014\n\004time\030\002 \001(\001\022\036\n\010resp"
       "onse\030\003 \001(\0132\014.T7.Response\022 \n\theartbeat\030\004 "
       "\001(\0132\r.T7.HeartBeat\022 \n\tterminate\030\005 \001(\0132\r."
@@ -319,34 +380,36 @@ void AddDescriptorsImpl() {
       "de\022\026\n\004temp\030\014 \001(\0132\010.T7.Temp\022\030\n\003bat\030\r \001(\0132"
       "\013.T7.Battery\022\031\n\004head\030\016 \001(\0132\013.T7.Heading\022"
       ",\n\017thermalresponse\030\020 \001(\0132\023.T7.ThermalRes"
-      "ponse\"\330\001\n\007MsgType\022\014\n\010RESPONSE\020\000\022\r\n\tHEART"
-      "BEAT\020\001\022\r\n\tTERMINATE\020\002\022\017\n\013CONFIG_DATA\020e\022\017"
-      "\n\013MOVE_CAMERA\020f\022\023\n\017THERMAL_REQUEST\020g\022\n\n\005"
-      "ACCEL\020\310\001\022\t\n\004GYRO\020\311\001\022\r\n\010ALTITUDE\020\312\001\022\r\n\010AT"
-      "TITUDE\020\313\001\022\t\n\004TEMP\020\314\001\022\010\n\003BAT\020\315\001\022\t\n\004HEAD\020\316"
-      "\001\022\025\n\020THERMAL_RESPONSE\020\317\001\"\036\n\010Response\022\022\n\n"
-      "roger_that\030\001 \001(\010\"\032\n\tHeartBeat\022\r\n\005alive\030\001"
-      " \001(\010\"j\n\tTerminate\022\024\n\014terminateKey\030\001 \001(\005\""
-      "G\n\rTerminateKeys\022\021\n\rselfTerminate\020\000\022\020\n\014s"
-      "oftShutdown\020\001\022\021\n\remergencyStop\020\002\"\267\001\n\nCon"
-      "figData\022\021\n\tconfigKey\030\001 \001(\005\"\225\001\n\nToggleKey"
-      "s\022\017\n\013toggleAccel\020\000\022\016\n\ntoggleGyro\020\001\022\022\n\016to"
-      "ggleAltitude\020\002\022\022\n\016toggleAttitude\020\003\022\016\n\nto"
-      "ggleTemp\020\004\022\r\n\ttoggleBat\020\005\022\017\n\013toggleArray"
-      "\020\006\022\016\n\ntoggleHead\020\007\"R\n\nMoveCamera\022\020\n\010arro"
-      "wKey\030\001 \001(\005\"2\n\tArrowKeys\022\006\n\002UP\020\000\022\t\n\005RIGHT"
-      "\020\001\022\010\n\004DOWN\020\002\022\010\n\004LEFT\020\003\"!\n\016ThermalRequest"
-      "\022\017\n\007request\030\001 \001(\010\"(\n\005Accel\022\t\n\001x\030\001 \001(\001\022\t\n"
-      "\001y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\"\'\n\004Gyro\022\t\n\001x\030\001 \001(\001\022\t"
-      "\n\001y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\"\027\n\010Altitude\022\013\n\003alt\030"
-      "\001 \001(\001\"4\n\010Attitude\022\014\n\004roll\030\001 \001(\001\022\r\n\005pitch"
-      "\030\002 \001(\001\022\013\n\003yaw\030\003 \001(\001\"\024\n\004Temp\022\014\n\004temp\030\001 \001("
-      "\001\"\032\n\007Battery\022\017\n\007percent\030\001 \001(\001\"\032\n\007Heading"
-      "\022\017\n\007heading\030\001 \001(\001\"#\n\017ThermalResponse\022\020\n\010"
-      "response\030\001 \001(\001b\006proto3"
+      "ponse\022\026\n\004wifi\030\021 \001(\0132\010.T7.WiFi\"\343\001\n\007MsgTyp"
+      "e\022\014\n\010RESPONSE\020\000\022\r\n\tHEARTBEAT\020\001\022\r\n\tTERMIN"
+      "ATE\020\002\022\017\n\013CONFIG_DATA\020e\022\017\n\013MOVE_CAMERA\020f\022"
+      "\023\n\017THERMAL_REQUEST\020g\022\n\n\005ACCEL\020\310\001\022\t\n\004GYRO"
+      "\020\311\001\022\r\n\010ALTITUDE\020\312\001\022\r\n\010ATTITUDE\020\313\001\022\t\n\004TEM"
+      "P\020\314\001\022\010\n\003BAT\020\315\001\022\t\n\004HEAD\020\316\001\022\025\n\020THERMAL_RES"
+      "PONSE\020\317\001\022\t\n\004WIFI\020\320\001\"\036\n\010Response\022\022\n\nroger"
+      "_that\030\001 \001(\010\"\032\n\tHeartBeat\022\r\n\005alive\030\001 \001(\010\""
+      "j\n\tTerminate\022\024\n\014terminateKey\030\001 \001(\005\"G\n\rTe"
+      "rminateKeys\022\021\n\rselfTerminate\020\000\022\020\n\014softSh"
+      "utdown\020\001\022\021\n\remergencyStop\020\002\"\307\001\n\nConfigDa"
+      "ta\022\021\n\tconfigKey\030\001 \001(\005\"\245\001\n\nToggleKeys\022\017\n\013"
+      "toggleAccel\020\000\022\016\n\ntoggleGyro\020\001\022\022\n\016toggleA"
+      "ltitude\020\002\022\022\n\016toggleAttitude\020\003\022\016\n\ntoggleT"
+      "emp\020\004\022\r\n\ttoggleBat\020\005\022\017\n\013toggleArray\020\006\022\016\n"
+      "\ntoggleHead\020\007\022\016\n\ntoggleWifi\020\010\"R\n\nMoveCam"
+      "era\022\020\n\010arrowKey\030\001 \001(\005\"2\n\tArrowKeys\022\006\n\002UP"
+      "\020\000\022\t\n\005RIGHT\020\001\022\010\n\004DOWN\020\002\022\010\n\004LEFT\020\003\"!\n\016The"
+      "rmalRequest\022\017\n\007request\030\001 \001(\010\"(\n\005Accel\022\t\n"
+      "\001x\030\001 \001(\001\022\t\n\001y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\"\'\n\004Gyro\022\t"
+      "\n\001x\030\001 \001(\001\022\t\n\001y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\"\027\n\010Altit"
+      "ude\022\013\n\003alt\030\001 \001(\001\"4\n\010Attitude\022\014\n\004roll\030\001 \001"
+      "(\001\022\r\n\005pitch\030\002 \001(\001\022\013\n\003yaw\030\003 \001(\001\"\024\n\004Temp\022\014"
+      "\n\004temp\030\001 \001(\001\"\032\n\007Battery\022\017\n\007percent\030\001 \001(\001"
+      "\"\032\n\007Heading\022\017\n\007heading\030\001 \001(\001\"#\n\017ThermalR"
+      "esponse\022\020\n\010response\030\001 \001(\001\"&\n\004WiFi\022\020\n\010str"
+      "ength\030\001 \001(\001\022\014\n\004freq\030\002 \001(\001b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 1502);
+      descriptor, 1593);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "T7Messages.proto", &protobuf_RegisterTypes);
   ::google::protobuf::internal::OnShutdown(&TableStruct::Shutdown);
@@ -385,6 +448,7 @@ bool GenericMessage_MsgType_IsValid(int value) {
     case 205:
     case 206:
     case 207:
+    case 208:
       return true;
     default:
       return false;
@@ -406,6 +470,7 @@ const GenericMessage_MsgType GenericMessage::TEMP;
 const GenericMessage_MsgType GenericMessage::BAT;
 const GenericMessage_MsgType GenericMessage::HEAD;
 const GenericMessage_MsgType GenericMessage::THERMAL_RESPONSE;
+const GenericMessage_MsgType GenericMessage::WIFI;
 const GenericMessage_MsgType GenericMessage::MsgType_MIN;
 const GenericMessage_MsgType GenericMessage::MsgType_MAX;
 const int GenericMessage::MsgType_ARRAYSIZE;
@@ -447,6 +512,7 @@ bool ConfigData_ToggleKeys_IsValid(int value) {
     case 5:
     case 6:
     case 7:
+    case 8:
       return true;
     default:
       return false;
@@ -462,6 +528,7 @@ const ConfigData_ToggleKeys ConfigData::toggleTemp;
 const ConfigData_ToggleKeys ConfigData::toggleBat;
 const ConfigData_ToggleKeys ConfigData::toggleArray;
 const ConfigData_ToggleKeys ConfigData::toggleHead;
+const ConfigData_ToggleKeys ConfigData::toggleWifi;
 const ConfigData_ToggleKeys ConfigData::ToggleKeys_MIN;
 const ConfigData_ToggleKeys ConfigData::ToggleKeys_MAX;
 const int ConfigData::ToggleKeys_ARRAYSIZE;
@@ -511,6 +578,7 @@ const int GenericMessage::kTempFieldNumber;
 const int GenericMessage::kBatFieldNumber;
 const int GenericMessage::kHeadFieldNumber;
 const int GenericMessage::kThermalresponseFieldNumber;
+const int GenericMessage::kWifiFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 GenericMessage::GenericMessage()
@@ -551,11 +619,6 @@ GenericMessage::GenericMessage(const GenericMessage& from)
   } else {
     movecamera_ = NULL;
   }
-  if (from.has_thermalrequest()) {
-    thermalrequest_ = new ::T7::ThermalRequest(*from.thermalrequest_);
-  } else {
-    thermalrequest_ = NULL;
-  }
   if (from.has_accel()) {
     accel_ = new ::T7::Accel(*from.accel_);
   } else {
@@ -591,10 +654,20 @@ GenericMessage::GenericMessage(const GenericMessage& from)
   } else {
     head_ = NULL;
   }
+  if (from.has_thermalrequest()) {
+    thermalrequest_ = new ::T7::ThermalRequest(*from.thermalrequest_);
+  } else {
+    thermalrequest_ = NULL;
+  }
   if (from.has_thermalresponse()) {
     thermalresponse_ = new ::T7::ThermalResponse(*from.thermalresponse_);
   } else {
     thermalresponse_ = NULL;
+  }
+  if (from.has_wifi()) {
+    wifi_ = new ::T7::WiFi(*from.wifi_);
+  } else {
+    wifi_ = NULL;
   }
   ::memcpy(&time_, &from.time_,
     reinterpret_cast<char*>(&msgtype_) -
@@ -630,9 +703,6 @@ void GenericMessage::SharedDtor() {
     delete movecamera_;
   }
   if (this != internal_default_instance()) {
-    delete thermalrequest_;
-  }
-  if (this != internal_default_instance()) {
     delete accel_;
   }
   if (this != internal_default_instance()) {
@@ -654,7 +724,13 @@ void GenericMessage::SharedDtor() {
     delete head_;
   }
   if (this != internal_default_instance()) {
+    delete thermalrequest_;
+  }
+  if (this != internal_default_instance()) {
     delete thermalresponse_;
+  }
+  if (this != internal_default_instance()) {
+    delete wifi_;
   }
 }
 
@@ -665,7 +741,7 @@ void GenericMessage::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* GenericMessage::descriptor() {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[0].descriptor;
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
 }
 
 const GenericMessage& GenericMessage::default_instance() {
@@ -703,10 +779,6 @@ void GenericMessage::Clear() {
     delete movecamera_;
   }
   movecamera_ = NULL;
-  if (GetArenaNoVirtual() == NULL && thermalrequest_ != NULL) {
-    delete thermalrequest_;
-  }
-  thermalrequest_ = NULL;
   if (GetArenaNoVirtual() == NULL && accel_ != NULL) {
     delete accel_;
   }
@@ -735,10 +807,18 @@ void GenericMessage::Clear() {
     delete head_;
   }
   head_ = NULL;
+  if (GetArenaNoVirtual() == NULL && thermalrequest_ != NULL) {
+    delete thermalrequest_;
+  }
+  thermalrequest_ = NULL;
   if (GetArenaNoVirtual() == NULL && thermalresponse_ != NULL) {
     delete thermalresponse_;
   }
   thermalresponse_ = NULL;
+  if (GetArenaNoVirtual() == NULL && wifi_ != NULL) {
+    delete wifi_;
+  }
+  wifi_ = NULL;
   ::memset(&time_, 0, reinterpret_cast<char*>(&msgtype_) -
     reinterpret_cast<char*>(&time_) + sizeof(msgtype_));
 }
@@ -949,6 +1029,18 @@ bool GenericMessage::MergePartialFromCodedStream(
         break;
       }
 
+      // .T7.WiFi wifi = 17;
+      case 17: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(138u)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_wifi()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0 ||
@@ -973,6 +1065,9 @@ failure:
 void GenericMessage::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:T7.GenericMessage)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   // int32 msgtype = 1;
   if (this->msgtype() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->msgtype(), output);
@@ -1067,13 +1162,21 @@ void GenericMessage::SerializeWithCachedSizes(
       16, *this->thermalresponse_, output);
   }
 
+  // .T7.WiFi wifi = 17;
+  if (this->has_wifi()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      17, *this->wifi_, output);
+  }
+
   // @@protoc_insertion_point(serialize_end:T7.GenericMessage)
 }
 
 ::google::protobuf::uint8* GenericMessage::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:T7.GenericMessage)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   // int32 msgtype = 1;
   if (this->msgtype() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->msgtype(), target);
@@ -1088,98 +1191,105 @@ void GenericMessage::SerializeWithCachedSizes(
   if (this->has_response()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
-        3, *this->response_, false, target);
+        3, *this->response_, deterministic, target);
   }
 
   // .T7.HeartBeat heartbeat = 4;
   if (this->has_heartbeat()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
-        4, *this->heartbeat_, false, target);
+        4, *this->heartbeat_, deterministic, target);
   }
 
   // .T7.Terminate terminate = 5;
   if (this->has_terminate()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
-        5, *this->terminate_, false, target);
+        5, *this->terminate_, deterministic, target);
   }
 
   // .T7.ConfigData configdata = 6;
   if (this->has_configdata()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
-        6, *this->configdata_, false, target);
+        6, *this->configdata_, deterministic, target);
   }
 
   // .T7.MoveCamera movecamera = 7;
   if (this->has_movecamera()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
-        7, *this->movecamera_, false, target);
+        7, *this->movecamera_, deterministic, target);
   }
 
   // .T7.Accel accel = 8;
   if (this->has_accel()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
-        8, *this->accel_, false, target);
+        8, *this->accel_, deterministic, target);
   }
 
   // .T7.Gyro gyro = 9;
   if (this->has_gyro()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
-        9, *this->gyro_, false, target);
+        9, *this->gyro_, deterministic, target);
   }
 
   // .T7.Altitude altitude = 10;
   if (this->has_altitude()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
-        10, *this->altitude_, false, target);
+        10, *this->altitude_, deterministic, target);
   }
 
   // .T7.Attitude attitude = 11;
   if (this->has_attitude()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
-        11, *this->attitude_, false, target);
+        11, *this->attitude_, deterministic, target);
   }
 
   // .T7.Temp temp = 12;
   if (this->has_temp()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
-        12, *this->temp_, false, target);
+        12, *this->temp_, deterministic, target);
   }
 
   // .T7.Battery bat = 13;
   if (this->has_bat()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
-        13, *this->bat_, false, target);
+        13, *this->bat_, deterministic, target);
   }
 
   // .T7.Heading head = 14;
   if (this->has_head()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
-        14, *this->head_, false, target);
+        14, *this->head_, deterministic, target);
   }
 
   // .T7.ThermalRequest thermalrequest = 15;
   if (this->has_thermalrequest()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
-        15, *this->thermalrequest_, false, target);
+        15, *this->thermalrequest_, deterministic, target);
   }
 
   // .T7.ThermalResponse thermalresponse = 16;
   if (this->has_thermalresponse()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
-        16, *this->thermalresponse_, false, target);
+        16, *this->thermalresponse_, deterministic, target);
+  }
+
+  // .T7.WiFi wifi = 17;
+  if (this->has_wifi()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        17, *this->wifi_, deterministic, target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:T7.GenericMessage)
@@ -1223,13 +1333,6 @@ size_t GenericMessage::ByteSizeLong() const {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
         *this->movecamera_);
-  }
-
-  // .T7.ThermalRequest thermalrequest = 15;
-  if (this->has_thermalrequest()) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        *this->thermalrequest_);
   }
 
   // .T7.Accel accel = 8;
@@ -1281,11 +1384,25 @@ size_t GenericMessage::ByteSizeLong() const {
         *this->head_);
   }
 
+  // .T7.ThermalRequest thermalrequest = 15;
+  if (this->has_thermalrequest()) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        *this->thermalrequest_);
+  }
+
   // .T7.ThermalResponse thermalresponse = 16;
   if (this->has_thermalresponse()) {
     total_size += 2 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
         *this->thermalresponse_);
+  }
+
+  // .T7.WiFi wifi = 17;
+  if (this->has_wifi()) {
+    total_size += 2 +
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        *this->wifi_);
   }
 
   // double time = 2;
@@ -1326,6 +1443,9 @@ void GenericMessage::MergeFrom(const GenericMessage& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:T7.GenericMessage)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   if (from.has_response()) {
     mutable_response()->::T7::Response::MergeFrom(from.response());
   }
@@ -1340,9 +1460,6 @@ void GenericMessage::MergeFrom(const GenericMessage& from) {
   }
   if (from.has_movecamera()) {
     mutable_movecamera()->::T7::MoveCamera::MergeFrom(from.movecamera());
-  }
-  if (from.has_thermalrequest()) {
-    mutable_thermalrequest()->::T7::ThermalRequest::MergeFrom(from.thermalrequest());
   }
   if (from.has_accel()) {
     mutable_accel()->::T7::Accel::MergeFrom(from.accel());
@@ -1365,8 +1482,14 @@ void GenericMessage::MergeFrom(const GenericMessage& from) {
   if (from.has_head()) {
     mutable_head()->::T7::Heading::MergeFrom(from.head());
   }
+  if (from.has_thermalrequest()) {
+    mutable_thermalrequest()->::T7::ThermalRequest::MergeFrom(from.thermalrequest());
+  }
   if (from.has_thermalresponse()) {
     mutable_thermalresponse()->::T7::ThermalResponse::MergeFrom(from.thermalresponse());
+  }
+  if (from.has_wifi()) {
+    mutable_wifi()->::T7::WiFi::MergeFrom(from.wifi());
   }
   if (from.time() != 0) {
     set_time(from.time());
@@ -1404,7 +1527,6 @@ void GenericMessage::InternalSwap(GenericMessage* other) {
   std::swap(terminate_, other->terminate_);
   std::swap(configdata_, other->configdata_);
   std::swap(movecamera_, other->movecamera_);
-  std::swap(thermalrequest_, other->thermalrequest_);
   std::swap(accel_, other->accel_);
   std::swap(gyro_, other->gyro_);
   std::swap(altitude_, other->altitude_);
@@ -1412,7 +1534,9 @@ void GenericMessage::InternalSwap(GenericMessage* other) {
   std::swap(temp_, other->temp_);
   std::swap(bat_, other->bat_);
   std::swap(head_, other->head_);
+  std::swap(thermalrequest_, other->thermalrequest_);
   std::swap(thermalresponse_, other->thermalresponse_);
+  std::swap(wifi_, other->wifi_);
   std::swap(time_, other->time_);
   std::swap(msgtype_, other->msgtype_);
   std::swap(_cached_size_, other->_cached_size_);
@@ -1420,7 +1544,7 @@ void GenericMessage::InternalSwap(GenericMessage* other) {
 
 ::google::protobuf::Metadata GenericMessage::GetMetadata() const {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[0];
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -2000,6 +2124,45 @@ void GenericMessage::set_allocated_thermalresponse(::T7::ThermalResponse* therma
   // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.thermalresponse)
 }
 
+// .T7.WiFi wifi = 17;
+bool GenericMessage::has_wifi() const {
+  return this != internal_default_instance() && wifi_ != NULL;
+}
+void GenericMessage::clear_wifi() {
+  if (GetArenaNoVirtual() == NULL && wifi_ != NULL) delete wifi_;
+  wifi_ = NULL;
+}
+const ::T7::WiFi& GenericMessage::wifi() const {
+  // @@protoc_insertion_point(field_get:T7.GenericMessage.wifi)
+  return wifi_ != NULL ? *wifi_
+                         : *::T7::WiFi::internal_default_instance();
+}
+::T7::WiFi* GenericMessage::mutable_wifi() {
+  
+  if (wifi_ == NULL) {
+    wifi_ = new ::T7::WiFi;
+  }
+  // @@protoc_insertion_point(field_mutable:T7.GenericMessage.wifi)
+  return wifi_;
+}
+::T7::WiFi* GenericMessage::release_wifi() {
+  // @@protoc_insertion_point(field_release:T7.GenericMessage.wifi)
+  
+  ::T7::WiFi* temp = wifi_;
+  wifi_ = NULL;
+  return temp;
+}
+void GenericMessage::set_allocated_wifi(::T7::WiFi* wifi) {
+  delete wifi_;
+  wifi_ = wifi;
+  if (wifi) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.wifi)
+}
+
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
 
 // ===================================================================
@@ -2045,7 +2208,7 @@ void Response::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* Response::descriptor() {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[1].descriptor;
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
 }
 
 const Response& Response::default_instance() {
@@ -2114,6 +2277,9 @@ failure:
 void Response::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:T7.Response)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   // bool roger_that = 1;
   if (this->roger_that() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(1, this->roger_that(), output);
@@ -2124,8 +2290,10 @@ void Response::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Response::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:T7.Response)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   // bool roger_that = 1;
   if (this->roger_that() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(1, this->roger_that(), target);
@@ -2170,6 +2338,9 @@ void Response::MergeFrom(const Response& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:T7.Response)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   if (from.roger_that() != 0) {
     set_roger_that(from.roger_that());
   }
@@ -2204,7 +2375,7 @@ void Response::InternalSwap(Response* other) {
 
 ::google::protobuf::Metadata Response::GetMetadata() const {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[1];
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -2269,7 +2440,7 @@ void HeartBeat::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* HeartBeat::descriptor() {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[2].descriptor;
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
 }
 
 const HeartBeat& HeartBeat::default_instance() {
@@ -2338,6 +2509,9 @@ failure:
 void HeartBeat::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:T7.HeartBeat)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   // bool alive = 1;
   if (this->alive() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(1, this->alive(), output);
@@ -2348,8 +2522,10 @@ void HeartBeat::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* HeartBeat::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:T7.HeartBeat)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   // bool alive = 1;
   if (this->alive() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(1, this->alive(), target);
@@ -2394,6 +2570,9 @@ void HeartBeat::MergeFrom(const HeartBeat& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:T7.HeartBeat)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   if (from.alive() != 0) {
     set_alive(from.alive());
   }
@@ -2428,7 +2607,7 @@ void HeartBeat::InternalSwap(HeartBeat* other) {
 
 ::google::protobuf::Metadata HeartBeat::GetMetadata() const {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[2];
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -2493,7 +2672,7 @@ void Terminate::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* Terminate::descriptor() {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[3].descriptor;
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
 }
 
 const Terminate& Terminate::default_instance() {
@@ -2562,6 +2741,9 @@ failure:
 void Terminate::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:T7.Terminate)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   // int32 terminateKey = 1;
   if (this->terminatekey() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->terminatekey(), output);
@@ -2572,8 +2754,10 @@ void Terminate::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Terminate::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:T7.Terminate)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   // int32 terminateKey = 1;
   if (this->terminatekey() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->terminatekey(), target);
@@ -2620,6 +2804,9 @@ void Terminate::MergeFrom(const Terminate& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:T7.Terminate)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   if (from.terminatekey() != 0) {
     set_terminatekey(from.terminatekey());
   }
@@ -2654,7 +2841,7 @@ void Terminate::InternalSwap(Terminate* other) {
 
 ::google::protobuf::Metadata Terminate::GetMetadata() const {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[3];
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -2719,7 +2906,7 @@ void ConfigData::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* ConfigData::descriptor() {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[4].descriptor;
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
 }
 
 const ConfigData& ConfigData::default_instance() {
@@ -2788,6 +2975,9 @@ failure:
 void ConfigData::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:T7.ConfigData)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   // int32 configKey = 1;
   if (this->configkey() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->configkey(), output);
@@ -2798,8 +2988,10 @@ void ConfigData::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* ConfigData::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:T7.ConfigData)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   // int32 configKey = 1;
   if (this->configkey() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->configkey(), target);
@@ -2846,6 +3038,9 @@ void ConfigData::MergeFrom(const ConfigData& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:T7.ConfigData)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   if (from.configkey() != 0) {
     set_configkey(from.configkey());
   }
@@ -2880,7 +3075,7 @@ void ConfigData::InternalSwap(ConfigData* other) {
 
 ::google::protobuf::Metadata ConfigData::GetMetadata() const {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[4];
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -2945,7 +3140,7 @@ void MoveCamera::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* MoveCamera::descriptor() {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[5].descriptor;
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
 }
 
 const MoveCamera& MoveCamera::default_instance() {
@@ -3014,6 +3209,9 @@ failure:
 void MoveCamera::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:T7.MoveCamera)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   // int32 arrowKey = 1;
   if (this->arrowkey() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->arrowkey(), output);
@@ -3024,8 +3222,10 @@ void MoveCamera::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* MoveCamera::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:T7.MoveCamera)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   // int32 arrowKey = 1;
   if (this->arrowkey() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->arrowkey(), target);
@@ -3072,6 +3272,9 @@ void MoveCamera::MergeFrom(const MoveCamera& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:T7.MoveCamera)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   if (from.arrowkey() != 0) {
     set_arrowkey(from.arrowkey());
   }
@@ -3106,7 +3309,7 @@ void MoveCamera::InternalSwap(MoveCamera* other) {
 
 ::google::protobuf::Metadata MoveCamera::GetMetadata() const {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[5];
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -3171,7 +3374,7 @@ void ThermalRequest::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* ThermalRequest::descriptor() {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[6].descriptor;
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
 }
 
 const ThermalRequest& ThermalRequest::default_instance() {
@@ -3240,6 +3443,9 @@ failure:
 void ThermalRequest::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:T7.ThermalRequest)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   // bool request = 1;
   if (this->request() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(1, this->request(), output);
@@ -3250,8 +3456,10 @@ void ThermalRequest::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* ThermalRequest::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:T7.ThermalRequest)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   // bool request = 1;
   if (this->request() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(1, this->request(), target);
@@ -3296,6 +3504,9 @@ void ThermalRequest::MergeFrom(const ThermalRequest& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:T7.ThermalRequest)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   if (from.request() != 0) {
     set_request(from.request());
   }
@@ -3330,7 +3541,7 @@ void ThermalRequest::InternalSwap(ThermalRequest* other) {
 
 ::google::protobuf::Metadata ThermalRequest::GetMetadata() const {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[6];
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -3400,7 +3611,7 @@ void Accel::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* Accel::descriptor() {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[7].descriptor;
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
 }
 
 const Accel& Accel::default_instance() {
@@ -3498,6 +3709,9 @@ failure:
 void Accel::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:T7.Accel)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   // double x = 1;
   if (this->x() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteDouble(1, this->x(), output);
@@ -3518,8 +3732,10 @@ void Accel::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Accel::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:T7.Accel)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   // double x = 1;
   if (this->x() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(1, this->x(), target);
@@ -3584,6 +3800,9 @@ void Accel::MergeFrom(const Accel& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:T7.Accel)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   if (from.x() != 0) {
     set_x(from.x());
   }
@@ -3626,7 +3845,7 @@ void Accel::InternalSwap(Accel* other) {
 
 ::google::protobuf::Metadata Accel::GetMetadata() const {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[7];
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -3724,7 +3943,7 @@ void Gyro::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* Gyro::descriptor() {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[8].descriptor;
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
 }
 
 const Gyro& Gyro::default_instance() {
@@ -3822,6 +4041,9 @@ failure:
 void Gyro::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:T7.Gyro)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   // double x = 1;
   if (this->x() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteDouble(1, this->x(), output);
@@ -3842,8 +4064,10 @@ void Gyro::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Gyro::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:T7.Gyro)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   // double x = 1;
   if (this->x() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(1, this->x(), target);
@@ -3908,6 +4132,9 @@ void Gyro::MergeFrom(const Gyro& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:T7.Gyro)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   if (from.x() != 0) {
     set_x(from.x());
   }
@@ -3950,7 +4177,7 @@ void Gyro::InternalSwap(Gyro* other) {
 
 ::google::protobuf::Metadata Gyro::GetMetadata() const {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[8];
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -4043,7 +4270,7 @@ void Altitude::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* Altitude::descriptor() {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[9].descriptor;
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
 }
 
 const Altitude& Altitude::default_instance() {
@@ -4112,6 +4339,9 @@ failure:
 void Altitude::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:T7.Altitude)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   // double alt = 1;
   if (this->alt() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteDouble(1, this->alt(), output);
@@ -4122,8 +4352,10 @@ void Altitude::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Altitude::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:T7.Altitude)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   // double alt = 1;
   if (this->alt() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(1, this->alt(), target);
@@ -4168,6 +4400,9 @@ void Altitude::MergeFrom(const Altitude& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:T7.Altitude)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   if (from.alt() != 0) {
     set_alt(from.alt());
   }
@@ -4202,7 +4437,7 @@ void Altitude::InternalSwap(Altitude* other) {
 
 ::google::protobuf::Metadata Altitude::GetMetadata() const {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[9];
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -4272,7 +4507,7 @@ void Attitude::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* Attitude::descriptor() {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[10].descriptor;
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
 }
 
 const Attitude& Attitude::default_instance() {
@@ -4370,6 +4605,9 @@ failure:
 void Attitude::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:T7.Attitude)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   // double roll = 1;
   if (this->roll() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteDouble(1, this->roll(), output);
@@ -4390,8 +4628,10 @@ void Attitude::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Attitude::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:T7.Attitude)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   // double roll = 1;
   if (this->roll() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(1, this->roll(), target);
@@ -4456,6 +4696,9 @@ void Attitude::MergeFrom(const Attitude& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:T7.Attitude)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   if (from.roll() != 0) {
     set_roll(from.roll());
   }
@@ -4498,7 +4741,7 @@ void Attitude::InternalSwap(Attitude* other) {
 
 ::google::protobuf::Metadata Attitude::GetMetadata() const {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[10];
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -4591,7 +4834,7 @@ void Temp::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* Temp::descriptor() {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[11].descriptor;
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
 }
 
 const Temp& Temp::default_instance() {
@@ -4660,6 +4903,9 @@ failure:
 void Temp::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:T7.Temp)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   // double temp = 1;
   if (this->temp() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteDouble(1, this->temp(), output);
@@ -4670,8 +4916,10 @@ void Temp::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Temp::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:T7.Temp)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   // double temp = 1;
   if (this->temp() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(1, this->temp(), target);
@@ -4716,6 +4964,9 @@ void Temp::MergeFrom(const Temp& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:T7.Temp)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   if (from.temp() != 0) {
     set_temp(from.temp());
   }
@@ -4750,7 +5001,7 @@ void Temp::InternalSwap(Temp* other) {
 
 ::google::protobuf::Metadata Temp::GetMetadata() const {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[11];
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -4815,7 +5066,7 @@ void Battery::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* Battery::descriptor() {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[12].descriptor;
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
 }
 
 const Battery& Battery::default_instance() {
@@ -4884,6 +5135,9 @@ failure:
 void Battery::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:T7.Battery)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   // double percent = 1;
   if (this->percent() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteDouble(1, this->percent(), output);
@@ -4894,8 +5148,10 @@ void Battery::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Battery::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:T7.Battery)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   // double percent = 1;
   if (this->percent() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(1, this->percent(), target);
@@ -4940,6 +5196,9 @@ void Battery::MergeFrom(const Battery& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:T7.Battery)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   if (from.percent() != 0) {
     set_percent(from.percent());
   }
@@ -4974,7 +5233,7 @@ void Battery::InternalSwap(Battery* other) {
 
 ::google::protobuf::Metadata Battery::GetMetadata() const {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[12];
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -5039,7 +5298,7 @@ void Heading::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* Heading::descriptor() {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[13].descriptor;
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
 }
 
 const Heading& Heading::default_instance() {
@@ -5108,6 +5367,9 @@ failure:
 void Heading::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:T7.Heading)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   // double heading = 1;
   if (this->heading() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteDouble(1, this->heading(), output);
@@ -5118,8 +5380,10 @@ void Heading::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Heading::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:T7.Heading)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   // double heading = 1;
   if (this->heading() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(1, this->heading(), target);
@@ -5164,6 +5428,9 @@ void Heading::MergeFrom(const Heading& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:T7.Heading)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   if (from.heading() != 0) {
     set_heading(from.heading());
   }
@@ -5198,7 +5465,7 @@ void Heading::InternalSwap(Heading* other) {
 
 ::google::protobuf::Metadata Heading::GetMetadata() const {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[13];
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -5263,7 +5530,7 @@ void ThermalResponse::SetCachedSize(int size) const {
 }
 const ::google::protobuf::Descriptor* ThermalResponse::descriptor() {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[14].descriptor;
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
 }
 
 const ThermalResponse& ThermalResponse::default_instance() {
@@ -5332,6 +5599,9 @@ failure:
 void ThermalResponse::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:T7.ThermalResponse)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   // double response = 1;
   if (this->response() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteDouble(1, this->response(), output);
@@ -5342,8 +5612,10 @@ void ThermalResponse::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* ThermalResponse::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:T7.ThermalResponse)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   // double response = 1;
   if (this->response() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(1, this->response(), target);
@@ -5388,6 +5660,9 @@ void ThermalResponse::MergeFrom(const ThermalResponse& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:T7.ThermalResponse)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
   if (from.response() != 0) {
     set_response(from.response());
   }
@@ -5422,7 +5697,7 @@ void ThermalResponse::InternalSwap(ThermalResponse* other) {
 
 ::google::protobuf::Metadata ThermalResponse::GetMetadata() const {
   protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_T7Messages_2eproto::file_level_metadata[14];
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -5440,6 +5715,290 @@ void ThermalResponse::set_response(double value) {
   
   response_ = value;
   // @@protoc_insertion_point(field_set:T7.ThermalResponse.response)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int WiFi::kStrengthFieldNumber;
+const int WiFi::kFreqFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+WiFi::WiFi()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_T7Messages_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:T7.WiFi)
+}
+WiFi::WiFi(const WiFi& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::memcpy(&strength_, &from.strength_,
+    reinterpret_cast<char*>(&freq_) -
+    reinterpret_cast<char*>(&strength_) + sizeof(freq_));
+  // @@protoc_insertion_point(copy_constructor:T7.WiFi)
+}
+
+void WiFi::SharedCtor() {
+  ::memset(&strength_, 0, reinterpret_cast<char*>(&freq_) -
+    reinterpret_cast<char*>(&strength_) + sizeof(freq_));
+  _cached_size_ = 0;
+}
+
+WiFi::~WiFi() {
+  // @@protoc_insertion_point(destructor:T7.WiFi)
+  SharedDtor();
+}
+
+void WiFi::SharedDtor() {
+}
+
+void WiFi::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* WiFi::descriptor() {
+  protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const WiFi& WiFi::default_instance() {
+  protobuf_T7Messages_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+WiFi* WiFi::New(::google::protobuf::Arena* arena) const {
+  WiFi* n = new WiFi;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void WiFi::Clear() {
+// @@protoc_insertion_point(message_clear_start:T7.WiFi)
+  ::memset(&strength_, 0, reinterpret_cast<char*>(&freq_) -
+    reinterpret_cast<char*>(&strength_) + sizeof(freq_));
+}
+
+bool WiFi::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:T7.WiFi)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // double strength = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(9u)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
+                 input, &strength_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // double freq = 2;
+      case 2: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(17u)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
+                 input, &freq_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:T7.WiFi)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:T7.WiFi)
+  return false;
+#undef DO_
+}
+
+void WiFi::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:T7.WiFi)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // double strength = 1;
+  if (this->strength() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(1, this->strength(), output);
+  }
+
+  // double freq = 2;
+  if (this->freq() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(2, this->freq(), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:T7.WiFi)
+}
+
+::google::protobuf::uint8* WiFi::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:T7.WiFi)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // double strength = 1;
+  if (this->strength() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(1, this->strength(), target);
+  }
+
+  // double freq = 2;
+  if (this->freq() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(2, this->freq(), target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:T7.WiFi)
+  return target;
+}
+
+size_t WiFi::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:T7.WiFi)
+  size_t total_size = 0;
+
+  // double strength = 1;
+  if (this->strength() != 0) {
+    total_size += 1 + 8;
+  }
+
+  // double freq = 2;
+  if (this->freq() != 0) {
+    total_size += 1 + 8;
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void WiFi::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:T7.WiFi)
+  GOOGLE_DCHECK_NE(&from, this);
+  const WiFi* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const WiFi>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:T7.WiFi)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:T7.WiFi)
+    MergeFrom(*source);
+  }
+}
+
+void WiFi::MergeFrom(const WiFi& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:T7.WiFi)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.strength() != 0) {
+    set_strength(from.strength());
+  }
+  if (from.freq() != 0) {
+    set_freq(from.freq());
+  }
+}
+
+void WiFi::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:T7.WiFi)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void WiFi::CopyFrom(const WiFi& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:T7.WiFi)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool WiFi::IsInitialized() const {
+  return true;
+}
+
+void WiFi::Swap(WiFi* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void WiFi::InternalSwap(WiFi* other) {
+  std::swap(strength_, other->strength_);
+  std::swap(freq_, other->freq_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata WiFi::GetMetadata() const {
+  protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// WiFi
+
+// double strength = 1;
+void WiFi::clear_strength() {
+  strength_ = 0;
+}
+double WiFi::strength() const {
+  // @@protoc_insertion_point(field_get:T7.WiFi.strength)
+  return strength_;
+}
+void WiFi::set_strength(double value) {
+  
+  strength_ = value;
+  // @@protoc_insertion_point(field_set:T7.WiFi.strength)
+}
+
+// double freq = 2;
+void WiFi::clear_freq() {
+  freq_ = 0;
+}
+double WiFi::freq() const {
+  // @@protoc_insertion_point(field_get:T7.WiFi.freq)
+  return freq_;
+}
+void WiFi::set_freq(double value) {
+  
+  freq_ = value;
+  // @@protoc_insertion_point(field_set:T7.WiFi.freq)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS

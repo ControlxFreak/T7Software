@@ -245,6 +245,19 @@ public final class T7Messages {
      * <code>.T7.ThermalResponse thermalresponse = 16;</code>
      */
     T7.T7Messages.ThermalResponseOrBuilder getThermalresponseOrBuilder();
+
+    /**
+     * <code>.T7.WiFi wifi = 17;</code>
+     */
+    boolean hasWifi();
+    /**
+     * <code>.T7.WiFi wifi = 17;</code>
+     */
+    T7.T7Messages.WiFi getWifi();
+    /**
+     * <code>.T7.WiFi wifi = 17;</code>
+     */
+    T7.T7Messages.WiFiOrBuilder getWifiOrBuilder();
   }
   /**
    * <pre>
@@ -488,6 +501,19 @@ public final class T7Messages {
 
               break;
             }
+            case 138: {
+              T7.T7Messages.WiFi.Builder subBuilder = null;
+              if (wifi_ != null) {
+                subBuilder = wifi_.toBuilder();
+              }
+              wifi_ = input.readMessage(T7.T7Messages.WiFi.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(wifi_);
+                wifi_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -584,6 +610,10 @@ public final class T7Messages {
        * <code>THERMAL_RESPONSE = 207;</code>
        */
       THERMAL_RESPONSE(207),
+      /**
+       * <code>WIFI = 208;</code>
+       */
+      WIFI(208),
       UNRECOGNIZED(-1),
       ;
 
@@ -655,6 +685,10 @@ public final class T7Messages {
        * <code>THERMAL_RESPONSE = 207;</code>
        */
       public static final int THERMAL_RESPONSE_VALUE = 207;
+      /**
+       * <code>WIFI = 208;</code>
+       */
+      public static final int WIFI_VALUE = 208;
 
 
       public final int getNumber() {
@@ -689,6 +723,7 @@ public final class T7Messages {
           case 205: return BAT;
           case 206: return HEAD;
           case 207: return THERMAL_RESPONSE;
+          case 208: return WIFI;
           default: return null;
         }
       }
@@ -1089,6 +1124,27 @@ public final class T7Messages {
       return getThermalresponse();
     }
 
+    public static final int WIFI_FIELD_NUMBER = 17;
+    private T7.T7Messages.WiFi wifi_;
+    /**
+     * <code>.T7.WiFi wifi = 17;</code>
+     */
+    public boolean hasWifi() {
+      return wifi_ != null;
+    }
+    /**
+     * <code>.T7.WiFi wifi = 17;</code>
+     */
+    public T7.T7Messages.WiFi getWifi() {
+      return wifi_ == null ? T7.T7Messages.WiFi.getDefaultInstance() : wifi_;
+    }
+    /**
+     * <code>.T7.WiFi wifi = 17;</code>
+     */
+    public T7.T7Messages.WiFiOrBuilder getWifiOrBuilder() {
+      return getWifi();
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -1148,6 +1204,9 @@ public final class T7Messages {
       }
       if (thermalresponse_ != null) {
         output.writeMessage(16, getThermalresponse());
+      }
+      if (wifi_ != null) {
+        output.writeMessage(17, getWifi());
       }
     }
 
@@ -1219,6 +1278,10 @@ public final class T7Messages {
       if (thermalresponse_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(16, getThermalresponse());
+      }
+      if (wifi_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(17, getWifi());
       }
       memoizedSize = size;
       return size;
@@ -1312,6 +1375,11 @@ public final class T7Messages {
         result = result && getThermalresponse()
             .equals(other.getThermalresponse());
       }
+      result = result && (hasWifi() == other.hasWifi());
+      if (hasWifi()) {
+        result = result && getWifi()
+            .equals(other.getWifi());
+      }
       return result;
     }
 
@@ -1382,6 +1450,10 @@ public final class T7Messages {
       if (hasThermalresponse()) {
         hash = (37 * hash) + THERMALRESPONSE_FIELD_NUMBER;
         hash = (53 * hash) + getThermalresponse().hashCode();
+      }
+      if (hasWifi()) {
+        hash = (37 * hash) + WIFI_FIELD_NUMBER;
+        hash = (53 * hash) + getWifi().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -1609,6 +1681,12 @@ public final class T7Messages {
           thermalresponse_ = null;
           thermalresponseBuilder_ = null;
         }
+        if (wifiBuilder_ == null) {
+          wifi_ = null;
+        } else {
+          wifi_ = null;
+          wifiBuilder_ = null;
+        }
         return this;
       }
 
@@ -1703,6 +1781,11 @@ public final class T7Messages {
         } else {
           result.thermalresponse_ = thermalresponseBuilder_.build();
         }
+        if (wifiBuilder_ == null) {
+          result.wifi_ = wifi_;
+        } else {
+          result.wifi_ = wifiBuilder_.build();
+        }
         onBuilt();
         return result;
       }
@@ -1791,6 +1874,9 @@ public final class T7Messages {
         }
         if (other.hasThermalresponse()) {
           mergeThermalresponse(other.getThermalresponse());
+        }
+        if (other.hasWifi()) {
+          mergeWifi(other.getWifi());
         }
         onChanged();
         return this;
@@ -3615,6 +3701,123 @@ public final class T7Messages {
         }
         return thermalresponseBuilder_;
       }
+
+      private T7.T7Messages.WiFi wifi_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          T7.T7Messages.WiFi, T7.T7Messages.WiFi.Builder, T7.T7Messages.WiFiOrBuilder> wifiBuilder_;
+      /**
+       * <code>.T7.WiFi wifi = 17;</code>
+       */
+      public boolean hasWifi() {
+        return wifiBuilder_ != null || wifi_ != null;
+      }
+      /**
+       * <code>.T7.WiFi wifi = 17;</code>
+       */
+      public T7.T7Messages.WiFi getWifi() {
+        if (wifiBuilder_ == null) {
+          return wifi_ == null ? T7.T7Messages.WiFi.getDefaultInstance() : wifi_;
+        } else {
+          return wifiBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.T7.WiFi wifi = 17;</code>
+       */
+      public Builder setWifi(T7.T7Messages.WiFi value) {
+        if (wifiBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          wifi_ = value;
+          onChanged();
+        } else {
+          wifiBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.T7.WiFi wifi = 17;</code>
+       */
+      public Builder setWifi(
+          T7.T7Messages.WiFi.Builder builderForValue) {
+        if (wifiBuilder_ == null) {
+          wifi_ = builderForValue.build();
+          onChanged();
+        } else {
+          wifiBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.T7.WiFi wifi = 17;</code>
+       */
+      public Builder mergeWifi(T7.T7Messages.WiFi value) {
+        if (wifiBuilder_ == null) {
+          if (wifi_ != null) {
+            wifi_ =
+              T7.T7Messages.WiFi.newBuilder(wifi_).mergeFrom(value).buildPartial();
+          } else {
+            wifi_ = value;
+          }
+          onChanged();
+        } else {
+          wifiBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.T7.WiFi wifi = 17;</code>
+       */
+      public Builder clearWifi() {
+        if (wifiBuilder_ == null) {
+          wifi_ = null;
+          onChanged();
+        } else {
+          wifi_ = null;
+          wifiBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.T7.WiFi wifi = 17;</code>
+       */
+      public T7.T7Messages.WiFi.Builder getWifiBuilder() {
+        
+        onChanged();
+        return getWifiFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.T7.WiFi wifi = 17;</code>
+       */
+      public T7.T7Messages.WiFiOrBuilder getWifiOrBuilder() {
+        if (wifiBuilder_ != null) {
+          return wifiBuilder_.getMessageOrBuilder();
+        } else {
+          return wifi_ == null ?
+              T7.T7Messages.WiFi.getDefaultInstance() : wifi_;
+        }
+      }
+      /**
+       * <code>.T7.WiFi wifi = 17;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          T7.T7Messages.WiFi, T7.T7Messages.WiFi.Builder, T7.T7Messages.WiFiOrBuilder> 
+          getWifiFieldBuilder() {
+        if (wifiBuilder_ == null) {
+          wifiBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              T7.T7Messages.WiFi, T7.T7Messages.WiFi.Builder, T7.T7Messages.WiFiOrBuilder>(
+                  getWifi(),
+                  getParentForChildren(),
+                  isClean());
+          wifi_ = null;
+        }
+        return wifiBuilder_;
+      }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
@@ -5253,6 +5456,10 @@ public final class T7Messages {
        * <code>toggleHead = 7;</code>
        */
       toggleHead(7),
+      /**
+       * <code>toggleWifi = 8;</code>
+       */
+      toggleWifi(8),
       UNRECOGNIZED(-1),
       ;
 
@@ -5288,6 +5495,10 @@ public final class T7Messages {
        * <code>toggleHead = 7;</code>
        */
       public static final int toggleHead_VALUE = 7;
+      /**
+       * <code>toggleWifi = 8;</code>
+       */
+      public static final int toggleWifi_VALUE = 8;
 
 
       public final int getNumber() {
@@ -5316,6 +5527,7 @@ public final class T7Messages {
           case 5: return toggleBat;
           case 6: return toggleArray;
           case 7: return toggleHead;
+          case 8: return toggleWifi;
           default: return null;
         }
       }
@@ -11088,6 +11300,567 @@ public final class T7Messages {
 
   }
 
+  public interface WiFiOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:T7.WiFi)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * dB
+     * </pre>
+     *
+     * <code>double strength = 1;</code>
+     */
+    double getStrength();
+
+    /**
+     * <pre>
+     * MHz
+     * </pre>
+     *
+     * <code>double freq = 2;</code>
+     */
+    double getFreq();
+  }
+  /**
+   * <pre>
+   * WiFi //
+   * This message contains the wifi signal strength of
+   * the currently connected host on WLAN[0]
+   * </pre>
+   *
+   * Protobuf type {@code T7.WiFi}
+   */
+  public  static final class WiFi extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:T7.WiFi)
+      WiFiOrBuilder {
+    // Use WiFi.newBuilder() to construct.
+    private WiFi(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private WiFi() {
+      strength_ = 0D;
+      freq_ = 0D;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private WiFi(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 9: {
+
+              strength_ = input.readDouble();
+              break;
+            }
+            case 17: {
+
+              freq_ = input.readDouble();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return T7.T7Messages.internal_static_T7_WiFi_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return T7.T7Messages.internal_static_T7_WiFi_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              T7.T7Messages.WiFi.class, T7.T7Messages.WiFi.Builder.class);
+    }
+
+    public static final int STRENGTH_FIELD_NUMBER = 1;
+    private double strength_;
+    /**
+     * <pre>
+     * dB
+     * </pre>
+     *
+     * <code>double strength = 1;</code>
+     */
+    public double getStrength() {
+      return strength_;
+    }
+
+    public static final int FREQ_FIELD_NUMBER = 2;
+    private double freq_;
+    /**
+     * <pre>
+     * MHz
+     * </pre>
+     *
+     * <code>double freq = 2;</code>
+     */
+    public double getFreq() {
+      return freq_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (strength_ != 0D) {
+        output.writeDouble(1, strength_);
+      }
+      if (freq_ != 0D) {
+        output.writeDouble(2, freq_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (strength_ != 0D) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(1, strength_);
+      }
+      if (freq_ != 0D) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(2, freq_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof T7.T7Messages.WiFi)) {
+        return super.equals(obj);
+      }
+      T7.T7Messages.WiFi other = (T7.T7Messages.WiFi) obj;
+
+      boolean result = true;
+      result = result && (
+          java.lang.Double.doubleToLongBits(getStrength())
+          == java.lang.Double.doubleToLongBits(
+              other.getStrength()));
+      result = result && (
+          java.lang.Double.doubleToLongBits(getFreq())
+          == java.lang.Double.doubleToLongBits(
+              other.getFreq()));
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + STRENGTH_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getStrength()));
+      hash = (37 * hash) + FREQ_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getFreq()));
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static T7.T7Messages.WiFi parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static T7.T7Messages.WiFi parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static T7.T7Messages.WiFi parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static T7.T7Messages.WiFi parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static T7.T7Messages.WiFi parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static T7.T7Messages.WiFi parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static T7.T7Messages.WiFi parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static T7.T7Messages.WiFi parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static T7.T7Messages.WiFi parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static T7.T7Messages.WiFi parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static T7.T7Messages.WiFi parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static T7.T7Messages.WiFi parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(T7.T7Messages.WiFi prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * WiFi //
+     * This message contains the wifi signal strength of
+     * the currently connected host on WLAN[0]
+     * </pre>
+     *
+     * Protobuf type {@code T7.WiFi}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:T7.WiFi)
+        T7.T7Messages.WiFiOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return T7.T7Messages.internal_static_T7_WiFi_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return T7.T7Messages.internal_static_T7_WiFi_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                T7.T7Messages.WiFi.class, T7.T7Messages.WiFi.Builder.class);
+      }
+
+      // Construct using T7.T7Messages.WiFi.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        strength_ = 0D;
+
+        freq_ = 0D;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return T7.T7Messages.internal_static_T7_WiFi_descriptor;
+      }
+
+      public T7.T7Messages.WiFi getDefaultInstanceForType() {
+        return T7.T7Messages.WiFi.getDefaultInstance();
+      }
+
+      public T7.T7Messages.WiFi build() {
+        T7.T7Messages.WiFi result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public T7.T7Messages.WiFi buildPartial() {
+        T7.T7Messages.WiFi result = new T7.T7Messages.WiFi(this);
+        result.strength_ = strength_;
+        result.freq_ = freq_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof T7.T7Messages.WiFi) {
+          return mergeFrom((T7.T7Messages.WiFi)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(T7.T7Messages.WiFi other) {
+        if (other == T7.T7Messages.WiFi.getDefaultInstance()) return this;
+        if (other.getStrength() != 0D) {
+          setStrength(other.getStrength());
+        }
+        if (other.getFreq() != 0D) {
+          setFreq(other.getFreq());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        T7.T7Messages.WiFi parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (T7.T7Messages.WiFi) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private double strength_ ;
+      /**
+       * <pre>
+       * dB
+       * </pre>
+       *
+       * <code>double strength = 1;</code>
+       */
+      public double getStrength() {
+        return strength_;
+      }
+      /**
+       * <pre>
+       * dB
+       * </pre>
+       *
+       * <code>double strength = 1;</code>
+       */
+      public Builder setStrength(double value) {
+        
+        strength_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * dB
+       * </pre>
+       *
+       * <code>double strength = 1;</code>
+       */
+      public Builder clearStrength() {
+        
+        strength_ = 0D;
+        onChanged();
+        return this;
+      }
+
+      private double freq_ ;
+      /**
+       * <pre>
+       * MHz
+       * </pre>
+       *
+       * <code>double freq = 2;</code>
+       */
+      public double getFreq() {
+        return freq_;
+      }
+      /**
+       * <pre>
+       * MHz
+       * </pre>
+       *
+       * <code>double freq = 2;</code>
+       */
+      public Builder setFreq(double value) {
+        
+        freq_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * MHz
+       * </pre>
+       *
+       * <code>double freq = 2;</code>
+       */
+      public Builder clearFreq() {
+        
+        freq_ = 0D;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:T7.WiFi)
+    }
+
+    // @@protoc_insertion_point(class_scope:T7.WiFi)
+    private static final T7.T7Messages.WiFi DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new T7.T7Messages.WiFi();
+    }
+
+    public static T7.T7Messages.WiFi getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<WiFi>
+        PARSER = new com.google.protobuf.AbstractParser<WiFi>() {
+      public WiFi parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new WiFi(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<WiFi> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<WiFi> getParserForType() {
+      return PARSER;
+    }
+
+    public T7.T7Messages.WiFi getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_T7_GenericMessage_descriptor;
   private static final 
@@ -11163,6 +11936,11 @@ public final class T7Messages {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_T7_ThermalResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_T7_WiFi_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_T7_WiFi_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -11172,7 +11950,7 @@ public final class T7Messages {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\020T7Messages.proto\022\002T7\"\317\005\n\016GenericMessag" +
+      "\n\020T7Messages.proto\022\002T7\"\362\005\n\016GenericMessag" +
       "e\022\017\n\007msgtype\030\001 \001(\005\022\014\n\004time\030\002 \001(\001\022\036\n\010resp" +
       "onse\030\003 \001(\0132\014.T7.Response\022 \n\theartbeat\030\004 " +
       "\001(\0132\r.T7.HeartBeat\022 \n\tterminate\030\005 \001(\0132\r." +
@@ -11185,31 +11963,33 @@ public final class T7Messages {
       "de\022\026\n\004temp\030\014 \001(\0132\010.T7.Temp\022\030\n\003bat\030\r \001(\0132" +
       "\013.T7.Battery\022\031\n\004head\030\016 \001(\0132\013.T7.Heading\022" +
       ",\n\017thermalresponse\030\020 \001(\0132\023.T7.ThermalRes" +
-      "ponse\"\330\001\n\007MsgType\022\014\n\010RESPONSE\020\000\022\r\n\tHEART" +
-      "BEAT\020\001\022\r\n\tTERMINATE\020\002\022\017\n\013CONFIG_DATA\020e\022\017" +
-      "\n\013MOVE_CAMERA\020f\022\023\n\017THERMAL_REQUEST\020g\022\n\n\005" +
-      "ACCEL\020\310\001\022\t\n\004GYRO\020\311\001\022\r\n\010ALTITUDE\020\312\001\022\r\n\010AT" +
-      "TITUDE\020\313\001\022\t\n\004TEMP\020\314\001\022\010\n\003BAT\020\315\001\022\t\n\004HEAD\020\316" +
-      "\001\022\025\n\020THERMAL_RESPONSE\020\317\001\"\036\n\010Response\022\022\n\n" +
-      "roger_that\030\001 \001(\010\"\032\n\tHeartBeat\022\r\n\005alive\030\001",
-      " \001(\010\"j\n\tTerminate\022\024\n\014terminateKey\030\001 \001(\005\"" +
-      "G\n\rTerminateKeys\022\021\n\rselfTerminate\020\000\022\020\n\014s" +
-      "oftShutdown\020\001\022\021\n\remergencyStop\020\002\"\267\001\n\nCon" +
-      "figData\022\021\n\tconfigKey\030\001 \001(\005\"\225\001\n\nToggleKey" +
-      "s\022\017\n\013toggleAccel\020\000\022\016\n\ntoggleGyro\020\001\022\022\n\016to" +
-      "ggleAltitude\020\002\022\022\n\016toggleAttitude\020\003\022\016\n\nto" +
-      "ggleTemp\020\004\022\r\n\ttoggleBat\020\005\022\017\n\013toggleArray" +
-      "\020\006\022\016\n\ntoggleHead\020\007\"R\n\nMoveCamera\022\020\n\010arro" +
-      "wKey\030\001 \001(\005\"2\n\tArrowKeys\022\006\n\002UP\020\000\022\t\n\005RIGHT" +
-      "\020\001\022\010\n\004DOWN\020\002\022\010\n\004LEFT\020\003\"!\n\016ThermalRequest",
-      "\022\017\n\007request\030\001 \001(\010\"(\n\005Accel\022\t\n\001x\030\001 \001(\001\022\t\n" +
-      "\001y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\"\'\n\004Gyro\022\t\n\001x\030\001 \001(\001\022\t" +
-      "\n\001y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\"\027\n\010Altitude\022\013\n\003alt\030" +
-      "\001 \001(\001\"4\n\010Attitude\022\014\n\004roll\030\001 \001(\001\022\r\n\005pitch" +
-      "\030\002 \001(\001\022\013\n\003yaw\030\003 \001(\001\"\024\n\004Temp\022\014\n\004temp\030\001 \001(" +
-      "\001\"\032\n\007Battery\022\017\n\007percent\030\001 \001(\001\"\032\n\007Heading" +
-      "\022\017\n\007heading\030\001 \001(\001\"#\n\017ThermalResponse\022\020\n\010" +
-      "response\030\001 \001(\001b\006proto3"
+      "ponse\022\026\n\004wifi\030\021 \001(\0132\010.T7.WiFi\"\343\001\n\007MsgTyp" +
+      "e\022\014\n\010RESPONSE\020\000\022\r\n\tHEARTBEAT\020\001\022\r\n\tTERMIN" +
+      "ATE\020\002\022\017\n\013CONFIG_DATA\020e\022\017\n\013MOVE_CAMERA\020f\022" +
+      "\023\n\017THERMAL_REQUEST\020g\022\n\n\005ACCEL\020\310\001\022\t\n\004GYRO" +
+      "\020\311\001\022\r\n\010ALTITUDE\020\312\001\022\r\n\010ATTITUDE\020\313\001\022\t\n\004TEM" +
+      "P\020\314\001\022\010\n\003BAT\020\315\001\022\t\n\004HEAD\020\316\001\022\025\n\020THERMAL_RES" +
+      "PONSE\020\317\001\022\t\n\004WIFI\020\320\001\"\036\n\010Response\022\022\n\nroger",
+      "_that\030\001 \001(\010\"\032\n\tHeartBeat\022\r\n\005alive\030\001 \001(\010\"" +
+      "j\n\tTerminate\022\024\n\014terminateKey\030\001 \001(\005\"G\n\rTe" +
+      "rminateKeys\022\021\n\rselfTerminate\020\000\022\020\n\014softSh" +
+      "utdown\020\001\022\021\n\remergencyStop\020\002\"\307\001\n\nConfigDa" +
+      "ta\022\021\n\tconfigKey\030\001 \001(\005\"\245\001\n\nToggleKeys\022\017\n\013" +
+      "toggleAccel\020\000\022\016\n\ntoggleGyro\020\001\022\022\n\016toggleA" +
+      "ltitude\020\002\022\022\n\016toggleAttitude\020\003\022\016\n\ntoggleT" +
+      "emp\020\004\022\r\n\ttoggleBat\020\005\022\017\n\013toggleArray\020\006\022\016\n" +
+      "\ntoggleHead\020\007\022\016\n\ntoggleWifi\020\010\"R\n\nMoveCam" +
+      "era\022\020\n\010arrowKey\030\001 \001(\005\"2\n\tArrowKeys\022\006\n\002UP",
+      "\020\000\022\t\n\005RIGHT\020\001\022\010\n\004DOWN\020\002\022\010\n\004LEFT\020\003\"!\n\016The" +
+      "rmalRequest\022\017\n\007request\030\001 \001(\010\"(\n\005Accel\022\t\n" +
+      "\001x\030\001 \001(\001\022\t\n\001y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\"\'\n\004Gyro\022\t" +
+      "\n\001x\030\001 \001(\001\022\t\n\001y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\"\027\n\010Altit" +
+      "ude\022\013\n\003alt\030\001 \001(\001\"4\n\010Attitude\022\014\n\004roll\030\001 \001" +
+      "(\001\022\r\n\005pitch\030\002 \001(\001\022\013\n\003yaw\030\003 \001(\001\"\024\n\004Temp\022\014" +
+      "\n\004temp\030\001 \001(\001\"\032\n\007Battery\022\017\n\007percent\030\001 \001(\001" +
+      "\"\032\n\007Heading\022\017\n\007heading\030\001 \001(\001\"#\n\017ThermalR" +
+      "esponse\022\020\n\010response\030\001 \001(\001\"&\n\004WiFi\022\020\n\010str" +
+      "ength\030\001 \001(\001\022\014\n\004freq\030\002 \001(\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -11228,7 +12008,7 @@ public final class T7Messages {
     internal_static_T7_GenericMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_T7_GenericMessage_descriptor,
-        new java.lang.String[] { "Msgtype", "Time", "Response", "Heartbeat", "Terminate", "Configdata", "Movecamera", "Thermalrequest", "Accel", "Gyro", "Altitude", "Attitude", "Temp", "Bat", "Head", "Thermalresponse", });
+        new java.lang.String[] { "Msgtype", "Time", "Response", "Heartbeat", "Terminate", "Configdata", "Movecamera", "Thermalrequest", "Accel", "Gyro", "Altitude", "Attitude", "Temp", "Bat", "Head", "Thermalresponse", "Wifi", });
     internal_static_T7_Response_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_T7_Response_fieldAccessorTable = new
@@ -11313,6 +12093,12 @@ public final class T7Messages {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_T7_ThermalResponse_descriptor,
         new java.lang.String[] { "Response", });
+    internal_static_T7_WiFi_descriptor =
+      getDescriptor().getMessageTypes().get(15);
+    internal_static_T7_WiFi_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_T7_WiFi_descriptor,
+        new java.lang.String[] { "Strength", "Freq", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

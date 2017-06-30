@@ -5,6 +5,7 @@
 
 /hss/classes/
 /hss/lib/hss.jar
+/hss/build.log
 
 # Compiled source #
 ###################
@@ -23,6 +24,7 @@
 # Logs and databases #
 ######################
 *.log
+*.log.*
 *.sql
 *.sqlite
 
