@@ -1,3 +1,4 @@
+
 /*------------------------------------------------------------------------------
 Function Name: IOManager.cpp
 
@@ -25,6 +26,8 @@ Change Log
  */
 
 #include "IOManager.h"
+#include <stdlib.h>
+#include <Python.h>
 
 //----------------------------------------------------------------------------//
 // launch() launches the tcp and serial IO communications
@@ -92,6 +95,11 @@ IOManager::launch_serial() {
 
     LM->append("Launching Serial Communication\n");
 
+    Py_Initialize();
+    //PyObject *pName, *pModule, *pDict, *pFunc, *pArgs, *pValue;
+
+    Py_Finalize();
+
 }//launch_serial()
 
 //----------------------------------------------------------------------------//
@@ -144,6 +152,8 @@ IOManager::client_handler(int id) {
             LM->append("Successful Connect!\n");
             data->sockHealth[id] = failureCodes::socketConnected;
         } // if
+	// Give the system a 50 ms break... all work and no play makes the cpu hurt.
+	sleep(50);
     } //while
 
     google::protobuf::io::ZeroCopyOutputStream* ZCO = new google::protobuf::io::FileOutputStream(stream->m_sd);
@@ -331,6 +341,8 @@ IOManager::server_handler() {
                 LM->append("Unsuccessful Receive.\n");
             } // if stream
         } // if start
+	// Take a break...
+	sleep(50);
     } // while
     delete stream;
     delete acceptor;
