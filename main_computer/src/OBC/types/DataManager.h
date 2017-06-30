@@ -42,6 +42,7 @@ public:
     TSQueue< vector<double> > altitudeQueue;
     TSQueue< vector<double> > batteryQueue;
     TSQueue< vector<double> > tempQueue;
+    TSQueue< vector<double> > wifiQueue;
 
     // Toggle Send Flags
     bool sendAccel = true;
@@ -71,6 +72,7 @@ public:
         data->attitudeQueue.clear();
         data->altitudeQueue.clear();
         data->batteryQueue.clear();
+	data->wifiQueue.clear();
         data->tempQueue.clear();
     } //clean
 
@@ -127,6 +129,10 @@ public:
         timeToDieMap[ATT_SHUTDOWN] = false;
         timeToDieMap[TEMP_SHUTDOWN] = false;
         timeToDieMap[BAT_SHUTDOWN] = false;
+	timeToDieMap[PIXHAWK_SHUTDOWN] = false;
+	timeToDieMap[THERMAL_ARRAY_SHUTDOWN] = false;
+	timeToDieMap[WIFI_SHUTDOWN] = false;
+
     };
 
     DataManager(const DataManager& orig) {

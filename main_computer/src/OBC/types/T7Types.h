@@ -76,7 +76,9 @@ threadKeys {
     BatSock,
 
     // Sensor Threads //
-    SensorKey
+    WiFiKey,
+    ThermalArrayKey,
+    PixhawkKey
 };
 
 // Define the socket keys
@@ -106,6 +108,9 @@ timeToDieFlags {
     GLOBAL_SHUTDOWN = -99,
     EXECUTIVE_SHUTDOWN = -98,
     WATCHDOG_SHUTDOWN = -97,
+    PIXHAWK_SHUTDOWN = 996,
+    THERMAL_ARRAY_SHUTDOWN = 997,
+    WIFI_SHUTDOWN = 998,
     SERVER_SHUTDOWN = 999,
     HEARTBEAT_SHUTDOWN = sockKeys::HEARTBEAT,
     TERMINATE_SHUTDOWN = sockKeys::TERMINATE,

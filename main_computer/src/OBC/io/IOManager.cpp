@@ -26,8 +26,6 @@ Change Log
  */
 
 #include "IOManager.h"
-#include <stdlib.h>
-#include <Python.h>
 
 //----------------------------------------------------------------------------//
 // launch() launches the tcp and serial IO communications
@@ -92,6 +90,25 @@ IOManager::launch_server() {
 
 void
 IOManager::launch_serial() {
+
+    LM->append("Launching Wifi Sniffer\n");
+    sockThreadMap[WiFiKey] = new thread(&IOManager::wifi_handler, this);
+
+    LM->append("Launching Thermal Array Handler\n");
+    sockThreadMap[ThermalArrayKey] = new thread(&IOManager::thermal_array_handler, this);
+
+    LM->append("Launching Pixhawk Handler\n");
+    sockThreadMap[PixhawkKey] = new thread(&IOManager::pixhawk_handler, this);
+
+}//launch_serial()
+
+// -------------------------------------------------------------------------- // 
+// pixhawk_handler() handles all pixhawk stuffz.
+// -------------------------------------------------------------------------- // 
+void
+IOManager::pixhawk_handler(){
+
+
     setenv("PYTHONPATH", ".", 1);
 
     LM->append("Launching Serial Communication\n");
@@ -134,7 +151,66 @@ IOManager::launch_serial() {
     
     Py_Finalize();
 
-}//launch_serial()
+}
+
+
+// -------------------------------------------------------------------------- //
+// thermal_array_handler() handles all thermal array magic
+// -------------------------------------------------------------------------- // 
+void
+IOManager::thermal_array_handler(){
+	LM->append("Thermal Array Stuff Launched!\n");
+	return;
+}
+
+
+// --------------------------------------------------------------------------- //
+// wifi_handler() handles all wifi sniffing
+// --------------------------------------------------------------------------- //
+void
+IOManager::wifi_handler(){
+	//struct to hold collected information
+	struct sig_info {
+	    char mac[18];
+	    char ssid[33];
+	    int bitrate;
+	    int level;
+	};
+
+	sig_info sigInfo = {"0","0",0,0};
+	iwreq req;
+	strcpy(req.ifr_name,"wlan0");
+	iw_statistics *stats;
+	// create a ioctl socket!
+	int sockfd = socket(AF_INET,SOCK_DGRAM,0);
+	
+	//make room for the iw_statistics object
+    	req.u.data.pointer = (iw_statistics *)malloc(sizeof(iw_statistics));
+    	req.u.data.length = sizeof(iw_statistics);
+	
+	vector< double > sl;
+	while(!data->timeToDieMap[WIFI_SHUTDOWN]){
+	        //this will gather the signal strength
+	        if(ioctl(sockfd, SIOCGIWSTATS, &req) == -1){
+	            //die with error, invalid interface
+	            fprintf(stderr, "Invalid interface.\n");
+		    return;
+	        }else if(((iw_statistics *)req.u.data.pointer)->qual.updated & IW_QUAL_DBM){
+	            //signal is measured in dBm and is valid for us to use
+	            sigInfo.level=((iw_statistics *)req.u.data.pointer)->qual.level - 256;
+	        }
+		// Push to data!
+		sl.push_back(0);
+		sl.push_back(sigInfo.level);
+		data->wifiQueue.push(sl);
+		sl.clear();
+		cout << sigInfo.level << endl;
+		sleep(3);
+	}
+	
+} // wifi_handler
+
+
 
 //----------------------------------------------------------------------------//
 // client_handler() handles all tcp client communication

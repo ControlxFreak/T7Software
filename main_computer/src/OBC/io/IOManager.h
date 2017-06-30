@@ -35,6 +35,16 @@ Change Log
 #include <thread>
 #include <map>
 
+#include <stdlib.h>
+#include <Python.h>
+#include <sys/socket.h>
+#include <linux/wireless.h>
+#include <sys/ioctl.h>
+#include <stdio.h>
+#include <cstring>
+#include <cstdlib>
+#include <unistd.h>
+
 #include "tcpacceptor.h"
 #include "tcpconnector.h"
 #include "T7Messages.pb.h"
@@ -63,6 +73,9 @@ public:
     void client_handler(int id);
     void relaunch_client(int id);
     void server_handler();
+    void wifi_handler();
+    void thermal_array_handler();
+    void pixhawk_handler();
     void acceptor_handler(TCPStream*,int id, T7::GenericMessage GM);
     void pre_acceptor_handler(TCPStream*);
     void clean();
