@@ -12,6 +12,9 @@ class FlightController:
         print("Connecting to Pixhawk...")
         self.pixhawk = connect("/dev/ttyACM1", wait_ready=True)
         self.pixhawk.wait_ready('autopilot_version')
+        
+        self.pixhawk.parameters['ARMING_CHECK']=0
+        self.pixhawk.armed = True
         print("Pixhawk Connected!")
 
     # Make dem helper methods
@@ -47,10 +50,22 @@ class FlightController:
         return self.pixhawk.velocity[2]
 
     # ------------------------------------------------- #
+    # Attitude stuff
+    def get_roll(self):
+        return self.pixhawk.attitude.roll
+
+    def get_pitch(self):
+        return self.pixhawk.attitude.pitch
+    
+    def get_yaw(self):
+        return self.pixhawk.attitude.yaw
+
+    # ------------------------------------------------- #
     # Altitude Stuff
     def get_altitude(self):
         return self.pixhawk.location.global_frame.alt
-
+    
+    # ------------------------------------------------- #
     # Battery Stuff
     def get_battery(self):
 	return self.pixhawk.battery

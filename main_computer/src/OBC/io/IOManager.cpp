@@ -91,7 +91,7 @@ IOManager::launch_server() {
 void
 IOManager::launch_serial() {
 
-    LM->append("Launching Wifi Sniffer\n");
+    LM->append("Launching Wifi Handler\n");
     sockThreadMap[WiFiKey] = new thread(&IOManager::wifi_handler, this);
 
     LM->append("Launching Thermal Array Handler\n");
@@ -108,10 +108,9 @@ IOManager::launch_serial() {
 void
 IOManager::pixhawk_handler(){
 
-
     setenv("PYTHONPATH", ".", 1);
 
-    LM->append("Launching Serial Communication\n");
+    LM->append("Launching Pixhawk Communication\n");
     Py_Initialize();
 
     PyObject* module = PyImport_ImportModule("pixhawk_helper");
@@ -123,6 +122,68 @@ IOManager::pixhawk_handler(){
     PyObject* instance = PyInstance_New(klass, NULL, NULL);
     assert(instance != NULL);
 
+    PyObject* pyVelx;
+    PyObject* pyVely;
+    PyObject* pyVelz;
+    PyObject* pyRoll;
+    PyObject* pyPit;
+    PyObject* pyYaw;
+    PyObject* pyAlt;
+    PyObject* pyBat;
+    PyObject* pyHB;
+
+    vector< double > vel;
+    vector< double > att;
+    vector< double > alt;
+    vector< double > bat;
+
+    while(!data->timeToDieMap[PIXHAWK_SHUTDOWN]){
+	
+	// Get all of the data //
+	pyVelx = PyObject_CallMethod(instance, "get_velx",NULL);
+	pyVely = PyObject_CallMethod(instance, "get_vely",NULL);
+	pyVelz = PyObject_CallMethod(instance, "get_velz",NULL);
+	pyRoll = PyObject_CallMethod(instance, "get_roll",NULL);
+	pyPit = PyObject_CallMethod(instance,"get_pitch",NULL);
+	pyYaw = PyObject_CallMethod(instance,"get_yaw",NULL);
+	pyAlt = PyObject_CallMethod(instance,"get_altitude",NULL);
+	pyBat = PyObject_CallMethod(instance,"get_battery",NULL);
+	pyHB = PyObject_CallMethod(instance,"get_heartbeat",NULL);
+
+	// Display!// 
+	printf("vel: x:%0.6f y: %0.6f z: %0.6f\n",PyFloat_AsDouble(pyVelx),PyFloat_AsDouble(pyVely),PyFloat_AsDouble(pyVelz));
+	printf("att: r:%0.6f p: %0.6f y: %0.6f\n",PyFloat_AsDouble(pyRoll),PyFloat_AsDouble(pyPit),PyFloat_AsDouble(pyYaw));
+	printf("alt:%0.6f\n",PyFloat_AsDouble(pyAlt));
+	printf("bat:%0.6f\n",PyFloat_AsDouble(pyBat));
+	printf("HB: %0.6f\n",PyFloat_AsDouble(pyHB));
+
+	// Populate all of the data //
+	vel.push_back(0);
+	vel.push_back(PyFloat_AsDouble(pyVelx));
+	vel.push_back(PyFloat_AsDouble(pyVely));
+	vel.push_back(PyFloat_AsDouble(pyVelz));
+	
+	att.push_back(0);
+	att.push_back(PyFloat_AsDouble(pyRoll));
+	att.push_back(PyFloat_AsDouble(pyPit));
+	att.push_back(PyFloat_AsDouble(pyYaw));
+	
+	alt.push_back(0);
+	alt.push_back(PyFloat_AsDouble(pyAlt));
+	
+	bat.push_back(0);
+	bat.push_back(PyFloat_AsDouble(pyBat));
+
+	// Push the data to the queue!
+	data->accelQueue.push(vel);
+	data->attitudeQueue.push(att);
+	data->altitudeQueue.push(alt);
+	data->batteryQueue.push(bat);	
+	sleep(1.5);
+    }
+
+
+/*
     PyObject* result = PyObject_CallMethod(instance, "get_heartbeat",NULL);
     assert(result != NULL);
 
@@ -147,10 +208,10 @@ IOManager::pixhawk_handler(){
     printf("Velx: %0.6f\n", PyFloat_AsDouble(result4));
     printf("Major: %d\n", PyInt_AsLong(result5));
     printf("Alt: %0.6f\n",PyFloat_AsDouble(result6));
-    
+  */  
     
     Py_Finalize();
-
+    delete pyVelx,pyVely,pyVelz, pyRoll,pyPit,pyYaw,pyAlt,pyBat,module,klass,instance;
 }
 
 
