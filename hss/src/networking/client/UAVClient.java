@@ -22,6 +22,7 @@ import java.net.SocketException;
 import java.util.logging.Logger;
 
 import T7.T7Messages.GenericMessage;
+import T7.T7Messages.GenericMessage.MsgType;
 
 public class UAVClient implements Runnable{
 
@@ -32,6 +33,7 @@ public class UAVClient implements Runnable{
 
 	public void sendMessage(GenericMessage gm) throws SocketException {
 		try {
+			logger.info("Sending " + MsgType.forNumber(gm.getMsgtype()) + " message: " + gm.toString());
 			gm.writeDelimitedTo(mc_sock.getOutputStream());
 		} catch (SocketException e) {
 			throw e;

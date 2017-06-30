@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 import T7.T7Messages.GenericMessage;
 import T7.T7Messages.MoveCamera;
@@ -344,6 +345,7 @@ public class MainApp extends Application {
 					if(e.getEventType() == KeyEvent.KEY_PRESSED) {
 						switch(e.getCode()) {
 						case UP:
+							logger.info("Sending camera command: " + e.getCode());
 							gmBuilder.setMsgtype(MsgType.MOVE_CAMERA.getNumber()).setTime(System.currentTimeMillis())
 							.setMovecamera(MoveCamera.newBuilder().setArrowKey(0));
 							try {
@@ -356,6 +358,7 @@ public class MainApp extends Application {
 							}
 							break;
 						case RIGHT:
+							logger.info("Sending camera command: " + e.getCode());
 							gmBuilder.setMsgtype(MsgType.MOVE_CAMERA.getNumber()).setTime(System.currentTimeMillis())
 							.setMovecamera(MoveCamera.newBuilder().setArrowKey(1));
 							try {
@@ -368,6 +371,7 @@ public class MainApp extends Application {
 							}
 							break;
 						case DOWN:
+							logger.info("Sending camera command: " + e.getCode());
 							gmBuilder.setMsgtype(MsgType.MOVE_CAMERA.getNumber()).setTime(System.currentTimeMillis())
 							.setMovecamera(MoveCamera.newBuilder().setArrowKey(2));
 							try {
@@ -380,6 +384,7 @@ public class MainApp extends Application {
 							}
 							break;
 						case LEFT:
+							logger.info("Sending camera command: " + e.getCode());
 							gmBuilder.setMsgtype(MsgType.MOVE_CAMERA.getNumber()).setTime(System.currentTimeMillis())
 							.setMovecamera(MoveCamera.newBuilder().setArrowKey(3));
 							try {
@@ -479,8 +484,13 @@ public class MainApp extends Application {
 	}
 
 	public static void main(String[] args) {
+		FileHandler handler = null;
+		SimpleFormatter sf = null;
 		try {
-			Logger.getLogger("").addHandler(new FileHandler("mission_logs/telemetry%u.log", 100000000, 10, false));
+			handler = new FileHandler("mission_logs/telemetry%u.log", 100000000, 10, false);
+			sf = new SimpleFormatter();
+			handler.setFormatter(sf);
+			Logger.getLogger("").addHandler(handler);
 		} catch (SecurityException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -497,7 +507,7 @@ public class MainApp extends Application {
 		termination_client.shutDown();
 		array_client.shutDown();
 		main_controller.stopTimer();
-		Logger.getLogger("").getHandlers()[0].close();
+		handler.close();
 	}
 
 	public static boolean[] getConfigArr() {

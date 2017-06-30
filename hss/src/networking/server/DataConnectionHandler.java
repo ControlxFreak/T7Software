@@ -46,7 +46,7 @@ public class DataConnectionHandler
 
 	@Override
 	public void run() {
-		logger.info("Running handler!");
+		logger.fine("Running handler!");
 		try {
 			while(in.available()<1 && !timeToExit) {
 
@@ -62,6 +62,7 @@ public class DataConnectionHandler
 				System.out.println("Parsing message.");
 				GenericMessage gm = GenericMessage.parseDelimitedFrom(in);
 				connType = MsgType.forNumber(gm.getMsgtype());
+				logger.info(connType + " connection established.");
 				setHandler();
 				handlerMethod.accept(gm);
 			} catch (IOException e) {
@@ -96,10 +97,12 @@ public class DataConnectionHandler
 	}
 
 	private void setHandler() {
+		/*
 		System.out.println("SETTING HANDLER");
 		System.out.println("connType = " + connType);
 		System.out.println("Paused? = " + !MainApp.isDataTypeUnpaused(connType));
-		logger.finest("Setting handler.");
+		*/
+		logger.fine("Setting " + connType + " handler.");
 		if(MainApp.isDataTypeUnpaused(connType)) {
 			switch(connType) {
 			case ACCEL:
@@ -143,11 +146,13 @@ public class DataConnectionHandler
 
 	private void handleAirTempMessage(GenericMessage gm) {
 		double temp = gm.getTemp().getTemp();
+		logger.info("Received " + connType + " datum: " + temp);
 		server.updateTelemetryData(temp, connType);
 	}
 
 	private void handleAltitudeMessage(GenericMessage gm) {
 		double alt = gm.getAltitude().getAlt();
+		logger.info("Received " + connType + " datum: " + alt);
 		server.updateTelemetryData(alt, connType);
 	}
 
@@ -155,6 +160,7 @@ public class DataConnectionHandler
 		double x = gm.getAccel().getX();
 		double y = gm.getAccel().getY();
 		double z = gm.getAccel().getZ();
+		logger.info("Received " + connType + " data: " + x + ", " + y + ", " + z);
 		server.updateTelemetryData(x, y, z, connType);
 	}
 
@@ -162,6 +168,7 @@ public class DataConnectionHandler
 		double x = gm.getGyro().getX();
 		double y = gm.getGyro().getY();
 		double z = gm.getGyro().getZ();
+		logger.info("Received " + connType + " data: " + x + ", " + y + ", " + z);
 		server.updateTelemetryData(x, y, z, connType);
 	}
 
@@ -169,26 +176,31 @@ public class DataConnectionHandler
 		double x = gm.getAttitude().getRoll();
 		double y = gm.getAttitude().getPitch();
 		double z = gm.getAttitude().getYaw();
+		logger.info("Received " + connType + " data: " + x + ", " + y + ", " + z);
 		server.updateTelemetryData(x, y, z, connType);
 	}
 
 	private void handleBatteryMessage(GenericMessage gm) {
 		double percent = gm.getBat().getPercent();
+		logger.info("Received " + connType + " datum: " + percent);
 		server.updateTelemetryData(percent, connType);
 	}
 	
 	private void handleHeadingMessage(GenericMessage gm) {
 		double heading = gm.getHead().getHeading();
+		logger.info("Received " + connType + " datum: " + heading);
 		server.updateTelemetryData(heading, connType);
 	}
 	
 	private void handleThermalResponseMessage(GenericMessage gm) {
 		double response = gm.getThermalresponse().getResponse();
+		logger.info("Received " + connType + " datum: " + response);
 		server.updateSnapshotThermalReading(response);
 	}
 	
 	private void handleHeartbeatMessage(GenericMessage gm) {
 		boolean alive = gm.getHeartbeat().getAlive();
+		logger.info("Received " + connType + " datum: " + alive);
 		server.updateTelemetryData(alive ? 1.0 : -1.0, connType);
 	}
 	
@@ -197,6 +209,7 @@ public class DataConnectionHandler
 		double freqInMHz = gm.getWifi().getFreq();
 		double exp = (27.55 - (20 * Math.log10(freqInMHz)) + Math.abs(strength)) / 20.0;
 		double rangeInMeters = Math.pow(10.0, exp);
+		logger.info("Received " + connType + " data: " + strength + ", " + freqInMHz);
 		server.updateTelemetryData(rangeInMeters * 3.28084, connType);
 	}
 
