@@ -56,6 +56,9 @@ message GenericMessage {
 	ThermalResponse thermalresponse = 16;
         WiFi wifi = 17;
 
+	// Pixhawk->UAV //
+	Pixhawk pixhawk = 18;
+
 	enum MsgType {
 		// INFO MESSAGE //
 		RESPONSE = 0;
@@ -77,6 +80,9 @@ message GenericMessage {
 		HEAD = 206;
 		THERMAL_RESPONSE = 207;
                 WIFI = 208;
+		
+		// Pixhawk -> UAV //
+		PIXHAWK = 300;
 	}
 
 }
@@ -224,3 +230,18 @@ message WiFi {
      double strength = 1; // dB
      double freq = 2; // MHz
 }
+
+// Pixhawk //
+// This message is a helper from python -> uav
+message Pixhawk{
+	double velx = 1; // [m/s]
+	double vely = 2; // [m/s]
+	double velz = 3; // [m/s]
+	
+	double roll = 4; // [rad]
+	double pitch = 5; // [rad]
+	double yaw = 6; // [rad]
+	double altitude = 7; // [rad]
+	double battery = 8; // [rad]
+}
+

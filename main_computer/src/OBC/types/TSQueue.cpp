@@ -60,6 +60,11 @@ bool TSQueue<T>::isEmpty(){
 template<typename T>
 void TSQueue<T>::push(T elem){
     lock_guard<mutex> guard(mutex_);
+    if(data_.size() >= 100){ 
+	queue<T> empty;
+        swap(data_,empty);
+    }
+
     data_.push(elem);
 };
 

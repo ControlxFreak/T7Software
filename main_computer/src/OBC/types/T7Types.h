@@ -66,6 +66,7 @@ threadKeys {
     TerminateSock,
     ConfigSock,
     MoveCamSock,
+    PixhawkSock,
 
     // Client //
     AccelSock,
@@ -77,8 +78,7 @@ threadKeys {
 
     // Sensor Threads //
     WiFiKey,
-    ThermalArrayKey,
-    PixhawkKey
+    ThermalArrayKey
 };
 
 // Define the socket keys
@@ -99,7 +99,9 @@ sockKeys {
     ALTITUDE = 202,
     ATTITUDE = 203,
     TEMP = 204,
-    BAT = 205
+    BAT = 205,
+
+    PIXHAWK = 300
 };
 
 // TimeToDieFlags
@@ -108,7 +110,6 @@ timeToDieFlags {
     GLOBAL_SHUTDOWN = -99,
     EXECUTIVE_SHUTDOWN = -98,
     WATCHDOG_SHUTDOWN = -97,
-    PIXHAWK_SHUTDOWN = 996,
     THERMAL_ARRAY_SHUTDOWN = 997,
     WIFI_SHUTDOWN = 998,
     SERVER_SHUTDOWN = 999,
@@ -121,7 +122,8 @@ timeToDieFlags {
     ALT_SHUTDOWN = sockKeys::ALTITUDE,
     ATT_SHUTDOWN = sockKeys::ATTITUDE,
     TEMP_SHUTDOWN = sockKeys::TEMP,
-    BAT_SHUTDOWN = sockKeys::BAT
+    BAT_SHUTDOWN = sockKeys::BAT,
+    PIXHAWK_SHUTDOWN = sockKeys::PIXHAWK
 };
 
 // Define the terminate keys

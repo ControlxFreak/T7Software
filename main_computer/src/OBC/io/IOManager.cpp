@@ -97,9 +97,9 @@ IOManager::launch_serial() {
     LM->append("Launching Thermal Array Handler\n");
     sockThreadMap[ThermalArrayKey] = new thread(&IOManager::thermal_array_handler, this);
 
-    LM->append("Launching Pixhawk Handler\n");
+    /*LM->append("Launching Pixhawk Handler\n");
     sockThreadMap[PixhawkKey] = new thread(&IOManager::pixhawk_handler, this);
-
+    */
 }//launch_serial()
 
 // -------------------------------------------------------------------------- // 
@@ -108,110 +108,7 @@ IOManager::launch_serial() {
 void
 IOManager::pixhawk_handler(){
 
-    setenv("PYTHONPATH", ".", 1);
-
-    LM->append("Launching Pixhawk Communication\n");
-    Py_Initialize();
-
-    PyObject* module = PyImport_ImportModule("pixhawk_helper");
-    assert(module != NULL);
-
-    PyObject* klass = PyObject_GetAttrString(module, "FlightController");
-    assert(klass != NULL);
-
-    PyObject* instance = PyInstance_New(klass, NULL, NULL);
-    assert(instance != NULL);
-
-    PyObject* pyVelx;
-    PyObject* pyVely;
-    PyObject* pyVelz;
-    PyObject* pyRoll;
-    PyObject* pyPit;
-    PyObject* pyYaw;
-    PyObject* pyAlt;
-    PyObject* pyBat;
-    PyObject* pyHB;
-
-    vector< double > vel;
-    vector< double > att;
-    vector< double > alt;
-    vector< double > bat;
-
-    while(!data->timeToDieMap[PIXHAWK_SHUTDOWN]){
-	
-	// Get all of the data //
-	pyVelx = PyObject_CallMethod(instance, "get_velx",NULL);
-	pyVely = PyObject_CallMethod(instance, "get_vely",NULL);
-	pyVelz = PyObject_CallMethod(instance, "get_velz",NULL);
-	pyRoll = PyObject_CallMethod(instance, "get_roll",NULL);
-	pyPit = PyObject_CallMethod(instance,"get_pitch",NULL);
-	pyYaw = PyObject_CallMethod(instance,"get_yaw",NULL);
-	pyAlt = PyObject_CallMethod(instance,"get_altitude",NULL);
-	pyBat = PyObject_CallMethod(instance,"get_battery",NULL);
-	pyHB = PyObject_CallMethod(instance,"get_heartbeat",NULL);
-
-	// Display!// 
-	printf("vel: x:%0.6f y: %0.6f z: %0.6f\n",PyFloat_AsDouble(pyVelx),PyFloat_AsDouble(pyVely),PyFloat_AsDouble(pyVelz));
-	printf("att: r:%0.6f p: %0.6f y: %0.6f\n",PyFloat_AsDouble(pyRoll),PyFloat_AsDouble(pyPit),PyFloat_AsDouble(pyYaw));
-	printf("alt:%0.6f\n",PyFloat_AsDouble(pyAlt));
-	printf("bat:%0.6f\n",PyFloat_AsDouble(pyBat));
-	printf("HB: %0.6f\n",PyFloat_AsDouble(pyHB));
-
-	// Populate all of the data //
-	vel.push_back(0);
-	vel.push_back(PyFloat_AsDouble(pyVelx));
-	vel.push_back(PyFloat_AsDouble(pyVely));
-	vel.push_back(PyFloat_AsDouble(pyVelz));
-	
-	att.push_back(0);
-	att.push_back(PyFloat_AsDouble(pyRoll));
-	att.push_back(PyFloat_AsDouble(pyPit));
-	att.push_back(PyFloat_AsDouble(pyYaw));
-	
-	alt.push_back(0);
-	alt.push_back(PyFloat_AsDouble(pyAlt));
-	
-	bat.push_back(0);
-	bat.push_back(PyFloat_AsDouble(pyBat));
-
-	// Push the data to the queue!
-	data->accelQueue.push(vel);
-	data->attitudeQueue.push(att);
-	data->altitudeQueue.push(alt);
-	data->batteryQueue.push(bat);	
-	sleep(1.5);
-    }
-
-
-/*
-    PyObject* result = PyObject_CallMethod(instance, "get_heartbeat",NULL);
-    assert(result != NULL);
-
-    PyObject* result2 = PyObject_CallMethod(instance, "get_battery",NULL);
-    assert(result2 != NULL);
-
-
-    PyObject* result3 = PyObject_CallMethod(instance, "get_armed",NULL);
-    assert(result3 != NULL);
-
-    PyObject* result4 = PyObject_CallMethod(instance, "get_velx",NULL);
-    assert(result4 != NULL);
-
-    PyObject* result5 = PyObject_CallMethod(instance, "get_firmware_major",NULL);
-    assert(result5 != NULL);
-
-    PyObject* result6 = PyObject_CallMethod(instance, "get_altitude",NULL);
-    assert(result6 != NULL);
-
-    printf("bestill my beating heart %0.6f\n", PyFloat_AsDouble(result));
-    printf("Armed: %d\n", PyInt_AsLong(result3));
-    printf("Velx: %0.6f\n", PyFloat_AsDouble(result4));
-    printf("Major: %d\n", PyInt_AsLong(result5));
-    printf("Alt: %0.6f\n",PyFloat_AsDouble(result6));
-  */  
-    
-    Py_Finalize();
-    delete pyVelx,pyVely,pyVelz, pyRoll,pyPit,pyYaw,pyAlt,pyBat,module,klass,instance;
+  return;
 }
 
 
@@ -573,6 +470,11 @@ IOManager::acceptor_handler(TCPStream* stream, int id, T7::GenericMessage GM) {
     data->sockHealth[id] = failureCodes::socketConnected;
     data->timeToDieMap[id] = false;
 
+    vector< double > vel;
+    vector< double > att;
+    vector< double > alt;
+    vector< double > bat;
+
     google::protobuf::io::ZeroCopyInputStream* ZIS = new google::protobuf::io::FileInputStream(stream->m_sd);
 
     bool firstMessage = true;
@@ -696,7 +598,7 @@ IOManager::acceptor_handler(TCPStream* stream, int id, T7::GenericMessage GM) {
                         default:
                             LM->append("Unidentified Move Camera Command.\n");
                             break;
-                    } // switch      
+                    } // switch     
                 } else {
                     snprintf(pbuff, 256, "Dead Stream!  ID = %d\n", id);
                     string sbuff(pbuff);
@@ -704,6 +606,43 @@ IOManager::acceptor_handler(TCPStream* stream, int id, T7::GenericMessage GM) {
                     data->timeToDieMap[id] = true;
                 }
                 break;
+	    case sockKeys::PIXHAWK:
+		if (firstMessage || readDelimitedFrom(ZIS, &GM)){
+			firstMessage = false;
+			// Display!// 
+			printf("vel: x:%0.6f y: %0.6f z: %0.6f\n",GM.pixhawk().velx(),GM.pixhawk().vely(),GM.pixhawk().velz());
+			printf("att: r:%0.6f p: %0.6f y: %0.6f\n",GM.pixhawk().roll(),GM.pixhawk().pitch(),GM.pixhawk().yaw());
+			printf("alt:%0.6f\n",GM.pixhawk().altitude());
+			printf("bat:%0.6f\n",GM.pixhawk().battery());
+
+			vel.push_back(0);
+			vel.push_back(GM.pixhawk().velx());
+			vel.push_back(GM.pixhawk().vely());
+			vel.push_back(GM.pixhawk().velz());
+			
+			att.push_back(0);
+			att.push_back(GM.pixhawk().roll());
+			att.push_back(GM.pixhawk().pitch());
+			att.push_back(GM.pixhawk().yaw());
+			
+			alt.push_back(0);
+			alt.push_back(GM.pixhawk().altitude());
+			
+			bat.push_back(0);
+			bat.push_back(GM.pixhawk().battery());
+		
+			// Push the data to the queue!
+			data->accelQueue.push(vel);
+			data->attitudeQueue.push(att);
+			data->altitudeQueue.push(alt);
+			data->batteryQueue.push(bat);	
+		} else {
+                    snprintf(pbuff, 256, "Dead Stream!  ID = %d\n", id);
+                    string sbuff(pbuff);
+                    LM->append(sbuff);
+                    data->timeToDieMap[id] = true;
+                }
+		break;
             default:
                 data->sockHealth[id] = failureCodes::UNK_SOCK;
                 data->timeToDieMap[id] = true;
@@ -810,3 +749,8 @@ IOManager::readDelimitedFrom(google::protobuf::io::ZeroCopyInputStream* rawInput
 
     return true;
 }
+
+
+
+
+

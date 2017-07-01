@@ -50,13 +50,15 @@ class ThermalResponseDefaultTypeInternal : public ::google::protobuf::internal::
 } _ThermalResponse_default_instance_;
 class WiFiDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<WiFi> {
 } _WiFi_default_instance_;
+class PixhawkDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<Pixhawk> {
+} _Pixhawk_default_instance_;
 
 namespace protobuf_T7Messages_2eproto {
 
 
 namespace {
 
-::google::protobuf::Metadata file_level_metadata[16];
+::google::protobuf::Metadata file_level_metadata[17];
 const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[4];
 
 }  // namespace
@@ -72,6 +74,7 @@ PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::AuxillaryParseTableField
 };
 PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::ParseTable const
     TableStruct::schema[] = {
+  { NULL, NULL, 0, -1, -1, false },
   { NULL, NULL, 0, -1, -1, false },
   { NULL, NULL, 0, -1, -1, false },
   { NULL, NULL, 0, -1, -1, false },
@@ -113,6 +116,7 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericMessage, head_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericMessage, thermalresponse_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericMessage, wifi_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericMessage, pixhawk_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Response, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -210,25 +214,39 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(WiFi, strength_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(WiFi, freq_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Pixhawk, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Pixhawk, velx_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Pixhawk, vely_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Pixhawk, velz_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Pixhawk, roll_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Pixhawk, pitch_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Pixhawk, yaw_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Pixhawk, altitude_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Pixhawk, battery_),
 };
 
 static const ::google::protobuf::internal::MigrationSchema schemas[] = {
   { 0, -1, sizeof(GenericMessage)},
-  { 22, -1, sizeof(Response)},
-  { 28, -1, sizeof(HeartBeat)},
-  { 34, -1, sizeof(Terminate)},
-  { 40, -1, sizeof(ConfigData)},
-  { 46, -1, sizeof(MoveCamera)},
-  { 52, -1, sizeof(ThermalRequest)},
-  { 58, -1, sizeof(Accel)},
-  { 66, -1, sizeof(Gyro)},
-  { 74, -1, sizeof(Altitude)},
-  { 80, -1, sizeof(Attitude)},
-  { 88, -1, sizeof(Temp)},
-  { 94, -1, sizeof(Battery)},
-  { 100, -1, sizeof(Heading)},
-  { 106, -1, sizeof(ThermalResponse)},
-  { 112, -1, sizeof(WiFi)},
+  { 23, -1, sizeof(Response)},
+  { 29, -1, sizeof(HeartBeat)},
+  { 35, -1, sizeof(Terminate)},
+  { 41, -1, sizeof(ConfigData)},
+  { 47, -1, sizeof(MoveCamera)},
+  { 53, -1, sizeof(ThermalRequest)},
+  { 59, -1, sizeof(Accel)},
+  { 67, -1, sizeof(Gyro)},
+  { 75, -1, sizeof(Altitude)},
+  { 81, -1, sizeof(Attitude)},
+  { 89, -1, sizeof(Temp)},
+  { 95, -1, sizeof(Battery)},
+  { 101, -1, sizeof(Heading)},
+  { 107, -1, sizeof(ThermalResponse)},
+  { 113, -1, sizeof(WiFi)},
+  { 120, -1, sizeof(Pixhawk)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -248,6 +266,7 @@ static ::google::protobuf::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::google::protobuf::Message*>(&_Heading_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_ThermalResponse_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_WiFi_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_Pixhawk_default_instance_),
 };
 
 namespace {
@@ -268,7 +287,7 @@ void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 16);
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 17);
 }
 
 }  // namespace
@@ -306,6 +325,8 @@ void TableStruct::Shutdown() {
   delete file_level_metadata[14].reflection;
   _WiFi_default_instance_.Shutdown();
   delete file_level_metadata[15].reflection;
+  _Pixhawk_default_instance_.Shutdown();
+  delete file_level_metadata[16].reflection;
 }
 
 void TableStruct::InitDefaultsImpl() {
@@ -328,6 +349,7 @@ void TableStruct::InitDefaultsImpl() {
   _Heading_default_instance_.DefaultConstruct();
   _ThermalResponse_default_instance_.DefaultConstruct();
   _WiFi_default_instance_.DefaultConstruct();
+  _Pixhawk_default_instance_.DefaultConstruct();
   _GenericMessage_default_instance_.get_mutable()->response_ = const_cast< ::T7::Response*>(
       ::T7::Response::internal_default_instance());
   _GenericMessage_default_instance_.get_mutable()->heartbeat_ = const_cast< ::T7::HeartBeat*>(
@@ -358,6 +380,8 @@ void TableStruct::InitDefaultsImpl() {
       ::T7::ThermalResponse::internal_default_instance());
   _GenericMessage_default_instance_.get_mutable()->wifi_ = const_cast< ::T7::WiFi*>(
       ::T7::WiFi::internal_default_instance());
+  _GenericMessage_default_instance_.get_mutable()->pixhawk_ = const_cast< ::T7::Pixhawk*>(
+      ::T7::Pixhawk::internal_default_instance());
 }
 
 void InitDefaults() {
@@ -367,7 +391,7 @@ void InitDefaults() {
 void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] = {
-      "\n\020T7Messages.proto\022\002T7\"\362\005\n\016GenericMessag"
+      "\n\020T7Messages.proto\022\002T7\"\236\006\n\016GenericMessag"
       "e\022\017\n\007msgtype\030\001 \001(\005\022\014\n\004time\030\002 \001(\001\022\036\n\010resp"
       "onse\030\003 \001(\0132\014.T7.Response\022 \n\theartbeat\030\004 "
       "\001(\0132\r.T7.HeartBeat\022 \n\tterminate\030\005 \001(\0132\r."
@@ -380,36 +404,41 @@ void AddDescriptorsImpl() {
       "de\022\026\n\004temp\030\014 \001(\0132\010.T7.Temp\022\030\n\003bat\030\r \001(\0132"
       "\013.T7.Battery\022\031\n\004head\030\016 \001(\0132\013.T7.Heading\022"
       ",\n\017thermalresponse\030\020 \001(\0132\023.T7.ThermalRes"
-      "ponse\022\026\n\004wifi\030\021 \001(\0132\010.T7.WiFi\"\343\001\n\007MsgTyp"
-      "e\022\014\n\010RESPONSE\020\000\022\r\n\tHEARTBEAT\020\001\022\r\n\tTERMIN"
-      "ATE\020\002\022\017\n\013CONFIG_DATA\020e\022\017\n\013MOVE_CAMERA\020f\022"
-      "\023\n\017THERMAL_REQUEST\020g\022\n\n\005ACCEL\020\310\001\022\t\n\004GYRO"
-      "\020\311\001\022\r\n\010ALTITUDE\020\312\001\022\r\n\010ATTITUDE\020\313\001\022\t\n\004TEM"
-      "P\020\314\001\022\010\n\003BAT\020\315\001\022\t\n\004HEAD\020\316\001\022\025\n\020THERMAL_RES"
-      "PONSE\020\317\001\022\t\n\004WIFI\020\320\001\"\036\n\010Response\022\022\n\nroger"
-      "_that\030\001 \001(\010\"\032\n\tHeartBeat\022\r\n\005alive\030\001 \001(\010\""
-      "j\n\tTerminate\022\024\n\014terminateKey\030\001 \001(\005\"G\n\rTe"
-      "rminateKeys\022\021\n\rselfTerminate\020\000\022\020\n\014softSh"
-      "utdown\020\001\022\021\n\remergencyStop\020\002\"\307\001\n\nConfigDa"
-      "ta\022\021\n\tconfigKey\030\001 \001(\005\"\245\001\n\nToggleKeys\022\017\n\013"
-      "toggleAccel\020\000\022\016\n\ntoggleGyro\020\001\022\022\n\016toggleA"
-      "ltitude\020\002\022\022\n\016toggleAttitude\020\003\022\016\n\ntoggleT"
-      "emp\020\004\022\r\n\ttoggleBat\020\005\022\017\n\013toggleArray\020\006\022\016\n"
-      "\ntoggleHead\020\007\022\016\n\ntoggleWifi\020\010\"R\n\nMoveCam"
-      "era\022\020\n\010arrowKey\030\001 \001(\005\"2\n\tArrowKeys\022\006\n\002UP"
-      "\020\000\022\t\n\005RIGHT\020\001\022\010\n\004DOWN\020\002\022\010\n\004LEFT\020\003\"!\n\016The"
-      "rmalRequest\022\017\n\007request\030\001 \001(\010\"(\n\005Accel\022\t\n"
-      "\001x\030\001 \001(\001\022\t\n\001y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\"\'\n\004Gyro\022\t"
-      "\n\001x\030\001 \001(\001\022\t\n\001y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\"\027\n\010Altit"
-      "ude\022\013\n\003alt\030\001 \001(\001\"4\n\010Attitude\022\014\n\004roll\030\001 \001"
-      "(\001\022\r\n\005pitch\030\002 \001(\001\022\013\n\003yaw\030\003 \001(\001\"\024\n\004Temp\022\014"
-      "\n\004temp\030\001 \001(\001\"\032\n\007Battery\022\017\n\007percent\030\001 \001(\001"
-      "\"\032\n\007Heading\022\017\n\007heading\030\001 \001(\001\"#\n\017ThermalR"
-      "esponse\022\020\n\010response\030\001 \001(\001\"&\n\004WiFi\022\020\n\010str"
-      "ength\030\001 \001(\001\022\014\n\004freq\030\002 \001(\001b\006proto3"
+      "ponse\022\026\n\004wifi\030\021 \001(\0132\010.T7.WiFi\022\034\n\007pixhawk"
+      "\030\022 \001(\0132\013.T7.Pixhawk\"\361\001\n\007MsgType\022\014\n\010RESPO"
+      "NSE\020\000\022\r\n\tHEARTBEAT\020\001\022\r\n\tTERMINATE\020\002\022\017\n\013C"
+      "ONFIG_DATA\020e\022\017\n\013MOVE_CAMERA\020f\022\023\n\017THERMAL"
+      "_REQUEST\020g\022\n\n\005ACCEL\020\310\001\022\t\n\004GYRO\020\311\001\022\r\n\010ALT"
+      "ITUDE\020\312\001\022\r\n\010ATTITUDE\020\313\001\022\t\n\004TEMP\020\314\001\022\010\n\003BA"
+      "T\020\315\001\022\t\n\004HEAD\020\316\001\022\025\n\020THERMAL_RESPONSE\020\317\001\022\t"
+      "\n\004WIFI\020\320\001\022\014\n\007PIXHAWK\020\254\002\"\036\n\010Response\022\022\n\nr"
+      "oger_that\030\001 \001(\010\"\032\n\tHeartBeat\022\r\n\005alive\030\001 "
+      "\001(\010\"j\n\tTerminate\022\024\n\014terminateKey\030\001 \001(\005\"G"
+      "\n\rTerminateKeys\022\021\n\rselfTerminate\020\000\022\020\n\014so"
+      "ftShutdown\020\001\022\021\n\remergencyStop\020\002\"\307\001\n\nConf"
+      "igData\022\021\n\tconfigKey\030\001 \001(\005\"\245\001\n\nToggleKeys"
+      "\022\017\n\013toggleAccel\020\000\022\016\n\ntoggleGyro\020\001\022\022\n\016tog"
+      "gleAltitude\020\002\022\022\n\016toggleAttitude\020\003\022\016\n\ntog"
+      "gleTemp\020\004\022\r\n\ttoggleBat\020\005\022\017\n\013toggleArray\020"
+      "\006\022\016\n\ntoggleHead\020\007\022\016\n\ntoggleWifi\020\010\"R\n\nMov"
+      "eCamera\022\020\n\010arrowKey\030\001 \001(\005\"2\n\tArrowKeys\022\006"
+      "\n\002UP\020\000\022\t\n\005RIGHT\020\001\022\010\n\004DOWN\020\002\022\010\n\004LEFT\020\003\"!\n"
+      "\016ThermalRequest\022\017\n\007request\030\001 \001(\010\"(\n\005Acce"
+      "l\022\t\n\001x\030\001 \001(\001\022\t\n\001y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\"\'\n\004Gy"
+      "ro\022\t\n\001x\030\001 \001(\001\022\t\n\001y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\"\027\n\010A"
+      "ltitude\022\013\n\003alt\030\001 \001(\001\"4\n\010Attitude\022\014\n\004roll"
+      "\030\001 \001(\001\022\r\n\005pitch\030\002 \001(\001\022\013\n\003yaw\030\003 \001(\001\"\024\n\004Te"
+      "mp\022\014\n\004temp\030\001 \001(\001\"\032\n\007Battery\022\017\n\007percent\030\001"
+      " \001(\001\"\032\n\007Heading\022\017\n\007heading\030\001 \001(\001\"#\n\017Ther"
+      "malResponse\022\020\n\010response\030\001 \001(\001\"&\n\004WiFi\022\020\n"
+      "\010strength\030\001 \001(\001\022\014\n\004freq\030\002 \001(\001\"\200\001\n\007Pixhaw"
+      "k\022\014\n\004velx\030\001 \001(\001\022\014\n\004vely\030\002 \001(\001\022\014\n\004velz\030\003 "
+      "\001(\001\022\014\n\004roll\030\004 \001(\001\022\r\n\005pitch\030\005 \001(\001\022\013\n\003yaw\030"
+      "\006 \001(\001\022\020\n\010altitude\030\007 \001(\001\022\017\n\007battery\030\010 \001(\001"
+      "b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 1593);
+      descriptor, 1768);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "T7Messages.proto", &protobuf_RegisterTypes);
   ::google::protobuf::internal::OnShutdown(&TableStruct::Shutdown);
@@ -449,6 +478,7 @@ bool GenericMessage_MsgType_IsValid(int value) {
     case 206:
     case 207:
     case 208:
+    case 300:
       return true;
     default:
       return false;
@@ -471,6 +501,7 @@ const GenericMessage_MsgType GenericMessage::BAT;
 const GenericMessage_MsgType GenericMessage::HEAD;
 const GenericMessage_MsgType GenericMessage::THERMAL_RESPONSE;
 const GenericMessage_MsgType GenericMessage::WIFI;
+const GenericMessage_MsgType GenericMessage::PIXHAWK;
 const GenericMessage_MsgType GenericMessage::MsgType_MIN;
 const GenericMessage_MsgType GenericMessage::MsgType_MAX;
 const int GenericMessage::MsgType_ARRAYSIZE;
@@ -579,6 +610,7 @@ const int GenericMessage::kBatFieldNumber;
 const int GenericMessage::kHeadFieldNumber;
 const int GenericMessage::kThermalresponseFieldNumber;
 const int GenericMessage::kWifiFieldNumber;
+const int GenericMessage::kPixhawkFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 GenericMessage::GenericMessage()
@@ -669,6 +701,11 @@ GenericMessage::GenericMessage(const GenericMessage& from)
   } else {
     wifi_ = NULL;
   }
+  if (from.has_pixhawk()) {
+    pixhawk_ = new ::T7::Pixhawk(*from.pixhawk_);
+  } else {
+    pixhawk_ = NULL;
+  }
   ::memcpy(&time_, &from.time_,
     reinterpret_cast<char*>(&msgtype_) -
     reinterpret_cast<char*>(&time_) + sizeof(msgtype_));
@@ -731,6 +768,9 @@ void GenericMessage::SharedDtor() {
   }
   if (this != internal_default_instance()) {
     delete wifi_;
+  }
+  if (this != internal_default_instance()) {
+    delete pixhawk_;
   }
 }
 
@@ -819,6 +859,10 @@ void GenericMessage::Clear() {
     delete wifi_;
   }
   wifi_ = NULL;
+  if (GetArenaNoVirtual() == NULL && pixhawk_ != NULL) {
+    delete pixhawk_;
+  }
+  pixhawk_ = NULL;
   ::memset(&time_, 0, reinterpret_cast<char*>(&msgtype_) -
     reinterpret_cast<char*>(&time_) + sizeof(msgtype_));
 }
@@ -1041,6 +1085,18 @@ bool GenericMessage::MergePartialFromCodedStream(
         break;
       }
 
+      // .T7.Pixhawk pixhawk = 18;
+      case 18: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(146u)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_pixhawk()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0 ||
@@ -1168,6 +1224,12 @@ void GenericMessage::SerializeWithCachedSizes(
       17, *this->wifi_, output);
   }
 
+  // .T7.Pixhawk pixhawk = 18;
+  if (this->has_pixhawk()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      18, *this->pixhawk_, output);
+  }
+
   // @@protoc_insertion_point(serialize_end:T7.GenericMessage)
 }
 
@@ -1292,6 +1354,13 @@ void GenericMessage::SerializeWithCachedSizes(
         17, *this->wifi_, deterministic, target);
   }
 
+  // .T7.Pixhawk pixhawk = 18;
+  if (this->has_pixhawk()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        18, *this->pixhawk_, deterministic, target);
+  }
+
   // @@protoc_insertion_point(serialize_to_array_end:T7.GenericMessage)
   return target;
 }
@@ -1405,6 +1474,13 @@ size_t GenericMessage::ByteSizeLong() const {
         *this->wifi_);
   }
 
+  // .T7.Pixhawk pixhawk = 18;
+  if (this->has_pixhawk()) {
+    total_size += 2 +
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        *this->pixhawk_);
+  }
+
   // double time = 2;
   if (this->time() != 0) {
     total_size += 1 + 8;
@@ -1491,6 +1567,9 @@ void GenericMessage::MergeFrom(const GenericMessage& from) {
   if (from.has_wifi()) {
     mutable_wifi()->::T7::WiFi::MergeFrom(from.wifi());
   }
+  if (from.has_pixhawk()) {
+    mutable_pixhawk()->::T7::Pixhawk::MergeFrom(from.pixhawk());
+  }
   if (from.time() != 0) {
     set_time(from.time());
   }
@@ -1537,6 +1616,7 @@ void GenericMessage::InternalSwap(GenericMessage* other) {
   std::swap(thermalrequest_, other->thermalrequest_);
   std::swap(thermalresponse_, other->thermalresponse_);
   std::swap(wifi_, other->wifi_);
+  std::swap(pixhawk_, other->pixhawk_);
   std::swap(time_, other->time_);
   std::swap(msgtype_, other->msgtype_);
   std::swap(_cached_size_, other->_cached_size_);
@@ -2161,6 +2241,45 @@ void GenericMessage::set_allocated_wifi(::T7::WiFi* wifi) {
     
   }
   // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.wifi)
+}
+
+// .T7.Pixhawk pixhawk = 18;
+bool GenericMessage::has_pixhawk() const {
+  return this != internal_default_instance() && pixhawk_ != NULL;
+}
+void GenericMessage::clear_pixhawk() {
+  if (GetArenaNoVirtual() == NULL && pixhawk_ != NULL) delete pixhawk_;
+  pixhawk_ = NULL;
+}
+const ::T7::Pixhawk& GenericMessage::pixhawk() const {
+  // @@protoc_insertion_point(field_get:T7.GenericMessage.pixhawk)
+  return pixhawk_ != NULL ? *pixhawk_
+                         : *::T7::Pixhawk::internal_default_instance();
+}
+::T7::Pixhawk* GenericMessage::mutable_pixhawk() {
+  
+  if (pixhawk_ == NULL) {
+    pixhawk_ = new ::T7::Pixhawk;
+  }
+  // @@protoc_insertion_point(field_mutable:T7.GenericMessage.pixhawk)
+  return pixhawk_;
+}
+::T7::Pixhawk* GenericMessage::release_pixhawk() {
+  // @@protoc_insertion_point(field_release:T7.GenericMessage.pixhawk)
+  
+  ::T7::Pixhawk* temp = pixhawk_;
+  pixhawk_ = NULL;
+  return temp;
+}
+void GenericMessage::set_allocated_pixhawk(::T7::Pixhawk* pixhawk) {
+  delete pixhawk_;
+  pixhawk_ = pixhawk;
+  if (pixhawk) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.pixhawk)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -5999,6 +6118,578 @@ void WiFi::set_freq(double value) {
   
   freq_ = value;
   // @@protoc_insertion_point(field_set:T7.WiFi.freq)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int Pixhawk::kVelxFieldNumber;
+const int Pixhawk::kVelyFieldNumber;
+const int Pixhawk::kVelzFieldNumber;
+const int Pixhawk::kRollFieldNumber;
+const int Pixhawk::kPitchFieldNumber;
+const int Pixhawk::kYawFieldNumber;
+const int Pixhawk::kAltitudeFieldNumber;
+const int Pixhawk::kBatteryFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+Pixhawk::Pixhawk()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_T7Messages_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:T7.Pixhawk)
+}
+Pixhawk::Pixhawk(const Pixhawk& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::memcpy(&velx_, &from.velx_,
+    reinterpret_cast<char*>(&battery_) -
+    reinterpret_cast<char*>(&velx_) + sizeof(battery_));
+  // @@protoc_insertion_point(copy_constructor:T7.Pixhawk)
+}
+
+void Pixhawk::SharedCtor() {
+  ::memset(&velx_, 0, reinterpret_cast<char*>(&battery_) -
+    reinterpret_cast<char*>(&velx_) + sizeof(battery_));
+  _cached_size_ = 0;
+}
+
+Pixhawk::~Pixhawk() {
+  // @@protoc_insertion_point(destructor:T7.Pixhawk)
+  SharedDtor();
+}
+
+void Pixhawk::SharedDtor() {
+}
+
+void Pixhawk::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* Pixhawk::descriptor() {
+  protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const Pixhawk& Pixhawk::default_instance() {
+  protobuf_T7Messages_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+Pixhawk* Pixhawk::New(::google::protobuf::Arena* arena) const {
+  Pixhawk* n = new Pixhawk;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void Pixhawk::Clear() {
+// @@protoc_insertion_point(message_clear_start:T7.Pixhawk)
+  ::memset(&velx_, 0, reinterpret_cast<char*>(&battery_) -
+    reinterpret_cast<char*>(&velx_) + sizeof(battery_));
+}
+
+bool Pixhawk::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:T7.Pixhawk)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // double velx = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(9u)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
+                 input, &velx_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // double vely = 2;
+      case 2: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(17u)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
+                 input, &vely_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // double velz = 3;
+      case 3: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(25u)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
+                 input, &velz_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // double roll = 4;
+      case 4: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(33u)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
+                 input, &roll_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // double pitch = 5;
+      case 5: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(41u)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
+                 input, &pitch_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // double yaw = 6;
+      case 6: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(49u)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
+                 input, &yaw_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // double altitude = 7;
+      case 7: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(57u)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
+                 input, &altitude_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // double battery = 8;
+      case 8: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(65u)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
+                 input, &battery_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:T7.Pixhawk)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:T7.Pixhawk)
+  return false;
+#undef DO_
+}
+
+void Pixhawk::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:T7.Pixhawk)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // double velx = 1;
+  if (this->velx() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(1, this->velx(), output);
+  }
+
+  // double vely = 2;
+  if (this->vely() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(2, this->vely(), output);
+  }
+
+  // double velz = 3;
+  if (this->velz() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(3, this->velz(), output);
+  }
+
+  // double roll = 4;
+  if (this->roll() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(4, this->roll(), output);
+  }
+
+  // double pitch = 5;
+  if (this->pitch() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(5, this->pitch(), output);
+  }
+
+  // double yaw = 6;
+  if (this->yaw() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(6, this->yaw(), output);
+  }
+
+  // double altitude = 7;
+  if (this->altitude() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(7, this->altitude(), output);
+  }
+
+  // double battery = 8;
+  if (this->battery() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(8, this->battery(), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:T7.Pixhawk)
+}
+
+::google::protobuf::uint8* Pixhawk::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:T7.Pixhawk)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // double velx = 1;
+  if (this->velx() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(1, this->velx(), target);
+  }
+
+  // double vely = 2;
+  if (this->vely() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(2, this->vely(), target);
+  }
+
+  // double velz = 3;
+  if (this->velz() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(3, this->velz(), target);
+  }
+
+  // double roll = 4;
+  if (this->roll() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(4, this->roll(), target);
+  }
+
+  // double pitch = 5;
+  if (this->pitch() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(5, this->pitch(), target);
+  }
+
+  // double yaw = 6;
+  if (this->yaw() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(6, this->yaw(), target);
+  }
+
+  // double altitude = 7;
+  if (this->altitude() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(7, this->altitude(), target);
+  }
+
+  // double battery = 8;
+  if (this->battery() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(8, this->battery(), target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:T7.Pixhawk)
+  return target;
+}
+
+size_t Pixhawk::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:T7.Pixhawk)
+  size_t total_size = 0;
+
+  // double velx = 1;
+  if (this->velx() != 0) {
+    total_size += 1 + 8;
+  }
+
+  // double vely = 2;
+  if (this->vely() != 0) {
+    total_size += 1 + 8;
+  }
+
+  // double velz = 3;
+  if (this->velz() != 0) {
+    total_size += 1 + 8;
+  }
+
+  // double roll = 4;
+  if (this->roll() != 0) {
+    total_size += 1 + 8;
+  }
+
+  // double pitch = 5;
+  if (this->pitch() != 0) {
+    total_size += 1 + 8;
+  }
+
+  // double yaw = 6;
+  if (this->yaw() != 0) {
+    total_size += 1 + 8;
+  }
+
+  // double altitude = 7;
+  if (this->altitude() != 0) {
+    total_size += 1 + 8;
+  }
+
+  // double battery = 8;
+  if (this->battery() != 0) {
+    total_size += 1 + 8;
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void Pixhawk::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:T7.Pixhawk)
+  GOOGLE_DCHECK_NE(&from, this);
+  const Pixhawk* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const Pixhawk>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:T7.Pixhawk)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:T7.Pixhawk)
+    MergeFrom(*source);
+  }
+}
+
+void Pixhawk::MergeFrom(const Pixhawk& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:T7.Pixhawk)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.velx() != 0) {
+    set_velx(from.velx());
+  }
+  if (from.vely() != 0) {
+    set_vely(from.vely());
+  }
+  if (from.velz() != 0) {
+    set_velz(from.velz());
+  }
+  if (from.roll() != 0) {
+    set_roll(from.roll());
+  }
+  if (from.pitch() != 0) {
+    set_pitch(from.pitch());
+  }
+  if (from.yaw() != 0) {
+    set_yaw(from.yaw());
+  }
+  if (from.altitude() != 0) {
+    set_altitude(from.altitude());
+  }
+  if (from.battery() != 0) {
+    set_battery(from.battery());
+  }
+}
+
+void Pixhawk::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:T7.Pixhawk)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void Pixhawk::CopyFrom(const Pixhawk& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:T7.Pixhawk)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Pixhawk::IsInitialized() const {
+  return true;
+}
+
+void Pixhawk::Swap(Pixhawk* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void Pixhawk::InternalSwap(Pixhawk* other) {
+  std::swap(velx_, other->velx_);
+  std::swap(vely_, other->vely_);
+  std::swap(velz_, other->velz_);
+  std::swap(roll_, other->roll_);
+  std::swap(pitch_, other->pitch_);
+  std::swap(yaw_, other->yaw_);
+  std::swap(altitude_, other->altitude_);
+  std::swap(battery_, other->battery_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata Pixhawk::GetMetadata() const {
+  protobuf_T7Messages_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_T7Messages_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// Pixhawk
+
+// double velx = 1;
+void Pixhawk::clear_velx() {
+  velx_ = 0;
+}
+double Pixhawk::velx() const {
+  // @@protoc_insertion_point(field_get:T7.Pixhawk.velx)
+  return velx_;
+}
+void Pixhawk::set_velx(double value) {
+  
+  velx_ = value;
+  // @@protoc_insertion_point(field_set:T7.Pixhawk.velx)
+}
+
+// double vely = 2;
+void Pixhawk::clear_vely() {
+  vely_ = 0;
+}
+double Pixhawk::vely() const {
+  // @@protoc_insertion_point(field_get:T7.Pixhawk.vely)
+  return vely_;
+}
+void Pixhawk::set_vely(double value) {
+  
+  vely_ = value;
+  // @@protoc_insertion_point(field_set:T7.Pixhawk.vely)
+}
+
+// double velz = 3;
+void Pixhawk::clear_velz() {
+  velz_ = 0;
+}
+double Pixhawk::velz() const {
+  // @@protoc_insertion_point(field_get:T7.Pixhawk.velz)
+  return velz_;
+}
+void Pixhawk::set_velz(double value) {
+  
+  velz_ = value;
+  // @@protoc_insertion_point(field_set:T7.Pixhawk.velz)
+}
+
+// double roll = 4;
+void Pixhawk::clear_roll() {
+  roll_ = 0;
+}
+double Pixhawk::roll() const {
+  // @@protoc_insertion_point(field_get:T7.Pixhawk.roll)
+  return roll_;
+}
+void Pixhawk::set_roll(double value) {
+  
+  roll_ = value;
+  // @@protoc_insertion_point(field_set:T7.Pixhawk.roll)
+}
+
+// double pitch = 5;
+void Pixhawk::clear_pitch() {
+  pitch_ = 0;
+}
+double Pixhawk::pitch() const {
+  // @@protoc_insertion_point(field_get:T7.Pixhawk.pitch)
+  return pitch_;
+}
+void Pixhawk::set_pitch(double value) {
+  
+  pitch_ = value;
+  // @@protoc_insertion_point(field_set:T7.Pixhawk.pitch)
+}
+
+// double yaw = 6;
+void Pixhawk::clear_yaw() {
+  yaw_ = 0;
+}
+double Pixhawk::yaw() const {
+  // @@protoc_insertion_point(field_get:T7.Pixhawk.yaw)
+  return yaw_;
+}
+void Pixhawk::set_yaw(double value) {
+  
+  yaw_ = value;
+  // @@protoc_insertion_point(field_set:T7.Pixhawk.yaw)
+}
+
+// double altitude = 7;
+void Pixhawk::clear_altitude() {
+  altitude_ = 0;
+}
+double Pixhawk::altitude() const {
+  // @@protoc_insertion_point(field_get:T7.Pixhawk.altitude)
+  return altitude_;
+}
+void Pixhawk::set_altitude(double value) {
+  
+  altitude_ = value;
+  // @@protoc_insertion_point(field_set:T7.Pixhawk.altitude)
+}
+
+// double battery = 8;
+void Pixhawk::clear_battery() {
+  battery_ = 0;
+}
+double Pixhawk::battery() const {
+  // @@protoc_insertion_point(field_get:T7.Pixhawk.battery)
+  return battery_;
+}
+void Pixhawk::set_battery(double value) {
+  
+  battery_ = value;
+  // @@protoc_insertion_point(field_set:T7.Pixhawk.battery)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS

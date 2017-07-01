@@ -258,6 +258,31 @@ public final class T7Messages {
      * <code>.T7.WiFi wifi = 17;</code>
      */
     T7.T7Messages.WiFiOrBuilder getWifiOrBuilder();
+
+    /**
+     * <pre>
+     * Pixhawk-&gt;UAV //
+     * </pre>
+     *
+     * <code>.T7.Pixhawk pixhawk = 18;</code>
+     */
+    boolean hasPixhawk();
+    /**
+     * <pre>
+     * Pixhawk-&gt;UAV //
+     * </pre>
+     *
+     * <code>.T7.Pixhawk pixhawk = 18;</code>
+     */
+    T7.T7Messages.Pixhawk getPixhawk();
+    /**
+     * <pre>
+     * Pixhawk-&gt;UAV //
+     * </pre>
+     *
+     * <code>.T7.Pixhawk pixhawk = 18;</code>
+     */
+    T7.T7Messages.PixhawkOrBuilder getPixhawkOrBuilder();
   }
   /**
    * <pre>
@@ -514,6 +539,19 @@ public final class T7Messages {
 
               break;
             }
+            case 146: {
+              T7.T7Messages.Pixhawk.Builder subBuilder = null;
+              if (pixhawk_ != null) {
+                subBuilder = pixhawk_.toBuilder();
+              }
+              pixhawk_ = input.readMessage(T7.T7Messages.Pixhawk.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(pixhawk_);
+                pixhawk_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -614,6 +652,14 @@ public final class T7Messages {
        * <code>WIFI = 208;</code>
        */
       WIFI(208),
+      /**
+       * <pre>
+       * Pixhawk -&gt; UAV //
+       * </pre>
+       *
+       * <code>PIXHAWK = 300;</code>
+       */
+      PIXHAWK(300),
       UNRECOGNIZED(-1),
       ;
 
@@ -689,6 +735,14 @@ public final class T7Messages {
        * <code>WIFI = 208;</code>
        */
       public static final int WIFI_VALUE = 208;
+      /**
+       * <pre>
+       * Pixhawk -&gt; UAV //
+       * </pre>
+       *
+       * <code>PIXHAWK = 300;</code>
+       */
+      public static final int PIXHAWK_VALUE = 300;
 
 
       public final int getNumber() {
@@ -724,6 +778,7 @@ public final class T7Messages {
           case 206: return HEAD;
           case 207: return THERMAL_RESPONSE;
           case 208: return WIFI;
+          case 300: return PIXHAWK;
           default: return null;
         }
       }
@@ -1145,6 +1200,39 @@ public final class T7Messages {
       return getWifi();
     }
 
+    public static final int PIXHAWK_FIELD_NUMBER = 18;
+    private T7.T7Messages.Pixhawk pixhawk_;
+    /**
+     * <pre>
+     * Pixhawk-&gt;UAV //
+     * </pre>
+     *
+     * <code>.T7.Pixhawk pixhawk = 18;</code>
+     */
+    public boolean hasPixhawk() {
+      return pixhawk_ != null;
+    }
+    /**
+     * <pre>
+     * Pixhawk-&gt;UAV //
+     * </pre>
+     *
+     * <code>.T7.Pixhawk pixhawk = 18;</code>
+     */
+    public T7.T7Messages.Pixhawk getPixhawk() {
+      return pixhawk_ == null ? T7.T7Messages.Pixhawk.getDefaultInstance() : pixhawk_;
+    }
+    /**
+     * <pre>
+     * Pixhawk-&gt;UAV //
+     * </pre>
+     *
+     * <code>.T7.Pixhawk pixhawk = 18;</code>
+     */
+    public T7.T7Messages.PixhawkOrBuilder getPixhawkOrBuilder() {
+      return getPixhawk();
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -1207,6 +1295,9 @@ public final class T7Messages {
       }
       if (wifi_ != null) {
         output.writeMessage(17, getWifi());
+      }
+      if (pixhawk_ != null) {
+        output.writeMessage(18, getPixhawk());
       }
     }
 
@@ -1282,6 +1373,10 @@ public final class T7Messages {
       if (wifi_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(17, getWifi());
+      }
+      if (pixhawk_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(18, getPixhawk());
       }
       memoizedSize = size;
       return size;
@@ -1380,6 +1475,11 @@ public final class T7Messages {
         result = result && getWifi()
             .equals(other.getWifi());
       }
+      result = result && (hasPixhawk() == other.hasPixhawk());
+      if (hasPixhawk()) {
+        result = result && getPixhawk()
+            .equals(other.getPixhawk());
+      }
       return result;
     }
 
@@ -1454,6 +1554,10 @@ public final class T7Messages {
       if (hasWifi()) {
         hash = (37 * hash) + WIFI_FIELD_NUMBER;
         hash = (53 * hash) + getWifi().hashCode();
+      }
+      if (hasPixhawk()) {
+        hash = (37 * hash) + PIXHAWK_FIELD_NUMBER;
+        hash = (53 * hash) + getPixhawk().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -1687,6 +1791,12 @@ public final class T7Messages {
           wifi_ = null;
           wifiBuilder_ = null;
         }
+        if (pixhawkBuilder_ == null) {
+          pixhawk_ = null;
+        } else {
+          pixhawk_ = null;
+          pixhawkBuilder_ = null;
+        }
         return this;
       }
 
@@ -1786,6 +1896,11 @@ public final class T7Messages {
         } else {
           result.wifi_ = wifiBuilder_.build();
         }
+        if (pixhawkBuilder_ == null) {
+          result.pixhawk_ = pixhawk_;
+        } else {
+          result.pixhawk_ = pixhawkBuilder_.build();
+        }
         onBuilt();
         return result;
       }
@@ -1877,6 +1992,9 @@ public final class T7Messages {
         }
         if (other.hasWifi()) {
           mergeWifi(other.getWifi());
+        }
+        if (other.hasPixhawk()) {
+          mergePixhawk(other.getPixhawk());
         }
         onChanged();
         return this;
@@ -3817,6 +3935,159 @@ public final class T7Messages {
           wifi_ = null;
         }
         return wifiBuilder_;
+      }
+
+      private T7.T7Messages.Pixhawk pixhawk_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          T7.T7Messages.Pixhawk, T7.T7Messages.Pixhawk.Builder, T7.T7Messages.PixhawkOrBuilder> pixhawkBuilder_;
+      /**
+       * <pre>
+       * Pixhawk-&gt;UAV //
+       * </pre>
+       *
+       * <code>.T7.Pixhawk pixhawk = 18;</code>
+       */
+      public boolean hasPixhawk() {
+        return pixhawkBuilder_ != null || pixhawk_ != null;
+      }
+      /**
+       * <pre>
+       * Pixhawk-&gt;UAV //
+       * </pre>
+       *
+       * <code>.T7.Pixhawk pixhawk = 18;</code>
+       */
+      public T7.T7Messages.Pixhawk getPixhawk() {
+        if (pixhawkBuilder_ == null) {
+          return pixhawk_ == null ? T7.T7Messages.Pixhawk.getDefaultInstance() : pixhawk_;
+        } else {
+          return pixhawkBuilder_.getMessage();
+        }
+      }
+      /**
+       * <pre>
+       * Pixhawk-&gt;UAV //
+       * </pre>
+       *
+       * <code>.T7.Pixhawk pixhawk = 18;</code>
+       */
+      public Builder setPixhawk(T7.T7Messages.Pixhawk value) {
+        if (pixhawkBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          pixhawk_ = value;
+          onChanged();
+        } else {
+          pixhawkBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * Pixhawk-&gt;UAV //
+       * </pre>
+       *
+       * <code>.T7.Pixhawk pixhawk = 18;</code>
+       */
+      public Builder setPixhawk(
+          T7.T7Messages.Pixhawk.Builder builderForValue) {
+        if (pixhawkBuilder_ == null) {
+          pixhawk_ = builderForValue.build();
+          onChanged();
+        } else {
+          pixhawkBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * Pixhawk-&gt;UAV //
+       * </pre>
+       *
+       * <code>.T7.Pixhawk pixhawk = 18;</code>
+       */
+      public Builder mergePixhawk(T7.T7Messages.Pixhawk value) {
+        if (pixhawkBuilder_ == null) {
+          if (pixhawk_ != null) {
+            pixhawk_ =
+              T7.T7Messages.Pixhawk.newBuilder(pixhawk_).mergeFrom(value).buildPartial();
+          } else {
+            pixhawk_ = value;
+          }
+          onChanged();
+        } else {
+          pixhawkBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * Pixhawk-&gt;UAV //
+       * </pre>
+       *
+       * <code>.T7.Pixhawk pixhawk = 18;</code>
+       */
+      public Builder clearPixhawk() {
+        if (pixhawkBuilder_ == null) {
+          pixhawk_ = null;
+          onChanged();
+        } else {
+          pixhawk_ = null;
+          pixhawkBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * Pixhawk-&gt;UAV //
+       * </pre>
+       *
+       * <code>.T7.Pixhawk pixhawk = 18;</code>
+       */
+      public T7.T7Messages.Pixhawk.Builder getPixhawkBuilder() {
+        
+        onChanged();
+        return getPixhawkFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * Pixhawk-&gt;UAV //
+       * </pre>
+       *
+       * <code>.T7.Pixhawk pixhawk = 18;</code>
+       */
+      public T7.T7Messages.PixhawkOrBuilder getPixhawkOrBuilder() {
+        if (pixhawkBuilder_ != null) {
+          return pixhawkBuilder_.getMessageOrBuilder();
+        } else {
+          return pixhawk_ == null ?
+              T7.T7Messages.Pixhawk.getDefaultInstance() : pixhawk_;
+        }
+      }
+      /**
+       * <pre>
+       * Pixhawk-&gt;UAV //
+       * </pre>
+       *
+       * <code>.T7.Pixhawk pixhawk = 18;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          T7.T7Messages.Pixhawk, T7.T7Messages.Pixhawk.Builder, T7.T7Messages.PixhawkOrBuilder> 
+          getPixhawkFieldBuilder() {
+        if (pixhawkBuilder_ == null) {
+          pixhawkBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              T7.T7Messages.Pixhawk, T7.T7Messages.Pixhawk.Builder, T7.T7Messages.PixhawkOrBuilder>(
+                  getPixhawk(),
+                  getParentForChildren(),
+                  isClean());
+          pixhawk_ = null;
+        }
+        return pixhawkBuilder_;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -11861,6 +12132,1081 @@ public final class T7Messages {
 
   }
 
+  public interface PixhawkOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:T7.Pixhawk)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * [m/s]
+     * </pre>
+     *
+     * <code>double velx = 1;</code>
+     */
+    double getVelx();
+
+    /**
+     * <pre>
+     * [m/s]
+     * </pre>
+     *
+     * <code>double vely = 2;</code>
+     */
+    double getVely();
+
+    /**
+     * <pre>
+     * [m/s]
+     * </pre>
+     *
+     * <code>double velz = 3;</code>
+     */
+    double getVelz();
+
+    /**
+     * <pre>
+     * [rad]
+     * </pre>
+     *
+     * <code>double roll = 4;</code>
+     */
+    double getRoll();
+
+    /**
+     * <pre>
+     * [rad]
+     * </pre>
+     *
+     * <code>double pitch = 5;</code>
+     */
+    double getPitch();
+
+    /**
+     * <pre>
+     * [rad]
+     * </pre>
+     *
+     * <code>double yaw = 6;</code>
+     */
+    double getYaw();
+
+    /**
+     * <pre>
+     * [rad]
+     * </pre>
+     *
+     * <code>double altitude = 7;</code>
+     */
+    double getAltitude();
+
+    /**
+     * <pre>
+     * [rad]
+     * </pre>
+     *
+     * <code>double battery = 8;</code>
+     */
+    double getBattery();
+  }
+  /**
+   * <pre>
+   * Pixhawk //
+   * This message is a helper from python -&gt; uav
+   * </pre>
+   *
+   * Protobuf type {@code T7.Pixhawk}
+   */
+  public  static final class Pixhawk extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:T7.Pixhawk)
+      PixhawkOrBuilder {
+    // Use Pixhawk.newBuilder() to construct.
+    private Pixhawk(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Pixhawk() {
+      velx_ = 0D;
+      vely_ = 0D;
+      velz_ = 0D;
+      roll_ = 0D;
+      pitch_ = 0D;
+      yaw_ = 0D;
+      altitude_ = 0D;
+      battery_ = 0D;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private Pixhawk(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 9: {
+
+              velx_ = input.readDouble();
+              break;
+            }
+            case 17: {
+
+              vely_ = input.readDouble();
+              break;
+            }
+            case 25: {
+
+              velz_ = input.readDouble();
+              break;
+            }
+            case 33: {
+
+              roll_ = input.readDouble();
+              break;
+            }
+            case 41: {
+
+              pitch_ = input.readDouble();
+              break;
+            }
+            case 49: {
+
+              yaw_ = input.readDouble();
+              break;
+            }
+            case 57: {
+
+              altitude_ = input.readDouble();
+              break;
+            }
+            case 65: {
+
+              battery_ = input.readDouble();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return T7.T7Messages.internal_static_T7_Pixhawk_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return T7.T7Messages.internal_static_T7_Pixhawk_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              T7.T7Messages.Pixhawk.class, T7.T7Messages.Pixhawk.Builder.class);
+    }
+
+    public static final int VELX_FIELD_NUMBER = 1;
+    private double velx_;
+    /**
+     * <pre>
+     * [m/s]
+     * </pre>
+     *
+     * <code>double velx = 1;</code>
+     */
+    public double getVelx() {
+      return velx_;
+    }
+
+    public static final int VELY_FIELD_NUMBER = 2;
+    private double vely_;
+    /**
+     * <pre>
+     * [m/s]
+     * </pre>
+     *
+     * <code>double vely = 2;</code>
+     */
+    public double getVely() {
+      return vely_;
+    }
+
+    public static final int VELZ_FIELD_NUMBER = 3;
+    private double velz_;
+    /**
+     * <pre>
+     * [m/s]
+     * </pre>
+     *
+     * <code>double velz = 3;</code>
+     */
+    public double getVelz() {
+      return velz_;
+    }
+
+    public static final int ROLL_FIELD_NUMBER = 4;
+    private double roll_;
+    /**
+     * <pre>
+     * [rad]
+     * </pre>
+     *
+     * <code>double roll = 4;</code>
+     */
+    public double getRoll() {
+      return roll_;
+    }
+
+    public static final int PITCH_FIELD_NUMBER = 5;
+    private double pitch_;
+    /**
+     * <pre>
+     * [rad]
+     * </pre>
+     *
+     * <code>double pitch = 5;</code>
+     */
+    public double getPitch() {
+      return pitch_;
+    }
+
+    public static final int YAW_FIELD_NUMBER = 6;
+    private double yaw_;
+    /**
+     * <pre>
+     * [rad]
+     * </pre>
+     *
+     * <code>double yaw = 6;</code>
+     */
+    public double getYaw() {
+      return yaw_;
+    }
+
+    public static final int ALTITUDE_FIELD_NUMBER = 7;
+    private double altitude_;
+    /**
+     * <pre>
+     * [rad]
+     * </pre>
+     *
+     * <code>double altitude = 7;</code>
+     */
+    public double getAltitude() {
+      return altitude_;
+    }
+
+    public static final int BATTERY_FIELD_NUMBER = 8;
+    private double battery_;
+    /**
+     * <pre>
+     * [rad]
+     * </pre>
+     *
+     * <code>double battery = 8;</code>
+     */
+    public double getBattery() {
+      return battery_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (velx_ != 0D) {
+        output.writeDouble(1, velx_);
+      }
+      if (vely_ != 0D) {
+        output.writeDouble(2, vely_);
+      }
+      if (velz_ != 0D) {
+        output.writeDouble(3, velz_);
+      }
+      if (roll_ != 0D) {
+        output.writeDouble(4, roll_);
+      }
+      if (pitch_ != 0D) {
+        output.writeDouble(5, pitch_);
+      }
+      if (yaw_ != 0D) {
+        output.writeDouble(6, yaw_);
+      }
+      if (altitude_ != 0D) {
+        output.writeDouble(7, altitude_);
+      }
+      if (battery_ != 0D) {
+        output.writeDouble(8, battery_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (velx_ != 0D) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(1, velx_);
+      }
+      if (vely_ != 0D) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(2, vely_);
+      }
+      if (velz_ != 0D) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(3, velz_);
+      }
+      if (roll_ != 0D) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(4, roll_);
+      }
+      if (pitch_ != 0D) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(5, pitch_);
+      }
+      if (yaw_ != 0D) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(6, yaw_);
+      }
+      if (altitude_ != 0D) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(7, altitude_);
+      }
+      if (battery_ != 0D) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(8, battery_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof T7.T7Messages.Pixhawk)) {
+        return super.equals(obj);
+      }
+      T7.T7Messages.Pixhawk other = (T7.T7Messages.Pixhawk) obj;
+
+      boolean result = true;
+      result = result && (
+          java.lang.Double.doubleToLongBits(getVelx())
+          == java.lang.Double.doubleToLongBits(
+              other.getVelx()));
+      result = result && (
+          java.lang.Double.doubleToLongBits(getVely())
+          == java.lang.Double.doubleToLongBits(
+              other.getVely()));
+      result = result && (
+          java.lang.Double.doubleToLongBits(getVelz())
+          == java.lang.Double.doubleToLongBits(
+              other.getVelz()));
+      result = result && (
+          java.lang.Double.doubleToLongBits(getRoll())
+          == java.lang.Double.doubleToLongBits(
+              other.getRoll()));
+      result = result && (
+          java.lang.Double.doubleToLongBits(getPitch())
+          == java.lang.Double.doubleToLongBits(
+              other.getPitch()));
+      result = result && (
+          java.lang.Double.doubleToLongBits(getYaw())
+          == java.lang.Double.doubleToLongBits(
+              other.getYaw()));
+      result = result && (
+          java.lang.Double.doubleToLongBits(getAltitude())
+          == java.lang.Double.doubleToLongBits(
+              other.getAltitude()));
+      result = result && (
+          java.lang.Double.doubleToLongBits(getBattery())
+          == java.lang.Double.doubleToLongBits(
+              other.getBattery()));
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + VELX_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getVelx()));
+      hash = (37 * hash) + VELY_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getVely()));
+      hash = (37 * hash) + VELZ_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getVelz()));
+      hash = (37 * hash) + ROLL_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getRoll()));
+      hash = (37 * hash) + PITCH_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getPitch()));
+      hash = (37 * hash) + YAW_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getYaw()));
+      hash = (37 * hash) + ALTITUDE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getAltitude()));
+      hash = (37 * hash) + BATTERY_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getBattery()));
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static T7.T7Messages.Pixhawk parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static T7.T7Messages.Pixhawk parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static T7.T7Messages.Pixhawk parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static T7.T7Messages.Pixhawk parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static T7.T7Messages.Pixhawk parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static T7.T7Messages.Pixhawk parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static T7.T7Messages.Pixhawk parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static T7.T7Messages.Pixhawk parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static T7.T7Messages.Pixhawk parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static T7.T7Messages.Pixhawk parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static T7.T7Messages.Pixhawk parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static T7.T7Messages.Pixhawk parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(T7.T7Messages.Pixhawk prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * Pixhawk //
+     * This message is a helper from python -&gt; uav
+     * </pre>
+     *
+     * Protobuf type {@code T7.Pixhawk}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:T7.Pixhawk)
+        T7.T7Messages.PixhawkOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return T7.T7Messages.internal_static_T7_Pixhawk_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return T7.T7Messages.internal_static_T7_Pixhawk_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                T7.T7Messages.Pixhawk.class, T7.T7Messages.Pixhawk.Builder.class);
+      }
+
+      // Construct using T7.T7Messages.Pixhawk.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        velx_ = 0D;
+
+        vely_ = 0D;
+
+        velz_ = 0D;
+
+        roll_ = 0D;
+
+        pitch_ = 0D;
+
+        yaw_ = 0D;
+
+        altitude_ = 0D;
+
+        battery_ = 0D;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return T7.T7Messages.internal_static_T7_Pixhawk_descriptor;
+      }
+
+      public T7.T7Messages.Pixhawk getDefaultInstanceForType() {
+        return T7.T7Messages.Pixhawk.getDefaultInstance();
+      }
+
+      public T7.T7Messages.Pixhawk build() {
+        T7.T7Messages.Pixhawk result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public T7.T7Messages.Pixhawk buildPartial() {
+        T7.T7Messages.Pixhawk result = new T7.T7Messages.Pixhawk(this);
+        result.velx_ = velx_;
+        result.vely_ = vely_;
+        result.velz_ = velz_;
+        result.roll_ = roll_;
+        result.pitch_ = pitch_;
+        result.yaw_ = yaw_;
+        result.altitude_ = altitude_;
+        result.battery_ = battery_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof T7.T7Messages.Pixhawk) {
+          return mergeFrom((T7.T7Messages.Pixhawk)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(T7.T7Messages.Pixhawk other) {
+        if (other == T7.T7Messages.Pixhawk.getDefaultInstance()) return this;
+        if (other.getVelx() != 0D) {
+          setVelx(other.getVelx());
+        }
+        if (other.getVely() != 0D) {
+          setVely(other.getVely());
+        }
+        if (other.getVelz() != 0D) {
+          setVelz(other.getVelz());
+        }
+        if (other.getRoll() != 0D) {
+          setRoll(other.getRoll());
+        }
+        if (other.getPitch() != 0D) {
+          setPitch(other.getPitch());
+        }
+        if (other.getYaw() != 0D) {
+          setYaw(other.getYaw());
+        }
+        if (other.getAltitude() != 0D) {
+          setAltitude(other.getAltitude());
+        }
+        if (other.getBattery() != 0D) {
+          setBattery(other.getBattery());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        T7.T7Messages.Pixhawk parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (T7.T7Messages.Pixhawk) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private double velx_ ;
+      /**
+       * <pre>
+       * [m/s]
+       * </pre>
+       *
+       * <code>double velx = 1;</code>
+       */
+      public double getVelx() {
+        return velx_;
+      }
+      /**
+       * <pre>
+       * [m/s]
+       * </pre>
+       *
+       * <code>double velx = 1;</code>
+       */
+      public Builder setVelx(double value) {
+        
+        velx_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * [m/s]
+       * </pre>
+       *
+       * <code>double velx = 1;</code>
+       */
+      public Builder clearVelx() {
+        
+        velx_ = 0D;
+        onChanged();
+        return this;
+      }
+
+      private double vely_ ;
+      /**
+       * <pre>
+       * [m/s]
+       * </pre>
+       *
+       * <code>double vely = 2;</code>
+       */
+      public double getVely() {
+        return vely_;
+      }
+      /**
+       * <pre>
+       * [m/s]
+       * </pre>
+       *
+       * <code>double vely = 2;</code>
+       */
+      public Builder setVely(double value) {
+        
+        vely_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * [m/s]
+       * </pre>
+       *
+       * <code>double vely = 2;</code>
+       */
+      public Builder clearVely() {
+        
+        vely_ = 0D;
+        onChanged();
+        return this;
+      }
+
+      private double velz_ ;
+      /**
+       * <pre>
+       * [m/s]
+       * </pre>
+       *
+       * <code>double velz = 3;</code>
+       */
+      public double getVelz() {
+        return velz_;
+      }
+      /**
+       * <pre>
+       * [m/s]
+       * </pre>
+       *
+       * <code>double velz = 3;</code>
+       */
+      public Builder setVelz(double value) {
+        
+        velz_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * [m/s]
+       * </pre>
+       *
+       * <code>double velz = 3;</code>
+       */
+      public Builder clearVelz() {
+        
+        velz_ = 0D;
+        onChanged();
+        return this;
+      }
+
+      private double roll_ ;
+      /**
+       * <pre>
+       * [rad]
+       * </pre>
+       *
+       * <code>double roll = 4;</code>
+       */
+      public double getRoll() {
+        return roll_;
+      }
+      /**
+       * <pre>
+       * [rad]
+       * </pre>
+       *
+       * <code>double roll = 4;</code>
+       */
+      public Builder setRoll(double value) {
+        
+        roll_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * [rad]
+       * </pre>
+       *
+       * <code>double roll = 4;</code>
+       */
+      public Builder clearRoll() {
+        
+        roll_ = 0D;
+        onChanged();
+        return this;
+      }
+
+      private double pitch_ ;
+      /**
+       * <pre>
+       * [rad]
+       * </pre>
+       *
+       * <code>double pitch = 5;</code>
+       */
+      public double getPitch() {
+        return pitch_;
+      }
+      /**
+       * <pre>
+       * [rad]
+       * </pre>
+       *
+       * <code>double pitch = 5;</code>
+       */
+      public Builder setPitch(double value) {
+        
+        pitch_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * [rad]
+       * </pre>
+       *
+       * <code>double pitch = 5;</code>
+       */
+      public Builder clearPitch() {
+        
+        pitch_ = 0D;
+        onChanged();
+        return this;
+      }
+
+      private double yaw_ ;
+      /**
+       * <pre>
+       * [rad]
+       * </pre>
+       *
+       * <code>double yaw = 6;</code>
+       */
+      public double getYaw() {
+        return yaw_;
+      }
+      /**
+       * <pre>
+       * [rad]
+       * </pre>
+       *
+       * <code>double yaw = 6;</code>
+       */
+      public Builder setYaw(double value) {
+        
+        yaw_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * [rad]
+       * </pre>
+       *
+       * <code>double yaw = 6;</code>
+       */
+      public Builder clearYaw() {
+        
+        yaw_ = 0D;
+        onChanged();
+        return this;
+      }
+
+      private double altitude_ ;
+      /**
+       * <pre>
+       * [rad]
+       * </pre>
+       *
+       * <code>double altitude = 7;</code>
+       */
+      public double getAltitude() {
+        return altitude_;
+      }
+      /**
+       * <pre>
+       * [rad]
+       * </pre>
+       *
+       * <code>double altitude = 7;</code>
+       */
+      public Builder setAltitude(double value) {
+        
+        altitude_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * [rad]
+       * </pre>
+       *
+       * <code>double altitude = 7;</code>
+       */
+      public Builder clearAltitude() {
+        
+        altitude_ = 0D;
+        onChanged();
+        return this;
+      }
+
+      private double battery_ ;
+      /**
+       * <pre>
+       * [rad]
+       * </pre>
+       *
+       * <code>double battery = 8;</code>
+       */
+      public double getBattery() {
+        return battery_;
+      }
+      /**
+       * <pre>
+       * [rad]
+       * </pre>
+       *
+       * <code>double battery = 8;</code>
+       */
+      public Builder setBattery(double value) {
+        
+        battery_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * [rad]
+       * </pre>
+       *
+       * <code>double battery = 8;</code>
+       */
+      public Builder clearBattery() {
+        
+        battery_ = 0D;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:T7.Pixhawk)
+    }
+
+    // @@protoc_insertion_point(class_scope:T7.Pixhawk)
+    private static final T7.T7Messages.Pixhawk DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new T7.T7Messages.Pixhawk();
+    }
+
+    public static T7.T7Messages.Pixhawk getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Pixhawk>
+        PARSER = new com.google.protobuf.AbstractParser<Pixhawk>() {
+      public Pixhawk parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Pixhawk(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Pixhawk> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Pixhawk> getParserForType() {
+      return PARSER;
+    }
+
+    public T7.T7Messages.Pixhawk getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_T7_GenericMessage_descriptor;
   private static final 
@@ -11941,6 +13287,11 @@ public final class T7Messages {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_T7_WiFi_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_T7_Pixhawk_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_T7_Pixhawk_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -11950,7 +13301,7 @@ public final class T7Messages {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\020T7Messages.proto\022\002T7\"\362\005\n\016GenericMessag" +
+      "\n\020T7Messages.proto\022\002T7\"\236\006\n\016GenericMessag" +
       "e\022\017\n\007msgtype\030\001 \001(\005\022\014\n\004time\030\002 \001(\001\022\036\n\010resp" +
       "onse\030\003 \001(\0132\014.T7.Response\022 \n\theartbeat\030\004 " +
       "\001(\0132\r.T7.HeartBeat\022 \n\tterminate\030\005 \001(\0132\r." +
@@ -11963,33 +13314,38 @@ public final class T7Messages {
       "de\022\026\n\004temp\030\014 \001(\0132\010.T7.Temp\022\030\n\003bat\030\r \001(\0132" +
       "\013.T7.Battery\022\031\n\004head\030\016 \001(\0132\013.T7.Heading\022" +
       ",\n\017thermalresponse\030\020 \001(\0132\023.T7.ThermalRes" +
-      "ponse\022\026\n\004wifi\030\021 \001(\0132\010.T7.WiFi\"\343\001\n\007MsgTyp" +
-      "e\022\014\n\010RESPONSE\020\000\022\r\n\tHEARTBEAT\020\001\022\r\n\tTERMIN" +
-      "ATE\020\002\022\017\n\013CONFIG_DATA\020e\022\017\n\013MOVE_CAMERA\020f\022" +
-      "\023\n\017THERMAL_REQUEST\020g\022\n\n\005ACCEL\020\310\001\022\t\n\004GYRO" +
-      "\020\311\001\022\r\n\010ALTITUDE\020\312\001\022\r\n\010ATTITUDE\020\313\001\022\t\n\004TEM" +
-      "P\020\314\001\022\010\n\003BAT\020\315\001\022\t\n\004HEAD\020\316\001\022\025\n\020THERMAL_RES" +
-      "PONSE\020\317\001\022\t\n\004WIFI\020\320\001\"\036\n\010Response\022\022\n\nroger",
-      "_that\030\001 \001(\010\"\032\n\tHeartBeat\022\r\n\005alive\030\001 \001(\010\"" +
-      "j\n\tTerminate\022\024\n\014terminateKey\030\001 \001(\005\"G\n\rTe" +
-      "rminateKeys\022\021\n\rselfTerminate\020\000\022\020\n\014softSh" +
-      "utdown\020\001\022\021\n\remergencyStop\020\002\"\307\001\n\nConfigDa" +
-      "ta\022\021\n\tconfigKey\030\001 \001(\005\"\245\001\n\nToggleKeys\022\017\n\013" +
-      "toggleAccel\020\000\022\016\n\ntoggleGyro\020\001\022\022\n\016toggleA" +
-      "ltitude\020\002\022\022\n\016toggleAttitude\020\003\022\016\n\ntoggleT" +
-      "emp\020\004\022\r\n\ttoggleBat\020\005\022\017\n\013toggleArray\020\006\022\016\n" +
-      "\ntoggleHead\020\007\022\016\n\ntoggleWifi\020\010\"R\n\nMoveCam" +
-      "era\022\020\n\010arrowKey\030\001 \001(\005\"2\n\tArrowKeys\022\006\n\002UP",
-      "\020\000\022\t\n\005RIGHT\020\001\022\010\n\004DOWN\020\002\022\010\n\004LEFT\020\003\"!\n\016The" +
-      "rmalRequest\022\017\n\007request\030\001 \001(\010\"(\n\005Accel\022\t\n" +
-      "\001x\030\001 \001(\001\022\t\n\001y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\"\'\n\004Gyro\022\t" +
-      "\n\001x\030\001 \001(\001\022\t\n\001y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\"\027\n\010Altit" +
-      "ude\022\013\n\003alt\030\001 \001(\001\"4\n\010Attitude\022\014\n\004roll\030\001 \001" +
-      "(\001\022\r\n\005pitch\030\002 \001(\001\022\013\n\003yaw\030\003 \001(\001\"\024\n\004Temp\022\014" +
-      "\n\004temp\030\001 \001(\001\"\032\n\007Battery\022\017\n\007percent\030\001 \001(\001" +
-      "\"\032\n\007Heading\022\017\n\007heading\030\001 \001(\001\"#\n\017ThermalR" +
-      "esponse\022\020\n\010response\030\001 \001(\001\"&\n\004WiFi\022\020\n\010str" +
-      "ength\030\001 \001(\001\022\014\n\004freq\030\002 \001(\001b\006proto3"
+      "ponse\022\026\n\004wifi\030\021 \001(\0132\010.T7.WiFi\022\034\n\007pixhawk" +
+      "\030\022 \001(\0132\013.T7.Pixhawk\"\361\001\n\007MsgType\022\014\n\010RESPO" +
+      "NSE\020\000\022\r\n\tHEARTBEAT\020\001\022\r\n\tTERMINATE\020\002\022\017\n\013C" +
+      "ONFIG_DATA\020e\022\017\n\013MOVE_CAMERA\020f\022\023\n\017THERMAL" +
+      "_REQUEST\020g\022\n\n\005ACCEL\020\310\001\022\t\n\004GYRO\020\311\001\022\r\n\010ALT" +
+      "ITUDE\020\312\001\022\r\n\010ATTITUDE\020\313\001\022\t\n\004TEMP\020\314\001\022\010\n\003BA" +
+      "T\020\315\001\022\t\n\004HEAD\020\316\001\022\025\n\020THERMAL_RESPONSE\020\317\001\022\t",
+      "\n\004WIFI\020\320\001\022\014\n\007PIXHAWK\020\254\002\"\036\n\010Response\022\022\n\nr" +
+      "oger_that\030\001 \001(\010\"\032\n\tHeartBeat\022\r\n\005alive\030\001 " +
+      "\001(\010\"j\n\tTerminate\022\024\n\014terminateKey\030\001 \001(\005\"G" +
+      "\n\rTerminateKeys\022\021\n\rselfTerminate\020\000\022\020\n\014so" +
+      "ftShutdown\020\001\022\021\n\remergencyStop\020\002\"\307\001\n\nConf" +
+      "igData\022\021\n\tconfigKey\030\001 \001(\005\"\245\001\n\nToggleKeys" +
+      "\022\017\n\013toggleAccel\020\000\022\016\n\ntoggleGyro\020\001\022\022\n\016tog" +
+      "gleAltitude\020\002\022\022\n\016toggleAttitude\020\003\022\016\n\ntog" +
+      "gleTemp\020\004\022\r\n\ttoggleBat\020\005\022\017\n\013toggleArray\020" +
+      "\006\022\016\n\ntoggleHead\020\007\022\016\n\ntoggleWifi\020\010\"R\n\nMov",
+      "eCamera\022\020\n\010arrowKey\030\001 \001(\005\"2\n\tArrowKeys\022\006" +
+      "\n\002UP\020\000\022\t\n\005RIGHT\020\001\022\010\n\004DOWN\020\002\022\010\n\004LEFT\020\003\"!\n" +
+      "\016ThermalRequest\022\017\n\007request\030\001 \001(\010\"(\n\005Acce" +
+      "l\022\t\n\001x\030\001 \001(\001\022\t\n\001y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\"\'\n\004Gy" +
+      "ro\022\t\n\001x\030\001 \001(\001\022\t\n\001y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\"\027\n\010A" +
+      "ltitude\022\013\n\003alt\030\001 \001(\001\"4\n\010Attitude\022\014\n\004roll" +
+      "\030\001 \001(\001\022\r\n\005pitch\030\002 \001(\001\022\013\n\003yaw\030\003 \001(\001\"\024\n\004Te" +
+      "mp\022\014\n\004temp\030\001 \001(\001\"\032\n\007Battery\022\017\n\007percent\030\001" +
+      " \001(\001\"\032\n\007Heading\022\017\n\007heading\030\001 \001(\001\"#\n\017Ther" +
+      "malResponse\022\020\n\010response\030\001 \001(\001\"&\n\004WiFi\022\020\n",
+      "\010strength\030\001 \001(\001\022\014\n\004freq\030\002 \001(\001\"\200\001\n\007Pixhaw" +
+      "k\022\014\n\004velx\030\001 \001(\001\022\014\n\004vely\030\002 \001(\001\022\014\n\004velz\030\003 " +
+      "\001(\001\022\014\n\004roll\030\004 \001(\001\022\r\n\005pitch\030\005 \001(\001\022\013\n\003yaw\030" +
+      "\006 \001(\001\022\020\n\010altitude\030\007 \001(\001\022\017\n\007battery\030\010 \001(\001" +
+      "b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -12008,7 +13364,7 @@ public final class T7Messages {
     internal_static_T7_GenericMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_T7_GenericMessage_descriptor,
-        new java.lang.String[] { "Msgtype", "Time", "Response", "Heartbeat", "Terminate", "Configdata", "Movecamera", "Thermalrequest", "Accel", "Gyro", "Altitude", "Attitude", "Temp", "Bat", "Head", "Thermalresponse", "Wifi", });
+        new java.lang.String[] { "Msgtype", "Time", "Response", "Heartbeat", "Terminate", "Configdata", "Movecamera", "Thermalrequest", "Accel", "Gyro", "Altitude", "Attitude", "Temp", "Bat", "Head", "Thermalresponse", "Wifi", "Pixhawk", });
     internal_static_T7_Response_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_T7_Response_fieldAccessorTable = new
@@ -12099,6 +13455,12 @@ public final class T7Messages {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_T7_WiFi_descriptor,
         new java.lang.String[] { "Strength", "Freq", });
+    internal_static_T7_Pixhawk_descriptor =
+      getDescriptor().getMessageTypes().get(16);
+    internal_static_T7_Pixhawk_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_T7_Pixhawk_descriptor,
+        new java.lang.String[] { "Velx", "Vely", "Velz", "Roll", "Pitch", "Yaw", "Altitude", "Battery", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

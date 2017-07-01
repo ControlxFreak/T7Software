@@ -62,6 +62,9 @@ extern HeartBeatDefaultTypeInternal _HeartBeat_default_instance_;
 class MoveCamera;
 class MoveCameraDefaultTypeInternal;
 extern MoveCameraDefaultTypeInternal _MoveCamera_default_instance_;
+class Pixhawk;
+class PixhawkDefaultTypeInternal;
+extern PixhawkDefaultTypeInternal _Pixhawk_default_instance_;
 class Response;
 class ResponseDefaultTypeInternal;
 extern ResponseDefaultTypeInternal _Response_default_instance_;
@@ -114,12 +117,13 @@ enum GenericMessage_MsgType {
   GenericMessage_MsgType_HEAD = 206,
   GenericMessage_MsgType_THERMAL_RESPONSE = 207,
   GenericMessage_MsgType_WIFI = 208,
+  GenericMessage_MsgType_PIXHAWK = 300,
   GenericMessage_MsgType_GenericMessage_MsgType_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
   GenericMessage_MsgType_GenericMessage_MsgType_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
 };
 bool GenericMessage_MsgType_IsValid(int value);
 const GenericMessage_MsgType GenericMessage_MsgType_MsgType_MIN = GenericMessage_MsgType_RESPONSE;
-const GenericMessage_MsgType GenericMessage_MsgType_MsgType_MAX = GenericMessage_MsgType_WIFI;
+const GenericMessage_MsgType GenericMessage_MsgType_MsgType_MAX = GenericMessage_MsgType_PIXHAWK;
 const int GenericMessage_MsgType_MsgType_ARRAYSIZE = GenericMessage_MsgType_MsgType_MAX + 1;
 
 const ::google::protobuf::EnumDescriptor* GenericMessage_MsgType_descriptor();
@@ -300,6 +304,8 @@ class GenericMessage : public ::google::protobuf::Message /* @@protoc_insertion_
     GenericMessage_MsgType_THERMAL_RESPONSE;
   static const MsgType WIFI =
     GenericMessage_MsgType_WIFI;
+  static const MsgType PIXHAWK =
+    GenericMessage_MsgType_PIXHAWK;
   static inline bool MsgType_IsValid(int value) {
     return GenericMessage_MsgType_IsValid(value);
   }
@@ -458,6 +464,15 @@ class GenericMessage : public ::google::protobuf::Message /* @@protoc_insertion_
   ::T7::WiFi* release_wifi();
   void set_allocated_wifi(::T7::WiFi* wifi);
 
+  // .T7.Pixhawk pixhawk = 18;
+  bool has_pixhawk() const;
+  void clear_pixhawk();
+  static const int kPixhawkFieldNumber = 18;
+  const ::T7::Pixhawk& pixhawk() const;
+  ::T7::Pixhawk* mutable_pixhawk();
+  ::T7::Pixhawk* release_pixhawk();
+  void set_allocated_pixhawk(::T7::Pixhawk* pixhawk);
+
   // double time = 2;
   void clear_time();
   static const int kTimeFieldNumber = 2;
@@ -489,6 +504,7 @@ class GenericMessage : public ::google::protobuf::Message /* @@protoc_insertion_
   ::T7::ThermalRequest* thermalrequest_;
   ::T7::ThermalResponse* thermalresponse_;
   ::T7::WiFi* wifi_;
+  ::T7::Pixhawk* pixhawk_;
   double time_;
   ::google::protobuf::int32 msgtype_;
   mutable int _cached_size_;
@@ -1841,6 +1857,135 @@ class WiFi : public ::google::protobuf::Message /* @@protoc_insertion_point(clas
   mutable int _cached_size_;
   friend struct protobuf_T7Messages_2eproto::TableStruct;
 };
+// -------------------------------------------------------------------
+
+class Pixhawk : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:T7.Pixhawk) */ {
+ public:
+  Pixhawk();
+  virtual ~Pixhawk();
+
+  Pixhawk(const Pixhawk& from);
+
+  inline Pixhawk& operator=(const Pixhawk& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Pixhawk& default_instance();
+
+  static inline const Pixhawk* internal_default_instance() {
+    return reinterpret_cast<const Pixhawk*>(
+               &_Pixhawk_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    16;
+
+  void Swap(Pixhawk* other);
+
+  // implements Message ----------------------------------------------
+
+  inline Pixhawk* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  Pixhawk* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const Pixhawk& from);
+  void MergeFrom(const Pixhawk& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(Pixhawk* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // double velx = 1;
+  void clear_velx();
+  static const int kVelxFieldNumber = 1;
+  double velx() const;
+  void set_velx(double value);
+
+  // double vely = 2;
+  void clear_vely();
+  static const int kVelyFieldNumber = 2;
+  double vely() const;
+  void set_vely(double value);
+
+  // double velz = 3;
+  void clear_velz();
+  static const int kVelzFieldNumber = 3;
+  double velz() const;
+  void set_velz(double value);
+
+  // double roll = 4;
+  void clear_roll();
+  static const int kRollFieldNumber = 4;
+  double roll() const;
+  void set_roll(double value);
+
+  // double pitch = 5;
+  void clear_pitch();
+  static const int kPitchFieldNumber = 5;
+  double pitch() const;
+  void set_pitch(double value);
+
+  // double yaw = 6;
+  void clear_yaw();
+  static const int kYawFieldNumber = 6;
+  double yaw() const;
+  void set_yaw(double value);
+
+  // double altitude = 7;
+  void clear_altitude();
+  static const int kAltitudeFieldNumber = 7;
+  double altitude() const;
+  void set_altitude(double value);
+
+  // double battery = 8;
+  void clear_battery();
+  static const int kBatteryFieldNumber = 8;
+  double battery() const;
+  void set_battery(double value);
+
+  // @@protoc_insertion_point(class_scope:T7.Pixhawk)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  double velx_;
+  double vely_;
+  double velz_;
+  double roll_;
+  double pitch_;
+  double yaw_;
+  double altitude_;
+  double battery_;
+  mutable int _cached_size_;
+  friend struct protobuf_T7Messages_2eproto::TableStruct;
+};
 // ===================================================================
 
 
@@ -2462,6 +2607,45 @@ inline void GenericMessage::set_allocated_wifi(::T7::WiFi* wifi) {
   // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.wifi)
 }
 
+// .T7.Pixhawk pixhawk = 18;
+inline bool GenericMessage::has_pixhawk() const {
+  return this != internal_default_instance() && pixhawk_ != NULL;
+}
+inline void GenericMessage::clear_pixhawk() {
+  if (GetArenaNoVirtual() == NULL && pixhawk_ != NULL) delete pixhawk_;
+  pixhawk_ = NULL;
+}
+inline const ::T7::Pixhawk& GenericMessage::pixhawk() const {
+  // @@protoc_insertion_point(field_get:T7.GenericMessage.pixhawk)
+  return pixhawk_ != NULL ? *pixhawk_
+                         : *::T7::Pixhawk::internal_default_instance();
+}
+inline ::T7::Pixhawk* GenericMessage::mutable_pixhawk() {
+  
+  if (pixhawk_ == NULL) {
+    pixhawk_ = new ::T7::Pixhawk;
+  }
+  // @@protoc_insertion_point(field_mutable:T7.GenericMessage.pixhawk)
+  return pixhawk_;
+}
+inline ::T7::Pixhawk* GenericMessage::release_pixhawk() {
+  // @@protoc_insertion_point(field_release:T7.GenericMessage.pixhawk)
+  
+  ::T7::Pixhawk* temp = pixhawk_;
+  pixhawk_ = NULL;
+  return temp;
+}
+inline void GenericMessage::set_allocated_pixhawk(::T7::Pixhawk* pixhawk) {
+  delete pixhawk_;
+  pixhawk_ = pixhawk;
+  if (pixhawk) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:T7.GenericMessage.pixhawk)
+}
+
 // -------------------------------------------------------------------
 
 // Response
@@ -2830,7 +3014,125 @@ inline void WiFi::set_freq(double value) {
   // @@protoc_insertion_point(field_set:T7.WiFi.freq)
 }
 
+// -------------------------------------------------------------------
+
+// Pixhawk
+
+// double velx = 1;
+inline void Pixhawk::clear_velx() {
+  velx_ = 0;
+}
+inline double Pixhawk::velx() const {
+  // @@protoc_insertion_point(field_get:T7.Pixhawk.velx)
+  return velx_;
+}
+inline void Pixhawk::set_velx(double value) {
+  
+  velx_ = value;
+  // @@protoc_insertion_point(field_set:T7.Pixhawk.velx)
+}
+
+// double vely = 2;
+inline void Pixhawk::clear_vely() {
+  vely_ = 0;
+}
+inline double Pixhawk::vely() const {
+  // @@protoc_insertion_point(field_get:T7.Pixhawk.vely)
+  return vely_;
+}
+inline void Pixhawk::set_vely(double value) {
+  
+  vely_ = value;
+  // @@protoc_insertion_point(field_set:T7.Pixhawk.vely)
+}
+
+// double velz = 3;
+inline void Pixhawk::clear_velz() {
+  velz_ = 0;
+}
+inline double Pixhawk::velz() const {
+  // @@protoc_insertion_point(field_get:T7.Pixhawk.velz)
+  return velz_;
+}
+inline void Pixhawk::set_velz(double value) {
+  
+  velz_ = value;
+  // @@protoc_insertion_point(field_set:T7.Pixhawk.velz)
+}
+
+// double roll = 4;
+inline void Pixhawk::clear_roll() {
+  roll_ = 0;
+}
+inline double Pixhawk::roll() const {
+  // @@protoc_insertion_point(field_get:T7.Pixhawk.roll)
+  return roll_;
+}
+inline void Pixhawk::set_roll(double value) {
+  
+  roll_ = value;
+  // @@protoc_insertion_point(field_set:T7.Pixhawk.roll)
+}
+
+// double pitch = 5;
+inline void Pixhawk::clear_pitch() {
+  pitch_ = 0;
+}
+inline double Pixhawk::pitch() const {
+  // @@protoc_insertion_point(field_get:T7.Pixhawk.pitch)
+  return pitch_;
+}
+inline void Pixhawk::set_pitch(double value) {
+  
+  pitch_ = value;
+  // @@protoc_insertion_point(field_set:T7.Pixhawk.pitch)
+}
+
+// double yaw = 6;
+inline void Pixhawk::clear_yaw() {
+  yaw_ = 0;
+}
+inline double Pixhawk::yaw() const {
+  // @@protoc_insertion_point(field_get:T7.Pixhawk.yaw)
+  return yaw_;
+}
+inline void Pixhawk::set_yaw(double value) {
+  
+  yaw_ = value;
+  // @@protoc_insertion_point(field_set:T7.Pixhawk.yaw)
+}
+
+// double altitude = 7;
+inline void Pixhawk::clear_altitude() {
+  altitude_ = 0;
+}
+inline double Pixhawk::altitude() const {
+  // @@protoc_insertion_point(field_get:T7.Pixhawk.altitude)
+  return altitude_;
+}
+inline void Pixhawk::set_altitude(double value) {
+  
+  altitude_ = value;
+  // @@protoc_insertion_point(field_set:T7.Pixhawk.altitude)
+}
+
+// double battery = 8;
+inline void Pixhawk::clear_battery() {
+  battery_ = 0;
+}
+inline double Pixhawk::battery() const {
+  // @@protoc_insertion_point(field_get:T7.Pixhawk.battery)
+  return battery_;
+}
+inline void Pixhawk::set_battery(double value) {
+  
+  battery_ = value;
+  // @@protoc_insertion_point(field_set:T7.Pixhawk.battery)
+}
+
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
