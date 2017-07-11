@@ -87,9 +87,9 @@
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                        </rowConstraints>
                                        <children>
-                                          <Label text="Roll" textFill="WHITE" />
-                                          <Label text="Pitch" textFill="WHITE" GridPane.rowIndex="1" />
-                                          <Label text="Yaw" textFill="WHITE" GridPane.rowIndex="2" />
+                                          <Label text="X" textFill="WHITE" />
+                                          <Label text="Y" textFill="WHITE" GridPane.rowIndex="1" />
+                                          <Label text="Z" textFill="WHITE" GridPane.rowIndex="2" />
                                           <Label fx:id="gyro_roll_label" textFill="WHITE" GridPane.columnIndex="1" />
                                           <Label fx:id="gyro_pitch_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                           <Label fx:id="gyro_yaw_label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
