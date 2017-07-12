@@ -19,9 +19,11 @@ package app;
 
 
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.SocketException;
 import java.util.ArrayList;
@@ -31,6 +33,8 @@ import java.util.Optional;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+
+import javax.imageio.stream.FileImageInputStream;
 
 import T7.T7Messages.GenericMessage;
 import T7.T7Messages.MoveCamera;
@@ -487,6 +491,7 @@ public class MainApp extends Application {
 	}
 
 	public static void main(String[] args) {
+		
 		FileHandler handler = null;
 		SimpleFormatter sf = null;
 		try {
@@ -502,6 +507,12 @@ public class MainApp extends Application {
 			e.printStackTrace();
 		}
 		System.out.println("MainApp Logger: " + logger.getName());
+		try {
+			deserializeSnapshots();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		launch(args);
 
 		server.shutDown();
@@ -513,23 +524,50 @@ public class MainApp extends Application {
 		try {
 			serializeSnapshots();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		handler.close();
 	}
 
+	private static void deserializeSnapshots() throws IOException {
+		FileInputStream fileIn = new FileInputStream("snapshot_data/snapshots.ser");
+		ObjectInputStream in = new ObjectInputStream(fileIn);
+		Snapshot s = null;
+		try {
+			do {
+				s = (Snapshot) in.readObject();
+				snapshotData.add(s);
+			} while(s != null);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			in.close();
+			fileIn.close();
+		}
+		
+		logger.fine("Finished deserializing snapshots.");
+	}
+
 	private static void serializeSnapshots() throws IOException {
-		FileOutputStream fileOut =
-				new FileOutputStream("snapshot_data/employee.ser");
-		ObjectOutputStream out = new ObjectOutputStream(fileOut);
+		FileOutputStream fileOut = null;
+		ObjectOutputStream out = null;
+		try {
+		fileOut =
+				new FileOutputStream("snapshot_data/snapshots.ser");
+		out = new ObjectOutputStream(fileOut);
 		
 		for(Snapshot snap : snapshotData) {
 			out.writeObject(snap);
 		}
-		
-		out.close();
-		fileOut.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			out.close();
+			fileOut.close();
+		}
+
 		logger.info("Finished serializing snapshots.");
 	}
 
