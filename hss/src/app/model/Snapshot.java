@@ -1,15 +1,27 @@
 package app.model;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.Date;
 
+import javax.imageio.ImageIO;
+
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 
-public class Snapshot implements Comparable<Snapshot>{
+public class Snapshot implements Comparable<Snapshot>, Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private static final Image pin = new Image((new File("src/main/resources/images/default/red_pin.png")).toURI().toString());
 
-	private Image image;
+	private transient Image image;
 	private double priorityVal = -1;
 	private int relativePriority = -1;
 	private String description;
@@ -22,6 +34,16 @@ public class Snapshot implements Comparable<Snapshot>{
 
 	public Snapshot(Image image) {
 		this.image = image;
+	}
+	
+	private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
+		s.defaultReadObject();
+		image = SwingFXUtils.toFXImage(ImageIO.read(s), null);
+	}
+	
+	private void writeObject(ObjectOutputStream s) throws IOException {
+		s.defaultWriteObject();
+		ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", s);
 	}
 
 	public Image getImage() {

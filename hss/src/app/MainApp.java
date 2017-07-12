@@ -19,7 +19,10 @@ package app;
 
 
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -507,7 +510,27 @@ public class MainApp extends Application {
 		termination_client.shutDown();
 		array_client.shutDown();
 		main_controller.stopTimer();
+		try {
+			serializeSnapshots();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		handler.close();
+	}
+
+	private static void serializeSnapshots() throws IOException {
+		FileOutputStream fileOut =
+				new FileOutputStream("snapshot_data/employee.ser");
+		ObjectOutputStream out = new ObjectOutputStream(fileOut);
+		
+		for(Snapshot snap : snapshotData) {
+			out.writeObject(snap);
+		}
+		
+		out.close();
+		fileOut.close();
+		logger.info("Finished serializing snapshots.");
 	}
 
 	public static boolean[] getConfigArr() {
