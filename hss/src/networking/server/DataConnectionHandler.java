@@ -72,6 +72,14 @@ public class DataConnectionHandler
 		}
 
 		while(!timeToExit) {
+			try {
+				if(in.available()<1) {
+					continue;
+				}
+			} catch (IOException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
 			GenericMessage gm;
 			try {
 				gm = GenericMessage.parseDelimitedFrom(in);
