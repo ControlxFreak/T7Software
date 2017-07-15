@@ -206,7 +206,6 @@ IOManager::client_handler(int id) {
     // Initialize the TCP connector
     LM->append("Initializing Connector\n");
     while (!connected && !data->timeToDieMap[id]) {
-
         stream = connector->connect(HSS_IP.c_str(), CLIENT_PORT_NUMBER);
         if (stream == NULL) {
             if (tryNum > 1E6) {
@@ -217,13 +216,12 @@ IOManager::client_handler(int id) {
             };
         } else {
             connected = true;
-            LM->append("Successful Connect!\n");
+            LM->append("Successful Connect1!\n");
             data->sockHealth[id] = failureCodes::socketConnected;
         } // if
 	// Give the system a 50 ms break... all work and no play makes the cpu hurt.
-	sleep(50);
+	sleep(1);
     } //while
-    
     google::protobuf::io::ZeroCopyOutputStream* ZCO;
     if(stream != NULL){
         ZCO = new google::protobuf::io::FileOutputStream(stream->m_sd);
@@ -233,13 +231,13 @@ IOManager::client_handler(int id) {
         delete stream;
         return;
     }
-        
     while (!data->timeToDieMap[id]) {
         switch (id) {
             case sockKeys::ACCEL:
                 if (data->sendAccel) {
                     if (!data->accelQueue.isEmpty()) {
-                        // grab the data and remove it from the queue
+			LM->append("DEBUG3\n"); 
+                       // grab the data and remove it from the queue
                         vector<double> accel = data->accelQueue.front();
                         data->accelQueue.pop();
                         // set the message type equal to the id
@@ -401,7 +399,8 @@ IOManager::server_handler() {
     // Initialize the TCP Classes
     TCPStream* stream;
     TCPAcceptor* acceptor;
-    acceptor = new TCPAcceptor(SERVER_PORT_NUMBER, HSS_IP.c_str());
+    string local_ip = "127.0.0.1";
+    acceptor = new TCPAcceptor(SERVER_PORT_NUMBER, local_ip.c_str());
 
     // Initialize the TCP connector
     LM->append("Initializing Server\n");
@@ -711,7 +710,7 @@ IOManager::writeDelimitedTo(T7::GenericMessage message, google::protobuf::io::Ze
     output.WriteVarint32(size);
 
     uint8_t* buffer = output.GetDirectBufferForNBytesAndAdvance(size);
-    if (buffer != NULL) {
+    if (false || buffer != NULL) {
         // Optimization:  The message fits in one buffer, so use the faster
         // direct-to-array serialization path.
         message.SerializeWithCachedSizesToArray(buffer);
