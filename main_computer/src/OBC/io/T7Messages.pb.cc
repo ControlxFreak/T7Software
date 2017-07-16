@@ -707,14 +707,15 @@ GenericMessage::GenericMessage(const GenericMessage& from)
     pixhawk_ = NULL;
   }
   ::memcpy(&time_, &from.time_,
-    reinterpret_cast<char*>(&msgtype_) -
-    reinterpret_cast<char*>(&time_) + sizeof(msgtype_));
+    static_cast<size_t>(reinterpret_cast<char*>(&msgtype_) -
+    reinterpret_cast<char*>(&time_)) + sizeof(msgtype_));
   // @@protoc_insertion_point(copy_constructor:T7.GenericMessage)
 }
 
 void GenericMessage::SharedCtor() {
-  ::memset(&response_, 0, reinterpret_cast<char*>(&msgtype_) -
-    reinterpret_cast<char*>(&response_) + sizeof(msgtype_));
+  ::memset(&response_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&msgtype_) -
+      reinterpret_cast<char*>(&response_)) + sizeof(msgtype_));
   _cached_size_ = 0;
 }
 
@@ -863,8 +864,9 @@ void GenericMessage::Clear() {
     delete pixhawk_;
   }
   pixhawk_ = NULL;
-  ::memset(&time_, 0, reinterpret_cast<char*>(&msgtype_) -
-    reinterpret_cast<char*>(&time_) + sizeof(msgtype_));
+  ::memset(&time_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&msgtype_) -
+      reinterpret_cast<char*>(&time_)) + sizeof(msgtype_));
 }
 
 bool GenericMessage::MergePartialFromCodedStream(
@@ -3704,14 +3706,15 @@ Accel::Accel(const Accel& from)
       _cached_size_(0) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::memcpy(&x_, &from.x_,
-    reinterpret_cast<char*>(&z_) -
-    reinterpret_cast<char*>(&x_) + sizeof(z_));
+    static_cast<size_t>(reinterpret_cast<char*>(&z_) -
+    reinterpret_cast<char*>(&x_)) + sizeof(z_));
   // @@protoc_insertion_point(copy_constructor:T7.Accel)
 }
 
 void Accel::SharedCtor() {
-  ::memset(&x_, 0, reinterpret_cast<char*>(&z_) -
-    reinterpret_cast<char*>(&x_) + sizeof(z_));
+  ::memset(&x_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&z_) -
+      reinterpret_cast<char*>(&x_)) + sizeof(z_));
   _cached_size_ = 0;
 }
 
@@ -3748,8 +3751,9 @@ Accel* Accel::New(::google::protobuf::Arena* arena) const {
 
 void Accel::Clear() {
 // @@protoc_insertion_point(message_clear_start:T7.Accel)
-  ::memset(&x_, 0, reinterpret_cast<char*>(&z_) -
-    reinterpret_cast<char*>(&x_) + sizeof(z_));
+  ::memset(&x_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&z_) -
+      reinterpret_cast<char*>(&x_)) + sizeof(z_));
 }
 
 bool Accel::MergePartialFromCodedStream(
@@ -4036,14 +4040,15 @@ Gyro::Gyro(const Gyro& from)
       _cached_size_(0) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::memcpy(&x_, &from.x_,
-    reinterpret_cast<char*>(&z_) -
-    reinterpret_cast<char*>(&x_) + sizeof(z_));
+    static_cast<size_t>(reinterpret_cast<char*>(&z_) -
+    reinterpret_cast<char*>(&x_)) + sizeof(z_));
   // @@protoc_insertion_point(copy_constructor:T7.Gyro)
 }
 
 void Gyro::SharedCtor() {
-  ::memset(&x_, 0, reinterpret_cast<char*>(&z_) -
-    reinterpret_cast<char*>(&x_) + sizeof(z_));
+  ::memset(&x_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&z_) -
+      reinterpret_cast<char*>(&x_)) + sizeof(z_));
   _cached_size_ = 0;
 }
 
@@ -4080,8 +4085,9 @@ Gyro* Gyro::New(::google::protobuf::Arena* arena) const {
 
 void Gyro::Clear() {
 // @@protoc_insertion_point(message_clear_start:T7.Gyro)
-  ::memset(&x_, 0, reinterpret_cast<char*>(&z_) -
-    reinterpret_cast<char*>(&x_) + sizeof(z_));
+  ::memset(&x_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&z_) -
+      reinterpret_cast<char*>(&x_)) + sizeof(z_));
 }
 
 bool Gyro::MergePartialFromCodedStream(
@@ -4600,14 +4606,15 @@ Attitude::Attitude(const Attitude& from)
       _cached_size_(0) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::memcpy(&roll_, &from.roll_,
-    reinterpret_cast<char*>(&yaw_) -
-    reinterpret_cast<char*>(&roll_) + sizeof(yaw_));
+    static_cast<size_t>(reinterpret_cast<char*>(&yaw_) -
+    reinterpret_cast<char*>(&roll_)) + sizeof(yaw_));
   // @@protoc_insertion_point(copy_constructor:T7.Attitude)
 }
 
 void Attitude::SharedCtor() {
-  ::memset(&roll_, 0, reinterpret_cast<char*>(&yaw_) -
-    reinterpret_cast<char*>(&roll_) + sizeof(yaw_));
+  ::memset(&roll_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&yaw_) -
+      reinterpret_cast<char*>(&roll_)) + sizeof(yaw_));
   _cached_size_ = 0;
 }
 
@@ -4644,8 +4651,9 @@ Attitude* Attitude::New(::google::protobuf::Arena* arena) const {
 
 void Attitude::Clear() {
 // @@protoc_insertion_point(message_clear_start:T7.Attitude)
-  ::memset(&roll_, 0, reinterpret_cast<char*>(&yaw_) -
-    reinterpret_cast<char*>(&roll_) + sizeof(yaw_));
+  ::memset(&roll_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&yaw_) -
+      reinterpret_cast<char*>(&roll_)) + sizeof(yaw_));
 }
 
 bool Attitude::MergePartialFromCodedStream(
@@ -5859,14 +5867,15 @@ WiFi::WiFi(const WiFi& from)
       _cached_size_(0) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::memcpy(&strength_, &from.strength_,
-    reinterpret_cast<char*>(&freq_) -
-    reinterpret_cast<char*>(&strength_) + sizeof(freq_));
+    static_cast<size_t>(reinterpret_cast<char*>(&freq_) -
+    reinterpret_cast<char*>(&strength_)) + sizeof(freq_));
   // @@protoc_insertion_point(copy_constructor:T7.WiFi)
 }
 
 void WiFi::SharedCtor() {
-  ::memset(&strength_, 0, reinterpret_cast<char*>(&freq_) -
-    reinterpret_cast<char*>(&strength_) + sizeof(freq_));
+  ::memset(&strength_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&freq_) -
+      reinterpret_cast<char*>(&strength_)) + sizeof(freq_));
   _cached_size_ = 0;
 }
 
@@ -5903,8 +5912,9 @@ WiFi* WiFi::New(::google::protobuf::Arena* arena) const {
 
 void WiFi::Clear() {
 // @@protoc_insertion_point(message_clear_start:T7.WiFi)
-  ::memset(&strength_, 0, reinterpret_cast<char*>(&freq_) -
-    reinterpret_cast<char*>(&strength_) + sizeof(freq_));
+  ::memset(&strength_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&freq_) -
+      reinterpret_cast<char*>(&strength_)) + sizeof(freq_));
 }
 
 bool WiFi::MergePartialFromCodedStream(
@@ -6149,14 +6159,15 @@ Pixhawk::Pixhawk(const Pixhawk& from)
       _cached_size_(0) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::memcpy(&velx_, &from.velx_,
-    reinterpret_cast<char*>(&battery_) -
-    reinterpret_cast<char*>(&velx_) + sizeof(battery_));
+    static_cast<size_t>(reinterpret_cast<char*>(&battery_) -
+    reinterpret_cast<char*>(&velx_)) + sizeof(battery_));
   // @@protoc_insertion_point(copy_constructor:T7.Pixhawk)
 }
 
 void Pixhawk::SharedCtor() {
-  ::memset(&velx_, 0, reinterpret_cast<char*>(&battery_) -
-    reinterpret_cast<char*>(&velx_) + sizeof(battery_));
+  ::memset(&velx_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&battery_) -
+      reinterpret_cast<char*>(&velx_)) + sizeof(battery_));
   _cached_size_ = 0;
 }
 
@@ -6193,8 +6204,9 @@ Pixhawk* Pixhawk::New(::google::protobuf::Arena* arena) const {
 
 void Pixhawk::Clear() {
 // @@protoc_insertion_point(message_clear_start:T7.Pixhawk)
-  ::memset(&velx_, 0, reinterpret_cast<char*>(&battery_) -
-    reinterpret_cast<char*>(&velx_) + sizeof(battery_));
+  ::memset(&velx_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&battery_) -
+      reinterpret_cast<char*>(&velx_)) + sizeof(battery_));
 }
 
 bool Pixhawk::MergePartialFromCodedStream(

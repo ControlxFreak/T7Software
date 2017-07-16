@@ -35,8 +35,8 @@ Change Log
 #include <thread>
 #include <map>
 
+
 #include <stdlib.h>
-#include <Python.h>
 #include <sys/socket.h>
 #include <linux/wireless.h>
 #include <sys/ioctl.h>
@@ -60,7 +60,7 @@ public:
     LogManager* LM;
     
     // Define the IO parameters needed for communication
-    string HSS_IP = "172.20.10.2";
+    string HSS_IP = "127.0.0.1";
     int CLIENT_PORT_NUMBER = 9002;
     int SERVER_PORT_NUMBER = 9001;
     

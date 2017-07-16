@@ -1,4 +1,3 @@
-
 /*------------------------------------------------------------------------------
 Function Name: IOManager.cpp
 
@@ -91,36 +90,11 @@ IOManager::launch_server() {
 void
 IOManager::launch_serial() {
 
+  
     LM->append("Launching Wifi Handler\n");
     sockThreadMap[WiFiKey] = new thread(&IOManager::wifi_handler, this);
 
-    LM->append("Launching Thermal Array Handler\n");
-    sockThreadMap[ThermalArrayKey] = new thread(&IOManager::thermal_array_handler, this);
-
-    /*LM->append("Launching Pixhawk Handler\n");
-    sockThreadMap[PixhawkKey] = new thread(&IOManager::pixhawk_handler, this);
-    */
 }//launch_serial()
-
-// -------------------------------------------------------------------------- // 
-// pixhawk_handler() handles all pixhawk stuffz.
-// -------------------------------------------------------------------------- // 
-void
-IOManager::pixhawk_handler(){
-
-  return;
-}
-
-
-// -------------------------------------------------------------------------- //
-// thermal_array_handler() handles all thermal array magic
-// -------------------------------------------------------------------------- // 
-void
-IOManager::thermal_array_handler(){
-	LM->append("Thermal Array Stuff Launched!\n");
-	return;
-}
-
 
 // --------------------------------------------------------------------------- //
 // wifi_handler() handles all wifi sniffing
@@ -162,14 +136,9 @@ IOManager::wifi_handler(){
 		sl.push_back(sigInfo.level);
 		data->wifiQueue.push(sl);
 		sl.clear();
-		cout << sigInfo.level << endl;
-		sleep(3);
+		sleep(1);
 	}
-	
 } // wifi_handler
-
-
-
 //----------------------------------------------------------------------------//
 // client_handler() handles all tcp client communication
 //----------------------------------------------------------------------------//
@@ -206,6 +175,7 @@ IOManager::client_handler(int id) {
     // Initialize the TCP connector
     LM->append("Initializing Connector\n");
     while (!connected && !data->timeToDieMap[id]) {
+
         stream = connector->connect(HSS_IP.c_str(), CLIENT_PORT_NUMBER);
         if (stream == NULL) {
             if (tryNum > 1E6) {
@@ -216,12 +186,11 @@ IOManager::client_handler(int id) {
             };
         } else {
             connected = true;
-            LM->append("Successful Connect1!\n");
+            LM->append("Successful Connect!\n");
             data->sockHealth[id] = failureCodes::socketConnected;
         } // if
-	// Give the system a 50 ms break... all work and no play makes the cpu hurt.
-	sleep(1);
     } //while
+    
     google::protobuf::io::ZeroCopyOutputStream* ZCO;
     if(stream != NULL){
         ZCO = new google::protobuf::io::FileOutputStream(stream->m_sd);
@@ -231,13 +200,13 @@ IOManager::client_handler(int id) {
         delete stream;
         return;
     }
+        
     while (!data->timeToDieMap[id]) {
         switch (id) {
             case sockKeys::ACCEL:
                 if (data->sendAccel) {
                     if (!data->accelQueue.isEmpty()) {
-			LM->append("DEBUG3\n"); 
-                       // grab the data and remove it from the queue
+                        // grab the data and remove it from the queue
                         vector<double> accel = data->accelQueue.front();
                         data->accelQueue.pop();
                         // set the message type equal to the id
@@ -399,8 +368,7 @@ IOManager::server_handler() {
     // Initialize the TCP Classes
     TCPStream* stream;
     TCPAcceptor* acceptor;
-    string local_ip = "127.0.0.1";
-    acceptor = new TCPAcceptor(SERVER_PORT_NUMBER, local_ip.c_str());
+    acceptor = new TCPAcceptor(SERVER_PORT_NUMBER, HSS_IP.c_str());
 
     // Initialize the TCP connector
     LM->append("Initializing Server\n");
@@ -416,8 +384,6 @@ IOManager::server_handler() {
                 LM->append("Unsuccessful Receive.\n");
             } // if stream
         } // if start
-	// Take a break...
-	sleep(50);
     } // while
     delete acceptor;
 } //server_handler
@@ -469,14 +435,15 @@ IOManager::acceptor_handler(TCPStream* stream, int id, T7::GenericMessage GM) {
     data->sockHealth[id] = failureCodes::socketConnected;
     data->timeToDieMap[id] = false;
 
+    google::protobuf::io::ZeroCopyInputStream* ZIS = new google::protobuf::io::FileInputStream(stream->m_sd);
+
+    bool firstMessage = true;
+    
     vector< double > vel;
     vector< double > att;
     vector< double > alt;
     vector< double > bat;
 
-    google::protobuf::io::ZeroCopyInputStream* ZIS = new google::protobuf::io::FileInputStream(stream->m_sd);
-
-    bool firstMessage = true;
     while (!data->timeToDieMap[id]) {
         switch (id) {
             case sockKeys::HEARTBEAT:
@@ -597,22 +564,17 @@ IOManager::acceptor_handler(TCPStream* stream, int id, T7::GenericMessage GM) {
                         default:
                             LM->append("Unidentified Move Camera Command.\n");
                             break;
-                    } // switch     
+                    } // switch      
                 } else {
                     snprintf(pbuff, 256, "Dead Stream!  ID = %d\n", id);
                     string sbuff(pbuff);
                     LM->append(sbuff);
                     data->timeToDieMap[id] = true;
                 }
-                break;
-	    case sockKeys::PIXHAWK:
+                break;        
+        case sockKeys::PIXHAWK:
 		if (firstMessage || readDelimitedFrom(ZIS, &GM)){
 			firstMessage = false;
-			// Display!// 
-			printf("vel: x:%0.6f y: %0.6f z: %0.6f\n",GM.pixhawk().velx(),GM.pixhawk().vely(),GM.pixhawk().velz());
-			printf("att: r:%0.6f p: %0.6f y: %0.6f\n",GM.pixhawk().roll(),GM.pixhawk().pitch(),GM.pixhawk().yaw());
-			printf("alt:%0.6f\n",GM.pixhawk().altitude());
-			printf("bat:%0.6f\n",GM.pixhawk().battery());
 
 			vel.push_back(0);
 			vel.push_back(GM.pixhawk().velx());
@@ -710,7 +672,7 @@ IOManager::writeDelimitedTo(T7::GenericMessage message, google::protobuf::io::Ze
     output.WriteVarint32(size);
 
     uint8_t* buffer = output.GetDirectBufferForNBytesAndAdvance(size);
-    if (false || buffer != NULL) {
+    if (buffer != NULL) {
         // Optimization:  The message fits in one buffer, so use the faster
         // direct-to-array serialization path.
         message.SerializeWithCachedSizesToArray(buffer);
@@ -748,8 +710,3 @@ IOManager::readDelimitedFrom(google::protobuf::io::ZeroCopyInputStream* rawInput
 
     return true;
 }
-
-
-
-
-

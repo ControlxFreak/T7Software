@@ -1,2 +1,1 @@
-    [javac] /home/jarrett/T7Software/hss/build.xml:14: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
-    [javac] Compiling 38 source files to /home/jarrett/T7Software/hss/classes
+    [javac] /home/controlfreak/repos/ELDP/new_home_station/T7Software/hss/build.xml:14: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
