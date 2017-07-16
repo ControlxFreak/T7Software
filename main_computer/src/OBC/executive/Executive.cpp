@@ -91,7 +91,7 @@ Executive::run()
     // Loop until it is time to die
     while(!data->timeToDieMap[timeToDieFlags::EXECUTIVE_SHUTDOWN])
     {
-        if(data->accelQueue.size() < 10)
+/*        if(data->accelQueue.size() < 10)
         {
             accel.push_back(0);
             accel.push_back(100);
@@ -109,7 +109,8 @@ Executive::run()
             accel.clear();
             gyro.clear();
         }
-        WD.check();
+*/  
+      WD.check();
     } //while(!timeToDie)
 } //run()
 

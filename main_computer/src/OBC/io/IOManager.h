@@ -60,7 +60,8 @@ public:
     LogManager* LM;
     
     // Define the IO parameters needed for communication
-    string HSS_IP = "127.0.0.1";
+    string HSS_IP = "172.20.10.2";
+    string UAV_IP = "127.0.0.1";
     int CLIENT_PORT_NUMBER = 9002;
     int SERVER_PORT_NUMBER = 9001;
     

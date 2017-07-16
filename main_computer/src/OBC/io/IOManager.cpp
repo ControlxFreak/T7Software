@@ -368,7 +368,7 @@ IOManager::server_handler() {
     // Initialize the TCP Classes
     TCPStream* stream;
     TCPAcceptor* acceptor;
-    acceptor = new TCPAcceptor(SERVER_PORT_NUMBER, HSS_IP.c_str());
+    acceptor = new TCPAcceptor(SERVER_PORT_NUMBER, UAV_IP.c_str());
 
     // Initialize the TCP connector
     LM->append("Initializing Server\n");
